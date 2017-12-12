@@ -17,12 +17,12 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
-	
-	    <dependency>
-	        <groupId>com.pascloud.devops</groupId>
-	        <artifactId>pascloud-dao-mybatis</artifactId>
-	    </dependency>
-	    <dependency>
+
+		<dependency>
+			<groupId>com.pascloud.devops</groupId>
+			<artifactId>pascloud-dao-mybatis</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
 		</dependency>
@@ -51,11 +51,16 @@
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-core-lgpl</artifactId>
 		</dependency>
+
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
+			<groupId>com.github.docker-java</groupId>
+			<artifactId>docker-java</artifactId>
+			<version>3.0.14</version>
+		</dependency>
+		<dependency>
+			<groupId>com.spotify</groupId>
+			<artifactId>docker-client</artifactId>
+			<version>8.10.0</version>
 		</dependency>
 	</dependencies>
 </project>
