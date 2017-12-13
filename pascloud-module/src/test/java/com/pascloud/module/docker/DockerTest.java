@@ -1,7 +1,44 @@
 package com.pascloud.module.docker;
 
+import static com.google.common.base.Strings.isNullOrEmpty;
+import static com.spotify.docker.client.DockerClient.ListContainersParam.allContainers;
+import static com.spotify.docker.client.DockerClient.ListContainersParam.withLabel;
+import static com.spotify.docker.client.DockerClient.ListContainersParam.withStatusCreated;
+import static com.spotify.docker.client.DockerClient.ListContainersParam.withStatusExited;
+import static com.spotify.docker.client.DockerClient.ListContainersParam.withStatusPaused;
+import static com.spotify.docker.client.DockerClient.ListContainersParam.withStatusRunning;
+import static com.spotify.docker.client.DockerClient.ListImagesParam.allImages;
+import static com.spotify.docker.client.DockerClient.ListImagesParam.byName;
+import static com.spotify.docker.client.DockerClient.ListImagesParam.danglingImages;
+import static com.spotify.docker.client.DockerClient.ListImagesParam.digests;
+import static com.spotify.docker.client.DockerClient.RemoveContainerParam.forceKill;
+import static java.lang.Long.toHexString;
+import static java.lang.System.getenv;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.anything;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.isEmptyOrNullString;
+import static org.hamcrest.Matchers.isIn;
+import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.collection.IsEmptyCollection.empty;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+
 import java.io.IOException;
+import java.net.URI;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,124 +51,167 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.github.dockerjava.api.DockerClient;
-import com.github.dockerjava.api.model.Info;
-import com.github.dockerjava.core.DefaultDockerClientConfig;
-import com.github.dockerjava.core.DockerClientBuilder;
-import com.github.dockerjava.core.DockerClientConfig;
+import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 import com.spotify.docker.client.DefaultDockerClient;
 import com.spotify.docker.client.exceptions.DockerException;
-import com.spotify.docker.client.messages.ContainerInfo.Node;
+import com.spotify.docker.client.messages.Container;
+import com.spotify.docker.client.messages.ContainerConfig;
+import com.spotify.docker.client.messages.ContainerCreation;
+import com.spotify.docker.client.messages.ContainerInfo;
+import com.spotify.docker.client.messages.Image;
+import com.spotify.docker.client.messages.ImageInfo;
+import com.spotify.docker.client.messages.swarm.EngineConfig;
+import com.spotify.docker.client.messages.swarm.EnginePlugin;
+import com.spotify.docker.client.messages.swarm.Node;
+import com.spotify.docker.client.messages.swarm.NodeDescription;
+import com.spotify.docker.client.messages.swarm.NodeSpec;
+import com.spotify.docker.client.messages.swarm.Service;
+import com.spotify.docker.client.messages.swarm.ServiceSpec;
 import com.spotify.docker.client.messages.swarm.Swarm;
-
-
-
-
-
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(locations = { "classpath*:META-INF/spring/pascloud-*.xml" })
 public class DockerTest {
-	
+
+	private static final String BUSYBOX = "busybox";
+	private static final String BUSYBOX_LATEST = BUSYBOX + ":latest";
+	private static final String BUSYBOX_BUILDROOT_2013_08_1 = BUSYBOX + ":buildroot-2013.08.1";
+	private static final String MEMCACHED = "rohan/memcached-mini";
+	private static final String MEMCACHED_LATEST = MEMCACHED + ":latest";
+	private static final String CIRROS_PRIVATE = "dxia/cirros-private";
+	private static final String CIRROS_PRIVATE_LATEST = CIRROS_PRIVATE + ":latest";
+
+	private static final boolean CIRCLECI = !isNullOrEmpty(getenv("CIRCLECI"));
+	private static final boolean TRAVIS = "true".equals(getenv("TRAVIS"));
+
+	private static final String AUTH_USERNAME = "dxia2";
+	private static final String AUTH_PASSWORD = "Tv38KLPd]M";
+
 	private String dockerHost = "tcp://192.168.0.16:2375";
-    private String version = "1.13.1";
-    
-    @Autowired
+	private String version = "1.13.1";
+
+	private final String nameTag = toHexString(ThreadLocalRandom.current().nextLong());
+
+	@Autowired
 	private WebApplicationContext wac;
-    
-    private MockMvc mockMvc;
-    
-    @Before  
-    public void setup() {  
-        mockMvc = MockMvcBuilders.standaloneSetup(wac).build();  
-    }  
-	
-    /**
-	 * {"architecture":"x86_64","containers":19,"containersStopped":7,"containersPaused":0,"containersRunning":12,"cpuCfsPeriod":true,"cpuCfsQuota":true,"cpuShares":true,"cpuSet":true,"debug":false,"dockerRootDir":"/var/lib/docker","driver":"devicemapper","driverStatuses":[["Pool Name","docker-253:1-201992528-pool"],["Pool Blocksize","65.54 kB"],["Base Device Size","10.74 GB"],["Backing Filesystem","xfs"],["Data file","/dev/loop0"],["Metadata file","/dev/loop1"],["Data Space Used","15.35 GB"],["Data Space Total","107.4 GB"],["Data Space Available","4.296 GB"],["Metadata Space Used","17.38 MB"],["Metadata Space Total","2.147 GB"],["Metadata Space Available","2.13 GB"],["Thin Pool Minimum Free Space","10.74 GB"],["Udev Sync Supported","true"],["Deferred Removal Enabled","false"],["Deferred Deletion Enabled","false"],["Deferred Deleted Device Count","0"],["Data loop file","/var/lib/docker/devicemapper/devicemapper/data"],["Metadata loop file","/var/lib/docker/devicemapper/devicemapper/metadata"],["Library Version","1.02.135-RHEL7 (2016-11-16)"]],"plugins":{"Volume":["local"],"Network":["overlay","bridge","null","host"]},"executionDriver":"","loggingDriver":"journald","experimentalBuild":false,"httpProxy":"","httpsProxy":"","id":"YGGN:ZDE7:JLCP:3NSE:CPAY:EO3D:CF6D:HTPW:O7JZ:HRCG:M43J:BFLM","ipv4Forwarding":true,"bridgeNfIptables":true,"bridgeNfIp6tables":true,"images":87,"indexServerAddress":"https://index.docker.io/v1/","kernelVersion":"3.10.0-514.10.2.el7.x86_64","memoryLimit":true,"memTotal":16658255872,"name":"centoss1.pascloud.com","ncpu":8,"nEventsListener":1,"nfd":82,"nGoroutines":80,"noProxy":"","oomKillDisable":true,"osType":"linux","operatingSystem":"CentOS Linux 7 (Core)","registryConfig":{"indexConfigs":{"docker.io":{"mirrors":["http://9077b1f5.m.daocloud.io"],"name":"docker.io","official":true,"secure":true}},"insecureRegistryCIDRs":["127.0.0.0/8"],"mirrors":["http://9077b1f5.m.daocloud.io"]},"swapLimit":true,"systemTime":"2017-12-12T15:34:13.206699627+08:00","serverVersion":"1.12.6","clusterStore":"","clusterAdvertise":""}
-	 */
+
+	private MockMvc mockMvc;
+
+	private URI dockerEndpoint;
+
+	private DefaultDockerClient sut;
+
+	private String dockerApiVersion;
+
+	private Gson g = new Gson();
+
+	@Before
+	public void setup() throws Exception {
+		mockMvc = MockMvcBuilders.standaloneSetup(wac).build();
+		DefaultDockerClient docker = DefaultDockerClient.builder().uri("http://192.168.0.17:2375").build();
+		sut = docker;
+		dockerEndpoint = docker.builder().uri();
+		dockerApiVersion = sut.version().apiVersion();
+
+	}
+
 	@Test
-	public void testDockerInfo(){
-		
-		DockerClientConfig config = DefaultDockerClientConfig.createDefaultConfigBuilder()
-                .withDockerHost(dockerHost)
-                //.withApiVersion("1.13.1")
-                .build();
-		DockerClient dockerClient = DockerClientBuilder.getInstance(config).build();
-        Info info = dockerClient.infoCmd().exec();
-        Gson g = new Gson();
-        System.out.println(g.toJson(info));
-        
-        
-        try {
-			dockerClient.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public void testListImages() throws Exception {
+		final List<Image> images = sut.listImages();
+		for (Image image : images) {
+			System.out.println(g.toJson(image));
 		}
 	}
-	
-	@Test
-    public void testContainer() throws IOException, DockerException, InterruptedException {
-        DefaultDockerClient docker = DefaultDockerClient.builder()
-                .uri("http://192.168.0.16:2375")
-                .build();
 
-        Gson g = new Gson();
-        List<com.spotify.docker.client.messages.Container> containers = docker.listContainers();
-        for (com.spotify.docker.client.messages.Container container : containers) {
-            System.out.println(g.toJson(container));
-        }
-        //Swarm swarm = docker.inspectSwarm();
-        //System.out.println("*****************************");
-        //System.out.println(g.toJson(swarm));
-        
-        
-        
-        docker.close();
-    }
-	
 	@Test
-    public void testImages() throws IOException, DockerException, InterruptedException {
-        DefaultDockerClient docker = DefaultDockerClient.builder()
-                .uri("http://192.168.0.16:2375")
-                .build();
+	public void testListNodes() throws Exception {
+		List<Node> nodes = sut.listNodes();
+		for (Node node : nodes) {
+			System.out.println(g.toJson(node));
+		}
+	}
 
-        Gson g = new Gson();
-        List<com.spotify.docker.client.messages.Image> images = docker.listImages();
-        for (com.spotify.docker.client.messages.Image image : images) {
-            System.out.println(g.toJson(image));
-        }
-        Swarm swarm = docker.inspectSwarm();
-        
-        //System.out.println("*****************************");
-        //System.out.println(g.toJson(swarm));
-        docker.listNodes();
-        
-        
-        docker.close();
-    }
-	
-	
 	@Test
-	public void testDockerNode() throws DockerException, InterruptedException{
-		DefaultDockerClient docker = DefaultDockerClient.builder()
-                .uri("http://192.168.0.16:2375")
-                .build();
+	public void testListServices() throws Exception {
+		List<Service> services = sut.listServices();
+		for (Service s : services) {
+			System.out.println(g.toJson(s));
+		}
 
-        Gson g = new Gson();
-        List<com.spotify.docker.client.messages.swarm.Node> nodes = docker.listNodes();
-        for (com.spotify.docker.client.messages.swarm.Node node : nodes) {
-            System.out.println(g.toJson(node));
-        }
-        
-        
-        
-        docker.close();
-		
+	}
+
+	@Test
+	public void testListContainers() throws Exception {
+
+		List<Container> containers = sut.listContainers();
+		for (Container s : containers) {
+			System.out.println(g.toJson(s));
+		}
+	}
+
+	@Test
+	public void testInspectSwarm() throws Exception {
+
+		final Swarm swarm = sut.inspectSwarm();
+		System.out.println(g.toJson(swarm));
+
+	}
+
+	@Test
+	public void testCommitContainer() throws Exception {
+		// Pull image
+		sut.pull(BUSYBOX_LATEST);
+
+		// Create container
+		final ContainerConfig config = ContainerConfig.builder().image(BUSYBOX_LATEST).build();
+		final String name = randomName();
+		final ContainerCreation creation = sut.createContainer(config, name);
+		// final String id = creation.id();
+		final String id = creation.id();
+
+		final String tag = randomName();
+		final ContainerCreation dockerClientTest = sut.commitContainer(id, "mosheeshel/busybox", tag, config,
+				"CommitedByTest-" + tag, "DockerClientTest");
+
+		final ImageInfo imageInfo = sut.inspectImage(dockerClientTest.id());
+		 assertThat(imageInfo.author(), is("DockerClientTest"));
+		 assertThat(imageInfo.comment(), is("CommitedByTest-" + tag));
+		//System.out.println(imageInfo.comment());
+		//System.out.println(imageInfo.author());
+
+	}
+
+	@Test
+	public void testContainerLabels() throws Exception {
+		sut.pull(BUSYBOX_LATEST);
+
+		final Map<String, String> labels = ImmutableMap.of("name", "starship", "foo", "bar");
+
+		// Create container
+		final ContainerConfig config = ContainerConfig.builder().image(BUSYBOX_LATEST).labels(labels)
+				.cmd("sleep", "1000").build();
+		final String name = randomName();
+		final ContainerCreation creation = sut.createContainer(config, name);
+		final String id = creation.id();
+
+		// Start the container
+		sut.startContainer(id);
+
+		final ContainerInfo containerInfo = sut.inspectContainer(id);
+		assertThat(containerInfo.config().labels(), is(labels));
+		//System.out.println(containerInfo.config().labels());
+
 	}
 	
-	
+	@Test
+	public void testassertThat() throws Exception {
+		
+		assertThat("123", is("123"));
+	}
 
+	private String randomName() {
+		return nameTag + '-' + toHexString(ThreadLocalRandom.current().nextLong());
+	}
 }

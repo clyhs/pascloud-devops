@@ -16,6 +16,9 @@
         <dependent-module archiveName="pascloud-utils-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/pascloud-utils/pascloud-utils">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="docker-client-8.10.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/docker-client/docker-client">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="pascloud-webapps"/>
         <property name="java-output-path" value="/pascloud-webapps/target/classes"/>
     </wb-module>
