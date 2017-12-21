@@ -34,7 +34,7 @@ public class DockerService {
 	public List<NodeVo> getNodes(DefaultDockerClient dockerClient){
 		List<NodeVo> nodes = new ArrayList<NodeVo>();
 		
-		List<com.spotify.docker.client.messages.swarm.Node> dockernodes;
+		List<Node> dockernodes;
 		try {
 			dockernodes = dockerClient.listNodes();
 			for (Node node : dockernodes) {
@@ -68,17 +68,27 @@ public class DockerService {
     	List<ContainerVo> containers = new ArrayList<>();
     	List<Container> dockerContainers = new ArrayList<>();
     	try {
+    		String host = dockerClient.getHost();
 			dockerContainers = dockerClient.listContainers();
 			for(Container container:dockerContainers){
 				ContainerVo vo = new ContainerVo();
 				vo.setId(container.id());
-				vo.setName(container.names().get(0));
+				String name = container.names().get(0);
+				if(null != name){
+					if(name.startsWith("/")){
+						name = name.substring(1, name.length());
+						vo.setName(name);
+					}
+				}
 				//vo.setPublicPort(container.ports().);
 				vo.setState(container.state());
 				vo.setStatus(container.status());
-				//vo.setIp(container.);
+				vo.setIp(host);
 				vo.setPublicPort(container.portsAsString());
-				containers.add(vo);
+				
+				if(name.startsWith("paspb")){
+					containers.add(vo);
+				}
 			}	
 		} catch (DockerException e) {
 			// TODO Auto-generated catch block

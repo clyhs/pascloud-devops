@@ -77,36 +77,20 @@ function createDialogWithSize(dialogFrame, dialogId,dialogTitle, dialogUrl,width
     });  
 } 
 
-/**
- * 创建表单对话框的方法（htmlDiv）
- * @param dialogFrame
- * @param dialogId
- * @param dialogTitle
- * @param dialogUrl
- * @param htmlDiv
- * @param width
- * @param height
- * @returns
- */
-function createDialogWithSizeForCsz(dialogFrame, dialogId,dialogTitle, dialogUrl,htmlDiv,width,height)  
+function createDialogDivWithSize(dialogFrame, dialogId,dialogTitle, dialogUrl,width,height,htmldiv)  
 {  
     var div = $('#'+dialogFrame);  
-    
-    var html = '<div id="'+dialogId+'" data-options="iconCls:\'icon-cog_edit\'""><form id="'+dialogId+'Form" method="post" style="width:100%;height:100%;">'+htmlDiv+'</form></div>';  
+    var html = '<div id="'+dialogId+'"><form id="'+dialogId+'Form" method="post" style="width:100%;height:100%;">'+htmldiv+'</form></div>';  
     div.empty();  
     div.append(html);  
     $.parser.parse(div);  
     var url = dialogUrl;  
-    
+        
     $("#"+dialogId).dialog(  
     {  
         title : dialogTitle,  
         width : width,  
         height : height,  
-        minWidth : 500,
-        minimizable : true,
-        maximizable : true,
-        resizable : true,
         closed : false,  
         cache : false,  
         draggable : false,  
@@ -119,33 +103,4 @@ function createDialogWithSizeForCsz(dialogFrame, dialogId,dialogTitle, dialogUrl
     });  
 } 
 
-function createDialogWithSizeForQj(dialogFrame, dialogId,dialogTitle, dialogUrl,htmlDiv,width,height)  
-{  
-    var div = $('#'+dialogFrame);  
-    
-    var html = '<div id="'+dialogId+'" data-options="iconCls:\'icon-cog_edit\'"">'+htmlDiv+'</div>';  
-    div.empty();  
-    div.append(html);  
-    $.parser.parse(div);  
-    var url = dialogUrl;  
-        
-    $("#"+dialogId).dialog(  
-    {  
-        title : dialogTitle,  
-        width : width,  
-        height : height, 
-        minWidth : 500,
-        minimizable : true,
-        maximizable : true,
-        resizable : true,
-        closed : false,  
-        cache : false,  
-        draggable : false,  
-        href : url,  
-        modal : true,  
-        onClose : function()  
-        {  
-            $(this).dialog('destroy');  
-        }  
-    });
-} 
+

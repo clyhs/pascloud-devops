@@ -24,11 +24,13 @@ public abstract class BaseController {
 
 	protected DefaultDockerClient dockerClient;
 
+	protected Integer defaultPort = 2375;
+	
 	protected String dockerApiVersion;
 	
 	{
 		try{
-			DefaultDockerClient docker = DefaultDockerClient.builder().uri("http://192.168.0.16:2375").build();
+			DefaultDockerClient docker = DefaultDockerClient.builder().uri("http://192.168.0.16:"+defaultPort).build();
 			dockerClient = docker;
 			dockerEndpoint = docker.builder().uri();
 			dockerApiVersion = dockerClient.version().apiVersion();

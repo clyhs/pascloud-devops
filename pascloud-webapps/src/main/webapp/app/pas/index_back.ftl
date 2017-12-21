@@ -26,13 +26,8 @@
 		
 	</script>
 	<style>
-	    .datagrid-btable .datagrid-cell{padding:6px 4px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}  
-	    .formlabel{width:30%;text-align:right;float:left;}
-	    .formInput{float:left;margin-left:10px;}
-	    .border_right{border-right:#ccc 1px solid;}
-	    .border_bottom{border-bottom:#ccc 1px solid;}
+	.datagrid-btable .datagrid-cell{padding:6px 4px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}  
 	</style>
-	
 	
 </head>
 <body id="main"> 
