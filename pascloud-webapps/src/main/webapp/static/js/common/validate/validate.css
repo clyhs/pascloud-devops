@@ -1,0 +1,21 @@
+input.error,textarea.error,select.error{
+	border:1px solid red;
+	position: relative;
+}
+label.error{
+	background-color: yellow;
+	border: 1px solid red;
+	border-radius: 3px;
+	padding:0px 3px;
+	display: block;
+	white-space:nowrap;
+	color: #F30;
+	position: absolute;
+	z-index: 1;
+}
+select.error{
+	+background: red;
+}
+#jgkhdxdh_mc,#khdxdh_mc{
+	box-sizing:content-box;
+}

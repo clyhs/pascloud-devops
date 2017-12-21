@@ -18,7 +18,7 @@
 	</properties>
 	<dependencies>
 
-		
+
 
 		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
 		<dependency>
@@ -27,8 +27,8 @@
 			<version>1.3.1</version>
 		</dependency>
 
-		
-		
+
+
 
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
@@ -44,7 +44,7 @@
 			<version>1.4.0</version>
 		</dependency>
 
-		
+
 		<!-- apache -->
 		<dependency>
 			<groupId>commons-collections</groupId>
@@ -61,6 +61,23 @@
 			<artifactId>commons-codec</artifactId>
 			<version>1.10</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/ch.ethz.ganymed/ganymed-ssh2 -->
+		<dependency>
+			<groupId>ch.ethz.ganymed</groupId>
+			<artifactId>ganymed-ssh2</artifactId>
+			<version>build210</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/net.schmizz/sshj -->
+		<dependency>
+			<groupId>net.schmizz</groupId>
+			<artifactId>sshj</artifactId>
+			<version>0.10.0</version>
+		</dependency>
+
+
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

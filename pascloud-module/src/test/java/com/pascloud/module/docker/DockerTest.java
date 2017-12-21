@@ -29,17 +29,22 @@ import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
+import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
+import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -52,6 +57,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import com.google.gson.Gson;
 import com.spotify.docker.client.DefaultDockerClient;
 import com.spotify.docker.client.exceptions.DockerException;
@@ -59,8 +65,14 @@ import com.spotify.docker.client.messages.Container;
 import com.spotify.docker.client.messages.ContainerConfig;
 import com.spotify.docker.client.messages.ContainerCreation;
 import com.spotify.docker.client.messages.ContainerInfo;
+import com.spotify.docker.client.messages.ContainerMount;
+import com.spotify.docker.client.messages.HostConfig;
 import com.spotify.docker.client.messages.Image;
 import com.spotify.docker.client.messages.ImageInfo;
+import com.spotify.docker.client.messages.PortBinding;
+import com.spotify.docker.client.messages.Volume;
+import com.spotify.docker.client.messages.VolumeList;
+import com.spotify.docker.client.messages.HostConfig.Bind;
 import com.spotify.docker.client.messages.swarm.EngineConfig;
 import com.spotify.docker.client.messages.swarm.EnginePlugin;
 import com.spotify.docker.client.messages.swarm.Node;
@@ -75,7 +87,7 @@ import com.spotify.docker.client.messages.swarm.Swarm;
 @ContextConfiguration(locations = { "classpath*:META-INF/spring/pascloud-*.xml" })
 public class DockerTest {
 
-	private static final String BUSYBOX = "busybox";
+	private static final String BUSYBOX = "tomcat";
 	private static final String BUSYBOX_LATEST = BUSYBOX + ":latest";
 	private static final String BUSYBOX_BUILDROOT_2013_08_1 = BUSYBOX + ":buildroot-2013.08.1";
 	private static final String MEMCACHED = "rohan/memcached-mini";
@@ -110,7 +122,7 @@ public class DockerTest {
 	@Before
 	public void setup() throws Exception {
 		mockMvc = MockMvcBuilders.standaloneSetup(wac).build();
-		DefaultDockerClient docker = DefaultDockerClient.builder().uri("http://192.168.0.17:2375").build();
+		DefaultDockerClient docker = DefaultDockerClient.builder().uri("http://192.168.0.16:2375").build();
 		sut = docker;
 		dockerEndpoint = docker.builder().uri();
 		dockerApiVersion = sut.version().apiVersion();
@@ -176,10 +188,10 @@ public class DockerTest {
 				"CommitedByTest-" + tag, "DockerClientTest");
 
 		final ImageInfo imageInfo = sut.inspectImage(dockerClientTest.id());
-		 assertThat(imageInfo.author(), is("DockerClientTest"));
-		 assertThat(imageInfo.comment(), is("CommitedByTest-" + tag));
-		//System.out.println(imageInfo.comment());
-		//System.out.println(imageInfo.author());
+		assertThat(imageInfo.author(), is("DockerClientTest"));
+		assertThat(imageInfo.comment(), is("CommitedByTest-" + tag));
+		// System.out.println(imageInfo.comment());
+		// System.out.println(imageInfo.author());
 
 	}
 
@@ -201,13 +213,214 @@ public class DockerTest {
 
 		final ContainerInfo containerInfo = sut.inspectContainer(id);
 		assertThat(containerInfo.config().labels(), is(labels));
-		//System.out.println(containerInfo.config().labels());
+		// System.out.println(containerInfo.config().labels());
 
+		//sut.removeContainer(id, forceKill());
+	}
+
+	@Test
+	public void testContainerWithCpuOptions() throws Exception {
+		// requireDockerApiVersionAtLeast("1.18", "Container creation with cpu
+		// options");
+
+		sut.pull(BUSYBOX_LATEST);
+
+		final HostConfig expected = HostConfig.builder().cpuShares(4096L).cpusetCpus("0,1").build();
+
+		final ContainerConfig config = ContainerConfig.builder().image(BUSYBOX_LATEST).hostConfig(expected).build();
+		final String name = randomName();
+		final ContainerCreation creation = sut.createContainer(config, name);
+		final String id = creation.id();
+
+		sut.startContainer(id);
+
+		final HostConfig actual = sut.inspectContainer(id).hostConfig();
+
+		assertThat(actual.cpuShares(), equalTo(expected.cpuShares()));
+		assertThat(actual.cpusetCpus(), equalTo(expected.cpusetCpus()));
+	}
+
+	@Test
+	@SuppressWarnings("deprecation")
+	public void testCopyContainer() throws Exception {
+		// requireDockerApiVersionLessThan("1.24", "failCopyToContainer");
+
+		// Pull image
+		sut.pull(BUSYBOX_LATEST);
+
+		// Create container
+		final ContainerConfig config = ContainerConfig.builder().image(BUSYBOX_LATEST).build();
+		final String name = randomName();
+		final ContainerCreation creation = sut.createContainer(config, name);
+		final String id = creation.id();
+
+		final ImmutableSet.Builder<String> files = ImmutableSet.builder();
+		try (final TarArchiveInputStream tarStream = new TarArchiveInputStream(sut.copyContainer(id, "/bin"))) {
+			TarArchiveEntry entry;
+			while ((entry = tarStream.getNextTarEntry()) != null) {
+				files.add(entry.getName());
+			}
+		}
 	}
 	
 	@Test
-	public void testassertThat() throws Exception {
+	public void testContainerWithMemoryOptions() throws Exception {
+		//sut.pull(BUSYBOX_LATEST);
+		//docker run -d -v /pascloud16/test/:/usr/local/tomcat/webapps -p 7777:8080 tomcat
+
+		final String[] ports = {"8080"};
+		final Map<String, List<PortBinding>> portBindings = new HashMap<>();
+		for (String port : ports) {
+		    List<PortBinding> hostPorts = new ArrayList<>();
+		    hostPorts.add(PortBinding.of("0.0.0.0", "7777"));
+		    portBindings.put(port, hostPorts);
+		}
 		
+		//final String[] volumes = {"/usr/local/tomcat/webapps"};
+		
+		//final String namedVolumeName = "aVolume";
+		//final String namedVolumeFrom = "/a/host/path";
+		//final String namedVolumeTo = "/a/destination/path";
+		//final String bindObjectFrom = "/some/path";
+		//final String bindObjectTo = "/some/other/path";
+		final String bindStringFrom = "/pascloud16/test/";
+		final String bindStringTo = "/usr/local/tomcat/webapps";
+		//final String anonVolumeTo = "/foo";
+
+		//final Volume volume = Volume.builder().name(namedVolumeName).mountpoint(namedVolumeFrom).build();
+		//sut.createVolume(volume);
+		//final Bind bindUsingVolume = Bind.from(volume).to(namedVolumeTo).build();
+
+		//final Bind bind = Bind.from(bindObjectFrom).to(bindObjectTo).readOnly(true).build();
+		
+		
+		final HostConfig hostConfig = HostConfig.builder().portBindings(portBindings).appendBinds(bindStringFrom + ":" + bindStringTo).build();
+		
+
+		final ContainerConfig config = ContainerConfig.builder().image(BUSYBOX_LATEST).hostConfig(hostConfig).
+				cmd("catalina.sh", "run").exposedPorts(ports).build();
+		final String name = "tomcat_test";
+		final ContainerCreation creation = sut.createContainer(config, name);
+		final String id = creation.id();
+
+		sut.startContainer(id);
+
+		
+	}
+	
+	@Test
+	public void testContainerVolumeCopy() throws Exception {
+		//sut.pull(BUSYBOX_LATEST);
+		//docker run -d -v /pascloud16/test/:/usr/local/tomcat/webapps -p 7777:8080 tomcat
+
+		final String[] ports = {"8080"};
+		final Map<String, List<PortBinding>> portBindings = new HashMap<>();
+		for (String port : ports) {
+		    List<PortBinding> hostPorts = new ArrayList<>();
+		    hostPorts.add(PortBinding.of("0.0.0.0", "7777"));
+		    portBindings.put(port, hostPorts);
+		}
+		
+		//final String[] volumes = {"/usr/local/tomcat/webapps"};
+		
+		final String bindStringFrom = "/pascloud16/test/";
+		final String bindStringTo = "/usr/local/tomcat/webapps";
+		//final String anonVolumeTo = "/foo";
+
+		//final Volume volume = Volume.builder().name(namedVolumeName).mountpoint(namedVolumeFrom).build();
+		//sut.createVolume(volume);
+		//final Bind bindUsingVolume = Bind.from(volume).to(namedVolumeTo).build();
+
+		final Bind bind = Bind.from(bindStringFrom).to(bindStringTo).build();
+		
+		
+		final HostConfig hostConfig = HostConfig.builder().portBindings(portBindings).appendBinds(bind).build();
+		
+
+		final ContainerConfig config = ContainerConfig.builder().image(BUSYBOX_LATEST).hostConfig(hostConfig).
+				cmd("catalina.sh", "run").exposedPorts(ports).build();
+		final String name = "tomcat_test";
+		final ContainerCreation creation = sut.createContainer(config, name);
+		final String id = creation.id();
+
+		sut.startContainer(id);
+
+		
+	}
+	
+	@Test
+	public void testContainerVolumeFrom() throws Exception {
+		//sut.pull(BUSYBOX_LATEST);
+		//docker run -d -v /pascloud16/test/:/usr/local/tomcat/webapps -p 7777:8080 tomcat
+
+		final String[] ports = {"8080"};
+		final Map<String, List<PortBinding>> portBindings = new HashMap<>();
+		for (String port : ports) {
+		    List<PortBinding> hostPorts = new ArrayList<>();
+		    hostPorts.add(PortBinding.of("0.0.0.0", "7777"));
+		    portBindings.put(port, hostPorts);
+		}
+		
+		//final String[] volumes = {"/usr/local/tomcat/webapps"};
+		
+		final String bindStringFrom = "/pascloud16/test/";
+		final String bindStringTo = "/usr/local/tomcat/webapps";
+		//final String anonVolumeTo = "/foo";
+
+		//final Volume volume = Volume.builder().name(namedVolumeName).mountpoint(namedVolumeFrom).build();
+		//sut.createVolume(volume);
+		//final Bind bindUsingVolume = Bind.from(volume).to(namedVolumeTo).build();
+
+		final Bind bind = Bind.from(bindStringFrom).to(bindStringTo).build();
+		
+		
+		final HostConfig hostConfig = HostConfig.builder().portBindings(portBindings).build();
+		
+
+		final ContainerConfig config = ContainerConfig.builder().image(BUSYBOX_LATEST).addVolume(bindStringTo).hostConfig(hostConfig).
+				cmd("catalina.sh", "run").exposedPorts(ports).build();
+		final String name = "tomcat_test";
+		final ContainerCreation creation = sut.createContainer(config, name);
+		final String id = creation.id();
+
+		sut.startContainer(id);
+
+		
+	}
+	
+	@Test
+	public void testKillContainer() throws Exception {
+		//
+
+		
+		final String containerId = "6885358a836d";
+
+		//sut.startContainer(containerId);
+
+		// Must be running
+		//final ContainerInfo containerInfo = sut.inspectContainer(containerId);
+		//assertThat(containerInfo.state().running(), equalTo(true));
+
+		//sut.killContainer(containerId);
+
+		// Should not be running
+		//final ContainerInfo containerInfoLatest = sut.inspectContainer(containerId);
+		//assertFalse(containerInfoLatest.state().running());
+		//sut.removeContainer(containerId);
+		
+		final ContainerInfo containerInfo = sut.inspectContainer(containerId);
+		final List<ContainerMount> mounts = containerInfo.mounts();
+		
+		System.out.println(g.toJson(containerInfo));
+		
+		for(ContainerMount m : mounts){
+			System.out.println(g.toJson(m));
+		}
+	}
+
+	@Test
+	public void testassertThat() throws Exception {
+
 		assertThat("123", is("123"));
 	}
 
