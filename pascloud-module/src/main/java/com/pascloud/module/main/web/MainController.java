@@ -40,13 +40,13 @@ public class MainController extends BaseController {
 		t3.setId("2");
 		t3.setText("天维服务");
 		t3.setLeaf(true);
-		t3.setUrl("/module/pas/index.html");
+		t3.setUrl("/module/service/index.html");
 		
 		TreeVo t4 = new TreeVo();
 		t4.setId("3");
 		t4.setText("天维工具");
 		t4.setLeaf(true);
-		t4.setUrl("/module/pas/index.html");
+		t4.setUrl("/module/tool/index.html");
 		
 		//trees.add(t1);
 		trees.add(t2);

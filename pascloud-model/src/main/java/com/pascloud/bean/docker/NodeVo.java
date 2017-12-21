@@ -2,7 +2,7 @@ package com.pascloud.bean.docker;
 
 import java.io.Serializable;
 
-public class Node implements Serializable{
+public class NodeVo implements Serializable{
 
 	/**
 	 * 

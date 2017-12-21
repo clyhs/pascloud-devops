@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.pascloud.bean.docker.Node;
+import com.pascloud.bean.docker.NodeVo;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.docker.service.DockerService;
 
@@ -20,8 +20,8 @@ public class DockerController extends BaseController {
 
 	@RequestMapping("getnodes")
 	@ResponseBody
-	public List<Node> getNodes(){
-		List<Node> nodes = new ArrayList<>();
+	public List<NodeVo> getNodes(){
+		List<NodeVo> nodes = new ArrayList<>();
 		nodes = m_dockerService.getNodes(dockerClient);
 		return nodes;
 	}
