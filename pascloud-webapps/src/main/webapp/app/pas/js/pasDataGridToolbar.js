@@ -15,10 +15,22 @@ var toolbar = function(){
             alert('复制')
         }
 	},{
+		text : '运行',  
+        iconCls : 'icon-table_edit',  
+        handler : function(){
+            startContainer();
+        }
+	},{
 		text : '暂停',  
         iconCls : 'icon-table_edit',  
         handler : function(){
-            alert('暂停')
+        	pauseContainer();
+        }
+	},{
+		text : '恢复',  
+        iconCls : 'icon-table_edit',  
+        handler : function(){
+        	unpauseContainer();
         }
 	},{
 		text : '销毁',  

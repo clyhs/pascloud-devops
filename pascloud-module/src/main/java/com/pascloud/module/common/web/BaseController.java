@@ -26,6 +26,8 @@ public abstract class BaseController {
 
 	protected Integer defaultPort = 2375;
 	
+	protected String sourceFolder = "/home/webapps";
+	
 	protected String dockerApiVersion;
 	
 	{

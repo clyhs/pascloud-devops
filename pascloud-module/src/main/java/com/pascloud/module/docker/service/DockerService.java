@@ -1,7 +1,14 @@
 package com.pascloud.module.docker.service;
 
+import static com.spotify.docker.client.DockerClient.ListContainersParam.allContainers;
+import static com.spotify.docker.client.DockerClient.ListContainersParam.withStatusCreated;
+import static com.spotify.docker.client.DockerClient.ListContainersParam.withStatusExited;
+import static com.spotify.docker.client.DockerClient.ListContainersParam.withStatusPaused;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +27,8 @@ import com.spotify.docker.client.messages.ContainerConfig;
 import com.spotify.docker.client.messages.ContainerCreation;
 import com.spotify.docker.client.messages.ContainerInfo;
 import com.spotify.docker.client.messages.ContainerMount;
+import com.spotify.docker.client.messages.HostConfig;
+import com.spotify.docker.client.messages.PortBinding;
 
 //{"id":"046zdmp9snmftx4a5uc4anv86","version":{"index":56},"createdAt":"Dec 18, 2017 10:24:22 AM","updatedAt":"Dec 21, 2017 9:01:49 AM","spec":{"labels":{},"role":"manager","availability":"active"},"description":{"hostname":"centoss1.pascloud.com","platform":{"architecture":"x86_64","os":"linux"},"resources":{"nanoCpus":8000000000,"memoryBytes":16658255872},"engine":{"engineVersion":"17.05.0-ce","plugins":[{"type":"Network","name":"bridge"},{"type":"Network","name":"host"},{"type":"Network","name":"macvlan"},{"type":"Network","name":"null"},{"type":"Network","name":"overlay"},{"type":"Volume","name":"local"}]}},"status":{"state":"ready","addr":"192.168.0.16"},"managerStatus":{"leader":true,"reachability":"reachable","addr":"192.168.0.16:2377"}}
 //{"id":"1upextneedo75p5sg27lk3fei","version":{"index":58},"createdAt":"Dec 18, 2017 10:29:41 AM","updatedAt":"Dec 21, 2017 9:01:54 AM","spec":{"labels":{},"role":"worker","availability":"active"},"description":{"hostname":"centoss2.pascloud.com","platform":{"architecture":"x86_64","os":"linux"},"resources":{"nanoCpus":8000000000,"memoryBytes":16659865600},"engine":{"engineVersion":"1.13.1","plugins":[{"type":"Network","name":"bridge"},{"type":"Network","name":"host"},{"type":"Network","name":"macvlan"},{"type":"Network","name":"null"},{"type":"Network","name":"overlay"},{"type":"Volume","name":"local"}]}},"status":{"state":"ready","addr":"192.168.0.7"}}
@@ -69,7 +78,7 @@ public class DockerService {
     	List<Container> dockerContainers = new ArrayList<>();
     	try {
     		String host = dockerClient.getHost();
-			dockerContainers = dockerClient.listContainers();
+			dockerContainers = dockerClient.listContainers(allContainers());
 			for(Container container:dockerContainers){
 				ContainerVo vo = new ContainerVo();
 				vo.setId(container.id());
@@ -101,6 +110,118 @@ public class DockerService {
 		}
     	
     	return containers;
+    }
+    
+    public String addContainer(DefaultDockerClient dockerClient,String publicPort,
+    		String volumeFrom,String volumeTo,String imageName,String containerName){
+    	String[] ports = {"8080"};
+		ContainerCreation creation;
+		String id = "";
+		try {
+			Map<String, List<PortBinding>> portBindings = new HashMap<>();
+			for (String port : ports) {
+			    List<PortBinding> hostPorts = new ArrayList<>();
+			    hostPorts.add(PortBinding.of("0.0.0.0", publicPort));
+			    portBindings.put(port, hostPorts);
+			}
+			String bindStringFrom = volumeFrom;
+			String bindStringTo = "/usr/local/tomcat/webapps";
+	        HostConfig hostConfig = HostConfig.builder()
+	        		.portBindings(portBindings)
+	        		.appendBinds(bindStringFrom + ":" + bindStringTo)
+	        		.build();
+			ContainerConfig config = ContainerConfig.builder().image(imageName).hostConfig(hostConfig).
+					cmd("catalina.sh", "run").exposedPorts(ports).build();
+			creation = dockerClient.createContainer(config, containerName);
+			id = creation.id();
+			//dockerClient.startContainer(id);
+		} catch (DockerException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			log.error(e.getMessage());
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			log.error(e.getMessage());
+		}
+		return id;
+    }
+    
+    public String startContainer(DefaultDockerClient dockerClient,String containerId){
+    	String status = "";
+    	try {
+			dockerClient.startContainer(containerId);
+			ContainerInfo containerInfo = dockerClient.inspectContainer(containerId);
+			status = containerInfo.state().status();
+		} catch (DockerException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			log.error(e.getMessage());
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			log.error(e.getMessage());
+		}
+    	
+    	return status;
+    }
+    
+    public String pauseContainer(DefaultDockerClient dockerClient,String containerId){
+    	String status = "";
+    	try {
+    		
+			dockerClient.pauseContainer(containerId);
+			ContainerInfo containerInfo = dockerClient.inspectContainer(containerId);
+			status = containerInfo.state().status();
+		} catch (DockerException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			log.error(e.getMessage());
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			log.error(e.getMessage());
+		}
+    	
+    	return status;
+    }
+    
+    public String unpauseContainer(DefaultDockerClient dockerClient,String containerId){
+    	String status = "";
+    	try {
+    		
+			dockerClient.unpauseContainer(containerId);
+			ContainerInfo containerInfo = dockerClient.inspectContainer(containerId);
+			status = containerInfo.state().status();
+		} catch (DockerException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			log.error(e.getMessage());
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			log.error(e.getMessage());
+		}
+    	return status;
+    }
+    
+    public String restartContainer(DefaultDockerClient dockerClient,String containerId){
+    	String status = "";
+    	try {
+    		
+			dockerClient.restartContainer(containerId);
+			ContainerInfo containerInfo = dockerClient.inspectContainer(containerId);
+			status = containerInfo.state().status();
+		} catch (DockerException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			log.error(e.getMessage());
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			log.error(e.getMessage());
+		}
+    	return status;
     }
 
 }
