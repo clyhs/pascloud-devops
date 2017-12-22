@@ -155,5 +155,15 @@ public class PasController extends BaseController {
 		System.out.println(status);
 		return result;
 	}
+	@RequestMapping(value="readContainerSpringXml.json",method=RequestMethod.POST)
+	@ResponseBody
+	public String readContainerSpringXml(HttpServletRequest request){
+		
+		ResultCommon result = new ResultCommon(10000,"成功");
+		String containerId = request.getParameter("containerId");
+		String path = "/pas_db2/WEB-INF/classes/applicationContext_resources.xml";
+		
+		return null;
+	}
 
 }

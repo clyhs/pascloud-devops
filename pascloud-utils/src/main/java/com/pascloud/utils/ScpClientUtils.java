@@ -122,6 +122,50 @@ public class ScpClientUtils {
 	}
 	
 	
+	public String catFileToString(String path){
+		StringBuffer sb = new StringBuffer();
+		if(isAutn()){
+			Session session = null;
+			InputStream stdout = null;
+			BufferedReader br = null;
+			try {
+				SCPClient scpClient = conn.createSCPClient();
+				session = conn.openSession();
+				session.execCommand("cat "+path);
+				stdout = new StreamGobbler(session.getStdout());
+				br = new BufferedReader(new InputStreamReader(stdout));
+
+				while (true) {
+					String line = br.readLine();
+					if (line == null)
+						break;
+					sb.append(line);
+				}
+				System.out.println("ExitCode: " + session.getExitStatus());
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				log.error(e.getMessage());
+			} finally{
+				try {
+					stdout.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+				}
+				try {
+					br.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+				}
+				session.close();
+			}
+		}
+		return sb.toString();
+	}
+	
 	
 	
 
