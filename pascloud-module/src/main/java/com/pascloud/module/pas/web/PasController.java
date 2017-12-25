@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.dom4j.Document;
+import org.dom4j.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +19,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.pascloud.bean.docker.ContainerVo;
 import com.pascloud.bean.docker.NodeVo;
 import com.pascloud.module.common.web.BaseController;
+import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.docker.service.DockerService;
+import com.pascloud.module.pas.service.PasService;
+import com.pascloud.utils.FileUtils;
 import com.pascloud.utils.ScpClientUtils;
+import com.pascloud.utils.xml.SpringXmlUtils;
+import com.pascloud.utils.xml.XmlParser;
 import com.pascloud.vo.result.ResultCommon;
 import com.spotify.docker.client.DefaultDockerClient;
 
@@ -28,6 +35,10 @@ public class PasController extends BaseController {
 	
 	@Autowired
 	private DockerService m_dockerService;
+	@Autowired
+	private PasService    m_pasService;
+	@Autowired
+	private PasCloudConfig m_config;
 	
 	@RequestMapping("index.html")
 	public String index(){
@@ -77,7 +88,7 @@ public class PasController extends BaseController {
 		
 		log.info("开始拷贝源码目录");
 		
-		ScpClientUtils scpClient = ScpClientUtils.getInstance(ip, "root", "tccp@2012");
+		ScpClientUtils scpClient = new ScpClientUtils(ip, "root", "tccp@2012");
 		scpClient.copyFolder(sourceFolder, bindVolumeFrom);
 		scpClient.close();
 		
@@ -141,6 +152,21 @@ public class PasController extends BaseController {
 		return result;
 	}
 	
+	@RequestMapping(value="stopContainer.json",method=RequestMethod.POST)
+	@ResponseBody
+	public ResultCommon stopContainer(HttpServletRequest request,
+			@RequestParam(value="ip",defaultValue="",required=true) String ip){
+		
+		ResultCommon result = new ResultCommon(10000,"成功");
+		String containerId = request.getParameter("containerId");
+		String status = "";
+		DefaultDockerClient client = DefaultDockerClient.builder()
+				.uri("http://"+ip+":"+defaultPort).build();
+		status = m_dockerService.stopContainer(client, containerId);
+		System.out.println(status);
+		return result;
+	}
+	
 	@RequestMapping(value="restartContainer.json",method=RequestMethod.POST)
 	@ResponseBody
 	public ResultCommon restartContainer(HttpServletRequest request,
@@ -157,13 +183,60 @@ public class PasController extends BaseController {
 	}
 	@RequestMapping(value="readContainerSpringXml.json",method=RequestMethod.POST)
 	@ResponseBody
-	public String readContainerSpringXml(HttpServletRequest request){
-		
+	public ResultCommon readContainerSpringXml(HttpServletRequest request,
+			@RequestParam(value="name",defaultValue="",required=true) String name,
+			@RequestParam(value="addr",defaultValue="",required=true) String addr){
 		ResultCommon result = new ResultCommon(10000,"成功");
-		String containerId = request.getParameter("containerId");
-		String path = "/pas_db2/WEB-INF/classes/applicationContext_resources.xml";
-		
-		return null;
+		String res = m_pasService.readSpringXml(name, addr);
+		result.setDesc(res);
+		return result;
 	}
+	
+	@RequestMapping(value="modifyContainerSpringXml.json",method=RequestMethod.POST)
+	@ResponseBody
+	public ResultCommon modifyContainerSpringXml(HttpServletRequest request,
+			@RequestParam(value="name",defaultValue="",required=true) String name,
+			@RequestParam(value="addr",defaultValue="",required=true) String addr,
+			@RequestParam(value="driverClass",defaultValue="",required=true) String driverClass,
+			@RequestParam(value="url",defaultValue="",required=true) String url,
+			@RequestParam(value="username",defaultValue="",required=true) String username,
+			@RequestParam(value="password",defaultValue="",required=true) String password){
+		ResultCommon result = new ResultCommon(10000,"成功");
+		
+		System.out.println(m_config.getPASCLOUD_SPRINGXML_PATH());
+		
+		String config_dir = m_config.getPASCLOUD_SPRINGXML_DIR();
+		String newfiledir = config_dir+"/"+name;
+		String tmpfilepath = m_config.getPASCLOUD_SPRINGXML_PATH();
+		String newfilepath = newfiledir+"/applicationContext_resources.xml";
+		
+		String serverPath  = "/home/"+name+"/pas_db2/WEB-INF/classes/";
+		
+		if( !FileUtils.isFileExists(newfiledir) ){
+			FileUtils.createOrExistsDir(newfiledir);
+		}
+		
+		Document doc = XmlParser.getDocument(tmpfilepath);
+		Element  datasource = SpringXmlUtils.getElement(doc, "dataSource");
+		Element  eDriver = SpringXmlUtils.getChildElement(datasource, "driverClassName");
+		Element  eUrl = SpringXmlUtils.getChildElement(datasource, "url");
+		Element  eUsername = SpringXmlUtils.getChildElement(datasource, "username");
+		Element  ePassword = SpringXmlUtils.getChildElement(datasource, "password");
+		
+		SpringXmlUtils.modifyAttribute(eDriver, "value", driverClass);
+		SpringXmlUtils.modifyAttribute(eUrl, "value", url);
+		SpringXmlUtils.modifyAttribute(eUsername, "value", username);
+		SpringXmlUtils.modifyAttribute(ePassword, "value", password);
+		
+		System.out.println(driverClass);
+		SpringXmlUtils.wirteXml(newfilepath, doc);
+		
+		ScpClientUtils scpClient = new ScpClientUtils(addr, "root", "tccp@2012");
+		scpClient.putFileToServer(newfilepath, serverPath);
+		scpClient.close();
+		return result;
+	}
+	
+	
 
 }

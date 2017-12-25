@@ -20,11 +20,11 @@ function initMainDataGrid(){
         columns: [[
             //{ field: 'ck', checkbox: true },
             { field: 'id', title: '编号', width: 150, align: 'left'  },
-            { field: 'name', title: '名称', width: 100, align: 'left' },
+            { field: 'name', title: '名称', width: 80, align: 'left' },
             { field: 'state', title: '状态', width: 80, align: 'left' },
-            { field: 'publicPort', title: '映射端口', width: 180, align: 'left' },
+            { field: 'publicPort', title: '映射端口', width: 100, align: 'left' },
             { field: 'ip', title: 'IP地址', width: 80, align: 'center' },
-            { field: '_operate',title: '操作', width: 80, align: 'center',formatter:formatOper }
+            { field: '_operate',title: '操作', width: 150, align: 'center',formatter:formatOper }
         ]],
         toolbar:toolbar,
         onBeforeLoad: function (param) {
@@ -46,13 +46,22 @@ function initMainDataGrid(){
 
 function formatOper(val,row,index){ 
 	
-    return '<a href="#" onclick="onSetting('+index+')">设置</a> | <a href="#" onclick="onVisit('+index+')" >访问</a>';  
+    return '<a href="#" onclick="onReadXml('+index+')">查看</a> | <a href="#" onclick="onSetting('+index+')">设置</a> | <a href="#" onclick="onVisit('+index+')" >访问</a>';  
 } 
+
+function onReadXml(index){
+	$('#mainDataGrid').datagrid('selectRow',index);
+	var row = $('#mainDataGrid').datagrid('getSelected'); 
+	//alert(row.name);
+	readSpringXml();
+}
 
 function onSetting(index){
 	$('#mainDataGrid').datagrid('selectRow',index);
 	var row = $('#mainDataGrid').datagrid('getSelected'); 
-	alert(row.name);
+	//alert(row.name);
+	addDbDialog();
+	
 }
 
 function onVisit(index){

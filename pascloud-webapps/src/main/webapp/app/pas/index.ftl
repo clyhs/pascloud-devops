@@ -13,6 +13,8 @@
 	<script type="text/javascript" src="/static/easyui/jquery-1.8.0.min.js"></script>
     <script type="text/javascript" src="/static/easyui/jquery.easyui.min.js"></script>
     
+    <script type="text/javascript" src="/static/js/common/jquery.format.js"></script>
+    
     <script type="text/javascript" src="/static/js/common/pascloudfunctions.js"></script>
     
     <script type="text/javascript" src="/app/pas/js/pasForm.js"></script>
@@ -52,6 +54,11 @@
 		</div>
 		
 	</div>
+	
+	<div id="pasSpringXml" class="easyui-dialog" title="XML配置文件" style="width:700px;height:400px;"
+        data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
+        <textarea id='pasSpringXml_text' style="width:97%;height:97%;" ></textarea>
+    </div>
 	
 </body>
 </html>

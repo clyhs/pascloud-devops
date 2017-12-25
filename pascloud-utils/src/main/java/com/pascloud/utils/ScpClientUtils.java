@@ -18,7 +18,7 @@ public class ScpClientUtils {
 	
 	private static final Logger log = LoggerFactory.getLogger(ScpClientUtils.class);
 	
-	private static ScpClientUtils instance;
+	
 	
 	private static Connection conn;
 	
@@ -32,20 +32,14 @@ public class ScpClientUtils {
 	
 	private ScpClientUtils(){}
 	
-	public  static ScpClientUtils getInstance(String addr,String username,String password){
-		if(null == instance){
-			instance = new ScpClientUtils(addr,username,password);
-		}
-		return instance;
-	}
 	
-	private  ScpClientUtils(String addr,String username,String password){
+	public  ScpClientUtils(String addr,String username,String password){
 		this.addr = addr;
 		this.username = username;
 		this.password = password;
 	}
 	
-	private  ScpClientUtils(String addr,String username,String password,Integer port){
+	public  ScpClientUtils(String addr,String username,String password,Integer port){
 		this.addr = addr;
 		this.username = username;
 		this.password = password;
@@ -134,13 +128,14 @@ public class ScpClientUtils {
 				session.execCommand("cat "+path);
 				stdout = new StreamGobbler(session.getStdout());
 				br = new BufferedReader(new InputStreamReader(stdout));
-
+				System.out.println(conn.getHostname());
 				while (true) {
 					String line = br.readLine();
 					if (line == null)
 						break;
 					sb.append(line);
 				}
+				System.out.println(sb.toString());
 				System.out.println("ExitCode: " + session.getExitStatus());
 				
 			} catch (IOException e) {
@@ -161,21 +156,33 @@ public class ScpClientUtils {
 					//e.printStackTrace();
 				}
 				session.close();
+				conn.close();
+				
 			}
 		}
 		return sb.toString();
 	}
 	
-	
+	public static void putFileToServer(String local,String server){
+		if(isAutn()){
+			try {
+				SCPClient scpClient = conn.createSCPClient();
+				scpClient.put(local, server);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+	}
 	
 
 	public static void main(String[] args){
 		System.out.println("host");
 		String sourceFolder = "/home/webapps";
 		String targetFolder = "/home/paspb_liao";
-		ScpClientUtils client = ScpClientUtils.getInstance("192.168.0.16", "root", "tccp@2012");
-		client.copyFolder(sourceFolder, targetFolder);
-		client.close();
+		//ScpClientUtils client = ScpClientUtils.getInstance("192.168.0.16", "root", "tccp@2012");
+		//client.copyFolder(sourceFolder, targetFolder);
+		//client.close();
 	}
 	
 }

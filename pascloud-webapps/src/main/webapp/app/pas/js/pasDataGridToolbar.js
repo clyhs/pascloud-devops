@@ -33,6 +33,18 @@ var toolbar = function(){
         	unpauseContainer();
         }
 	},{
+		text : '停止',  
+        iconCls : 'icon-table_edit',  
+        handler : function(){
+        	stopContainer();
+        }
+	},{
+		text : '重启',  
+        iconCls : 'icon-table_edit',  
+        handler : function(){
+        	restartContainer();
+        }
+	},{
 		text : '销毁',  
         iconCls : 'icon-table_edit',  
         handler : function(){

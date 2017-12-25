@@ -103,4 +103,30 @@ function createDialogDivWithSize(dialogFrame, dialogId,dialogTitle, dialogUrl,wi
     });  
 } 
 
+function createDialogSourceWithSize(dialogFrame, dialogId,dialogTitle, dialogUrl,width,height,htmldiv)  
+{  
+    var div = $('#'+dialogFrame);  
+    var html = '<div id="'+dialogId+'">'+htmldiv+'</div>';  
+    div.empty();  
+    div.append(html);  
+    $.parser.parse(div);  
+    var url = dialogUrl;  
+        
+    $("#"+dialogId).dialog(  
+    {  
+        title : dialogTitle,  
+        width : width,  
+        height : height,  
+        closed : false,  
+        cache : false,  
+        draggable : false,  
+        href : url,  
+        modal : true,  
+        onClose : function()  
+        {  
+            $(this).dialog('destroy');  
+        }  
+    });  
+} 
+
 

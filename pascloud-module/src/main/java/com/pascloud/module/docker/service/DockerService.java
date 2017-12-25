@@ -205,6 +205,25 @@ public class DockerService {
     	return status;
     }
     
+    public String stopContainer(DefaultDockerClient dockerClient,String containerId){
+    	String status = "";
+    	try {
+    		
+			dockerClient.stopContainer(containerId, 1);
+			ContainerInfo containerInfo = dockerClient.inspectContainer(containerId);
+			status = containerInfo.state().status();
+		} catch (DockerException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			log.error(e.getMessage());
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			log.error(e.getMessage());
+		}
+    	return status;
+    }
+    
     public String restartContainer(DefaultDockerClient dockerClient,String containerId){
     	String status = "";
     	try {
