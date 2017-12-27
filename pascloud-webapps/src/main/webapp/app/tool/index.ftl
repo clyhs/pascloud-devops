@@ -17,18 +17,8 @@
     
     <script type="text/javascript" src="/static/js/common/pascloudfunctions.js"></script>
     
-    <script type="text/javascript" src="/app/pas/js/pasForm.js"></script>
-    <script type="text/javascript" src="/app/pas/js/pasDataGridToolbar.js"></script>
-    <script type="text/javascript" src="/app/pas/js/pasDBDataGridToolbar.js"></script>
-    <script type="text/javascript" src="/app/pas/js/pasDBDataGrid.js"></script>
-    <script type="text/javascript" src="/app/pas/js/pasDataGrid.js"></script>
-    
+     
 	<script type="text/javascript">
-		$(function(){
-		    initMainDataGrid();
-		    
-		    initEastDataGrid();
-		});
 		
 	</script>
 	<style>
@@ -47,28 +37,13 @@
 
 		<div id="mainCenter" data-options="region:'center'" style="padding:0px;">
 		    <!--内容  开始-->
-		    <div id="mainGridLayout" class="easyui-layout" data-options="fit:true,title:'首页',iconCls:'icon-house'">
-		        <div data-options="region:'center'">
-		            <table id="mainDataGrid" >	
-		        
-	                </table>
-		        </div>
-		        <div id="infoLayout" data-options="region:'east',split:true,
-				    collapsed:true,title:'数据库详情',iconCls:'icon-cog_edit'" style="width:300px">
-				    <table id="eastDataGrid" >	
-		        
-	                </table>
-				</div>
-		    </div>
+		    建设中。。。
 		    <!--内容  结束-->
 		</div>
 		
 	</div>
 	
-	<div id="pasSpringXml" class="easyui-dialog" title="XML配置文件" style="width:700px;height:400px;"
-        data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
-        <textarea id='pasSpringXml_text' style="width:97%;height:97%;" ></textarea>
-    </div>
+	
 	
 </body>
 </html>

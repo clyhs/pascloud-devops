@@ -122,7 +122,7 @@ public class DockerTest {
 	@Before
 	public void setup() throws Exception {
 		mockMvc = MockMvcBuilders.standaloneSetup(wac).build();
-		DefaultDockerClient docker = DefaultDockerClient.builder().uri("http://192.168.0.16:2375").build();
+		DefaultDockerClient docker = DefaultDockerClient.builder().uri("http://192.168.0.7:2375").build();
 		sut = docker;
 		dockerEndpoint = docker.builder().uri();
 		dockerApiVersion = sut.version().apiVersion();
@@ -415,6 +415,19 @@ public class DockerTest {
 		
 		for(ContainerMount m : mounts){
 			System.out.println(g.toJson(m));
+		}
+	}
+	@Test
+	public void leaveSwarm(){
+		
+		try {
+			sut.leaveSwarm(true);
+		} catch (DockerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

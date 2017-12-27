@@ -25,6 +25,7 @@ function initMainDataGrid(){
             { field: 'addr', title: 'IP地址', width: 180, align: 'left' },
             { field: 'memory', title: '内存大小', width: 80, align: 'right' }
         ]],
+        toolbar:toolbar,
         onBeforeLoad: function (param) {
         },
         onLoadSuccess: function (data) {

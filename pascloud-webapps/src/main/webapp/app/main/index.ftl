@@ -3,7 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>云平台管理</title>
-	<link rel="stylesheet" type="text/css" href="/static/easyui/themes/gray/easyui.css">
+	<link rel="stylesheet" type="text/css" href="/static/easyui/themes/bootstrap/easyui.css">
+	
     <link rel="stylesheet" type="text/css" href="/static/easyui/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="/static/easyui/themes/IconExtension.css">
     
@@ -14,6 +15,9 @@
     <script type="text/javascript" src="/static/easyui/jquery.easyui.min.js"></script>
     
     <script type="text/javascript" src="/static/js/common/pascloudfunctions.js"></script>
+    
+    
+    <script type="text/javascript" src="/app/main/js/mainDataGridToolbar.js"></script>
     <script type="text/javascript" src="/app/main/js/mainDataGrid.js"></script>
     <script type="text/javascript" src="/app/main/js/mainLeft.js"></script>
     
@@ -22,6 +26,8 @@
 		    initTreeForLeftMenu();
 		    
 		    initMainDataGrid();
+		    
+		    //initServerDataGrid();
 		});
 		
 	</script>
@@ -60,6 +66,75 @@
 		        
 	                </table>
 		        </div>
+		        
+		        <div id="mainInfoLayout" data-options="region:'south',split:true,
+				    collapsed:false,title:'服务器详情',iconCls:'icon-cog_edit'" style="height:400px">
+				    
+				    <div style="width:100%;line-height:30px;">
+				        	
+				        <#list nodes as node> 
+				        
+				        <div style="width:30%;margin:20px 10px;border:#99FFFF 1px solid;height:auto;float:left;">
+				            <div style="width:100%;line-height:30px;height:auto;border:#ccc 0px solid;
+				                background-color:#99FFFF;">&nbsp;&nbsp;${node.hostname}</div>
+				            <table class="easyui-datagrid" style="height:250px;" 
+				                data-options="url:'/module/docker/getServerInfo.json?index='+${node_index},
+				                fitColumns:true,singleSelect:true">
+                                <thead>
+		                            <tr>
+			                        <th data-options="field:'key',width:60">属性名称</th>
+			                        <th data-options="field:'value',width:100">属性值</th>
+		                            </tr>
+                                </thead>
+                            </table>
+	                    </div>
+	                    </#list>
+	                    
+	                    
+	                    <div style="clear:both;"></div>
+	                </div>
+	                
+				    
+				    <!--
+				    <div style="width:100%;line-height:30px;">	
+		                <#list servers as server> 
+		                <div style="width:30%;margin:20px 10px;border:#ccc 1px solid;height:auto;float:left;">
+		                    <div style="width:100%;border:#ccc 0px solid;">
+		                        <span style="float:left;width:30%;text-align:right;">服务器名称:&nbsp;&nbsp;</span>
+		                        <span style="float:left;width:70%;">&nbsp;&nbsp;${server.hostname}</span>
+		                        <div style="clear:both;"></div>
+		                    </div>
+		                    <div style="width:100%;">
+		                        <span style="float:left;width:30%;text-align:right;">服务器IP:&nbsp;&nbsp;</span>
+		                        <span style="float:left;width:70%;">&nbsp;&nbsp;${server.ip}</span>
+		                        <div style="clear:both;"></div>
+		                    </div>
+		                    <div style="width:100%;">
+		                        <span style="float:left;width:30%;text-align:right;">CPU空闲率:&nbsp;&nbsp;</span>
+		                        <span style="float:left;width:70%;">&nbsp;&nbsp;${server.cpu_idle}</span>
+		                        <div style="clear:both;"></div>
+		                    </div>
+		                    <div style="width:100%;">
+		                        <span style="float:left;width:30%;text-align:right;">总内存:&nbsp;&nbsp;</span>
+		                        <span style="float:left;width:70%;">&nbsp;&nbsp;${server.memory_total}</span>
+		                        <div style="clear:both;"></div>
+		                    </div>
+		                    <div style="width:100%;">
+		                        <span style="float:left;width:30%;text-align:right;">剩余内存:&nbsp;&nbsp;</span>
+		                        <span style="float:left;width:70%;">&nbsp;&nbsp;${server.memory_free}</span>
+		                        <div style="clear:both;"></div>
+		                    </div>
+		                    <div style="width:100%;">
+		                        <span style="float:left;width:30%;text-align:right;">服务器OS:&nbsp;&nbsp;</span>
+		                        <span style="float:left;width:70%;">&nbsp;&nbsp;${server.os}</span>
+		                        <div style="clear:both;"></div>
+		                    </div>
+		                </div>
+		                </#list>
+		                <div style="clear:both;"></div>
+	                </div>
+	                
+				</div>-->
 		    </div>
 		    <!--内容  结束-->
 		</div>

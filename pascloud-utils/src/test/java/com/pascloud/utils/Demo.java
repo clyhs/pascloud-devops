@@ -34,10 +34,10 @@ public class Demo {
 				Session session = con.openSession();
 				//session.execCommand("uname -a && date && uptime && who");
 				//session.execCommand("cp -r /home/webapps /home/paspb_jn");
-				session.execCommand("cat /home/webapps/pas_db2/WEB-INF/classes/applicationContext_resources.xml");
-				System.out.println("Here is some information about the remote host:");
-				InputStream stdout = new StreamGobbler(session.getStdout());
-
+				//session.execCommand("cat /home/webapps/pas_db2/WEB-INF/classes/applicationContext_resources.xml");
+				//System.out.println("Here is some information about the remote host:");
+		        //InputStream stdout = new StreamGobbler(session.getStdout());
+				/*
 				BufferedReader br = new BufferedReader(new InputStreamReader(stdout));
 
 				while (true) {
@@ -45,8 +45,10 @@ public class Demo {
 					if (line == null)
 						break;
 					System.out.println(line);
-				}
+				}*/
 
+				System.out.println(new SysCpuInfo(session).getCPUInfo());
+				System.out.println(new SysMemInfo(session).getMEMInfo());
 				/* Show exit status, if available (otherwise "null") */
 
 				System.out.println("ExitCode: " + session.getExitStatus());

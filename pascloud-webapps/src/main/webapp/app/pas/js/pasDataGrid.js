@@ -40,13 +40,30 @@ function initMainDataGrid(){
             var row = rows[rowIndex];
             var name = row.name;
             //alert(name);
+        },onDblClickCell: function (rowIndex, field, value) {
+            var rows = $('#mainDataGrid').datagrid('getRows');
+            var row = rows[rowIndex];
+            var name = row.name;
+            var addr = row.ip;
+            //alert(addr);
+            var layout = $('#mainGridLayout');
+            
+            var east = layout.layout('panel', 'east');
+            //alert(east);
+            if (east.panel('options').collapsed) {
+                layout.layout('expand', 'east');
+            }else{
+                layout.layout('collapse', 'east');
+            }
+            
+            loadDBDataGrid('getDbInfo.json',name,addr);
         }
     });
 }
 
 function formatOper(val,row,index){ 
 	
-    return '<a href="#" onclick="onReadXml('+index+')">查看</a> | <a href="#" onclick="onSetting('+index+')">设置</a> | <a href="#" onclick="onVisit('+index+')" >访问</a>';  
+    return ' <a href="#" onclick="onSetting('+index+')">设置</a> | <a href="#" onclick="onVisit('+index+')" >访问</a>';  
 } 
 
 function onReadXml(index){

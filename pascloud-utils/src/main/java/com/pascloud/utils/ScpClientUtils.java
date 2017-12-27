@@ -4,9 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.pascloud.vo.server.SysServerInfo;
 
 import ch.ethz.ssh2.Connection;
 import ch.ethz.ssh2.ConnectionInfo;
@@ -20,15 +23,15 @@ public class ScpClientUtils {
 	
 	
 	
-	private static Connection conn;
+	private  Connection conn;
 	
-	private static String addr;
+	private  String addr;
 	
-	private static String username;
+	private  String username;
 	
-	private static String password;
+	private  String password;
 	
-	private static Integer port;
+	private  Integer port;
 	
 	private ScpClientUtils(){}
 	
@@ -46,12 +49,12 @@ public class ScpClientUtils {
 		this.port = port;
 	}
 	
-	private static Connection getConn(){
+	private Connection getConn(){
 		conn = new Connection(addr);
 		return conn;
 	}
 	
-	private static Boolean isAutn(){
+	private Boolean isAuth(){
 		Boolean flag = false;
 		try {
 			getConn();
@@ -60,15 +63,15 @@ public class ScpClientUtils {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
-			log.error(e.getMessage());
+			log.error("isauth",e.getMessage());
 		}
 		return flag;
 	}
 	
 	
 	
-	public static void copyFolder(String sourceFolder,String targetFolder){
-		if(isAutn()){
+	public void copyFolder(String sourceFolder,String targetFolder){
+		if(isAuth()){
 			Session session = null;
 			InputStream stdout = null;
 			BufferedReader br = null;
@@ -111,14 +114,14 @@ public class ScpClientUtils {
 		}
 	}
 	
-	public static void close(){
+	public void close(){
 		conn.close();
 	}
 	
 	
 	public String catFileToString(String path){
 		StringBuffer sb = new StringBuffer();
-		if(isAutn()){
+		if(isAuth()){
 			Session session = null;
 			InputStream stdout = null;
 			BufferedReader br = null;
@@ -163,8 +166,9 @@ public class ScpClientUtils {
 		return sb.toString();
 	}
 	
-	public static void putFileToServer(String local,String server){
-		if(isAutn()){
+	public void putFileToServer(String local,String server){
+		if(isAuth()){
+			
 			try {
 				SCPClient scpClient = conn.createSCPClient();
 				scpClient.put(local, server);
@@ -175,14 +179,187 @@ public class ScpClientUtils {
 		}
 	}
 	
+	public SysServerInfo getServerInfo(){
+		SysServerInfo info = new SysServerInfo();
+		
+		if(isAuth()){
+			
+			Session session = null;
+			try {
+				//SCPClient scpClient = conn.createSCPClient();
+				session = conn.openSession();
+				info.setCpu_idle(cpuIdle(session)+"%");
+				session.close();
+				session = null;
+				session = conn.openSession();
+				String memoryStr = memory(session);
+				String memoryArr[]  = memoryStr.split(",");
+				info.setMemory_total(new Integer(memoryArr[0]).intValue()+"m");
+				info.setMemory_free(new Integer(memoryArr[1]).intValue()+"m");
+				session.close();
+				session = null;
+				session = conn.openSession();
+				info.setOs(os(session));
+				session.close();
+				session = null;
+				session = conn.openSession();
+				info.setUname(uname(session));
+				session.close();
+				session = null;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}finally{
+				//session.close();
+				conn.close();
+				
+			}
+		}
+		return info;
+	}
+	
+	private int cpuIdle(Session session)
+	{
+		InputStream is = null;
+		BufferedReader brStat = null;
+		StringTokenizer tokenStat = null;
+		Session sess = null;
+		String str = "";
+		int i = 0, j = 0, cpuidle = 0;
+		try {
+			sess = session;
+			sess.execCommand("vmstat 1 2");
+			is = new StreamGobbler(sess.getStdout());
+			brStat = new BufferedReader(new InputStreamReader(is));
+			brStat.readLine();
+			brStat.readLine();
+			brStat.readLine();
+			
+			str = brStat.readLine();
+			if (str == null){
+				
+			}else{
+				tokenStat = new StringTokenizer(str);
+				for (i = 0; i < 14; i++) {
+					tokenStat.nextToken();
+				}
+				cpuidle = cpuidle + new Integer(tokenStat.nextToken()).intValue();
+			}
+			cpuidle = new Double(cpuidle).intValue();
+			
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return cpuidle;
+	}	
+	
+	private String memory(Session session){
+		String str = "";
+		InputStream is = null;
+		BufferedReader brStat = null;
+		StringTokenizer tokenStat = null;
+		Session sess = null;
+		int i = 0, j = 0, free = 0, buff = 0, cache = 0, totalmemory = 0, memidle = 0;
+		double memused = 0;
+		try {
+			sess = session;
+			sess.execCommand("free -m");
+			is = new StreamGobbler(sess.getStdout());
+			brStat = new BufferedReader(new InputStreamReader(is));
+			brStat.readLine();
+			
+			str = brStat.readLine();
+			if (str == null){
+				
+			}else{
+				tokenStat = new StringTokenizer(str);
+				for (i = 0; i < 1; i++) {
+					tokenStat.nextToken();
+				}
+				
+				totalmemory = totalmemory + new Integer(tokenStat.nextToken()).intValue();
+				
+				tokenStat.nextToken();
+				
+				free = free + new Integer(tokenStat.nextToken()).intValue();
+				
+				tokenStat.nextToken();
+				// SysLogger.log("free is :"+free);
+				/* 读取buff的信息 */
+				buff = buff + new Integer(tokenStat.nextToken()).intValue();
+				// SysLogger.log("buff is :"+buff);
+				/* 读取cache的信息 */
+				cache = cache + new Integer(tokenStat.nextToken()).intValue();
+				// SysLogger.log("cache is :"+cache);
+				memidle = (free + buff + cache);
+				
+				//memused = ((totalmemory - memidle) * 100) / totalmemory;
+			}
+			str=totalmemory+","+memidle;
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return str;
+	}
+	
+	private String os(Session session){
+		String str="";
+		InputStream is = null;
+		BufferedReader brStat = null;
+		Session sess = null;
+		try {
+			sess = session;
+			sess.execCommand("rpm -q centos-release");
+			is = new StreamGobbler(sess.getStdout());
+			brStat = new BufferedReader(new InputStreamReader(is));
+			str = brStat.readLine();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return str;
+	}
+	
+	private String uname(Session session){
+		String str="";
+		InputStream is = null;
+		BufferedReader brStat = null;
+		Session sess = null;
+		try {
+			sess = session;
+			sess.execCommand("uname -a");
+			is = new StreamGobbler(sess.getStdout());
+			brStat = new BufferedReader(new InputStreamReader(is));
+			str = brStat.readLine();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return str;
+	}
+	
 
 	public static void main(String[] args){
-		System.out.println("host");
-		String sourceFolder = "/home/webapps";
-		String targetFolder = "/home/paspb_liao";
+		//System.out.println("host");
+		//String sourceFolder = "/home/webapps";
+		//String targetFolder = "/home/paspb_liao";
 		//ScpClientUtils client = ScpClientUtils.getInstance("192.168.0.16", "root", "tccp@2012");
 		//client.copyFolder(sourceFolder, targetFolder);
 		//client.close();
+		SysServerInfo info = new SysServerInfo();
+		ScpClientUtils client = new ScpClientUtils("192.168.0.7", "root", "tccp@2012");
+		info = client.getServerInfo();
+		System.out.println(info.getCpu_idle());
+		System.out.println(info.getMemory_total());
+		System.out.println(info.getMemory_free());
+		System.out.println(info.getOs());
+		System.out.println(info.getUname());
+		
 	}
 	
 }

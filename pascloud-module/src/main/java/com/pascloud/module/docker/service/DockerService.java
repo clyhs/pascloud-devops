@@ -242,5 +242,24 @@ public class DockerService {
 		}
     	return status;
     }
+    
+    public Boolean leaveSwarm(DefaultDockerClient dockerClient){
+    	Boolean flag = false;
+    	try {
+    		log.info("删除节点");
+			dockerClient.leaveSwarm(true);
+			log.info("删除节点成功");
+			flag = true;
+		} catch (DockerException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			log.error(e.getMessage());
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			log.error(e.getMessage());
+		}
+    	return flag;
+    }
 
 }

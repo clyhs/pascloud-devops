@@ -47,6 +47,11 @@ public class SpringXmlUtils {
 		a.setText(value);
 	}
 	
+	public static String getAttributeValue(Element e,String name){
+		Attribute a = e.attribute(name);
+		return a.getText();
+	}
+	
 	public static void wirteXml(String newfile,Document doc){
 		XMLWriter outXml = null;
 		try {

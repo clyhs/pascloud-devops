@@ -50,5 +50,13 @@ var toolbar = function(){
         handler : function(){
             alert('销毁')
         }
+	},{
+		text : '查看配置文件',  
+        iconCls : 'icon-table_edit',  
+        handler : function(){
+        	var row = $('#mainDataGrid').datagrid('getSelected'); 
+        	//alert(row.name);
+        	readSpringXml();
+        }
 	}];
 }();
