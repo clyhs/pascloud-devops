@@ -10,9 +10,9 @@
   </bean>
   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" lazy-init="default" autowire="default" dependency-check="default">
     <property name="driverClassName" value="com.ibm.db2.jcc.DB2Driver"/>
-    <property name="url" value="jdbc:db2://120.76.189.147:50000/sdyzpas"/>
-    <property name="username" value="pas"/>
-    <property name="password" value="ma@1234"/>
+    <property name="url" value=""/>
+    <property name="username" value=""/>
+    <property name="password" value=""/>
     <property name="maxActive" value="100"/>
     <property name="maxIdle" value="100"/>
     <property name="maxWait" value="50"/>
