@@ -58,8 +58,8 @@ public class DockerController extends BaseController {
 		maps.add(vo1);
 		
 		MapVo vo2 = new MapVo();
-		vo2.setKey("CPU空闲率：");
-		vo2.setValue(info.getCpu_idle());
+		vo2.setKey("CPU使用率：");
+		vo2.setValue(info.getCpu_used());
 		maps.add(vo2);
 		
 		MapVo vo3 = new MapVo();
@@ -71,6 +71,11 @@ public class DockerController extends BaseController {
 		vo4.setKey("内存剩余大小：");
 		vo4.setValue(info.getMemory_free());
 		maps.add(vo4);
+		
+		MapVo vo6 = new MapVo();
+		vo6.setKey("内存使用率：");
+		vo6.setValue(info.getMemory_used());
+		maps.add(vo6);
 		
 		MapVo vo5 = new MapVo();
 		vo5.setKey("服务器OS：");

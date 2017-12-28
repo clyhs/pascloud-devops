@@ -81,6 +81,8 @@ import com.spotify.docker.client.messages.swarm.NodeSpec;
 import com.spotify.docker.client.messages.swarm.Service;
 import com.spotify.docker.client.messages.swarm.ServiceSpec;
 import com.spotify.docker.client.messages.swarm.Swarm;
+import com.spotify.docker.client.messages.swarm.SwarmInit;
+import com.spotify.docker.client.messages.swarm.SwarmJoin;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -122,7 +124,7 @@ public class DockerTest {
 	@Before
 	public void setup() throws Exception {
 		mockMvc = MockMvcBuilders.standaloneSetup(wac).build();
-		DefaultDockerClient docker = DefaultDockerClient.builder().uri("http://192.168.0.7:2375").build();
+		DefaultDockerClient docker = DefaultDockerClient.builder().uri("http://192.168.0.16:2375").build();
 		sut = docker;
 		dockerEndpoint = docker.builder().uri();
 		dockerApiVersion = sut.version().apiVersion();
@@ -171,6 +173,8 @@ public class DockerTest {
 
 	}
 
+	
+	
 	@Test
 	public void testCommitContainer() throws Exception {
 		// Pull image
@@ -431,6 +435,35 @@ public class DockerTest {
 		}
 	}
 
+	@Test
+	public void addSwarmNode(){
+		
+		//SwarmJoin sj = SwarmJoin.builder().advertiseAddr("192.168.0.16:2377")
+				//.joinToken("").build();
+		try {
+			List<String> remoteaddr = new ArrayList<String>();
+			remoteaddr.add("192.168.0.17");
+			SwarmJoin sj = SwarmJoin.builder().advertiseAddr("192.168.0.16").listenAddr("0.0.0.0:2377")
+					.remoteAddrs(remoteaddr).joinToken(sut.inspectSwarm().joinTokens().manager()).build();
+			System.out.println(sut.inspectSwarm().joinTokens().manager());
+			//sut.joinSwarm(sj);
+			DefaultDockerClient client = DefaultDockerClient.builder()
+					.uri("http://192.168.0.17:2375").build();
+		
+			client.joinSwarm(sj);
+			
+			//client.deleteNode(, true);
+			
+			
+		} catch (DockerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	@Test
 	public void testassertThat() throws Exception {
 

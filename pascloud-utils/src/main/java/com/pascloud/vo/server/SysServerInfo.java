@@ -11,6 +11,10 @@ public class SysServerInfo implements Serializable {
 	
 	private String cpu_idle ;
 	
+	private String cpu_used;
+	
+	private String memory_used;
+	
 	private String memory_total ;
 	
 	private String memory_free;
@@ -24,6 +28,23 @@ public class SysServerInfo implements Serializable {
 	private String hostname;
 	
 	
+	
+
+	public String getMemory_used() {
+		return memory_used;
+	}
+
+	public void setMemory_used(String memory_used) {
+		this.memory_used = memory_used;
+	}
+
+	public String getCpu_used() {
+		return cpu_used;
+	}
+
+	public void setCpu_used(String cpu_used) {
+		this.cpu_used = cpu_used;
+	}
 
 	public String getIp() {
 		return ip;

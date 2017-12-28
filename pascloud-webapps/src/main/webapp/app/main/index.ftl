@@ -24,11 +24,32 @@
 	<script type="text/javascript">
 		$(function(){
 		    initTreeForLeftMenu();
-		    
 		    initMainDataGrid();
 		    
-		    //initServerDataGrid();
-		});
+		    
+		    
+		    $('#mainCenter').tabs({
+                onContextMenu:function(e, title,index){
+                    e.preventDefault();
+                    if(index>0){
+                        $('#mm-tab').menu('show', {
+                            left: e.pageX,
+                            top: e.pageY
+                        }).data("tabTitle", title);
+                    }
+                }
+            });
+            
+            $('#mm-tab').menu({
+                onClick : function (item) {
+                    closeTab(this, item.name);
+                }
+            });
+            
+            
+		 });
+		 
+		 
 		
 	</script>
 	
@@ -37,109 +58,96 @@
 	    .formInput{float:left;margin-left:10px;}
 	    .border_right{border-right:#ccc 1px solid;}
 	    .border_bottom{border-bottom:#ccc 1px solid;}
-	
 	</style>
 </head>
-<body id="main"> 
-	
-	<div class="easyui-layout" data-options="fit:true">
-		<div id="mainLeft" data-options="region:'west',split:true,title:'菜单管理',iconCls:'icon-folder'" style="width:280px">
-		    <!--树形菜单  开始-->
-		    <ul id="leftMenu" class="easyui-tree" >
-		        <div id="mm" class="easyui-menu" style="width:120px;">
+<body id="main" class="easyui-layout">
+    <div id="mainLeft" data-options="region:'west',split:true,title:'菜单管理',iconCls:'icon-folder'" style="width:280px">
+        <!--树形菜单  开始-->
+		<ul id="leftMenu" class="easyui-tree" >
+		    <div id="mm" class="easyui-menu" style="width:120px;display:none;">
 		            
-		            <div onclick="removeIt()" data-options="iconCls:'icon-remove'">Remove</div>
-		            <div class="menu-sep"></div>
-		            <div onclick="collapse()">Collapse</div>
-		            <div onclick="expand()">Expand</div>
-	            </div>
-		    </ul>
-		    <!--树形菜单  结束-->
-		</div>
-		
-		
-		<div id="mainCenter" class="easyui-tabs" data-options="region:'center'" style="padding:0px;">
-		    <!--内容  开始-->
-		    <div id="mainGridLayout" class="easyui-layout" data-options="fit:true,title:'首页',iconCls:'icon-house'">
-		        <div data-options="region:'center'">
-		            <table id="mainDataGrid" >	
-		        
-	                </table>
+		        <div onclick="removeIt()" data-options="iconCls:'icon-remove'">Remove</div>
+		        <div class="menu-sep"></div>
+		        <div onclick="collapse()">Collapse</div>
+		        <div onclick="expand()">Expand</div>
+	        </div>
+		</ul>
+		<!--树形菜单  结束-->
+    </div>
+    <div id="center" data-options="region:'center',border:false" >
+        <div id="mainCenter" class="easyui-tabs" data-options="region:'center',fit:true" >
+            <div id="mainGridLayout" class="easyui-layout" data-options="title:'首页',fit:true,iconCls:'icon-house'">
+                
+		        <div data-options="region:'center',fit:true">
+		            <iframe scrolling="auto" frameborder="0"  src="/module/main/server.html" style="width:100%;height:100%;"></iframe>
 		        </div>
 		        
-		        <div id="mainInfoLayout" data-options="region:'south',split:true,
-				    collapsed:false,title:'服务器详情',iconCls:'icon-cog_edit'" style="height:400px">
-				    
-				    <div style="width:100%;line-height:30px;">
-				        	
-				        <#list nodes as node> 
-				        
-				        <div style="width:30%;margin:20px 10px;border:#99FFFF 1px solid;height:auto;float:left;">
-				            <div style="width:100%;line-height:30px;height:auto;border:#ccc 0px solid;
-				                background-color:#99FFFF;">&nbsp;&nbsp;${node.hostname}</div>
-				            <table class="easyui-datagrid" style="height:250px;" 
-				                data-options="url:'/module/docker/getServerInfo.json?index='+${node_index},
-				                fitColumns:true,singleSelect:true">
-                                <thead>
-		                            <tr>
-			                        <th data-options="field:'key',width:60">属性名称</th>
-			                        <th data-options="field:'value',width:100">属性值</th>
-		                            </tr>
-                                </thead>
-                            </table>
-	                    </div>
-	                    </#list>
-	                    
-	                    
-	                    <div style="clear:both;"></div>
-	                </div>
-	                
-				    
-				    <!--
-				    <div style="width:100%;line-height:30px;">	
-		                <#list servers as server> 
-		                <div style="width:30%;margin:20px 10px;border:#ccc 1px solid;height:auto;float:left;">
-		                    <div style="width:100%;border:#ccc 0px solid;">
-		                        <span style="float:left;width:30%;text-align:right;">服务器名称:&nbsp;&nbsp;</span>
-		                        <span style="float:left;width:70%;">&nbsp;&nbsp;${server.hostname}</span>
-		                        <div style="clear:both;"></div>
-		                    </div>
-		                    <div style="width:100%;">
-		                        <span style="float:left;width:30%;text-align:right;">服务器IP:&nbsp;&nbsp;</span>
-		                        <span style="float:left;width:70%;">&nbsp;&nbsp;${server.ip}</span>
-		                        <div style="clear:both;"></div>
-		                    </div>
-		                    <div style="width:100%;">
-		                        <span style="float:left;width:30%;text-align:right;">CPU空闲率:&nbsp;&nbsp;</span>
-		                        <span style="float:left;width:70%;">&nbsp;&nbsp;${server.cpu_idle}</span>
-		                        <div style="clear:both;"></div>
-		                    </div>
-		                    <div style="width:100%;">
-		                        <span style="float:left;width:30%;text-align:right;">总内存:&nbsp;&nbsp;</span>
-		                        <span style="float:left;width:70%;">&nbsp;&nbsp;${server.memory_total}</span>
-		                        <div style="clear:both;"></div>
-		                    </div>
-		                    <div style="width:100%;">
-		                        <span style="float:left;width:30%;text-align:right;">剩余内存:&nbsp;&nbsp;</span>
-		                        <span style="float:left;width:70%;">&nbsp;&nbsp;${server.memory_free}</span>
-		                        <div style="clear:both;"></div>
-		                    </div>
-		                    <div style="width:100%;">
-		                        <span style="float:left;width:30%;text-align:right;">服务器OS:&nbsp;&nbsp;</span>
-		                        <span style="float:left;width:70%;">&nbsp;&nbsp;${server.os}</span>
-		                        <div style="clear:both;"></div>
-		                    </div>
-		                </div>
-		                </#list>
-		                <div style="clear:both;"></div>
-	                </div>
-	                
-				</div>-->
-		    </div>
-		    <!--内容  结束-->
-		</div>
-		
-	</div>
+		        
+            </div>
+        </div>
+        
+        <div id="mm-tab" class="easyui-menu" style="width: 120px;display:none;">
+            <div id="mm-tabrefresh" name="6">刷新</div>
+            <div id="mm-tabclose" name="1">关闭</div>
+            <div id="mm-tabcloseall" name="2">全部关闭</div>
+            <div id="mm-tabcloseother" name="3">除此之外全部关闭</div>
+            <div class="menu-sep"></div>
+            <div id="mm-tabcloseright" name="4">当前页右侧全部关闭</div>
+            <div id="mm-tabcloseleft" name="5">当前页左侧全部关闭</div>
+        </div>
+    </div>
 	
 </body>
 </html>
+<script>
+        //删除Tabs
+        function closeTab(menu, type) {
+            
+            var allTabs = $("#mainCenter").tabs('tabs');
+            var allTabtitle = [];
+            $.each(allTabs, function (i, n) {
+                var opt = $(n).panel('options');
+                if (opt.closable)
+                    allTabtitle.push(opt.title);
+            });
+            var curTabTitle = $(menu).data("tabTitle");
+            
+            var curTabIndex = $('#mainCenter').tabs("getTabIndex", $('#mainCenter').tabs("getTab", curTabTitle));
+            
+            switch (type) {
+                case '1':
+                    $('#mainCenter').tabs('close', curTabIndex);
+                    return false;
+                    break;
+                case '2':
+                    for (var i = 0; i < allTabtitle.length; i++) {
+                        $('#mainCenter').tabs('close', allTabtitle[i]);
+                    }
+                    break;
+                case '3':
+                    for (var i = 0; i < allTabtitle.length; i++) {
+                        if (curTabTitle != allTabtitle[i])
+                            $('#mainCenter').tabs('close', allTabtitle[i]);
+                    }
+                    $('#mainCenter').tabs('select', curTabTitle);
+                    break;
+                case '4':
+                    for (var i = curTabIndex; i < allTabtitle.length; i++) {
+                        $('#mainCenter').tabs('close', allTabtitle[i]);
+                    }
+                    $('#mainCenter').tabs('select', curTabTitle);
+                    break;
+                case '5': 
+                    for (var i = 0; i < curTabIndex - 1; i++) {
+                        $('#mainCenter').tabs('close', allTabtitle[i]);
+                    }
+                    $('#mainCenter').tabs('select', curTabTitle);
+                    break;
+                case '6': 
+                    var panel = $("#mainCenter").tabs("getTab", curTabTitle).panel("refresh");
+                    break;
+            }
+
+        }
+
+</script>

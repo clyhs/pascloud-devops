@@ -41,9 +41,9 @@
 	
 	
 </head>
-<body id="main"> 
+<body id="main" class="easyui-layout" data-options="fit:true,border:false" > 
 	
-	<div class="easyui-layout" data-options="fit:true">
+	<!--<div class="easyui-layout" data-options="fit:true" style="padding:0px;">-->
 
 		<div id="mainCenter" data-options="region:'center'" style="padding:0px;">
 		    <!--内容  开始-->
@@ -63,7 +63,7 @@
 		    <!--内容  结束-->
 		</div>
 		
-	</div>
+	<!--</div>-->
 	
 	<div id="pasSpringXml" class="easyui-dialog" title="XML配置文件" style="width:700px;height:400px;"
         data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">

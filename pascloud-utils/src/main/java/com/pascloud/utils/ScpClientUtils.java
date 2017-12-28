@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.StringTokenizer;
 
 import org.slf4j.Logger;
@@ -188,14 +190,26 @@ public class ScpClientUtils {
 			try {
 				//SCPClient scpClient = conn.createSCPClient();
 				session = conn.openSession();
-				info.setCpu_idle(cpuIdle(session)+"%");
+				int cpuidle = cpuIdle(session);
+				info.setCpu_idle(cpuidle+"%");
+				info.setCpu_used((100-cpuidle)+"%");
 				session.close();
 				session = null;
 				session = conn.openSession();
 				String memoryStr = memory(session);
 				String memoryArr[]  = memoryStr.split(",");
-				info.setMemory_total(new Integer(memoryArr[0]).intValue()+"m");
-				info.setMemory_free(new Integer(memoryArr[1]).intValue()+"m");
+				
+				int memoryTotal = new Integer(memoryArr[0]).intValue();
+				int memoryFree  = new Integer(memoryArr[1]).intValue();
+				int used = memoryTotal-memoryFree;
+				info.setMemory_total(memoryTotal+"m");
+				info.setMemory_free(memoryFree+"m");
+				NumberFormat numberFormat = NumberFormat.getInstance();  
+		        // 设置精确到小数点后2位  
+		        numberFormat.setMaximumFractionDigits(2);  
+		  
+		        String result = numberFormat.format((float) used / (float) memoryTotal * 100);  
+				info.setMemory_used(result+"%");
 				session.close();
 				session = null;
 				session = conn.openSession();

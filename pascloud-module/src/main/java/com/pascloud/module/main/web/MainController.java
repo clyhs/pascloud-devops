@@ -39,6 +39,17 @@ public class MainController extends BaseController {
 		return view;
 	}
 	
+	@RequestMapping("server.html")
+	public ModelAndView server(HttpServletRequest request){
+		
+		List<SysServerInfo> servers = new ArrayList<>();
+		List<NodeVo> nodes = new ArrayList<>();
+		nodes = m_dockerService.getNodes(dockerClient);
+		ModelAndView view = new ModelAndView("main/server");
+		view.addObject("nodes", nodes);
+		return view;
+	}
+	
 	@RequestMapping("trees.json")
 	@ResponseBody
 	public List<TreeVo> getLeftMenu(){
@@ -73,9 +84,8 @@ public class MainController extends BaseController {
 	public ResultCommon leaveSwarm(HttpServletRequest request,
 			@RequestParam(value="ip",defaultValue="",required=true) String ip){
 		ResultCommon result = null;
-		DefaultDockerClient client = DefaultDockerClient.builder()
-				.uri("http://"+ip+":"+defaultPort).build();
-		Boolean flag = m_dockerService.leaveSwarm(client);
+		
+		Boolean flag = m_dockerService.leaveSwarm(dockerClient,ip);
 		if(!flag){
 			result = new ResultCommon(20000,"失败");
 		}else{

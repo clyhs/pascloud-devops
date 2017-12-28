@@ -38,6 +38,8 @@ function onClick(node){
     }
 }
 
+
+
 function addTab(title, url){
 	if ($('#mainCenter').tabs('exists', title)){
 		$('#mainCenter').tabs('select', title);

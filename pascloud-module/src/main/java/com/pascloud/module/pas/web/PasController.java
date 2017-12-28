@@ -86,6 +86,11 @@ public class PasController extends BaseController {
 		String bindVolumeFrom = "/home/"+containerName;
 		String id = "";
 		
+		if(name == ""){
+			result = new ResultCommon(20000,"失败");
+			return result;
+		}
+		
 		Map param = new HashMap();
 		param.put("ip", ip);
 		param.put("port", port);
@@ -211,6 +216,11 @@ public class PasController extends BaseController {
 		
 		System.out.println(m_config.getPASCLOUD_SPRINGXML_PATH());
 		
+		if(name == ""){
+			result = new ResultCommon(20000,"失败");
+			return result;
+		}
+		
 		String config_dir = m_config.getPASCLOUD_SPRINGXML_DIR();
 		String newfiledir = config_dir+"/"+name;
 		String tmpfilepath = m_config.getPASCLOUD_SPRINGXML_PATH();
@@ -251,6 +261,8 @@ public class PasController extends BaseController {
 		List<DbInfoVo> result = new ArrayList<>();
 		
 		//String serverPath  = "/home/"+name+"/pas_db2/WEB-INF/classes/applicationContext_resources.xml";
+		
+		
 		
 		String res = m_pasService.readSpringXml(name, addr);
 		SAXReader reader = new SAXReader(); 

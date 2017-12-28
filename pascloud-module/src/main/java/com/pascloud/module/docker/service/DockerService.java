@@ -22,6 +22,7 @@ import com.spotify.docker.client.messages.swarm.Node;
 import com.spotify.docker.client.messages.swarm.NodeDescription;
 import com.spotify.docker.client.messages.swarm.NodeSpec;
 import com.spotify.docker.client.messages.swarm.ServiceSpec;
+import com.spotify.docker.client.messages.swarm.Swarm;
 import com.spotify.docker.client.messages.Container;
 import com.spotify.docker.client.messages.ContainerConfig;
 import com.spotify.docker.client.messages.ContainerCreation;
@@ -46,6 +47,7 @@ public class DockerService {
 		List<Node> dockernodes;
 		try {
 			dockernodes = dockerClient.listNodes();
+			
 			for (Node node : dockernodes) {
 				NodeVo nodeVo = new NodeVo();
 				nodeVo.setId(node.id());
@@ -53,6 +55,7 @@ public class DockerService {
 				nodeVo.setHostname(node.description().hostname());
 				nodeVo.setMemory((node.description().resources().memoryBytes() / (1024 * 1204 * 1024))+"G");
 				nodeVo.setAddr(node.status().addr());
+				nodeVo.setStatus(node.status().state());
 				nodes.add(nodeVo);
 			}
 		} catch (DockerException e) {
@@ -243,21 +246,34 @@ public class DockerService {
     	return status;
     }
     
-    public Boolean leaveSwarm(DefaultDockerClient dockerClient){
+    public Boolean leaveSwarm(DefaultDockerClient dockerClient,String ip){
     	Boolean flag = false;
     	try {
+    		DefaultDockerClient client = DefaultDockerClient.builder()
+    				.uri("http://"+ip+":"+"2375").build();
     		log.info("删除节点");
-			dockerClient.leaveSwarm(true);
+    		client.leaveSwarm(true);
+			
+			
+			List<Node> dockernodes = dockerClient.listNodes();
+			for(Node node : dockernodes){
+				if(node.status().addr().equals(ip)){
+					dockerClient.deleteNode(node.id(),true);
+				}
+			}
+			
 			log.info("删除节点成功");
 			flag = true;
 		} catch (DockerException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			log.error(e.getMessage());
+			log.error("删除节点失败");
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			log.error(e.getMessage());
+			log.error("删除节点失败");
 		}
     	return flag;
     }
