@@ -232,3 +232,17 @@ function unpauseContainer(){
 		alert('已经恢复');
 	}
 }
+
+function getContainerLog(){
+	var row = $('#mainDataGrid').datagrid('getSelected'); 
+	$.post("getContainerLog.json",{name:row.name,ip:row.ip},function(data,status){
+		//alert(data.desc);
+		//$('#mainDataGrid').datagrid('reload');//刷新
+		if(data.code = 10000){
+		    //alert(data.desc);
+			$('#pasSpringlog_text').val(data.desc);
+			//$('#pasSpringlog_text').format({method: 'json'});
+			$('#pasSpringlog').dialog('open');
+		}
+	});
+}

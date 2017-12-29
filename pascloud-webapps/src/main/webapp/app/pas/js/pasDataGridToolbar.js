@@ -58,5 +58,11 @@ var toolbar = function(){
         	//alert(row.name);
         	readSpringXml();
         }
+	},{
+		text : '查看日志',  
+        iconCls : 'icon-table_edit',  
+        handler : function(){
+        	getContainerLog();
+        }
 	}];
 }();

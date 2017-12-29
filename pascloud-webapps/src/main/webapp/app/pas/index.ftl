@@ -69,6 +69,11 @@
         data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
         <textarea id='pasSpringXml_text' style="width:97%;height:97%;" ></textarea>
     </div>
+    
+    <div id="pasSpringlog" class="easyui-dialog" title="log" style="width:800px;height:400px;"
+        data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
+        <textarea id='pasSpringlog_text' style="width:97%;height:97%;" ></textarea>
+    </div>
 	
 </body>
 </html>

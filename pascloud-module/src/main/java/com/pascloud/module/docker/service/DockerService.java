@@ -1,9 +1,13 @@
 package com.pascloud.module.docker.service;
 
+import static com.google.common.base.Charsets.UTF_8;
 import static com.spotify.docker.client.DockerClient.ListContainersParam.allContainers;
 import static com.spotify.docker.client.DockerClient.ListContainersParam.withStatusCreated;
 import static com.spotify.docker.client.DockerClient.ListContainersParam.withStatusExited;
 import static com.spotify.docker.client.DockerClient.ListContainersParam.withStatusPaused;
+import static com.spotify.docker.client.DockerClient.LogsParam.stderr;
+import static com.spotify.docker.client.DockerClient.LogsParam.stdout;
+import static com.spotify.docker.client.DockerClient.LogsParam.tail;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +21,7 @@ import org.springframework.stereotype.Service;
 import com.pascloud.bean.docker.ContainerVo;
 import com.pascloud.bean.docker.NodeVo;
 import com.spotify.docker.client.DefaultDockerClient;
+import com.spotify.docker.client.LogStream;
 import com.spotify.docker.client.exceptions.DockerException;
 import com.spotify.docker.client.messages.swarm.Node;
 import com.spotify.docker.client.messages.swarm.NodeDescription;
@@ -276,6 +281,36 @@ public class DockerService {
 			log.error("删除节点失败");
 		}
     	return flag;
+    }
+    
+    public String getLog(DefaultDockerClient dockerClient,String containerName){
+    	//final String logs ;
+    	final StringBuffer sb = new StringBuffer();
+    	try {
+			final ContainerInfo info = dockerClient.inspectContainer(containerName);
+			
+			try (LogStream stream = dockerClient.logs(info.id(), stdout(), stderr(), tail(200))) {
+				//logs = stream.readFully();
+				//logs = stream.
+				try {
+					while (stream.hasNext()) {
+						final String r = UTF_8.decode(stream.next().content()).toString();
+						//System.out.println(r);
+						sb.append(r);
+					}
+				} catch (Exception e) {
+					//log.info(e.getMessage());
+				}
+			}
+			return sb.toString();
+		} catch (DockerException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+    	return "";
     }
 
 }

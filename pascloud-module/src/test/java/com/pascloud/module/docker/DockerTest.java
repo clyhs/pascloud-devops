@@ -1,5 +1,6 @@
 package com.pascloud.module.docker;
 
+import static com.google.common.base.Charsets.UTF_8;
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static com.spotify.docker.client.DockerClient.ListContainersParam.allContainers;
 import static com.spotify.docker.client.DockerClient.ListContainersParam.withLabel;
@@ -11,6 +12,9 @@ import static com.spotify.docker.client.DockerClient.ListImagesParam.allImages;
 import static com.spotify.docker.client.DockerClient.ListImagesParam.byName;
 import static com.spotify.docker.client.DockerClient.ListImagesParam.danglingImages;
 import static com.spotify.docker.client.DockerClient.ListImagesParam.digests;
+import static com.spotify.docker.client.DockerClient.LogsParam.follow;
+import static com.spotify.docker.client.DockerClient.LogsParam.stderr;
+import static com.spotify.docker.client.DockerClient.LogsParam.stdout;
 import static com.spotify.docker.client.DockerClient.RemoveContainerParam.forceKill;
 import static java.lang.Long.toHexString;
 import static java.lang.System.getenv;
@@ -18,6 +22,7 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
@@ -60,6 +65,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.gson.Gson;
 import com.spotify.docker.client.DefaultDockerClient;
+import com.spotify.docker.client.LogStream;
 import com.spotify.docker.client.exceptions.DockerException;
 import com.spotify.docker.client.messages.Container;
 import com.spotify.docker.client.messages.ContainerConfig;
@@ -462,6 +468,40 @@ public class DockerTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void testLogNoTimeout() throws Exception {
+		final String volumeContainer = "paspb_testjs";
+		final StringBuffer result = new StringBuffer();
+		try (final LogStream stream = sut.logs(volumeContainer, stdout(), stderr(), follow())) {
+			try {
+				while (stream.hasNext()) {
+					final String r = UTF_8.decode(stream.next().content()).toString();
+					System.out.println(r);
+					result.append(r);
+				}
+			} catch (Exception e) {
+				//log.info(e.getMessage());
+			}
+		}
+	
+	}
+	@Test
+	public void testLogsNoStdErr() throws Exception {
+		sut.pull(BUSYBOX_LATEST);
+
+		final String container = "paspb_testjs";
+
+		
+		final ContainerInfo info = sut.inspectContainer(container);
+		
+		final String logs;
+		try (LogStream stream = sut.logs(info.id(), stdout(), stderr(false))) {
+			logs = stream.readFully();
+		}
+		//assertThat(logs, containsString("This message goes to stdout"));
+		//assertThat(logs, not(containsString("This message goes to stderr")));
 	}
 	
 	@Test

@@ -333,6 +333,22 @@ public class PasController extends BaseController {
 		
 	}
 	
+	@RequestMapping(value="getContainerLog.json",method=RequestMethod.POST)
+	@ResponseBody
+	public ResultCommon getContainerLog(HttpServletRequest request,
+			@RequestParam(value="ip",defaultValue="",required=true) String ip,
+			@RequestParam(value="name",defaultValue="",required=true) String name){
+		
+		ResultCommon result = new ResultCommon(10000,"成功");
+		String log = "";
+		DefaultDockerClient client = DefaultDockerClient.builder()
+				.uri("http://"+ip+":"+defaultPort).build();
+		log = m_dockerService.getLog(client, name);
+		System.out.println(log);
+		result.setDesc(log);
+		return result;
+	}
+	
 	
 
 }
