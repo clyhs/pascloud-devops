@@ -46,6 +46,7 @@ public class DataBaseController extends BaseController {
 				tree.setText(info.getName());
 				tree.setId(info.getId());
 				tree.setLeaf(true);
+				tree.setIconCls("icon-database");
 				trees.add(tree);
 			}
 		}
