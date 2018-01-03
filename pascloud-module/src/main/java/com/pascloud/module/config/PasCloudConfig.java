@@ -11,6 +11,9 @@ public class PasCloudConfig {
 	
 	@Value("${project.xml}")
 	private String PASCLOUD_SPRINGXML_PATH;
+	
+	@Value("${project.databasedir}")
+	private String PASCLOUD_DATABASE_DIR;
 
 	public String getPASCLOUD_SPRINGXML_PATH() {
 		return PASCLOUD_SPRINGXML_PATH;
@@ -26,6 +29,14 @@ public class PasCloudConfig {
 
 	public void setPASCLOUD_SPRINGXML_DIR(String pASCLOUD_SPRINGXML_DIR) {
 		PASCLOUD_SPRINGXML_DIR = pASCLOUD_SPRINGXML_DIR;
+	}
+
+	public String getPASCLOUD_DATABASE_DIR() {
+		return PASCLOUD_DATABASE_DIR;
+	}
+
+	public void setPASCLOUD_DATABASE_DIR(String pASCLOUD_DATABASE_DIR) {
+		PASCLOUD_DATABASE_DIR = pASCLOUD_DATABASE_DIR;
 	}
 	
 	

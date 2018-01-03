@@ -13,7 +13,7 @@
 	<script type="text/javascript" src="/static/easyui/jquery-1.8.0.min.js"></script>
     <script type="text/javascript" src="/static/easyui/jquery.easyui.min.js"></script>
     
-    <script type="text/javascript" src="/static/js/common/jquery.format.js"></script>
+    <script type="text/javascript" src="/static/js/lib/jquery.format.js"></script>
     
     <script type="text/javascript" src="/static/js/common/pascloudfunctions.js"></script>
     

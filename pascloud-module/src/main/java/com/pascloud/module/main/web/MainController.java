@@ -56,7 +56,7 @@ public class MainController extends BaseController {
 		List<TreeVo> trees = new ArrayList<>();
 		TreeVo t2 = new TreeVo();
 		t2.setId("1");
-		t2.setText("分行管理");
+		t2.setText("应用管理");
 		t2.setLeaf(true);
 		t2.setUrl("/module/pas/index.html");
 		
@@ -72,10 +72,17 @@ public class MainController extends BaseController {
 		t4.setLeaf(true);
 		t4.setUrl("/module/tool/index.html");
 		
+		TreeVo t5 = new TreeVo();
+		t5.setId("4");
+		t5.setText("数据库管理");
+		t5.setLeaf(true);
+		t5.setUrl("/module/database/index.html");
+		
 		//trees.add(t1);
 		trees.add(t2);
 		trees.add(t3);
 		trees.add(t4);
+		trees.add(t5);
 		
 		return trees;
 	}
