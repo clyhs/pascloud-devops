@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dbinfo>
+  <id>pascloud07</id>
+  <name>pascloud</name>
+  <url>jdbc:mysql://192.168.0.7:3306/pascloud</url>
+  <driverClassName>com.mysql.jdbc.Driver</driverClassName>
+  <username>root</username>
+  <password>root</password>
+</dbinfo>

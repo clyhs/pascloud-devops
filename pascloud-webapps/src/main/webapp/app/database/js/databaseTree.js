@@ -1,7 +1,7 @@
 function initDatabaseTree(){
     EasyUILoad('databaseTree');
     $('#databaseTree').tree({
-	    url:'trees.json',
+	    url:'dbTrees.json',
 	    cascadeCheck: false,
 	    checkbox: false,
 		method:'get',
@@ -11,8 +11,8 @@ function initDatabaseTree(){
 		    //alert(data);
 		    return data;
 		},
-		onContextMenu: onContextMenu,
-		onClick: onClick,
+		//onContextMenu: onContextMenu,
+		onClick: onDBClick,
 		onSelect: function (node) {
         },
         onLoadSuccess: function (node, data) {   
@@ -32,11 +32,19 @@ function onContextMenu(e,node){
 	}
 }
 /**单击事件**/
-function onClick(node){
+function onDBClick(node){
     if($(this).tree('isLeaf', node.target)){
         var title = node.text;
         var url = node.url;
         //console.log(node);
-        alert(node.id);
+        
+        dsId = node.id;
+        //alert(dsId);
+        //initDatabaseTableTrees(dsId);
+        //alert(dsId);
+        tableTreeReload(dsId);
     }
 }
+
+
+

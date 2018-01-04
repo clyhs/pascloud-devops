@@ -7,10 +7,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.pascloud.module.config.PasCloudConfig;
 import com.spotify.docker.client.DefaultDockerClient;
 
 import net.sf.json.JSONObject;
@@ -32,11 +34,14 @@ public abstract class BaseController {
 	
 	{
 		try{
+			
 			DefaultDockerClient docker = DefaultDockerClient.builder().uri("http://192.168.0.16:"+defaultPort).build();
 			dockerClient = docker;
 			dockerEndpoint = docker.builder().uri();
 			dockerApiVersion = dockerClient.version().apiVersion();
+			
 		}catch(Exception e){
+			e.printStackTrace();
 			log.error(e.getMessage());
 		}
 		

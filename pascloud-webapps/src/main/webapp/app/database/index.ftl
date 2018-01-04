@@ -24,11 +24,14 @@
     <script type="text/javascript" src="/static/js/common/pascloudfunctions.js"></script>
     
     <script type="text/javascript" src="/app/database/js/databaseEditorToolbar.js"></script>
+    <script type="text/javascript" src="/app/database/js/databaseTableTrees.js"></script>
 	<script type="text/javascript" src="/app/database/js/databaseTree.js"></script>
-    
+	
 	<script type="text/javascript">
+	    
 		$(function(){
 		    initDatabaseTree();
+		    initDatabaseTableTrees();
 		});
 		
 	</script>
@@ -50,8 +53,8 @@
 		    <ul id="databaseTree" class="easyui-tree" >
 		    </ul>
 	    </div>
-	    <div title="数据表" iconCls="icon-database_table" closable="true" style="padding:5px;" onClick="javascript:alert('111')">
-	        <ul id="databaseTables" class="easyui-tree" >
+	    <div title="数据表" iconCls="icon-database_table" closable="true" style="padding:5px;">
+	        <ul id="databaseTableTrees" class="easyui-tree" >
 		    </ul>
 	    </div>
 		
@@ -69,18 +72,20 @@
 		<!--树形菜单  结束-->
 	</div>
 	<div id="mainCenter" data-options="region:'center',title:''" style="border:0;">
-	    <div class="easyui-tabs" data-options="region:'center',title:'',fit:true" style="border:0;">
+	    <div id="mainCenterTab" class="easyui-tabs" data-options="region:'center',title:'',fit:true" style="border:0;">
 	        <div title="编辑区" iconCls="icon-layout_edit" style="border:0;">
 	            <div class="easyui-layout"  data-options="fit:true" style="border:0;">
+	                
 	                <div data-options="region:'center',title:'',fit:true" >
-	                    <textarea id="code" name="code" style="height:250px;">select * from user;
-	                    </textarea>
+	                    <div id="tb">
+                            <a href="#" class="easyui-linkbutton" iconCls="icon-play_green" plain="true" onclick="execAction()">执行</a>
+	                        <a href="#" class="easyui-linkbutton" iconCls="icon-cross" plain="true"  onclick="clearAction()">清空</a>
+                        </div>
+	                    <textarea id="code" name="code" style="height:250px;"></textarea>
 	                </div>
 	                <div data-options="region:'south',title:'',split:false,collapsible:false" style="height:280px;border:0;" >
 	                    <div class="easyui-tabs" data-options="region:'center',fit:true">
 	                        <div title="消息区" iconCls=" icon-2012080407553 " style="padding:5px;">
-	                            
-	                        
 	                        </div>
 	                        <div title="执行结果" iconCls="icon-application_view_detail" closable="true" style="padding:5px;">
 	                        </div>
@@ -89,7 +94,7 @@
 	            </div>
 	        
 	        </div>
-	        <div title="表1"></div>
+	        
 	    </div>
 	</div>
 	<div id="toolarea"  data-options="region:'east',title:'工具区',iconCls:' icon-1012333 '" style="width:150px;">
@@ -104,7 +109,7 @@
 var init = function() {
     var mime = 'text/x-mysql';
 
-    var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+    editor = CodeMirror.fromTextArea(document.getElementById('code'), {
         mode: mime,
         indentWithTabs: true,
         smartIndent: true,

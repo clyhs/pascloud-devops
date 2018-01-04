@@ -1,0 +1,2 @@
+var dsId;
+var editor;
