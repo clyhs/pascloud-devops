@@ -14,19 +14,20 @@ public class XStreamDemo {
 		
 		String header =  "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
 		DBInfo info = new DBInfo();
-		info.setId("cloudpas17");
+		info.setId("cloudpas17_ora");
 		info.setName("cloudpas");
-		info.setUrl("jdbc:db2://192.168.0.17:50000/cloudpas");
-		info.setUsername("pas");
-		info.setPassword("pas");
-		info.setDriverClassName("com.ibm.db2.jcc.DB2Driver");
+		info.setUrl("jdbc:oracle:thin:@192.168.0.17:1521:cloudpas");
+		info.setUsername("pas2");
+		info.setPassword("pas2");
+		info.setDriverClassName("oracle.jdbc.driver.OracleDriver");
+		info.setDbType("ora");
 		XStream xstream = new XStream(); 
 		xstream.alias("dbinfo", DBInfo.class);
 		String xml = xstream.toXML(info);
 		xml = header + xml;
 		//System.out.println(xml);
 		
-		String path = "d:/cloudpas17.xml";
+		String path = "d:/cloudpas17_ora.xml";
 		
 		File file = new File(path);
 		

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dbinfo>
+  <id>pas_ora</id>
+  <name>pas</name>
+  <url>jdbc:oracle:thin:@121.33.38.199:1524:pas</url>
+  <driverClassName>oracle.jdbc.driver.OracleDriver</driverClassName>
+  <username>pas</username>
+  <password>pas</password>
+  <dbType>ora</dbType>
+</dbinfo>

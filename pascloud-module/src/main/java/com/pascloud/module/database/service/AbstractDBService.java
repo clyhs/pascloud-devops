@@ -23,6 +23,8 @@ public abstract class AbstractDBService {
 			sql = "select name as id,name from sysibm.systables where type='T' and creator='"+userName.toUpperCase()+"' ORDER BY name asc";
 		}else if(dcn.equalsIgnoreCase("com.mysql.jdbc.Driver")){
 			sql = "SELECT TABLE_NAME id, TABLE_NAME name  FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='"+dsName+"' ORDER BY name asc";
+		}else if(dcn.equalsIgnoreCase("oracle.jdbc.driver.OracleDriver")){
+			sql = "select table_name id,table_name name from user_tables order by name asc";
 		}
 		return sql;
 	}
@@ -36,6 +38,8 @@ public abstract class AbstractDBService {
 			sql = "select t.colname as columnName,t.typename dataType from syscat.COLUMNS t where tabschema='"+userName.toUpperCase()+"' and tabname=upper('"+tablename+"')";
 		}else if(dcn.equalsIgnoreCase("com.mysql.jdbc.Driver")){
 			sql = "select column_name columnName,data_type dataType from information_schema.columns where table_schema='"+dsName+"' and table_name='"+tablename+"'";
+		}else if(dcn.equalsIgnoreCase("oracle.jdbc.driver.OracleDriver")){
+			sql = "select COLUMN_NAME columnName,DATA_TYPE dataType from user_tab_columns where Table_Name='"+tablename.toUpperCase()+"' order by column_name ";
 		}
 		return sql;
 	}
@@ -55,10 +59,15 @@ public abstract class AbstractDBService {
 			newSql.append(" ) as a where a.rn between "+(startRow+1)+" and " +(pageSize+startRow)+" with ur ");
 		}else if(dcn.equalsIgnoreCase("com.mysql.jdbc.Driver")){
 			newSql.append(sql+" limit "+startRow+","+pageSize);
+		}else if(dcn.equalsIgnoreCase("oracle.jdbc.driver.OracleDriver")){
+			newSql.append(" select * from ( ");
+			newSql.append(" 	select r.*, rownum rn from ( ");
+			newSql.append(		sql);
+			newSql.append(" 	)r where rownum<"+(pageSize + startRow));
+			newSql.append(" )pg where pg.rn>="+(startRow));
+			
 		}
-		return newSql.toString();
-		
-		 
+		return newSql.toString(); 
 	}
 	
 

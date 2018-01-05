@@ -1,6 +1,4 @@
-/**
- * 参数定义工具栏按钮
- */
+
 var toolbar = function(){
 	return [{
 		text : '添加',  

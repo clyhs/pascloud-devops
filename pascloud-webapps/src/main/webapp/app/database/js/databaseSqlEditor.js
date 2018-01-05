@@ -4,11 +4,55 @@ var init = function() {
         mode: mime,
         indentWithTabs: true,
         smartIndent: true,
+        //extraKeys: {"Ctrl": "autocomplete"},
         lineNumbers: true,
         matchBrackets : true,
-        autofocus: true
+        autofocus: true,
+        extraKeys: {
+             "'a'": completeAfter,
+             "'b'": completeAfter,
+             "'c'": completeAfter,
+             "'d'": completeAfter,
+             "'e'": completeAfter,
+             "'f'": completeAfter,
+             "'g'": completeAfter,
+             "'h'": completeAfter,
+             "'i'": completeAfter,
+             "'j'": completeAfter,
+             "'k'": completeAfter,
+             "'l'": completeAfter,
+             "'m'": completeAfter,
+             "'n'": completeAfter,
+             "'o'": completeAfter,
+             "'p'": completeAfter,
+             "'q'": completeAfter,
+             "'r'": completeAfter,
+             "'s'": completeAfter,
+             "'t'": completeAfter,
+             "'u'": completeAfter,
+             "'v'": completeAfter,
+             "'w'": completeAfter,
+             "'x'": completeAfter,
+             "'y'": completeAfter,
+             "'z'": completeAfter,
+             "'.'": completeAfter,
+             "'='": completeIfInTag,
+             // ,
+             // "Ctrl-Space": "autocomplete",
+            "Ctrl-Enter": "autocomplete",
+
+            Tab: function(cm) {
+                var spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
+                cm.replaceSelection(spaces);
+            }
+        }
     });
     sqlEditor.setSize('auto','230px');
+    
+    sqlEditor.on('change', function() {
+
+    });
+    sqlEditor.refresh();//动态设置或浏览器变动后保证editor的正确显示
     
     msgEditor = CodeMirror.fromTextArea(document.getElementById('msgTextarea'), {
         mode: mime,
@@ -16,10 +60,29 @@ var init = function() {
         smartIndent: true,
         lineNumbers: true,
         matchBrackets : true,
-        autofocus: true
+        autofocus: false
     });
     msgEditor.setSize('auto','240px');
 };
+
+function completeIfInTag(cm) {
+    return completeAfter(cm, function() {
+        var tok = cm.getTokenAt(cm.getCursor());
+        if (tok.type == "string" && (!/['"]/.test(tok.string.charAt(tok.string.length - 1)) || tok.string.length == 1)) return false;
+        var inner = CodeMirror.innerMode(cm.getMode(), tok.state).state;
+        return inner.tagName;
+    });
+}
+function completeAfter(cm, pred) {
+    var cur = cm.getCursor();
+    if (!pred || pred()) setTimeout(function() {
+        if (!cm.state.completionActive)
+            cm.showHint({
+                completeSingle: false
+            });
+    }, 100);
+    return CodeMirror.Pass;
+}
 
 function execAction(){
 	//alert("执行");

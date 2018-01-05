@@ -21,8 +21,10 @@ function initDatabaseTableTrees(){
 }
 
 function tableTreeReload(id){
+	EasyUILoad('databaseTableTrees');
     $('#databaseTableTrees').tree("options").url="tableTrees.json?dsId="+id;
     $('#databaseTableTrees').tree("reload");
+    dispalyEasyUILoad( 'databaseTableTrees' );	
 }
 
 /**单击事件**/

@@ -10,18 +10,24 @@
     <link id="themesUI" href="/static/css/jquery-ui-1.9.2.custom.min.css" rel="stylesheet"  type="text/css"/>
     <link id="themesUI" href="/static/css/buttons.css" rel="stylesheet"  type="text/css"/>
     <link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
     <link href="/static/css/common.css" rel="stylesheet"  type="text/css"/>
     
     
     <link rel="stylesheet" type="text/css" href="/static/js/lib/codemirror/codemirror.css">
+    <link type="text/css" rel="stylesheet" href="/static/js/lib/codemirror/addon/hint/show-hint.css" />
     
 	<script type="text/javascript" src="/static/easyui/jquery-1.8.0.min.js"></script>
     <script type="text/javascript" src="/static/easyui/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="/static/js/lib/jquery.format.js"></script>
     
     <script type="text/javascript" src="/static/js/lib/codemirror/codemirror.js"></script>
-    <script type="text/javascript" src="/static/js/lib/codemirror/javascript/javascript.js"></script>
-    <script type="text/javascript" src="/static/js/lib/codemirror/sql/sql.js"></script>
+    <script type="text/javascript" src="/static/js/lib/codemirror/mode/javascript/javascript.js"></script>
+    <script type="text/javascript" src="/static/js/lib/codemirror/mode/sql/sql.js"></script>
+    <script type="text/javascript" src="/static/js/lib/codemirror/addon/hint/show-hint.js"></script> 
+    <script type="text/javascript" src="/static/js/lib/codemirror/addon/hint/sql-hint.js"></script>   
+    <script type="text/javascript" src="/static/js/lib/codemirror/addon/display/placeholder.js"></script>  
+    
     
     <script type="text/javascript" src="/static/js/common/pascloudfunctions.js"></script>
     
@@ -29,6 +35,7 @@
     <script type="text/javascript" src="/app/database/js/databaseOutputDataGrid.js"></script>
     <script type="text/javascript" src="/app/database/js/databaseSqlEditor.js"></script>
     <script type="text/javascript" src="/app/database/js/databaseTableTrees.js"></script>
+    <script type="text/javascript" src="/app/database/js/databaseTreeToolbar.js"></script>
 	<script type="text/javascript" src="/app/database/js/databaseTree.js"></script>
 	
 	<script type="text/javascript">
@@ -46,13 +53,13 @@
 	
 </head>
 <body id="main" class="easyui-layout" data-options="fit:true" onload="init();"> 
-    <div id="mainLeft" class="easyui-tabs" data-options="region:'west',split:true,title:'数据库菜单',iconCls:'icon-databases'" style="width:180px">
+    <div id="mainLeft" class="easyui-tabs" data-options="region:'west',split:true,title:'数据库菜单',iconCls:'icon-databases'" style="width:200px">
 		
-		<div title="数据库" iconCls="icon-database_link" style="padding:5px;">
+		<div title="数据库" iconCls="icon-database_link" style="padding:5px;" >
 		    <ul id="databaseTree" class="easyui-tree" >
 		    </ul>
 	    </div>
-	    <div title="数据表" iconCls="icon-database_table" closable="true" style="padding:5px;">
+	    <div title="数据表" iconCls="icon-database_table" closable="true" style="padding:5px;" >
 	        <ul id="databaseTableTrees" class="easyui-tree" >
 		    </ul>
 	    </div>
