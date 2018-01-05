@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -117,6 +118,35 @@ public class DataBaseController extends BaseController {
 		return result;
 	}
 	
+	@RequestMapping("execHeader.json")
+	@ResponseBody
+	public List<String> execHeaderAction(HttpServletRequest request,
+			@RequestParam(value="dsId",defaultValue="",required=true) String dsId,
+			@RequestParam(value="sql",defaultValue="",required=true) String sql){
+		
+		ResultPageVo result = new ResultPageVo(10000,"success");
+		log.info(sql);
+		//List<Map<String, Object>> list = new ArrayList<>();
+		List<String> headers = new ArrayList<>();
+		//Integer page = (null == request.getParameter("page"))?1:Integer.parseInt(request.getParameter("page"));
+		//Integer pageSize = (null == request.getParameter("rows"))?20:Integer.parseInt(request.getParameter("rows"));
+		//Integer startRow = (page -1)*pageSize;
+		headers = m_dbService.getSqlColumnName(dsId, sql);
+		//list = m_dbService.getDataListBySql(dsId,startRow,pageSize,sql);
+		/*
+		if(list.size()>0){
+			Map<String, Object> headerMap = list.get(0);
+			Iterator it = headerMap.entrySet().iterator();
+			while(it.hasNext()){
+				Map.Entry entry = (Map.Entry) it.next();
+				String key = (String) entry.getKey();
+				headers.add(key);
+			}
+		}*/
+		return headers;
+		
+	}
+	
 	@RequestMapping("exec.json")
 	@ResponseBody
 	public ResultPageVo execAction(HttpServletRequest request,
@@ -124,17 +154,30 @@ public class DataBaseController extends BaseController {
 			@RequestParam(value="sql",defaultValue="",required=true) String sql){
 		ResultPageVo result = new ResultPageVo(10000,"success");
 		log.info(sql);
-		List<Map<String, Object>> list = new ArrayList<>();
+		//List<Map<String, Object>> list = new ArrayList<>();
+		//List<String> headers = new ArrayList<>();
 		Integer page = (null == request.getParameter("page"))?1:Integer.parseInt(request.getParameter("page"));
 		Integer pageSize = (null == request.getParameter("rows"))?20:Integer.parseInt(request.getParameter("rows"));
 		Integer startRow = (page -1)*pageSize;
-		list = m_dbService.getDataListBySql(dsId,startRow,pageSize,sql);
+		result = m_dbService.getDataListBySql(dsId,startRow,pageSize,sql);
+		/*
+		if(list.size()>0){
+			Map<String, Object> headerMap = list.get(0);
+			Iterator it = headerMap.entrySet().iterator();
+			while(it.hasNext()){
+				Map.Entry entry = (Map.Entry) it.next();
+				String key = (String) entry.getKey();
+				headers.add(key);
+			} 
+		}*/
+		//result.setHeaders(headers);
+		
 		Integer total = -1;
 		total = m_dbService.getDataCountsBySql( dsId,sql );
-		result.setRows(list);
+		//result.setRows(list);
 		result.setTotal(total);
 		Gson g = new Gson();
-		log.info(g.toJson(result));
+		log.info(g.toJson(result.getDesc()));
 		return result;
 		
 	}

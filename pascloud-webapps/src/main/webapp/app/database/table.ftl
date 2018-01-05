@@ -17,19 +17,8 @@
     
     <script type="text/javascript" src="/static/js/common/pascloudfunctions.js"></script>
     
-    <script type="text/javascript" src="/app/pas/js/pasForm.js"></script>
-    <script type="text/javascript" src="/app/pas/js/pasDataGridToolbar.js"></script>
-    <script type="text/javascript" src="/app/pas/js/pasDBDataGridToolbar.js"></script>
-    <script type="text/javascript" src="/app/pas/js/pasDBDataGrid.js"></script>
-    <script type="text/javascript" src="/app/pas/js/pasDataGrid.js"></script>
     
 	<script type="text/javascript">
-		$(function(){
-		    initMainDataGrid();
-		    
-		    initEastDataGrid();
-		});
-		
 	</script>
 	<style>
 	    .datagrid-btable .datagrid-cell{padding:6px 4px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}  

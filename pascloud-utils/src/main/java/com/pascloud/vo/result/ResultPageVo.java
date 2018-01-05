@@ -12,6 +12,8 @@ public class ResultPageVo<T> extends ResultCommon {
 	
     private int total = -1;
     
+    //private List<String> headers = new ArrayList<String>();
+    
     private List<T> rows = new ArrayList<>();
     
     public ResultPageVo(){
@@ -37,6 +39,15 @@ public class ResultPageVo<T> extends ResultCommon {
 	public void setRows(List<T> rows) {
 		this.rows = rows;
 	}
+
+	/*
+	public List<String> getHeaders() {
+		return headers;
+	}
+
+	public void setHeaders(List<String> headers) {
+		this.headers = headers;
+	}*/
     
     
 }

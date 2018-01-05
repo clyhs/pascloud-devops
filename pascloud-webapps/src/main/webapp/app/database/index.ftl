@@ -10,6 +10,8 @@
     <link id="themesUI" href="/static/css/jquery-ui-1.9.2.custom.min.css" rel="stylesheet"  type="text/css"/>
     <link id="themesUI" href="/static/css/buttons.css" rel="stylesheet"  type="text/css"/>
     <link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/css/common.css" rel="stylesheet"  type="text/css"/>
+    
     
     <link rel="stylesheet" type="text/css" href="/static/js/lib/codemirror/codemirror.css">
     
@@ -23,7 +25,9 @@
     
     <script type="text/javascript" src="/static/js/common/pascloudfunctions.js"></script>
     
-    <script type="text/javascript" src="/app/database/js/databaseEditorToolbar.js"></script>
+    <script type="text/javascript" src="/app/database/js/databaseMain.js"></script>
+    <script type="text/javascript" src="/app/database/js/databaseOutputDataGrid.js"></script>
+    <script type="text/javascript" src="/app/database/js/databaseSqlEditor.js"></script>
     <script type="text/javascript" src="/app/database/js/databaseTableTrees.js"></script>
 	<script type="text/javascript" src="/app/database/js/databaseTree.js"></script>
 	
@@ -36,12 +40,7 @@
 		
 	</script>
 	<style>
-	    .CodeMirror {border:#ccc 1px solid; font-size:13px}
-	    .datagrid-btable .datagrid-cell{padding:6px 4px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}  
-	    .formlabel{width:30%;text-align:right;float:left;}
-	    .formInput{float:left;margin-left:10px;}
-	    .border_right{border-right:#ccc 1px solid;}
-	    .border_bottom{border-bottom:#ccc 1px solid;}
+	    .CodeMirror {border:#ccc 1px solid; font-size:13px,line-height:20px;}
 	</style>
 	
 	
@@ -76,18 +75,21 @@
 	        <div title="编辑区" iconCls="icon-layout_edit" style="border:0;">
 	            <div class="easyui-layout"  data-options="fit:true" style="border:0;">
 	                
-	                <div data-options="region:'center',title:'',fit:true" >
-	                    <div id="tb">
+	                <div data-options="region:'center',title:'',fit:true" style="padding:5px;"  >
+	                    <div id="tb" style="padding-bottom:5px;">
                             <a href="#" class="easyui-linkbutton" iconCls="icon-play_green" plain="true" onclick="execAction()">执行</a>
 	                        <a href="#" class="easyui-linkbutton" iconCls="icon-cross" plain="true"  onclick="clearAction()">清空</a>
                         </div>
-	                    <textarea id="code" name="code" style="height:250px;"></textarea>
+	                    <textarea id="sqlTextarea" name="sqlTextarea" ></textarea>
 	                </div>
 	                <div data-options="region:'south',title:'',split:false,collapsible:false" style="height:280px;border:0;" >
 	                    <div class="easyui-tabs" data-options="region:'center',fit:true">
 	                        <div title="消息区" iconCls=" icon-2012080407553 " style="padding:5px;">
+	                            <textarea id="msgTextarea" name="msgTextarea" ></textarea>
 	                        </div>
 	                        <div title="执行结果" iconCls="icon-application_view_detail" closable="true" style="padding:5px;">
+	                            <table id="outputDataGrid">
+	                            </table>
 	                        </div>
 	                    </div>
 	                </div>
@@ -105,18 +107,3 @@
 </body>
 </html>
 
-<script>
-var init = function() {
-    var mime = 'text/x-mysql';
-
-    editor = CodeMirror.fromTextArea(document.getElementById('code'), {
-        mode: mime,
-        indentWithTabs: true,
-        smartIndent: true,
-        lineNumbers: true,
-        matchBrackets : true,
-        autofocus: true
-    });
-    editor.setSize('auto','280px');
-};
-</script>

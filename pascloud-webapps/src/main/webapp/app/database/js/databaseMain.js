@@ -1,2 +1,3 @@
 var dsId;
-var editor;
+var sqlEditor;
+var msgEditor;
