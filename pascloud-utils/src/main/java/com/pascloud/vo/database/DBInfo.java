@@ -22,6 +22,16 @@ public class DBInfo implements Serializable {
 	private String  password;
 	
 	private Integer port;
+	
+	private String  dbType;
+
+	public String getDbType() {
+		return dbType;
+	}
+
+	public void setDbType(String dbType) {
+		this.dbType = dbType;
+	}
 
 	public String getId() {
 		return id;

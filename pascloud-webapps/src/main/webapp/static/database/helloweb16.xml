@@ -6,4 +6,5 @@
   <driverClassName>com.mysql.jdbc.Driver</driverClassName>
   <username>root</username>
   <password>123456</password>
+  <dbType>mysql</dbType>
 </dbinfo>

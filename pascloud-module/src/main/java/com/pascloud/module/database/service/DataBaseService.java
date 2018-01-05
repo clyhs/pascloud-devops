@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -36,14 +37,18 @@ public class DataBaseService extends AbstractDBService{
 		try {
 			log.info("查询所有表");
 			dataSource = DataSourceUtils.getDataSource(dsId);
+			
 			log.info(dataSource.getJdbcUrl());
 			conn = dataSource.getConnection();
 			String dsName = dataSource.getDataSourceName();
 			Gson g = new Gson();
 			//System.out.println(g.toJson(conn));
 			QueryRunner qRunner = new QueryRunner();  
-			String sql = "SELECT TABLE_NAME id, TABLE_NAME name  FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='"+dsName+"'";
-					
+			
+			//select name from sysibm.systables where type='T' and creator='DB2ADMIN' 
+			
+			//String sql = "SELECT TABLE_NAME id, TABLE_NAME name  FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='"+dsName+"'";
+			String sql = getTableSqlByType(dataSource);
 			tables = (List<DBTableVo>) qRunner.query(conn,sql, new BeanListHandler(DBTableVo.class));
 			
 			System.out.println(g.toJson(tables));
@@ -72,8 +77,9 @@ public class DataBaseService extends AbstractDBService{
 			conn = dataSource.getConnection();
 			QueryRunner qRunner = new QueryRunner();  
 			String dsName = dataSource.getDataSourceName();
-			String sql = "select column_name columnName,data_type dataType from information_schema.columns where table_schema='"+dsName+"' and table_name='"+tableName+"'";
-					
+			//select t.* from syscat.COLUMNS t where tabschema='PAS' and tabname=upper('csb_dmms')
+			//String sql = "select column_name columnName,data_type dataType from information_schema.columns where table_schema='"+dsName+"' and table_name='"+tableName+"'";
+			String sql = getColumnsByType(dataSource,tableName);		
 			columns = (List<DBColumnVo>) qRunner.query(conn,sql, new BeanListHandler(DBColumnVo.class));
 			//Gson g = new Gson();
 			//System.out.println(g.toJson(columns));
@@ -81,7 +87,8 @@ public class DataBaseService extends AbstractDBService{
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e.getMessage());
+			//e.printStackTrace();
 		}finally{
 			try {
 				conn.close();
@@ -98,19 +105,20 @@ public class DataBaseService extends AbstractDBService{
 		List<Map<String, Object>> result = new ArrayList<>();
 		ComboPooledDataSource dataSource = null;
 		Connection conn = null;
-		String sql = "select * from "+tableName+" limit "+startRow+","+pageSize;
+		//String sql = "select * from "+tableName+" limit "+startRow+","+pageSize;
+		String sql = "select * from "+tableName;
+		
 		try {
 			log.info("查询所有数据");
+			
 			dataSource = DataSourceUtils.getDataSource(dsId);
 			conn = dataSource.getConnection();
 			QueryRunner qRunner = new QueryRunner();  
-			
+			sql = buildPageSql(sql,dataSource,startRow,pageSize);
 			result =  qRunner.query(conn,sql, new MapListHandler());
-			
-			
 			//Gson g = new Gson();
 			//System.out.println(g.toJson(result));
-			log.info("查询所有数据完成");
+			log.info("查询所有数据完成"+sql);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -136,8 +144,9 @@ public class DataBaseService extends AbstractDBService{
 			dataSource = DataSourceUtils.getDataSource(dsId);
 			conn = dataSource.getConnection();
 			QueryRunner qRunner = new QueryRunner();  
-			total =  (int)(long) qRunner.query(conn,sql, new ScalarHandler());
+			Number num =  (Number)qRunner.query(conn,sql, new ScalarHandler());
 			//Gson g = new Gson();
+			total = num.intValue();
 			//System.out.println(g.toJson(total));
 			log.info("查询所有数据完成");
 		} catch (SQLException e) {
@@ -166,16 +175,17 @@ public class DataBaseService extends AbstractDBService{
 		//String sql = "select * from "+tableName+" limit "+startRow+","+pageSize;
 		
 		StringBuffer sb = new StringBuffer();
-		
+		/*
 		sb.append(" select a.* from ( ")
 		  .append(sql)
 		  .append(" ) a ") 
-		  .append(" limit "+startRow+","+pageSize);
+		  .append(" limit "+startRow+","+pageSize);*/
 		
 		try {
 			pageData = new ResultPageVo(10000,"成功");
 			log.info("查询所有数据"+sb.toString());
 			dataSource = DataSourceUtils.getDataSource(dsId);
+			sb.append(buildPageSql(sql,dataSource,startRow,pageSize));
 			conn = dataSource.getConnection();
 			QueryRunner qRunner = new QueryRunner();  
 			long beginTime = System.currentTimeMillis();  
@@ -222,8 +232,8 @@ public class DataBaseService extends AbstractDBService{
 			dataSource = DataSourceUtils.getDataSource(dsId);
 			conn = dataSource.getConnection();
 			QueryRunner qRunner = new QueryRunner();  
-			total =  (int)(long) qRunner.query(conn,sb.toString(), new ScalarHandler());
-			
+			Number num =  (Number)qRunner.query(conn,sb.toString(), new ScalarHandler());
+			total = num.intValue();
 			Gson g = new Gson();
 			//System.out.println(g.toJson(total));
 			log.info("查询所有数据完成");
@@ -245,12 +255,13 @@ public class DataBaseService extends AbstractDBService{
     	List<String> columnNames = new ArrayList<>();
     	ComboPooledDataSource dataSource = null;
 		Connection conn = null;
-		PreparedStatement stmt = null;
+		Statement stmt = null;
 		ResultSet rs = null;
 		try {
 			dataSource = DataSourceUtils.getDataSource(dsId);
 			conn = dataSource.getConnection();
-			stmt = conn.prepareStatement(sql);
+			//stmt = conn.prepareStatement(sql);
+			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			ResultSetMetaData data = rs.getMetaData();
 			for (int i = 1; i <= data.getColumnCount(); i++) {

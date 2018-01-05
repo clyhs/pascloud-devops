@@ -54,6 +54,8 @@ public class DataBaseController extends BaseController {
 		columns = m_dbService.getColumns(tablename,dsId);
 		ModelAndView view = new ModelAndView("database/table");
 		String url = "/module/database/datas.json?tablename="+tablename+"&dsId="+dsId;
+		Gson g = new Gson();
+		log.info(g.toJson(columns));
 		view.addObject("columns", columns);
 		view.addObject("url", url);
 		return view;
@@ -115,6 +117,8 @@ public class DataBaseController extends BaseController {
 		total = m_dbService.getDataCounts(tablename, dsId);
 		result.setRows(list);
 		result.setTotal(total);
+		Gson g = new Gson();
+		log.info(g.toJson(result));
 		return result;
 	}
 	

@@ -51,7 +51,7 @@ public class PasCloudInitConfig implements ApplicationListener<ContextRefreshedE
 						try{
 							ComboPooledDataSource dataSource = new ComboPooledDataSource();
 							DBInfo info = (DBInfo) xstream.fromXML(file);
-							log.info(info.getUrl().trim());
+							log.info(info.getUrl().trim()+info.getDbType());
 							dataSource = new ComboPooledDataSource();  
 					        dataSource.setUser(info.getUsername().trim());  
 					        dataSource.setDataSourceName(info.getName());

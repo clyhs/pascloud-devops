@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 
@@ -14,7 +15,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
+
 		<spring.version>4.2.1.RELEASE</spring.version>
 		<mortbay.jetty.version>6.1.26</mortbay.jetty.version>
 		<jetty.jsp.version>6.1.14</jetty.jsp.version>
@@ -33,7 +34,13 @@
 			<name>Pascloud</name>
 			<url>http://192.168.0.16:8081/nexus/content/groups/pascloud/</url>
 		</repository>
+		<repository>  
+        <id>nexus</id>  
+        <name>Team Nexus Repository</name>  
+        <url>https://artifacts.alfresco.com/nexus/content/repositories/public</url>  
+    </repository> 
 	</repositories>
+	
 	<distributionManagement>
 		<repository>
 			<id>releases</id>
@@ -47,27 +54,27 @@
 
 	<dependencyManagement>
 		<dependencies>
-		    <dependency>
+			<dependency>
 				<groupId>com.pascloud.devops</groupId>
-                <artifactId>pascloud-utils</artifactId>
+				<artifactId>pascloud-utils</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.pascloud.devops</groupId>
-                <artifactId>pascloud-model</artifactId>
+				<artifactId>pascloud-model</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.pascloud.devops</groupId>
-                <artifactId>pascloud-dao-mybatis</artifactId>
+				<artifactId>pascloud-dao-mybatis</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.pascloud.devops</groupId>
-                <artifactId>pascloud-module</artifactId>
+				<artifactId>pascloud-module</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-		    
+
 			<!-- spring 3.2 -->
 			<dependency>
 				<groupId>org.springframework</groupId>
@@ -352,10 +359,10 @@
 				<version>${jackson.version}</version>
 			</dependency>
 
-			
 
 
-			
+
+
 
 			<dependency>
 				<groupId>tk.mybatis</groupId>
@@ -551,7 +558,7 @@
 			<artifactId>javax.annotation-api</artifactId>
 			<version>1.2</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
@@ -563,8 +570,9 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>4.2.0.Final</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/com.ibm.db2.jcc/db2jcc4 -->
+		
 		<dependency>
 			<groupId>com.ibm.db2.jcc</groupId>
 			<artifactId>db2jcc</artifactId>
@@ -582,14 +590,23 @@
 			<artifactId>db2jcc_license_cu</artifactId>
 			<version>0.1</version>
 		</dependency>
-		
+
+		<!-- https://mvnrepository.com/artifact/com.ibm.db2.jcc/db2jcc4 -->
+		<!--  
+		<dependency>
+			<groupId>com.ibm.db2.jcc</groupId>
+			<artifactId>db2jcc4</artifactId>
+			<version>10.1</version>
+		</dependency>-->
+
+
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc14</artifactId>
 			<version>10.2.0.3</version>
 		</dependency>
 
-		
+
 	</dependencies>
 
 	<build>
@@ -600,8 +617,8 @@
 				<version>3.5.1</version>
 
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
 			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-source-plugin</artifactId> 
@@ -614,6 +631,6 @@
 		<module>pascloud-model</module>
 		<module>pascloud-dao-mybatis</module>
 		<module>pascloud-webapps</module>
-    <module>pascloud-module</module>
-  </modules>
+		<module>pascloud-module</module>
+	</modules>
 </project>

@@ -14,19 +14,19 @@ public class XStreamDemo {
 		
 		String header =  "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
 		DBInfo info = new DBInfo();
-		info.setId("helloweb16");
-		info.setName("helloweb");
-		info.setUrl("jdbc:mysql://192.168.0.16:3306/helloweb");
-		info.setUsername("root");
-		info.setPassword("123456");
-		info.setDriverClassName("com.mysql.jdbc.Driver");
+		info.setId("cloudpas17");
+		info.setName("cloudpas");
+		info.setUrl("jdbc:db2://192.168.0.17:50000/cloudpas");
+		info.setUsername("pas");
+		info.setPassword("pas");
+		info.setDriverClassName("com.ibm.db2.jcc.DB2Driver");
 		XStream xstream = new XStream(); 
 		xstream.alias("dbinfo", DBInfo.class);
 		String xml = xstream.toXML(info);
 		xml = header + xml;
 		//System.out.println(xml);
 		
-		String path = "d:/helloweb16.xml";
+		String path = "d:/cloudpas17.xml";
 		
 		File file = new File(path);
 		
