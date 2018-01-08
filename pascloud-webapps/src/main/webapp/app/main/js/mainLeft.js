@@ -33,14 +33,15 @@ function onClick(node){
         var title = node.text;
         var url = node.url;
         //console.log(node);
+        var icon = node.iconCls;
         //alert(node.url);
-        addTab(title,url);
+        addTab(title,url,icon);
     }
 }
 
 
 
-function addTab(title, url){
+function addTab(title, url,icon){
 	if ($('#mainCenter').tabs('exists', title)){
 		$('#mainCenter').tabs('select', title);
 	} else {
@@ -48,6 +49,7 @@ function addTab(title, url){
 		$('#mainCenter').tabs('add',{
 			title:title,
 			content:content,
+			iconCls:icon,
 			closable:true
 		});
 	}

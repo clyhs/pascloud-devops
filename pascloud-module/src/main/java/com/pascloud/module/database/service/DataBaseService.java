@@ -35,10 +35,8 @@ public class DataBaseService extends AbstractDBService{
 		ComboPooledDataSource dataSource = null;
 		Connection conn = null;
 		try {
-			log.info("查询所有表");
+			log.info("查询数据库所有表--开始--");
 			dataSource = DataSourceUtils.getDataSource(dsId);
-			
-			log.info(dataSource.getJdbcUrl());
 			conn = dataSource.getConnection();
 			String dsName = dataSource.getDataSourceName();
 			Gson g = new Gson();
@@ -50,12 +48,12 @@ public class DataBaseService extends AbstractDBService{
 			//String sql = "SELECT TABLE_NAME id, TABLE_NAME name  FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='"+dsName+"'";
 			String sql = getTableSqlByType(dataSource);
 			tables = (List<DBTableVo>) qRunner.query(conn,sql, new BeanListHandler(DBTableVo.class));
-			
-			System.out.println(g.toJson(tables));
-			log.info("查询所有表完成");
+			log.info("查询数据库所有表--完成--");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.info("查询数据库所有表--失败--");
+			//e.printStackTrace();
+			log.error(e.getMessage());
 		}finally{
 			try {
 				conn.close();
@@ -109,7 +107,7 @@ public class DataBaseService extends AbstractDBService{
 		String sql = "select * from "+tableName;
 		
 		try {
-			log.info("查询所有数据");
+			log.info("查询表所有数据--开始--");
 			
 			dataSource = DataSourceUtils.getDataSource(dsId);
 			conn = dataSource.getConnection();
@@ -118,10 +116,12 @@ public class DataBaseService extends AbstractDBService{
 			result =  qRunner.query(conn,sql, new MapListHandler());
 			//Gson g = new Gson();
 			//System.out.println(g.toJson(result));
-			log.info("查询所有数据完成"+sql);
+			log.info("查询表所有数据--完成--");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.info("查询表所有数据--失败--");
+			log.error(e.getMessage());
+			//e.printStackTrace();
 		}finally{
 			try {
 				conn.close();
@@ -140,7 +140,7 @@ public class DataBaseService extends AbstractDBService{
 		Integer total = -1;
 		String sql = "select count(1)  from "+tableName;
 		try {
-			log.info("查询所有数据");
+			log.info("统计表总条数--开始--");
 			dataSource = DataSourceUtils.getDataSource(dsId);
 			conn = dataSource.getConnection();
 			QueryRunner qRunner = new QueryRunner();  
@@ -148,10 +148,12 @@ public class DataBaseService extends AbstractDBService{
 			//Gson g = new Gson();
 			total = num.intValue();
 			//System.out.println(g.toJson(total));
-			log.info("查询所有数据完成");
+			log.info("统计表总条数--完成--");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.info("统计表总条数--失败--");
+			log.error(e.getMessage());
+			//e.printStackTrace();
 		}finally{
 			try {
 				conn.close();
@@ -172,18 +174,11 @@ public class DataBaseService extends AbstractDBService{
 		List<Map<String, Object>> result = new ArrayList<>();
 		ComboPooledDataSource dataSource = null;
 		Connection conn = null;
-		//String sql = "select * from "+tableName+" limit "+startRow+","+pageSize;
-		
 		StringBuffer sb = new StringBuffer();
-		/*
-		sb.append(" select a.* from ( ")
-		  .append(sql)
-		  .append(" ) a ") 
-		  .append(" limit "+startRow+","+pageSize);*/
 		
 		try {
 			pageData = new ResultPageVo(10000,"成功");
-			log.info("查询所有数据"+sb.toString());
+			log.info("根据SQL查询数据--开始---");
 			dataSource = DataSourceUtils.getDataSource(dsId);
 			sb.append(buildPageSql(sql,dataSource,startRow,pageSize));
 			conn = dataSource.getConnection();
@@ -193,14 +188,13 @@ public class DataBaseService extends AbstractDBService{
 			long endTime = System.currentTimeMillis(); 
 			double longTime =(double)(endTime - beginTime)/1000;
 			Gson g = new Gson();
-			//System.out.println(g.toJson(result));
-			
 			desc = execCallbackSuccess(sql,0,longTime,"无。");
 			pageData.setRows(result);
 			pageData.setDesc(desc);
-			log.info("查询所有数据完成"+desc);
+			log.info("根据SQL查询数据--完成---");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			log.info("根据SQL查询数据--失败---");
 			log.error(e.getMessage());
 			pageData = new ResultPageVo(20000,"失败");
 			desc = execCallbackError(e.getMessage());
@@ -228,7 +222,7 @@ public class DataBaseService extends AbstractDBService{
 		  .append(sql)
 		  .append(" ) a ");
 		try {
-			log.info("查询所有数据"+sb.toString());
+			log.info("根据SQL查询总条数--开始--");
 			dataSource = DataSourceUtils.getDataSource(dsId);
 			conn = dataSource.getConnection();
 			QueryRunner qRunner = new QueryRunner();  
@@ -236,10 +230,12 @@ public class DataBaseService extends AbstractDBService{
 			total = num.intValue();
 			Gson g = new Gson();
 			//System.out.println(g.toJson(total));
-			log.info("查询所有数据完成");
+			log.info("根据SQL查询总条数--完成--");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.info("根据SQL查询总条数--失败--");
+			log.error(e.getMessage());
+			//e.printStackTrace();
 		}finally{
 			try {
 				conn.close();
@@ -258,6 +254,7 @@ public class DataBaseService extends AbstractDBService{
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
+			log.info("根据SQL查询表头--开始--");
 			dataSource = DataSourceUtils.getDataSource(dsId);
 			conn = dataSource.getConnection();
 			//stmt = conn.prepareStatement(sql);
@@ -268,10 +265,12 @@ public class DataBaseService extends AbstractDBService{
 				String columnName = data.getColumnName(i);
 				columnNames.add(columnName);
 			}
-			
+			log.info("根据SQL查询表头--完成--");
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.info("根据SQL查询表头--失败--");
+			log.error(e.getMessage());
+			//e.printStackTrace();
 		}finally{
 			try {
 				rs.close();
@@ -293,10 +292,54 @@ public class DataBaseService extends AbstractDBService{
 			}
 			
 		}
-    	
-    	
     	return columnNames;
     }
+    
+    public String execBySql(String dsId,String sql){
+    	String result = "";
+    	Integer num = 0;
+    	ComboPooledDataSource dataSource = null;
+		Connection conn = null;
+		
+		try {
+			log.info("执行非查询SQL语句--开始--");
+			dataSource = DataSourceUtils.getDataSource(dsId);
+			conn = dataSource.getConnection();
+			conn.setAutoCommit(false);
+			QueryRunner qRunner = new QueryRunner();  
+			long beginTime = System.currentTimeMillis(); 
+			num = qRunner.update(conn, sql);
+			conn.commit();
+			long endTime = System.currentTimeMillis(); 
+			double longTime =(double)(endTime - beginTime)/1000;
+			result = execCallbackSuccess(sql,num,longTime,"无。");
+			log.info("执行非查询SQL语句--完成--");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error(e.getMessage());
+			try {
+				result = execCallbackError(e.getMessage());
+				log.info("执行非查询SQL语句--失败--");
+				conn.rollback();
+				log.info("执行非查询SQL语句--回滚成功--");
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				//e1.printStackTrace();
+				log.info("执行非查询SQL语句--回滚失败--");
+			}
+			//e.printStackTrace();
+		}finally{
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+    	
+		return result;
+    }
+    
     
     private String execCallbackSuccess(String sql,Integer num,double ms,String msg){
     	StringBuffer sb = new StringBuffer();

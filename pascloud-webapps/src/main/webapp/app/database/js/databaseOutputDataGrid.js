@@ -22,6 +22,7 @@ function createOutputDataGrid(columns,url,param){
         },
         onLoadSuccess: function (data) {
         	msgEditor.setValue(data.desc);
+        	//alert(data);
         },
         onLoadError: function () {
         

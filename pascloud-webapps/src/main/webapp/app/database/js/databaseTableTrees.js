@@ -1,5 +1,5 @@
 function initDatabaseTableTrees(){
-    EasyUILoad('databaseTableTrees');
+    //EasyUILoad('databaseTableTrees');
     $('#databaseTableTrees').tree({
 	    url:'tableTrees.json',
 	    cascadeCheck: false,
@@ -7,12 +7,14 @@ function initDatabaseTableTrees(){
 		method:'get',
 		border:false,
 		loadFilter:function(data){
-		    dispalyEasyUILoad( 'databaseTableTrees' );	
+		    //dispalyEasyUILoad( 'databaseTableTrees' );	
+		    dispalyEasyUILoad( 'databaseTableDiv' );
 		    //alert(data);
 		    return data;
 		},
 		//onContextMenu: onContextMenu,
 		onClick: onTableClick,
+		onDblClick: onTableDblClick,
 		onSelect: function (node) {
         },
         onLoadSuccess: function (node, data) {   
@@ -21,20 +23,25 @@ function initDatabaseTableTrees(){
 }
 
 function tableTreeReload(id){
-	EasyUILoad('databaseTableTrees');
+	EasyUILoadSimple('databaseTableDiv');
     $('#databaseTableTrees').tree("options").url="tableTrees.json?dsId="+id;
     $('#databaseTableTrees').tree("reload");
-    dispalyEasyUILoad( 'databaseTableTrees' );	
+    	
+}
+
+function onTableDblClick(node){
+	if($(this).tree('isLeaf', node.target)){
+        var title = node.text;
+        var url = node.url;
+        var icon = node.iconCls;
+        title = title +"("+dsName+")";
+        addDBTab(title,url,icon);
+    }
 }
 
 /**单击事件**/
 function onTableClick(node){
-    if($(this).tree('isLeaf', node.target)){
-        var title = node.text;
-        var url = node.url;
-        var icon = node.iconCls;
-        addDBTab(title,url,icon);
-    }
+    
 }
 
 

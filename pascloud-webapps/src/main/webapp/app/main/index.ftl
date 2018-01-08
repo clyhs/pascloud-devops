@@ -61,7 +61,7 @@
 	</style>
 </head>
 <body id="main" class="easyui-layout">
-    <div id="mainLeft" data-options="region:'west',split:true,title:'菜单管理',iconCls:'icon-folder'" style="width:280px">
+    <div id="mainLeft" data-options="region:'west',split:true,title:'菜单管理',iconCls:'icon-folder'" style="width:220px">
         <!--树形菜单  开始-->
 		<ul id="leftMenu" class="easyui-tree" >
 		    <div id="mm" class="easyui-menu" style="width:120px;display:none;">

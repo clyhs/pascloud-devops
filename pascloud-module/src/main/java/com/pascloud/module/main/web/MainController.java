@@ -58,23 +58,27 @@ public class MainController extends BaseController {
 		t2.setId("1");
 		t2.setText("应用管理");
 		t2.setLeaf(true);
+		t2.setIconCls("icon-application");
 		t2.setUrl("/module/pas/index.html");
 		
 		TreeVo t3 = new TreeVo();
 		t3.setId("2");
 		t3.setText("天维服务");
 		t3.setLeaf(true);
+		t3.setIconCls("icon-server");
 		t3.setUrl("/module/pasService/index.html");
 		
 		TreeVo t4 = new TreeVo();
 		t4.setId("3");
 		t4.setText("天维工具");
 		t4.setLeaf(true);
+		t4.setIconCls("icon-2012080404391");
 		t4.setUrl("/module/tool/index.html");
 		
 		TreeVo t5 = new TreeVo();
 		t5.setId("4");
 		t5.setText("数据库管理");
+		t5.setIconCls("icon-database");
 		t5.setLeaf(true);
 		t5.setUrl("/module/database/index.html");
 		

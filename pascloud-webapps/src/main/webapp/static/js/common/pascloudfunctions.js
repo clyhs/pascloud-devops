@@ -1,5 +1,27 @@
+
+String.prototype.endWith=function(s){
+  if(s==null||s==""||this.length==0||s.length>this.length)
+     return false;
+  if(this.substring(this.length-s.length)==s)
+     return true;
+  else
+     return false;
+  return true;
+ }
+
+ String.prototype.startWith=function(s){
+  if(s==null||s==""||this.length==0||s.length>this.length)
+   return false;
+  if(this.substr(0,s.length)==s)
+     return true;
+  else
+     return false;
+  return true;
+ }
+
 /**
  * 加载LOADING UI
+ * 
  * @param obj
  * @returns
  */
@@ -11,8 +33,18 @@ function EasyUILoad(obj) {
 	    .html("正在运行，请稍候。。。").appendTo($('#'+obj))
 	    .css({ display: "block", left: ($('#'+obj).outerWidth(true) - 190) / 2, top: ($('#'+obj).height - 45) / 2 });
 }
+
+function EasyUILoadSimple(obj) {
+	$("<div class=\"datagrid-mask\"></div>")
+	    .css({ display: "block", width:"100%",height:"auto !important"})
+	    .appendTo($('#'+obj));
+	$("<div class=\"datagrid-mask-msg\"></div>")
+	    .html("请稍候。。。").appendTo($('#'+obj))
+	    .css({ display: "block", left: ($('#'+obj).outerWidth(true) - 190) / 2, top: ($('#'+obj).height - 45) / 2 });
+}
 /**
  * 隐藏LOADING UI
+ * 
  * @param obj
  * @returns
  */  
@@ -32,7 +64,8 @@ function createDialog(dialogFrame, dialogId, dialogTitle, dialogUrl)
     $.parser.parse(div);  
     var url = dialogUrl;  
       
-    //var url = 'allpage/page/assistSystem/cashManager/cashSettlementManager/cashSettlementManagerLC/tvmCashSettlementDialog.jsp';  
+    // var url =
+	// 'allpage/page/assistSystem/cashManager/cashSettlementManager/cashSettlementManagerLC/tvmCashSettlementDialog.jsp';
     $("#"+dialogId).dialog(  
     {  
         title : dialogTitle,  

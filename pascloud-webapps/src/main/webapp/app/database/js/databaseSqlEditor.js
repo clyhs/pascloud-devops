@@ -99,20 +99,38 @@ function execAction(){
 		$.messager.alert('提示框','请在右边选择一个数据库！','error');
 		return ;
 	}
-	
 	var param = {sql:codeVal,dsId:dsId};
-	var url = 'exec.json';
-	$.post("execHeader.json",param,function(data,status){
-		if(data.code = 10000){
-			//alert(data.desc);
-			//alert(data.headers);
-			var columns = createColumns(data);
-			//alert(columns);
-			createOutputDataGrid(columns,url,param);
-		}
+	if(codeVal.toLowerCase().trim().startWith("select")){
 		
-	});
+		
+		$.post("execHeader.json",param,function(data,status){
+			if(data.code = 10000){
+				var url = 'exec.json';
+				var columns = createColumns(data);
+				createOutputDataGrid(columns,url,param);
+			}
+		});
+	}else{
+		//alert("others");
+		//execSql.json
+		var url = 'execSql.json';
+		$.post("execSql.json",param,function(data,status){
+			if(data.code = 10000){
+				msgEditor.setValue(data.desc);
+			}
+			
+		});
+	}
+	
+	
 }
 function clearAction(){
-	alert("清空");
+	//alert("清空");
+	sqlEditor.setValue("");
+	msgEditor.setValue("");
+}
+
+function saveAction(){
+	
+	alert('save');
 }

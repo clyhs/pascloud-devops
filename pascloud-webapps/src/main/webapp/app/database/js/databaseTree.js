@@ -13,6 +13,7 @@ function initDatabaseTree(){
 		},
 		//onContextMenu: onContextMenu,
 		onClick: onDBClick,
+		onDblClick:onDblClick,
 		onSelect: function (node) {
         },
         onLoadSuccess: function (node, data) {   
@@ -33,18 +34,19 @@ function onContextMenu(e,node){
 }
 /**单击事件**/
 function onDBClick(node){
-    if($(this).tree('isLeaf', node.target)){
+   
+}
+
+function onDblClick(node){
+	if($(this).tree('isLeaf', node.target)){
         var title = node.text;
         var url = node.url;
         //console.log(node);
-        
+        dsName = title;
         dsId = node.id;
-        //alert(dsId);
-        //initDatabaseTableTrees(dsId);
-        //alert(dsId);
         tableTreeReload(dsId);
+        $('#mainLeft').tabs('select', '数据表');
     }
 }
-
 
 
