@@ -35,12 +35,32 @@ public abstract class AbstractDBService {
 		String dsName = ds.getDataSourceName();
 		String userName = ds.getUser();
 		if(dcn.equalsIgnoreCase("com.ibm.db2.jcc.DB2Driver")){
-			sql = "select t.colname as columnName,t.typename dataType from syscat.COLUMNS t where tabschema='"+userName.toUpperCase()+"' and tabname=upper('"+tablename+"')";
+			sql = "select t.colname as columnName,t.typename dataType,"
+					+ "case when NULLS='Y' THEN 'YES' ELSE 'NO' END AS isNullable,"
+					+ "CONCAT(TYPENAME,CONCAT(CONCAT('(',LENGTH),')')) AS columnType,"
+					+ "REMARKS AS columnComment,"
+					+ "case when IDENTITY='Y' then 'PRI' else '' end as columnKey "
+					+ "from syscat.COLUMNS t where tabschema='"+userName.toUpperCase()+"' and tabname=upper('"+tablename+"')";
 		}else if(dcn.equalsIgnoreCase("com.mysql.jdbc.Driver")){
-			sql = "select column_name columnName,data_type dataType from information_schema.columns where table_schema='"+dsName+"' and table_name='"+tablename+"'";
+			sql = "select column_name columnName,data_type dataType,DATA_TYPE dataType ,"
+					+ "IS_NULLABLE isNullable,COLUMN_TYPE columnType,"
+					+ "COLUMN_COMMENT columnComment, "
+					+ "COLUMN_KEY columnKey "
+					+ "from information_schema.columns "
+					+ "where table_schema='"+dsName+"' and table_name='"+tablename+"'";
 		}else if(dcn.equalsIgnoreCase("oracle.jdbc.driver.OracleDriver")){
-			sql = "select COLUMN_NAME columnName,DATA_TYPE dataType from user_tab_columns where Table_Name='"+tablename.toUpperCase()+"' order by column_name ";
+			sql = "select col.column_name columnName ,"
+					+ "col.DATA_TYPE dataType, "
+					+ "case when NULLABLE='Y' THEN 'YES' ELSE 'NO' END AS isNullable, "
+					+ "CONCAT(col.DATA_TYPE,CONCAT(CONCAT('(',col.DATA_LENGTH),')')) AS columnType, "
+					+ "col.DATA_PRECISION AS columnComment,"
+					+ "case uc.constraint_type when 'P' then 'YES' else 'NO' end columnKey "
+					+ "from user_tab_columns col left join user_cons_columns ucc "
+					+ "on ucc.table_name=col.table_name and ucc.column_name=col.column_name "
+					+ "left join user_constraints uc on uc.constraint_name = ucc.constraint_name "
+					+ "where col.table_name = '"+tablename.toUpperCase()+"' ";
 		}
+		log.info(sql);
 		return sql;
 	}
 	

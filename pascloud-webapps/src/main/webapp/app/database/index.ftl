@@ -59,10 +59,25 @@
 		
 		<div title="数据库" iconCls="icon-database_link" style="padding:5px;width:100%;" >
 		    <ul id="databaseTree" class="easyui-tree" >
+		        <div id="mm-database" class="easyui-menu" style="width:120px;">
+		            <div data-options="iconCls:'icon-database_add'">添加库</div>
+		            <div data-options="iconCls:'icon-database_delete'">删除库</div>
+		            <div data-options="iconCls:'icon-database_go'">备份库</div>
+	            </div>
 		    </ul>
 	    </div>
 	    <div id="databaseTableDiv" title="数据表" iconCls="icon-database_table" closable="true" style="padding:5px;width:100%;" >
 	        <ul id="databaseTableTrees" class="easyui-tree" >
+	            <div id="mm-databaseTable" class="easyui-menu" style="width:120px;">
+		            <div onclick="openTable()" data-options="iconCls:'icon-table_connect'">打开表</div>
+		            <div onclick="addTable()" data-options="iconCls:'icon-table_add'">新增表</div>
+		            <div onclick="editTable()" data-options="iconCls:'icon-table_edit'">设计表</div>
+		            <div onclick="exportTable()" data-options="iconCls:'icon-table_go'">导出表</div>
+		            <div class="menu-sep"></div>
+		            <div onclick="truncateTable()" data-options="iconCls:'icon-table_row_delete'">清空表</div>
+		            <div onclick="dropTable()" data-options="iconCls:'icon-table_delete'">删除表</div>
+		            <div onclick="infoTable()" data-options="iconCls:'icon-table_column'">表信息</div>
+	            </div>
 		    </ul>
 	    </div>
 		

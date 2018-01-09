@@ -12,7 +12,7 @@ function initDatabaseTableTrees(){
 		    //alert(data);
 		    return data;
 		},
-		//onContextMenu: onContextMenu,
+		onContextMenu: onTableContextMenu,
 		onClick: onTableClick,
 		onDblClick: onTableDblClick,
 		onSelect: function (node) {
@@ -20,6 +20,18 @@ function initDatabaseTableTrees(){
         onLoadSuccess: function (node, data) {   
         }
 	});
+}
+
+/**右键菜单**/
+function onTableContextMenu(e,node){
+    e.preventDefault();
+	$(this).tree('select',node.target);
+	if($(this).tree('isLeaf', node.target)){
+	    $('#mm-databaseTable').menu('show',{
+		    left: e.pageX,
+		    top: e.pageY
+	    });
+	}
 }
 
 function tableTreeReload(id){
@@ -44,8 +56,6 @@ function onTableClick(node){
     
 }
 
-
-
 function addDBTab(title, url,icon){
 	if ($('#mainCenterTab').tabs('exists', title)){
 		$('#mainCenterTab').tabs('select', title);
@@ -58,4 +68,64 @@ function addDBTab(title, url,icon){
 			closable:true
 		});
 	}
+}
+
+function editTable(){
+	//alert('edit');
+	var node = $('#databaseTableTrees').tree('getSelected');
+	//alert(node.text);
+	var tablename = node.text;
+	var url = '/module/database/tableEdit.html?tablename='+tablename+'&dsId='+dsId;
+	var title = tablename+'_'+dsId;
+	var icon = 'icon-table_edit';
+	addDBTab(title,url,icon);
+}
+
+function openTable(){
+	var node = $('#databaseTableTrees').tree('getSelected');
+	var title = node.text;
+    var url = node.url;
+    var icon = node.iconCls;
+    title = title +"("+dsName+")";
+    addDBTab(title,url,icon);
+}
+
+function addTable(){
+	
+}
+
+function exportTable(){
+	
+}
+
+function truncateTable(){
+	var node = $('#databaseTableTrees').tree('getSelected');
+	var tablename = node.text;
+	$.messager.confirm('?','确定要提交吗?',function(r){
+		if(r){
+			var sql = "truncate table "+tablename;
+			var param = {sql:sql,dsId:dsId};
+			$.post("execSql.json",param,function(data,status){
+				if(data.code = 10000){
+					$.messager.show({
+				         title: '提示',
+				         msg: '成功！',
+				         showType: 'fade',      
+				         style: { left: 500, top: 100 },     
+				         width:200, 
+				         height:100,
+				         timeout: 1000 
+				    });
+				}
+			});
+		}
+	});
+}
+
+function dropTable(){
+	
+}
+
+function infoTable(){
+	
 }

@@ -11,7 +11,7 @@ function initDatabaseTree(){
 		    //alert(data);
 		    return data;
 		},
-		//onContextMenu: onContextMenu,
+		onContextMenu: onContextMenu,
 		onClick: onDBClick,
 		onDblClick:onDblClick,
 		onSelect: function (node) {

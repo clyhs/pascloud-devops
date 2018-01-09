@@ -62,6 +62,18 @@ public class DataBaseController extends BaseController {
 		return view;
 	}
 	
+	@RequestMapping("tableEdit.html")
+	public ModelAndView editTable(HttpServletRequest request,
+			@RequestParam(value="tablename",defaultValue="",required=true) String tablename,
+			@RequestParam(value="dsId",defaultValue="",required=true) String dsId){
+		ModelAndView view = new ModelAndView("database/tableEdit");
+		
+		String url = "/module/database/tableColumns.json?tablename="+tablename+"&dsId="+dsId;
+		view.addObject("url", url);
+		
+		return view;
+	}
+	
 	@RequestMapping("dbTrees.json")
 	@ResponseBody
 	public List<TreeVo> getDataBaseList(HttpServletRequest request){
@@ -79,8 +91,6 @@ public class DataBaseController extends BaseController {
 			tree.setIconCls("icon-database");
 			trees.add(tree);
 		}
-		
-		
 		return trees;
 	}
 	
@@ -168,6 +178,16 @@ public class DataBaseController extends BaseController {
 		log.info(g.toJson(result.getDesc()));
 		return result;
 		
+	}
+	
+	@RequestMapping("tableColumns.json")
+	@ResponseBody
+	public List<DBColumnVo> getTableColumns(HttpServletRequest request,
+			@RequestParam(value="dsId",defaultValue="",required=true) String dsId,
+			@RequestParam(value="tablename",defaultValue="",required=true) String tablename){
+		List<DBColumnVo> columns = new ArrayList<>();
+		columns = m_dbService.getColumns(tablename,dsId);
+		return columns;
 	}
 	
 	@RequestMapping("grammarTree.json")
