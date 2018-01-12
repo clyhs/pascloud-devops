@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<redisInfo>
+  <addr>192.168.0.16</addr>
+  <port>6379</port>
+  <username></username>
+  <password></password>
+</redisInfo>

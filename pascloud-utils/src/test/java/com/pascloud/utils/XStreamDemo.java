@@ -6,6 +6,7 @@ import org.dom4j.Document;
 
 import com.pascloud.utils.xml.XmlParser;
 import com.pascloud.vo.database.DBInfo;
+import com.pascloud.vo.redis.RedisInfo;
 import com.thoughtworks.xstream.XStream;
 
 public class XStreamDemo {
@@ -13,6 +14,7 @@ public class XStreamDemo {
 	public static void main(String[] args) {
 		
 		String header =  "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
+		/*
 		DBInfo info = new DBInfo();
 		info.setId("cloudpas17_ora");
 		info.setName("cloudpas");
@@ -25,9 +27,20 @@ public class XStreamDemo {
 		xstream.alias("dbinfo", DBInfo.class);
 		String xml = xstream.toXML(info);
 		xml = header + xml;
-		//System.out.println(xml);
+		*/
+		RedisInfo info = new RedisInfo();
 		
-		String path = "d:/cloudpas17_ora.xml";
+		info.setAddr("192.168.0.16");
+		info.setPort(6379);
+		info.setUsername("");
+		info.setPassword("");
+		
+		XStream xstream = new XStream(); 
+		xstream.alias("redisInfo", RedisInfo.class);
+		String xml = xstream.toXML(info);
+		xml = header + xml;
+		
+		String path = "d:/redis_16.xml";
 		
 		File file = new File(path);
 		

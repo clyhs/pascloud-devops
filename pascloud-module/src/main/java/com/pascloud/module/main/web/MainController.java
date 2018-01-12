@@ -82,12 +82,19 @@ public class MainController extends BaseController {
 		t5.setLeaf(true);
 		t5.setUrl("/module/database/index.html");
 		
+		
+		TreeVo t6 = new TreeVo();
+		t6.setId("5");
+		t6.setText("缓存管理");
+		t6.setIconCls("icon-server_database");
+		t6.setLeaf(true);
+		t6.setUrl("/module/redis/index.html");
 		//trees.add(t1);
 		trees.add(t2);
 		trees.add(t3);
 		trees.add(t4);
 		trees.add(t5);
-		
+		trees.add(t6);
 		return trees;
 	}
 	@RequestMapping("leaveSwarm.json")

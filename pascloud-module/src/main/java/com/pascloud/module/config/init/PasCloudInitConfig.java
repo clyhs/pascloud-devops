@@ -15,8 +15,13 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.utils.FileUtils;
 import com.pascloud.utils.db.DataSourceUtils;
+import com.pascloud.utils.redis.JedisPoolUtils;
 import com.pascloud.vo.database.DBInfo;
+import com.pascloud.vo.redis.RedisInfo;
 import com.thoughtworks.xstream.XStream;
+
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 @SuppressWarnings("rawtypes")
 @Repository
@@ -32,6 +37,7 @@ public class PasCloudInitConfig implements ApplicationListener<ContextRefreshedE
 		// TODO Auto-generated method stub
 		if(event.getApplicationContext().getParent() == null){
 			initDataSource();
+			initRedisPool();
 		}
 		
 	}
@@ -39,8 +45,7 @@ public class PasCloudInitConfig implements ApplicationListener<ContextRefreshedE
 	private void initDataSource(){
 		String database_dir = m_config.getPASCLOUD_DATABASE_DIR();
 		if(null!=database_dir){
-			log.info("初始化数据库--开始1--");
-			log.info("初始化数据库--开始2--");
+			log.info("初始化数据库--开始--");
 			XStream xstream = new  XStream();
 			xstream.alias("dbinfo", DBInfo.class);
 			File database_file= new File(database_dir);
@@ -76,5 +81,42 @@ public class PasCloudInitConfig implements ApplicationListener<ContextRefreshedE
 			log.info("初始化数据库--结束--");
 		}
 	} 
+	
+	private void initRedisPool(){
+		String redis_dir = m_config.getPASCLOUD_REDIS_DIR();
+		
+		if(null!=redis_dir){
+			log.info("初始化redis--开始--");
+			XStream xstream = new  XStream();
+			xstream.alias("redisInfo", RedisInfo.class);
+			File redis_file= new File(redis_dir);
+			if(FileUtils.createOrExistsDir(redis_file)){
+				List<File> files = FileUtils.listFilesInDirWithFilter(redis_file, "xml");
+				if(files.size()>0){
+					for(File file : files){
+						try{
+							RedisInfo info = (RedisInfo) xstream.fromXML(file);
+							log.info(info.getAddr().trim()+":"+info.getPort());
+							
+							JedisPoolConfig config = new JedisPoolConfig();
+					        config.setMaxTotal(10);
+					        config.setMaxIdle(5);
+					        config.setMaxWaitMillis(15000);
+					        config.setTestOnBorrow(true);
+					        String id = info.getAddr().trim()+":"+ info.getPort();
+					        JedisPool jedisPool = new JedisPool(config, info.getAddr().trim(), info.getPort());
+					        JedisPoolUtils.addJedisPool(id, jedisPool);
+					        
+						} catch (Exception e) {  
+					        e.printStackTrace();  
+					    } 
+						
+					}
+				}
+			}
+			
+			log.info("初始化redis--结束--");
+		}
+	}
 
 }

@@ -14,6 +14,19 @@ public class PasCloudConfig {
 	
 	@Value("${project.databasedir}")
 	private String PASCLOUD_DATABASE_DIR;
+	
+	@Value("${project.redisdir}")
+	private String PASCLOUD_REDIS_DIR;
+	
+	
+
+	public String getPASCLOUD_REDIS_DIR() {
+		return PASCLOUD_REDIS_DIR;
+	}
+
+	public void setPASCLOUD_REDIS_DIR(String pASCLOUD_REDIS_DIR) {
+		PASCLOUD_REDIS_DIR = pASCLOUD_REDIS_DIR;
+	}
 
 	public String getPASCLOUD_SPRINGXML_PATH() {
 		return PASCLOUD_SPRINGXML_PATH;
