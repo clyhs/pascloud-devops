@@ -25,12 +25,17 @@
     
     <script type="text/javascript" src="/static/js/common/pascloudfunctions.js"></script>
     
-    <script type="text/javascript" src="/app/database/js/redisMain.js"></script>
-    <script type="text/javascript" src="/app/database/js/redisDBTree.js"></script>
+    <script type="text/javascript" src="/app/redis/js/redisMain.js"></script>
+    <script type="text/javascript" src="/app/redis/js/redisDBTree.js"></script>
+    <script type="text/javascript" src="/app/redis/js/redisServerDetailDataGrid.js"></script>
 	
 	<script type="text/javascript">
 	    
 		$(function(){
+		    redisServerId = '${redisServerId}';
+		    initRedisTree();
+		    initRSDetailDataGrid(redisServerId);
+		    changeRedisServer();
 		});
 		
 	</script>
@@ -40,29 +45,36 @@
 	
 	
 </head>
-<body id="main" class="easyui-layout" data-options="fit:true" onload="init();"> 
+<body id="main" class="easyui-layout" data-options="fit:true" > 
     <div id="mainLeft" data-options="region:'west',split:true,title:'reids服务器',iconCls:'icon-databases'" style="width:200px">
-		<div style="width:95%;line-height:30px;border:#ccc 5px solid;">
-		    <select id="server" name="server" style="width:80%;margin:5px 5px;">
+        <!--
+		<div style="width:94%;line-height:30px;border:#ccc 5px solid;">
+		    
+		-->
+		
+		<div id="redisTreeToolbar" style="width:160px;margin:4px 5px 2px 5px;border:0;">
+		    <select id="server" class="easyui-combobox" name="server" style="width:160px;">
 		        <#list servers as item> 
-		        <option value="${item}" >${item}</option>
+		        <option value="${item}" <#if item==redisServerId>selected="selected"</#if>  >${item}</option>
 		        </#list>  
 		    </select>
 		</div>
 		
-		<ul id="redisTree" class="easyui-tree" >
-		    <div id="mm-redis" class="easyui-menu" style="width:120px;">
-		        <div data-options="iconCls:'icon-database_add'">添加库</div>
-		        <div data-options="iconCls:'icon-database_delete'">删除库</div>
-		        <div data-options="iconCls:'icon-database_go'">备份库</div>
-	        </div>
-		</ul>
+		<table id="redisTree" class="easyui-treegrid" >
+		</table>
 	    
 		
 		
 	</div>
 	<div id="mainCenter" data-options="region:'center',title:''" style="border:0;">
-	    center
+	    <div id="mainCenterTab" class="easyui-tabs" data-options="region:'center',title:'',fit:true" style="border:0;">
+	        <div title="服务监控与详情" iconCls="icon-monitor" style="border:0;">
+                <table id="redisServerDetailDataGrid" >	
+		        
+	            </table>
+	        </div>
+	        
+	    </div>
 	</div>
 	
 	

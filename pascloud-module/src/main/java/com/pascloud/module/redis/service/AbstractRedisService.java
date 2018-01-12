@@ -6,5 +6,7 @@ import org.slf4j.LoggerFactory;
 public abstract class AbstractRedisService {
 	
 	protected Logger log = LoggerFactory.getLogger(getClass());
+	
+	protected Integer defaultDBNum = 16;
 
 }

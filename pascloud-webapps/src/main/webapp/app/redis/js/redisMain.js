@@ -1,1 +1,1 @@
-var redisId = "";
+var redisServerId = "";

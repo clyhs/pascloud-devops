@@ -75,6 +75,14 @@ public class DemoRedis {
         //System.out.println(J.info());
         //J.select(15);
         //J.sadd("cly", "111");
+        String str = J.info();
+        String[] strs = str.split("\n");
+        for(String s:strs){
+        	if(s.indexOf(":")!=-1){
+        		System.out.println(s);
+        	}
+        }
+        
 
 	}
 	public synchronized static Jedis getJedis() {
