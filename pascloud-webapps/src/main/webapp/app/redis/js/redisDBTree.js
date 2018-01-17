@@ -13,7 +13,7 @@ function initRedisTree(){
         showFooter:false,//是否使用页脚
 		columns:[[
             //{title:'编号',field:'id',width:40,sortable:true},
-            {title:'名称',field:'text',width:190,sortable:true}
+            {title:'名称',field:'text',width:200,sortable:true}
 
         ]],
         toolbar:'#redisTreeToolbar',
@@ -24,9 +24,29 @@ function initRedisTree(){
 		},
 		onDblClickCell:function(rowIndex, field, value){
 			var node = $('#redisTree').treegrid('getSelected');
-			alert(node.id+" "+node.text);
+			//alert(node.id+" "+node.text);
+			var title = node.text;
+			var index= node.id;
+			var icon = "";
+			var url = "table.html?redisServerId="+redisServerId+"&index="+index;
+			addRedisDBTab(title, url,icon)
 		}
 	});
+}
+
+
+function addRedisDBTab(title, url,icon){
+	if ($('#mainCenterTab').tabs('exists', title)){
+		$('#mainCenterTab').tabs('select', title);
+	} else {
+		var content = '<iframe scrolling="auto" frameborder="0"  src="'+url+'" style="width:100%;height:100%;"></iframe>';
+		$('#mainCenterTab').tabs('add',{
+			title:title,
+			content:content,
+			iconCls:icon,
+			closable:true
+		});
+	}
 }
 
 
