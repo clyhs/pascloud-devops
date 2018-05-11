@@ -174,5 +174,11 @@ public class ConfigService {
 		p.setValueByKey("dubbo.application.name", appName, "");
 	
 	}
+	
+	public void setHomePath(String projectPath){
+		PropertiesUtil p =new PropertiesUtil();
+		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
+		p.setValueByKey("pascloud.home", projectPath, "");
+	}
 
 }

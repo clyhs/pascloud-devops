@@ -63,7 +63,7 @@ public class MainController extends BaseController {
 		
 		TreeVo t3 = new TreeVo();
 		t3.setId("2");
-		t3.setText("云平台管理");
+		t3.setText("云平台服务");
 		t3.setLeaf(true);
 		t3.setIconCls("icon-server");
 		t3.setUrl("/module/pasService/index.html");
@@ -115,7 +115,7 @@ public class MainController extends BaseController {
 		
 		TreeVo t9 = new TreeVo();
 		t9.setId("9");
-		t9.setText("数据库节点管理");
+		t9.setText("数据库节点");
 		t9.setIconCls("icon-database");
 		t9.setLeaf(true);
 		t9.setUrl("/module/mycat/index.html");

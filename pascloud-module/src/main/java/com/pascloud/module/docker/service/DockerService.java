@@ -178,7 +178,7 @@ public class DockerService {
 			    List<PortBinding> hostPorts = new ArrayList<>();
 			    hostPorts.add(PortBinding.of("0.0.0.0", entry.getValue()));
 			    portBindings.put(entry.getKey(), hostPorts);
-			    ports.add(entry.getValue());
+			    ports.add(entry.getKey());
 			}
 			String bindStringFrom = volumeFrom;
 			String bindStringTo = volumeTo;

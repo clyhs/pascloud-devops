@@ -121,6 +121,8 @@ public class PasServiceController extends BaseController {
 		scpClient.putFileToServer(dubbofilepath, bindVolumeFrom+"/conf/");
 		
 		String configfilepath = m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"config.properties";
+		m_configService.setHomePath(bindVolumeFrom);
+		scpClient.putFileToServer(configfilepath, bindVolumeFrom+"/conf/");
 		
 		scpClient.close();
 		log.info("结束拷贝源码目录");

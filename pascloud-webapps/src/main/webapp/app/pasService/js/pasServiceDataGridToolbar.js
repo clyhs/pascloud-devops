@@ -28,7 +28,7 @@ var toolbar = function(){
 		text : '复制',  
         iconCls : 'icon-table_edit',  
         handler : function(){
-        	copyMainServiceContainer();
+        	//copyMainServiceContainer();
         }
 	},{
 		text : '运行',  
