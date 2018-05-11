@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="clyjrjrlfx" title="存量业绩人均认领分析" type="query" version="2.0.0">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="NewJg" label="开户机构">
+        <attribute key="cascadeCheck" value="true" />
+        <attribute key="editable" value="true" />
+        <attribute key="ckbz" value="jg" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="jgkhdxdh" />
+        <attribute key="multiple" value="true" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="开户日期范围">
+        <attribute key="defVal" value="19000101" />
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="ksrq" />
+        <attribute key="minDate" value="no" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Date" label="至">
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="jsrq" />
+        <attribute key="minDate" value="no" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="MSQL4Select" label="对象类型">
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isSearch" value="false" />
+        <attribute key="sql" value="select dmz as key ,dmms as value from csb_dmms where dmmc='ZHLX'" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="dxlx" />
+        <attribute key="isAll" value="false" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+      <tag row="0" col="4" colspan="1" rowspan="1" name="MSQL4Select" label="帐户标识">
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isSearch" value="false" />
+        <attribute key="sql" value="select dmz as key ,dmms as value from csb_dmms where dmmc='ZHBS'" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="zhbs" />
+        <attribute key="isAll" value="true" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="clyjrjrlfx_xsjy1jgj" title="新数据源1结果集" page="true">
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHSTH" title="支行实体行员人均认领余额" align="right" type="float" width="200" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="showZhye" />
+    <col id="JGSTHYRS" title="支行实际人数" align="right" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QYZHSTH" title="全行实体行员人均认领余额" align="right" type="float" width="200" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QYJGSTHYRS" title="全行实际人数" align="right" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="PLD" title="偏离度" align="right" type="float" width="80" frozen="false" format="" exp="true" showDymCol="" mergeCells="false" footerCells="false" />
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" showDymCol="" mergeCells="false" footerCells="false" />
+  </table>
+  <table id="clyjrjrlfx_xsjy2jgj" title="新数据源2结果集" page="true">
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHSTH" title="支行实体行员人均认领余额" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="showZhye" />
+    <col id="JGSTHYRS" title="支行实际人数" align="right" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QYZHSTH" title="全行实体行员人均认领余额" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QYJGSTHYRS" title="全行实际人数" align="right" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="PLD" title="偏离度" align="right" type="float" width="80" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" showDymCol="" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.clyjrjrlfx">
+    <select id="dn12.clyjrjrlfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <isEqual property="dxlx" compareValue="1">
+        SELECT f.jgdh,   f.jgmc,   CASE     WHEN f.rjye=0     THEN 0     ELSE(CAST(f.rjye AS DECIMAL(17,2))/CAST(h.jgsthyrs AS DECIMAL(17,2)))   END AS zhsth,   CASE     WHEN f.qyrjye=0     THEN 0     ELSE(CAST(f.qyrjye AS DECIMAL(17,2))/CAST(h.qyjgsthyrs AS DECIMAL(17,2)))   END AS qyzhsth,   CASE     WHEN f.rjye=0     THEN 0     ELSE ROUND(CAST((f.rjye /h.jgsthyrs )AS DECIMAL(17,2))/CAST((f.qyrjye /h.qyjgsthyrs)AS DECIMAL(17,2)),2)   END AS pld,   cast(h.jgsthyrs as integer) as jgsthyrs,   cast(h.qyjgsthyrs as integer ) as qyjgsthyrs,   f.khdxdh FROM   (SELECT b.khdxdh,     b.jgdh,     b.jgmc,     b.rjye,     SUM(rjye) over () AS qyrjye   FROM     (SELECT a.khdxdh,       a.jgdh,       a.jgmc,       SUM(a.zhye) rjye     FROM       (SELECT jg.khdxdh,         jg.jgdh,         jg.jgmc,         SUM(ckzh.zhye) AS zhye       FROM jxdx_ckzh ckzh       INNER JOIN khdx_hy hy       ON ckzh.khdxdh = hy.khdxdh       INNER JOIN khdx_jg jg       ON ckzh.jgdh     =jg.jgdh       WHERE ckzh.gxhslx='0'       AND hy.hydh NOT LIKE '%XN%'
+        <isNotEmpty property="ksrq">AND ckzh.khrq BETWEEN $ksrq$ AND $jsrq$</isNotEmpty>
+        <isNotEmpty property="zhbs">AND ckzh.zhbs = '$zhbs$'</isNotEmpty>
+        GROUP BY jg.khdxdh,         jg.jgdh,         jg.jgmc       UNION ALL       SELECT jg.khdxdh,         jg.jgdh,         jg.jgmc,         SUM(ckzh.zhye*dxgx.zlbl*0.01) AS zhye       FROM jxdx_ckzh ckzh       INNER JOIN dxgx_hyyjgx_ck dxgx       ON ckzh.jxdxdh = dxgx.jxdxdh       AND dxgx.jsrq  =29991231       INNER JOIN khdx_hy hy       ON hy.khdxdh = dxgx.khdxdh       INNER JOIN khdx_jg jg       ON ckzh.jgdh     =jg.jgdh       WHERE ckzh.gxhslx='1'       AND hy.hydh NOT LIKE '%XN%'
+        <isNotEmpty property="ksrq">AND ckzh.khrq BETWEEN $ksrq$ AND $jsrq$</isNotEmpty>
+        <isNotEmpty property="zhbs">AND ckzh.zhbs = '$zhbs$'</isNotEmpty>
+        GROUP BY jg.khdxdh,         jg.jgdh,         jg.jgmc       )a     GROUP BY a.khdxdh,       a.jgdh,       a.jgmc     )b   )f INNER JOIN   (SELECT d.khdxdh,     d.jgsthyrs,     SUM(d.jgsthyrs) over () AS qyjgsthyrs   FROM     (SELECT jgkhdxdh AS khdxdh,       COUNT(1)       AS jgsthyrs     FROM khdx_jgcy cy     INNER JOIN khdx_hy hy     ON cy.khdxdh=hy.khdxdh
+        <isNotEmpty property="jsrq">AND $jsrq$ between  cy.qsrq and cy.jsrq</isNotEmpty>
+        AND hy.hydh NOT LIKE 'XN%'     GROUP BY jgkhdxdh     )d   )h ON f.khdxdh=h.khdxdh WHERE f.khdxdh IN($jgkhdxdh$)
+      </isEqual>
+      <isEqual property="dxlx" compareValue="2">
+        SELECT f.jgdh,   f.jgmc,   CASE     WHEN f.rjye=0     THEN 0     ELSE (CAST(f.rjye AS DECIMAL(17,2))/CAST(h.jgsthyrs AS DECIMAL(17,2)))   END AS zhsth,   CASE     WHEN f.qyrjye=0     THEN 0     ELSE (CAST(f.qyrjye AS DECIMAL(17,2))/CAST(h.qyjgsthyrs AS DECIMAL(17,2)))   END AS qyzhsth,   CASE     WHEN f.rjye=0     THEN 0     ELSE ROUND(CAST((f.rjye /h.jgsthyrs )AS DECIMAL(17,2))/CAST((f.qyrjye /h.qyjgsthyrs)AS DECIMAL(17,2)),2)   END AS pld,   cast (h.jgsthyrs as integer) as jgsthyrs,   cast (h.qyjgsthyrs as integer) as qyjgsthyrs ,   f.khdxdh FROM   (SELECT b.khdxdh,     b.jgdh,     b.jgmc,     b.rjye,     SUM(rjye) over () AS qyrjye   FROM     (SELECT a.khdxdh,       a.jgdh,       a.jgmc,       SUM(a.zhye) rjye     FROM       (SELECT jg.khdxdh,         jg.jgdh,         jg.jgmc,         SUM(ckzh.zhye) AS zhye       FROM jxdx_dkzh ckzh       INNER JOIN khdx_hy hy       ON ckzh.khdxdh = hy.khdxdh       INNER JOIN khdx_jg jg       ON ckzh.jgdh     =jg.jgdh       WHERE ckzh.gxhslx='0'       AND hy.hydh NOT LIKE '%XN%'
+        <isNotEmpty property="ksrq">AND ckzh.khrq BETWEEN $ksrq$ AND $jsrq$</isNotEmpty>
+        <isNotEmpty property="zhbs">AND ckzh.zhbs = '$zhbs$'</isNotEmpty>
+        GROUP BY jg.khdxdh,         jg.jgdh,         jg.jgmc       UNION ALL       SELECT jg.khdxdh,         jg.jgdh,         jg.jgmc,         SUM(ckzh.zhye*dxgx.zlbl*0.01) AS zhye       FROM jxdx_dkzh ckzh       INNER JOIN dxgx_hyyjgx_dk dxgx       ON ckzh.jxdxdh = dxgx.jxdxdh       AND dxgx.jsrq  =29991231       INNER JOIN khdx_hy hy       ON hy.khdxdh = dxgx.khdxdh       INNER JOIN khdx_jg jg       ON ckzh.jgdh     =jg.jgdh       WHERE ckzh.gxhslx='1'       AND hy.hydh NOT LIKE '%XN%'
+        <isNotEmpty property="ksrq">AND ckzh.khrq BETWEEN $ksrq$ AND $jsrq$</isNotEmpty>
+        <isNotEmpty property="zhbs">AND ckzh.zhbs = '$zhbs$'</isNotEmpty>
+        GROUP BY jg.khdxdh,         jg.jgdh,         jg.jgmc       )a     GROUP BY a.khdxdh,       a.jgdh,       a.jgmc     )b   )f INNER JOIN   (SELECT d.khdxdh,     d.jgsthyrs,     SUM(d.jgsthyrs) over () AS qyjgsthyrs   FROM     (SELECT jgkhdxdh AS khdxdh,       COUNT(1)       AS jgsthyrs     FROM khdx_jgcy cy     INNER JOIN khdx_hy hy     ON cy.khdxdh=hy.khdxdh
+        <isNotEmpty property="jsrq">AND $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        AND hy.hydh NOT LIKE 'XN%'     GROUP BY jgkhdxdh     )d   )h ON f.khdxdh=h.khdxdh WHERE f.khdxdh IN($jgkhdxdh$)
+      </isEqual>
+    </select>
+    <select id="dn12.clyjrjrlfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from (
+      <isEqual property="dxlx" compareValue="1">
+        SELECT f.jgdh,   f.jgmc,   CASE     WHEN f.rjye=0     THEN 0     ELSE(CAST(f.rjye AS DECIMAL(17,2))/CAST(h.jgsthyrs AS DECIMAL(17,2)))   END AS zhsth,   CASE     WHEN f.qyrjye=0     THEN 0     ELSE(CAST(f.qyrjye AS DECIMAL(17,2))/CAST(h.qyjgsthyrs AS DECIMAL(17,2)))   END AS qyzhsth,   CASE     WHEN f.rjye=0     THEN 0     ELSE ROUND(CAST((f.rjye /h.jgsthyrs )AS DECIMAL(17,2))/CAST((f.qyrjye /h.qyjgsthyrs)AS DECIMAL(17,2)),2)   END AS pld,   cast(h.jgsthyrs as integer) as jgsthyrs,   cast(h.qyjgsthyrs as integer ) as qyjgsthyrs,   f.khdxdh FROM   (SELECT b.khdxdh,     b.jgdh,     b.jgmc,     b.rjye,     SUM(rjye) over () AS qyrjye   FROM     (SELECT a.khdxdh,       a.jgdh,       a.jgmc,       SUM(a.zhye) rjye     FROM       (SELECT jg.khdxdh,         jg.jgdh,         jg.jgmc,         SUM(ckzh.zhye) AS zhye       FROM jxdx_ckzh ckzh       INNER JOIN khdx_hy hy       ON ckzh.khdxdh = hy.khdxdh       INNER JOIN khdx_jg jg       ON ckzh.jgdh     =jg.jgdh       WHERE ckzh.gxhslx='0'       AND hy.hydh NOT LIKE '%XN%'
+        <isNotEmpty property="ksrq">AND ckzh.khrq BETWEEN $ksrq$ AND $jsrq$</isNotEmpty>
+        <isNotEmpty property="zhbs">AND ckzh.zhbs = '$zhbs$'</isNotEmpty>
+        GROUP BY jg.khdxdh,         jg.jgdh,         jg.jgmc       UNION ALL       SELECT jg.khdxdh,         jg.jgdh,         jg.jgmc,         SUM(ckzh.zhye*dxgx.zlbl*0.01) AS zhye       FROM jxdx_ckzh ckzh       INNER JOIN dxgx_hyyjgx_ck dxgx       ON ckzh.jxdxdh = dxgx.jxdxdh       AND dxgx.jsrq  =29991231       INNER JOIN khdx_hy hy       ON hy.khdxdh = dxgx.khdxdh       INNER JOIN khdx_jg jg       ON ckzh.jgdh     =jg.jgdh       WHERE ckzh.gxhslx='1'       AND hy.hydh NOT LIKE '%XN%'
+        <isNotEmpty property="ksrq">AND ckzh.khrq BETWEEN $ksrq$ AND $jsrq$</isNotEmpty>
+        <isNotEmpty property="zhbs">AND ckzh.zhbs = '$zhbs$'</isNotEmpty>
+        GROUP BY jg.khdxdh,         jg.jgdh,         jg.jgmc       )a     GROUP BY a.khdxdh,       a.jgdh,       a.jgmc     )b   )f INNER JOIN   (SELECT d.khdxdh,     d.jgsthyrs,     SUM(d.jgsthyrs) over () AS qyjgsthyrs   FROM     (SELECT jgkhdxdh AS khdxdh,       COUNT(1)       AS jgsthyrs     FROM khdx_jgcy cy     INNER JOIN khdx_hy hy     ON cy.khdxdh=hy.khdxdh
+        <isNotEmpty property="jsrq">AND $jsrq$ between  cy.qsrq and cy.jsrq</isNotEmpty>
+        AND hy.hydh NOT LIKE 'XN%'     GROUP BY jgkhdxdh     )d   )h ON f.khdxdh=h.khdxdh WHERE f.khdxdh IN($jgkhdxdh$)
+      </isEqual>
+      <isEqual property="dxlx" compareValue="2">
+        SELECT f.jgdh,   f.jgmc,   CASE     WHEN f.rjye=0     THEN 0     ELSE (CAST(f.rjye AS DECIMAL(17,2))/CAST(h.jgsthyrs AS DECIMAL(17,2)))   END AS zhsth,   CASE     WHEN f.qyrjye=0     THEN 0     ELSE (CAST(f.qyrjye AS DECIMAL(17,2))/CAST(h.qyjgsthyrs AS DECIMAL(17,2)))   END AS qyzhsth,   CASE     WHEN f.rjye=0     THEN 0     ELSE ROUND(CAST((f.rjye /h.jgsthyrs )AS DECIMAL(17,2))/CAST((f.qyrjye /h.qyjgsthyrs)AS DECIMAL(17,2)),2)   END AS pld,   cast (h.jgsthyrs as integer) as jgsthyrs,   cast (h.qyjgsthyrs as integer) as qyjgsthyrs ,   f.khdxdh FROM   (SELECT b.khdxdh,     b.jgdh,     b.jgmc,     b.rjye,     SUM(rjye) over () AS qyrjye   FROM     (SELECT a.khdxdh,       a.jgdh,       a.jgmc,       SUM(a.zhye) rjye     FROM       (SELECT jg.khdxdh,         jg.jgdh,         jg.jgmc,         SUM(ckzh.zhye) AS zhye       FROM jxdx_dkzh ckzh       INNER JOIN khdx_hy hy       ON ckzh.khdxdh = hy.khdxdh       INNER JOIN khdx_jg jg       ON ckzh.jgdh     =jg.jgdh       WHERE ckzh.gxhslx='0'       AND hy.hydh NOT LIKE '%XN%'
+        <isNotEmpty property="ksrq">AND ckzh.khrq BETWEEN $ksrq$ AND $jsrq$</isNotEmpty>
+        <isNotEmpty property="zhbs">AND ckzh.zhbs = '$zhbs$'</isNotEmpty>
+        GROUP BY jg.khdxdh,         jg.jgdh,         jg.jgmc       UNION ALL       SELECT jg.khdxdh,         jg.jgdh,         jg.jgmc,         SUM(ckzh.zhye*dxgx.zlbl*0.01) AS zhye       FROM jxdx_dkzh ckzh       INNER JOIN dxgx_hyyjgx_dk dxgx       ON ckzh.jxdxdh = dxgx.jxdxdh       AND dxgx.jsrq  =29991231       INNER JOIN khdx_hy hy       ON hy.khdxdh = dxgx.khdxdh       INNER JOIN khdx_jg jg       ON ckzh.jgdh     =jg.jgdh       WHERE ckzh.gxhslx='1'       AND hy.hydh NOT LIKE '%XN%'
+        <isNotEmpty property="ksrq">AND ckzh.khrq BETWEEN $ksrq$ AND $jsrq$</isNotEmpty>
+        <isNotEmpty property="zhbs">AND ckzh.zhbs = '$zhbs$'</isNotEmpty>
+        GROUP BY jg.khdxdh,         jg.jgdh,         jg.jgmc       )a     GROUP BY a.khdxdh,       a.jgdh,       a.jgmc     )b   )f INNER JOIN   (SELECT d.khdxdh,     d.jgsthyrs,     SUM(d.jgsthyrs) over () AS qyjgsthyrs   FROM     (SELECT jgkhdxdh AS khdxdh,       COUNT(1)       AS jgsthyrs     FROM khdx_jgcy cy     INNER JOIN khdx_hy hy     ON cy.khdxdh=hy.khdxdh
+        <isNotEmpty property="jsrq">AND $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        AND hy.hydh NOT LIKE 'XN%'     GROUP BY jgkhdxdh     )d   )h ON f.khdxdh=h.khdxdh WHERE f.khdxdh IN($jgkhdxdh$)
+      </isEqual>
+      ) t
+    </select>
+    <select id="dn12.clyjrjrlfx_MSQL4SELECT_dxlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key ,dmms as value from csb_dmms where dmmc='ZHLX'</select>
+    <select id="dn12.clyjrjrlfx_MSQL4SELECT_zhbs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key ,dmms as value from csb_dmms where dmmc='ZHBS'</select>
+  </sqlMap>
+  <finger custPlotMth="">
+    <plotType />
+    <needPlot>false</needPlot>
+    <plotTitle />
+  </finger>
+  <rels>
+    <items id="clyjrjrlfx_xsjy1jgj">
+      <item name="dxlx" compareValue="1" operate="isEqual" />
+    </items>
+    <items id="clyjrjrlfx_xsjy2jgj">
+      <item name="dxlx" compareValue="2" operate="isEqual" />
+    </items>
+  </rels>
+  <javascript><![CDATA[jQuery(document).ready(function () {
+
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}
+
+function showZhye(obj){
+  var dxlx = $("#dxlx").val();
+  var ckzh =0;
+  var dxgx = 0;
+  if(dxlx==1)
+  {
+    ckzh='jxdx_ckzh';
+    dxgx='dxgx_hyyjgx_ck';
+  }
+  if(dxlx==2)
+  {
+    ckzh='jxdx_dkzh';
+    dxgx='dxgx_hyyjgx_dk';
+  }
+  var paramsJasonString = "{"+"'jgkhdxdh':'"+obj['KHDXDH']+"','ksrq':'"+$("#ksrq").val()+"','jsrq':'"+$("#jsrq").val()+"','zhbs':'"+$("#zhbs").val()+"','ckzh':'"+ckzh+"','dxgx':'"+dxgx+"'}";
+ 
+  querySubQuery(paramsJasonString,"zhsthyrjrlye",'80','40','tag')
+}]]></javascript>
+</pageSetting>
+

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="hynjhgl" title="行员年计划管理" type="manage">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="年份" fieldName="">
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="khnf" />
+        <attribute key="minDate" value="no" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="dateFmt" value="yyyy" />
+        <attribute key="readonly" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="1" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="">
+        <attribute key="isRequired" value="false" />
+        <attribute key="style" value="width:160px;" />
+        <attribute key="isDisplayXN" value="false" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="true" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="HYKhzbSelect" label="考核指标" fieldName="">
+        <attribute key="isSearch" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="isMultiple" value="false" />
+        <attribute key="name" value="khzbdh" />
+        <attribute key="width" value="250px;" />
+        <attribute key="isAll" value="true" />
+        <attribute key="multiple" value="false" />
+        <attribute key="isEditable" value="true" />
+        <attribute key="editable" value="true" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="hynjhgltable">
+    <col id="KHNF" title="年份" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="KHZBMC" title="考核指标名称" align="left" type="string" width="200" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JHZ" title="计划值" align="right" type="float" width="120" format="##0.00" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="LZZ" title="力争值" align="right" type="float" width="120" format="##0.00" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="KHZBDH" title="KHZBDH" align="center" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" />
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+  </table>
+  <rels>
+    <items id="hynjhgltable" />
+  </rels>
+  <addPage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="年份" fieldName="KHNF">
+      <attribute key="style" value="width:157px" />
+      <attribute key="name" value="hynjh_nf" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="KHDXDH">
+      <attribute key="isRequired" value="true" />
+      <attribute key="style" value="width:157px" />
+      <attribute key="isDisplayXN" value="true" />
+      <attribute key="jgckbz" value="jg_ckhy" />
+      <attribute key="name" value="khdxdh" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Text" label="考核指标" fieldName="">
+      <attribute key="style" value="width:157px" />
+      <attribute key="name" value="khzbmc" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="计划值" fieldName="JHZ">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="width:157px" />
+      <attribute key="name" value="hynjh_jhz" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="力争值" fieldName="LZZ">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="width:157px" />
+      <attribute key="name" value="hynjh_lzz" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHZBDH">
+      <attribute key="name" value="KHZBDH" />
+    </tag>
+  </addPage>
+  <updatePage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="年份" fieldName="KHNF">
+      <attribute key="style" value="width:157px" />
+      <attribute key="name" value="hynjh_nf" />
+      <attribute key="isAll" value="false" />
+      <attribute key="readonly" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="KHDXDH">
+      <attribute key="isRequired" value="true" />
+      <attribute key="style" value="width:157px" />
+      <attribute key="isDisplayXN" value="true" />
+      <attribute key="jgckbz" value="jg_ckhy" />
+      <attribute key="name" value="khdxdh" />
+      <attribute key="isAll" value="false" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Text" label="考核指标" fieldName="">
+      <attribute key="style" value="width:157px" />
+      <attribute key="name" value="khzbmc" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="计划值" fieldName="JHZ">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="width:157px" />
+      <attribute key="name" value="hynjh_jhz" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="力争值" fieldName="LZZ">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="width:157px" />
+      <attribute key="name" value="hynjh_lzz" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHZBDH">
+      <attribute key="name" value="KHZBDH" />
+    </tag>
+  </updatePage>
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+    <button>import</button>
+  </buttons>
+  <flow>
+    <insertbefore />
+    <insertafter />
+    <deletebefore />
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.hynjhgl">
+    <select id="dn12.hynjhglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select jh.khnf,jh.khdxdh,jg.jgdh,jg.jgmc,qx.hydh,qx.hymc,khzb.khzbmc,jh.jhz,jh.lzz,khzb.khzbdh from yjzb_hynjh jh inner join khfa_khzb_hy khzb on jh.khzbdh=khzb.khzbdh inner join table(fn_getsjjg_java_qxhy($sysdate$,$login_khdxdh$,0)) qx on qx.khdxdh=jh.khdxdh inner join khdx_jgcy cy on cy.khdxdh=qx.khdxdh
+      <isNotEmpty property="sysdate">and $sysdate$ between cy.qsrq and cy.jsrq</isNotEmpty>
+      inner join khdx_jg jg on jg.khdxdh=cy.jgkhdxdh where 1=1
+      <isNotEmpty property="khnf">and  jh.khnf =$khnf$</isNotEmpty>
+      <isNotEmpty property="khdxdh">and jh.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="khzbdh">and khzb.khzbdh=$khzbdh$</isNotEmpty>
+      order by khzb.zbpx
+    </select>
+    <select id="dn12.hynjhglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select jh.khnf,jh.khdxdh,jg.jgdh,jg.jgmc,qx.hydh,qx.hymc,khzb.khzbmc,jh.jhz,jh.lzz,khzb.khzbdh from yjzb_hynjh jh inner join khfa_khzb_hy khzb on jh.khzbdh=khzb.khzbdh inner join table(fn_getsjjg_java_qxhy($sysdate$,$login_khdxdh$,0)) qx on qx.khdxdh=jh.khdxdh inner join khdx_jgcy cy on cy.khdxdh=qx.khdxdh
+      <isNotEmpty property="sysdate">and $sysdate$ between cy.qsrq and cy.jsrq</isNotEmpty>
+      inner join khdx_jg jg on jg.khdxdh=cy.jgkhdxdh where 1=1
+      <isNotEmpty property="khnf">and  jh.khnf =$khnf$</isNotEmpty>
+      <isNotEmpty property="khdxdh">and jh.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="khzbdh">and khzb.khzbdh=$khzbdh$</isNotEmpty>
+      order by khzb.zbpx ) t
+    </select>
+    <select id="dn12.hynjhgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  KHNF, LZZ, KHDXDH, KHZBDH, JHZ  from YJZB_HYNJH where 1= 1  and KHNF = $khnf$ and KHDXDH = $khdxdh$ and KHZBDH = $khzbdh$
+    </select>
+    <select id="dn12.hynjhgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  KHNF, LZZ, KHDXDH, KHZBDH, JHZ  from YJZB_HYNJH where 1= 1  and KHNF = $hynjh_nf$ and KHDXDH = $khdxdh$ and KHZBDH = $KHZBDH$
+    </select>
+    <insert id="dn12.hynjhgl_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into YJZB_HYNJH( LZZ, KHDXDH, KHNF, KHZBDH, JHZ ) values ( $hynjh_lzz$,$khdxdh$,$hynjh_nf$,$KHZBDH$,$hynjh_jhz$)
+    </insert>
+    <update id="dn12.hynjhgl_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update YJZB_HYNJH set LZZ = $hynjh_lzz$,JHZ = $hynjh_jhz$ where 1=1  and KHNF = $hynjh_nf$ and KHDXDH = $khdxdh$ and KHZBDH = $KHZBDH$
+    </update>
+    <delete id="dn12.hynjhgl_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from YJZB_HYNJH where 1=1  and KHNF = $khnf$ and KHDXDH = $khdxdh$ and KHZBDH = $khzbdh$
+    </delete>
+  </sqlMap>
+  <javascript>
+    <import>parent.addTab('hynjhdr','行员年计划管理','/module/parser/import/visitHtml/hynjhdr');</import>
+    <query>jQuery(document).ready(function () {
+  jQuery("input[value='添 加']").hide();
+  jQuery("#exportBtn").show();
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}</query>
+    <edit>jQuery(document).ready(function () {
+//这里的js脚本，会在页面加载完成后执行
+  $("#hynjh_lzz").removeClass().addClass("{decimal:[21,4]}");
+});
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+  if($('#hynjh_lzz').val()==null ||$('#hynjh_lzz').val()==''){
+    $('#hynjh_lzz').val('null');
+  }
+  return true;
+}</edit>
+  </javascript>
+</pageSetting>
+

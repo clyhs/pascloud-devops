@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="hydbfx" title="行员对比分析" type="query" version="2.0.0">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期">
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="qsrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="对比日期">
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="defValType" value="yc" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="jsrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="NewMultipleHy" label="行员">
+        <attribute key="isDisplayXN" value="false" />
+        <attribute key="hyckbz" value="hy_jg" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="true" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Dmms" label="指标类型">
+        <attribute key="width" value="120px;" />
+        <attribute key="dmmc" value="yjlx" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="yjlx" />
+        <attribute key="isAll" value="false" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="1" col="0" colspan="2" rowspan="1" name="MSQL4Select" label="指标">
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="120px;" />
+        <attribute key="evenName" value="change" />
+        <attribute key="editable" value="true" />
+        <attribute key="isSearch" value="true" />
+        <attribute key="sql" value="select khzbdh as KEY,khzbmc as VALUE from khfa_khzb_hy order by zbpx" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="style" value="width:280px;" />
+        <attribute key="name" value="khzb" />
+        <attribute key="isAll" value="false" />
+        <attribute key="multiple" value="false" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+      <tag row="2" col="0" colspan="1" rowspan="1" name="Qxyw" label="业务类别">
+        <attribute key="width" value="120px;" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="ywlb" />
+        <attribute key="isAll" value="false" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="2" col="1" colspan="1" rowspan="1" name="Zb" label="指标">
+        <attribute key="parents" value="ywlb" />
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isSearch" value="true" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="zbdh" />
+        <attribute key="isAll" value="false" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+      <tag row="2" col="2" colspan="1" rowspan="1" name="ZbParam" label="币种">
+        <attribute key="parents" value="zbdh" />
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="bz" />
+        <attribute key="isAll" value="false" />
+        <attribute key="isEditable" value="true" />
+        <attribute key="paramType" value="bz" />
+      </tag>
+      <tag row="2" col="3" colspan="1" rowspan="1" name="ZbParam" label="时段标识">
+        <attribute key="parents" value="zbdh" />
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="sdbs" />
+        <attribute key="isAll" value="false" />
+        <attribute key="isEditable" value="true" />
+        <attribute key="paramType" value="sdbs" />
+      </tag>
+      <tag row="2" col="3" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="jzsjy" />
+      </tag>
+      <tag row="2" col="3" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="tjnf" />
+      </tag>
+      <tag row="2" col="3" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="dbnf" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="hydbfx_fxzbjgj" title="分析指标结果集" page="true">
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZBMC" title="指标名称" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="BZ" title="币种" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" />
+    <col id="SDBS" title="时段标识" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" />
+    <col id="TJZBZ" title="统计日指标" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DBZBZ" title="对比日指标" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZL" title="增量" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZF" title="增幅(%)" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <table id="hydbfx_khzbjgj" title="考核指标结果集" page="true">
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHZBMC" title="指标名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="TJZBZ" title="统计日指标" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DBZBZ" title="对比日指标" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZL" title="增量" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZF" title="增幅(%)" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.hydbfx">
+    <select id="dn12.hydbfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <isEqual property="jzsjy" compareValue="fxzb_nfbt">
+        <![CDATA[SELECT 
+       T.JGMC,T.JGDH,T.HYMC,T.HYDH,T.MS,T.BZ,T.SDBS,T.TJZBZ,T.DBZBZ,T.ZBMC,
+       cast((T.TJZBZ-T.DBZBZ) as decimal(19,2)) ZL,
+       F_NumToChar(
+       case when (t.DBZBZ is null or t.DBZBZ=0) and t.TJZBZ<>0 then 100
+                  when (t.DBZBZ is null or t.DBZBZ=0) and t.TJZBZ=0  then 0 
+       else cast((T.TJZBZ-T.DBZBZ)*100.00/T.DBZBZ  as decimal(19,2)) end)||'%' ZF
+ FROM
+ (
+ SELECT
+       JG.JGMC,JG.JGDH,HY.HYMC,HY.HYDH,YWLB.MS,BZ.BZZWMC AS BZ,
+       dmms_sdbs.dmms as sdbs,
+       SUM(YJZB.TJZ) TJZBZ,SUM(YJZB.DBZ) DBZBZ,KHZB.zbmc
+       FROM (
+          select $qsrq$ as tjrq,zbdh,sdbs,bz,khdxdh,zbz as tjz,0 as dbz
+          from yjzb_hy_$tjnf$
+          where tjrq=$qsrq$ and BZ = '$bz$' AND SDBS = '$sdbs$' AND KHDXDH in($khdxdh$) AND ZBDH = $zbdh$
+          union all
+          select $jsrq$ as tjrq,zbdh,sdbs,bz,khdxdh,0 as tjz,zbz as dbz
+          from yjzb_hy_$dbnf$
+          where tjrq=$jsrq$ and BZ = '$bz$' AND SDBS = '$sdbs$' AND KHDXDH in($khdxdh$) AND ZBDH = $zbdh$
+       ) YJZB
+       inner JOIN CSB_BZ BZ ON BZ.BZ = YJZB.BZ
+       inner JOIN KHDX_ZB KHZB ON YJZB.ZBDH = KHZB.ZBDH 
+       inner JOIN KHDX_HY HY ON YJZB.KHDXDH = HY.KHDXDH           
+       inner JOIN KHDX_JGCY JGCY ON JGCY.KHDXDH = HY.KHDXDH      
+       inner JOIN KHDX_JG JG ON JGCY.JGKHDXDH = JG.KHDXDH             
+       inner JOIN KHDX_ZBLB ZBLB ON YJZB.ZBDH = ZBLB.ZBDH and zblb.jsrq=29991231]]>
+        <isNotEmpty property="ywlb">and zblb.ywlb='$ywlb$'</isNotEmpty>
+        inner JOIN CSB_YWLB YWLB ON ZBLB.YWLB = YWLB.YWLB           inner join csb_dmms dmms_sdbs on dmms_sdbs.dmz = yjzb.sdbs and dmms_sdbs.dmmc = 'ZBSDBS'        INNER JOIN table(FN_GETSJJG_JAVA_QXHY($qsrq$,$login_khdxdh$,0)) qx      on qx.khdxdh = hy.khdxdh
+        <isNotEmpty property="sysdate">WHERE $sysdate$ BETWEEN ZBLB.QSRQ AND ZBLB.JSRQ</isNotEmpty>
+        <isNotEmpty property="sysdate">AND $sysdate$ BETWEEN JGCY.QSRQ AND JGCY.JSRQ</isNotEmpty>
+        GROUP BY JG.JGMC,JG.JGDH,HY.HYMC,HY.HYDH,YWLB.MS,khzb.zbpx,BZ.BZZWMC,dmms_sdbs.dmms,KHZB.zbmc  ) T
+      </isEqual>
+      <isEqual property="jzsjy" compareValue="khzb_nfbt">
+        <![CDATA[SELECT 
+       T.JGMC,T.JGDH,T.HYMC,T.HYDH,T.MS,T.TJZBZ,T.DBZBZ,T.KHZBMC,
+       cast((T.TJZBZ-T.DBZBZ)  as decimal(19,2)) ZL,
+       F_NumToChar(
+       case when (t.DBZBZ is null or t.DBZBZ=0) and t.TJZBZ<>0 then 100
+                  when (t.DBZBZ is null or t.DBZBZ=0) and t.TJZBZ=0  then 0 
+       
+        else cast((T.TJZBZ-T.DBZBZ)*100.00/T.DBZBZ  as decimal(19,2)) end)||'%' ZF
+ FROM
+ (
+ SELECT
+       JG.JGMC,JG.JGDH,HY.HYMC,HY.HYDH,YWLB.MS,SUM(YJZB.TJZ) TJZBZ, SUM(YJZB.DBZ) DBZBZ,YJZB.khzbmc
+       FROM (
+          select $qsrq$ as tjrq,YJZB.ZBDH,khzb.khzbmc,yjzb.khdxdh,yjzb.zbz as tjz,0 as dbz 
+          from yjzb_hy_$tjnf$ yjzb
+          inner JOIN KHFA_KHZB_HY KHZB ON YJZB.ZBDH = KHZB.ZBDH AND YJZB.BZ = KHZB.BZ AND YJZB.SDBS = KHZB.SDBS
+          where 1=1]]>
+        <isNotEmpty property="qsrq">and  yjzb.tjrq= $qsrq$</isNotEmpty>
+        and KHDXDH in($khdxdh$) and tjrq=$qsrq$
+        <isNotEmpty property="khzb">AND KHZB.KHZBDH = $khzb$</isNotEmpty>
+        union all           select $jsrq$ as tjrq,YJZB.ZBDH,khzb.khzbmc,yjzb.khdxdh,0 as tjz,yjzb.zbz as dbz            from yjzb_hy_$dbnf$ yjzb           inner JOIN KHFA_KHZB_HY KHZB ON YJZB.ZBDH = KHZB.ZBDH AND YJZB.BZ = KHZB.BZ AND YJZB.SDBS = KHZB.SDBS           where 1=1
+        <isNotEmpty property="jsrq">and  yjzb.tjrq= $jsrq$</isNotEmpty>
+        and  KHDXDH in($khdxdh$)  and tjrq=$jsrq$
+        <isNotEmpty property="khzb">AND KHZB.KHZBDH = $khzb$</isNotEmpty>
+        ) YJZB         inner JOIN KHDX_HY HY ON YJZB.KHDXDH = HY.KHDXDH                   inner JOIN KHDX_JGCY JGCY ON JGCY.KHDXDH = HY.KHDXDH              inner JOIN KHDX_JG JG ON JGCY.JGKHDXDH = JG.KHDXDH                     inner JOIN KHDX_ZBLB ZBLB ON YJZB.ZBDH = ZBLB.ZBDH                 inner JOIN CSB_YWLB YWLB ON ZBLB.YWLB = YWLB.YWLB        INNER JOIN table(FN_GETSJJG_JAVA_QXHY($qsrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh
+        <isNotEmpty property="sysdate">WHERE $sysdate$ BETWEEN ZBLB.QSRQ AND ZBLB.JSRQ</isNotEmpty>
+        <isNotEmpty property="sysdate">AND $sysdate$ BETWEEN JGCY.QSRQ AND JGCY.JSRQ</isNotEmpty>
+        GROUP BY JG.JGMC,JG.JGDH,HY.HYMC,HY.HYDH,YWLB.MS,yjzb.khzbmc  ) T
+      </isEqual>
+    </select>
+    <select id="dn12.hydbfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from (
+      <isEqual property="jzsjy" compareValue="fxzb_nfbt">
+        <![CDATA[SELECT 
+       T.JGMC,T.JGDH,T.HYMC,T.HYDH,T.MS,T.BZ,T.SDBS,T.TJZBZ,T.DBZBZ,T.ZBMC,
+       cast((T.TJZBZ-T.DBZBZ) as decimal(19,2)) ZL,
+       F_NumToChar(
+       case when (t.DBZBZ is null or t.DBZBZ=0) and t.TJZBZ<>0 then 100
+                  when (t.DBZBZ is null or t.DBZBZ=0) and t.TJZBZ=0  then 0 
+       else cast((T.TJZBZ-T.DBZBZ)*100.00/T.DBZBZ  as decimal(19,2)) end)||'%' ZF
+ FROM
+ (
+ SELECT
+       JG.JGMC,JG.JGDH,HY.HYMC,HY.HYDH,YWLB.MS,BZ.BZZWMC AS BZ,
+       dmms_sdbs.dmms as sdbs,
+       SUM(YJZB.TJZ) TJZBZ,SUM(YJZB.DBZ) DBZBZ,KHZB.zbmc
+       FROM (
+          select $qsrq$ as tjrq,zbdh,sdbs,bz,khdxdh,zbz as tjz,0 as dbz
+          from yjzb_hy_$tjnf$
+          where tjrq=$qsrq$ and BZ = '$bz$' AND SDBS = '$sdbs$' AND KHDXDH in($khdxdh$) AND ZBDH = $zbdh$
+          union all
+          select $jsrq$ as tjrq,zbdh,sdbs,bz,khdxdh,0 as tjz,zbz as dbz
+          from yjzb_hy_$dbnf$
+          where tjrq=$jsrq$ and BZ = '$bz$' AND SDBS = '$sdbs$' AND KHDXDH in($khdxdh$) AND ZBDH = $zbdh$
+       ) YJZB
+       inner JOIN CSB_BZ BZ ON BZ.BZ = YJZB.BZ
+       inner JOIN KHDX_ZB KHZB ON YJZB.ZBDH = KHZB.ZBDH 
+       inner JOIN KHDX_HY HY ON YJZB.KHDXDH = HY.KHDXDH           
+       inner JOIN KHDX_JGCY JGCY ON JGCY.KHDXDH = HY.KHDXDH      
+       inner JOIN KHDX_JG JG ON JGCY.JGKHDXDH = JG.KHDXDH             
+       inner JOIN KHDX_ZBLB ZBLB ON YJZB.ZBDH = ZBLB.ZBDH and zblb.jsrq=29991231]]>
+        <isNotEmpty property="ywlb">and zblb.ywlb='$ywlb$'</isNotEmpty>
+        inner JOIN CSB_YWLB YWLB ON ZBLB.YWLB = YWLB.YWLB           inner join csb_dmms dmms_sdbs on dmms_sdbs.dmz = yjzb.sdbs and dmms_sdbs.dmmc = 'ZBSDBS'        INNER JOIN table(FN_GETSJJG_JAVA_QXHY($qsrq$,$login_khdxdh$,0)) qx      on qx.khdxdh = hy.khdxdh
+        <isNotEmpty property="sysdate">WHERE $sysdate$ BETWEEN ZBLB.QSRQ AND ZBLB.JSRQ</isNotEmpty>
+        <isNotEmpty property="sysdate">AND $sysdate$ BETWEEN JGCY.QSRQ AND JGCY.JSRQ</isNotEmpty>
+        GROUP BY JG.JGMC,JG.JGDH,HY.HYMC,HY.HYDH,YWLB.MS,khzb.zbpx,BZ.BZZWMC,dmms_sdbs.dmms,KHZB.zbmc  ) T
+      </isEqual>
+      <isEqual property="jzsjy" compareValue="khzb_nfbt">
+        <![CDATA[SELECT 
+       T.JGMC,T.JGDH,T.HYMC,T.HYDH,T.MS,T.TJZBZ,T.DBZBZ,T.KHZBMC,
+       cast((T.TJZBZ-T.DBZBZ)  as decimal(19,2)) ZL,
+       F_NumToChar(
+       case when (t.DBZBZ is null or t.DBZBZ=0) and t.TJZBZ<>0 then 100
+                  when (t.DBZBZ is null or t.DBZBZ=0) and t.TJZBZ=0  then 0 
+       
+        else cast((T.TJZBZ-T.DBZBZ)*100.00/T.DBZBZ  as decimal(19,2)) end)||'%' ZF
+ FROM
+ (
+ SELECT
+       JG.JGMC,JG.JGDH,HY.HYMC,HY.HYDH,YWLB.MS,SUM(YJZB.TJZ) TJZBZ, SUM(YJZB.DBZ) DBZBZ,YJZB.khzbmc
+       FROM (
+          select $qsrq$ as tjrq,YJZB.ZBDH,khzb.khzbmc,yjzb.khdxdh,yjzb.zbz as tjz,0 as dbz 
+          from yjzb_hy_$tjnf$ yjzb
+          inner JOIN KHFA_KHZB_HY KHZB ON YJZB.ZBDH = KHZB.ZBDH AND YJZB.BZ = KHZB.BZ AND YJZB.SDBS = KHZB.SDBS
+          where 1=1]]>
+        <isNotEmpty property="qsrq">and  yjzb.tjrq= $qsrq$</isNotEmpty>
+        and KHDXDH in($khdxdh$) and tjrq=$qsrq$
+        <isNotEmpty property="khzb">AND KHZB.KHZBDH = $khzb$</isNotEmpty>
+        union all           select $jsrq$ as tjrq,YJZB.ZBDH,khzb.khzbmc,yjzb.khdxdh,0 as tjz,yjzb.zbz as dbz            from yjzb_hy_$dbnf$ yjzb           inner JOIN KHFA_KHZB_HY KHZB ON YJZB.ZBDH = KHZB.ZBDH AND YJZB.BZ = KHZB.BZ AND YJZB.SDBS = KHZB.SDBS           where 1=1
+        <isNotEmpty property="jsrq">and  yjzb.tjrq= $jsrq$</isNotEmpty>
+        and  KHDXDH in($khdxdh$)  and tjrq=$jsrq$
+        <isNotEmpty property="khzb">AND KHZB.KHZBDH = $khzb$</isNotEmpty>
+        ) YJZB         inner JOIN KHDX_HY HY ON YJZB.KHDXDH = HY.KHDXDH                   inner JOIN KHDX_JGCY JGCY ON JGCY.KHDXDH = HY.KHDXDH              inner JOIN KHDX_JG JG ON JGCY.JGKHDXDH = JG.KHDXDH                     inner JOIN KHDX_ZBLB ZBLB ON YJZB.ZBDH = ZBLB.ZBDH                 inner JOIN CSB_YWLB YWLB ON ZBLB.YWLB = YWLB.YWLB        INNER JOIN table(FN_GETSJJG_JAVA_QXHY($qsrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh
+        <isNotEmpty property="sysdate">WHERE $sysdate$ BETWEEN ZBLB.QSRQ AND ZBLB.JSRQ</isNotEmpty>
+        <isNotEmpty property="sysdate">AND $sysdate$ BETWEEN JGCY.QSRQ AND JGCY.JSRQ</isNotEmpty>
+        GROUP BY JG.JGMC,JG.JGDH,HY.HYMC,HY.HYDH,YWLB.MS,yjzb.khzbmc  ) T
+      </isEqual>
+      ) t
+    </select>
+    <select id="dn12.hydbfx_MSQL4SELECT_khzb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khzbdh as KEY,khzbmc as VALUE from khfa_khzb_hy order by zbpx</select>
+  </sqlMap>
+  <finger custPlotMth="" id="hydbfx_khzbjgj">
+    <plotType>bar</plotType>
+    <needPlot>true</needPlot>
+    <plotTitle>行员对比分析图</plotTitle>
+    <xLabel>行员名称</xLabel>
+    <xSeries>HYMC</xSeries>
+    <yLabel>指标值</yLabel>
+    <ySeries>TJZBZ,DBZBZ,ZL</ySeries>
+    <ySeriesDesc>统计日指标,对比日指标,增量</ySeriesDesc>
+  </finger>
+  <finger custPlotMth="" id="hydbfx_fxzbjgj">
+    <plotType>bar</plotType>
+    <needPlot>true</needPlot>
+    <plotTitle>行员对比分析图</plotTitle>
+    <xLabel>行员名称</xLabel>
+    <xSeries>HYMC</xSeries>
+    <yLabel>指标值</yLabel>
+    <ySeries>TJZBZ,DBZBZ,ZL</ySeries>
+    <ySeriesDesc>统计日指标,对比日指标,增量</ySeriesDesc>
+  </finger>
+  <rels>
+    <items id="hydbfx_fxzbjgj">
+      <item name="jzsjy" compareValue="fxzb_nfbt" operate="isEqual" />
+    </items>
+    <items id="hydbfx_khzbjgj">
+      <item name="jzsjy" compareValue="khzb_nfbt" operate="isEqual" />
+    </items>
+  </rels>
+  <javascript><![CDATA[var yjlx = jQuery('#yjlx'); 
+jQuery(document).ready(function () {
+//这里的js脚本，会在页面加载完成后执行
+    init_yjlx().pipe(function(){
+      jQuery('#yjlx').bind('change',yjlxChange).trigger('change');
+    });
+    
+    $("#query_table tr:eq(1)").append($("<td></td>").append($(".operation[value='查 询']")));
+});
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+  var tjnf=$('#qsrq').val().substring(0,4);
+  var dbnf=$('#jsrq').val().substring(0,4);
+  $('#tjnf').val(tjnf);
+  $('#dbnf').val(dbnf);
+  if(yjlx.val()=='fxzb'){
+    $('#jzsjy').val('fxzb_nfbt');
+    
+  }else{
+    $('#jzsjy').val('khzb_nfbt');
+  }
+  return true;
+}
+
+function yjlxChange(){
+var yjlx = jQuery('#yjlx');
+var khzb = jQuery('#khzb');
+  if(yjlx.val()=='fxzb'){
+    khzb.hide();
+    khzb.parent().prev().hide();
+    khzb.parent().hide();
+    
+    $("#ywlb").show();
+     $("#zbdh").show();
+     $("#sdbs").show();
+     $("#zbbz").show();
+     $("#tjkj").show();
+     $("#bz").show();
+     $("#ywlb").parent().prev().show();
+     $("#zbdh").parent().prev().show();
+     $("#zbdh").parent().show();
+     $("#sdbs").parent().prev().show();
+     $("#zbbz").parent().prev().show();
+     $("#tjkj").parent().prev().show();
+     $("#bz").parent().prev().show();
+    $("#main table tr").eq(3).show();
+    
+  }else{
+    khzb.show();
+     khzb.parent().prev().show();
+     khzb.parent().show();
+    
+    $("#ywlb").hide();
+     $("#zbdh").hide();
+     $("#sdbs").hide();
+     $("#zbbz").hide();
+     $("#tjkj").hide();
+     $("#bz").hide();
+     $("#ywlb").parent().prev().hide();
+     $("#zbdh").parent().prev().hide();
+     $("#zbdh").parent().hide();
+     $("#sdbs").parent().prev().hide();
+     $("#zbbz").parent().prev().hide();
+     $("#tjkj").parent().prev().hide();
+     $("#bz").parent().prev().hide();
+    $("#main table tr").eq(3).hide();
+    
+  }
+}]]></javascript>
+</pageSetting>
+

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="jxkhcspz" title="绩效考核参数配置" type="manage">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="参数名称" fieldName="">
+        <attribute key="sql" value="select csdh as key, csmc as value FROM csb_jxkhcsmc ORDER BY CSDH" />
+        <attribute key="isSearch" value="false" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="isMultiple" value="false" />
+        <attribute key="selectedList" value="1" />
+        <attribute key="name" value="csdh" />
+        <attribute key="width" value="180px;" />
+        <attribute key="isAll" value="true" />
+        <attribute key="mulShowType" value="null" />
+        <attribute key="isEditable" value="true" />
+        <attribute key="key_SELECTTYPE" value="Integer" />
+      </tag>
+      <tag row="0" col="1" rowspan="1" colspan="1" name="MSQL4Select" label="机构类别" fieldName="">
+        <attribute key="sql" value="select key , value from ( select lbdh as key, lbmc as value  FROM CSB_JGLB union all select '-1' as key,'全行' as value from xtb_xtcs  where lower(csmc) = 'sys_date'  ) t" />
+        <attribute key="isSearch" value="false" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="isMultiple" value="false" />
+        <attribute key="selectedList" value="1" />
+        <attribute key="name" value="jglb" />
+        <attribute key="width" value="150px;" />
+        <attribute key="isAll" value="true" />
+        <attribute key="mulShowType" value="null" />
+        <attribute key="isEditable" value="true" />
+        <attribute key="key_SELECTTYPE" value="Integer" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="MSQL4Select" label="行员类别" fieldName="">
+        <attribute key="sql" value="select key , value from ( select lbdh as key, lbmc as value  FROM CSB_hyLB union all select '-1' as key,'全行' as value from xtb_xtcs  where lower(csmc) = 'sys_date'  ) t" />
+        <attribute key="isSearch" value="false" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="isMultiple" value="false" />
+        <attribute key="selectedList" value="1" />
+        <attribute key="name" value="hylb" />
+        <attribute key="width" value="150px;" />
+        <attribute key="isAll" value="true" />
+        <attribute key="mulShowType" value="null" />
+        <attribute key="isEditable" value="true" />
+        <attribute key="key_SELECTTYPE" value="Integer" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="jxkhcspztable">
+    <col id="JGLB" title="JGLB" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="" showDymCol="false" />
+    <col id="JGLBMC" title="机构类别" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="" showDymCol="false" />
+    <col id="HYLBMC" title="行员类别" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="" showDymCol="false" />
+    <col id="HYLB" title="HYLB" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="" showDymCol="false" />
+    <col id="CSDH" title="参数代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="" showDymCol="false" />
+    <col id="CSMC" title="参数名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="" showDymCol="false" />
+    <col id="QSRQ" title="起始日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="" showDymCol="false" />
+    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="" showDymCol="false" />
+    <col id="CSZ" title="参数值" align="right" type="float" width="120" format="###,##0.00" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="" showDymCol="false" />
+    <col id="CSDW" title="参数单位" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="" showDymCol="false" />
+    <col id="CSSM" title="参数说明" align="left" type="string" width="200" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="" showDymCol="false" />
+  </table>
+  <rels>
+    <items id="jxkhcspztable" />
+  </rels>
+  <addPage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="机构类别" fieldName="JGLB">
+      <attribute key="sql" value="select key , value from ( select lbdh as key, lbmc as value  FROM CSB_JGLB union all select '-1' as key,'全行' as value from xtb_xtcs  where lower(csmc) = 'sys_date'  ) t" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="selectedList" value="1" />
+      <attribute key="name" value="jglb" />
+      <attribute key="width" value="250px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="mulShowType" value="null" />
+      <attribute key="isEditable" value="true" />
+      <attribute key="key_SELECTTYPE" value="Integer" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="行员类别" fieldName="HYLB">
+      <attribute key="sql" value="select key , value from ( select lbdh as key, lbmc as value  FROM CSB_hyLB union all select '-1' as key,'全行' as value from xtb_xtcs  where lower(csmc) = 'sys_date'  ) t" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="selectedList" value="1" />
+      <attribute key="name" value="hylb" />
+      <attribute key="width" value="250px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="mulShowType" value="null" />
+      <attribute key="isEditable" value="true" />
+      <attribute key="key_SELECTTYPE" value="Integer" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="参数名称" fieldName="CSDH">
+      <attribute key="sql" value="select csdh as key, csmc as value  FROM csb_jxkhcsmc  ORDER BY csdh" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="selectedList" value="1" />
+      <attribute key="name" value="csdh" />
+      <attribute key="width" value="250px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="mulShowType" value="null" />
+      <attribute key="isEditable" value="true" />
+      <attribute key="key_SELECTTYPE" value="Integer" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ">
+      <attribute key="style" value="width:250px;" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="qsrq" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="参数值" fieldName="CSZ">
+      <attribute key="precision" value="7" />
+      <attribute key="style" value="width:250px;" />
+      <attribute key="name" value="csz" />
+      <attribute key="intparts" value="10" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ">
+      <attribute key="defVal" value="29991231" />
+      <attribute key="name" value="jsrq" />
+    </tag>
+  </addPage>
+  <updatePage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="机构类别" fieldName="JGLB">
+      <attribute key="sql" value="select key , value from ( select lbdh as key, lbmc as value  FROM CSB_JGLB union all select '-1' as key,'全行' as value from xtb_xtcs  where lower(csmc) = 'sys_date'  ) t" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="selectedList" value="1" />
+      <attribute key="name" value="jglb" />
+      <attribute key="width" value="250px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="mulShowType" value="null" />
+      <attribute key="editable" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="key_SELECTTYPE" value="Integer" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="行员类别" fieldName="HYLB">
+      <attribute key="sql" value="select key , value from ( select lbdh as key, lbmc as value  FROM CSB_hyLB union all select '-1' as key,'全行' as value from xtb_xtcs  where lower(csmc) = 'sys_date'  ) t" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="selectedList" value="1" />
+      <attribute key="name" value="hylb" />
+      <attribute key="width" value="250px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="mulShowType" value="null" />
+      <attribute key="editable" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="key_SELECTTYPE" value="Integer" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="参数名称" fieldName="CSDH">
+      <attribute key="sql" value="select csdh as key, csmc as value  FROM csb_jxkhcsmc  ORDER BY csdh" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="selectedList" value="1" />
+      <attribute key="name" value="csdh" />
+      <attribute key="width" value="250px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="mulShowType" value="null" />
+      <attribute key="editable" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="key_SELECTTYPE" value="Integer" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ">
+      <attribute key="style" value="width:250px;" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="qsrq" />
+      <attribute key="isAll" value="false" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="参数值" fieldName="CSZ">
+      <attribute key="precision" value="7" />
+      <attribute key="style" value="width:250px;" />
+      <attribute key="name" value="csz" />
+      <attribute key="intparts" value="10" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ">
+      <attribute key="defVal" value="29991231" />
+      <attribute key="name" value="jsrq" />
+    </tag>
+  </updatePage>
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+  </buttons>
+  <flow>
+    <insertbefore>
+      <sql type="delete">jxkhcspz_check_itemAddDel</sql>
+      <sql type="update">jxkhcspz_check_itemUP</sql>
+    </insertbefore>
+    <insertafter />
+    <deletebefore>
+      <sql type="selectmaxqsrq">jxkhcspz_check_itemMAX_del</sql>
+      <sql type="update">jxkhcspz_check_itemDELUP</sql>
+    </deletebefore>
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.jxkhcspz">
+    <select id="dn12.jxkhcspzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  (case when khcs.jglb='-1' then '全行' else jglb.lbmc end) as jglbmc, (case when khcs.jglb='-1' then '-1' else jglb.lbdh end) as jglb, (case when khcs.hylb='-1' then '全行' else hylb.lbmc end) as hylbmc, (case when khcs.hylb='-1' then '-1' else hylb.lbdh end) as hylb, khcs.csdh,ms.csmc,khcs.qsrq,khcs.jsrq,khcs.csz,ms.csdw,ms.cssm from csb_jxkhcs khcs left join csb_jglb jglb on jglb.lbdh = khcs.jglb left join csb_hylb hylb on hylb.lbdh = khcs.hylb inner join csb_jxkhcsmc  ms on ms.csdh = khcs.csdh where 1=1
+      <isNotEmpty property="jglb">and khcs.jglb = '$jglb$'</isNotEmpty>
+      <isNotEmpty property="hylb">and khcs.hylb = '$hylb$'</isNotEmpty>
+      <isNotEmpty property="csdh">and ms.csdh = '$csdh$'</isNotEmpty>
+      order by khcs.csdh,khcs.jglb,khcs.hylb
+    </select>
+    <select id="dn12.jxkhcspzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select  (case when khcs.jglb='-1' then '全行' else jglb.lbmc end) as jglbmc, (case when khcs.jglb='-1' then '-1' else jglb.lbdh end) as jglb, (case when khcs.hylb='-1' then '全行' else hylb.lbmc end) as hylbmc, (case when khcs.hylb='-1' then '-1' else hylb.lbdh end) as hylb, khcs.csdh,ms.csmc,khcs.qsrq,khcs.jsrq,khcs.csz,ms.csdw,ms.cssm from csb_jxkhcs khcs left join csb_jglb jglb on jglb.lbdh = khcs.jglb left join csb_hylb hylb on hylb.lbdh = khcs.hylb inner join csb_jxkhcsmc  ms on ms.csdh = khcs.csdh where 1=1
+      <isNotEmpty property="jglb">and khcs.jglb = '$jglb$'</isNotEmpty>
+      <isNotEmpty property="hylb">and khcs.hylb = '$hylb$'</isNotEmpty>
+      <isNotEmpty property="csdh">and ms.csdh = '$csdh$'</isNotEmpty>
+      order by khcs.csdh,khcs.jglb,khcs.hylb ) t
+    </select>
+    <select id="dn12.jxkhcspz_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  HYLB, CSDH, JGLB, QSRQ, JSRQ, CSZ  from CSB_JXKHCS where 1= 1  and HYLB = '$hylb$' and CSDH = '$csdh$' and JGLB = '$jglb$' and QSRQ = $qsrq$
+    </select>
+    <select id="dn12.jxkhcspz_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  HYLB, CSDH, JGLB, QSRQ, JSRQ, CSZ  from CSB_JXKHCS where 1= 1  and HYLB = '$hylb$' and CSDH = '$csdh$' and JGLB = '$jglb$' and QSRQ = $qsrq$
+    </select>
+    <insert id="dn12.jxkhcspz_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into CSB_JXKHCS( CSDH, HYLB, JGLB, CSZ, QSRQ, JSRQ ) values ( '$csdh$','$hylb$','$jglb$',$csz$,$qsrq$,$jsrq$)
+    </insert>
+    <update id="dn12.jxkhcspz_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update CSB_JXKHCS set CSZ = $csz$ where 1=1  and HYLB = '$hylb$' and CSDH = '$csdh$' and JGLB = '$jglb$' and QSRQ = $qsrq$
+    </update>
+    <delete id="dn12.jxkhcspz_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from CSB_JXKHCS where 1=1  and HYLB = '$hylb$' and CSDH = '$csdh$' and JGLB = '$jglb$' and QSRQ = $qsrq$
+    </delete>
+    <delete id="dn12.jxkhcspz_check_itemAddDel" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[delete from CSB_JXKHCS where qsrq >=$qsrq$  and HYLB = '$hylb$' and CSDH = '$csdh$' and JGLB = '$jglb$']]>
+    </delete>
+    <update id="dn12.jxkhcspz_check_itemUP" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update CSB_JXKHCS set jsrq=$qdate$
+      <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty>
+      and HYLB = '$hylb$' and CSDH = '$csdh$' and JGLB = '$jglb$'
+    </update>
+    <select id="dn12.jxkhcspz_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select max(qsrq) from CSB_JXKHCS where 1=1  and HYLB = '$hylb$' and CSDH = '$csdh$' and JGLB = '$jglb$'
+    </select>
+    <select id="dn12.jxkhcspz_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[select  HYLB, CSDH, JGLB, QSRQ, JSRQ, CSZ from CSB_JXKHCS where 1=1  and HYLB = '$hylb$' and CSDH = '$csdh$' and JGLB = '$jglb$' and $qsrq$ > $maxqsrq$]]>
+    </select>
+    <update id="dn12.jxkhcspz_check_itemDELUP" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update CSB_JXKHCS set jsrq =29991231 where 1=1 and HYLB = '$hylb$' and CSDH = '$csdh$' and JGLB = '$jglb$' and jsrq =$lastjsrq$
+    </update>
+    <select id="dn12.jxkhcspz_MSQL4SELECT_csdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csdh as key, csmc as value FROM csb_jxkhcsmc ORDER BY CSDH</select>
+    <select id="dn12.jxkhcspz_MSQL4SELECT_jglb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select key , value from (
+select lbdh as key, lbmc as value  FROM CSB_JGLB
+union all
+select '-1' as key,'全行' as value
+from xtb_xtcs 
+where lower(csmc) = 'sys_date'
+ ) t</select>
+    <select id="dn12.jxkhcspz_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select key , value from (
+select lbdh as key, lbmc as value  FROM CSB_hyLB
+union all
+select '-1' as key,'全行' as value
+from xtb_xtcs 
+where lower(csmc) = 'sys_date'
+ ) t</select>
+  </sqlMap>
+  <javascript>
+    <query>jQuery(document).ready(function () {
+editpage_width=440;
+ editpage_height=340;
+});
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}</query>
+    <edit>jQuery(document).ready(function () {
+//这里的js脚本，会在页面加载完成后执行
+  $("#cssm").parent().siblings('td').css('vertical-align','top');
+  var number = $('#csz').val();
+  var num = new Number(number);
+  $('#csz').val(num.toFixed(2));
+});
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}</edit>
+  </javascript>
+</pageSetting>
+

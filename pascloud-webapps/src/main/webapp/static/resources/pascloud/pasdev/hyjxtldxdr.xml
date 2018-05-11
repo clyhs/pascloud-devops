@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="hyjxtldxdr" title="行员绩效提留兑现" type="import" version="2.0.0">
+  <template>
+    <src>ONLINE</src>
+    <column>
+      <text>兑现日期</text>
+      <name>dxrq</name>
+      <index>0</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>行员代号</text>
+      <name>hydh</name>
+      <index>1</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>N</req>
+    </column>
+    <column>
+      <text>行员名称</text>
+      <name>hymc</name>
+      <index>2</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>N</req>
+    </column>
+    <column>
+      <text>兑现金额</text>
+      <name>dxje</name>
+      <index>3</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+  </template>
+  <table id="hyjxtldxdr_table" page="true">
+    <col id="ZT" title="状态" align="center" type="string" width="50" />
+    <col id="ERROR" title="错误原因" align="center" type="string" width="250" />
+    <col id="DXRQ" title="兑现日期" align="center" type="" width="120" />
+    <col id="HYDH" title="行员代号" align="center" type="" width="120" />
+    <col id="HYMC" title="行员名称" align="center" type="" width="120" />
+    <col id="DXJE" title="兑现金额" align="center" type="" width="120" />
+  </table>
+  <flow>
+    <rule>
+      <sql type="update">hyjxtldxdr_check_dxrq_0</sql>
+      <sql type="update">hyjxtldxdr_check_dxrq_1</sql>
+      <sql type="update">hyjxtldxdr_check_hydh_2</sql>
+      <sql type="update">hyjxtldxdr_check_dxje_3</sql>
+      <sql type="update">hyjxtldxdr_check_dxje_4</sql>
+      <sql type="update">hyjxtldxdr_checkupdate_hymc_0</sql>
+      <sql type="update">hyjxtldxdr_checkupdate_dxje_0</sql>
+      <sql type="update">hyjxtldxdr_checkupdate_dxje_1</sql>
+      <sql type="update">hyjxtldxdr_exists_target</sql>
+      <sql type="update">hyjxtldxdr_exists_same_temp</sql>
+    </rule>
+    <before />
+    <cover>
+      <sql type="delete">hyjxtldxdr_delete_before_override</sql>
+    </cover>
+    <insert>
+      <sql type="insert">hyjxtldxdr_insert_into_target</sql>
+    </insert>
+    <after />
+  </flow>
+  <sqlMap namespace="studio.hyjxtldxdr">
+    <update parameterClass="java.util.Map" id="dn12.hyjxtldxdr_check_dxrq_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  hyjxtldxdr_temp  t  
+		set  t.error=t.error||'兑现日期输入错误，格式应该是:yyyyMMdd!'  
+		where  f_java_rule_date(t.dxrq,'yyyyMMdd')=1  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hyjxtldxdr_check_dxrq_1">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  hyjxtldxdr_temp  t  set  t.error=t.error||'兑现日期输入错误，不能为空!' 
+		where  f_java_rule_length(t.dxrq)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hyjxtldxdr_check_hydh_2">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  hyjxtldxdr_temp  t  set  t.error=t.error||'行员代号不存在!'  
+		where  not  exists(select  1  from  khdx_hy  h  where  rtrim(t.hydh)=rtrim(h.hydh))  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hyjxtldxdr_check_dxje_3">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  hyjxtldxdr_temp  t  
+		set  t.error=t.error||'兑现金额输入错误，只能输入:17位整数,2位小数!'  
+		where f_java_rule_length(t.dxje)&gt;0 and f_java_rule_number(t.dxje,17,2)=1  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hyjxtldxdr_check_dxje_4">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  hyjxtldxdr_temp  t  set  t.error=t.error||'兑现金额输入错误，不能为空!' 
+		where  f_java_rule_length(t.dxje)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hyjxtldxdr_checkupdate_hymc_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update hyjxtldxdr_temp t set error=error||'行员代号和名称必须一致' where  not exists (    select 1 from khdx_hy hy     where t.hydh=hy.hydh and hy.hymc=t.hymc) and t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hyjxtldxdr_checkupdate_dxje_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update hyjxtldxdr_temp t
+set    error = error || '兑现金额超过提留标准或没有提留余额'
+where  not exists
+         (select 1
+          from   KHFA_JXTL_HY jxtl
+          inner join CSB_LRCS cs on cs.csmc='JXTLDXBZCS' and $sysdate$ between cs.QSRQ and cs.JSRQ
+          inner join khdx_hy hy on hy.khdxdh=jxtl.khdxdh
+         where  hy.hydh = t.hydh and cast(t.dxje as integer)&lt;= (jxtl.tjye - cs.csz)) and t.khdxdh = $login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hyjxtldxdr_checkupdate_dxje_1">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update hyjxtldxdr_temp t
+set    error = error || '兑现日期不能小于重算限制日期'||(select cast(F_CHANGE_DAYS(20130421, cast(xtcs.csz as integer) * -1) as char(10))
+          from   XTB_XTCS xtcs where  xtcs.csmc = 'SYS_CSTS')||'！' 
+where not exists
+          (select 1
+          from   XTB_XTCS xtcs where xtcs.csmc='SYS_CSTS'  and
+          F_CHANGE_DAYS(20130421,cast(xtcs.csz as integer)*-1) &lt; cast(t.dxrq as integer)) and t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hyjxtldxdr_exists_target">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  hyjxtldxdr_temp  t  set  t.error=t.error||'数据已存在!'  where  exists(select  1  from  SGLR_JXTL_DXMX  tar  ,KHDX_HY  KHDX_HY0  where  1=1   and  cast(t.dxrq  as  INTEGER)=tar.DXRQ  and  t.hydh=KHDX_HY0.HYDH  and  KHDX_HY0.KHDXDH=tar.KHDXDH  and  t.khdxdh=$login_khdxdh$  and  (length(t.error)=0  or  t.error  is  null  ))
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hyjxtldxdr_exists_same_temp">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  hyjxtldxdr_temp  t  set  t.error=error||'存在重复数据!'  where  exists(  select  1  from   (select  dxrq,hydh  from  hyjxtldxdr_temp  dr  where  khdxdh=$login_khdxdh$  group  by  dxrq,hydh  having  count(1)<![CDATA[>]]>1  )  dr  where  1=1   and  t.dxrq=dr.dxrq  and  t.hydh=dr.hydh)  and  khdxdh=$login_khdxdh$
+    </update>
+    <insert parameterClass="java.util.Map" id="dn12.hyjxtldxdr_create_lsb">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      CREATE  TABLE   hyjxtldxdr_temp   (   dxrq  varchar(100)  ,  hydh  varchar(100)  ,  hymc  varchar(100)  ,  dxje  varchar(100)  ,  khdxdh  integer,error  varchar(1000)   )
+    </insert>
+    <delete parameterClass="java.util.Map" id="dn12.hyjxtldxdr_delete_lsb">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from hyjxtldxdr_temp where khdxdh=$login_khdxdh$
+    </delete>
+    <insert parameterClass="java.util.Map" id="dn12.hyjxtldxdr_insert_into_lsb">insert  into  HYJXTLDXDR_TEMP  (dxrq,hydh,hymc,dxje,khdxdh,error)  values(?,?,?,?,?,?)</insert>
+    <select parameterClass="java.util.Map" id="dn12.hyjxtldxdr_exists_error_msg" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  count(1)  from  hyjxtldxdr_temp  where  length(error) <![CDATA[>]]> 0  and  khdxdh  =  $login_khdxdh$
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn12.hyjxtldxdr_exists_same_data">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  count(1)  from  hyjxtldxdr_temp  where  length(error) <![CDATA[>]]> 0  and  error  !=  '数据已存在!'  and  khdxdh  =  $login_khdxdh$
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn12.hyjxtldxdr_select_error_msg">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/cancel.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  dxrq,hydh,hymc,dxje,khdxdh,error  from  hyjxtldxdr_temp  where  khdxdh=$login_khdxdh$  and  length(error)<![CDATA[>]]>0
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn12.hyjxtldxdr_count_all_msg">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  count(1)  from  (select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/ok.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  dxrq,hydh,hymc,dxje,khdxdh,error  from  hyjxtldxdr_temp  where  khdxdh=$login_khdxdh$  )a
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn12.hyjxtldxdr_select_all_msg">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/ok.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  dxrq,hydh,hymc,dxje,khdxdh,error  from  hyjxtldxdr_temp  where  khdxdh=$login_khdxdh$
+    </select>
+    <insert parameterClass="java.util.Map" id="dn12.hyjxtldxdr_insert_into_target">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into SGLR_JXTL_DXMX(DXRQ,KHDXDH,DXJE,LRR,LRRQ) select cast (t.dxrq as INTEGER),KHDX_HY0.KHDXDH,cast (t.dxje as DECIMAL(19,2)),'$login_hydh$',$sysdate$ from hyjxtldxdr_temp t ,KHDX_HY KHDX_HY0 where t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null)  and KHDX_HY0.HYDH=cast (t.hydh as VARCHAR(12))
+    </insert>
+    <delete parameterClass="java.util.Map" id="dn12.hyjxtldxdr_delete_before_override">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete  from  SGLR_JXTL_DXMX  tar  where  exists(select  1  from  hyjxtldxdr_temp  t  ,KHDX_HY  KHDX_HY0  where  1=1   and  cast(t.dxrq  as  INTEGER)=tar.DXRQ  and  t.hydh=KHDX_HY0.HYDH  and  KHDX_HY0.KHDXDH=tar.KHDXDH  and  t.khdxdh=$login_khdxdh$  )
+    </delete>
+  </sqlMap>
+</pageSetting>
+

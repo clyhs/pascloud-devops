@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="ckzbj" title="存款准备金管理" type="manage">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName="">
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="readonly" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="ckzbjtable">
+    <col id="QSRQ" title="起始日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="ZBJL" title="准备金率" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="ZBJLL" title="准备金利率" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="FTPLL" title="准备金FTP利率" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+  </table>
+  <rels>
+    <items id="ckzbjtable" />
+  </rels>
+  <addPage title="编辑页面">
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="qsrq" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ">
+      <attribute key="defVal" value="29991231" />
+      <attribute key="name" value="jsrq" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="准备金率" fieldName="ZBJL">
+      <attribute key="precision" value="2" />
+      <attribute key="name" value="zbjl" />
+      <attribute key="intparts" value="3" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c  where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'" />
+      <attribute key="name" value="getMaxqsrq" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="准备金利率" fieldName="ZBJLL">
+      <attribute key="precision" value="2" />
+      <attribute key="name" value="zbjll" />
+      <attribute key="intparts" value="8" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="准备金FTP利率" fieldName="FTPLL">
+      <attribute key="precision" value="2" />
+      <attribute key="name" value="ftpll" />
+      <attribute key="intparts" value="8" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+  </addPage>
+  <updatePage title="编辑页面">
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="qsrq" />
+      <attribute key="isAll" value="false" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="readonly" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ">
+      <attribute key="defVal" value="29991231" />
+      <attribute key="name" value="jsrq" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="准备金率" fieldName="ZBJL">
+      <attribute key="precision" value="2" />
+      <attribute key="name" value="zbjl" />
+      <attribute key="intparts" value="3" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c  where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'" />
+      <attribute key="name" value="getMaxqsrq" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="准备金利率" fieldName="ZBJLL">
+      <attribute key="precision" value="2" />
+      <attribute key="name" value="zbjll" />
+      <attribute key="intparts" value="8" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="准备金FTP利率" fieldName="FTPLL">
+      <attribute key="precision" value="2" />
+      <attribute key="name" value="ftpll" />
+      <attribute key="intparts" value="8" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+  </updatePage>
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+  </buttons>
+  <flow>
+    <insertbefore>
+      <sql type="delete">ckzbj_check_itemAddDel</sql>
+      <sql type="update">ckzbj_check_itemUP</sql>
+    </insertbefore>
+    <insertafter />
+    <deletebefore>
+      <sql type="selectmaxqsrq">ckzbj_check_itemMAX_del</sql>
+      <sql type="update">ckzbj_check_itemDELUP</sql>
+    </deletebefore>
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.ckzbj">
+    <select id="dn12.ckzbjList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select qsrq, jsrq, zbjl, zbjll, ftpll from csb_ckzbj zbj
+      <isNotEmpty property="tjrq">where $tjrq$ between qsrq and jsrq</isNotEmpty>
+      order by qsrq desc
+    </select>
+    <select id="dn12.ckzbjCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select qsrq, jsrq, zbjl, zbjll, ftpll from csb_ckzbj zbj
+      <isNotEmpty property="tjrq">where $tjrq$ between qsrq and jsrq</isNotEmpty>
+      order by qsrq desc ) t
+    </select>
+    <select id="dn12.ckzbj_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  ZBJLL, ZBJL, QSRQ, FTPLL, JSRQ  from CSB_CKZBJ where 1= 1  and QSRQ = $qsrq$
+    </select>
+    <select id="dn12.ckzbj_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  ZBJLL, ZBJL, QSRQ, FTPLL, JSRQ  from CSB_CKZBJ where 1= 1  and QSRQ = $qsrq$
+    </select>
+    <insert id="dn12.ckzbj_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into CSB_CKZBJ( ZBJLL, QSRQ, ZBJL, JSRQ, FTPLL ) values ( $zbjll$,$qsrq$,$zbjl$,$jsrq$,$ftpll$)
+    </insert>
+    <update id="dn12.ckzbj_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update CSB_CKZBJ set ZBJLL = $zbjll$,ZBJL = $zbjl$,FTPLL = $ftpll$ where 1=1  and QSRQ = $qsrq$
+    </update>
+    <delete id="dn12.ckzbj_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from CSB_CKZBJ where 1=1  and QSRQ = $qsrq$
+    </delete>
+    <delete id="dn12.ckzbj_check_itemAddDel" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[delete from CSB_CKZBJ where qsrq >=$qsrq$]]>
+    </delete>
+    <update id="dn12.ckzbj_check_itemUP" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update CSB_CKZBJ set jsrq=$qdate$
+      <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty>
+    </update>
+    <select id="dn12.ckzbj_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select max(qsrq) from CSB_CKZBJ where 1=1
+    </select>
+    <select id="dn12.ckzbj_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[select  ZBJLL, ZBJL, QSRQ, FTPLL, JSRQ from CSB_CKZBJ where 1=1  and $qsrq$ > $maxqsrq$]]>
+    </select>
+    <update id="dn12.ckzbj_check_itemDELUP" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update CSB_CKZBJ set jsrq =29991231 where 1=1 and jsrq =$lastjsrq$
+    </update>
+    <select id="dn12.ckzbj_getMaxqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c 
+where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'</select>
+  </sqlMap>
+  <javascript>
+    <query>jQuery(document).ready(function () {
+
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}</query>
+    <edit>jQuery(document).ready(function () {
+//这里的js脚本，会在页面加载完成后执行
+ PAS.di.execute('ckzbj_getMaxqsrq',getMaxqsrqBack);//加载最大的起始日期
+});
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+if(maxqsrq&gt;parseInt($('#qsrq').val())){
+      parent.custom_alert('由于重算天数的限制，起始日期最大只能是：'+maxqsrq);
+      return false;
+    }
+ return true;
+}
+
+
+function getMaxqsrqBack(obj){
+  if(obj.data.length&gt;0){
+        maxqsrq = obj.data[0].MAXQSRQ;
+        PAS.di.setDone(obj.sqlid);
+  }
+}</edit>
+  </javascript>
+</pageSetting>
+

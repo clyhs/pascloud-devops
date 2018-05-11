@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="jgfygl" title="机构费用管理" type="manage">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName="">
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="dateFmt" value="yyyyMM" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="1" rowspan="1" colspan="1" name="NewJg" label="机构" fieldName="">
+        <attribute key="ckbz" value="jg_ckhy" />
+        <attribute key="cascadeCheck" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="jgkhdxdh" />
+        <attribute key="multiple" value="true" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="MSQL4Select" label="费用种类" fieldName="">
+        <attribute key="sql" value="select dmz as key, dmms as value from csb_dmms where upper(dmmc)='FYZL'" />
+        <attribute key="isSearch" value="false" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="isMultiple" value="false" />
+        <attribute key="name" value="fyzl" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isAll" value="true" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+      <tag row="0" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+        <attribute key="name" value="tjrq_ym" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="jgfygltable">
+    <col id="TJNY" title="统计年月" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="TJRQ" title="统计日期" align="left" type="hidden" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="FYZL" title="费用种类" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="KMH" title="科目号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="KMMC" title="科目名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="JE" title="金额" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="FYZLMC" title="费用种类" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" />
+    <col id="BZSM" title="备注" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" />
+  </table>
+  <rels>
+    <items id="jgfygltable" />
+  </rels>
+  <addPage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName="">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="tjrq" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMM" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="MSQL4Select" label="费用种类" fieldName="FYZL">
+      <attribute key="sql" value="select dmz as key, dmms as value from csb_dmms where upper(dmmc)='FYZL'" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="fyzl" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="isEditable" value="true" />
+    </tag>
+    <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="TJRQ">
+      <attribute key="name" value="tjrq_ym" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewJg" label="机构" fieldName="KHDXDH">
+      <attribute key="ckbz" value="jg_ckhy" />
+      <attribute key="cascadeCheck" value="true" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="khdxdh" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="MSQL4Select" label="科目名称" fieldName="KMH">
+      <attribute key="sql" value="select kmh as key, kmmc as value from csb_km" />
+      <attribute key="isSearch" value="true" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="kmzl" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="isEditable" value="true" />
+    </tag>
+    <tag row="1" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="BZ">
+      <attribute key="defVal" value="01" />
+      <attribute key="name" value="bz" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="金额" fieldName="JE">
+      <attribute key="precision" value="2" />
+      <attribute key="name" value="je" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZR">
+      <attribute key="defVal" value="$login_khdxdh$" />
+      <attribute key="name" value="czr" />
+    </tag>
+    <tag row="2" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZSJ">
+      <attribute key="defVal" value="systime" />
+      <attribute key="name" value="czsj" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="3" name="Textarea" label="备注" fieldName="BZSM">
+      <attribute key="cols" value="50" />
+      <attribute key="name" value="bzsm" />
+      <attribute key="styleClass" value="{maxlength:100}" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+      <attribute key="rows" value="5" />
+    </tag>
+  </addPage>
+  <updatePage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName="">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="tjrq" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMM" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="MSQL4Select" label="费用种类" fieldName="FYZL">
+      <attribute key="sql" value="select dmz as key, dmms as value from csb_dmms where upper(dmmc)='FYZL'" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="fyzl" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="editable" value="false" />
+      <attribute key="isEditable" value="false" />
+    </tag>
+    <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="TJRQ">
+      <attribute key="name" value="tjrq_ym" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewJg" label="机构" fieldName="KHDXDH">
+      <attribute key="ckbz" value="jg_ckhy" />
+      <attribute key="cascadeCheck" value="true" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="khdxdh" />
+      <attribute key="isAll" value="false" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="MSQL4Select" label="科目名称" fieldName="KMH">
+      <attribute key="sql" value="select kmh as key, kmmc as value from csb_km" />
+      <attribute key="isSearch" value="true" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="kmzl" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="isEditable" value="true" />
+    </tag>
+    <tag row="1" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="BZ">
+      <attribute key="defVal" value="01" />
+      <attribute key="name" value="bz" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="金额" fieldName="JE">
+      <attribute key="precision" value="2" />
+      <attribute key="name" value="je" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZR">
+      <attribute key="defVal" value="$login_khdxdh$" />
+      <attribute key="name" value="czr" />
+    </tag>
+    <tag row="2" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZSJ">
+      <attribute key="defVal" value="systime" />
+      <attribute key="name" value="czsj" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="3" name="Textarea" label="备注" fieldName="BZSM">
+      <attribute key="cols" value="50" />
+      <attribute key="name" value="bzsm" />
+      <attribute key="styleClass" value="{maxlength:100}" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+      <attribute key="rows" value="5" />
+    </tag>
+  </updatePage>
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+    <button>import</button>
+  </buttons>
+  <flow>
+    <insertbefore />
+    <insertafter />
+    <deletebefore />
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.jgfygl">
+    <select id="dn12.jgfyglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select $tjrq$ tjny,jg.jgdh,jg.jgmc,fy.fyzl,ms.dmms fyzlmc,fy.kmh,km.kmmc,fy.je,jg.khdxdh,fy.tjrq,fy.bzsm  from sglr_jgfy fy inner join khdx_jg jg on jg.khdxdh=fy.khdxdh left join csb_dmms ms on ms.dmmc='FYZL' and ms.dmz=fy.fyzl  left join csb_km km on km.kmh=fy.kmh inner join table(fn_getsjjg_java_qx($tjrq_ym$,$login_khdxdh$,0)) qx on qx.khdxdh=jg.khdxdh
+      <isNotEmpty property="jgkhdxdh">where fy.khdxdh in ($jgkhdxdh$)</isNotEmpty>
+      <isNotEmpty property="fyzl">and fy.fyzl='$fyzl$'</isNotEmpty>
+      <isNotEmpty property="tjrq_ym">and fy.tjrq=$tjrq_ym$</isNotEmpty>
+    </select>
+    <select id="dn12.jgfyglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select $tjrq$ tjny,jg.jgdh,jg.jgmc,fy.fyzl,ms.dmms fyzlmc,fy.kmh,km.kmmc,fy.je,jg.khdxdh,fy.tjrq,fy.bzsm  from sglr_jgfy fy inner join khdx_jg jg on jg.khdxdh=fy.khdxdh left join csb_dmms ms on ms.dmmc='FYZL' and ms.dmz=fy.fyzl  left join csb_km km on km.kmh=fy.kmh inner join table(fn_getsjjg_java_qx($tjrq_ym$,$login_khdxdh$,0)) qx on qx.khdxdh=jg.khdxdh
+      <isNotEmpty property="jgkhdxdh">where fy.khdxdh in ($jgkhdxdh$)</isNotEmpty>
+      <isNotEmpty property="fyzl">and fy.fyzl='$fyzl$'</isNotEmpty>
+      <isNotEmpty property="tjrq_ym">and fy.tjrq=$tjrq_ym$</isNotEmpty>
+      ) t
+    </select>
+    <select id="dn12.jgfygl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  KMH, FYZL, KHDXDH, BZSM, JE,F_TIMETOCHAR(CZSJ,'yyyy-mm-dd hh24:mi:ss') as CZSJ, CZR, BZ, TJRQ  from SGLR_JGFY where 1= 1  and FYZL = '$fyzl$' and KHDXDH = $khdxdh$ and TJRQ = $tjrq$
+    </select>
+    <select id="dn12.jgfygl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  KMH, FYZL, KHDXDH, BZSM, JE,F_TIMETOCHAR(CZSJ,'yyyy-mm-dd hh24:mi:ss') as CZSJ, CZR, BZ, TJRQ  from SGLR_JGFY where 1= 1  and FYZL = '$fyzl$' and KHDXDH = $khdxdh$ and TJRQ = $tjrq_ym$
+    </select>
+    <insert id="dn12.jgfygl_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into SGLR_JGFY( FYZL, JE, BZ, KHDXDH, CZSJ, CZR, TJRQ, KMH, BZSM ) values ( '$fyzl$',$je$,'$bz$',$khdxdh$,f_get_timestamp('$czsj$'),'$czr$',$tjrq_ym$,'$kmzl$','$bzsm$')
+    </insert>
+    <update id="dn12.jgfygl_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update SGLR_JGFY set JE = $je$,KMH = '$kmzl$',BZSM = '$bzsm$' where 1=1  and FYZL = '$fyzl$' and KHDXDH = $khdxdh$ and TJRQ = $tjrq_ym$
+    </update>
+    <delete id="dn12.jgfygl_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from SGLR_JGFY where 1=1  and FYZL = '$fyzl$' and KHDXDH = $khdxdh$ and TJRQ = $tjrq$
+    </delete>
+    <select id="dn12.jgfygl_MSQL4SELECT_fyzl" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where upper(dmmc)='FYZL'</select>
+    <select id="dn12.jgfygl_MSQL4SELECT_kmzl" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select kmh as key, kmmc as value from csb_km</select>
+  </sqlMap>
+  <javascript>
+    <import>parent.addTab('jgfydr','机构费用管理','/module/parser/import/visitHtml/jgfydr');</import>
+    <query>jQuery(document).ready(function () {
+
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+  jQuery('#tjrq_ym').val(createTimeObj(jQuery('#tjrq').val()).ym);
+  return true;
+}</query>
+    <edit>jQuery(document).ready(function () {
+//这里的js脚本，会在页面加载完成后执行
+  if($('#page_operate').val() == 'update'){
+    $('#tjrq').attr('disabled',true);
+  }
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+  jQuery('#tjrq_ym').val(createTimeObj(jQuery('#tjrq').val()).ym);
+  return true;
+}</edit>
+  </javascript>
+</pageSetting>
+

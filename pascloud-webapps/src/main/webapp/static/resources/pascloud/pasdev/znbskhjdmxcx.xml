@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="znbskhjdmxcx" title="职能部室考核进度查询明细" type="query" version="2.0.0">
+  <conPart>
+    <tags />
+  </conPart>
+  <table id="znbskhjdmxcx_xsjy1jgj" title="新数据源1结果集" page="true">
+    <col id="KHNF" title="考核年份" align="left" type="string" width="60" frozen="false" format="" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="KHZQ" title="考核周期" align="left" type="string" width="60" frozen="false" format="" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="KHQS" title="考核期数" align="left" type="string" width="60" frozen="false" format="" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="FAMC" title="方案名称" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="ZNBS" title="职能部室" align="left" type="hidden" width="120" frozen="false" format="" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="ZNBSMC" title="职能部室" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="WDMC" title="维度名称" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="XMMC" title="项目名称" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="JSFS" title="计算方式" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="JFLX" title="计分类型" align="left" type="string" width="180" frozen="false" format="" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="PJR" title="评价人" align="left" type="hidden" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="PJRMC" title="评价人名称" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="PJRGW" title="评价人岗位" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="PFZT" title="评分状态" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.znbskhjdmxcx">
+    <select id="dn12.znbskhjdmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select distinct fapz.khnf,fapz.famc,dmms.dmms khzq,pffa.khqs,fapz.znbs,                 jg.jgmc znbsmc,                 wd.wdmc,xmpz.xmmc,                 case when xmpz.jsfs = '1' then '自动计算' else                     case when xmpz.jsfs = '2' then '自定义程序' else '在线打分'                       end                 end jsfs ,                 case when xmpz.jflx = '1' then '打分者权重计分' else                     case when xmpz.jflx = '2' then '打分者平均得分' else                       case when xmpz.jflx = '3' then '打分者平均得分（去掉一个最高分，最低分）' else                          case when xmpz.jflx = '4' then '在权重比例内再取人员平均（去掉最高分，最低分)' else                                                  case when xmpz.jflx = '5' then '在权重比例内再取人员平均' else                                                 case when xmpz.jflx = '6' then '打分者平均得分（去掉两个最高分，两个最低分）' end                                                 end                           end                        end                     end                 end jflx ,                 pffa.pjr,hy.hymc pjrmc,hygw.gwmc pjrgw,                 case when pffa.pfzt='0' then '未完成评分' else '已完成评分' end pfzt                                     from znbs_zxpffa pffa                  inner join znbs_fapz fapz on pffa.fabh = fapz.fabh         inner join (select cast(dmz as integer) dmz,dmms from csb_dmms dmms  where dmmc='KHZQ' )DMMS on DMMS.dmz=PFFA.KHZQ         inner join khdx_jg jg on jg.khdxdh = fapz.znbs                  left join khdx_Hygw hygw on hygw.khdxdh = pffa.pjr and hygw.jsrq = 29991231         inner join khdx_hy hy on pffa.pjr = hy.khdxdh                  inner join znbs_khxmpz xmpz on fapz.fabh = xmpz.fabh          inner join znbs_wdmb wd on xmpz.wdbh = wd.wdbh         inner join znbs_khpjr khpjr on fapz.fabh =khpjr.fabh  and khpjr.xmbh = xmpz.xmbh and khpjr.pjr = pffa.pjr         where 1=1
+      <isNotEmpty property="fabh">and  pffa.fabh = $fabh$</isNotEmpty>
+      <isNotEmpty property="khzq">and fapz.khzq = $khzq$</isNotEmpty>
+      <isNotEmpty property="khnf">and fapz.khnf = $khnf$</isNotEmpty>
+      <isNotEmpty property="khqs">and pffa.khqs = $khqs$</isNotEmpty>
+      and pffa.khdxdh in( $jgkhdxdh$)         order by fapz.khnf,dmms.dmms,pffa.khqs,fapz.famc,fapz.znbs,wd.wdmc
+    </select>
+    <select id="dn12.znbskhjdmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select distinct fapz.khnf,fapz.famc,dmms.dmms khzq,pffa.khqs,fapz.znbs,                 jg.jgmc znbsmc,                 wd.wdmc,xmpz.xmmc,                 case when xmpz.jsfs = '1' then '自动计算' else                     case when xmpz.jsfs = '2' then '自定义程序' else '在线打分'                       end                 end jsfs ,                 case when xmpz.jflx = '1' then '打分者权重计分' else                     case when xmpz.jflx = '2' then '打分者平均得分' else                       case when xmpz.jflx = '3' then '打分者平均得分（去掉一个最高分，最低分）' else                          case when xmpz.jflx = '4' then '在权重比例内再取人员平均（去掉最高分，最低分)' else                                                  case when xmpz.jflx = '5' then '在权重比例内再取人员平均' else                                                 case when xmpz.jflx = '6' then '打分者平均得分（去掉两个最高分，两个最低分）' end                                                 end                           end                        end                     end                 end jflx ,                 pffa.pjr,hy.hymc pjrmc,hygw.gwmc pjrgw,                 case when pffa.pfzt='0' then '未完成评分' else '已完成评分' end pfzt                                     from znbs_zxpffa pffa                  inner join znbs_fapz fapz on pffa.fabh = fapz.fabh         inner join (select cast(dmz as integer) dmz,dmms from csb_dmms dmms  where dmmc='KHZQ' )DMMS on DMMS.dmz=PFFA.KHZQ         inner join khdx_jg jg on jg.khdxdh = fapz.znbs                  left join khdx_Hygw hygw on hygw.khdxdh = pffa.pjr and hygw.jsrq = 29991231         inner join khdx_hy hy on pffa.pjr = hy.khdxdh                  inner join znbs_khxmpz xmpz on fapz.fabh = xmpz.fabh          inner join znbs_wdmb wd on xmpz.wdbh = wd.wdbh         inner join znbs_khpjr khpjr on fapz.fabh =khpjr.fabh  and khpjr.xmbh = xmpz.xmbh and khpjr.pjr = pffa.pjr         where 1=1
+      <isNotEmpty property="fabh">and  pffa.fabh = $fabh$</isNotEmpty>
+      <isNotEmpty property="khzq">and fapz.khzq = $khzq$</isNotEmpty>
+      <isNotEmpty property="khnf">and fapz.khnf = $khnf$</isNotEmpty>
+      <isNotEmpty property="khqs">and pffa.khqs = $khqs$</isNotEmpty>
+      and pffa.khdxdh in( $jgkhdxdh$)         order by fapz.khnf,dmms.dmms,pffa.khqs,fapz.famc,fapz.znbs,wd.wdmc ) t
+    </select>
+  </sqlMap>
+  <finger custPlotMth="">
+    <plotType />
+    <needPlot>false</needPlot>
+    <plotTitle />
+  </finger>
+  <rels>
+    <items id="znbskhjdmxcx_xsjy1jgj" />
+  </rels>
+  <javascript><![CDATA[jQuery(document).ready(function () {
+$("input[type='button'][value='查 询']").remove();
+$('#query_conn_panel').hide();
+});
+
+
+function customOnLoadSuccess(data){
+  $("#data_panel .datagrid-body table tr").each(function(){
+    var tr = $(this);
+    if(tr.find("td:eq(13)").text()=="未完成评分"){
+      tr.find("td:eq(13)").find("div").css("color","red");
+    }
+  });
+}
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}]]></javascript>
+</pageSetting>
+

@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="jgkhjsplgl" title="机构手工基数管理" type="manage">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName="">
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="1" rowspan="1" colspan="1" name="NewJg" label="机构" fieldName="">
+        <attribute key="ckbz" value="jg" />
+        <attribute key="cascadeCheck" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="jgkhdxdh" />
+        <attribute key="multiple" value="true" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="MSQL4Select" label="指标" fieldName="">
+        <attribute key="sql" value="select zb.zbdh as key,zb.zbmc as value from jsfa_jszb jszb   inner join khdx_zb zb on zb.zbdh=jszb.zbdh  inner join jsfa_fapz fapz on fapz.FABH=jszb.fabh  where fapz.faly='2' and cast(substr(cast(fapz.khnf as char(8)),1,4) as integer) =$sysdate_yyyy$" />
+        <attribute key="isSearch" value="false" />
+        <attribute key="style" value="width:auto;" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="isMultiple" value="false" />
+        <attribute key="name" value="zbdh" />
+        <attribute key="width" value="200px;" />
+        <attribute key="isAll" value="true" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+      <tag row="0" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+        <attribute key="dataType" value="select" />
+        <attribute key="sql" value="select zb.zbdh as key,zb.zbmc as value from jsfa_jszb jszb   inner join khdx_zb zb on zb.zbdh=jszb.zbdh  inner join jsfa_fapz fapz on fapz.FABH=jszb.fabh  where fapz.faly='3' and cast(substr(cast(fapz.khnf as char(8)),1,4) as integer) =cast(substr(cast($tjrq$ as char(8)),1,4) as integer)" />
+        <attribute key="name" value="selectZBByTjrq" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="jgkhjsplgltable">
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="ZBDHMC" title="指标代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="ZBMC" title="指标名称" align="left" type="string" width="200" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="ZBDH" title="指标代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="BZMC" title="币种" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="SDBSMC" title="时段标识" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="TJKJMC" title="统计口径" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="BZ" title="币种" align="left" type="hidden" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="SDBS" title="时段标识" align="left" type="hidden" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="KHJS" title="考核基数" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="TJKJ" title="统计口径" align="left" type="hidden" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="QSRQ" title="起始日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+  </table>
+  <rels>
+    <items id="jgkhjsplgltable" />
+  </rels>
+  <addPage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="NewJg" label="机构" fieldName="KHDXDH">
+      <attribute key="ckbz" value="jg" />
+      <attribute key="cascadeCheck" value="true" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="jgkhdxdh" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="qsrq" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="0" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select zb.zbdh as key,zb.zbmc as value from jsfa_jszb jszb   inner join khdx_zb zb on zb.zbdh=jszb.zbdh  inner join jsfa_fapz fapz on fapz.FABH=jszb.fabh  where fapz.faly='3' and cast(substr(cast(fapz.khnf as char(8)),1,4) as integer) =cast(substr(cast($qsrq$  as char(8)),1,4) as integer)" />
+      <attribute key="name" value="selectZBByTjrq2" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="ZbParam" label="币种" fieldName="BZ">
+      <attribute key="parents" value="zbdh" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="zbbz" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="isEditable" value="true" />
+      <attribute key="paramType" value="bz" />
+    </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="ZbParam" label="时段标识" fieldName="SDBS">
+      <attribute key="parents" value="zbdh" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="zbsdbs" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="isEditable" value="true" />
+      <attribute key="paramType" value="sdbs" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Dmms" label="统计口径" fieldName="TJKJ">
+      <attribute key="name" value="tjkj" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="dmmc" value="tjkj" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="1" rowspan="1" colspan="1" name="MSQL4Select" label="指标" fieldName="ZBDH">
+      <attribute key="sql" value="select zb.zbdh as key,zb.zbmc as value from jsfa_jszb jszb   inner join khdx_zb zb on zb.zbdh=jszb.zbdh  inner join jsfa_fapz fapz on fapz.FABH=jszb.fabh  where fapz.faly='3' and cast(substr(cast(fapz.khnf as char(8)),1,4) as integer) =$sysdate_yyyy$" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="style" value="width:auto;" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="zbdh" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="isEditable" value="true" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="考核基数" fieldName="KHJS">
+      <attribute key="precision" value="2" />
+      <attribute key="name" value="khjs" />
+      <attribute key="intparts" value="17" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ">
+      <attribute key="defVal" value="29991231" />
+      <attribute key="name" value="jsrq" />
+    </tag>
+  </addPage>
+  <updatePage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="NewJg" label="机构" fieldName="KHDXDH">
+      <attribute key="ckbz" value="jg" />
+      <attribute key="cascadeCheck" value="true" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="jgkhdxdh" />
+      <attribute key="isAll" value="false" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="qsrq" />
+      <attribute key="isAll" value="false" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="0" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select zb.zbdh as key,zb.zbmc as value from jsfa_jszb jszb   inner join khdx_zb zb on zb.zbdh=jszb.zbdh  inner join jsfa_fapz fapz on fapz.FABH=jszb.fabh  where fapz.faly='3' and cast(substr(cast(fapz.khnf as char(8)),1,4) as integer) =cast(substr(cast($qsrq$  as char(8)),1,4) as integer)" />
+      <attribute key="name" value="selectZBByTjrq2" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="ZbParam" label="币种" fieldName="BZ">
+      <attribute key="parents" value="zbdh" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="zbbz" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="editable" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="paramType" value="bz" />
+    </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="ZbParam" label="时段标识" fieldName="SDBS">
+      <attribute key="parents" value="zbdh" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="zbsdbs" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="editable" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="paramType" value="sdbs" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Dmms" label="统计口径" fieldName="TJKJ">
+      <attribute key="name" value="tjkj" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="dmmc" value="tjkj" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="2" col="1" rowspan="1" colspan="1" name="MSQL4Select" label="指标" fieldName="ZBDH">
+      <attribute key="sql" value="select zb.zbdh as key,zb.zbmc as value from jsfa_jszb jszb   inner join khdx_zb zb on zb.zbdh=jszb.zbdh  inner join jsfa_fapz fapz on fapz.FABH=jszb.fabh  where fapz.faly='3' and cast(substr(cast(fapz.khnf as char(8)),1,4) as integer) =$sysdate_yyyy$" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="style" value="width:auto;" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="zbdh" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="editable" value="false" />
+      <attribute key="isEditable" value="false" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="考核基数" fieldName="KHJS">
+      <attribute key="precision" value="2" />
+      <attribute key="name" value="khjs" />
+      <attribute key="intparts" value="17" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ">
+      <attribute key="defVal" value="29991231" />
+      <attribute key="name" value="jsrq" />
+    </tag>
+  </updatePage>
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+    <button>import</button>
+  </buttons>
+  <flow>
+    <insertbefore>
+      <sql type="delete">jgkhjsplgl_check_itemAddDel</sql>
+      <sql type="update">jgkhjsplgl_check_itemUP</sql>
+    </insertbefore>
+    <insertafter />
+    <deletebefore>
+      <sql type="selectmaxqsrq">jgkhjsplgl_check_itemMAX_del</sql>
+      <sql type="update">jgkhjsplgl_check_itemDELUP</sql>
+    </deletebefore>
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.jgkhjsplgl">
+    <select id="dn12.jgkhjsplglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select jg.jgdh,jg.jgmc,zb.zbdh zbdhmc,zb.zbmc,js.khdxdh,js.zbdh,js.bz,js.sdbs,js.tjkj,js.qsrq,js.jsrq,js.khjs, dms.dmms bzmc,dms1.dmms sdbsmc,dms2.dmms tjkjmc from sgdr_jgkhjs js inner join khdx_zb zb on js.zbdh=zb.zbdh inner join khdx_jg jg on js.khdxdh=jg.khdxdh inner join table(fn_getsjjg_java_qx($tjrq$, $login_khdxdh$, 0)) qx on qx.khdxdh = jg.khdxdh left join csb_dmms dms on js.bz=dms.dmz and upper(dms.dmmc)='ZBBZ' left join csb_dmms dms1 on js.sdbs=dms1.dmz and upper(dms1.dmmc)='ZBSDBS' left join csb_dmms dms2 on js.tjkj=dms2.dmz and upper(dms2.dmmc)='TJKJ' where 1=1
+      <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
+      <isNotEmpty property="tjrq">and $tjrq$ between js.qsrq and js.jsrq</isNotEmpty>
+      <isNotEmpty property="zbdh">and js.zbdh=$zbdh$</isNotEmpty>
+      <isNotEmpty property="bz">and js.bz='$bz$'</isNotEmpty>
+      <isNotEmpty property="sdbs">and js.sdbs='$sdbs$'</isNotEmpty>
+      <isNotEmpty property="tjkj">and js.tjkj='$tjkj$'</isNotEmpty>
+      order by zb.zbdh,js.qsrq desc
+    </select>
+    <select id="dn12.jgkhjsplglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select jg.jgdh,jg.jgmc,zb.zbdh zbdhmc,zb.zbmc,js.khdxdh,js.zbdh,js.bz,js.sdbs,js.tjkj,js.qsrq,js.jsrq,js.khjs, dms.dmms bzmc,dms1.dmms sdbsmc,dms2.dmms tjkjmc from sgdr_jgkhjs js inner join khdx_zb zb on js.zbdh=zb.zbdh inner join khdx_jg jg on js.khdxdh=jg.khdxdh inner join table(fn_getsjjg_java_qx($tjrq$, $login_khdxdh$, 0)) qx on qx.khdxdh = jg.khdxdh left join csb_dmms dms on js.bz=dms.dmz and upper(dms.dmmc)='ZBBZ' left join csb_dmms dms1 on js.sdbs=dms1.dmz and upper(dms1.dmmc)='ZBSDBS' left join csb_dmms dms2 on js.tjkj=dms2.dmz and upper(dms2.dmmc)='TJKJ' where 1=1
+      <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
+      <isNotEmpty property="tjrq">and $tjrq$ between js.qsrq and js.jsrq</isNotEmpty>
+      <isNotEmpty property="zbdh">and js.zbdh=$zbdh$</isNotEmpty>
+      <isNotEmpty property="bz">and js.bz='$bz$'</isNotEmpty>
+      <isNotEmpty property="sdbs">and js.sdbs='$sdbs$'</isNotEmpty>
+      <isNotEmpty property="tjkj">and js.tjkj='$tjkj$'</isNotEmpty>
+      order by zb.zbdh,js.qsrq desc ) t
+    </select>
+    <select id="dn12.jgkhjsplgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  ZBDH, KHDXDH, QSRQ, KHJS, TJKJ, JSRQ, SDBS, BZ  from SGDR_JGKHJS where 1= 1  and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and QSRQ = $qsrq$ and TJKJ = '$tjkj$' and SDBS = '$sdbs$' and BZ = '$bz$'
+    </select>
+    <select id="dn12.jgkhjsplgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  ZBDH, KHDXDH, QSRQ, KHJS, TJKJ, JSRQ, SDBS, BZ  from SGDR_JGKHJS where 1= 1  and ZBDH = $zbdh$ and KHDXDH = $jgkhdxdh$ and QSRQ = $qsrq$ and TJKJ = '$tjkj$' and SDBS = '$zbsdbs$' and BZ = '$zbbz$'
+    </select>
+    <insert id="dn12.jgkhjsplgl_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into SGDR_JGKHJS( ZBDH, BZ, SDBS, QSRQ, KHJS, TJKJ, JSRQ, KHDXDH ) values ( $zbdh$,'$zbbz$','$zbsdbs$',$qsrq$,$khjs$,'$tjkj$',$jsrq$,$jgkhdxdh$)
+    </insert>
+    <update id="dn12.jgkhjsplgl_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update SGDR_JGKHJS set KHJS = $khjs$ where 1=1  and ZBDH = $zbdh$ and KHDXDH = $jgkhdxdh$ and QSRQ = $qsrq$ and TJKJ = '$tjkj$' and SDBS = '$zbsdbs$' and BZ = '$zbbz$'
+    </update>
+    <delete id="dn12.jgkhjsplgl_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from SGDR_JGKHJS where 1=1  and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and QSRQ = $qsrq$ and TJKJ = '$tjkj$' and SDBS = '$sdbs$' and BZ = '$bz$'
+    </delete>
+    <delete id="dn12.jgkhjsplgl_check_itemAddDel" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[delete from SGDR_JGKHJS where qsrq >=$qsrq$  and ZBDH = $zbdh$ and KHDXDH = $jgkhdxdh$ and TJKJ = '$tjkj$' and SDBS = '$zbsdbs$' and BZ = '$zbbz$']]>
+    </delete>
+    <update id="dn12.jgkhjsplgl_check_itemUP" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update SGDR_JGKHJS set jsrq=$qdate$
+      <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty>
+      and ZBDH = $zbdh$ and KHDXDH = $jgkhdxdh$ and TJKJ = '$tjkj$' and SDBS = '$zbsdbs$' and BZ = '$zbbz$'
+    </update>
+    <select id="dn12.jgkhjsplgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select max(qsrq) from SGDR_JGKHJS where 1=1  and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and TJKJ = '$tjkj$' and SDBS = '$sdbs$' and BZ = '$bz$'
+    </select>
+    <select id="dn12.jgkhjsplgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[select  ZBDH, KHDXDH, QSRQ, KHJS, TJKJ, JSRQ, SDBS, BZ from SGDR_JGKHJS where 1=1  and ZBDH = $zbdh$ and KHDXDH = $jgkhdxdh$ and TJKJ = '$tjkj$' and SDBS = '$zbsdbs$' and BZ = '$zbbz$' and $qsrq$ > $maxqsrq$]]>
+    </select>
+    <update id="dn12.jgkhjsplgl_check_itemDELUP" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update SGDR_JGKHJS set jsrq =29991231 where 1=1 and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and TJKJ = '$tjkj$' and SDBS = '$sdbs$' and BZ = '$bz$' and jsrq =$lastjsrq$
+    </update>
+    <select id="dn12.jgkhjsplgl_selectZBByTjrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select zb.zbdh as key,zb.zbmc as value from jsfa_jszb jszb 
+ inner join khdx_zb zb on zb.zbdh=jszb.zbdh
+ inner join jsfa_fapz fapz on fapz.FABH=jszb.fabh
+ where fapz.faly='3' and cast(substr(cast(fapz.khnf as char(8)),1,4) as integer) =cast(substr(cast($tjrq$ as char(8)),1,4) as integer)</select>
+    <select id="dn12.jgkhjsplgl_selectZBByTjrq2" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select zb.zbdh as key,zb.zbmc as value from jsfa_jszb jszb 
+ inner join khdx_zb zb on zb.zbdh=jszb.zbdh
+ inner join jsfa_fapz fapz on fapz.FABH=jszb.fabh
+ where fapz.faly='3' and cast(substr(cast(fapz.khnf as char(8)),1,4) as integer) =cast(substr(cast($qsrq$  as char(8)),1,4) as integer)</select>
+    <select id="dn12.jgkhjsplgl_MSQL4SELECT_zbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select zb.zbdh as key,zb.zbmc as value from jsfa_jszb jszb   inner join khdx_zb zb on zb.zbdh=jszb.zbdh  inner join jsfa_fapz fapz on fapz.FABH=jszb.fabh  where fapz.faly='2' and cast(substr(cast(fapz.khnf as char(8)),1,4) as integer) =$sysdate_yyyy$</select>
+  </sqlMap>
+  <javascript>
+    <import>parent.addTab('jgkhjspldr','机构手工基数管理','/module/parser/import/visitHtml/jgkhjspldr');</import>
+    <query>jQuery(document).ready(function () {
+  $("#tjrq").executeOnEvent("blur","jgkhjsplgl_selectZBByTjrq",changeZb);
+});
+function changeZb(obj){
+ if(obj.status==0){
+  var data = obj.data;
+  
+  $("#zbdh").empty();
+  $("#zbdh").append($("&lt;option value=''&gt;全部...&lt;/option&gt;"));
+      
+  for(var i=0;i&lt;data.length;i++){
+    var zbdh=data[i].KEY;
+    var zbmc=data[i].VALUE;
+    var opt=$("&lt;option value='"+zbdh+"'&gt;"+zbmc+"&lt;/option&gt;");
+    $("#zbdh").append(opt);
+    
+  }
+  
+  
+ }
+}
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}</query>
+    <edit>$(document).ready(function() {
+  $("#qsrq").executeOnEvent("blur","jgkhjsplgl_selectZBByTjrq2",changeZb2);
+  setTimeout('triggerQsrqBlur()',1000);
+});
+
+function triggerQsrqBlur(){
+  $("#qsrq").trigger("blur");
+}
+
+
+function changeZb2(obj){
+   if(obj.status==0){
+    var data = obj.data;
+    
+    $("#zbdh").empty();
+    
+    for(var i=0;i&lt;data.length;i++){
+      var zbdh=data[i].KEY;
+      var zbmc=data[i].VALUE;
+      var opt=$("&lt;option value='"+zbdh+"'&gt;"+zbmc+"&lt;/option&gt;");
+      $("#zbdh").append(opt);
+    }
+  }
+}
+
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}</edit>
+  </javascript>
+</pageSetting>
+

@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="hylbkhzbgzmx" title="行员类别考核指标工资明细" type="query" version="2.0.0">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="查询日期">
+        <attribute key="dateFmt" value="yyyyMM" />
+        <attribute key="defValType" value="yc" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="qsrq" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="qsrq_ym" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="至">
+        <attribute key="dateFmt" value="yyyyMM" />
+        <attribute key="defValType" value="ym" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="jsrq" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="jsrq_ym" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="行员类别">
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isSearch" value="true" />
+        <attribute key="sql" value="select distinct lbdh as key, lbmc as  value from csb_hylb order by lbdh" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="hylb" />
+        <attribute key="isAll" value="true" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+      <tag row="1" col="0" colspan="2" rowspan="1" name="MSQL4Select" label="考核指标">
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="305px;" />
+        <attribute key="isSearch" value="true" />
+        <attribute key="sql" value="select key ,value from (select khzbdh as key, khzbmc as value from khfa_khzb_hy union all select distinct zbpz.khzbdh key ,zbpz.xmmc value from khfa_fapz fapz, khfa_khzbpz zbpz  where fapz.yyzlbh = 1 and zbpz.khzbdh &lt; 0 and fapz.fabh = zbpz.fabh ) t  order by key" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="khzb" />
+        <attribute key="isAll" value="true" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="hylbkhzbgzmx_xsjy1jgj" title="新数据源1结果集" page="false" isDym="true">
+    <col id="NF" title="年份" align="left" type="string" width="75" frozen="true" format="" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="LBMC" title="行员类别" align="left" type="string" width="120" frozen="true" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHZBMC" title="考核指标名称" align="left" type="string" width="220" frozen="true" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="$yf$" title="YF" align="left" type="string" width="195" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" dym="true">
+      <col id="JXGZ" title="绩效工资" align="right" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="true" />
+      <col id="ZB" title="占比(%)" align="right" type="float" width="75" frozen="false" format="##0.00" showDymCol="true" mergeCells="false" footerCells="true" />
+    </col>
+    <col id="QSRQ" title="起始日期" align="left" type="hidden" width="75" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JSRQ" title="结束日期" align="left" type="hidden" width="75" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="LBDH" title="类别编号" align="left" type="hidden" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHZBDH" title="KHZBDH" align="left" type="hidden" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.hylbkhzbgzmx">
+    <select id="dn12.hylbkhzbgzmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[select t.zb,t.nf,t.yf,t.lbdh,t.lbmc,t.khzbdh,t.khzbmc,t.jxgz,$qsrq$ as qsrq,$jsrq$ as jsrq from (
+  select case when sum(t.jxgz) over(partition by t.yf)=0 then 0 else round(t.jxgz*100.00/sum(t.jxgz) over(partition by t.yf),2) end as zb,
+  t.nf,t.yf,t.lbdh,t.lbmc,t.khzbdh,t.khzbmc,t.jxgz
+  from (
+      
+      select tjrq,nf,yf,lbdh,lbmc,khzbdh,khzbmc,sum(yyjg) as jxgz from (
+          select sjw.tjrq, floor(sjw.tjrq/10000) as nf,f_numtochar(floor(mod(sjw.tjrq,10000)/100))||'月份' as yf,
+              lb.lbdh,lb.lbmc,khzb.khzbdh,
+              case when khzb.khzbmc is null then zbpz.xmmc else khzb.khzbmc end as khzbmc ,
+              yy.yyjg
+          from (
+              select distinct case when ym<$sysdate$ then ym else $sysdate$ end as tjrq
+              from csb_sjw sjw 
+              where ym=tjrq]]>
+      <isNotEmpty property="qsrq_ym">and sjw.tjrq between $qsrq_ym$ and $jsrq_ym$</isNotEmpty>
+      ) sjw           inner join khfa_yyjg_hy yy on  yy.tjrq = sjw.tjrq           inner join khdx_hylb lb on lb.khdxdh = yy.khdxdh
+      <isNotEmpty property="jsrq_ym">and $jsrq_ym$ between lb.qsrq and lb.jsrq</isNotEmpty>
+      <![CDATA[left join (
+            select khzbdh, khzbmc from khfa_khzb_hy
+            union all
+            select distinct zbpz.khzbdh ,zbpz.xmmc as khzbmc from khfa_fapz fapz, khfa_khzbpz zbpz 
+            where fapz.yyzlbh = 1 and zbpz.khzbdh < 0 and fapz.fabh = zbpz.fabh        
+          ) khzb on khzb.khzbdh = yy.khzbdh
+          
+          inner join khfa_khzbpz zbpz on yy.fabh = zbpz.fabh and yy.khzbdh = zbpz.khzbdh
+          where exists(select 1 from khfa_fapz pz where yy.fabh=pz.fabh and pz.yyzlbh=1) 
+      ) xx    
+      
+      group by tjrq,nf,yf,lbdh,lbmc,khzbdh,khzbmc
+      order by lbdh,khzbdh
+  ) t
+  
+  where 1=1]]>
+      <isNotEmpty property="hylb">and  t.lbdh = '$hylb$'</isNotEmpty>
+      <isNotEmpty property="khzb">and t.khzbdh = $khzb$</isNotEmpty>
+      <![CDATA[union all
+  
+  select 
+  case when sum(t.jxgz) over(partition by t.nf)=0 then 0 else round(t.jxgz*100.00/sum(t.jxgz) over(partition by t.nf),2) end as zb,
+  t.nf,t.yf,t.lbdh,t.lbmc,t.khzbdh,t.khzbmc,t.jxgz from (
+  
+  select cast(null as decimal(19,3)) zb,t.nf,'月份合计' yf,t.lbdh,t.lbmc,t.khzbdh,t.khzbmc,sum(t.jxgz) jxgz from (
+  select case when sum(t.jxgz) over(partition by t.yf)=0 then 0 else round(t.jxgz*100.00/sum(t.jxgz) over(partition by t.yf),2) end as zb,
+  t.nf,t.yf,t.lbdh,t.lbmc,t.khzbdh,t.khzbmc,t.jxgz
+  from (
+      
+      select tjrq,nf,yf,lbdh,lbmc,khzbdh,khzbmc,sum(yyjg) as jxgz from (
+          select sjw.tjrq, floor(sjw.tjrq/10000) as nf,f_numtochar(floor(mod(sjw.tjrq,10000)/100))||'月份' as yf,
+              lb.lbdh,lb.lbmc,khzb.khzbdh,
+              case when khzb.khzbmc is null then zbpz.xmmc else khzb.khzbmc end as khzbmc ,
+              yy.yyjg
+          from (
+              select distinct case when ym<$sysdate$ then ym else $sysdate$ end as tjrq
+              from csb_sjw sjw 
+              where ym=tjrq]]>
+      <isNotEmpty property="qsrq_ym">and sjw.tjrq between $qsrq_ym$ and $jsrq_ym$</isNotEmpty>
+      ) sjw           inner join khfa_yyjg_hy yy on  yy.tjrq = sjw.tjrq           inner join khdx_hylb lb on lb.khdxdh = yy.khdxdh
+      <isNotEmpty property="jsrq_ym">and $jsrq_ym$ between lb.qsrq and lb.jsrq</isNotEmpty>
+      <![CDATA[left join (
+            select khzbdh, khzbmc from khfa_khzb_hy
+            union all
+            select distinct zbpz.khzbdh ,zbpz.xmmc as khzbmc from khfa_fapz fapz, khfa_khzbpz zbpz 
+            where fapz.yyzlbh = 1 and zbpz.khzbdh < 0 and fapz.fabh = zbpz.fabh        
+          ) khzb on khzb.khzbdh = yy.khzbdh
+          
+          inner join khfa_khzbpz zbpz on yy.fabh = zbpz.fabh and yy.khzbdh = zbpz.khzbdh
+          where exists(select 1 from khfa_fapz pz where yy.fabh=pz.fabh and pz.yyzlbh=1) 
+      ) xx    
+      
+      group by tjrq,nf,yf,lbdh,lbmc,khzbdh,khzbmc
+      order by lbdh,khzbdh
+  ) t
+  
+  where 1=1]]>
+      <isNotEmpty property="hylb">and  t.lbdh = '$hylb$'</isNotEmpty>
+      <isNotEmpty property="khzb">and t.khzbdh = $khzb$</isNotEmpty>
+      ) t   group by t.nf,t.lbdh,t.lbmc,t.khzbdh,t.khzbmc   ) t ) t  order by t.yf
+    </select>
+    <select id="dn12.hylbkhzbgzmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( <![CDATA[select t.zb,t.nf,t.yf,t.lbdh,t.lbmc,t.khzbdh,t.khzbmc,t.jxgz,$qsrq$ as qsrq,$jsrq$ as jsrq from (
+  select case when sum(t.jxgz) over(partition by t.yf)=0 then 0 else round(t.jxgz*100.00/sum(t.jxgz) over(partition by t.yf),2) end as zb,
+  t.nf,t.yf,t.lbdh,t.lbmc,t.khzbdh,t.khzbmc,t.jxgz
+  from (
+      
+      select tjrq,nf,yf,lbdh,lbmc,khzbdh,khzbmc,sum(yyjg) as jxgz from (
+          select sjw.tjrq, floor(sjw.tjrq/10000) as nf,f_numtochar(floor(mod(sjw.tjrq,10000)/100))||'月份' as yf,
+              lb.lbdh,lb.lbmc,khzb.khzbdh,
+              case when khzb.khzbmc is null then zbpz.xmmc else khzb.khzbmc end as khzbmc ,
+              yy.yyjg
+          from (
+              select distinct case when ym<$sysdate$ then ym else $sysdate$ end as tjrq
+              from csb_sjw sjw 
+              where ym=tjrq]]>
+      <isNotEmpty property="qsrq_ym">and sjw.tjrq between $qsrq_ym$ and $jsrq_ym$</isNotEmpty>
+      ) sjw           inner join khfa_yyjg_hy yy on  yy.tjrq = sjw.tjrq           inner join khdx_hylb lb on lb.khdxdh = yy.khdxdh
+      <isNotEmpty property="jsrq_ym">and $jsrq_ym$ between lb.qsrq and lb.jsrq</isNotEmpty>
+      <![CDATA[left join (
+            select khzbdh, khzbmc from khfa_khzb_hy
+            union all
+            select distinct zbpz.khzbdh ,zbpz.xmmc as khzbmc from khfa_fapz fapz, khfa_khzbpz zbpz 
+            where fapz.yyzlbh = 1 and zbpz.khzbdh < 0 and fapz.fabh = zbpz.fabh        
+          ) khzb on khzb.khzbdh = yy.khzbdh
+          
+          inner join khfa_khzbpz zbpz on yy.fabh = zbpz.fabh and yy.khzbdh = zbpz.khzbdh
+          where exists(select 1 from khfa_fapz pz where yy.fabh=pz.fabh and pz.yyzlbh=1) 
+      ) xx    
+      
+      group by tjrq,nf,yf,lbdh,lbmc,khzbdh,khzbmc
+      order by lbdh,khzbdh
+  ) t
+  
+  where 1=1]]>
+      <isNotEmpty property="hylb">and  t.lbdh = '$hylb$'</isNotEmpty>
+      <isNotEmpty property="khzb">and t.khzbdh = $khzb$</isNotEmpty>
+      <![CDATA[union all
+  
+  select 
+  case when sum(t.jxgz) over(partition by t.nf)=0 then 0 else round(t.jxgz*100.00/sum(t.jxgz) over(partition by t.nf),2) end as zb,
+  t.nf,t.yf,t.lbdh,t.lbmc,t.khzbdh,t.khzbmc,t.jxgz from (
+  
+  select cast(null as decimal(19,3)) zb,t.nf,'月份合计' yf,t.lbdh,t.lbmc,t.khzbdh,t.khzbmc,sum(t.jxgz) jxgz from (
+  select case when sum(t.jxgz) over(partition by t.yf)=0 then 0 else round(t.jxgz*100.00/sum(t.jxgz) over(partition by t.yf),2) end as zb,
+  t.nf,t.yf,t.lbdh,t.lbmc,t.khzbdh,t.khzbmc,t.jxgz
+  from (
+      
+      select tjrq,nf,yf,lbdh,lbmc,khzbdh,khzbmc,sum(yyjg) as jxgz from (
+          select sjw.tjrq, floor(sjw.tjrq/10000) as nf,f_numtochar(floor(mod(sjw.tjrq,10000)/100))||'月份' as yf,
+              lb.lbdh,lb.lbmc,khzb.khzbdh,
+              case when khzb.khzbmc is null then zbpz.xmmc else khzb.khzbmc end as khzbmc ,
+              yy.yyjg
+          from (
+              select distinct case when ym<$sysdate$ then ym else $sysdate$ end as tjrq
+              from csb_sjw sjw 
+              where ym=tjrq]]>
+      <isNotEmpty property="qsrq_ym">and sjw.tjrq between $qsrq_ym$ and $jsrq_ym$</isNotEmpty>
+      ) sjw           inner join khfa_yyjg_hy yy on  yy.tjrq = sjw.tjrq           inner join khdx_hylb lb on lb.khdxdh = yy.khdxdh
+      <isNotEmpty property="jsrq_ym">and $jsrq_ym$ between lb.qsrq and lb.jsrq</isNotEmpty>
+      <![CDATA[left join (
+            select khzbdh, khzbmc from khfa_khzb_hy
+            union all
+            select distinct zbpz.khzbdh ,zbpz.xmmc as khzbmc from khfa_fapz fapz, khfa_khzbpz zbpz 
+            where fapz.yyzlbh = 1 and zbpz.khzbdh < 0 and fapz.fabh = zbpz.fabh        
+          ) khzb on khzb.khzbdh = yy.khzbdh
+          
+          inner join khfa_khzbpz zbpz on yy.fabh = zbpz.fabh and yy.khzbdh = zbpz.khzbdh
+          where exists(select 1 from khfa_fapz pz where yy.fabh=pz.fabh and pz.yyzlbh=1) 
+      ) xx    
+      
+      group by tjrq,nf,yf,lbdh,lbmc,khzbdh,khzbmc
+      order by lbdh,khzbdh
+  ) t
+  
+  where 1=1]]>
+      <isNotEmpty property="hylb">and  t.lbdh = '$hylb$'</isNotEmpty>
+      <isNotEmpty property="khzb">and t.khzbdh = $khzb$</isNotEmpty>
+      ) t   group by t.nf,t.lbdh,t.lbmc,t.khzbdh,t.khzbmc   ) t ) t  order by t.yf ) t
+    </select>
+    <select id="dn12.hylbkhzbgzmx_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct lbdh as key, lbmc as  value from csb_hylb order by lbdh</select>
+    <select id="dn12.hylbkhzbgzmx_MSQL4SELECT_khzb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ <![CDATA[select key ,value from (select khzbdh as key, khzbmc as value from khfa_khzb_hy union all select distinct zbpz.khzbdh key ,zbpz.xmmc value from khfa_fapz fapz, khfa_khzbpz zbpz  where fapz.yyzlbh = 1 and zbpz.khzbdh < 0 and fapz.fabh = zbpz.fabh ) t  order by key]]></select>
+  </sqlMap>
+  <rels>
+    <items id="hylbkhzbgzmx_xsjy1jgj" />
+  </rels>
+  <javascript><![CDATA[jQuery(document).ready(function () {
+
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+   var qsrq = jQuery("#qsrq").val();
+   var jsrq = jQuery("#jsrq").val();
+   
+   
+   if(parseInt(qsrq)>parseInt(jsrq)){
+    
+     alert("起始年月必须大于等于结束年月!");
+     return false;
+   } else {
+   
+    var o_qsrq = createTimeObj(jQuery('#qsrq').val()); 
+    var o_jsrq = createTimeObj(jQuery('#jsrq').val()); 
+    jQuery('#qsrq_ym').val(o_qsrq.ym);
+    jQuery('#jsrq_ym').val(o_jsrq.ym);
+     return true;
+   }
+   
+}
+
+function openHykhzbgzmx(obj){
+  var paramsJasonString = "{"+"'qsrq':'"+obj['QSRQ']+"','jsrq':'"+obj['JSRQ']+"','lbdh':'"+obj['LBDH']+"','khzb':'"+obj['KHZBDH']+"'}";
+  //alert(paramsJasonString);
+  querySubQuery(paramsJasonString,"hykhzbgzmx",'80','40','tag');
+}
+
+function customOnLoadSuccess(data){
+  var tables=document.getElementsByTagName("table");
+  for(var i=0;i<tables.length;i++){
+    if(tables[i].id.indexOf("List")>=0) {
+      var opcel = $('.datagrid-view2 .datagrid-header-inner').find('tr:first');//操作 列标题
+      opcel.append('<td rowspan="2" field="MX" class=""><div class="datagrid-cell" style="width: 180px; text-align: left; cursor: e-resize;"><span>明细</span><span class="datagrid-sort-icon">&nbsp;</span></div></td>');
+      var operas=$('.datagrid-view2 .datagrid-body').find('tr');
+      operas.append('<td field="MX"><div style="width:180px;text-align:left;" class="datagrid-cell ">'
+                  +'<a href="#" onclick="openHykhzbgzmx(jQuery(&quot;#hylbkhzbgzmxList&quot;).datagrid(&quot;getRows&quot;)[jQuery(this).parent().parent().parent().attr(&quot;datagrid-row-index&quot;)])">行员考核指标工资明细</a><br>'
+                  +'</div></td>');
+    }
+  }
+}]]></javascript>
+</pageSetting>
+

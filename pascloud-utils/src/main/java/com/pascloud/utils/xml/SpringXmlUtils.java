@@ -1,8 +1,12 @@
 package com.pascloud.utils.xml;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.Iterator;
 import java.util.List;
 
 import org.dom4j.Attribute;
@@ -74,6 +78,7 @@ public class SpringXmlUtils {
 	}
 	
 	public static void main(String[] args) {
+		/*
 		String filepath = "D:/applicationContext.xml";
 		String newfile  = "D:/applicationContext2.xml";
 		Document doc = XmlParser.getDocument(filepath);
@@ -89,7 +94,63 @@ public class SpringXmlUtils {
 		//SpringXmlUtils.modifyAttribute(drive, value);
 		System.out.println(drive);
 		
-		SpringXmlUtils.wirteXml(newfile, doc);
+		SpringXmlUtils.wirteXml(newfile, doc);*/
+		
+		//String filepath = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/pascloud/pasdev/zxpfdfmx.xml";
+		//Document doc = XmlParser.getDocument(filepath);
+		//Element root = doc.getRootElement();
+		//System.out.println(root.attributeValue("title"));
+		//.out.println(root.attributeValue("type"));
+		//System.out.println(root.attributeValue("version"));
+		
+		String filepath = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/mycat/conf/schema.xml";
+		Document doc = XmlParser.getDocument(filepath);
+		Element root = doc.getRootElement();
+		
+		
+		Element e = root.addElement("dataNode");
+		e.addAttribute("name", "dnxx");
+		e.addAttribute("dataHost", "oraxx");
+		e.addAttribute("database", "cpasxx");
+		
+		
+		
+		OutputFormat format = OutputFormat.createPrettyPrint();
+		XMLWriter writer;
+		try {
+			writer = new XMLWriter(new FileOutputStream(filepath),format);
+			try {
+				writer.write(doc);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				writer.close();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		/*
+		List nodes = root.elements("dataHost");
+		Iterator<Element> it = nodes.iterator();
+		while(it.hasNext()){
+			Element e = it.next();
+			Element children = (Element) e.selectSingleNode("writeHost");
+			System.out.println(children.attributeValue("url"));
+		}
+		System.out.println(nodes.size());*/
+		
+		
+		
 	}
 
 }

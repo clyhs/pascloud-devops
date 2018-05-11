@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="wgjfxmgl" title="违规积分项目管理" type="manage">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="项目名称" fieldName="">
+        <attribute key="name" value="xmmc" />
+        <attribute key="readonly" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+        <attribute key="name" value="wgxmdh" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+        <attribute key="dataType" value="delete" />
+        <attribute key="sql" value="delete from wgjf_wgxm where wgxmdh= '$wgxmdh$'" />
+        <attribute key="name" value="deleteWgjfxmgl" />
+      </tag>
+      <tag row="0" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+        <attribute key="dataType" value="select" />
+        <attribute key="sql" value="select WGXMDH from WGJF_WGSJDJ where WGXMDH='$wgxmdh$' union select WGXMDH from WGJF_YJSJDJ where WGXMDH='$wgxmdh$'" />
+        <attribute key="name" value="checkDelete" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="wgjfxmgltable">
+    <col id="WGXMC" title="违规项分类名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="true" />
+    <col id="WGXMDH" title="违规项目代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="true" />
+    <col id="XMMC" title="违规项目名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" />
+    <col id="XMNR" title="违规内容" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" />
+    <col id="QSRQ" title="起始日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" />
+    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" />
+    <col id="KFBZ" title="扣分标准" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="true" />
+  </table>
+  <rels>
+    <items id="wgjfxmgltable" />
+  </rels>
+  <addPage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="违规项分类名称" fieldName="WGXLB">
+      <attribute key="sql" value="select  xmfl.wgxlb as key,xmfl.wgxmc as value from wgjf_wgxmfl xmfl where $sysdate$ between xmfl.qsrq and xmfl.jsrq" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="wglb" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="isEditable" value="true" />
+    </tag>
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ">
+      <attribute key="defVal" value="29991231" />
+      <attribute key="name" value="jsrq" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="qsrq" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c  where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'" />
+      <attribute key="name" value="getMaxqsrq" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Text" label="违规项目代号" fieldName="WGXMDH">
+      <attribute key="maxlength" value="10" />
+      <attribute key="name" value="wgxmdh" />
+      <attribute key="styleClass" value="{required:true}" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="Text" label="违规项目名称" fieldName="XMMC">
+      <attribute key="maxlength" value="100" />
+      <attribute key="name" value="xmmc" />
+      <attribute key="styleClass" value="{required:true}" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="扣分标准" fieldName="KFBZ">
+      <attribute key="maxlength" value="21" />
+      <attribute key="precision" value="2" />
+      <attribute key="name" value="kfbz" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="3" name="Textarea" label="违规内容" fieldName="XMNR">
+      <attribute key="cols" value="40" />
+      <attribute key="name" value="xmnr" />
+      <attribute key="styleClass" value="{maxlength:500,required:true}" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+      <attribute key="rows" value="5" />
+    </tag>
+  </addPage>
+  <updatePage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="违规项分类名称" fieldName="WGXLB">
+      <attribute key="sql" value="select  xmfl.wgxlb as key,xmfl.wgxmc as value from wgjf_wgxmfl xmfl where $sysdate$ between xmfl.qsrq and xmfl.jsrq" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="wglb" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="editable" value="false" />
+      <attribute key="isEditable" value="false" />
+    </tag>
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ">
+      <attribute key="defVal" value="29991231" />
+      <attribute key="name" value="jsrq" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="qsrq" />
+      <attribute key="isAll" value="false" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c  where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'" />
+      <attribute key="name" value="getMaxqsrq" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Text" label="违规项目代号" fieldName="WGXMDH">
+      <attribute key="maxlength" value="10" />
+      <attribute key="name" value="wgxmdh" />
+      <attribute key="styleClass" value="{required:true}" />
+      <attribute key="isAll" value="false" />
+      <attribute key="readonly" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="Text" label="违规项目名称" fieldName="XMMC">
+      <attribute key="maxlength" value="100" />
+      <attribute key="name" value="xmmc" />
+      <attribute key="styleClass" value="{required:true}" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="扣分标准" fieldName="KFBZ">
+      <attribute key="maxlength" value="21" />
+      <attribute key="precision" value="2" />
+      <attribute key="name" value="kfbz" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="3" name="Textarea" label="违规内容" fieldName="XMNR">
+      <attribute key="cols" value="40" />
+      <attribute key="name" value="xmnr" />
+      <attribute key="styleClass" value="{maxlength:500,required:true}" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+      <attribute key="rows" value="5" />
+    </tag>
+  </updatePage>
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+  </buttons>
+  <flow>
+    <insertbefore>
+      <sql type="delete">wgjfxmgl_check_itemAddDel</sql>
+      <sql type="update">wgjfxmgl_check_itemUP</sql>
+    </insertbefore>
+    <insertafter />
+    <deletebefore>
+      <sql type="selectmaxqsrq">wgjfxmgl_check_itemMAX_del</sql>
+      <sql type="update">wgjfxmgl_check_itemDELUP</sql>
+    </deletebefore>
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.wgjfxmgl">
+    <select id="dn12.wgjfxmglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select xmflb.wgxmc, xmb.wgxmdh, xmb.xmmc, xmb.xmnr, xmb.qsrq, xmb.jsrq, xmb.kfbz  from wgjf_wgxm xmb  inner join wgjf_wgxmfl xmflb on xmb.wgxlb=xmflb.wgxlb
+      <isNotEmpty property="sysdate">and $sysdate$ between xmflb.qsrq and xmflb.jsrq</isNotEmpty>
+      where 1=1
+      <isNotEmpty property="xmmc">and  xmb.xmmc like '%$xmmc$%'</isNotEmpty>
+      order by xmflb.wgxmc, xmb.wgxmdh, xmb.qsrq desc
+    </select>
+    <select id="dn12.wgjfxmglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select xmflb.wgxmc, xmb.wgxmdh, xmb.xmmc, xmb.xmnr, xmb.qsrq, xmb.jsrq, xmb.kfbz  from wgjf_wgxm xmb  inner join wgjf_wgxmfl xmflb on xmb.wgxlb=xmflb.wgxlb
+      <isNotEmpty property="sysdate">and $sysdate$ between xmflb.qsrq and xmflb.jsrq</isNotEmpty>
+      where 1=1
+      <isNotEmpty property="xmmc">and  xmb.xmmc like '%$xmmc$%'</isNotEmpty>
+      order by xmflb.wgxmc, xmb.wgxmdh, xmb.qsrq desc ) t
+    </select>
+    <select id="dn12.wgjfxmgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  WGXMDH, XMNR, XMMC, KFBZ, WGXLB, QSRQ, JSRQ  from WGJF_WGXM where 1= 1  and WGXMDH = '$wgxmdh$' and QSRQ = $qsrq$
+    </select>
+    <select id="dn12.wgjfxmgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  WGXMDH, XMNR, XMMC, KFBZ, WGXLB, QSRQ, JSRQ  from WGJF_WGXM where 1= 1  and WGXMDH = '$wgxmdh$' and QSRQ = $qsrq$
+    </select>
+    <insert id="dn12.wgjfxmgl_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into WGJF_WGXM( WGXMDH, KFBZ, XMMC, XMNR, QSRQ, WGXLB, JSRQ ) values ( '$wgxmdh$',$kfbz$,'$xmmc$','$xmnr$',$qsrq$,'$wglb$',$jsrq$)
+    </insert>
+    <update id="dn12.wgjfxmgl_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update WGJF_WGXM set KFBZ = $kfbz$,XMMC = '$xmmc$',XMNR = '$xmnr$' where 1=1  and WGXMDH = '$wgxmdh$' and QSRQ = $qsrq$
+    </update>
+    <delete id="dn12.wgjfxmgl_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from WGJF_WGXM where 1=1  and WGXMDH = '$wgxmdh$' and QSRQ = $qsrq$
+    </delete>
+    <delete id="dn12.wgjfxmgl_check_itemAddDel" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[delete from WGJF_WGXM where qsrq >=$qsrq$  and WGXMDH = '$wgxmdh$']]>
+    </delete>
+    <update id="dn12.wgjfxmgl_check_itemUP" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update WGJF_WGXM set jsrq=$qdate$
+      <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty>
+      and WGXMDH = '$wgxmdh$'
+    </update>
+    <select id="dn12.wgjfxmgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select max(qsrq) from WGJF_WGXM where 1=1  and WGXMDH = '$wgxmdh$'
+    </select>
+    <select id="dn12.wgjfxmgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[select  WGXMDH, XMNR, XMMC, KFBZ, WGXLB, QSRQ, JSRQ from WGJF_WGXM where 1=1  and WGXMDH = '$wgxmdh$' and $qsrq$ > $maxqsrq$]]>
+    </select>
+    <update id="dn12.wgjfxmgl_check_itemDELUP" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update WGJF_WGXM set jsrq =29991231 where 1=1 and WGXMDH = '$wgxmdh$' and jsrq =$lastjsrq$
+    </update>
+    <delete id="dn12.wgjfxmgl_deleteWgjfxmgl" parameterClass="java.util.Map">/**!mycat:datanode=$db$**/ delete from wgjf_wgxm where wgxmdh= '$wgxmdh$'</delete>
+    <select id="dn12.wgjfxmgl_checkDelete" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select WGXMDH from WGJF_WGSJDJ where WGXMDH='$wgxmdh$' union select WGXMDH from WGJF_YJSJDJ where WGXMDH='$wgxmdh$'</select>
+    <select id="dn12.wgjfxmgl_getMaxqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c 
+where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'</select>
+    <select id="dn12.wgjfxmgl_MSQL4SELECT_wglb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      /**!mycat:datanode=$db$**/ select  xmfl.wgxlb as key,xmfl.wgxmc as value from wgjf_wgxmfl xmfl
+      <isNotEmpty property="sysdate">where $sysdate$ between xmfl.qsrq and xmfl.jsrq</isNotEmpty>
+    </select>
+  </sqlMap>
+  <javascript>
+    <query>jQuery(document).ready(function () {
+
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}
+
+function showDeleteDialog(sel){
+        var jsrq=sel["JSRQ"];    
+        if(null!=jsrq){
+            if(jsrq!='29991231')
+            {
+                custom_alert("只能删除结束日期为29991231的记录，请重新操作!");
+                return ;
+            }
+        }        
+        var wgxmdh=sel["WGXMDH"];
+        $("#wgxmdh").val(wgxmdh);
+        
+        PAS.di.execute("wgjfxmgl_checkDelete",function(obj){
+          if(obj.data.length&gt;0){
+             parent.custom_alert("此违规项目代号正在被违规积分-违规事件登记使用或违规积分-预警事件登记表使用，不能删除");
+          }else{          
+            custom_confirm('你确定要删除所选记录吗？','提示',function(){
+               PAS.di.execute("wgjfxmgl_deleteWgjfxmgl",function(obj){   
+               loadData();
+               });                 
+            });
+            PAS.di.setDone(obj.sqlid);
+          }
+        });        
+        
+    }</query>
+    <edit>jQuery(document).ready(function () {
+  //这里的js脚本，会在页面加载完成后执行
+  PAS.di.execute('tycsgl_getMaxqsrq',getMaxqsrqBack);//加载最大的起始日期
+});
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+if(maxqsrq&gt;parseInt($('#qsrq').val())){
+      parent.custom_alert('由于重算天数的限制，起始日期最大只能是：'+maxqsrq);
+      return false;
+    }
+ return true;
+}
+function getMaxqsrqBack(obj){
+  if(obj.data.length&gt;0){
+        maxqsrq = obj.data[0].MAXQSRQ;
+        PAS.di.setDone(obj.sqlid);
+  }
+}</edit>
+  </javascript>
+</pageSetting>
+

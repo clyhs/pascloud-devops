@@ -176,7 +176,7 @@ public class ScpClientUtils {
 				scpClient.put(local, server);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				//e.printStackTrace();
+				e.printStackTrace();
 			}
 		}
 	}

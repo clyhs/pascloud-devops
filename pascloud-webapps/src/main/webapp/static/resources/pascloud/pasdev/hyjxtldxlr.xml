@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="hyjxtldxlr" title="行员绩效提留兑现" type="manage">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName="">
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="1" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="">
+        <attribute key="isRequired" value="true" />
+        <attribute key="isDisplayXN" value="true" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="true" />
+        <attribute key="editable" value="true" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="hyjxtldxlrtable">
+    <col id="DXRQ" title="兑现日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="DXJE" title="兑现金额" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+  </table>
+  <rels>
+    <items id="hyjxtldxlrtable" />
+  </rels>
+  <addPage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="兑现日期" fieldName="DXRQ">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="tjrq" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="行　　员" fieldName="KHDXDH">
+      <attribute key="isRequired" value="true" />
+      <attribute key="isDisplayXN" value="false" />
+      <attribute key="jgckbz" value="jg_ckhy" />
+      <attribute key="name" value="khdxdh" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select coalesce(cast (fa.TJYE-cs.CSZ as decimal(17,2)),0) as value from KHFA_JXTL_HY fa inner join csb_lrcs cs on cs.csmc='JXTLDXBZCS' where fa.KHDXDH in ($khdxdh$) and fa.TJRQ=$tjrq$" />
+      <attribute key="name" value="getJe" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="兑现金额" fieldName="DXJE">
+      <attribute key="precision" value="2" />
+      <attribute key="name" value="dxje" />
+      <attribute key="intparts" value="17" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="LRR">
+      <attribute key="defVal" value="$login_hydh$" />
+      <attribute key="name" value="lrr" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="LRRQ">
+      <attribute key="defVal" value="$sysdate$" />
+      <attribute key="name" value="lrrq" />
+    </tag>
+  </addPage>
+  <updatePage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="兑现日期" fieldName="DXRQ">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="tjrq" />
+      <attribute key="isAll" value="false" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="行　　员" fieldName="KHDXDH">
+      <attribute key="isRequired" value="true" />
+      <attribute key="isDisplayXN" value="false" />
+      <attribute key="jgckbz" value="jg_ckhy" />
+      <attribute key="name" value="khdxdh" />
+      <attribute key="isAll" value="false" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="1" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select coalesce(cast (fa.TJYE-cs.CSZ as decimal(17,2)),0) as value from KHFA_JXTL_HY fa inner join csb_lrcs cs on cs.csmc='JXTLDXBZCS' where fa.KHDXDH in ($khdxdh$) and fa.TJRQ=$tjrq$" />
+      <attribute key="name" value="getJe" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="兑现金额" fieldName="DXJE">
+      <attribute key="precision" value="2" />
+      <attribute key="name" value="dxje" />
+      <attribute key="intparts" value="17" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="LRR">
+      <attribute key="defVal" value="$login_hydh$" />
+      <attribute key="name" value="lrr" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="LRRQ">
+      <attribute key="defVal" value="$sysdate$" />
+      <attribute key="name" value="lrrq" />
+    </tag>
+  </updatePage>
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+    <button>import</button>
+  </buttons>
+  <flow>
+    <insertbefore />
+    <insertafter />
+    <deletebefore />
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.hyjxtldxlr">
+    <select id="dn12.hyjxtldxlrList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select tl.khdxdh , tl.dxrq , jg.jgdh , jg.jgmc , hy.hydh , hy.hymc , tl.dxje   from SGLR_JXTL_DXMX tl   inner join khdx_hy hy on hy.khdxdh = tl.khdxdh   inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh and tl.dxrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh   inner join table(fn_getsjjg_java_qxhy(tl.dxrq,$login_khdxdh$,0)) qx on qx.khdxdh=hy.khdxdh
+      <isNotEmpty property="khdxdh">where hy.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="tjrq">and tl.dxrq = $tjrq$</isNotEmpty>
+    </select>
+    <select id="dn12.hyjxtldxlrCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select tl.khdxdh , tl.dxrq , jg.jgdh , jg.jgmc , hy.hydh , hy.hymc , tl.dxje   from SGLR_JXTL_DXMX tl   inner join khdx_hy hy on hy.khdxdh = tl.khdxdh   inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh and tl.dxrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh   inner join table(fn_getsjjg_java_qxhy(tl.dxrq,$login_khdxdh$,0)) qx on qx.khdxdh=hy.khdxdh
+      <isNotEmpty property="khdxdh">where hy.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="tjrq">and tl.dxrq = $tjrq$</isNotEmpty>
+      ) t
+    </select>
+    <select id="dn12.hyjxtldxlr_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  DXRQ, KHDXDH, LRR, LRRQ, DXJE  from  where 1= 1  and DXRQ = $dxrq$ and KHDXDH = $khdxdh$
+    </select>
+    <select id="dn12.hyjxtldxlr_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  DXRQ, KHDXDH, LRR, LRRQ, DXJE  from  where 1= 1  and DXRQ = $tjrq$ and KHDXDH = $khdxdh$
+    </select>
+    <insert id="dn12.hyjxtldxlr_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into ( DXJE, KHDXDH, LRR, DXRQ, LRRQ ) values ( $dxje$,$khdxdh$,'$lrr$',$tjrq$,$lrrq$)
+    </insert>
+    <update id="dn12.hyjxtldxlr_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  set DXJE = $dxje$ where 1=1  and DXRQ = $tjrq$ and KHDXDH = $khdxdh$
+    </update>
+    <delete id="dn12.hyjxtldxlr_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from  where 1=1  and DXRQ = $dxrq$ and KHDXDH = $khdxdh$
+    </delete>
+    <select id="dn12.hyjxtldxlr_getJe" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select coalesce(cast (fa.TJYE-cs.CSZ as decimal(17,2)),0) as value from KHFA_JXTL_HY fa
+inner join csb_lrcs cs on cs.csmc='JXTLDXBZCS'
+where fa.KHDXDH in ($khdxdh$) and fa.TJRQ=$tjrq$</select>
+  </sqlMap>
+  <javascript>
+    <import>parent.addTab('hyjxtldxdr','行员绩效提留兑现','../studio/impParser.do?method=visitHTML&amp;funId=hyjxtldxdr');</import>
+    <query>jQuery(document).ready(function () {
+
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}</query>
+    <edit>jQuery(document).ready(function () {
+//这里的js脚本，会在页面加载完成后执行
+  $('#khdxdh_mc').change(function(){
+    PAS.di.execute('hyjxtldxlr_getJe',getJeBack);
+  }).trigger('change');
+  $('#dxje').change(function(){
+    PAS.di.execute('hyjxtldxlr_getJe',getJeBack);
+  }).trigger('change');
+
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+  return PAS.di.isDone();
+}
+
+function getJeBack(obj){
+  var j = document.getElementById('dxje').value;
+  j=parseFloat(j);
+  if (isNaN(j) || j=="") {return;}
+  if (obj.data&amp;&amp;obj.data.length&gt;0){
+    var d = obj.data[0].VALUE;
+     if (j&gt;d) {
+        alert("当前提留余额为："+d);
+      }else{
+        PAS.di.setDone(obj.sqlid);
+      }
+  }else{
+   alert("该行员没有提留余额！");
+  }
+}</edit>
+  </javascript>
+</pageSetting>
+

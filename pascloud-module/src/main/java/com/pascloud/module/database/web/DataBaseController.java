@@ -13,15 +13,18 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.pascloud.constant.Constants;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.database.service.DataBaseService;
+import com.pascloud.utils.DBUtils;
 import com.pascloud.utils.FileUtils;
 import com.pascloud.utils.db.DataSourceUtils;
 import com.pascloud.vo.common.TreeVo;
@@ -43,7 +46,51 @@ public class DataBaseController extends BaseController {
 	
 	@RequestMapping("index.html")
 	public String index(){
+		initDataSource();
 		return "database/index";
+	}
+	
+	private void initDataSource(){
+		String database_dir = m_config.getPASCLOUD_DATABASE_DIR();
+		if(null!=database_dir){
+			log.info("初始化数据库--开始--");
+			XStream xstream = new  XStream();
+			xstream.alias("dbinfo", DBInfo.class);
+			log.info(database_dir);
+			File database_file= new File(database_dir);
+			if(FileUtils.createOrExistsDir(database_file)){
+				List<File> files = FileUtils.listFilesInDirWithFilter(database_file, "xml");
+				log.info(files.size()+"");
+				if(files.size()>0){
+					for(File file : files){
+						try{
+							ComboPooledDataSource dataSource = new ComboPooledDataSource();
+							DBInfo info = (DBInfo) xstream.fromXML(file);
+							log.info(info.getUrl().trim()+info.getDbType());
+							dataSource = new ComboPooledDataSource();  
+					        dataSource.setUser(info.getUsername().trim());  
+					        dataSource.setDataSourceName(info.getName());
+					        dataSource.setPassword(info.getPassword().trim());  
+					        dataSource.setJdbcUrl(info.getUrl().trim());  
+					        dataSource.setDriverClass(info.getDriverClassName().trim());  
+					        dataSource.setInitialPoolSize(5);  
+					        dataSource.setMinPoolSize(5);  
+					        dataSource.setMaxPoolSize(10);  
+					        dataSource.setMaxStatements(0);  
+					        dataSource.setMaxIdleTime(60);     
+					        //dataSource.getConnection();
+					        DataSourceUtils.addDataSource(info.getId(), dataSource);
+						} catch (Exception e) {  
+					        //e.printStackTrace();  
+							log.error("初始化失败");
+					    } 
+						
+					}
+				}
+			}
+			
+			log.info("初始化数据库--结束--");
+		}
 	}
 	
 	@RequestMapping("table.html")
@@ -248,6 +295,35 @@ public class DataBaseController extends BaseController {
 		
 		return trees;
 	}
+	
+	
+	@RequestMapping(value="connectDb.json",method=RequestMethod.GET)
+	@ResponseBody
+	public ResultCommon connectDb(HttpServletRequest request,
+			@RequestParam(value="dbType",defaultValue="",required=true) String dbType,
+			@RequestParam(value="ip",defaultValue="",required=true) String ip,
+			@RequestParam(value="port",defaultValue="0",required=true) int port,
+			@RequestParam(value="database",defaultValue="",required=true) String database,
+			@RequestParam(value="username",defaultValue="",required=true) String username,
+			@RequestParam(value="password",defaultValue="",required=true) String password){
+		
+		ResultCommon result = null;
+		
+		String driverClass=DBUtils.getDirverClassName(dbType);
+		String url = DBUtils.getUrlByParams(dbType,ip,database,port);
+		log.info(url);
+		log.info(driverClass);
+		DBUtils db = new DBUtils(driverClass,url,username,password);
+		
+		if(db.canConnect()){
+			result = new ResultCommon(10000,"成功");
+		}else{
+			result = new ResultCommon(20000,"失败");
+		}
+		
+		return result;
+	}
+	
 	
 	
 	

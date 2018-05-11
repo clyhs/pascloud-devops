@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mycat:server SYSTEM "server.dtd">
+
+<mycat:server xmlns:mycat="http://io.mycat/">
+  <system>
+    <!-- 1为开启实时统计、0为关闭 -->
+    <property name="useSqlStat">1</property>
+    <property name="processors">64</property>
+    <property name="processorExecutor">256</property>
+    <property name="processorBufferPool">204800000</property>
+    <property name="processorBufferChunk">409600</property>
+    <!-- 1为开启全加班一致性检测、0为关闭 -->
+    <property name="useGlobleTableCheck">0</property>
+    <property name="defaultSqlParser">druidparser</property>
+    <property name="sequnceHandlerType">1</property>
+    <property name="processorBufferPoolType">0</property>
+    <property name="handleDistributedTransactions">0</property>
+    <property name="useOffHeapForMerge">0</property>
+    <property name="memoryPageSize">1m</property>
+    <property name="spillsFileBufferSize">1k</property>
+    <property name="useStreamOutput">0</property>
+    <property name="systemReserveMemorySize">384m</property>
+  </system>
+  <!--设置访问密码、ibatis用这里的密码连接中间件-->
+  <user name="root">
+    <property name="password">root</property>
+    <property name="schemas">alldb,dn1_schema,dn2_schema,dn3_schema,dn4_schema,dn5_schema,dn12_schema,dn13_schema,dn14_schema,dn15_schema,dn16_schema,dn17_schema</property>
+  </user>
+  <user name="user">
+    <property name="password">user</property>
+    <property name="schemas">alldb,dn1_schema,dn2_schema,dn3_schema,dn4_schema,dn5_schema,dn12_schema,dn13_schema,dn14_schema,dn15_schema,dn16_schema,dn17_schema</property>
+    <property name="readOnly">true</property>
+  </user>
+</mycat:server>

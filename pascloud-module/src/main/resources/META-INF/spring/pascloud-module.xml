@@ -43,7 +43,7 @@
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-				<value>classpath:config.properties</value>
+				<value>classpath*:config.properties</value>
 			</list>
 		</property>
 	</bean>
@@ -51,7 +51,7 @@
 	
 	
 	
-	<util:properties id="properties" location="classpath:config.properties"/>
+	<util:properties id="properties" location="classpath*:config.properties"/>
 	 
 	
 	

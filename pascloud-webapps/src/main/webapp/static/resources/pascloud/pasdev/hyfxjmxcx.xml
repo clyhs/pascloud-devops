@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="hyfxjmxcx" title="行员风险金明细查询" type="query" version="2.0.0">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月">
+        <attribute key="dateFmt" value="yyyyMM" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="no" />
+      </tag>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="tjrq_ym" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员">
+        <attribute key="isDisplayXN" value="true" />
+        <attribute key="editable" value="true" />
+        <attribute key="style" value="width:100px;" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="true" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="客户类型">
+        <attribute key="width" value="120px;" />
+        <attribute key="dmmc" value="zhbs" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="zhbs" />
+        <attribute key="isAll" value="true" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="1" col="0" colspan="1" rowspan="1" name="Text" label="客户号">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="khh" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="1" col="1" colspan="1" rowspan="1" name="Text" label="客户名称">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="zhhm" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="1" col="2" colspan="1" rowspan="1" name="Text" label="贷款账号">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="zhdh" />
+        <attribute key="readonly" value="false" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="hyfxjmxcx_xsjy1jgj" title="新数据源1结果集" page="true">
+    <col id="TJRQ" title="统计年月" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHHM" title="客户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHLX" title="客户类型" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHDH" title="贷款账号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FFRQ" title="发放日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DQRQ" title="到期日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="LJYJTFXJ" title="累计已计提风险金" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="true" />
+    <col id="YFHFXJ" title="累计已返还风险金" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="true" />
+    <col id="DFHFXJ" title="待返还风险金" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="true" />
+  </table>
+  <sqlMap namespace="studio.hyfxjmxcx">
+    <select id="dn12.hyfxjmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select substr(cast(fxjmx.tjrq as char(8)),1,6) as tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,dkzh.khh,dkzh.zhhm,dmms.dmms as khlx, dkzh.zhdh,dkzh.ffrq,dkzh.dqrq,fxjmx.ljyjtfxj,fxjmx.yfhfxj,fxjmx.dfhfxj from dkjx_dkfxjmx fxjmx inner join khdx_hy hy on hy.khdxdh = fxjmx.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh = hy.khdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty>
+      inner join khdx_jg jg on jg.khdxdh = jgcy.jgkhdxdh inner join jxdx_dkzh dkzh on fxjmx.jxdxdh = dkzh.jxdxdh inner join csb_dmms dmms on dkzh.zhbs = dmms.dmz and dmms.dmmc = 'ZHBS' inner join table(FN_GETSJJG_JAVA_QXHY($tjrq_ym$,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh
+      <isNotEmpty property="tjrq">where fxjmx.tjrq between $tjrq$01 and $tjrq_ym$</isNotEmpty>
+      <isNotEmpty property="khdxdh">and  hy.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="khh">and dkzh.khh like '%$khh$%'</isNotEmpty>
+      <isNotEmpty property="zhhm">and dkzh.zhhm like '%$zhhm$%'</isNotEmpty>
+      <isNotEmpty property="zhdh">and dkzh.zhdh like '%$zhdh$%'</isNotEmpty>
+      <isNotEmpty property="zhbs">and dkzh.zhbs = '$zhbs$'</isNotEmpty>
+    </select>
+    <select id="dn12.hyfxjmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select substr(cast(fxjmx.tjrq as char(8)),1,6) as tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,dkzh.khh,dkzh.zhhm,dmms.dmms as khlx, dkzh.zhdh,dkzh.ffrq,dkzh.dqrq,fxjmx.ljyjtfxj,fxjmx.yfhfxj,fxjmx.dfhfxj from dkjx_dkfxjmx fxjmx inner join khdx_hy hy on hy.khdxdh = fxjmx.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh = hy.khdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty>
+      inner join khdx_jg jg on jg.khdxdh = jgcy.jgkhdxdh inner join jxdx_dkzh dkzh on fxjmx.jxdxdh = dkzh.jxdxdh inner join csb_dmms dmms on dkzh.zhbs = dmms.dmz and dmms.dmmc = 'ZHBS' inner join table(FN_GETSJJG_JAVA_QXHY($tjrq_ym$,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh
+      <isNotEmpty property="tjrq">where fxjmx.tjrq between $tjrq$01 and $tjrq_ym$</isNotEmpty>
+      <isNotEmpty property="khdxdh">and  hy.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="khh">and dkzh.khh like '%$khh$%'</isNotEmpty>
+      <isNotEmpty property="zhhm">and dkzh.zhhm like '%$zhhm$%'</isNotEmpty>
+      <isNotEmpty property="zhdh">and dkzh.zhdh like '%$zhdh$%'</isNotEmpty>
+      <isNotEmpty property="zhbs">and dkzh.zhbs = '$zhbs$'</isNotEmpty>
+      ) t
+    </select>
+  </sqlMap>
+  <rels>
+    <items id="hyfxjmxcx_xsjy1jgj" />
+  </rels>
+  <javascript><![CDATA[jQuery(document).ready(function () {
+  //var obj=createTimeObj(jQuery("#tjrq").val());
+  var obj=createTimeObj(jQuery("#sysDate").val());
+    if(jQuery("#sysDate").val()!=obj.ym){
+        var sym=obj.sym;
+        jQuery("#tjrq").val(sym.substr(0,6));
+    }
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+var o_tjrq = createTimeObj($("#tjrq").val());
+ $("#tjrq_ym").val(o_tjrq.ym);
+ return true;
+}]]></javascript>
+</pageSetting>
+

@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="yyckyj" title="预约业绩管理" type="manage">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="录入日期" fieldName="">
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="qsrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="defValType" value="srvDate" />
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="readonly" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="1" rowspan="1" colspan="1" name="Date" label="至" fieldName="">
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="jsrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="defValType" value="srvDate" />
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="readonly" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="">
+        <attribute key="isRequired" value="false" />
+        <attribute key="isDisplayXN" value="false" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="true" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="3" rowspan="1" colspan="1" name="MSQL4Select" label="预约类型" fieldName="">
+        <attribute key="sql" value="select csb.yylx as key, csb.yyms as value from csb_yylx csb inner join table(FN_GETSJJG_JAVA_YWLB($jsrq$, $login_khdxdh$, 0))a on a.ywlb = csb.ywlb order by a.ywlb" />
+        <attribute key="isSearch" value="false" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="isMultiple" value="false" />
+        <attribute key="name" value="yylx" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isAll" value="true" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+      <tag row="0" col="4" rowspan="1" colspan="1" name="Text" label="客户名称" fieldName="">
+        <attribute key="name" value="khmc" />
+        <attribute key="readonly" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="yyckyjtable">
+    <col id="JGDH" title="机构代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="YYMS" title="预约类型" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JGMC" title="预约机构" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JGKHDXDH" title="机构考核对象代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="LSH" title="LSH" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="KHLX" title="客户类型" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="KHMC" title="客户名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="ZJLX" title="证件类型" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="ZJHM" title="证件号码" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="YJJE" title="预约金额" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="BLRQ" title="办理日期" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="BZ" title="备注" align="left" type="string" width="175" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" hidden="true" />
+    <col id="YYQSRQ" title="预约起始时间" align="left" type="string" width="95" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" />
+    <col id="YYJSRQ" title="结束时间" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" />
+    <col id="YYLX" title="YYLX" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" />
+  </table>
+  <rels>
+    <items id="yyckyjtable" />
+  </rels>
+  <addPage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="预约办理日期" fieldName="YYQSRQ">
+      <attribute key="style" value="width:160px" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="qsrq" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="srvDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="Date" label="至" fieldName="YYJSRQ">
+      <attribute key="style" value="width:120px" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="jsrq" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="srvDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="客户经理" fieldName="KHDXDH">
+      <attribute key="isRequired" value="true" />
+      <attribute key="style" value="width:160px" />
+      <attribute key="isDisplayXN" value="false" />
+      <attribute key="jgckbz" value="jg_ckhy" />
+      <attribute key="name" value="khdxdh" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="MSQL4Select" label="预约类型" fieldName="YYLX">
+      <attribute key="sql" value="select csb.yylx as key, csb.yyms as value from csb_yylx csb inner join table(FN_GETSJJG_JAVA_YWLB($jsrq$, $login_khdxdh$, 0))a on a.ywlb = csb.ywlb order by csb.yylx" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="yylx" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="isEditable" value="true" />
+    </tag>
+    <tag row="1" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select (case when max(lsh)=0 or max(lsh) is null then 0 else max(lsh) end) +1 as LSH from JXDX_YYCK" />
+      <attribute key="name" value="getLsh" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="NewJg" label="预约机构" fieldName="JGKHDXDH">
+      <attribute key="ckbz" value="alljg" />
+      <attribute key="cascadeCheck" value="true" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="style" value="width:160px" />
+      <attribute key="name" value="jgkhdxdh" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="1" rowspan="1" colspan="1" name="Date" label="录入日期" fieldName="BLRQ">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="blrq" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="srvDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="2" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select count(1) cnt   from JXDX_YYYJ  where jgkhdxdh = $jgkhdxdh$    and khmc = '$khmc$'    and ($qsrq$ between yyqsrq and yyjsrq or        $jsrq$ between yyqsrq and yyjsrq)    and yylx = '$yylx$'" />
+      <attribute key="name" value="existYy" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Text" label="客户名称" fieldName="KHMC">
+      <attribute key="style" value="width:160px" />
+      <attribute key="name" value="khmc" />
+      <attribute key="styleClass" value="max-length-50,required:true" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="1" rowspan="1" colspan="1" name="Dmms" label="客户类型" fieldName="KHLX">
+      <attribute key="defVal" value="1" />
+      <attribute key="name" value="khlx" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="dmmc" value="khfxkhlx" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select coalesce(csz,'5') as YYSXTS from CSB_YWGXLCCS_FH where csmc='YYSXTS' and ywlx = '$yylx$'" />
+      <attribute key="name" value="getYYSXTS" />
+    </tag>
+    <tag row="3" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select csz as yysxts from xtb_xtcs where csmc = 'YYSXTS'" />
+      <attribute key="name" value="getMRYYSXTS" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Text" label="证件号码" fieldName="ZJHM">
+      <attribute key="style" value="width:160px" />
+      <attribute key="name" value="zjhm" />
+      <attribute key="styleClass" value="max-length-50,required:true" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="1" rowspan="1" colspan="1" name="Dmms" label="证件类型" fieldName="ZJLB">
+      <attribute key="name" value="zjlb" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="dmmc" value="zjlx" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="yysxts" />
+    </tag>
+    <tag row="4" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="mryysxts" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Number" label="预约金额" fieldName="YJJE">
+      <attribute key="precision" value="2" />
+      <attribute key="style" value="width:160px" />
+      <attribute key="name" value="yjje" />
+      <attribute key="intparts" value="17" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="5" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="PPBZ">
+      <attribute key="defVal" value="0" />
+      <attribute key="name" value="ppbz" />
+    </tag>
+    <tag row="6" col="0" rowspan="1" colspan="2" name="Textarea" label="备注" fieldName="BZ">
+      <attribute key="cols" value="50" />
+      <attribute key="name" value="bz" />
+      <attribute key="styleClass" value="{maxlength:100}" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+      <attribute key="rows" value="3" />
+    </tag>
+    <tag row="6" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="LSH">
+      <attribute key="name" value="lsh" />
+    </tag>
+  </addPage>
+  <updatePage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="预约办理日期" fieldName="YYQSRQ">
+      <attribute key="style" value="width:160px" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="qsrq" />
+      <attribute key="isAll" value="false" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="srvDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="Date" label="至" fieldName="YYJSRQ">
+      <attribute key="style" value="width:120px" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="jsrq" />
+      <attribute key="isAll" value="false" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="srvDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="readonly" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="客户经理" fieldName="KHDXDH">
+      <attribute key="isRequired" value="true" />
+      <attribute key="style" value="width:160px" />
+      <attribute key="isDisplayXN" value="false" />
+      <attribute key="jgckbz" value="jg_ckhy" />
+      <attribute key="name" value="khdxdh" />
+      <attribute key="isAll" value="false" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="MSQL4Select" label="预约类型" fieldName="YYLX">
+      <attribute key="sql" value="select csb.yylx as key, csb.yyms as value from csb_yylx csb inner join table(FN_GETSJJG_JAVA_YWLB($jsrq$, $login_khdxdh$, 0))a on a.ywlb = csb.ywlb order by csb.yylx" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="yylx" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="editable" value="false" />
+      <attribute key="isEditable" value="false" />
+    </tag>
+    <tag row="1" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select (case when max(lsh)=0 or max(lsh) is null then 0 else max(lsh) end) +1 as LSH from JXDX_YYCK" />
+      <attribute key="name" value="getLsh" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="NewJg" label="预约机构" fieldName="JGKHDXDH">
+      <attribute key="ckbz" value="alljg" />
+      <attribute key="cascadeCheck" value="true" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="style" value="width:160px" />
+      <attribute key="name" value="jgkhdxdh" />
+      <attribute key="isAll" value="false" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="2" col="1" rowspan="1" colspan="1" name="Date" label="录入日期" fieldName="BLRQ">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="blrq" />
+      <attribute key="isAll" value="false" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="srvDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="2" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select count(1) cnt   from JXDX_YYYJ  where jgkhdxdh = $jgkhdxdh$    and khmc = '$khmc$'    and ($qsrq$ between yyqsrq and yyjsrq or        $jsrq$ between yyqsrq and yyjsrq)    and yylx = '$yylx$'" />
+      <attribute key="name" value="existYy" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Text" label="客户名称" fieldName="KHMC">
+      <attribute key="style" value="width:160px" />
+      <attribute key="name" value="khmc" />
+      <attribute key="styleClass" value="max-length-50,required:true" />
+      <attribute key="isAll" value="false" />
+      <attribute key="readonly" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="3" col="1" rowspan="1" colspan="1" name="Dmms" label="客户类型" fieldName="KHLX">
+      <attribute key="defVal" value="1" />
+      <attribute key="name" value="khlx" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="dmmc" value="khfxkhlx" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select coalesce(csz,'5') as YYSXTS from CSB_YWGXLCCS_FH where csmc='YYSXTS' and ywlx = '$yylx$'" />
+      <attribute key="name" value="getYYSXTS" />
+    </tag>
+    <tag row="3" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select csz as yysxts from xtb_xtcs where csmc = 'YYSXTS'" />
+      <attribute key="name" value="getMRYYSXTS" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Text" label="证件号码" fieldName="ZJHM">
+      <attribute key="style" value="width:160px" />
+      <attribute key="name" value="zjhm" />
+      <attribute key="styleClass" value="max-length-50,required:true" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="1" rowspan="1" colspan="1" name="Dmms" label="证件类型" fieldName="ZJLB">
+      <attribute key="name" value="zjlb" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="dmmc" value="zjlx" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="yysxts" />
+    </tag>
+    <tag row="4" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="mryysxts" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Number" label="预约金额" fieldName="YJJE">
+      <attribute key="precision" value="2" />
+      <attribute key="style" value="width:160px" />
+      <attribute key="name" value="yjje" />
+      <attribute key="intparts" value="17" />
+      <attribute key="isAll" value="false" />
+      <attribute key="readonly" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="5" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="PPBZ">
+      <attribute key="defVal" value="0" />
+      <attribute key="name" value="ppbz" />
+    </tag>
+    <tag row="6" col="0" rowspan="1" colspan="2" name="Textarea" label="备注" fieldName="BZ">
+      <attribute key="cols" value="50" />
+      <attribute key="name" value="bz" />
+      <attribute key="styleClass" value="{maxlength:100}" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+      <attribute key="rows" value="3" />
+    </tag>
+    <tag row="6" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="LSH">
+      <attribute key="name" value="lsh" />
+    </tag>
+  </updatePage>
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+  </buttons>
+  <flow>
+    <insertbefore />
+    <insertafter />
+    <deletebefore />
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.yyckyj">
+    <select id="dn12.yyckyjList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select jg.jgdh,jg.jgmc,jg.khdxdh as jgkhdxdh,hy.khdxdh,hy.hymc,hy.hydh,yyck.lsh,khlx.dmms khlx, yyck.khmc,zjlx.dmms zjlx,zjhm,yyck.yjje,yyck.blrq,yyck.yyqsrq,yyck.yyjsrq,yyck.bz ,csb.yyms,csb.yylx from jxdx_yyyj yyck inner join khdx_hy hy on hy.khdxdh=yyck.khdxdh inner join khdx_jg jg on jg.khdxdh=yyck.jgkhdxdh inner join table(fn_getsjjg_java_qxhy($jsrq$,$login_khdxdh$,0)) qx on qx.khdxdh=hy.khdxdh left join csb_dmms khlx on khlx.dmz=yyck.khlx and khlx.dmmc='KHFXKHLX' left join csb_dmms zjlx on zjlx.dmz=yyck.zjlb and zjlx.dmmc='ZJLX' left join csb_yylx csb on csb.yylx=yyck.yylx
+      <isNotEmpty property="qsrq">where yyck.blrq between $qsrq$ and $jsrq$</isNotEmpty>
+      <isNotEmpty property="khmc">and yyck.khmc like '%$khmc$%'</isNotEmpty>
+      <isNotEmpty property="khdxdh">and yyck.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="yylx">and yyck.yylx='$yylx$'</isNotEmpty>
+      order by yyck.lsh desc
+    </select>
+    <select id="dn12.yyckyjCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select jg.jgdh,jg.jgmc,jg.khdxdh as jgkhdxdh,hy.khdxdh,hy.hymc,hy.hydh,yyck.lsh,khlx.dmms khlx, yyck.khmc,zjlx.dmms zjlx,zjhm,yyck.yjje,yyck.blrq,yyck.yyqsrq,yyck.yyjsrq,yyck.bz ,csb.yyms,csb.yylx from jxdx_yyyj yyck inner join khdx_hy hy on hy.khdxdh=yyck.khdxdh inner join khdx_jg jg on jg.khdxdh=yyck.jgkhdxdh inner join table(fn_getsjjg_java_qxhy($jsrq$,$login_khdxdh$,0)) qx on qx.khdxdh=hy.khdxdh left join csb_dmms khlx on khlx.dmz=yyck.khlx and khlx.dmmc='KHFXKHLX' left join csb_dmms zjlx on zjlx.dmz=yyck.zjlb and zjlx.dmmc='ZJLX' left join csb_yylx csb on csb.yylx=yyck.yylx
+      <isNotEmpty property="qsrq">where yyck.blrq between $qsrq$ and $jsrq$</isNotEmpty>
+      <isNotEmpty property="khmc">and yyck.khmc like '%$khmc$%'</isNotEmpty>
+      <isNotEmpty property="khdxdh">and yyck.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="yylx">and yyck.yylx='$yylx$'</isNotEmpty>
+      order by yyck.lsh desc ) t
+    </select>
+    <select id="dn12.yyckyj_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  JGKHDXDH, KHMC, YYQSRQ, PPBZ, KHDXDH, LSH, ZJHM, BZ, YYLX, ZJLB, YJJE, BLRQ, KHLX, YYJSRQ  from JXDX_YYYJ where 1= 1  and LSH = $lsh$
+    </select>
+    <select id="dn12.yyckyj_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  JGKHDXDH, KHMC, YYQSRQ, PPBZ, KHDXDH, LSH, ZJHM, BZ, YYLX, ZJLB, YJJE, BLRQ, KHLX, YYJSRQ  from JXDX_YYYJ where 1= 1  and LSH = $lsh$
+    </select>
+    <insert id="dn12.yyckyj_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into JXDX_YYYJ( LSH, YJJE, ZJLB, BLRQ, BZ, KHDXDH, KHLX, YYQSRQ, YYJSRQ, PPBZ, KHMC, ZJHM, YYLX, JGKHDXDH ) values ( $lsh$,$yjje$,'$zjlb$',$blrq$,'$bz$',$khdxdh$,'$khlx$',$qsrq$,$jsrq$,'$ppbz$','$khmc$','$zjhm$','$yylx$',$jgkhdxdh$)
+    </insert>
+    <update id="dn12.yyckyj_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update JXDX_YYYJ set ZJLB = '$zjlb$',BZ = '$bz$',KHLX = '$khlx$',ZJHM = '$zjhm$' where 1=1  and LSH = $lsh$
+    </update>
+    <delete id="dn12.yyckyj_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from JXDX_YYYJ where 1=1  and LSH = $lsh$
+    </delete>
+    <select id="dn12.yyckyj_getLsh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select (case when max(lsh)=0 or max(lsh) is null then 0 else max(lsh) end) +1 as LSH from JXDX_YYCK</select>
+    <select id="dn12.yyckyj_existYy" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select count(1) cnt
+  from JXDX_YYYJ
+ where jgkhdxdh = $jgkhdxdh$
+   and khmc = '$khmc$'
+   and ($qsrq$ between yyqsrq and yyjsrq or
+       $jsrq$ between yyqsrq and yyjsrq)
+   and yylx = '$yylx$'</select>
+    <select id="dn12.yyckyj_getYYSXTS" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select coalesce(csz,'5') as YYSXTS from CSB_YWGXLCCS_FH where csmc='YYSXTS' and ywlx = '$yylx$'</select>
+    <select id="dn12.yyckyj_getMRYYSXTS" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz as yysxts from xtb_xtcs where csmc = 'YYSXTS'</select>
+    <select id="dn12.yyckyj_MSQL4SELECT_yylx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csb.yylx as key, csb.yyms as value from csb_yylx csb inner join table(FN_GETSJJG_JAVA_YWLB($jsrq$, $login_khdxdh$, 0))a on a.ywlb = csb.ywlb order by a.ywlb</select>
+  </sqlMap>
+  <javascript>
+    <query>jQuery(document).ready(function () {
+  //起始日期设计为服务器时间的月初  
+  $("#qsrq").val(createTimeObj($("#qsrq").val()).yc);
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+  return true;
+}
+/*
+function customFastLink($table,row){//this 对象绑定当前行的单元格
+       // var del = $('&lt;a class="operation_del LIST_BAR" title="删除"&gt;删除&lt;/a&gt;');
+        //this.append(del);
+        del.click(function(){
+            showDeleteDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]);
+        });
+        return true;
+}*/</query>
+    <edit>jQuery(document).ready(function () {
+  init_zjlb();
+  init_khlx();
+  init_yylx();
+//这里的js脚本，会在页面加载完成后执行
+
+
+  
+
+  if($("#page_operate").val()=='add'){
+    //$("input[type='button'][value='确 定'][onclick='submitform();']").executeOnEvent('click','yyckyj_existYy',existYy);
+    //PAS.di.execute('yyckyj_getLsh',getLshBack);
+    //现把流水号改为时间戳
+    var timestamp = Date.parse(new Date());
+    timestamp = timestamp / 1000;
+    jQuery('#lsh').val(timestamp);
+    document.getElementById('qsrq').value=dayAddOne(1);
+    $("#qsrq").bind("blur",getJsrq);
+    $('#jsrq').attr("readonly","readonly");
+    $("#jsrq").removeAttr("onfocus");
+    PAS.di.execute('yyckyj_getMRYYSXTS',getMrYysxts);//得到默认预约天数
+    $('#yylx').change(function(){
+      
+       PAS.di.execute('yyckyj_getYYSXTS',getYysxts);
+    }).trigger('change');
+    }
+   // $('#yylx').executeOnEvent('change','yyckyj_getYYSXTS',getYysxts);
+   // });
+   
+   
+   
+   $('#khlx').change(function(){
+        
+        var khlx=$('#khlx').val();
+       
+        if(khlx =='1'){$('#zjlb').val('01'); }
+        if(khlx =='2'){$('#zjlb').val('16'); }
+    }).trigger('change');
+   
+    
+});
+
+
+var isDoneRet=true;
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+isDoneRet=true;
+ // PAS.di.setDone('yyckyj_existYy');
+ if($("#page_operate").val()=='add'){
+    
+    //executeExistYy();
+    $.ajaxSetup({   
+            async : false  
+        });
+     $.post('/module/khfa/selectYjyy',
+     {khmc:$("#khmc").val(),qsrq:$("#qsrq").val(),jgkhdxdh:$("#jgkhdxdh").val()
+      ,jsrq:$("#jsrq").val(),yylx:$("#yylx").val()},function(cb){
+     
+                if(cb&gt;0){
+                  custom_alert('客户在该预约时间段内已经被预约！');
+                  isDoneRet =  false;
+                }else{
+               
+                  var yyqsrq = $('#qsrq').val();
+                  var yyjsrq = $('#jsrq').val();
+                  var blrq = $("#blrq").val();
+                  if(yyqsrq&gt;yyjsrq){
+                    custom_alert('预约起始时间不能大于结束时间！');
+                    isDoneRet = false;
+                  }
+                  if(yyqsrq &lt;= blrq){
+                    custom_alert('预约起始时间必须大于办理时间！');
+                    isDoneRet = false;
+                  }
+                }
+      }).error(function(){
+                    alert("发生内部错误！");
+      });
+  }
+  
+ // setTimeout("isDone()",3000);
+    
+  return isDoneRet;
+}
+
+function isDone(){
+  isDoneRet= PAS.di.isDone();
+
+  //alert('in isDone();isDoneRet='+isDoneRet);
+}
+
+function getJsrq()
+{
+  document.getElementById('jsrq').value = dayAddOne(parseInt($('#yysxts').val()));
+
+}
+
+
+function executeExistYy(){
+  
+  //document.getElementById('jsrq').value = dayAddOne(parseInt($('#yysxts').val()));
+
+  var khmc = $("#khmc").val();
+  if(khmc!= undefined &amp;&amp; khmc.length &gt; 0){
+    
+      PAS.di.execute('yyckyj_existYy',existYy);
+      
+    
+  }
+  
+  }
+
+function dayAddOne(num){ 
+  
+  var year = $('#qsrq').val().substring(0,4);
+  var month = $('#qsrq').val().substring(4,6);
+  var data = $('#qsrq').val().substring(6,8);
+  var d = new Date(year+"/"+month+"/"+data);
+  d.setDate(d.getDate()+num);
+  var months = d.getMonth()+1;
+  var days = d.getDate();
+  if(months&lt;10){months=0+""+months;}
+  if(days&lt;10){days=0+""+days;}
+  //$('#qsrq').val(d.getFullYear()+""+months+""+days);
+  return d.getFullYear()+""+months+""+days;
+}
+
+
+function existYy(obj){
+    PAS.di['yyckyj_existYy']=1;
+    if(obj.data.length&gt;0){
+      var cnt=obj.data[0].CNT;
+      if(parseInt(cnt)&gt;0){
+        PAS.di['yyckyj_existYy']=1;
+        parent.custom_alert('客户在该预约时间段内已经被预约！');
+        $("#qsrq").focus();
+        isDoneRet = false;
+      }else{
+       // alert('setdone..');
+        isDoneRet = true;
+     //   PAS.di.setDone('yyckyj_existYy');
+      }
+    }else{
+       // alert('setdone..');
+       isDoneRet = true;
+      //PAS.di.setDone('yyckyj_existYy');
+    }
+  }
+
+
+Date.prototype.addDays = function(days)
+{
+    var dat = new Date(this.valueOf());
+    dat.setDate(dat.getDate() + days);
+    return dat;
+}
+
+ Date.prototype.yyyymmdd=function() {
+   var yyyy = this.getFullYear().toString();
+   var mm = parseInt((this.getMonth()+1).toString()); // getMonth() is zero-based
+   var dd  = parseInt(this.getDate().toString());
+   return yyyy + (mm&gt;=10?mm:"0"+mm) + (dd&gt;=10?dd:"0"+dd); // padding
+  }
+
+function getMrYysxts(obj){
+ 
+  if(obj.data.length&gt;0){
+    $('#mryysxts').val(obj.data[0].YYSXTS);
+  }
+}
+function getYysxts(obj){
+    
+    var blrq = $("#blrq").val();
+    var strblrq = blrq.substring(0,4)+'/'+blrq.substring(4,6)+'/'+blrq.substring(6,8);
+    var blrqDate = new Date(strblrq);
+    
+    if(obj.data.length&gt;0){
+        var yysxts=obj.data[0].YYSXTS;
+        
+        // 时间包含预约开始当天
+        $('#yysxts').val(parseInt(yysxts)-1);
+       // var qsrqDate = blrqDate.addDays(1);
+        
+       // $("#qsrq").val(blrqDate.yyyymmdd());
+        
+        var jsrqDate = blrqDate.addDays(parseInt(yysxts));
+        
+        $("#jsrq").val(jsrqDate.yyyymmdd());
+        
+    }else{
+        var ts = $('#mryysxts').val();
+        if(ts==''){
+           ts = 5;
+        }
+        //$("#qsrq").val(blrq);
+        $('#yysxts').val(5-1);
+        var blrq = $("#blrq").val();
+        var strblrq = blrq.substring(0,4)+'/'+blrq.substring(4,6)+'/'+blrq.substring(6,8);
+        var blrqDate = new Date(strblrq);
+        var jsrqDate = blrqDate.addDays(parseInt(ts));
+        
+        $("#jsrq").val(jsrqDate.yyyymmdd());
+    }
+    
+    PAS.di.setDone(obj.sqlid);
+}
+var old_qsrq = $("#qsrq").val();
+
+function getLshBack(obj){
+    if(obj.data.length&gt;0){
+        var lsh=obj.data[0].LSH;
+        jQuery('#lsh').val(lsh);
+    }
+    hideDate();
+    PAS.di.setDone(obj.sqlid);
+}
+
+function hideDate(){
+  jQuery('#yyrq').parent().parent().hide();
+}</edit>
+  </javascript>
+</pageSetting>
+

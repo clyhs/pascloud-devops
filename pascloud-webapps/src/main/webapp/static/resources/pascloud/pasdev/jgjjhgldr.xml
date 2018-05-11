@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="jgjjhgldr" title="机构季计划管理导入" type="import" version="2.0.0">
+  <template>
+    <src>ONLINE</src>
+    <column>
+      <text>年份</text>
+      <name>khnf</name>
+      <index>0</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>机构代号</text>
+      <name>jgdh</name>
+      <index>1</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>机构名称</text>
+      <name>jgmc</name>
+      <index>2</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>N</req>
+    </column>
+    <column>
+      <text>考核指标名称</text>
+      <name>khzbmc</name>
+      <index>3</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>计划值</text>
+      <name>jhz1</name>
+      <index>4</index>
+      <width>120</width>
+      <height />
+      <align>right</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>力争值</text>
+      <name>lzz1</name>
+      <index>5</index>
+      <width>120</width>
+      <height />
+      <align>right</align>
+      <annotate />
+      <length>100</length>
+      <req>N</req>
+    </column>
+    <column>
+      <text>计划值</text>
+      <name>jhz2</name>
+      <index>6</index>
+      <width>120</width>
+      <height />
+      <align>right</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>力争值</text>
+      <name>lzz2</name>
+      <index>7</index>
+      <width>120</width>
+      <height />
+      <align>right</align>
+      <annotate />
+      <length>100</length>
+      <req>N</req>
+    </column>
+    <column>
+      <text>计划值</text>
+      <name>jhz3</name>
+      <index>8</index>
+      <width>120</width>
+      <height />
+      <align>right</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>力争值</text>
+      <name>lzz3</name>
+      <index>9</index>
+      <width>120</width>
+      <height />
+      <align>right</align>
+      <annotate />
+      <length>100</length>
+      <req>N</req>
+    </column>
+    <column>
+      <text>计划值</text>
+      <name>jhz4</name>
+      <index>10</index>
+      <width>120</width>
+      <height />
+      <align>right</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>力争值</text>
+      <name>lzz4</name>
+      <index>11</index>
+      <width>120</width>
+      <height />
+      <align>right</align>
+      <annotate />
+      <length>100</length>
+      <req>N</req>
+    </column>
+    <data>
+      <tags>
+        <tag row="0" col="0" name="Date" label="年份" colspan="1" rowspan="1">
+          <attribute key="style" value="width:160px;" />
+          <attribute key="isRequired" value="true" />
+          <attribute key="defVal" value="" />
+          <attribute key="name" value="nf" />
+          <attribute key="styleClass" value="" />
+          <attribute key="minDate" value="no" />
+          <attribute key="defValType" value="sysDate" />
+          <attribute key="dateFmt" value="yyyy" />
+          <attribute key="editable" value="true" />
+        </tag>
+        <tag row="1" col="0" name="NewJg" label="机构" colspan="1" rowspan="1">
+          <attribute key="ckbz" value="jg_ckhy" />
+          <attribute key="cascadeCheck" value="true" />
+          <attribute key="isRequired" value="true" />
+          <attribute key="style" value="width:160px;" />
+          <attribute key="defVal" value="" />
+          <attribute key="name" value="jgkhdxdh" />
+          <attribute key="multiple" value="true" />
+          <attribute key="editable" value="true" />
+        </tag>
+        <tag row="2" col="0" name="MSQL4Select" label="考核指标名称" colspan="1" rowspan="1">
+          <attribute key="parents" value="" />
+          <attribute key="sql" value="select khzbdh as key,khzbmc as value from khfa_khzb_jg" />
+          <attribute key="isSearch" value="true" />
+          <attribute key="style" value="width:160px;" />
+          <attribute key="isRequired" value="false" />
+          <attribute key="isMultiple" value="false" />
+          <attribute key="defVal" value="" />
+          <attribute key="name" value="khzbmc" />
+          <attribute key="width" value="" />
+          <attribute key="isAll" value="false" />
+          <attribute key="isEditable" value="true" />
+        </tag>
+      </tags>
+    </data>
+  </template>
+  <table id="jgjjhgldr_table" page="true" extendRow="2">
+    <col id="ZT" title="状态" align="center" type="string" width="50" />
+    <col id="ERROR" title="错误原因" align="center" type="string" width="250" />
+    <col id="KHNF" title="年份" align="center" type="" width="120" />
+    <col id="JGDH" title="机构代号" align="center" type="" width="120" />
+    <col id="JGMC" title="机构名称" align="center" type="" width="120" />
+    <col id="KHZBMC" title="考核指标名称" align="center" type="" width="120" />
+    <col title="1季度" id="ba4be3d9-c657-4ae3-8f3e-a534ed5b8942" align="center" type="string" width="90" frozen="false" format="" mergeCells="false" footerCells="false">
+      <col id="JHZ1" title="计划值" align="right" type="" width="120" />
+      <col id="LZZ1" title="力争值" align="right" type="" width="120" />
+    </col>
+    <col title="2季度" id="ad8f3edf-46c0-4045-b46f-11370c280ea5" align="center" type="string" width="90" frozen="false" format="" mergeCells="false" footerCells="false">
+      <col id="JHZ2" title="计划值" align="right" type="" width="120" />
+      <col id="LZZ2" title="力争值" align="right" type="" width="120" />
+    </col>
+    <col title="3季度" id="632838e6-bf37-446e-8f6d-8f9be470af74" align="center" type="string" width="90" frozen="false" format="" mergeCells="false" footerCells="false">
+      <col id="JHZ3" title="计划值" align="right" type="" width="120" />
+      <col id="LZZ3" title="力争值" align="right" type="" width="120" />
+    </col>
+    <col title="4季度" id="5c40dfac-b9ae-464e-8e7d-56a347a70f2a" align="center" type="string" width="90" frozen="false" format="" mergeCells="false" footerCells="false">
+      <col id="JHZ4" title="计划值" align="right" type="" width="120" />
+      <col id="LZZ4" title="力争值" align="right" type="" width="120" />
+    </col>
+  </table>
+  <flow>
+    <rule>
+      <sql type="update">jgjjhgldr_check_khnf_0</sql>
+      <sql type="update">jgjjhgldr_check_khnf_1</sql>
+      <sql type="update">jgjjhgldr_check_jgdh_2</sql>
+      <sql type="update">jgjjhgldr_check_jgdh_3</sql>
+      <sql type="update">jgjjhgldr_check_jgdh_4</sql>
+      <sql type="update">jgjjhgldr_check_khzbmc_5</sql>
+      <sql type="update">jgjjhgldr_check_jhz1_6</sql>
+      <sql type="update">jgjjhgldr_check_jhz1_7</sql>
+      <sql type="update">jgjjhgldr_check_lzz1_8</sql>
+      <sql type="update">jgjjhgldr_check_jhz2_9</sql>
+      <sql type="update">jgjjhgldr_check_jhz2_10</sql>
+      <sql type="update">jgjjhgldr_check_lzz2_11</sql>
+      <sql type="update">jgjjhgldr_check_jhz3_12</sql>
+      <sql type="update">jgjjhgldr_check_jhz3_13</sql>
+      <sql type="update">jgjjhgldr_check_lzz3_14</sql>
+      <sql type="update">jgjjhgldr_check_jhz4_15</sql>
+      <sql type="update">jgjjhgldr_check_jhz4_16</sql>
+      <sql type="update">jgjjhgldr_check_lzz4_17</sql>
+      <sql type="update">jgjjhgldr_checkupdate_khnf_0</sql>
+      <sql type="update">jgjjhgldr_checkupdate_jgmc_0</sql>
+      <sql type="update">jgjjhgldr_checkupdate_khzbmc_0</sql>
+      <sql type="update">jgjjhgldr_exists_target</sql>
+      <sql type="update">jgjjhgldr_exists_same_temp</sql>
+    </rule>
+    <before />
+    <cover>
+      <sql type="delete">jgjjhgldr_delete_before_override</sql>
+    </cover>
+    <insert>
+      <sql type="insert">jgjjhgldr_insert_into_target</sql>
+    </insert>
+    <after />
+  </flow>
+  <sqlMap namespace="studio.jgjjhgldr">
+    <update parameterClass="java.util.Map" id="dn12.jgjjhgldr_check_khnf_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgjjhgldr_temp  t  
+		set  t.error=t.error||'年份输入错误，格式应该是:yyyy!'  
+		where  f_java_rule_date(t.khnf,'yyyy')=1  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.jgjjhgldr_check_khnf_1">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgjjhgldr_temp  t  set  t.error=t.error||'年份输入错误，不能为空!' 
+		where  f_java_rule_length(t.khnf)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.jgjjhgldr_check_jgdh_2">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgjjhgldr_temp  t  set  t.error=t.error||'机构代号输入错误，不能为空!' 
+		where  f_java_rule_length(t.jgdh)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.jgjjhgldr_check_jgdh_3">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgjjhgldr_temp  t  set  t.error=t.error||'机构代号不存在!'  where  not  exists(select  1  from  khdx_jg  j  where  rtrim(t.jgdh)=rtrim(j.jgdh))  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.jgjjhgldr_check_jgdh_4">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update jgjjhgldr_temp t  set t.error= t.error||'机构代号检查不通过,没有权限!' 
+		where not exists(select 1 from table(fn_getsjjg_java_qx($sysdate$,$login_khdxdh$,0)) qx
+		 where qx.jgdh=t.jgdh) and t.khdxdh = $login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.jgjjhgldr_check_khzbmc_5">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgjjhgldr_temp  t  set  t.error=t.error||'考核指标名称输入错误，不能为空!' 
+		where  f_java_rule_length(t.khzbmc)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.jgjjhgldr_check_jhz1_6">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgjjhgldr_temp  t  
+		set  t.error=t.error||'计划值输入错误，只能输入:21位整数,4位小数!'  
+		where f_java_rule_length(t.jhz1)&gt;0 and f_java_rule_number(t.jhz1,21,4)=1  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.jgjjhgldr_check_jhz1_7">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgjjhgldr_temp  t  set  t.error=t.error||'计划值输入错误，不能为空!' 
+		where  f_java_rule_length(t.jhz1)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.jgjjhgldr_check_lzz1_8">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgjjhgldr_temp  t  
+		set  t.error=t.error||'力争值输入错误，只能输入:21位整数,4位小数!'  
+		where f_java_rule_length(t.lzz1)&gt;0 and f_java_rule_number(t.lzz1,21,4)=1  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.jgjjhgldr_check_jhz2_9">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgjjhgldr_temp  t  
+		set  t.error=t.error||'计划值输入错误，只能输入:21位整数,4位小数!'  
+		where f_java_rule_length(t.jhz2)&gt;0 and f_java_rule_number(t.jhz2,21,4)=1  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.jgjjhgldr_check_jhz2_10">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgjjhgldr_temp  t  set  t.error=t.error||'计划值输入错误，不能为空!' 
+		where  f_java_rule_length(t.jhz2)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.jgjjhgldr_check_lzz2_11">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgjjhgldr_temp  t  
+		set  t.error=t.error||'力争值输入错误，只能输入:21位整数,4位小数!'  
+		where f_java_rule_length(t.lzz2)&gt;0 and f_java_rule_number(t.lzz2,21,4)=1  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.jgjjhgldr_check_jhz3_12">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgjjhgldr_temp  t  
+		set  t.error=t.error||'计划值输入错误，只能输入:21位整数,4位小数!'  
+		where f_java_rule_length(t.jhz3)&gt;0 and f_java_rule_number(t.jhz3,21,4)=1  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.jgjjhgldr_check_jhz3_13">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgjjhgldr_temp  t  set  t.error=t.error||'计划值输入错误，不能为空!' 
+		where  f_java_rule_length(t.jhz3)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.jgjjhgldr_check_lzz3_14">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgjjhgldr_temp  t  
+		set  t.error=t.error||'力争值输入错误，只能输入:21位整数,4位小数!'  
+		where f_java_rule_length(t.lzz3)&gt;0 and f_java_rule_number(t.lzz3,21,4)=1  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.jgjjhgldr_check_jhz4_15">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgjjhgldr_temp  t  
+		set  t.error=t.error||'计划值输入错误，只能输入:21位整数,4位小数!'  
+		where f_java_rule_length(t.jhz4)&gt;0 and f_java_rule_number(t.jhz4,21,4)=1  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.jgjjhgldr_check_jhz4_16">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgjjhgldr_temp  t  set  t.error=t.error||'计划值输入错误，不能为空!' 
+		where  f_java_rule_length(t.jhz4)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.jgjjhgldr_check_lzz4_17">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgjjhgldr_temp  t  
+		set  t.error=t.error||'力争值输入错误，只能输入:21位整数,4位小数!'  
+		where f_java_rule_length(t.lzz4)&gt;0 and f_java_rule_number(t.lzz4,21,4)=1  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.jgjjhgldr_checkupdate_khnf_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update jgjjhgldr_temp t set error=error||cast(t.khnf as varchar(4))||'年份时间维度未初始化，请通知管理员后，再行导入！' where  not exists (
+ select 1 from csb_sjw sjw where cast(t.khnf||'0101' as integer)=sjw.tjrq)
+ and t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.jgjjhgldr_checkupdate_jgmc_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update jgjjhgldr_temp t set error=error||'机构代号和名称必须一致' where not exists ( select 1 from khdx_jg jg where t.jgdh=jg.jgdh and jg.jgmc=t.jgmc) and t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.jgjjhgldr_checkupdate_khzbmc_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update jgjjhgldr_temp t set error=error||'考核指标名称不存在!' where not exists ( select 1 from khfa_khzb_jg khzb where khzb.khzbmc=t.khzbmc) and t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.jgjjhgldr_exists_target">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgjjhgldr_temp  t  set  error  =  error  ||  '数据已存在!'   where  exists   (select  1           from  yjzb_jgjjh  jjh           inner  join  khdx_jg  jg  on  jg.khdxdh  =  jjh.khdxdh            inner  join  khfa_khzb_jg  khzb  on  jjh.khzbdh=khzb.khzbdh           where  khzb.khzbmc=t.khzbmc           and  t.jgdh  =  jg.jgdh           and  jjh.khnf  =  cast(rtrim(t.khnf)  as  integer)   )     and  t.khdxdh  =  $login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.jgjjhgldr_exists_same_temp">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgjjhgldr_temp  t  set  t.error=error||'存在重复数据!'  where  exists(  select  1  from   (select  khnf,khzbmc,jgdh  from  jgjjhgldr_temp  dr  where  khdxdh=$login_khdxdh$  group  by  khnf,khzbmc,jgdh  having  count(1)<![CDATA[>]]>1  )  dr  where  1=1   and  t.khnf=dr.khnf  and  t.khzbmc=dr.khzbmc  and  t.jgdh=dr.jgdh)  and  khdxdh=$login_khdxdh$
+    </update>
+    <insert parameterClass="java.util.Map" id="dn12.jgjjhgldr_create_lsb">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      CREATE  TABLE   jgjjhgldr_temp   (   khnf  varchar(100)  ,  jgdh  varchar(100)  ,  jgmc  varchar(100)  ,  khzbmc  varchar(100)  ,  jhz1  varchar(100)  ,  lzz1  varchar(100)  ,  jhz2  varchar(100)  ,  lzz2  varchar(100)  ,  jhz3  varchar(100)  ,  lzz3  varchar(100)  ,  jhz4  varchar(100)  ,  lzz4  varchar(100)  ,  khdxdh  integer,error  varchar(1000)   )
+    </insert>
+    <delete parameterClass="java.util.Map" id="dn12.jgjjhgldr_delete_lsb">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from jgjjhgldr_temp where khdxdh=$login_khdxdh$
+    </delete>
+    <insert parameterClass="java.util.Map" id="dn12.jgjjhgldr_insert_into_lsb">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert  into  JGJJHGLDR_TEMP  (khnf,jgdh,jgmc,khzbmc,jhz1,lzz1,jhz2,lzz2,jhz3,lzz3,jhz4,lzz4,khdxdh,error)  values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+    </insert>
+    <select parameterClass="java.util.Map" id="dn12.jgjjhgldr_exists_error_msg" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  count(1)  from  jgjjhgldr_temp  where  length(error) <![CDATA[>]]> 0  and  khdxdh  =  $login_khdxdh$
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn12.jgjjhgldr_exists_same_data">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  count(1)  from  jgjjhgldr_temp  where  length(error) <![CDATA[>]]> 0  and  error  !=  '数据已存在!'  and  khdxdh  =  $login_khdxdh$
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn12.jgjjhgldr_select_error_msg">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/cancel.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  khnf,jgdh,jgmc,khzbmc,jhz1,lzz1,jhz2,lzz2,jhz3,lzz3,jhz4,lzz4,khdxdh,error  from  jgjjhgldr_temp  where  khdxdh=$login_khdxdh$  and  length(error)<![CDATA[>]]>0
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn12.jgjjhgldr_count_all_msg">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  count(1)  from  (select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/ok.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  khnf,jgdh,jgmc,khzbmc,jhz1,lzz1,jhz2,lzz2,jhz3,lzz3,jhz4,lzz4,khdxdh,error  from  jgjjhgldr_temp  where  khdxdh=$login_khdxdh$  )a
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn12.jgjjhgldr_select_all_msg">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/ok.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  khnf,jgdh,jgmc,khzbmc,jhz1,lzz1,jhz2,lzz2,jhz3,lzz3,jhz4,lzz4,khdxdh,error  from  jgjjhgldr_temp  where  khdxdh=$login_khdxdh$
+    </select>
+    <insert id="dn12.jgjjhgldr_insert_into_target" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert  into  YJZB_JGJJH(KHNF,KHZBDH,KHDXDH,JHZ1,LZZ1,JHZ2,LZZ2,JHZ3,LZZ3,JHZ4,LZZ4)   select  cast  (t.khnf  as  INTEGER),khzb.KHZBDH,jg.KHDXDH,  (case  when  f_java_rule_length(t.jhz1)=0  then  null  else  cast  (t.jhz1  as  DECIMAL(19,2))  end),  (case  when  f_java_rule_length(t.lzz1)=0  then  null  else  cast  (t.lzz1  as  DECIMAL(19,2))  end),  (case  when  f_java_rule_length(t.jhz2)=0  then  null  else  cast  (t.jhz2  as  DECIMAL(19,2))  end),  (case  when  f_java_rule_length(t.lzz2)=0  then  null  else  cast  (t.lzz2  as  DECIMAL(19,2))  end),  (case  when  f_java_rule_length(t.jhz3)=0  then  null  else  cast  (t.jhz3  as  DECIMAL(19,2))  end),  (case  when  f_java_rule_length(t.lzz3)=0  then  null  else  cast  (t.lzz3  as  DECIMAL(19,2))  end),  (case  when  f_java_rule_length(t.jhz4)=0  then  null  else  cast  (t.jhz4  as  DECIMAL(19,2))  end),  (case  when  f_java_rule_length(t.lzz4)=0  then  null  else  cast  (t.lzz4  as  DECIMAL(19,2))  end)  from  jgjjhgldr_temp  t   inner  join  khdx_jg  jg  on  jg.jgdh=t.jgdh  inner  join  khfa_khzb_jg  khzb  on  khzb.khzbmc=t.khzbmc  where  t.khdxdh=$login_khdxdh$  and  (F_JAVA_RULE_LENGTH(t.error)=0  or  t.error='数据已存在!')
+    </insert>
+    <delete id="dn12.jgjjhgldr_delete_before_override" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete  from  yjzb_jgjjh  jjh  where  exists(     select  1  from  jgjjhgldr_temp  t     inner  join  khdx_jg  jg  on  jg.jgdh=rtrim(t.jgdh)     inner  join  khfa_khzb_jg  khzb  on  khzb.khzbmc=rtrim(t.khzbmc)     where  jjh.khnf=cast(rtrim(t.khnf)  as  integer)  and                 jjh.khzbdh=khzb.khzbdh  and                 jjh.khdxdh=jg.khdxdh                and  t.khdxdh=$login_khdxdh$  )
+    </delete>
+    <select id="dn12.jgjjhgldr_select_template_data" parameterClass="java.util.Map" remapResults="true" resultClass="java.util.LinkedHashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select $nf$ khnf,jg.jgdh,jg.jgmc,jgzb.khzbmc,cast(coalesce(jh.jhz1,0) as decimal(21,2)) jhz1,cast(jh.lzz1 as decimal(21,2)) lzz1,cast(coalesce(jh.jhz2,0) as decimal(21,2)) jhz2,cast(jh.lzz2 as decimal(21,2)) lzz2,cast(coalesce(jh.jhz3,0) as decimal(21,2)) jhz3,cast(jh.lzz3 as decimal(21,2)) lzz3,cast(coalesce(jh.jhz4,0) as decimal(21,2)) jhz4,cast(jh.lzz4 as decimal(21,2)) llz4
+from  khdx_jg jg 
+inner join khfa_khzb_jg jgzb on 1=1
+      <isNotEmpty property="khzbmc">and  jgzb.khzbdh=$khzbmc$</isNotEmpty>
+      left join yjzb_jgjjh jh on 1=1
+      <isNotEmpty property="nf">and  jh.khnf=$nf$</isNotEmpty>
+      <isNotEmpty property="khzbmc">and jh.khzbdh=$khzbmc$</isNotEmpty>
+      and jh.KHDXDH=jg.khdxdh
+where jg.khdxdh in($jgkhdxdh$) 
+order by jg.jgdh
+    </select>
+    <select id="dn12.jgjjhgldr_MSQL4SELECT_khzbmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select khzbdh as key,khzbmc as value from khfa_khzb_jg
+    </select>
+  </sqlMap>
+</pageSetting>
+

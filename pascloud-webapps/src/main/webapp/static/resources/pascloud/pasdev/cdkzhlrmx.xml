@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="cdkzhlrmx" title="存贷款帐户利润明细" type="query" version="2.0.0">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月">
+        <attribute key="dateFmt" value="yyyyMM" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjny" />
+        <attribute key="minDate" value="no" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Dmms" label="对象类型">
+        <attribute key="defVal" value="1" />
+        <attribute key="width" value="120px;" />
+        <attribute key="dmmc" value="zhlx" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="dxlx" />
+        <attribute key="isAll" value="false" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="时段">
+        <attribute key="defVal" value="3" />
+        <attribute key="width" value="120px;" />
+        <attribute key="dmmc" value="lrsdbs" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="sd" />
+        <attribute key="isAll" value="false" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Dmms" label="账户标识">
+        <attribute key="width" value="120px;" />
+        <attribute key="dmmc" value="zhbs" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="zhbs" />
+        <attribute key="isAll" value="true" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="1" col="0" colspan="1" rowspan="1" name="NewJg" label="开户机构">
+        <attribute key="cascadeCheck" value="false" />
+        <attribute key="editable" value="true" />
+        <attribute key="ckbz" value="jg_ckhy" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="jgkhdxdh" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="1" col="1" colspan="1" rowspan="1" name="Text" label="科目号">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="kmh" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="1" col="1" colspan="1" rowspan="1" name="DataInterface" label="null">
+        <attribute key="dataType" value="select" />
+        <attribute key="sql" value="select xtb.csz from XTB_XTCS xtb where xtb.CSMC= (case when $dxlx$=1 then 'CKYJGXMS' when $dxlx$=2 then 'DKYJGXMS' end)" />
+        <attribute key="name" value="ckmxcsz" />
+      </tag>
+      <tag row="1" col="2" colspan="1" rowspan="1" name="Text" label="账号">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="zh" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="1" col="3" colspan="1" rowspan="1" name="Text" label="账户名称">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="zhmc" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="1" col="3" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="mxcsz" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="cdkzhlrmx_xsjy2jgj" title="新数据源2结果集" page="noCount">
+    <col id="TJNY" title="统计年月" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHMC" title="账户名称" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHJG" title="开户机构" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="CPMC" title="产品名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KMMC" title="科目名称" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QX" title="期限" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="NLL" title="年利率" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FTPJG" title="FTP价格" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FTPLC" title="FTP利差" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DQYE" title="当前余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="RJYE" title="日均余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="LXSR" title="利息收入" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FTPLXZC" title="FTP利息支出" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZCJZZB" title="资产减值准备" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="YSWSLXXZ" title="应收未收利息新增" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="MNLR" title="模拟利润" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <table id="cdkzhlrmx_xsjy1jgj" title="新数据源1结果集" page="noCount">
+    <col id="TJNY" title="统计年月" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHMC" title="账户名称" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHJG" title="开户机构" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="CPMC" title="产品名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KMMC" title="科目名称" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QX" title="期限" align="left" type="string" width="40" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="NLL" title="年利率" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FTPJG" title="FTP价格" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FTPLC" title="FTP利差" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DQYE" title="当前余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="RJYE" title="日均余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FTPLXSR" title="FTP利息收入" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZBJSR" title="准备金收入" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="TQLXZCKH" title="提前利息支出扣回" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="LXZC" title="利息支出" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="MNLR" title="模拟利润" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <table id="cdkzhlrmx_dk_zzhjgj" title="贷款_子账号结果集" page="noCount">
+    <col id="TJNY" title="统计年月" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHMC" title="账户名称" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHJG" title="开户机构" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="CPMC" title="产品名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KMMC" title="科目名称" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QX" title="期限" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="NLL" title="年利率" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FTPJG" title="FTP价格" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FTPLC" title="FTP利差" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DQYE" title="当前余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="RJYE" title="日均余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="LXSR" title="利息收入" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FTPLXZC" title="FTP利息支出" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZCJZZB" title="资产减值准备" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="YSWSLXXZ" title="应收未收利息新增" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="MNLR" title="模拟利润" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <table id="cdkzhlrmx_ck_zzhjgj" title="存款_子账号结果集" page="noCount">
+    <col id="TJNY" title="统计年月" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHMC" title="账户名称" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHJG" title="开户机构" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="CPMC" title="产品名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KMMC" title="科目名称" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QX" title="期限" align="left" type="string" width="40" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="NLL" title="年利率" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FTPJG" title="FTP价格" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FTPLC" title="FTP利差" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DQYE" title="当前余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="RJYE" title="日均余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FTPLXSR" title="FTP利息收入" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZBJSR" title="准备金收入" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="TQLXZCKH" title="提前利息支出扣回" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="LXZC" title="利息支出" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="MNLR" title="模拟利润" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.cdkzhlrmx">
+    <select id="dn12.cdkzhlrmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <isEqual property="mxcsz" compareValue="2">
+        select  a.tjny,a.zh,a.zhmc,a.khh,a.khjg,a.cpmc,a.kmh,a.kmmc,a.qx,a.nll,a.ftpjg,            a.ftplc,a.dqye,a.rjye,a.lxsr,a.ftplxzc,a.zcjzzb,a.yswslxxz,a.mnlr from(         select $tjny$ as tjny,                   mx.zhdh as zh,                   mx.zhhm as zhmc,                   mx.khh,                   jg.jgmc as khjg,                   cp.cpmc,                   km.kmh,                   km.kmmc,                   qx.qxmc as qx,                   mx.nll,                   mx.zyjg as ftpjg,                   mx.ftplc,                   sum(coalesce(mx.hyye,0)) as dqye,                 (case  when $sd$ = 1 then sum(coalesce(mx.hyylj,0) / cast(f_get_days(sj.yc, sj.ym) as float))                            when $sd$ = 2 then sum(coalesce(mx.hyjlj,0) / cast(f_get_days( sj.jc, sj.ym) as float))                            when $sd$ = 3 then sum(coalesce(mx.hynlj,0) / cast(f_get_days( sj.nc, sj.ym) as float))                            end)   as rjye,                   (case  when $sd$ = 1 then sum(coalesce(mx.ylxsr,0))                            when $sd$ = 2 then sum(coalesce(mx.jlxsr,0))                            when $sd$ = 3 then sum(coalesce(mx.nlxsr,0))                           end)   as  lxsr,                  (case  when $sd$ = 1 then sum(coalesce(mx.yftplxzc,0))                            when $sd$ = 2 then sum(coalesce(mx.jftplxzc,0))                           when $sd$ = 3 then sum(coalesce(mx.nftplxzc,0))                           end)   as ftplxzc,                                  (case  when $sd$ = 1 then sum(coalesce(mx.yzcjzss,0))                            when $sd$ = 2 then sum(coalesce(mx.jzcjzss,0))                           when $sd$ = 3 then sum(coalesce(mx.nzcjzss,0))                            end) as zcjzzb,                   (case  when $sd$ = 1 then sum(coalesce(mx.yyswslxxz,0))                            when $sd$ = 2 then sum(coalesce(mx.jyswslxxz,0))                            when $sd$ = 3 then sum(coalesce(mx.nyswslxxz,0))                            end)  as yswslxxz,                  (case  when $sd$ = 1 then sum(coalesce(mx.ylr,0))                           when $sd$ = 2 then sum(coalesce(mx.jlr,0))                            when $sd$ = 3 then sum(coalesce(mx.nlr,0))                            end)  as mnlr                 from nbzz_dklrmx_$tjny$ mx                 inner join csb_km km on km.kmh = mx.kmh                 inner join khdx_jg jg on jg.jgdh = mx.jgdh
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh = $jgkhdxdh$</isNotEmpty>
+        left    join csb_cpxz cp on cp.cpdh = mx.cpdh and cp.jxdxlx = 2                 inner join csb_qxsdb qx on qx.jxdxlx = 2 and mx.qx between  qx.qsqx  and qx.jsqx inner join csb_sjw sj on sj.tjrq = mx.tjrq and substr(cast(sj.tjrq as char(8)), 1, 6) = cast($tjny$ as char(6))         where 1=1
+        <isNotEmpty property="zhbs">and mx.zhbs = '$zhbs$'</isNotEmpty>
+        <isNotEmpty property="kmh">and mx.kmh   like '%$kmh$%'</isNotEmpty>
+        <isNotEmpty property="zh">and mx.zhdh  like '%$zh$%'</isNotEmpty>
+        <isNotEmpty property="zhmc">and mx.zhhm like '%$zhmc$%'</isNotEmpty>
+        group by mx.zhdh,                   mx.zhhm,                   mx.khh,                   jg.jgmc,                   cp.cpmc,                   km.kmh,                   km.kmmc,                   qx.qxmc,                   mx.nll,                   mx.zyjg,                   mx.ftplc )a order by a.mnlr desc,               a.rjye  desc,               a.khh  asc
+      </isEqual>
+      <isEqual property="mxcsz" compareValue="1">
+        select  a.tjny,a.zh,a.zhmc,a.khh,a.khjg,a.cpmc,a.kmh,a.kmmc,a.qx,a.nll,           a.ftpjg,a.ftplc,a.dqye,a.rjye,a.ftplxsr,a.zbjsr,a.tqlxzckh,a.lxzc,a.mnlr from (           select $tjny$ as tjny,                     mx.zhdh as zh,                     mx.zhhm as zhmc,                    mx.khh,                    jg.jgmc as khjg,                     cp.cpmc,                    mx.kmh,                    km.kmmc,                     qx.qxmc as qx,                    mx.nll,                     mx.zyjg as ftpjg,                    mx.ftplc,                    sum(coalesce(mx.hyye,0)) as dqye,                    (case  when $sd$ = 1 then sum(coalesce(mx.hyylj,0) / cast(f_get_days(sj.yc, sj.ym) as float))                              when $sd$ = 2 then sum(coalesce(mx.hyjlj,0) / cast(f_get_days( sj.jc, sj.ym) as float))                              when $sd$ = 3 then sum(coalesce(mx.hynlj,0) / cast(f_get_days( sj.nc, sj.ym) as float))                              end)   as rjye,                     (case  when $sd$ = 1 then sum(coalesce(mx.yftpsr,0))                              when $sd$ = 2 then sum(coalesce(mx.jftpsr,0))                              when $sd$ = 3 then sum(coalesce(mx.nftpsr,0))                             end)   as  ftplxsr,                    (case  when $sd$ = 1 then sum(coalesce(mx.yzbjsr,0))                              when $sd$ = 2 then sum(coalesce(mx.jzbjsr,0))                             when $sd$ = 3 then sum(coalesce(mx.nzbjsr,0))                             end)   as zbjsr,                                    (case  when $sd$ = 1 then sum(coalesce(mx.ytqzqlxkh,0))                              when $sd$ = 2 then sum(coalesce(mx.jtqzqlxkh,0))                             when $sd$ = 3 then sum(coalesce(mx.ntqzqlxkh,0))                              end) as tqlxzckh,                     (case  when $sd$ = 1 then sum(coalesce(mx.ylxzc,0))                              when $sd$ = 2 then sum(coalesce(mx.jlxzc,0))                              when $sd$ = 3 then sum(coalesce(mx.nlxzc,0))                              end)  as lxzc,                    (case  when $sd$ = 1 then sum(coalesce(mx.ylr,0))                             when $sd$ = 2 then sum(coalesce(mx.jlr,0))                              when $sd$ = 3 then sum(coalesce(mx.nlr,0))                              end)  as mnlr                                             from nbzz_cklrmx_$tjny$ mx                    inner join csb_km km on km.kmh = mx.kmh                       inner join khdx_jg jg on jg.jgdh = mx.jgdh
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh = $jgkhdxdh$</isNotEmpty>
+        left    join csb_cpxz cp  on cp.cpdh = mx.cpdh and cp.jxdxlx = 1                     inner join csb_qxsdb qx on  qx.jxdxlx = 1 and  mx.qx between qx.qsqx and qx.jsqx inner join csb_sjw sj on  sj.tjrq = mx.tjrq  and substr(cast(sj.tjrq as char(8)), 1, 6) = cast($tjny$ as char(6))            where 1=1
+        <isNotEmpty property="zhbs">and mx.zhbs = '$zhbs$'</isNotEmpty>
+        <isNotEmpty property="kmh">and mx.kmh   like '%$kmh$%'</isNotEmpty>
+        <isNotEmpty property="zh">and mx.zhdh  like '%$zh$%'</isNotEmpty>
+        <isNotEmpty property="zhmc">and mx.zhhm like '%$zhmc$%'</isNotEmpty>
+        group by mx.zhdh,                     mx.zhhm,                    mx.khh,                    jg.jgmc,                     cp.cpmc,                    mx.kmh,                    km.kmmc,                     qx.qxmc,                    mx.nll,                     mx.zyjg,                    mx.ftplc)  a  order by a.mnlr desc,                a.rjye  desc,                a.khh  asc
+      </isEqual>
+      <isEqual property="mxcsz" compareValue="4">
+        select  a.tjny,a.zh,a.zhmc,a.zzh,a.khh,a.khjg,a.cpmc,a.kmh,a.kmmc,a.qx,a.nll,a.ftpjg,            a.ftplc,a.dqye,a.rjye,a.lxsr,a.ftplxzc,a.zcjzzb,a.yswslxxz,a.mnlr from(         select $tjny$ as tjny,                   mx.zhdh as zh,                   mx.zzh,                   mx.zhhm as zhmc,                   mx.khh,                   jg.jgmc as khjg,                   cp.cpmc,                   km.kmh,                   km.kmmc,                   qx.qxmc as qx,                   mx.nll,                   mx.zyjg as ftpjg,                   mx.ftplc,                   sum(coalesce(mx.hyye,0)) as dqye,                 (case  when $sd$ = 1 then sum(coalesce(mx.hyylj,0) / cast(f_get_days(sj.yc, sj.ym) as float))                            when $sd$ = 2 then sum(coalesce(mx.hyjlj,0) / cast(f_get_days( sj.jc, sj.ym) as float))                            when $sd$ = 3 then sum(coalesce(mx.hynlj,0) / cast(f_get_days( sj.nc, sj.ym) as float))                            end)   as rjye,                   (case  when $sd$ = 1 then sum(coalesce(mx.ylxsr,0))                            when $sd$ = 2 then sum(coalesce(mx.jlxsr,0))                            when $sd$ = 3 then sum(coalesce(mx.nlxsr,0))                           end)   as  lxsr,                  (case  when $sd$ = 1 then sum(coalesce(mx.yftplxzc,0))                            when $sd$ = 2 then sum(coalesce(mx.jftplxzc,0))                           when $sd$ = 3 then sum(coalesce(mx.nftplxzc,0))                           end)   as ftplxzc,                                  (case  when $sd$ = 1 then sum(coalesce(mx.yzcjzss,0))                            when $sd$ = 2 then sum(coalesce(mx.jzcjzss,0))                           when $sd$ = 3 then sum(coalesce(mx.nzcjzss,0))                            end) as zcjzzb,                   (case  when $sd$ = 1 then sum(coalesce(mx.yyswslxxz,0))                            when $sd$ = 2 then sum(coalesce(mx.jyswslxxz,0))                            when $sd$ = 3 then sum(coalesce(mx.nyswslxxz,0))                            end)  as yswslxxz,                  (case  when $sd$ = 1 then sum(coalesce(mx.ylr,0))                           when $sd$ = 2 then sum(coalesce(mx.jlr,0))                            when $sd$ = 3 then sum(coalesce(mx.nlr,0))                            end)  as mnlr                 from nbzz_dklrmx_$tjny$ mx                 inner join csb_km km on km.kmh = mx.kmh                 inner join khdx_jg jg on jg.jgdh = mx.jgdh
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh = $jgkhdxdh$</isNotEmpty>
+        left    join csb_cpxz cp on cp.cpdh = mx.cpdh and cp.jxdxlx = 2                 inner join csb_qxsdb qx on qx.jxdxlx = 2 and mx.qx between  qx.qsqx  and qx.jsqx inner join csb_sjw sj on sj.tjrq = mx.tjrq and substr(cast(sj.tjrq as char(8)), 1, 6) = cast($tjny$ as char(6))         where 1=1
+        <isNotEmpty property="zhbs">and mx.zhbs = '$zhbs$'</isNotEmpty>
+        <isNotEmpty property="kmh">and mx.kmh   like '%$kmh$%'</isNotEmpty>
+        <isNotEmpty property="zh">and mx.zhdh  like '%$zh$%'</isNotEmpty>
+        <isNotEmpty property="zhmc">and mx.zhhm like '%$zhmc$%'</isNotEmpty>
+        group by mx.zhdh,                   mx.zhhm,                   mx.zzh,                   mx.khh,                   jg.jgmc,                   cp.cpmc,                   km.kmh,                   km.kmmc,                   qx.qxmc,                   mx.nll,                   mx.zyjg,                   mx.ftplc )a order by a.mnlr desc,               a.rjye  desc,               a.khh  asc
+      </isEqual>
+      <isEqual property="mxcsz" compareValue="3">
+        select  a.tjny,a.zh,a.zhmc,a.zzh,a.khh,a.khjg,a.cpmc,a.kmh,a.kmmc,a.qx,a.nll,           a.ftpjg,a.ftplc,a.dqye,a.rjye,a.ftplxsr,a.zbjsr,a.tqlxzckh,a.lxzc,a.mnlr from (           select $tjny$ as tjny,                     mx.zhdh as zh,                     mx.zzh,                    mx.zhhm as zhmc,                    mx.khh,                    jg.jgmc as khjg,                     cp.cpmc,                    mx.kmh,                    km.kmmc,                     qx.qxmc as qx,                    mx.nll,                     mx.zyjg as ftpjg,                    mx.ftplc,                    sum(coalesce(mx.hyye,0)) as dqye,                    (case  when $sd$ = 1 then sum(coalesce(mx.hyylj,0) / cast(f_get_days(sj.yc, sj.ym) as float))                              when $sd$ = 2 then sum(coalesce(mx.hyjlj,0) / cast(f_get_days( sj.jc, sj.ym) as float))                              when $sd$ = 3 then sum(coalesce(mx.hynlj,0) / cast(f_get_days( sj.nc, sj.ym) as float))                              end)   as rjye,                     (case  when $sd$ = 1 then sum(coalesce(mx.yftpsr,0))                              when $sd$ = 2 then sum(coalesce(mx.jftpsr,0))                              when $sd$ = 3 then sum(coalesce(mx.nftpsr,0))                             end)   as  ftplxsr,                    (case  when $sd$ = 1 then sum(coalesce(mx.yzbjsr,0))                              when $sd$ = 2 then sum(coalesce(mx.jzbjsr,0))                             when $sd$ = 3 then sum(coalesce(mx.nzbjsr,0))                             end)   as zbjsr,                                    (case  when $sd$ = 1 then sum(coalesce(mx.ytqzqlxkh,0))                              when $sd$ = 2 then sum(coalesce(mx.jtqzqlxkh,0))                             when $sd$ = 3 then sum(coalesce(mx.ntqzqlxkh,0))                              end) as tqlxzckh,                     (case  when $sd$ = 1 then sum(coalesce(mx.ylxzc,0))                              when $sd$ = 2 then sum(coalesce(mx.jlxzc,0))                              when $sd$ = 3 then sum(coalesce(mx.nlxzc,0))                              end)  as lxzc,                    (case  when $sd$ = 1 then sum(coalesce(mx.ylr,0))                             when $sd$ = 2 then sum(coalesce(mx.jlr,0))                              when $sd$ = 3 then sum(coalesce(mx.nlr,0))                              end)  as mnlr                                             from nbzz_cklrmx_$tjny$ mx                    inner join csb_km km on km.kmh = mx.kmh                       inner join khdx_jg jg on jg.jgdh = mx.jgdh
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh = $jgkhdxdh$</isNotEmpty>
+        left    join csb_cpxz cp  on cp.cpdh = mx.cpdh and cp.jxdxlx = 1                     inner join csb_qxsdb qx on  qx.jxdxlx = 1 and  mx.qx between qx.qsqx and qx.jsqx inner join csb_sjw sj on  sj.tjrq = mx.tjrq  and substr(cast(sj.tjrq as char(8)), 1, 6) = cast($tjny$ as char(6))            where 1=1
+        <isNotEmpty property="zhbs">and mx.zhbs = '$zhbs$'</isNotEmpty>
+        <isNotEmpty property="kmh">and mx.kmh   like '%$kmh$%'</isNotEmpty>
+        <isNotEmpty property="zh">and mx.zhdh  like '%$zh$%'</isNotEmpty>
+        <isNotEmpty property="zhmc">and mx.zhhm like '%$zhmc$%'</isNotEmpty>
+        group by mx.zhdh,                    mx.zzh,                    mx.zhhm,                    mx.khh,                    jg.jgmc,                     cp.cpmc,                    mx.kmh,                    km.kmmc,                     qx.qxmc,                    mx.nll,                     mx.zyjg,                    mx.ftplc)  a  order by a.mnlr desc,                a.rjye  desc,                a.khh  asc
+      </isEqual>
+    </select>
+    <select id="dn12.cdkzhlrmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from (
+      <isEqual property="mxcsz" compareValue="2">
+        select  a.tjny,a.zh,a.zhmc,a.khh,a.khjg,a.cpmc,a.kmh,a.kmmc,a.qx,a.nll,a.ftpjg,            a.ftplc,a.dqye,a.rjye,a.lxsr,a.ftplxzc,a.zcjzzb,a.yswslxxz,a.mnlr from(         select $tjny$ as tjny,                   mx.zhdh as zh,                   mx.zhhm as zhmc,                   mx.khh,                   jg.jgmc as khjg,                   cp.cpmc,                   km.kmh,                   km.kmmc,                   qx.qxmc as qx,                   mx.nll,                   mx.zyjg as ftpjg,                   mx.ftplc,                   sum(coalesce(mx.hyye,0)) as dqye,                 (case  when $sd$ = 1 then sum(coalesce(mx.hyylj,0) / cast(f_get_days(sj.yc, sj.ym) as float))                            when $sd$ = 2 then sum(coalesce(mx.hyjlj,0) / cast(f_get_days( sj.jc, sj.ym) as float))                            when $sd$ = 3 then sum(coalesce(mx.hynlj,0) / cast(f_get_days( sj.nc, sj.ym) as float))                            end)   as rjye,                   (case  when $sd$ = 1 then sum(coalesce(mx.ylxsr,0))                            when $sd$ = 2 then sum(coalesce(mx.jlxsr,0))                            when $sd$ = 3 then sum(coalesce(mx.nlxsr,0))                           end)   as  lxsr,                  (case  when $sd$ = 1 then sum(coalesce(mx.yftplxzc,0))                            when $sd$ = 2 then sum(coalesce(mx.jftplxzc,0))                           when $sd$ = 3 then sum(coalesce(mx.nftplxzc,0))                           end)   as ftplxzc,                                  (case  when $sd$ = 1 then sum(coalesce(mx.yzcjzss,0))                            when $sd$ = 2 then sum(coalesce(mx.jzcjzss,0))                           when $sd$ = 3 then sum(coalesce(mx.nzcjzss,0))                            end) as zcjzzb,                   (case  when $sd$ = 1 then sum(coalesce(mx.yyswslxxz,0))                            when $sd$ = 2 then sum(coalesce(mx.jyswslxxz,0))                            when $sd$ = 3 then sum(coalesce(mx.nyswslxxz,0))                            end)  as yswslxxz,                  (case  when $sd$ = 1 then sum(coalesce(mx.ylr,0))                           when $sd$ = 2 then sum(coalesce(mx.jlr,0))                            when $sd$ = 3 then sum(coalesce(mx.nlr,0))                            end)  as mnlr                 from nbzz_dklrmx_$tjny$ mx                 inner join csb_km km on km.kmh = mx.kmh                 inner join khdx_jg jg on jg.jgdh = mx.jgdh
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh = $jgkhdxdh$</isNotEmpty>
+        left    join csb_cpxz cp on cp.cpdh = mx.cpdh and cp.jxdxlx = 2                 inner join csb_qxsdb qx on qx.jxdxlx = 2 and mx.qx between  qx.qsqx  and qx.jsqx inner join csb_sjw sj on sj.tjrq = mx.tjrq and substr(cast(sj.tjrq as char(8)), 1, 6) = cast($tjny$ as char(6))         where 1=1
+        <isNotEmpty property="zhbs">and mx.zhbs = '$zhbs$'</isNotEmpty>
+        <isNotEmpty property="kmh">and mx.kmh   like '%$kmh$%'</isNotEmpty>
+        <isNotEmpty property="zh">and mx.zhdh  like '%$zh$%'</isNotEmpty>
+        <isNotEmpty property="zhmc">and mx.zhhm like '%$zhmc$%'</isNotEmpty>
+        group by mx.zhdh,                   mx.zhhm,                   mx.khh,                   jg.jgmc,                   cp.cpmc,                   km.kmh,                   km.kmmc,                   qx.qxmc,                   mx.nll,                   mx.zyjg,                   mx.ftplc )a order by a.mnlr desc,               a.rjye  desc,               a.khh  asc
+      </isEqual>
+      <isEqual property="mxcsz" compareValue="1">
+        select  a.tjny,a.zh,a.zhmc,a.khh,a.khjg,a.cpmc,a.kmh,a.kmmc,a.qx,a.nll,           a.ftpjg,a.ftplc,a.dqye,a.rjye,a.ftplxsr,a.zbjsr,a.tqlxzckh,a.lxzc,a.mnlr from (           select $tjny$ as tjny,                     mx.zhdh as zh,                     mx.zhhm as zhmc,                    mx.khh,                    jg.jgmc as khjg,                     cp.cpmc,                    mx.kmh,                    km.kmmc,                     qx.qxmc as qx,                    mx.nll,                     mx.zyjg as ftpjg,                    mx.ftplc,                    sum(coalesce(mx.hyye,0)) as dqye,                    (case  when $sd$ = 1 then sum(coalesce(mx.hyylj,0) / cast(f_get_days(sj.yc, sj.ym) as float))                              when $sd$ = 2 then sum(coalesce(mx.hyjlj,0) / cast(f_get_days( sj.jc, sj.ym) as float))                              when $sd$ = 3 then sum(coalesce(mx.hynlj,0) / cast(f_get_days( sj.nc, sj.ym) as float))                              end)   as rjye,                     (case  when $sd$ = 1 then sum(coalesce(mx.yftpsr,0))                              when $sd$ = 2 then sum(coalesce(mx.jftpsr,0))                              when $sd$ = 3 then sum(coalesce(mx.nftpsr,0))                             end)   as  ftplxsr,                    (case  when $sd$ = 1 then sum(coalesce(mx.yzbjsr,0))                              when $sd$ = 2 then sum(coalesce(mx.jzbjsr,0))                             when $sd$ = 3 then sum(coalesce(mx.nzbjsr,0))                             end)   as zbjsr,                                    (case  when $sd$ = 1 then sum(coalesce(mx.ytqzqlxkh,0))                              when $sd$ = 2 then sum(coalesce(mx.jtqzqlxkh,0))                             when $sd$ = 3 then sum(coalesce(mx.ntqzqlxkh,0))                              end) as tqlxzckh,                     (case  when $sd$ = 1 then sum(coalesce(mx.ylxzc,0))                              when $sd$ = 2 then sum(coalesce(mx.jlxzc,0))                              when $sd$ = 3 then sum(coalesce(mx.nlxzc,0))                              end)  as lxzc,                    (case  when $sd$ = 1 then sum(coalesce(mx.ylr,0))                             when $sd$ = 2 then sum(coalesce(mx.jlr,0))                              when $sd$ = 3 then sum(coalesce(mx.nlr,0))                              end)  as mnlr                                             from nbzz_cklrmx_$tjny$ mx                    inner join csb_km km on km.kmh = mx.kmh                       inner join khdx_jg jg on jg.jgdh = mx.jgdh
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh = $jgkhdxdh$</isNotEmpty>
+        left    join csb_cpxz cp  on cp.cpdh = mx.cpdh and cp.jxdxlx = 1                     inner join csb_qxsdb qx on  qx.jxdxlx = 1 and  mx.qx between qx.qsqx and qx.jsqx inner join csb_sjw sj on  sj.tjrq = mx.tjrq  and substr(cast(sj.tjrq as char(8)), 1, 6) = cast($tjny$ as char(6))            where 1=1
+        <isNotEmpty property="zhbs">and mx.zhbs = '$zhbs$'</isNotEmpty>
+        <isNotEmpty property="kmh">and mx.kmh   like '%$kmh$%'</isNotEmpty>
+        <isNotEmpty property="zh">and mx.zhdh  like '%$zh$%'</isNotEmpty>
+        <isNotEmpty property="zhmc">and mx.zhhm like '%$zhmc$%'</isNotEmpty>
+        group by mx.zhdh,                     mx.zhhm,                    mx.khh,                    jg.jgmc,                     cp.cpmc,                    mx.kmh,                    km.kmmc,                     qx.qxmc,                    mx.nll,                     mx.zyjg,                    mx.ftplc)  a  order by a.mnlr desc,                a.rjye  desc,                a.khh  asc
+      </isEqual>
+      <isEqual property="mxcsz" compareValue="4">
+        select  a.tjny,a.zh,a.zhmc,a.zzh,a.khh,a.khjg,a.cpmc,a.kmh,a.kmmc,a.qx,a.nll,a.ftpjg,            a.ftplc,a.dqye,a.rjye,a.lxsr,a.ftplxzc,a.zcjzzb,a.yswslxxz,a.mnlr from(         select $tjny$ as tjny,                   mx.zhdh as zh,                   mx.zzh,                   mx.zhhm as zhmc,                   mx.khh,                   jg.jgmc as khjg,                   cp.cpmc,                   km.kmh,                   km.kmmc,                   qx.qxmc as qx,                   mx.nll,                   mx.zyjg as ftpjg,                   mx.ftplc,                   sum(coalesce(mx.hyye,0)) as dqye,                 (case  when $sd$ = 1 then sum(coalesce(mx.hyylj,0) / cast(f_get_days(sj.yc, sj.ym) as float))                            when $sd$ = 2 then sum(coalesce(mx.hyjlj,0) / cast(f_get_days( sj.jc, sj.ym) as float))                            when $sd$ = 3 then sum(coalesce(mx.hynlj,0) / cast(f_get_days( sj.nc, sj.ym) as float))                            end)   as rjye,                   (case  when $sd$ = 1 then sum(coalesce(mx.ylxsr,0))                            when $sd$ = 2 then sum(coalesce(mx.jlxsr,0))                            when $sd$ = 3 then sum(coalesce(mx.nlxsr,0))                           end)   as  lxsr,                  (case  when $sd$ = 1 then sum(coalesce(mx.yftplxzc,0))                            when $sd$ = 2 then sum(coalesce(mx.jftplxzc,0))                           when $sd$ = 3 then sum(coalesce(mx.nftplxzc,0))                           end)   as ftplxzc,                                  (case  when $sd$ = 1 then sum(coalesce(mx.yzcjzss,0))                            when $sd$ = 2 then sum(coalesce(mx.jzcjzss,0))                           when $sd$ = 3 then sum(coalesce(mx.nzcjzss,0))                            end) as zcjzzb,                   (case  when $sd$ = 1 then sum(coalesce(mx.yyswslxxz,0))                            when $sd$ = 2 then sum(coalesce(mx.jyswslxxz,0))                            when $sd$ = 3 then sum(coalesce(mx.nyswslxxz,0))                            end)  as yswslxxz,                  (case  when $sd$ = 1 then sum(coalesce(mx.ylr,0))                           when $sd$ = 2 then sum(coalesce(mx.jlr,0))                            when $sd$ = 3 then sum(coalesce(mx.nlr,0))                            end)  as mnlr                 from nbzz_dklrmx_$tjny$ mx                 inner join csb_km km on km.kmh = mx.kmh                 inner join khdx_jg jg on jg.jgdh = mx.jgdh
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh = $jgkhdxdh$</isNotEmpty>
+        left    join csb_cpxz cp on cp.cpdh = mx.cpdh and cp.jxdxlx = 2                 inner join csb_qxsdb qx on qx.jxdxlx = 2 and mx.qx between  qx.qsqx  and qx.jsqx inner join csb_sjw sj on sj.tjrq = mx.tjrq and substr(cast(sj.tjrq as char(8)), 1, 6) = cast($tjny$ as char(6))         where 1=1
+        <isNotEmpty property="zhbs">and mx.zhbs = '$zhbs$'</isNotEmpty>
+        <isNotEmpty property="kmh">and mx.kmh   like '%$kmh$%'</isNotEmpty>
+        <isNotEmpty property="zh">and mx.zhdh  like '%$zh$%'</isNotEmpty>
+        <isNotEmpty property="zhmc">and mx.zhhm like '%$zhmc$%'</isNotEmpty>
+        group by mx.zhdh,                   mx.zhhm,                   mx.zzh,                   mx.khh,                   jg.jgmc,                   cp.cpmc,                   km.kmh,                   km.kmmc,                   qx.qxmc,                   mx.nll,                   mx.zyjg,                   mx.ftplc )a order by a.mnlr desc,               a.rjye  desc,               a.khh  asc
+      </isEqual>
+      <isEqual property="mxcsz" compareValue="3">
+        select  a.tjny,a.zh,a.zhmc,a.zzh,a.khh,a.khjg,a.cpmc,a.kmh,a.kmmc,a.qx,a.nll,           a.ftpjg,a.ftplc,a.dqye,a.rjye,a.ftplxsr,a.zbjsr,a.tqlxzckh,a.lxzc,a.mnlr from (           select $tjny$ as tjny,                     mx.zhdh as zh,                     mx.zzh,                    mx.zhhm as zhmc,                    mx.khh,                    jg.jgmc as khjg,                     cp.cpmc,                    mx.kmh,                    km.kmmc,                     qx.qxmc as qx,                    mx.nll,                     mx.zyjg as ftpjg,                    mx.ftplc,                    sum(coalesce(mx.hyye,0)) as dqye,                    (case  when $sd$ = 1 then sum(coalesce(mx.hyylj,0) / cast(f_get_days(sj.yc, sj.ym) as float))                              when $sd$ = 2 then sum(coalesce(mx.hyjlj,0) / cast(f_get_days( sj.jc, sj.ym) as float))                              when $sd$ = 3 then sum(coalesce(mx.hynlj,0) / cast(f_get_days( sj.nc, sj.ym) as float))                              end)   as rjye,                     (case  when $sd$ = 1 then sum(coalesce(mx.yftpsr,0))                              when $sd$ = 2 then sum(coalesce(mx.jftpsr,0))                              when $sd$ = 3 then sum(coalesce(mx.nftpsr,0))                             end)   as  ftplxsr,                    (case  when $sd$ = 1 then sum(coalesce(mx.yzbjsr,0))                              when $sd$ = 2 then sum(coalesce(mx.jzbjsr,0))                             when $sd$ = 3 then sum(coalesce(mx.nzbjsr,0))                             end)   as zbjsr,                                    (case  when $sd$ = 1 then sum(coalesce(mx.ytqzqlxkh,0))                              when $sd$ = 2 then sum(coalesce(mx.jtqzqlxkh,0))                             when $sd$ = 3 then sum(coalesce(mx.ntqzqlxkh,0))                              end) as tqlxzckh,                     (case  when $sd$ = 1 then sum(coalesce(mx.ylxzc,0))                              when $sd$ = 2 then sum(coalesce(mx.jlxzc,0))                              when $sd$ = 3 then sum(coalesce(mx.nlxzc,0))                              end)  as lxzc,                    (case  when $sd$ = 1 then sum(coalesce(mx.ylr,0))                             when $sd$ = 2 then sum(coalesce(mx.jlr,0))                              when $sd$ = 3 then sum(coalesce(mx.nlr,0))                              end)  as mnlr                                             from nbzz_cklrmx_$tjny$ mx                    inner join csb_km km on km.kmh = mx.kmh                       inner join khdx_jg jg on jg.jgdh = mx.jgdh
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh = $jgkhdxdh$</isNotEmpty>
+        left    join csb_cpxz cp  on cp.cpdh = mx.cpdh and cp.jxdxlx = 1                     inner join csb_qxsdb qx on  qx.jxdxlx = 1 and  mx.qx between qx.qsqx and qx.jsqx inner join csb_sjw sj on  sj.tjrq = mx.tjrq  and substr(cast(sj.tjrq as char(8)), 1, 6) = cast($tjny$ as char(6))            where 1=1
+        <isNotEmpty property="zhbs">and mx.zhbs = '$zhbs$'</isNotEmpty>
+        <isNotEmpty property="kmh">and mx.kmh   like '%$kmh$%'</isNotEmpty>
+        <isNotEmpty property="zh">and mx.zhdh  like '%$zh$%'</isNotEmpty>
+        <isNotEmpty property="zhmc">and mx.zhhm like '%$zhmc$%'</isNotEmpty>
+        group by mx.zhdh,                    mx.zzh,                    mx.zhhm,                    mx.khh,                    jg.jgmc,                     cp.cpmc,                    mx.kmh,                    km.kmmc,                     qx.qxmc,                    mx.nll,                     mx.zyjg,                    mx.ftplc)  a  order by a.mnlr desc,                a.rjye  desc,                a.khh  asc
+      </isEqual>
+      ) t
+    </select>
+    <select id="dn12.cdkzhlrmx_ckmxcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select xtb.csz from XTB_XTCS xtb where xtb.CSMC= (case when $dxlx$=1 then 'CKYJGXMS' when $dxlx$=2 then 'DKYJGXMS' end)</select>
+  </sqlMap>
+  <rels>
+    <items id="cdkzhlrmx_xsjy2jgj">
+      <item name="mxcsz" compareValue="2" operate="isEqual" />
+    </items>
+    <items id="cdkzhlrmx_xsjy1jgj">
+      <item name="mxcsz" compareValue="1" operate="isEqual" />
+    </items>
+    <items id="cdkzhlrmx_dk_zzhjgj">
+      <item name="mxcsz" compareValue="4" operate="isEqual" />
+    </items>
+    <items id="cdkzhlrmx_ck_zzhjgj">
+      <item name="mxcsz" compareValue="3" operate="isEqual" />
+    </items>
+  </rels>
+  <javascript><![CDATA[jQuery(document).ready(function () {
+
+ init_zhbs().pipe(init_dxlx).pipe(init_sd).pipe(function(){
+       PAS.di.execute('cdkzhlrmx_ckmxcsz',checkZzhBack);//判断有没有子账号
+       $('#dxlx').executeOnEvent('change','cdkzhlrmx_ckmxcsz',checkZzhBack);
+     });
+});
+
+
+function checkZzhBack(obj){
+  var dxlx = $('#dxlx').val();
+  
+  if(obj.data.length>0){
+    if(dxlx == '1' && obj.data[0].CSZ=='0'){
+      $('#mxcsz').val(1);
+    }
+    if(dxlx == '1' && obj.data[0].CSZ=='1'){
+      
+      $('#mxcsz').val(3);
+    }
+    if(dxlx == '2' && obj.data[0].CSZ=='0'){
+      $('#mxcsz').val(2);
+    }
+    if(dxlx == '2' && obj.data[0].CSZ=='1'){
+      $('#mxcsz').val(4);
+    }
+  }
+}
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}]]></javascript>
+</pageSetting>
+

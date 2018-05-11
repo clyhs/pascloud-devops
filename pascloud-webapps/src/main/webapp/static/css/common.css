@@ -3,3 +3,24 @@
 .formInput{float:left;margin-left:10px;}
 .border_right{border-right:#ccc 1px solid;}
 .border_bottom{border-bottom:#ccc 1px solid;}
+
+.top{
+	height: 50px;
+	background-image: url(../images/top_bg.png);
+	border:0;
+	background-repeat:repeat-x;
+	overflow:hidden;
+}
+
+.logo {
+	background-image: url(../images/logo.png);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin-left:20px;
+	margin-top:5px;
+	width: 101px;
+	height: 50px;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 2%;
+}

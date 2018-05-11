@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.utils.FileUtils;
+import com.pascloud.utils.PasCloudUtils;
 import com.pascloud.utils.db.DataSourceUtils;
 import com.pascloud.utils.redis.JedisPoolUtils;
 import com.pascloud.vo.database.DBInfo;
@@ -36,8 +37,8 @@ public class PasCloudInitConfig implements ApplicationListener<ContextRefreshedE
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		// TODO Auto-generated method stub
 		if(event.getApplicationContext().getParent() == null){
-			initDataSource();
-			initRedisPool();
+			//initDataSource();
+			//initRedisPool();
 		}
 		
 	}

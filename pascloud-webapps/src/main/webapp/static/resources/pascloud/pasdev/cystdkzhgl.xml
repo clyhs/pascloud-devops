@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="cystdkzhgl" title="参与社团贷款账户管理" type="manage">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="账号" fieldName="">
+        <attribute key="style" value="width:180px;" />
+        <attribute key="name" value="zhdh" />
+        <attribute key="readonly" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="cystdkzhgltable">
+    <col id="ZHDH" title="账号" align="left" type="string" width="180" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="" showDymCol="false" />
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="70" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="" showDymCol="false" />
+    <col id="BZSM" title="备注说明" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="" showDymCol="false" />
+    <col id="ZHKZSX" title="账户扩展属性" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="" showDymCol="false" />
+  </table>
+  <rels>
+    <items id="cystdkzhgltable" />
+  </rels>
+  <addPage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="账号" fieldName="ZHDH">
+      <attribute key="style" value="width:210px" />
+      <attribute key="name" value="zhdh" />
+      <attribute key="styleClass" value="{required:true}" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select 1 from jxdx_dkzh zh where 1=1 and  zh.zhdh='$zhdh$'" />
+      <attribute key="name" value="checkzhdh" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Textarea" label="备注说明" fieldName="BZSM">
+      <attribute key="cols" value="14" />
+      <attribute key="style" value="width:210px;height:50px" />
+      <attribute key="name" value="bzsm" />
+      <attribute key="styleClass" value="{maxlength:80}" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+      <attribute key="rows" value="5" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="ZHKZSX">
+      <attribute key="defVal" value="MZ" />
+      <attribute key="name" value="zhkzsx" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="SXZ">
+      <attribute key="defVal" value="1" />
+      <attribute key="name" value="sxz" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZR">
+      <attribute key="defVal" value="$login_khdxdh$" />
+      <attribute key="name" value="czr" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZSJ">
+      <attribute key="defVal" value="systime" />
+      <attribute key="name" value="czsj" />
+    </tag>
+  </addPage>
+  <updatePage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="账号" fieldName="ZHDH">
+      <attribute key="style" value="width:210px" />
+      <attribute key="name" value="zhdh" />
+      <attribute key="styleClass" value="{required:true}" />
+      <attribute key="isAll" value="false" />
+      <attribute key="readonly" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select 1 from jxdx_dkzh zh where 1=1 and  zh.zhdh='$zhdh$'" />
+      <attribute key="name" value="checkzhdh" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Textarea" label="备注说明" fieldName="BZSM">
+      <attribute key="cols" value="14" />
+      <attribute key="style" value="width:210px;height:50px" />
+      <attribute key="name" value="bzsm" />
+      <attribute key="styleClass" value="{maxlength:80}" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+      <attribute key="rows" value="5" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="ZHKZSX">
+      <attribute key="defVal" value="MZ" />
+      <attribute key="name" value="zhkzsx" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="SXZ">
+      <attribute key="defVal" value="1" />
+      <attribute key="name" value="sxz" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZR">
+      <attribute key="defVal" value="$login_khdxdh$" />
+      <attribute key="name" value="czr" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZSJ">
+      <attribute key="defVal" value="systime" />
+      <attribute key="name" value="czsj" />
+    </tag>
+  </updatePage>
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+    <button>import</button>
+  </buttons>
+  <flow>
+    <insertbefore />
+    <insertafter />
+    <deletebefore />
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.cystdkzhgl">
+    <select id="dn12.cystdkzhglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select a.zhdh,b.zhhm,a.bzsm,a.zhkzsx  from sglr_dkzhkzsx2 a inner join jxdx_dkzh b on a.zhdh=b.zhdh where a.zhkzsx='MZ'
+      <isNotEmpty property="zhdh">and a.zhdh like '%$zhdh$%'</isNotEmpty>
+      order by a.zhdh
+    </select>
+    <select id="dn12.cystdkzhglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select a.zhdh,b.zhhm,a.bzsm,a.zhkzsx  from sglr_dkzhkzsx2 a inner join jxdx_dkzh b on a.zhdh=b.zhdh where a.zhkzsx='MZ'
+      <isNotEmpty property="zhdh">and a.zhdh like '%$zhdh$%'</isNotEmpty>
+      order by a.zhdh ) t
+    </select>
+    <select id="dn12.cystdkzhgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  BZSM, ZHKZSX, CZSJ, CZR, SXZ, ZHDH  from SGLR_DKZHKZSX2 where 1= 1  and ZHKZSX = '$zhkzsx$' and ZHDH = '$zhdh$'
+    </select>
+    <select id="dn12.cystdkzhgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  BZSM, ZHKZSX, CZSJ, CZR, SXZ, ZHDH  from SGLR_DKZHKZSX2 where 1= 1  and ZHKZSX = '$zhkzsx$' and ZHDH = '$zhdh$'
+    </select>
+    <insert id="dn12.cystdkzhgl_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into SGLR_DKZHKZSX2( CZSJ, SXZ, CZR, ZHDH, ZHKZSX, BZSM ) values ( f_get_timestamp('$czsj$'),'$sxz$','$czr$','$zhdh$','$zhkzsx$','$bzsm$')
+    </insert>
+    <update id="dn12.cystdkzhgl_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update SGLR_DKZHKZSX2 set BZSM = '$bzsm$' where 1=1  and ZHKZSX = '$zhkzsx$' and ZHDH = '$zhdh$'
+    </update>
+    <delete id="dn12.cystdkzhgl_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from SGLR_DKZHKZSX2 where 1=1  and ZHKZSX = '$zhkzsx$' and ZHDH = '$zhdh$'
+    </delete>
+    <select id="dn12.cystdkzhgl_checkzhdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select 1 from jxdx_dkzh zh where 1=1 and  zh.zhdh='$zhdh$'</select>
+  </sqlMap>
+  <javascript>
+    <import>parent.addTab('cystdkzhgldr','参与社团贷款账户管理','/module/parser/import/visitHtml/cystdkzhgldr');</import>
+    <query>jQuery(document).ready(function () {
+ editpage_width = 370;
+ editpage_height =255;
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}</query>
+    <edit>jQuery(document).ready(function () {
+//这里的js脚本，会在页面加载完成后执行
+  jQuery('#zhdh').executeOnEvent('blur','cystdkzhgl_checkzhdh',checkZhdh);
+});
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+  return PAS.di.isDone();
+}
+
+function checkZhdh(obj){
+
+  if(obj.data.length==0){
+    jQuery("#zhdh").validationFiled('账户不存在！');
+  }else{
+    jQuery("#zhdh").validationPass();
+    PAS.di.setDone(obj.sqlid);
+  }
+}</edit>
+  </javascript>
+</pageSetting>
+

@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="ckftpgl" title="存款FTP价格管理" type="manage">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName="">
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="1" rowspan="1" colspan="1" name="Text" label="产品名称" fieldName="">
+        <attribute key="name" value="cpmc" />
+        <attribute key="readonly" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="NewJg" label="机构" fieldName="">
+        <attribute key="ckbz" value="jg_ckhy" />
+        <attribute key="cascadeCheck" value="true" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="defVal" value="1" />
+        <attribute key="name" value="jgkhdxdh" />
+        <attribute key="multiple" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="ckftpgltable">
+    <col id="MS" title="产品" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="BZZWMC" title="币种" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="QXMC" title="期限" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="ZYJG" title="总行转移价格" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="QSRQ" title="起始日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="BZ" title="币种" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" hidden="true" />
+    <col id="CPDH" title="产品代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" hidden="true" />
+    <col id="QXDH" title="期限代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" hidden="true" />
+  </table>
+  <rels>
+    <items id="ckftpgltable" />
+  </rels>
+  <addPage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="产品" fieldName="CPDH">
+      <attribute key="sql" value="select cpdh as key,ms as value from csb_cpxz where cplx='1'" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="cpdh" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="evenName" value="change" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="true" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="期限" fieldName="QXDH">
+      <attribute key="sql" value="select qxdh as key,qxmc as value from CSB_QXSDB where jxdxlx=1  union    select '-1' as key,'全部期限' as value from pas_vt" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="qxdh" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="evenName" value="change" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="true" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="币种" fieldName="BZ">
+      <attribute key="sql" value="select bz as key,bzzwmc as value from csb_bz where bz!='0A' AND bz!='0B' AND bz!='0C' AND bz!='FF'" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="bz" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="evenName" value="change" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="true" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="NewJg" label="机构" fieldName="">
+      <attribute key="ckbz" value="jg_ckhy" />
+      <attribute key="cascadeCheck" value="true" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="defVal" value="0" />
+      <attribute key="name" value="jgkhdxdh" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JGDH">
+      <attribute key="name" value="jgdh" />
+    </tag>
+    <tag row="3" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select khdxdh as jgkhdxdh,jgdh,jgmc from khdx_jg where jgdh='$jgdh$'" />
+      <attribute key="name" value="getJgInfoByJgdh" />
+    </tag>
+    <tag row="3" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select khdxdh as jgkhdxdh,jgdh,jgmc from khdx_jg where khdxdh=$jgkhdxdh$" />
+      <attribute key="name" value="getJgInfoByKhdxdh" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="qsrq" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ">
+      <attribute key="defVal" value="29991231" />
+      <attribute key="name" value="jsrq" />
+    </tag>
+    <tag row="4" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c  where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'" />
+      <attribute key="name" value="getMaxqsrq" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Number" label="FTP价格" fieldName="ZYJG">
+      <attribute key="precision" value="2" />
+      <attribute key="name" value="zyjg" />
+      <attribute key="intparts" value="8" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+  </addPage>
+  <updatePage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="产品" fieldName="CPDH">
+      <attribute key="sql" value="select cpdh as key,ms as value from csb_cpxz where cplx='1'" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="cpdh" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="evenName" value="change" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="期限" fieldName="QXDH">
+      <attribute key="sql" value="select qxdh as key,qxmc as value from CSB_QXSDB where jxdxlx=1  union    select '-1' as key,'全部期限' as value from pas_vt" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="qxdh" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="evenName" value="change" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="币种" fieldName="BZ">
+      <attribute key="sql" value="select bz as key,bzzwmc as value from csb_bz where bz!='0A' AND bz!='0B' AND bz!='0C' AND bz!='FF'" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="bz" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="evenName" value="change" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="NewJg" label="机构" fieldName="">
+      <attribute key="ckbz" value="jg_ckhy" />
+      <attribute key="cascadeCheck" value="true" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="defVal" value="0" />
+      <attribute key="name" value="jgkhdxdh" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JGDH">
+      <attribute key="name" value="jgdh" />
+    </tag>
+    <tag row="3" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select khdxdh as jgkhdxdh,jgdh,jgmc from khdx_jg where jgdh='$jgdh$'" />
+      <attribute key="name" value="getJgInfoByJgdh" />
+    </tag>
+    <tag row="3" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select khdxdh as jgkhdxdh,jgdh,jgmc from khdx_jg where khdxdh=$jgkhdxdh$" />
+      <attribute key="name" value="getJgInfoByKhdxdh" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="qsrq" />
+      <attribute key="isAll" value="false" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="readonly" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="4" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ">
+      <attribute key="defVal" value="29991231" />
+      <attribute key="name" value="jsrq" />
+    </tag>
+    <tag row="4" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c  where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'" />
+      <attribute key="name" value="getMaxqsrq" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Number" label="FTP价格" fieldName="ZYJG">
+      <attribute key="precision" value="2" />
+      <attribute key="name" value="zyjg" />
+      <attribute key="intparts" value="8" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+  </updatePage>
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+  </buttons>
+  <flow>
+    <insertbefore>
+      <sql type="delete">ckftpgl_check_itemAddDel</sql>
+      <sql type="update">ckftpgl_check_itemUP</sql>
+    </insertbefore>
+    <insertafter />
+    <deletebefore>
+      <sql type="selectmaxqsrq">ckftpgl_check_itemMAX_del</sql>
+      <sql type="update">ckftpgl_check_itemDELUP</sql>
+    </deletebefore>
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.ckftpgl">
+    <select id="dn12.ckftpglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select ftp.bz,ftp.qxdh,ftp.cpdh,ftp.jgdh,jg.jgmc,ftp.qsrq,ftp.jsrq,ftp.zyjg,bz.bzzwmc,cp.ms,         (case when ftp.qxdh='-1' then '全部期限' else qx.qxmc end) qxmc from csb_nbzjzydj_ck ftp inner join csb_bz bz on bz.bz = ftp.bz inner join csb_cpxz cp on cp.cplx='1' and cp.cpdh = ftp.cpdh left join CSB_QXSDB qx on qx.jxdxlx=1 and qx.qxdh = ftp.qxdh inner join khdx_jg jg on jg.jgdh = ftp.jgdh  inner join table(FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,$jgkhdxdh$)) qx on jg.khdxdh=qx.khdxdh where 1=1
+      <isNotEmpty property="cpmc">and  cp.ms like '%$cpmc$%'</isNotEmpty>
+      <isNotEmpty property="tjrq">and $tjrq$ between ftp.qsrq and ftp.jsrq</isNotEmpty>
+    </select>
+    <select id="dn12.ckftpglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select ftp.bz,ftp.qxdh,ftp.cpdh,ftp.jgdh,jg.jgmc,ftp.qsrq,ftp.jsrq,ftp.zyjg,bz.bzzwmc,cp.ms,         (case when ftp.qxdh='-1' then '全部期限' else qx.qxmc end) qxmc from csb_nbzjzydj_ck ftp inner join csb_bz bz on bz.bz = ftp.bz inner join csb_cpxz cp on cp.cplx='1' and cp.cpdh = ftp.cpdh left join CSB_QXSDB qx on qx.jxdxlx=1 and qx.qxdh = ftp.qxdh inner join khdx_jg jg on jg.jgdh = ftp.jgdh  inner join table(FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,$jgkhdxdh$)) qx on jg.khdxdh=qx.khdxdh where 1=1
+      <isNotEmpty property="cpmc">and  cp.ms like '%$cpmc$%'</isNotEmpty>
+      <isNotEmpty property="tjrq">and $tjrq$ between ftp.qsrq and ftp.jsrq</isNotEmpty>
+      ) t
+    </select>
+    <select id="dn12.ckftpgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  XS, QSRQ, JGDH, FHFDJ, PLBZ, JSRQ, BZ, CPDH, QXDH, ZYJG  from  where 1= 1  and QSRQ = $qsrq$ and JGDH = '$jgdh$' and BZ = '$bz$' and CPDH = '$cpdh$' and QXDH = '$qxdh$'
+    </select>
+    <select id="dn12.ckftpgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  XS, QSRQ, JGDH, FHFDJ, PLBZ, JSRQ, BZ, CPDH, QXDH, ZYJG  from  where 1= 1  and QSRQ = $qsrq$ and JGDH = '$jgdh$' and BZ = '$bz$' and CPDH = '$cpdh$' and QXDH = '$qxdh$'
+    </select>
+    <insert id="dn12.ckftpgl_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into ( BZ, QSRQ, JGDH, CPDH, JSRQ, QXDH, ZYJG ) values ( '$bz$',$qsrq$,'$jgdh$','$cpdh$',$jsrq$,'$qxdh$',$zyjg$)
+    </insert>
+    <update id="dn12.ckftpgl_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  set ZYJG = $zyjg$ where 1=1  and QSRQ = $qsrq$ and JGDH = '$jgdh$' and BZ = '$bz$' and CPDH = '$cpdh$' and QXDH = '$qxdh$'
+    </update>
+    <delete id="dn12.ckftpgl_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from  where 1=1  and QSRQ = $qsrq$ and JGDH = '$jgdh$' and BZ = '$bz$' and CPDH = '$cpdh$' and QXDH = '$qxdh$'
+    </delete>
+    <delete id="dn12.ckftpgl_check_itemAddDel" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[delete from  where qsrq >=$qsrq$  and JGDH = '$jgdh$' and BZ = '$bz$' and CPDH = '$cpdh$' and QXDH = '$qxdh$']]>
+    </delete>
+    <update id="dn12.ckftpgl_check_itemUP" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  set jsrq=$qdate$
+      <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty>
+      and JGDH = '$jgdh$' and BZ = '$bz$' and CPDH = '$cpdh$' and QXDH = '$qxdh$'
+    </update>
+    <select id="dn12.ckftpgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select max(qsrq) from  where 1=1  and JGDH = '$jgdh$' and BZ = '$bz$' and CPDH = '$cpdh$' and QXDH = '$qxdh$'
+    </select>
+    <select id="dn12.ckftpgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[select  XS, QSRQ, JGDH, FHFDJ, PLBZ, JSRQ, BZ, CPDH, QXDH, ZYJG from  where 1=1  and JGDH = '$jgdh$' and BZ = '$bz$' and CPDH = '$cpdh$' and QXDH = '$qxdh$' and $qsrq$ > $maxqsrq$]]>
+    </select>
+    <update id="dn12.ckftpgl_check_itemDELUP" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  set jsrq =29991231 where 1=1 and JGDH = '$jgdh$' and BZ = '$bz$' and CPDH = '$cpdh$' and QXDH = '$qxdh$' and jsrq =$lastjsrq$
+    </update>
+    <select id="dn12.ckftpgl_getJgInfoByJgdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khdxdh as jgkhdxdh,jgdh,jgmc from khdx_jg where jgdh='$jgdh$'</select>
+    <select id="dn12.ckftpgl_getJgInfoByKhdxdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khdxdh as jgkhdxdh,jgdh,jgmc from khdx_jg where khdxdh=$jgkhdxdh$</select>
+    <select id="dn12.ckftpgl_getMaxqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c 
+where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'</select>
+    <select id="dn12.ckftpgl_MSQL4SELECT_cpdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select cpdh as key,ms as value from csb_cpxz where cplx='1'</select>
+    <select id="dn12.ckftpgl_MSQL4SELECT_qxdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select qxdh as key,qxmc as value from CSB_QXSDB where jxdxlx=1  union    select '-1' as key,'全部期限' as value from pas_vt</select>
+    <select id="dn12.ckftpgl_MSQL4SELECT_bz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select bz as key,bzzwmc as value from csb_bz where bz!='0A' AND bz!='0B' AND bz!='0C' AND bz!='FF'</select>
+  </sqlMap>
+  <javascript>
+    <query>jQuery(document).ready(function () {
+
+    //$('#jgkhdxdh_mc').attr('prevalue','');
+    $('#jgkhdxdh_mc').val(' ');
+    $('#jgkhdxdh').val(0);
+  
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+
+  
+ return true;
+}</query>
+    <edit>jQuery(document).ready(function () {
+//这里的js脚本，会在页面加载完成后执行  
+  PAS.di.execute('ckftpgl_getMaxqsrq',getMaxqsrqBack);//加载最大的起始日期
+  if($("#page_operate").val()=='update'){
+      $('#jgkhdxdh_mc').attr("disabled","disabled");
+      PAS.di.execute('ckftpgl_getJgInfoByJgdh',setEditForm);//更改的写法
+  }else{
+      $('#jgkhdxdh_mc').val(' ');
+      $('#jgkhdxdh').val(1);
+      $('#jgkhdxdh_dh').val('0');
+      $('#jgkhdxdh_mc').removeAttr("disabled");
+      PAS.di.execute('ckftpgl_getJgInfoByKhdxdh',setEditForm);//更改的写法
+  }
+  
+});
+
+function setEditForm(obj){
+
+  if(obj.data.length&gt;0){
+    var jgkhdxdh=obj.data[0].JGKHDXDH;
+    var jgdh=obj.data[0].JGDH;
+    var jgmc=obj.data[0].JGMC;
+    if(jgkhdxdh==1){
+      $('#jgkhdxdh_dh').val(jgdh);
+    }
+    $("#jgkhdxdh_mc").val(jgmc);
+    $("#jgkhdxdh_mc").attr('prevalue',jgmc);
+    $("#jgkhdxdh_dh").val(jgdh);
+    $("#jgkhdxdh_dh").attr('prevalue',jgdh);
+    $("#jgkhdxdh").val(jgkhdxdh);
+    $("#jgkhdxdh").attr('prevalue',jgkhdxdh);
+  
+  }
+}
+
+function getMaxqsrqBack(obj){
+  if(obj.data.length&gt;0){
+        maxqsrq = obj.data[0].MAXQSRQ;
+        PAS.di.setDone(obj.sqlid);
+  }
+}
+
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+
+if(maxqsrq&gt;parseInt($('#qsrq').val())){
+      parent.custom_alert('由于重算天数的限制，起始日期最大只能是：'+maxqsrq);
+      return false;
+    }
+//alert('jgkhdxdh_dh='+$("#jgkhdxdh_dh").val());
+if($("#jgkhdxdh_dh").val()!=null&amp;&amp;$("#jgkhdxdh_dh").val()!=''){
+  $("#jgdh").val($("#jgkhdxdh_dh").val());
+}else{
+  $("#jgdh").val('0');
+}
+
+var cpdh = jQuery('#cpdh').val();
+if(cpdh==null||cpdh==''){
+  alert('产品不能为空');
+  jQuery('#cpdh').focus();
+  return false;
+}
+
+ return true;
+}</edit>
+  </javascript>
+</pageSetting>
+

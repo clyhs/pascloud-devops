@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="bldkqsjlgl" title="不良贷款清收奖励管理" type="manage">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="清收起始日期" fieldName="">
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="qsqsrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="defValType" value="yc" />
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="1" rowspan="1" colspan="1" name="Date" label="清收结束日期" fieldName="">
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="qsjsrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="Dmms" label="不良类型" fieldName="">
+        <attribute key="name" value="bllx" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isAll" value="true" />
+        <attribute key="dmmc" value="bllx" />
+        <attribute key="multiple" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="3" rowspan="1" colspan="1" name="Dmms" label="清收方式" fieldName="">
+        <attribute key="name" value="qsfs" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isAll" value="true" />
+        <attribute key="dmmc" value="qsfs" />
+        <attribute key="multiple" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="1" col="0" rowspan="1" colspan="1" name="Dmms" label="五级分类" fieldName="">
+        <attribute key="name" value="blwjfl" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isAll" value="true" />
+        <attribute key="dmmc" value="blwjfl" />
+        <attribute key="multiple" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="1" col="1" rowspan="1" colspan="1" name="NewMultipleHy" label="清收人" fieldName="">
+        <attribute key="isRequired" value="false" />
+        <attribute key="isDisplayXN" value="true" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="true" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="1" col="2" rowspan="1" colspan="1" name="Text" label="贷款账号" fieldName="">
+        <attribute key="name" value="dkzh" />
+        <attribute key="readonly" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="1" col="3" rowspan="1" colspan="1" name="Text" label="账户名称" fieldName="">
+        <attribute key="name" value="zhmc" />
+        <attribute key="readonly" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="1" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+        <attribute key="defVal" value="$csdate$" />
+        <attribute key="name" value="csrq" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="bldkqsjlgltable">
+    <col id="QSRQ" title="清收日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="JGDH" title="清收机构代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="JGMC" title="清收机构名称" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="HYDH" title="清收行员代号" align="left" type="string" width="90" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="HYMC" title="清收行员名称" align="left" type="string" width="110" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="ZHDH" title="贷款账号" align="left" type="string" width="180" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="WJFL" title="五级分类" align="left" type="string" width="90" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="QXMC" title="贷款期限" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="YQRQ" title="逾期日期" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="BLLX" title="不良类型" align="left" type="string" width="100" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="QSFS" title="清收方式" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="SHBJ" title="收回本金" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="BJJTBL" title="本金计提比例" align="right" type="float" width="120" format="###,##0.0000" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="SHLX" title="收回利息" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="LXJTBL" title="利息计提比例" align="right" type="float" width="120" format="###,##0.0000" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JTGZ" title="奖励金额" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="BZSM" title="备注说明" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="KHDXDH" title="考核对象代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" hidden="true" />
+  </table>
+  <rels>
+    <items id="bldkqsjlgltable" />
+  </rels>
+  <addPage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="清收日期" fieldName="QSRQ">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="qsrq" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="Date" label="逾期日期" fieldName="YQRQ">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="yqrq" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="0" col="2" rowspan="1" colspan="1" name="Dmms" label="五级分类" fieldName="WJFL">
+      <attribute key="name" value="BLWJFL" />
+      <attribute key="isAll" value="false" />
+      <attribute key="dmmc" value="blwjfl" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="清收人" fieldName="KHDXDH">
+      <attribute key="isRequired" value="true" />
+      <attribute key="isDisplayXN" value="true" />
+      <attribute key="jgckbz" value="jg_ckhy" />
+      <attribute key="name" value="khdxdh" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="Dmms" label="不良类型" fieldName="BLLX">
+      <attribute key="name" value="bllx" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="dmmc" value="bllx" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="2" rowspan="1" colspan="1" name="Dmms" label="清收方式" fieldName="QSFS">
+      <attribute key="name" value="qsfs" />
+      <attribute key="isAll" value="false" />
+      <attribute key="dmmc" value="qsfs" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="贷款期限" fieldName="DKQX">
+      <attribute key="sql" value="select  qxdh as key,qxmc as value from csb_qxsdb where JXDXLX=2" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="dkqx" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="isEditable" value="true" />
+    </tag>
+    <tag row="2" col="1" rowspan="1" colspan="1" name="Text" label="账户名称" fieldName="ZHHM">
+      <attribute key="name" value="zhhm" />
+      <attribute key="styleClass" value="validate-space max-length-40 required" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="2" rowspan="1" colspan="1" name="Text" label="贷款账号" fieldName="ZHDH">
+      <attribute key="maxlength" value="40" />
+      <attribute key="name" value="zhdh" />
+      <attribute key="styleClass" value="{required:true}" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="收回本金" fieldName="SHBJ">
+      <attribute key="precision" value="2" />
+      <attribute key="name" value="shbj" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="1" rowspan="1" colspan="1" name="Number" label="收回利息" fieldName="SHLX">
+      <attribute key="precision" value="2" />
+      <attribute key="name" value="shlx" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="2" rowspan="1" colspan="1" name="Number" label="计提工资" fieldName="JTGZ">
+      <attribute key="precision" value="2" />
+      <attribute key="name" value="jtgz" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="本金计提比例" fieldName="BJJTBL">
+      <attribute key="precision" value="4" />
+      <attribute key="name" value="bjjtbl" />
+      <attribute key="intparts" value="14" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="1" rowspan="1" colspan="1" name="Number" label="利息计提比例" fieldName="LXJTBL">
+      <attribute key="precision" value="4" />
+      <attribute key="name" value="lxjtbl" />
+      <attribute key="intparts" value="14" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="2" rowspan="1" colspan="1" name="Text" label="备注说明" fieldName="BZSM">
+      <attribute key="maxlength" value="80" />
+      <attribute key="name" value="bzsm" />
+      <attribute key="styleClass" value="validate-space max-length-200" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZR">
+      <attribute key="defVal" value="$login_khdxdh$" />
+      <attribute key="name" value="CZR" />
+    </tag>
+    <tag row="5" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZSJ">
+      <attribute key="defVal" value="systime" />
+      <attribute key="name" value="CZSJ" />
+    </tag>
+    <tag row="5" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select 1 from jxdx_dkzh zh where 1=1 and  zh.zhdh='$zhdh$'" />
+      <attribute key="name" value="checkzhdh" />
+    </tag>
+  </addPage>
+  <updatePage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="清收日期" fieldName="QSRQ">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="qsrq" />
+      <attribute key="isAll" value="false" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="Date" label="逾期日期" fieldName="YQRQ">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="yqrq" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="0" col="2" rowspan="1" colspan="1" name="Dmms" label="五级分类" fieldName="WJFL">
+      <attribute key="name" value="BLWJFL" />
+      <attribute key="isAll" value="false" />
+      <attribute key="dmmc" value="blwjfl" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="清收人" fieldName="KHDXDH">
+      <attribute key="isRequired" value="true" />
+      <attribute key="isDisplayXN" value="true" />
+      <attribute key="jgckbz" value="jg_ckhy" />
+      <attribute key="name" value="khdxdh" />
+      <attribute key="isAll" value="false" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="Dmms" label="不良类型" fieldName="BLLX">
+      <attribute key="name" value="bllx" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="dmmc" value="bllx" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="2" rowspan="1" colspan="1" name="Dmms" label="清收方式" fieldName="QSFS">
+      <attribute key="name" value="qsfs" />
+      <attribute key="isAll" value="false" />
+      <attribute key="dmmc" value="qsfs" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="贷款期限" fieldName="DKQX">
+      <attribute key="sql" value="select  qxdh as key,qxmc as value from csb_qxsdb where JXDXLX=2" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="dkqx" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="isEditable" value="true" />
+    </tag>
+    <tag row="2" col="1" rowspan="1" colspan="1" name="Text" label="账户名称" fieldName="ZHHM">
+      <attribute key="name" value="zhhm" />
+      <attribute key="styleClass" value="validate-space max-length-40 required" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="2" rowspan="1" colspan="1" name="Text" label="贷款账号" fieldName="ZHDH">
+      <attribute key="maxlength" value="40" />
+      <attribute key="name" value="zhdh" />
+      <attribute key="styleClass" value="{required:true}" />
+      <attribute key="isAll" value="false" />
+      <attribute key="readonly" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="收回本金" fieldName="SHBJ">
+      <attribute key="precision" value="2" />
+      <attribute key="name" value="shbj" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="1" rowspan="1" colspan="1" name="Number" label="收回利息" fieldName="SHLX">
+      <attribute key="precision" value="2" />
+      <attribute key="name" value="shlx" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="2" rowspan="1" colspan="1" name="Number" label="计提工资" fieldName="JTGZ">
+      <attribute key="precision" value="2" />
+      <attribute key="name" value="jtgz" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="本金计提比例" fieldName="BJJTBL">
+      <attribute key="precision" value="4" />
+      <attribute key="name" value="bjjtbl" />
+      <attribute key="intparts" value="14" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="1" rowspan="1" colspan="1" name="Number" label="利息计提比例" fieldName="LXJTBL">
+      <attribute key="precision" value="4" />
+      <attribute key="name" value="lxjtbl" />
+      <attribute key="intparts" value="14" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="2" rowspan="1" colspan="1" name="Text" label="备注说明" fieldName="BZSM">
+      <attribute key="maxlength" value="80" />
+      <attribute key="name" value="bzsm" />
+      <attribute key="styleClass" value="validate-space max-length-200" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZR">
+      <attribute key="defVal" value="$login_khdxdh$" />
+      <attribute key="name" value="CZR" />
+    </tag>
+    <tag row="5" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZSJ">
+      <attribute key="defVal" value="systime" />
+      <attribute key="name" value="CZSJ" />
+    </tag>
+    <tag row="5" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select 1 from jxdx_dkzh zh where 1=1 and  zh.zhdh='$zhdh$'" />
+      <attribute key="name" value="checkzhdh" />
+    </tag>
+  </updatePage>
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+    <button>import</button>
+  </buttons>
+  <flow>
+    <insertbefore />
+    <insertafter />
+    <deletebefore />
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.bldkqsjlgl">
+    <select id="dn12.bldkqsjlglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select bl.qsrq ,jg.JGDH,jg.JGMC,hy.HYDH,hy.HYMC,qx.qxmc,hy.khdxdh ,bl.zhdh,bl.zhhm,dmms1.dmms as WJFL,bl.yqrq,  dmms2.dmms AS BLLX ,dmms3.dmms as QSFS,bl.shbj,bl.bjjtbl,bl.shlx,  bl.lxjtbl,bl.jtgz,bl.bzsm from SGLR_BLDKQSMX bl  inner join KHDX_HY hy on hy.KHDXDH=bl.khdxdh inner join khdx_jgcy jgcy on hy.KHDXDH=jgcy.khdxdh
+      <isNotEmpty property="qsjsrq">and $qsjsrq$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty>
+      inner join KHDX_JG jg on jg.khdxdh=jgcy.jgkhdxdh left join CSB_DMMS dmms1 on dmms1.dmz=bl.wjfl and upper(dmms1.dmmc)='BLWJFL' left join CSB_DMMS dmms2 on dmms2.dmz=bl.bllx and upper(dmms2.dmmc)='BLLX' left join CSB_DMMS dmms3 on dmms3.dmz=bl.qsfs and upper(dmms3.dmmc)='QSFS' inner join csb_qxsdb qx on qx.jxdxlx = 2 and bl.dkqx between qx.qsqx and qx.jsqx
+      <isNotEmpty property="qsqsrq">where bl.qsrq between $qsqsrq$ and  $qsjsrq$</isNotEmpty>
+      <isNotEmpty property="bllx">and  bl.bllx='$bllx$'</isNotEmpty>
+      <isNotEmpty property="qsfs">and  bl.qsfs= '$qsfs$'</isNotEmpty>
+      <isNotEmpty property="blwjfl">and  bl.wjfl='$blwjfl$'</isNotEmpty>
+      <isNotEmpty property="khdxdh">and  bl.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="dkzh">and  bl.zhdh like '%$dkzh$%'</isNotEmpty>
+      <isNotEmpty property="zhmc">and  bl.zhhm like  '%$zhmc$%'</isNotEmpty>
+    </select>
+    <select id="dn12.bldkqsjlglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select bl.qsrq ,jg.JGDH,jg.JGMC,hy.HYDH,hy.HYMC,qx.qxmc,hy.khdxdh ,bl.zhdh,bl.zhhm,dmms1.dmms as WJFL,bl.yqrq,  dmms2.dmms AS BLLX ,dmms3.dmms as QSFS,bl.shbj,bl.bjjtbl,bl.shlx,  bl.lxjtbl,bl.jtgz,bl.bzsm from SGLR_BLDKQSMX bl  inner join KHDX_HY hy on hy.KHDXDH=bl.khdxdh inner join khdx_jgcy jgcy on hy.KHDXDH=jgcy.khdxdh
+      <isNotEmpty property="qsjsrq">and $qsjsrq$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty>
+      inner join KHDX_JG jg on jg.khdxdh=jgcy.jgkhdxdh left join CSB_DMMS dmms1 on dmms1.dmz=bl.wjfl and upper(dmms1.dmmc)='BLWJFL' left join CSB_DMMS dmms2 on dmms2.dmz=bl.bllx and upper(dmms2.dmmc)='BLLX' left join CSB_DMMS dmms3 on dmms3.dmz=bl.qsfs and upper(dmms3.dmmc)='QSFS' inner join csb_qxsdb qx on qx.jxdxlx = 2 and bl.dkqx between qx.qsqx and qx.jsqx
+      <isNotEmpty property="qsqsrq">where bl.qsrq between $qsqsrq$ and  $qsjsrq$</isNotEmpty>
+      <isNotEmpty property="bllx">and  bl.bllx='$bllx$'</isNotEmpty>
+      <isNotEmpty property="qsfs">and  bl.qsfs= '$qsfs$'</isNotEmpty>
+      <isNotEmpty property="blwjfl">and  bl.wjfl='$blwjfl$'</isNotEmpty>
+      <isNotEmpty property="khdxdh">and  bl.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="dkzh">and  bl.zhdh like '%$dkzh$%'</isNotEmpty>
+      <isNotEmpty property="zhmc">and  bl.zhhm like  '%$zhmc$%'</isNotEmpty>
+      ) t
+    </select>
+    <select id="dn12.bldkqsjlgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  BLLX, JTGZ, SHLX, WJFL, KHDXDH, SHBJ, BZSM, YQRQ, LXJTBL, CZR, QSFS, ZHHM, QSRQ,F_TIMETOCHAR(CZSJ,'yyyy-mm-dd hh24:mi:ss') as CZSJ, ZHDH, DKQX, BJJTBL  from SGLR_BLDKQSMX where 1= 1  and KHDXDH = $khdxdh$ and QSRQ = $qsrq$ and ZHDH = '$zhdh$'
+    </select>
+    <select id="dn12.bldkqsjlgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  BLLX, JTGZ, SHLX, WJFL, KHDXDH, SHBJ, BZSM, YQRQ, LXJTBL, CZR, QSFS, ZHHM, QSRQ,F_TIMETOCHAR(CZSJ,'yyyy-mm-dd hh24:mi:ss') as CZSJ, ZHDH, DKQX, BJJTBL  from SGLR_BLDKQSMX where 1= 1  and KHDXDH = $khdxdh$ and QSRQ = $qsrq$ and ZHDH = '$zhdh$'
+    </select>
+    <insert id="dn12.bldkqsjlgl_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into SGLR_BLDKQSMX( LXJTBL, ZHHM, KHDXDH, BJJTBL, QSRQ, CZR, ZHDH, DKQX, SHLX, JTGZ, WJFL, BLLX, SHBJ, YQRQ, CZSJ, QSFS, BZSM ) values ( $lxjtbl$,'$zhhm$',$khdxdh$,$bjjtbl$,$qsrq$,'$CZR$','$zhdh$','$dkqx$',$shlx$,$jtgz$,'$BLWJFL$','$bllx$',$shbj$,$yqrq$,f_get_timestamp('$CZSJ$'),'$qsfs$','$bzsm$')
+    </insert>
+    <update id="dn12.bldkqsjlgl_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update SGLR_BLDKQSMX set LXJTBL = $lxjtbl$,ZHHM = '$zhhm$',BJJTBL = $bjjtbl$,DKQX = '$dkqx$',SHLX = $shlx$,JTGZ = $jtgz$,WJFL = '$BLWJFL$',BLLX = '$bllx$',SHBJ = $shbj$,YQRQ = $yqrq$,QSFS = '$qsfs$',BZSM = '$bzsm$' where 1=1  and KHDXDH = $khdxdh$ and QSRQ = $qsrq$ and ZHDH = '$zhdh$'
+    </update>
+    <delete id="dn12.bldkqsjlgl_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from SGLR_BLDKQSMX where 1=1  and KHDXDH = $khdxdh$ and QSRQ = $qsrq$ and ZHDH = '$zhdh$'
+    </delete>
+    <select id="dn12.bldkqsjlgl_checkzhdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select 1 from jxdx_dkzh zh where 1=1 and  zh.zhdh='$zhdh$'</select>
+    <select id="dn12.bldkqsjlgl_MSQL4SELECT_dkqx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select  qxdh as key,qxmc as value from csb_qxsdb where JXDXLX=2</select>
+  </sqlMap>
+  <javascript>
+    <import>parent.addTab('bldkqsjlgldr','不良贷款清收奖励管理','/module/parser/import/visitHtml/bldkqsjlgldr');</import>
+    <query>jQuery(document).ready(function () {
+  editpage_width = 700;
+ editpage_height =400;
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}
+
+function showUpdateEdtiDialog(sel){        
+        var jsrq=sel["JSRQ"];
+        if(null!=jsrq){
+            if(jsrq!='29991231')
+            {
+                custom_alert("只能修改结束日期为29991231的记录，请重新操作!");
+                return ;
+            }
+        }
+        var qsrq=sel["QSRQ"];
+        if(null!=qsrq){
+            if(qsrq&lt;parseInt($('#csrq').val())){
+              custom_alert("只能修改在重算日期范围内的记录，请重新操作!");
+              return ;
+            }
+        }
+        
+        var colIds="QSRQ,JGDH,JGMC,HYDH,HYMC,ZHDH,ZHHM,DKQX,WJFL,YQRQ,BLLX,QSFS,SHBJ,BJJTBL,SHLX,LXJTBL,JTGZ,BZSM,KHDXDH";
+        var colId=colIds.split(",");//所有的主键名
+        var params="&amp;"; //URL的参数
+        for(var i=0;i&lt;colId.length;i++){
+            params+=colId[i].toLowerCase()+"="+selDataFilter(sel[colId[i]])+"&amp;";
+        }
+        params=encodeURI(params.substring(0,params.length-1));
+        //alert(params);
+        var width = editpage_width||700;    
+        var height = editpage_height||400;    
+       custom_window('/module/parser/manage/getById/bldkqsjlgl?operate=update'+params,width,height,'不良贷款清收奖励管理编辑');
+    }</query>
+    <edit>jQuery(document).ready(function () {
+//这里的js脚本，会在页面加载完成后执行
+  $("#bjjtbl").attr("class","{required:true,decimal:[14,4]} ");
+  $("#lxjtbl").attr("class","{required:true,decimal:[14,4]} ");
+  jQuery('#zhdh').executeOnEvent('blur','bldkqsjlgl_checkzhdh',checkZhdh);
+});
+//自定义验证，在提交时执行。通过返回true，否则返回false
+
+function customValidate(){
+//console.log("customValidate");
+  return PAS.di.isDone();
+return true;
+}
+function checkZhdh(obj){
+  console.log(obj);
+
+  if(obj.data.length==0){
+    jQuery("#zhdh").validationFiled('账户不存在！');
+  }else{
+    jQuery("#zhdh").validationPass();
+    PAS.di.setDone(obj.sqlid);
+  }
+}</edit>
+  </javascript>
+</pageSetting>
+

@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="hydjpdtz" title="行员等级评定调整" type="manage">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="评定日期" fieldName="">
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="pdrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="1" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="">
+        <attribute key="isRequired" value="false" />
+        <attribute key="isDisplayXN" value="true" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="true" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="MSQL4Select" label="等级评定名称" fieldName="">
+        <attribute key="parents" value="pdrq" />
+        <attribute key="sql" value="select djpdmc as key,djpdmc as value from djpd_djbz where f_numtochar(pdnf) = substr(f_numtochar($pdrq$),1,4)  and khdx='2'" />
+        <attribute key="isSearch" value="false" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="isMultiple" value="false" />
+        <attribute key="name" value="djpdmc" />
+        <attribute key="width" value="auto;" />
+        <attribute key="isAll" value="false" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="hydjpdtztable">
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="BH" title="编号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="OLDDJPDMC" title="等级评定名称" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="OLDDJ" title="等级KEY" align="left" type="hidden" width="90" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="OLDPDLB" title="评定类别" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="TJRQ" title="评定日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="100" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="130" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="100" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="KHZQ" title="考核周期" align="left" type="string" width="65" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="PM" title="排名" align="left" type="hidden" width="65" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" orderby="asc" />
+    <col id="OLDJBMC" title="等级" align="left" type="string" width="100" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="OLDMS" title="评定标准" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="OLDJLBZ" title="等级工资" align="right" type="float" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+  </table>
+  <rels>
+    <items id="hydjpdtztable" />
+  </rels>
+  <addPage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="等级评定名称" fieldName="">
+      <attribute key="name" value="olddjpdmc" />
+      <attribute key="readonly" value="true" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="Text" label="机构名称" fieldName="">
+      <attribute key="name" value="jgmc" />
+      <attribute key="readonly" value="true" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHDXDH">
+      <attribute key="name" value="KHDXDH" />
+    </tag>
+    <tag row="0" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="BH">
+      <attribute key="name" value="BH" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Text" label="行员名称" fieldName="">
+      <attribute key="name" value="hymc" />
+      <attribute key="readonly" value="true" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="Text" label="评定日期" fieldName="TJRQ">
+      <attribute key="name" value="TJRQ" />
+      <attribute key="readonly" value="true" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="oldjlbz" />
+    </tag>
+    <tag row="1" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="olddj" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Text" label="评定等级" fieldName="">
+      <attribute key="name" value="oldjbmc" />
+      <attribute key="readonly" value="true" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="1" rowspan="1" colspan="1" name="MSQL4Select" label="调整等级" fieldName="">
+      <attribute key="sql" value="select -1 as key ,' ' as value from dual union all select dj as key,jbmc as value from djpd_dj where pdlb='$oldpdlb$'" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="tzdj" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="isEditable" value="true" />
+    </tag>
+    <tag row="2" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="oldpdlb" />
+    </tag>
+    <tag row="2" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="MS">
+      <attribute key="name" value="oldms" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="2" name="Textarea" label="调整原因" fieldName="">
+      <attribute key="cols" value="40" />
+      <attribute key="name" value="tzyy" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+      <attribute key="rows" value="3" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select jlbz from djpd_dj where pdlb='$oldpdlb$' and dj=$tzdj$" />
+      <attribute key="name" value="getUpdateJlbz" />
+    </tag>
+    <tag row="5" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select jbmc from djpd_dj where pdlb='$oldpdlb$' and dj=$tzdj$" />
+      <attribute key="name" value="getUpdateJbmc" />
+    </tag>
+    <tag row="7" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="DJ">
+      <attribute key="name" value="updateDj" />
+    </tag>
+    <tag row="7" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JLBZ">
+      <attribute key="name" value="updateJlbz" />
+    </tag>
+    <tag row="7" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JBMC">
+      <attribute key="name" value="updateJbmc" />
+    </tag>
+  </addPage>
+  <updatePage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="等级评定名称" fieldName="">
+      <attribute key="name" value="olddjpdmc" />
+      <attribute key="readonly" value="true" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="Text" label="机构名称" fieldName="">
+      <attribute key="name" value="jgmc" />
+      <attribute key="readonly" value="true" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHDXDH">
+      <attribute key="name" value="KHDXDH" />
+    </tag>
+    <tag row="0" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="BH">
+      <attribute key="name" value="BH" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Text" label="行员名称" fieldName="">
+      <attribute key="name" value="hymc" />
+      <attribute key="readonly" value="true" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="Text" label="评定日期" fieldName="TJRQ">
+      <attribute key="name" value="TJRQ" />
+      <attribute key="isAll" value="false" />
+      <attribute key="readonly" value="true" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="1" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="oldjlbz" />
+    </tag>
+    <tag row="1" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="olddj" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Text" label="评定等级" fieldName="">
+      <attribute key="name" value="oldjbmc" />
+      <attribute key="readonly" value="true" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="1" rowspan="1" colspan="1" name="MSQL4Select" label="调整等级" fieldName="">
+      <attribute key="sql" value="select -1 as key ,' ' as value from dual union all select dj as key,jbmc as value from djpd_dj where pdlb='$oldpdlb$'" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="tzdj" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="isEditable" value="true" />
+    </tag>
+    <tag row="2" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="oldpdlb" />
+    </tag>
+    <tag row="2" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="MS">
+      <attribute key="name" value="oldms" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="2" name="Textarea" label="调整原因" fieldName="">
+      <attribute key="cols" value="40" />
+      <attribute key="name" value="tzyy" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+      <attribute key="rows" value="3" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select jlbz from djpd_dj where pdlb='$oldpdlb$' and dj=$tzdj$" />
+      <attribute key="name" value="getUpdateJlbz" />
+    </tag>
+    <tag row="5" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select jbmc from djpd_dj where pdlb='$oldpdlb$' and dj=$tzdj$" />
+      <attribute key="name" value="getUpdateJbmc" />
+    </tag>
+    <tag row="7" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="DJ">
+      <attribute key="name" value="updateDj" />
+    </tag>
+    <tag row="7" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JLBZ">
+      <attribute key="name" value="updateJlbz" />
+    </tag>
+    <tag row="7" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JBMC">
+      <attribute key="name" value="updateJbmc" />
+    </tag>
+  </updatePage>
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+  </buttons>
+  <flow>
+    <insertbefore />
+    <insertafter />
+    <deletebefore />
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.hydjpdtz">
+    <select id="dn12.hydjpdtzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select djpd_yyjg_hy.khdxdh, djpd_yyjg_hy.bh, djpd_yyjg_hy.djpdmc olddjpdmc, djpd_yyjg_hy.jlbz oldjlbz, djpd_yyjg_hy.jbmc oldjbmc, djpd_yyjg_hy.pdlb oldpdlb, djpd_yyjg_hy.ms oldms, djpd_yyjg_hy.tjrq, khdx_jg.jgdh, khdx_jg.jgmc, khdx_hy.hydh, khdx_hy.hymc, dmms.dmms khzq, djpd_yyjg_hy.pm, djpd_yyjg_hy.dj olddj from djpd_yyjg_hy djpd_yyjg_hy inner join khdx_hy khdx_hy         on khdx_hy.khdxdh=djpd_yyjg_hy.khdxdh    inner join khdx_jgcy khdx_jgcy        on khdx_hy.khdxdh=khdx_jgcy.khdxdh and djpd_yyjg_hy.tjrq between khdx_jgcy.qsrq and  khdx_jgcy.jsrq inner join khdx_jg khdx_jg         on khdx_jgcy.jgkhdxdh = khdx_jg.khdxdh inner join khdx_hylb hylb         on djpd_yyjg_hy.khdxdh=hylb.khdxdh and djpd_yyjg_hy.tjrq between hylb.qsrq and hylb.jsrq inner join csb_dmms dmms         on upper(dmms.dmmc) = 'DJPDZQ'         and dmms.dmz = djpd_yyjg_hy.pdzq inner join table(fn_getsjjg_java_qxhy($pdrq$, $login_khdxdh$, 0)) qx on qx.khdxdh = khdx_hy.khdxdh  where 1=1
+      <isNotEmpty property="pdrq">and  djpd_yyjg_hy.tjrq= $pdrq$</isNotEmpty>
+      <isNotEmpty property="khdxdh">and khdx_hy.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="djpdmc">and djpd_yyjg_hy.djpdmc = '$djpdmc$'</isNotEmpty>
+      order by djpd_yyjg_hy.pm desc,khdx_hy.hydh asc
+    </select>
+    <select id="dn12.hydjpdtzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select djpd_yyjg_hy.khdxdh, djpd_yyjg_hy.bh, djpd_yyjg_hy.djpdmc olddjpdmc, djpd_yyjg_hy.jlbz oldjlbz, djpd_yyjg_hy.jbmc oldjbmc, djpd_yyjg_hy.pdlb oldpdlb, djpd_yyjg_hy.ms oldms, djpd_yyjg_hy.tjrq, khdx_jg.jgdh, khdx_jg.jgmc, khdx_hy.hydh, khdx_hy.hymc, dmms.dmms khzq, djpd_yyjg_hy.pm, djpd_yyjg_hy.dj olddj from djpd_yyjg_hy djpd_yyjg_hy inner join khdx_hy khdx_hy         on khdx_hy.khdxdh=djpd_yyjg_hy.khdxdh    inner join khdx_jgcy khdx_jgcy        on khdx_hy.khdxdh=khdx_jgcy.khdxdh and djpd_yyjg_hy.tjrq between khdx_jgcy.qsrq and  khdx_jgcy.jsrq inner join khdx_jg khdx_jg         on khdx_jgcy.jgkhdxdh = khdx_jg.khdxdh inner join khdx_hylb hylb         on djpd_yyjg_hy.khdxdh=hylb.khdxdh and djpd_yyjg_hy.tjrq between hylb.qsrq and hylb.jsrq inner join csb_dmms dmms         on upper(dmms.dmmc) = 'DJPDZQ'         and dmms.dmz = djpd_yyjg_hy.pdzq inner join table(fn_getsjjg_java_qxhy($pdrq$, $login_khdxdh$, 0)) qx on qx.khdxdh = khdx_hy.khdxdh  where 1=1
+      <isNotEmpty property="pdrq">and  djpd_yyjg_hy.tjrq= $pdrq$</isNotEmpty>
+      <isNotEmpty property="khdxdh">and khdx_hy.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="djpdmc">and djpd_yyjg_hy.djpdmc = '$djpdmc$'</isNotEmpty>
+      order by djpd_yyjg_hy.pm desc,khdx_hy.hydh asc ) t
+    </select>
+    <select id="dn12.hydjpdtz_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  JLBZ, PM, BH, JBMC, PDLB, KHDXDH, DJPDMC, PDZQ, TJRQ, MS, DJ  from DJPD_YYJG_HY where 1= 1  and BH = $bh$ and KHDXDH = $khdxdh$ and TJRQ = $tjrq$
+    </select>
+    <select id="dn12.hydjpdtz_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  JLBZ, PM, BH, JBMC, PDLB, KHDXDH, DJPDMC, PDZQ, TJRQ, MS, DJ  from DJPD_YYJG_HY where 1= 1  and BH = $BH$ and KHDXDH = $KHDXDH$ and TJRQ = $TJRQ$
+    </select>
+    <insert id="dn12.hydjpdtz_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into DJPD_YYJG_HY( KHDXDH, JBMC, JLBZ, DJ, TJRQ, BH, MS ) values ( $KHDXDH$,'$updateJbmc$',$updateJlbz$,$updateDj$,$TJRQ$,$BH$,'$oldms$')
+    </insert>
+    <update id="dn12.hydjpdtz_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update DJPD_YYJG_HY set JBMC = '$updateJbmc$',JLBZ = $updateJlbz$,DJ = $updateDj$,MS = '$oldms$' where 1=1  and BH = $BH$ and KHDXDH = $KHDXDH$ and TJRQ = $TJRQ$
+    </update>
+    <delete id="dn12.hydjpdtz_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from DJPD_YYJG_HY where 1=1  and BH = $bh$ and KHDXDH = $khdxdh$ and TJRQ = $tjrq$
+    </delete>
+    <select id="dn12.hydjpdtz_getUpdateJlbz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select jlbz from djpd_dj
+where pdlb='$oldpdlb$'
+and dj=$tzdj$</select>
+    <select id="dn12.hydjpdtz_getUpdateJbmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select jbmc from djpd_dj
+where pdlb='$oldpdlb$'
+and dj=$tzdj$</select>
+    <select id="dn12.hydjpdtz_MSQL4SELECT_djpdmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select djpdmc as key,djpdmc as value from djpd_djbz where f_numtochar(pdnf) = substr(f_numtochar($pdrq$),1,4)  and khdx='2'</select>
+    <select id="dn12.hydjpdtz_MSQL4SELECT_tzdj" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select -1 as key ,' ' as value from dual union all select dj as key,jbmc as value from djpd_dj where pdlb='$oldpdlb$'</select>
+  </sqlMap>
+  <javascript>
+    <query>jQuery(document).ready(function () {
+  $("#tool_bar").hide();
+   BindParent('djpdmc','pdrq','blur');
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}
+// 只显示调整按钮
+function customFastLink($table,row){//this 对象绑定当前行的单元格
+    var edit = $('&lt;a class="operation_edit LIST_BAR" title="编辑"&gt;编辑&lt;/a&gt;');
+    this.append(edit)/**.append(' ').append(del)**/;
+    edit.click(function(){
+        showUpdateEdtiDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]);
+    });
+    /**var del = $('&lt;a class="operation_del LIST_BAR" title="删除"&gt;删除&lt;/a&gt;');
+    del.click(function(){
+        showDeleteDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]);
+    });**/
+    return true;
+}</query>
+    <edit>jQuery(document).ready(function () {
+//这里的js脚本，会在页面加载完成后执行 
+  $("#olddjpdmc").attr("disabled",true);
+  $("#jgmc").attr("disabled",true);
+  $("#hymc").attr("disabled",true);
+  $("#oldjbmc").attr("disabled",true);
+  PAS.di.execute('hydjpdtz_getUpdateJlbz',getUpdateJlbzBack);
+  $("#tzdj").executeOnEvent('change','hydjpdtz_getUpdateJlbz',getUpdateJlbzBack);
+  PAS.di.execute('hydjpdtz_getUpdateJbmc',getUpdateJbmcBack);
+  $("#tzdj").executeOnEvent('change','hydjpdtz_getUpdateJbmc',getUpdateJbmcBack);
+});
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ if($("#tzyy").val() == ""){
+   alert("调整原因不能为空！");
+   return false;
+ } 
+var tzdj = $("#tzdj").val();
+if(tzdj==-1) {
+   alert("调整等级不能为空！");
+   return false;
+}
+ 
+ 
+ 
+ // 更新等级
+ var newDj = $("#tzdj").val();
+ $("#updateDj").val(newDj); 
+ // 更新奖励标准
+ 
+ // 更新描述 ：描述+手工调整:从[调整前级别名称]调整到[调整后级别名称]，原因是[调整原因] 
+ var oldMs = $("#oldms").val(); 
+ var tzyy = $("#tzyy").val();
+ var oldJbmc = $("#oldjbmc").val();
+ var newJbmc = $("#updateJbmc").val();
+
+ var newMs = "";
+ newMs = oldMs+"手工调整：从["+oldJbmc+"]调整到["+newJbmc+"],原因是["+tzyy+"]";   
+ $("#oldms").val(newMs); 
+ return true;
+}
+function getUpdateJlbzBack(obj){
+  //setOption();
+  if(obj.data.length&gt;0){
+    $("#updateJlbz").val(obj.data[0].JLBZ);         
+    PAS.di.setDone(obj.sqlid);
+  }   
+}
+function setOption() {
+var options =  $('#tzdj option'), length =options.length;
+if(length==0) {
+  setTimeout(function(){setOption()},500);
+  return;
+ } 
+ var val =$("#oldjbmc").val();
+options.each(function(){
+                if($(this).html() == val) {
+                    $(this).attr("selected",true);
+              }
+    })
+}
+
+function getUpdateJbmcBack(obj){
+  if(obj.data.length&gt;0){
+    $("#updateJbmc").val(obj.data[0].JBMC);         
+    PAS.di.setDone(obj.sqlid);
+  }   
+}</edit>
+  </javascript>
+</pageSetting>
+

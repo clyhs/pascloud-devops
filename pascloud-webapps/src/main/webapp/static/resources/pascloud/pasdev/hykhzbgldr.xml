@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="hykhzbgldr" title="行员考核指标管理导入" type="import" version="2.0.0">
+  <template>
+    <src>ONLINE</src>
+    <column>
+      <text>考核指标名称</text>
+      <name>khzbmc</name>
+      <index>0</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>指标代号</text>
+      <name>zbdh</name>
+      <index>1</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>指标名称</text>
+      <name>zbmc</name>
+      <index>2</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>N</req>
+    </column>
+    <column>
+      <text>时段标识</text>
+      <name>sdbs</name>
+      <index>3</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate>1-时点
+2-月日均
+3-季日均
+4-年日均
+5-月累计
+6-季累计
+7-年累计
+8-月平</annotate>
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>币种</text>
+      <name>bz</name>
+      <index>4</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate>01-人民币
+0A-折合人民币
+0B-外币折人民币
+0C-外币折美元
+FF-非币种</annotate>
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>指标排序</text>
+      <name>zbpx</name>
+      <index>5</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+  </template>
+  <table id="hykhzbgldr_table" page="true">
+    <col id="ZT" title="状态" align="center" type="string" width="50" />
+    <col id="ERROR" title="错误原因" align="center" type="string" width="250" />
+    <col id="KHZBMC" title="考核指标名称" align="center" type="" width="120" />
+    <col id="ZBDH" title="指标代号" align="center" type="" width="120" />
+    <col id="ZBMC" title="指标名称" align="center" type="" width="120" />
+    <col id="SDBS" title="时段标识" align="center" type="" width="120" />
+    <col id="BZ" title="币种" align="center" type="" width="120" />
+    <col id="ZBPX" title="指标排序" align="center" type="" width="120" />
+  </table>
+  <flow>
+    <rule>
+      <sql type="update">hykhzbgldr_check_khzbmc_0</sql>
+      <sql type="update">hykhzbgldr_check_khzbmc_1</sql>
+      <sql type="update">hykhzbgldr_check_zbdh_2</sql>
+      <sql type="update">hykhzbgldr_check_zbdh_3</sql>
+      <sql type="update">hykhzbgldr_check_sdbs_4</sql>
+      <sql type="update">hykhzbgldr_check_sdbs_5</sql>
+      <sql type="update">hykhzbgldr_check_bz_6</sql>
+      <sql type="update">hykhzbgldr_check_bz_7</sql>
+      <sql type="update">hykhzbgldr_check_zbpx_8</sql>
+      <sql type="update">hykhzbgldr_check_zbpx_9</sql>
+      <sql type="update">hykhzbgldr_checkupdate_khzbmc_0</sql>
+      <sql type="update">hykhzbgldr_checkupdate_zbdh_0</sql>
+      <sql type="update">hykhzbgldr_checkupdate_sdbs_0</sql>
+      <sql type="update">hykhzbgldr_checkupdate_bz_0</sql>
+      <sql type="update">hykhzbgldr_exists_target</sql>
+      <sql type="update">hykhzbgldr_exists_same_temp</sql>
+    </rule>
+    <before />
+    <cover>
+      <sql type="delete">hykhzbgldr_delete_before_override</sql>
+    </cover>
+    <insert>
+      <sql type="insert">hykhzbgldr_insert_into_target</sql>
+    </insert>
+    <after />
+  </flow>
+  <sqlMap namespace="studio.hykhzbgldr">
+    <update parameterClass="java.util.Map" id="dn12.hykhzbgldr_check_khzbmc_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  hykhzbgldr_temp  t  set  t.error=t.error||'考核指标名称输入错误，不能为空!' 
+		where  f_java_rule_length(t.khzbmc)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hykhzbgldr_check_khzbmc_1">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  hykhzbgldr_temp  t  set  t.error=t.error||'考核指标名称输入错误，长度不能超过:100!' 
+		where  f_java_rule_length(t.khzbmc)&gt;100  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hykhzbgldr_check_zbdh_2">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  hykhzbgldr_temp  t  
+		set  t.error=t.error||'指标代号输入错误，只能输入:4位整数,0位小数!'  
+		where f_java_rule_length(t.zbdh)&gt;0 and f_java_rule_number(t.zbdh,4,0)=1  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hykhzbgldr_check_zbdh_3">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  hykhzbgldr_temp  t  set  t.error=t.error||'指标代号输入错误，不能为空!' 
+		where  f_java_rule_length(t.zbdh)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hykhzbgldr_check_sdbs_4">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  hykhzbgldr_temp  t  set  t.error=t.error||'时段标识输入错误，不能为空!' 
+		where  f_java_rule_length(t.sdbs)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hykhzbgldr_check_sdbs_5">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  hykhzbgldr_temp  t  set  t.error=t.error||'时段标识输入错误，长度不能超过:1!' 
+		where  f_java_rule_length(t.sdbs)&gt;1  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hykhzbgldr_check_bz_6">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  hykhzbgldr_temp  t  set  t.error=t.error||'币种输入错误，不能为空!' 
+		where  f_java_rule_length(t.bz)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hykhzbgldr_check_bz_7">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  hykhzbgldr_temp  t  set  t.error=t.error||'币种输入错误，长度不能超过:2!' 
+		where  f_java_rule_length(t.bz)&gt;2  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hykhzbgldr_check_zbpx_8">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  hykhzbgldr_temp  t  
+		set  t.error=t.error||'指标排序输入错误，只能输入:3位整数,0位小数!'  
+		where f_java_rule_length(t.zbpx)&gt;0 and f_java_rule_number(t.zbpx,3,0)=1  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hykhzbgldr_check_zbpx_9">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  hykhzbgldr_temp  t  set  t.error=t.error||'指标排序输入错误，不能为空!' 
+		where  f_java_rule_length(t.zbpx)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hykhzbgldr_checkupdate_khzbmc_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update hykhzbgldr_temp t set error=error||'该考核指标名称已存在!!' where  exists (
+ select 1 from khfa_khzb_hy hy where t.khzbmc=hy.khzbmc)
+ and t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hykhzbgldr_checkupdate_zbdh_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update hykhzbgldr_temp t set error=error||'指标代号不存在!' where not exists ( select 1 from KHDX_ZB zb 
+where  cast(t.zbdh as decimal(8,0))=zb.zbdh)
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hykhzbgldr_checkupdate_sdbs_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update hykhzbgldr_temp t set error=error||'时段标识不存在!'
+where not exists ( select 1 from khdx_zbsd sd  where cast(t.zbdh as decimal(8,0))=sd.zbdh and t.sdbs=sd.sdbs)
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hykhzbgldr_checkupdate_bz_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update hykhzbgldr_temp t set error=error||'币种不存在!' 
+where not exists ( select 1 from KHDX_ZBBZ bz where cast(t.zbdh as decimal(8,0))=bz.zbdh and t.bz=bz.bz)
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hykhzbgldr_exists_target">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  hykhzbgldr_temp  t  set  t.error=t.error||'数据已存在!'  where  exists(select  1  from  KHFA_KHZB_HY  tar   where  1=1   and  t.khzbmc  =tar.KHZBMC  and  t.khdxdh=$login_khdxdh$  and  (length(t.error)=0  or  t.error  is  null  ))
+    </update>
+    <update parameterClass="java.util.Map" id="dn12.hykhzbgldr_exists_same_temp">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  hykhzbgldr_temp  t  set  t.error=error||'存在重复数据!'  where  exists(  select  1  from   (select  khzbmc  from  hykhzbgldr_temp  dr  where  khdxdh=$login_khdxdh$  group  by  khzbmc  having  count(1)<![CDATA[>]]>1  )  dr  where  1=1   and  t.khzbmc=dr.khzbmc)  and  khdxdh=$login_khdxdh$
+    </update>
+    <insert parameterClass="java.util.Map" id="dn12.hykhzbgldr_create_lsb">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      CREATE  TABLE   hykhzbgldr_temp   (   khzbmc  varchar(100)  ,  zbdh  varchar(100)  ,  zbmc  varchar(100)  ,  sdbs  varchar(100)  ,  bz  varchar(100)  ,  zbpx  varchar(100)  ,  khdxdh  integer,error  varchar(1000)   )
+    </insert>
+    <delete parameterClass="java.util.Map" id="dn12.hykhzbgldr_delete_lsb">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from hykhzbgldr_temp where khdxdh=$login_khdxdh$
+    </delete>
+    <insert parameterClass="java.util.Map" id="dn12.hykhzbgldr_insert_into_lsb">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert  into  HYKHZBGLDR_TEMP  (khzbmc,zbdh,zbmc,sdbs,bz,zbpx,khdxdh,error)  values(?,?,?,?,?,?,?,?)
+    </insert>
+    <select parameterClass="java.util.Map" id="dn12.hykhzbgldr_exists_error_msg" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  count(1)  from  hykhzbgldr_temp  where  length(error) <![CDATA[>]]> 0  and  khdxdh  =  $login_khdxdh$
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn12.hykhzbgldr_exists_same_data">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  count(1)  from  hykhzbgldr_temp  where  length(error) <![CDATA[>]]> 0  and  error  !=  '数据已存在!'  and  khdxdh  =  $login_khdxdh$
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn12.hykhzbgldr_select_error_msg">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/cancel.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  khzbmc,zbdh,zbmc,sdbs,bz,zbpx,khdxdh,error  from  hykhzbgldr_temp  where  khdxdh=$login_khdxdh$  and  length(error)<![CDATA[>]]>0
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn12.hykhzbgldr_count_all_msg">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  count(1)  from  (select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/ok.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  khzbmc,zbdh,zbmc,sdbs,bz,zbpx,khdxdh,error  from  hykhzbgldr_temp  where  khdxdh=$login_khdxdh$  )a
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn12.hykhzbgldr_select_all_msg">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/ok.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  khzbmc,zbdh,zbmc,sdbs,bz,zbpx,khdxdh,error  from  hykhzbgldr_temp  where  khdxdh=$login_khdxdh$
+    </select>
+    <insert id="dn12.hykhzbgldr_insert_into_target" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert  into  KHFA_KHZB_HY(khzbdh,khzbmc,zbdh,sdbs,bz,tjkj,zbpx)  select  (row_number()  over(order  by  t.zbdh))  +(select  coalesce(MAX(khzbdh),0)  from  KHFA_KHZB_HY)  khzbdh,    t.KHZBMC,    zb.zbdh,    t.sdbs,    t.bz,    '2',    cast(t.ZBPX  as  decimal(3,0))  from  hykhzbgldr_temp  t  ,KHDX_ZB  zb  where  cast(t.zbdh  as  decimal(8,0))=zb.zbdh  and  t.khdxdh=$login_khdxdh$  and  (t.error  =  '数据已存在!'  or  length(t.error)  =  0  or  t.error  is  null)
+    </insert>
+    <delete parameterClass="java.util.Map" id="dn12.hykhzbgldr_delete_before_override">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete  from  KHFA_KHZB_HY  tar  where  exists(select  1  from  hykhzbgldr_temp  t   where  1=1   and  t.khzbmc=tar.KHZBMC  and  t.khdxdh=$login_khdxdh$  )
+    </delete>
+  </sqlMap>
+</pageSetting>
+

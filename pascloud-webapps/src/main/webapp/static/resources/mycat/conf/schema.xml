@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mycat:schema SYSTEM "schema.dtd">
+
+<mycat:schema xmlns:mycat="http://io.mycat/">
+  <schema name="alldb" checkSQLschema="false" sqlMaxLimit="100" dataNode="dn0"/>
+  <schema name="dn1_schema" checkSQLschema="false" sqlMaxLimit="100">
+    <table name="khdx_jg" primaryKey="KHDXDH" autoIncrement="true" dataNode="dn1"/>
+  </schema>
+  <schema name="dn2_schema" checkSQLschema="false" sqlMaxLimit="100">
+    <table name="khdx_jg" primaryKey="KHDXDH" autoIncrement="true" dataNode="dn2"/>
+  </schema>
+  <schema name="dn3_schema" checkSQLschema="false" sqlMaxLimit="100">
+    <table name="khdx_jg" primaryKey="KHDXDH" autoIncrement="true" dataNode="dn3"/>
+  </schema>
+  <schema name="dn4_schema" checkSQLschema="false" sqlMaxLimit="100">
+    <table name="khdx_jg" primaryKey="KHDXDH" autoIncrement="true" dataNode="dn4"/>
+  </schema>
+  <schema name="dn5_schema" checkSQLschema="false" sqlMaxLimit="100">
+    <table name="khdx_jg" primaryKey="KHDXDH" autoIncrement="true" dataNode="dn5"/>
+  </schema>
+  <schema name="dn12_schema" checkSQLschema="false" sqlMaxLimit="100">
+    <table name="khdx_jg" primaryKey="KHDXDH" autoIncrement="true" dataNode="dn12"/>
+  </schema>
+  <schema name="dn13_schema" checkSQLschema="false" sqlMaxLimit="100">
+    <table name="khdx_jg" primaryKey="KHDXDH" autoIncrement="true" dataNode="dn13"/>
+  </schema>
+  <schema name="dn14_schema" checkSQLschema="false" sqlMaxLimit="100">
+    <table name="khdx_jg" primaryKey="KHDXDH" autoIncrement="true" dataNode="dn14"/>
+  </schema>
+  <schema name="dn15_schema" checkSQLschema="false" sqlMaxLimit="100">
+    <table name="khdx_jg" primaryKey="KHDXDH" autoIncrement="true" dataNode="dn15"/>
+  </schema>
+  <schema name="dn16_schema" checkSQLschema="false" sqlMaxLimit="100">
+    <table name="khdx_jg" primaryKey="KHDXDH" autoIncrement="true" dataNode="dn16"/>
+  </schema>
+  <schema name="dn17_schema" checkSQLschema="false" sqlMaxLimit="100">
+    <table name="khdx_jg" primaryKey="KHDXDH" autoIncrement="true" dataNode="dn17"/>
+  </schema>
+  <dataNode name="dn0" dataHost="mysqlhost" database="pascloud"/>
+  <!--云平台公共库、类型为数据库、地址为oraclehost00-->
+  <dataNode name="dn1" dataHost="orahost01" database="cloudpas"/>
+  <dataNode name="dn2" dataHost="db2host02" database="cpas01"/>
+  <dataNode name="dn3" dataHost="db2host03" database="cpas02"/>
+  <dataNode name="dn4" dataHost="db2host04" database="cpas03"/>
+  <dataNode name="dn5" dataHost="db2host05" database="cpas04"/>
+  <dataNode name="dn12" dataHost="orahost12" database="cpas11"/>
+  <dataNode name="dn13" dataHost="orahost13" database="cpas11"/>
+  <dataNode name="dn14" dataHost="orahost14" database="cpas12"/>
+  <dataNode name="dn15" dataHost="orahost15" database="cpas13"/>
+  <dataNode name="dn16" dataHost="orahost16" database="cpas14"/>
+  <dataNode name="dn17" dataHost="orahost17" database="cpas12"/>
+  <dataNode name="dn18" dataHost="orahost18" database="cpas18"/>
+  <dataNode name="dn19" dataHost="orahost19" database="cpas19"/>
+  <dataNode name="dn20" dataHost="orahost20" database="cpas20"/>
+  <!--云平台公共库-->
+  <dataHost name="mysqlhost" maxCon="1000" minCon="10" balance="0" writeType="0" dbType="mysql" dbDriver="native">
+    <heartbeat>select user()</heartbeat>
+    <writeHost host="hostM1" url="192.168.0.7:3306" user="root" password="root"/>
+  </dataHost>
+  <dataHost name="orahost01" maxCon="1000" minCon="1" balance="0" writeType="0" dbType="oracle" dbDriver="jdbc">
+    <heartbeat>select 1 from dual</heartbeat>
+    <connectionInitSql>alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss'</connectionInitSql>
+    <writeHost host="hostM1" url="jdbc:oracle:thin:@192.168.0.17:1521:cloudpas" user="pas" password="pas"/>
+  </dataHost>
+  <dataHost name="db2host02" maxCon="1000" minCon="1" balance="0" writeType="0" dbType="db2" dbDriver="jdbc">
+    <heartbeat>select 1 from sysibm.sysdummy1</heartbeat>
+    <writeHost host="hostM1" url="jdbc:db2://192.168.0.17:50000/cpas01" user="pas" password="pas"/>
+  </dataHost>
+  <dataHost name="db2host03" maxCon="1000" minCon="1" balance="0" writeType="0" dbType="db2" dbDriver="jdbc">
+    <heartbeat>select 1 from sysibm.sysdummy1</heartbeat>
+    <writeHost host="hostM1" url="jdbc:db2://192.168.0.17:50000/cpas02" user="pas" password="pas"/>
+  </dataHost>
+  <dataHost name="db2host04" maxCon="1000" minCon="1" balance="0" writeType="0" dbType="db2" dbDriver="jdbc">
+    <heartbeat>select 1 from sysibm.sysdummy1</heartbeat>
+    <writeHost host="hostM1" url="jdbc:db2://192.168.0.17:50000/cpas03" user="pas" password="pas"/>
+  </dataHost>
+  <dataHost name="db2host05" maxCon="1000" minCon="1" balance="0" writeType="0" dbType="db2" dbDriver="jdbc">
+    <heartbeat>select 1 from sysibm.sysdummy1</heartbeat>
+    <writeHost host="hostM1" url="jdbc:db2://192.168.0.17:50000/cpas04" user="pas" password="pas"/>
+  </dataHost>
+  <dataHost name="orahost12" maxCon="1000" minCon="1" balance="0" writeType="0" dbType="oracle" dbDriver="jdbc">
+    <heartbeat>select 1 from dual</heartbeat>
+    <connectionInitSql>alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss'</connectionInitSql>
+    <writeHost host="hostM1" url="jdbc:oracle:thin:@192.168.1.196:1521:cpas11" user="pas" password="pas"/>
+  </dataHost>
+  <dataHost name="orahost13" maxCon="1000" minCon="1" balance="0" writeType="0" dbType="oracle" dbDriver="jdbc">
+    <heartbeat>select 1 from dual</heartbeat>
+    <connectionInitSql>alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss'</connectionInitSql>
+    <writeHost host="hostM1" url="jdbc:oracle:thin:@192.168.1.195:1521:cpas11" user="pas" password="pas"/>
+  </dataHost>
+  <dataHost name="orahost14" maxCon="1000" minCon="1" balance="0" writeType="0" dbType="oracle" dbDriver="jdbc">
+    <heartbeat>select 1 from dual</heartbeat>
+    <connectionInitSql>alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss'</connectionInitSql>
+    <writeHost host="hostM1" url="jdbc:oracle:thin:@192.168.1.196:1521:cpas12" user="pas" password="pas"/>
+  </dataHost>
+  <dataHost name="orahost15" maxCon="1000" minCon="1" balance="0" writeType="0" dbType="oracle" dbDriver="jdbc">
+    <heartbeat>select 1 from dual</heartbeat>
+    <connectionInitSql>alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss'</connectionInitSql>
+    <writeHost host="hostM1" url="jdbc:oracle:thin:@192.168.1.196:1521:cpas13" user="pas" password="pas"/>
+  </dataHost>
+  <dataHost name="orahost16" maxCon="1000" minCon="1" balance="0" writeType="0" dbType="oracle" dbDriver="jdbc">
+    <heartbeat>select 1 from dual</heartbeat>
+    <connectionInitSql>alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss'</connectionInitSql>
+    <writeHost host="hostM1" url="jdbc:oracle:thin:@192.168.1.196:1521:cpas14" user="pas" password="pas"/>
+  </dataHost>
+  <dataHost name="orahost17" maxCon="1000" minCon="1" balance="0" writeType="0" dbType="oracle" dbDriver="jdbc">
+    <heartbeat>select 1 from dual</heartbeat>
+    <connectionInitSql>alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss'</connectionInitSql>
+    <writeHost host="hostM1" url="jdbc:oracle:thin:@192.168.0.82:1521:cpas12" user="pas" password="pas"/>
+  </dataHost>
+  <dataHost name="orahost18" maxCon="1000" minCon="1" balance="0" writeType="0" dbType="oracle" dbDriver="jdbc">
+    <heartbeat>select 1 from dual</heartbeat>
+    <connectionInitSql>alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss'</connectionInitSql>
+    <writeHost host="hostM1" url="jdbc:oracle:thin:@192.168.0.17:1521:cpas18" user="pas" password="pas"/>
+  </dataHost>
+  <dataHost name="orahost19" maxCon="1000" minCon="1" balance="0" writeType="0" dbType="oracle" dbDriver="jdbc">
+    <heartbeat>select 1 from dual</heartbeat>
+    <connectionInitSql>alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss'</connectionInitSql>
+    <writeHost host="hostM1" url="jdbc:oracle:thin:@192.168.0.17:1521:cpas19" user="pas" password="pas"/>
+  </dataHost>
+  <dataHost name="orahost20" maxCon="1000" minCon="1" balance="0" writeType="0" dbType="oracle" dbDriver="jdbc">
+    <heartbeat>select 1 from dual</heartbeat>
+    <connectionInitSql>alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss'</connectionInitSql>
+    <writeHost host="hostM1" url="jdbc:oracle:thin:@192.168.0.17:1521:cpas20" user="pas" password="pas"/>
+  </dataHost>
+</mycat:schema>

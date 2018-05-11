@@ -43,7 +43,7 @@ public class ToolController extends BaseController {
 		for(NodeVo vo: nodes){
 			DefaultDockerClient client = DefaultDockerClient.builder()
 					.uri("http://"+vo.getAddr()+":"+defaultPort).build();
-			List<ContainerVo> subContainers = m_dockerService.getContainer(client);
+			List<ContainerVo> subContainers = m_dockerService.getContainer(client,"");
 			if(null != subContainers && subContainers.size()>0){
 				containers.addAll(subContainers);
 			}

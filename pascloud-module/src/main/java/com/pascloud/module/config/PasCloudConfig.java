@@ -18,7 +18,39 @@ public class PasCloudConfig {
 	@Value("${project.redisdir}")
 	private String PASCLOUD_REDIS_DIR;
 	
+	@Value("${project.pasdevdir}")
+	private String PASCLOUD_DEV_DIR;
 	
+	@Value("${project.mycatconf}")
+	private String PASCLOUD_MYCAT_DIR;
+	
+	@Value("${project.serviceconf}")
+	private String PASCLOUD_SERVICE_DIR;
+	
+
+	public String getPASCLOUD_SERVICE_DIR() {
+		return PASCLOUD_SERVICE_DIR;
+	}
+
+	public void setPASCLOUD_SERVICE_DIR(String pASCLOUD_SERVICE_DIR) {
+		PASCLOUD_SERVICE_DIR = pASCLOUD_SERVICE_DIR;
+	}
+
+	public String getPASCLOUD_MYCAT_DIR() {
+		return PASCLOUD_MYCAT_DIR;
+	}
+
+	public void setPASCLOUD_MYCAT_DIR(String pASCLOUD_MYCAT_DIR) {
+		PASCLOUD_MYCAT_DIR = pASCLOUD_MYCAT_DIR;
+	}
+
+	public String getPASCLOUD_DEV_DIR() {
+		return PASCLOUD_DEV_DIR;
+	}
+
+	public void setPASCLOUD_DEV_DIR(String pASCLOUD_DEV_DIR) {
+		PASCLOUD_DEV_DIR = pASCLOUD_DEV_DIR;
+	}
 
 	public String getPASCLOUD_REDIS_DIR() {
 		return PASCLOUD_REDIS_DIR;

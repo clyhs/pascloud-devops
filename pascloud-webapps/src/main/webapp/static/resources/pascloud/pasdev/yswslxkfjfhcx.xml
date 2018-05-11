@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="yswslxkfjfhcx" title="应收未收利息扣罚及返还查询" type="query" version="2.0.0">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月">
+        <attribute key="dateFmt" value="yyyyMM" />
+        <attribute key="defValType" value="xtrzympd" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="no" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员">
+        <attribute key="isDisplayXN" value="true" />
+        <attribute key="editable" value="true" />
+        <attribute key="style" value="width:100px;" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="true" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="defVal" value="$sysdate$" />
+        <attribute key="name" value="sysdate" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="tjrq_ym" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="yswslxkfjfhcx_xsjy1jgj" title="新数据源1结果集" page="true">
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="GWMC" title="岗位名称" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FFRQ" title="发放日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHDH" title="账号" align="left" type="string" width="180" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="YSWSLX" title="应收未收利息" align="right" type="float" width="85" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="SQKFJE" title="上期扣罚金额" align="right" type="string" width="85" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KFJE" title="扣罚金额" align="right" type="string" width="65" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DQCZ" title="差值" align="right" type="string" width="65" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZLBL" title="增量比例" align="right" type="float" width="65" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KFHFHJE" title="行员扣罚或返还" align="right" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGLBMC" title="机构类别" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYLBMC" title="行员类别" align="left" type="string" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHBS" title="帐户标识" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.yswslxkfjfhcx">
+    <select id="dn12.yswslxkfjfhcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select substr(cast(dkjx.tjrq as char(8)), 1, 6) as tjrq,jglb.lbmc jglbmc, jg.jgmc,     hy.hydh,hy.hymc,hylb.lbmc hylbmc,hygw.gwmc,     dkzh.zhdh,dkzh.zhhm,dkzhdmms.dmms as zhbs,dkzh.ffrq,     lsbkf.yswslx, lsbkf.kfje, lsbkf.sqkfje, lsbkf.dqcz,     kfjfh.zlbl,kfjfh.kfhfhje from dkjx_yswslxkfjfh dkjx  inner join jxdx_dkzh dkzh on dkjx.jxdxdh = dkzh.jxdxdh inner join khdx_hy hy on hy.khdxdh = dkjx.khdxdh inner join khdx_jgcy jgcy on hy.khdxdh = jgcy.khdxdh and dkjx.tjrq between jgcy.qsrq and jgcy.jsrq inner join khdx_jg jg on jg.khdxdh = jgcy.jgkhdxdh  inner join table(fn_getsjjg_java_qxhy($tjrq_ym$,$login_khdxdh$,0)) qxhy on hy.khdxdh = qxhy.khdxdh inner join khdx_jglb jglb on jg.khdxdh = jglb.khdxdh and dkjx.tjrq between jglb.qsrq and jglb.jsrq inner join khdx_hylb hylb on hy.khdxdh = hylb.khdxdh and dkjx.tjrq between hylb.qsrq and hylb.jsrq left join khdx_hygw hygw on hy.khdxdh = hygw.khdxdh and dkjx.tjrq between hygw.qsrq and hygw.jsrq inner join lsb_yswslxkf lsbkf on lsbkf.jxdxdh = dkjx.jxdxdh and lsbkf.tjrq = dkjx.tjrq inner join dkjx_yswslxkfjfh kfjfh on kfjfh.jxdxdh = dkjx.jxdxdh left join csb_dmms dkzhdmms on dkzh.zhbs = dkzhdmms.dmz and dkzhdmms.dmmc='ZHBS' where 1=1
+      <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="tjrq">and dkjx.tjrq between $tjrq$01 and $tjrq_ym$</isNotEmpty>
+      order by jg.jgdh,hy.hydh,dkjx.jxdxdh
+    </select>
+    <select id="dn12.yswslxkfjfhcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select substr(cast(dkjx.tjrq as char(8)), 1, 6) as tjrq,jglb.lbmc jglbmc, jg.jgmc,     hy.hydh,hy.hymc,hylb.lbmc hylbmc,hygw.gwmc,     dkzh.zhdh,dkzh.zhhm,dkzhdmms.dmms as zhbs,dkzh.ffrq,     lsbkf.yswslx, lsbkf.kfje, lsbkf.sqkfje, lsbkf.dqcz,     kfjfh.zlbl,kfjfh.kfhfhje from dkjx_yswslxkfjfh dkjx  inner join jxdx_dkzh dkzh on dkjx.jxdxdh = dkzh.jxdxdh inner join khdx_hy hy on hy.khdxdh = dkjx.khdxdh inner join khdx_jgcy jgcy on hy.khdxdh = jgcy.khdxdh and dkjx.tjrq between jgcy.qsrq and jgcy.jsrq inner join khdx_jg jg on jg.khdxdh = jgcy.jgkhdxdh  inner join table(fn_getsjjg_java_qxhy($tjrq_ym$,$login_khdxdh$,0)) qxhy on hy.khdxdh = qxhy.khdxdh inner join khdx_jglb jglb on jg.khdxdh = jglb.khdxdh and dkjx.tjrq between jglb.qsrq and jglb.jsrq inner join khdx_hylb hylb on hy.khdxdh = hylb.khdxdh and dkjx.tjrq between hylb.qsrq and hylb.jsrq left join khdx_hygw hygw on hy.khdxdh = hygw.khdxdh and dkjx.tjrq between hygw.qsrq and hygw.jsrq inner join lsb_yswslxkf lsbkf on lsbkf.jxdxdh = dkjx.jxdxdh and lsbkf.tjrq = dkjx.tjrq inner join dkjx_yswslxkfjfh kfjfh on kfjfh.jxdxdh = dkjx.jxdxdh left join csb_dmms dkzhdmms on dkzh.zhbs = dkzhdmms.dmz and dkzhdmms.dmmc='ZHBS' where 1=1
+      <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="tjrq">and dkjx.tjrq between $tjrq$01 and $tjrq_ym$</isNotEmpty>
+      order by jg.jgdh,hy.hydh,dkjx.jxdxdh ) t
+    </select>
+  </sqlMap>
+  <rels>
+    <items id="yswslxkfjfhcx_xsjy1jgj" />
+  </rels>
+  <javascript><![CDATA[jQuery(document).ready(function () {
+  /*
+  var obj=createTimeObj(jQuery("#tjrq").val());
+    if(jQuery("#sysdate").val()!=obj.ym){
+        var sym=obj.sym;
+        jQuery("#tjrq").val(sym.substr(0,6));
+    }
+    */
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+    var obj_tjrq = createTimeObj($("#tjrq").val());
+   $("#tjrq_ym").val(obj_tjrq.ym);
+ return true;
+}
+
+function yswslxkfjfhcx(obj){
+var params="{tjrq:'"+obj['TJRQ']+"',khdxdh:'"+obj['KHDXDH']+"'}";
+          
+  querySubQuery(params,'yswslxkfjfhcx','45','30','tag');
+
+}]]></javascript>
+</pageSetting>
+

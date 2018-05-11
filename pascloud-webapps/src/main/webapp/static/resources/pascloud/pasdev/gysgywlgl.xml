@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="gysgywlgl" title="柜员手工业务量管理" type="manage">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName="">
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="csdate" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="dateFmt" value="yyyyMM" />
+        <attribute key="readonly" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+        <attribute key="name" value="tjrq_ym" />
+      </tag>
+      <tag row="0" col="1" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="">
+        <attribute key="isRequired" value="false" />
+        <attribute key="isDisplayXN" value="true" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="true" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="Text" label="交易代码" fieldName="">
+        <attribute key="name" value="jydm" />
+        <attribute key="styleClass" value="validate-spec" />
+        <attribute key="readonly" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="gysgywlgltable">
+    <col id="TJNY" title="统计年月" align="left" type="string" width="90" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JYDM" title="交易代码" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JYMC" title="交易名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="YWL" title="业务量" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="KHDXDH" title="khdxdh" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="TJRQ" title="统计日期" align="left" type="hidden" width="90" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+  </table>
+  <rels>
+    <items id="gysgywlgltable" />
+  </rels>
+  <addPage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName="">
+      <attribute key="style" value="width:200px" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="tjrq" />
+      <attribute key="minDate" value="csdate" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMM" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="TJRQ">
+      <attribute key="defVal" value="$login_hydh$" />
+      <attribute key="name" value="tjrq_ym" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="KHDXDH">
+      <attribute key="isRequired" value="true" />
+      <attribute key="style" value="width:200px" />
+      <attribute key="isDisplayXN" value="true" />
+      <attribute key="jgckbz" value="jg_ckhy" />
+      <attribute key="name" value="khdxdh" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Text" label="交易代码" fieldName="JYDM">
+      <attribute key="style" value="width:200px" />
+      <attribute key="name" value="jydm" />
+      <attribute key="styleClass" value="required" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Text" label="交易名称" fieldName="">
+      <attribute key="style" value="width:200px" />
+      <attribute key="name" value="jymc" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select jydm,jymc  from csb_hxjydm where   jydm='$jydm$'" />
+      <attribute key="name" value="checkJydm" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="业务量" fieldName="YWL">
+      <attribute key="min" value="0" />
+      <attribute key="precision" value="2" />
+      <attribute key="style" value="width:200px" />
+      <attribute key="name" value="ywl" />
+      <attribute key="intparts" value="17" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZR">
+      <attribute key="defVal" value="$login_hydh$" />
+      <attribute key="name" value="czr" />
+    </tag>
+    <tag row="4" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZSJ">
+      <attribute key="defVal" value="F_GET_SYSTIME()" />
+      <attribute key="name" value="czsj" />
+    </tag>
+  </addPage>
+  <updatePage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName="">
+      <attribute key="style" value="width:200px" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="tjrq" />
+      <attribute key="minDate" value="csdate" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMM" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="TJRQ">
+      <attribute key="defVal" value="$login_hydh$" />
+      <attribute key="name" value="tjrq_ym" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="KHDXDH">
+      <attribute key="isRequired" value="true" />
+      <attribute key="style" value="width:200px" />
+      <attribute key="isDisplayXN" value="true" />
+      <attribute key="jgckbz" value="jg_ckhy" />
+      <attribute key="name" value="khdxdh" />
+      <attribute key="isAll" value="false" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Text" label="交易代码" fieldName="JYDM">
+      <attribute key="style" value="width:200px" />
+      <attribute key="name" value="jydm" />
+      <attribute key="styleClass" value="required" />
+      <attribute key="isAll" value="false" />
+      <attribute key="readonly" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Text" label="交易名称" fieldName="">
+      <attribute key="style" value="width:200px" />
+      <attribute key="name" value="jymc" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select jydm,jymc  from csb_hxjydm where   jydm='$jydm$'" />
+      <attribute key="name" value="checkJydm" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="业务量" fieldName="YWL">
+      <attribute key="min" value="0" />
+      <attribute key="precision" value="2" />
+      <attribute key="style" value="width:200px" />
+      <attribute key="name" value="ywl" />
+      <attribute key="intparts" value="17" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZR">
+      <attribute key="defVal" value="$login_hydh$" />
+      <attribute key="name" value="czr" />
+    </tag>
+    <tag row="4" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZSJ">
+      <attribute key="defVal" value="F_GET_SYSTIME()" />
+      <attribute key="name" value="czsj" />
+    </tag>
+  </updatePage>
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+    <button>import</button>
+  </buttons>
+  <flow>
+    <insertbefore />
+    <insertafter />
+    <deletebefore />
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.gysgywlgl">
+    <select id="dn12.gysgywlglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select yw.tjrq,yw.khdxdh,yw.jydm,yw.ywl,dm.jymc,hy.hymc,substr(yw.tjrq,1,6) as tjny from sglr_hysgywl yw inner join khdx_hy hy on hy.khdxdh=yw.khdxdh inner join csb_hxjydm dm on dm.jydm=yw.jydm inner join table(fn_getsjjg_java_qxhy($tjrq_ym$,$login_khdxdh$,0)) qx on qx.khdxdh=hy.khdxdh
+      <isNotEmpty property="khdxdh">where yw.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="tjrq_ym">and yw.tjrq=$tjrq_ym$</isNotEmpty>
+      <isNotEmpty property="jydm">and yw.jydm like '%$jydm$%'</isNotEmpty>
+    </select>
+    <select id="dn12.gysgywlglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select yw.tjrq,yw.khdxdh,yw.jydm,yw.ywl,dm.jymc,hy.hymc,substr(yw.tjrq,1,6) as tjny from sglr_hysgywl yw inner join khdx_hy hy on hy.khdxdh=yw.khdxdh inner join csb_hxjydm dm on dm.jydm=yw.jydm inner join table(fn_getsjjg_java_qxhy($tjrq_ym$,$login_khdxdh$,0)) qx on qx.khdxdh=hy.khdxdh
+      <isNotEmpty property="khdxdh">where yw.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="tjrq_ym">and yw.tjrq=$tjrq_ym$</isNotEmpty>
+      <isNotEmpty property="jydm">and yw.jydm like '%$jydm$%'</isNotEmpty>
+      ) t
+    </select>
+    <select id="dn12.gysgywlgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  YWL, JYDM, KHDXDH, CZSJ, CZR, TJRQ  from SGLR_HYSGYWL where 1= 1  and JYDM = '$jydm$' and KHDXDH = $khdxdh$ and TJRQ = $tjrq$
+    </select>
+    <select id="dn12.gysgywlgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  YWL, JYDM, KHDXDH, CZSJ, CZR, TJRQ  from SGLR_HYSGYWL where 1= 1  and JYDM = '$jydm$' and KHDXDH = $khdxdh$ and TJRQ = $tjrq_ym$
+    </select>
+    <insert id="dn12.gysgywlgl_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into SGLR_HYSGYWL( KHDXDH, CZSJ, YWL, CZR, JYDM, TJRQ ) values ( $khdxdh$,$czsj$,$ywl$,'$czr$','$jydm$',$tjrq_ym$)
+    </insert>
+    <update id="dn12.gysgywlgl_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update SGLR_HYSGYWL set YWL = $ywl$ where 1=1  and JYDM = '$jydm$' and KHDXDH = $khdxdh$ and TJRQ = $tjrq_ym$
+    </update>
+    <delete id="dn12.gysgywlgl_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from SGLR_HYSGYWL where 1=1  and JYDM = '$jydm$' and KHDXDH = $khdxdh$ and TJRQ = $tjrq$
+    </delete>
+    <select id="dn12.gysgywlgl_checkJydm" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select jydm,jymc  from csb_hxjydm
+where   jydm='$jydm$'</select>
+  </sqlMap>
+  <javascript>
+    <import>parent.addTab('gysgywldr','柜员手工业务量管理','/module/parser/import/visitHtml/gysgywldr');</import>
+    <query>jQuery(document).ready(function () {
+
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+var obj_tjrq = createTimeObj($('#tjrq').val()+'01');
+ $('#tjrq_ym').val(obj_tjrq.ym);
+ return true;
+}</query>
+    <edit>var flag=true;
+jQuery(document).ready(function () {
+//这里的js脚本，会在页面加载完成后执行
+  jQuery('#ywl').attr('styleClass','min-value-$0');
+ jQuery('#jymc').attr("disabled",'true');
+ 
+   jQuery('#jydm').executeOnEvent('blur',
+                    'gysgywlgl_checkJydm',setJymc);
+
+
+if($('#page_operate').val() == 'update'){
+  $('#tjrq').attr('disabled',true);
+}
+
+
+});
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+var obj_tjrq = createTimeObj($('#tjrq').val()+'01');
+ $('#tjrq_ym').val(obj_tjrq.ym);
+if(flag==true){
+   return true;
+}
+
+}
+
+function setJymc (obj){
+ if(jQuery('#jydm').val()!=''){
+   if(obj.data.length&gt;0){
+
+     jQuery("#jymc").val(obj.data[0].JYMC);
+      
+     jQuery("#jydm").removeClass("error");
+     jQuery('label[class=error]').remove();
+      flag=true;
+    
+    }else{
+    
+     jQuery("#jydm").addClass("error");
+     jQuery("#jydm").parent().append(" &lt;label for='jydm' generated='generated' class='error' style='display: block;'&gt;交易代码不存在&lt;/label&gt;");
+       
+      flag=false;
+    }
+ }
+ 
+
+}</edit>
+  </javascript>
+</pageSetting>
+

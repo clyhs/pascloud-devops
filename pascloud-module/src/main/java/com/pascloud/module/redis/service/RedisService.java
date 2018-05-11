@@ -78,7 +78,7 @@ public class RedisService extends AbstractRedisService {
 			Long total = jedis.dbSize();
 			Set nodekeys = new HashSet();
 			if (selectKey.equals("nokey")) {
-				if (total.longValue() > 1000L) {
+				if (total.longValue() > 10000L) {
 					startRow = 0;
 					for (int z = 0; z < pageSize; z++) {
 						nodekeys.add(jedis.randomKey());

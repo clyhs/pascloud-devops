@@ -17,8 +17,14 @@
     
     <script type="text/javascript" src="/static/js/common/pascloudfunctions.js"></script>
     
+    <script type="text/javascript" src="/app/pasService/js/pasServiceForm.js"></script>
+    <script type="text/javascript" src="/app/pasService/js/pasServiceDataGrid.js"></script>
+    <script type="text/javascript" src="/app/pasService/js/pasServiceDataGridToolbar.js"></script>
      
 	<script type="text/javascript">
+		$(function(){
+		    initMainDataGrid();
+		});
 		
 	</script>
 	<style>
@@ -31,19 +37,15 @@
 	
 	
 </head>
-<body id="main"> 
-	
-	<div class="easyui-layout" data-options="fit:true">
+<body id="main" class="easyui-layout" data-options="fit:true,border:false" > 
 
 		<div id="mainCenter" data-options="region:'center'" style="padding:0px;">
 		    <!--内容  开始-->
-		    建设中。。。
+		    <table id="mainDataGrid" >	
+		        
+	        </table>
 		    <!--内容  结束-->
 		</div>
-		
-	</div>
-	
-	
-	
+
 </body>
 </html>
