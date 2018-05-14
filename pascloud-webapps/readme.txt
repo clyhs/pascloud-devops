@@ -10,3 +10,21 @@ docker run --name pas_service_demo   -d -v /home/pascloud/pas-cloud-service-demo
 docker run --name pas_mycat   -d -v /home/pascloud16/mycat:/home/pascloud16/mycat -p 8066:8066 -p 9066:9066 pascloud/jdk7:v1.0 /home/pascloud16/mycat/bin/mycat console & 
 #zookeeper
 docker run --name pas_zk_dubbo_admin  --restart=always  -d -p 8686:8686 -p 2181:2181 pascloud/zk_dubbo:v1.1
+
+
+菜单
+  |--服务器管理
+  |--|--节点管理
+  |--云平台管理
+  |--|--服务管理
+  |--|--镜像管理
+  |--|--版本管理  
+  |--|--缓存管理
+  |--|--租户管理（需要添加数据库，配置ZK,REDIS,MYCAT,MQ）
+  |--配置管理
+  |--|--云平台服务配置
+  |--工具管理
+  |--|--mycat中间件配置
+  |--|--数据库客户端
+  |--|--pb应用管理（去掉）
+  

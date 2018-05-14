@@ -28,6 +28,7 @@ public class XStreamDemo {
 		String xml = xstream.toXML(info);
 		xml = header + xml;
 		*/
+		/*
 		RedisInfo info = new RedisInfo();
 		
 		info.setAddr("192.168.0.16");
@@ -45,6 +46,7 @@ public class XStreamDemo {
 		File file = new File(path);
 		
 		FileUtils.writeFileFromString(file, xml, false);
+		*/
 		/*
 		Document doc = XmlParser.getDocument(path);
 		
@@ -52,6 +54,8 @@ public class XStreamDemo {
 		
 		DBInfo a = (DBInfo) xstream.fromXML(file);
 		System.out.println(a.getName());*/
+		
+		
 		
 		
 	 

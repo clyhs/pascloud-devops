@@ -42,13 +42,13 @@
 		<div id="mainCenter" data-options="region:'center',border:false" style="padding:0px;">
 		    <!--内容  开始-->
 		    <div id="mainGridLayout" class="easyui-layout" data-options="fit:true,iconCls:'icon-house'">
-		        <div data-options="region:'center'">
+		        <div data-options="region:'center'" >
 		            <table id="mainDataGrid" >	
 		        
 	                </table>
 		        </div>
 		        <div id="mainInfoLayout" data-options="region:'south',split:true,
-				    collapsed:false,title:'服务器监控',iconCls:'icon-cog_edit'" style="height:400px">
+				    collapsed:false,title:'服务器监控',iconCls:'icon-cog_edit'" style="height:350px">
 				    
 				    <div style="width:100%;line-height:30px;">
 				        	

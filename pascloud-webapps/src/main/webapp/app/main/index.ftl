@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>云平台管理</title>
+	<title>云平台运维管理中心</title>
 	<link rel="stylesheet" type="text/css" href="/static/easyui/themes/bootstrap/easyui.css">
 	
     <link rel="stylesheet" type="text/css" href="/static/easyui/themes/icon.css">
@@ -69,7 +69,7 @@
         <div class="" style="float:left;width:300px;text-align:left;color:#ffffff;margin-left:20px;"><h2>云平台运维管理中心</h2></div>
         <div class="" style="clear:both;"></div>
     </div>
-    <div id="mainLeft" data-options="region:'west',split:true,title:'菜单管理',iconCls:'icon-folder'" style="width:220px">
+    <div id="mainLeft" data-options="region:'west',split:true,title:'菜单管理',iconCls:'icon-folder'" style="width:180px">
         <!--树形菜单  开始-->
 		<ul id="leftMenu" class="easyui-tree" >
 		    <div id="mm" class="easyui-menu" style="width:120px;display:none;">

@@ -1,0 +1,23 @@
+<list>
+  <server>
+    <ip>192.168.0.16</ip>
+    <username>root</username>
+    <password>tccp@2012</password>
+    <port>22</port>
+    <desc>应用服务器</desc>
+  </server>
+  <server>
+    <ip>192.168.0.7</ip>
+    <username>root</username>
+    <password>tccp@2012</password>
+    <port>22</port>
+    <desc>应用服务器</desc>
+  </server>
+  <server>
+    <ip>192.168.0.17</ip>
+    <username>root</username>
+    <password>tccp@2012</password>
+    <port>22</port>
+    <desc>数据库服务器</desc>
+  </server>
+</list>

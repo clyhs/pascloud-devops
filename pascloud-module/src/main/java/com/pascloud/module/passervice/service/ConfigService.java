@@ -1,6 +1,10 @@
 package com.pascloud.module.passervice.service;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -11,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.utils.DBUtils;
 import com.pascloud.utils.PropertiesUtil;
+import com.pascloud.vo.database.DBInfo;
 
 @Service
 public class ConfigService {
@@ -59,6 +64,50 @@ public class ConfigService {
 		}
 		addMycatKey(dnName,p);
 		
+	}
+	
+	public List<DBInfo> getDBFromConfig(){
+		List<DBInfo> dbs = new ArrayList<DBInfo>();
+		PropertiesUtil p =new PropertiesUtil();
+		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
+		
+		System.out.println(m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
+		
+		Map map = p.getByFuzzyKey("dn");
+		Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry<String, String> obj = it.next();
+			if(obj.getKey().contains("driverClass")){
+			    System.out.println(obj.getKey()+"="+p.getValueByKey(obj.getKey()));
+			    String id = obj.getKey().split("\\.")[0];
+			    DBInfo vo = new DBInfo();
+				vo.setId(id);
+				vo.setName(id);
+				vo.setDriverClassName(p.getValueByKey(obj.getKey()));
+				vo.setUrl(p.getValueByKey(id+".url"));
+				vo.setPassword(p.getValueByKey(id+".username"));
+				vo.setUsername(p.getValueByKey(id+".password"));
+				if(p.getValueByKey(id+".type").equals("ora")){
+					vo.setDbType("oracle");
+				}else{
+					vo.setDbType(p.getValueByKey(id+".type"));
+				}
+				dbs.add(vo);
+			}
+			
+		}
+		Collections.sort(dbs, new Comparator<DBInfo>() {  
+            @Override  
+            public int compare(DBInfo o1, DBInfo o2) { 
+                int i =getValue(o1)-getValue(o2);
+                return i;  
+            }
+            private Integer getValue(DBInfo o){
+            	return Integer.valueOf(o.getId().replace("dn", ""));
+            }
+        });  
+		
+		return dbs;
 	}
 	/**
 	 * 删除DB配置
@@ -180,5 +229,7 @@ public class ConfigService {
 		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
 		p.setValueByKey("pascloud.home", projectPath, "");
 	}
+	
+	
 
 }

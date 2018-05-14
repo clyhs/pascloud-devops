@@ -241,9 +241,9 @@ public class PropertiesUtil {
 		// this.fields.remove(Key);
 		try {
 			fos = new FileOutputStream(this.file);
-			
+
 			this.properties.remove(Keyname);
-			
+
 			this.properties.store(fos, "Update '" + Keyname + "' value");
 			fos.flush();
 		} catch (FileNotFoundException e) {
@@ -298,7 +298,7 @@ public class PropertiesUtil {
 
 	public static void main(String[] args) {
 		String filepath = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/service/conf/config.properties";
-
+		                   //D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/service/conf/
 		PropertiesUtil p = new PropertiesUtil();
 		p.load(filepath);
 
@@ -309,12 +309,12 @@ public class PropertiesUtil {
 		Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
 		while (it.hasNext()) {
 			Map.Entry<String, String> obj = it.next();
-			// System.out.println(obj.getKey()+p.getValueByKey(obj.getKey()));
+			System.out.println(obj.getKey() + p.getValueByKey(obj.getKey()));
 		}
 
-		p.setValueByKey("dn17.type", "ora", "");
+		// p.setValueByKey("dn17.type", "ora", "");
 
-		//p.removeByKey("dn17.type");
+		// p.removeByKey("dn17.type");
 
 	}
 

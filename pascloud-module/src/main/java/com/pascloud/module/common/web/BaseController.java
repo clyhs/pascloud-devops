@@ -54,6 +54,7 @@ public abstract class BaseController {
 		JSONObject json = new JSONObject();
 		json.put("isError", true);
 		json.put("msg", ex.getMessage());
+		ex.printStackTrace();
 		return json.toString();
 	}
 

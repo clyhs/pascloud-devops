@@ -27,6 +27,16 @@ public class PasCloudConfig {
 	@Value("${project.serviceconf}")
 	private String PASCLOUD_SERVICE_DIR;
 	
+	@Value("${project.serverdir}")
+	private String PASCLOUD_SERVER_DIR;
+	
+	public String getPASCLOUD_SERVER_DIR() {
+		return PASCLOUD_SERVER_DIR;
+	}
+
+	public void setPASCLOUD_SERVER_DIR(String pASCLOUD_SERVER_DIR) {
+		PASCLOUD_SERVER_DIR = pASCLOUD_SERVER_DIR;
+	}
 
 	public String getPASCLOUD_SERVICE_DIR() {
 		return PASCLOUD_SERVICE_DIR;

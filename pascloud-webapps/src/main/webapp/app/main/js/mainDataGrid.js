@@ -2,7 +2,7 @@
 function initMainDataGrid(){
     
     $('#mainDataGrid').datagrid({
-        height: '250px',
+        height: '300px',
         url: '/module/docker/getnodes.json',
         method: 'get',
         fit:true ,
