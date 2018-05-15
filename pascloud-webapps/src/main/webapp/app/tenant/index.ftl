@@ -17,6 +17,8 @@
     
     <script type="text/javascript" src="/static/js/common/pascloudfunctions.js"></script>
     
+    <script type="text/javascript" src="/app/tenant/js/dbForm.js"></script>
+    <script type="text/javascript" src="/app/tenant/js/dbDataGridToolbar.js"></script>
     <script type="text/javascript" src="/app/tenant/js/dbDataGrid.js"></script>
     
      

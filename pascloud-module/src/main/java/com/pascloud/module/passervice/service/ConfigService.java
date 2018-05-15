@@ -92,6 +92,11 @@ public class ConfigService {
 				}else{
 					vo.setDbType(p.getValueByKey(id+".type"));
 				}
+				if(id.equals("dn0")){
+					vo.setDesc("公共数据库实例");
+				}else{
+					vo.setDesc("租户数据库实例");
+				}
 				dbs.add(vo);
 			}
 			

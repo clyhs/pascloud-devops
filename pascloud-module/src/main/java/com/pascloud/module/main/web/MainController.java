@@ -52,7 +52,7 @@ public class MainController extends BaseController {
 	
 	@RequestMapping("trees.json")
 	@ResponseBody
-	public List<TreeVo> getLeftMenu(){
+	public List<TreeVo> getLeftMenu(HttpServletRequest request){
 		List<TreeVo> trees = new ArrayList<>();
 
 		TreeVo t1 = new TreeVo();
@@ -117,11 +117,12 @@ public class MainController extends BaseController {
 		t25.setUrl("/module/tenant/index.html");
 		
 		List<TreeVo> t2children = new ArrayList<>();
+		t2children.add(t25);
 		t2children.add(t21);
 		t2children.add(t22);
 		t2children.add(t23);
 		t2children.add(t24);
-		t2children.add(t25);
+		
 		t2.setChildren(t2children);
 		trees.add(t2);
 		

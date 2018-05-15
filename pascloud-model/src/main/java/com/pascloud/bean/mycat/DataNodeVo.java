@@ -13,6 +13,8 @@ public class DataNodeVo implements Serializable {
 	
 	private String dataHost;
 	
+	private String ip;
+	
 	private String database;
 	
     private String dbType;
@@ -24,8 +26,27 @@ public class DataNodeVo implements Serializable {
 	private String password;
 	
 	private String dbDriver;
+	
+	private String port;
 
 	
+	
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+
+	public String getPort() {
+		return port;
+	}
+
+	public void setPort(String port) {
+		this.port = port;
+	}
+
 	public String getDbType() {
 		return dbType;
 	}

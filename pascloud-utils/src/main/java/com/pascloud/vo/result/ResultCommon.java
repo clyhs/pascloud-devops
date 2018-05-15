@@ -2,6 +2,8 @@ package com.pascloud.vo.result;
 
 import java.io.Serializable;
 
+import com.pascloud.utils.PasCloudCode;
+
 public class ResultCommon implements Serializable {
 
 	/**
@@ -14,6 +16,11 @@ public class ResultCommon implements Serializable {
 	private String  desc;
 	
 	public ResultCommon(){}
+	
+	public ResultCommon(PasCloudCode c){
+		this.code = c.getCode();
+		this.desc = c.getDesc();
+	}
 	
 	public ResultCommon(Integer code,String  desc){
 		this.code = code;

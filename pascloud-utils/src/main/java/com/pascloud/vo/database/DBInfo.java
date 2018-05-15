@@ -24,6 +24,18 @@ public class DBInfo implements Serializable {
 	private Integer port;
 	
 	private String  dbType;
+	
+	private String  desc;
+	
+	
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
 
 	public String getDbType() {
 		return dbType;
