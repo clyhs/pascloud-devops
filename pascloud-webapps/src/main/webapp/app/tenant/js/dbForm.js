@@ -95,6 +95,12 @@ function changeName(name){
 			$("#ip").val(data.bean.ip);
 			$("#username").val(data.bean.user);
 			$("#password").val(data.bean.password);
+		}else{
+			$("#port").val("");
+			$("#database").val("");
+			$("#ip").val("");
+			$("#username").val("");
+			$("#password").val("");
 		}
 	});
 }

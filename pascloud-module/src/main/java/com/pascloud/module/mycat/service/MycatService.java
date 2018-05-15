@@ -136,7 +136,7 @@ public class MycatService {
 		if(url.length()>0){
 			if(dbType.equals("mysql")){
 				int index = url.lastIndexOf(":");
-				System.out.println(index);
+				//System.out.println(index);
 				url = url.substring(0, index);
 			}else if(dbType.equals("oracle")){
 				int index = url.lastIndexOf("@");
@@ -152,19 +152,19 @@ public class MycatService {
 				url = url.substring(0, index);
 			}
 			ip = url;
-			System.out.println(url);
+			//System.out.println(url);
 		}
 		return ip;
 	}
 	
 	private String parserPort(String url,String dbType){
-		System.out.println(url+dbType);
+		//System.out.println(url+dbType);
 		String port = "";
 		
 		if(url.length()>0){
 			if(dbType.equals("mysql")){
 				int index = url.lastIndexOf(":");
-				System.out.println(index);
+				//System.out.println(index);
 				port = url.substring(index+1,url.length());
 			}else if(dbType.equals("oracle")){
 				int index = url.lastIndexOf(":");

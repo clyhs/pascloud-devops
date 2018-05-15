@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.passervice.service.ConfigService;
 import com.pascloud.vo.database.DBInfo;
+import com.pascloud.vo.result.ResultCommon;
 
 @Controller
 @RequestMapping("module/tenant")
@@ -28,11 +29,21 @@ public class TenantController extends BaseController {
 	
 	@RequestMapping("dbs.json")
 	@ResponseBody
-	public List<DBInfo> getTenantDBs(){
+	public List<DBInfo> getTenantDBs(HttpServletRequest request){
 		
 		List<DBInfo> result = new ArrayList<>();
 		
 		result = m_configService.getDBFromConfig();
+		
+		return result;
+		
+	}
+	
+	@RequestMapping("addTenant.json")
+	@ResponseBody
+	public ResultCommon addTenant(HttpServletRequest request){
+		
+		ResultCommon result = new ResultCommon();
 		
 		return result;
 		
