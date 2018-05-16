@@ -324,6 +324,34 @@ public class DataBaseController extends BaseController {
 		return result;
 	}
 	
+	@RequestMapping(value="connectDbWidthUrl.json",method=RequestMethod.GET)
+	@ResponseBody
+	public ResultCommon connectDbWithUrl(HttpServletRequest request,
+			@RequestParam(value="dbType",defaultValue="",required=true) String dbType,
+			@RequestParam(value="url",defaultValue="",required=true) String url,
+			@RequestParam(value="username",defaultValue="",required=true) String username,
+			@RequestParam(value="password",defaultValue="",required=true) String password){
+		
+		ResultCommon result = null;
+		
+		String driverClass=DBUtils.getDirverClassName(dbType);
+		log.info(url);
+		log.info(driverClass);
+		DBUtils db = new DBUtils(driverClass,url,username,password);
+		try{
+			if(db.canConnect()){
+				result = new ResultCommon(10000,"成功");
+			}else{
+				result = new ResultCommon(20000,"失败");
+			}
+		}catch(Exception e){
+			result = new ResultCommon(20000,"失败");
+		}
+		
+		
+		return result;
+	}
+	
 	
 	
 	

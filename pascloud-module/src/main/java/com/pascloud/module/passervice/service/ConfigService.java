@@ -29,6 +29,11 @@ public class ConfigService {
 	
 	private String m_dubbo_file = "/dubbo.properties";
 	
+	private String m_db_file = "/db.properties";
+	
+	private String m_redis_file = "/redis.properties";
+	
+	private String m_zk_file = "/redis.properties";
 	
 	/**
 	 *添加DB配置（static/resources/service/conf/config.properties) 
@@ -49,7 +54,7 @@ public class ConfigService {
 	public void addDBConfig(String ip,Integer port,String user,String password,
 			String dbType,String dnName,String database){
 		PropertiesUtil p =new PropertiesUtil();
-		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
+		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
 		String url = DBUtils.getUrlByParams(dbType, ip, database, port);
 		String driverClass = DBUtils.getDirverClassName(dbType);
 		p.setValueByKey(dnName+".driverClass", driverClass, "");
@@ -69,7 +74,7 @@ public class ConfigService {
 	public List<DBInfo> getDBFromConfig(){
 		List<DBInfo> dbs = new ArrayList<DBInfo>();
 		PropertiesUtil p =new PropertiesUtil();
-		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
+		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
 		
 		System.out.println(m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
 		
@@ -120,7 +125,7 @@ public class ConfigService {
 	 */
 	public void delDBConfig(String dnName){
 		PropertiesUtil p =new PropertiesUtil();
-		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
+		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
 		Map map = p.getByFuzzyKey(dnName);
 		Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
 		while (it.hasNext()) {
@@ -133,7 +138,7 @@ public class ConfigService {
 	
 	public void updateRedisConfig(String ip,Integer port,String user,String password){
 		PropertiesUtil p =new PropertiesUtil();
-		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
+		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_redis_file);
 		p.setValueByKey("redis.host", ip, "");
 		p.setValueByKey("redis.port", port+"", "");
 		p.setValueByKey("redis.password", password, "");
@@ -154,7 +159,7 @@ public class ConfigService {
 	 */
 	public void setMycatConfig(String ip,String user,String password){
 		PropertiesUtil p =new PropertiesUtil();
-		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
+		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
 		String url = DBUtils.getUrlByParams("mysql", ip, "alldb", 8066);
 		url = url + "?autoReconnect=true";
 		p.setValueByKey("db.mcat.url", url, "");
@@ -183,7 +188,7 @@ public class ConfigService {
 	 */
 	public void setZookeeperConfig(String ip,Integer port){
 		PropertiesUtil p =new PropertiesUtil();
-		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
+		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_zk_file);
 		StringBuffer sb = new StringBuffer();
 		sb.append("zookeeper://").append(ip);
 		p.setValueByKey("zookeeper.host", sb.toString(), "");
@@ -195,7 +200,7 @@ public class ConfigService {
 		String[] dnNames = value.split(",");
 		Boolean isExist = false;
 		for(String dn:dnNames){
-			if(dn.equals(dnNames)){
+			if(dn.equals(dnName)){
 				isExist = true;
 			}
 		}
@@ -210,7 +215,7 @@ public class ConfigService {
 		String[] dnNames = value.split(",");
 		StringBuffer sb = new StringBuffer();
 		for(String dn:dnNames){
-			if(dn.equals(dnNames)){
+			if(dn.equals(dnName)){
 			}else{
 				sb.append(dn).append(",");
 			}
@@ -233,6 +238,12 @@ public class ConfigService {
 		PropertiesUtil p =new PropertiesUtil();
 		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
 		p.setValueByKey("pascloud.home", projectPath, "");
+	}
+	
+	public void setDev(String flag){
+		PropertiesUtil p =new PropertiesUtil();
+		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
+		p.setValueByKey("pascloud.dev", flag, "");
 	}
 	
 	

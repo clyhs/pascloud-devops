@@ -59,7 +59,7 @@ function addDbDialog(){
 	div +=    '<div style="clear:both;"></div>';
 	div +='</div>';
 	div += createDBFormFooter(); 
-	createDialogDivWithSize('mainDataGrid', 'pasAddDb','添加数据库节点', '',500,360,div);
+	createDialogDivWithSize('mainDataGrid', 'datanodeAddDb','添加数据库节点', '',500,360,div);
 }
 
 function createDBFormFooter(){
@@ -90,6 +90,7 @@ function createDBFormFooter(){
 
 function addDB(){
 	//alert('设置数据库');
+	var name = $("#name").val();
 	var dbType = $("#dbType").val();
 	var port = $("#port").val();
 	var database = $("#database").val();
@@ -98,16 +99,20 @@ function addDB(){
 	var password = $("#password").val();
 	var params = {dbType:dbType,ip:ip,port:port,database:database,username:user,password:password};
 	
-	//alert(driverClassVal);
-	/*
-	$.post("modifyContainerSpringXml.json",param,function(data,status){
-		if(data.code = 10000){
-			//alert(data.desc);
-			alert("修改成功，请重新启动应用");
-			$('#pasAddDb').dialog('close');
-		}
-		
-	});*/
+	var params = {name:name,dbType:dbType,ip:ip,port:port,database:database,username:user,password:password};
+	//alert(name.length);
+	if(name.length<=0 || dbType.length<=0 || port.length<=0 || database.length<=0 || ip.length<=0 || user.length<=0 || password.length<=0){
+		$.messager.alert('提示','参数没有填写完整');
+	}else{
+		$.post("addDatanode.json",params,function(data,status){
+			if(data.code = 10000){
+				//alert(data.desc);
+				//alert("修改成功，请重新启动应用");
+				$('#datanodeAddDb').dialog('close');
+				$('#mainDataGrid').datagrid('reload');//刷新
+			}
+		});
+	}
 }
 
 
@@ -121,20 +126,46 @@ function test(){
 	var params = {dbType:dbType,ip:ip,port:port,database:database,username:user,password:password};
 	//alert(driverClassVal + passwordVal);
 	$.get('/module/database/connectDb.json',params,function(data,status){
-		dispalyEasyUILoad('infoLayout')
-		if(data.code == 10000){
-			
-			alert("连接成功");
+
+        if(data.code == 10000){
+			$.messager.alert('提示','连接成功');
+		}else{
+			$.messager.alert('提示','连接失败');
 		}
 	});
 }
 
 function delDatanode(){
-	
+	//alert('设置数据库');
 	var row = $('#mainDataGrid').datagrid('getSelected'); 
 	var name = row.name;
-	alert(name);
+	var params = {name:name};
+	if(name.length>0){
+		
+		$.messager.confirm('提示框','你确定要删除些节点，会影响到云平台的租户，请再确定？',function(r){
+		    if (r){
+		    	$.post("delDatanode.json",params,function(data,status){
+					if(data.code = 10000){
+						//alert(data.desc);
+						//alert("修改成功，请重新启动应用");
+						$('#datanodeAddDb').dialog('close');
+						$('#mainDataGrid').datagrid('reload');//刷新
+					}
+				});
+		    }
+		});
+		
+	}
 	
+}
+
+function uploadConfig(){
+	$.post("uploadConfig.json",{},function(data,status){
+		if(data.code = 10000){
+			//alert(data.desc);
+			$.messager.alert('提示','成功');
+		}
+	});
 }
 
 

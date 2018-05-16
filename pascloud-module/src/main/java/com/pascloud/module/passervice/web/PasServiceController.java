@@ -84,6 +84,16 @@ public class PasServiceController extends BaseController {
 		return result;
 	}
 	
+	@RequestMapping(value="copyPaspmServiceContainer.json",method=RequestMethod.POST)
+	@ResponseBody
+	public ResultCommon copyPaspmServiceContainer(HttpServletRequest request){
+		ResultCommon result = new ResultCommon(10000,"成功");
+		//addMainServiceContainer();
+		//addPaspmServiceContainer();
+		copyPaspmServiceContainer();
+		return result;
+	}
+	
 	@RequestMapping(value="copyMainServiceContainer.json",method=RequestMethod.POST)
 	@ResponseBody
 	public ResultCommon copyMainServiceContainer(HttpServletRequest request){
@@ -99,11 +109,11 @@ public class PasServiceController extends BaseController {
         
         String randomId = RandomUtils.generateLowerString(6);
 		
-        String containerName = "pascloud_service_"+randomId;
-		String bindVolumeFrom = "/home/pascloud/pas-cloud-service-"+randomId;
+        String containerName = "pascloud_service_demo_"+randomId;
+		String bindVolumeFrom = "/home/pascloud/pas-cloud-service-demo-"+randomId;
 		String bindVolumeTo = bindVolumeFrom;
 		String id = "";
-		String[] cmd = {"/home/pascloud/pas-cloud-service-"+randomId+"/bin/start.sh"};
+		String[] cmd = {"/home/pascloud/pas-cloud-service-demo-"+randomId+"/bin/start.sh"};
 		String imageName = "pascloud/jdk7:v1.0";
 		Map<String,String> port = new HashMap<String,String>();
 		port.put("8201", "8301");
@@ -122,6 +132,49 @@ public class PasServiceController extends BaseController {
 		
 		String configfilepath = m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"config.properties";
 		m_configService.setHomePath(bindVolumeFrom);
+		scpClient.putFileToServer(configfilepath, bindVolumeFrom+"/conf/");
+		
+		scpClient.close();
+		log.info("结束拷贝源码目录");
+		
+        log.info("开始新建main容器");
+		
+		DefaultDockerClient client = DefaultDockerClient.builder()
+				.uri("http://"+ip+":"+defaultPort).build();
+		id = m_dockerService.addContainer(client, port, bindVolumeFrom, bindVolumeTo, imageName, containerName,cmd,envs);
+		System.out.println(id);
+		log.info("结束新建main容器");
+	}
+	
+	private void copyPaspmServiceContainer(){
+        String ip = "192.168.0.7";
+        
+        String randomId = RandomUtils.generateLowerString(6);
+		
+        String containerName = "pascloud_service_paspm_"+randomId;
+		String bindVolumeFrom = "/home/pascloud/pas-cloud-service-paspm-"+randomId;
+		String bindVolumeTo = bindVolumeFrom;
+		String id = "";
+		String[] cmd = {"/home/pascloud/pas-cloud-service-paspm-"+randomId+"/bin/start.sh"};
+		String imageName = "pascloud/jdk7:v1.0";
+		Map<String,String> port = new HashMap<String,String>();
+		port.put("8202", "8202");
+		port.put("8212", "8212");
+		List<String> envs = new ArrayList<>();
+		
+		log.info("开始拷贝源码目录");
+		
+		ScpClientUtils scpClient = new ScpClientUtils(ip, "root", "tccp@2012");
+		scpClient.copyFolder("/home/pascloud/pas-cloud-service-paspm", bindVolumeFrom);
+		//scpClient.close();
+		String dubbofilepath = m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"dubbo.properties";
+		System.out.println(dubbofilepath);
+		m_configService.setApplicationName(containerName);
+		scpClient.putFileToServer(dubbofilepath, bindVolumeFrom+"/conf/");
+		
+		String configfilepath = m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"config.properties";
+		m_configService.setHomePath("/home/pascloud/pas-cloud-service-demo");
+		m_configService.setDev("true");
 		scpClient.putFileToServer(configfilepath, bindVolumeFrom+"/conf/");
 		
 		scpClient.close();

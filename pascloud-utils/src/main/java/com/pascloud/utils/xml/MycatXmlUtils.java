@@ -44,6 +44,7 @@ public class MycatXmlUtils {
 		String dataHostName = "dataHost_"+name;
 		addDataNode(root,name,dataHostName,database);
 		addDataHost(root,dataHostName,dbType,ip,user,password,database,port);
+		sort(root);
 		saveDocument(schemaPath,doc);
 		return doc;
 	}
@@ -328,6 +329,34 @@ public class MycatXmlUtils {
 				//e.printStackTrace();
 			}
 		}
+	}
+	
+	private static void sort(Element root){
+		List<Element> schemas = root.selectNodes("schema");
+		List<Element> datanodes = root.selectNodes("dataNode");
+		List<Element> dataHosts = root.selectNodes("dataHost");
+		
+		for(Element schema:schemas){
+			root.remove(schema);
+		}
+		for(Element datanode:datanodes){
+			root.remove(datanode);
+		}
+		for(Element datahost:dataHosts){
+			root.remove(datahost);
+		}
+		
+		for(Element schema:schemas){
+			root.add(schema);
+		}
+		for(Element datanode:datanodes){
+			root.add(datanode);
+		}
+		for(Element datahost:dataHosts){
+			root.add(datahost);
+		}
+		
+		
 	}
 	
 	public static void main(String[] args) {

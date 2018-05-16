@@ -14,5 +14,11 @@ var toolbar = function(){
         	
         	delDatanode();
         }
+	},{
+		text : '同步上传',  
+        iconCls : 'icon-disk_upload',  
+        handler : function(){
+        	uploadConfig();
+        }
 	}];
 }();

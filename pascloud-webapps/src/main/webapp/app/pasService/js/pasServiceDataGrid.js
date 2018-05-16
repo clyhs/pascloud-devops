@@ -21,8 +21,8 @@ function initMainDataGrid(){
         columns: [[
             //{ field: 'ck', checkbox: true },
             { field: 'id', title: '编号', width: 150, align: 'left'  },
-            { field: 'name', title: '名称', width: 80, align: 'left' },
-            { field: 'state', title: '状态', width: 80, align: 'left' },
+            { field: 'name', title: '名称', width: 120, align: 'left' },
+            { field: 'state', title: '状态', width: 40, align: 'left' },
             { field: 'publicPort', title: '映射端口', width: 100, align: 'left' },
             { field: 'ip', title: 'IP地址', width: 80, align: 'center' }//,
             //{ field: '_operate',title: '操作', width:50, align: 'center',formatter:formatOper }

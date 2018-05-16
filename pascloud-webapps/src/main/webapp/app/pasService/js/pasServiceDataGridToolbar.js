@@ -1,34 +1,28 @@
 
 var toolbar = function(){
 	return [{
-		text : '创建环境',  
-        iconCls : 'icon-add',  
+		text : '环境',  
+        iconCls : 'icon-control_add_blue',  
         handler : function(){
         	addBaseContainer();
         }
 	},{
-		text : '创建主服务',  
+		text : '公共服务',  
         iconCls : 'icon-add',  
         handler : function(){
-        	addMainServiceContainer();
+        	copyMainServiceContainer();
         }
 	},{
-		text : '创建管家服务',  
+		text : '管家',  
         iconCls : 'icon-add',  
         handler : function(){
-        	addPaspmServiceContainer();
+        	copyPaspmServiceContainer();
         }
 	},{
-		text : '创建前端服务',  
-        iconCls : 'icon-add',  
+		text : '前端',  
+        iconCls : 'icon-web',  
         handler : function(){
         	addTomcatContainer();
-        }
-	},{
-		text : '复制',  
-        iconCls : 'icon-table_edit',  
-        handler : function(){
-        	//copyMainServiceContainer();
         }
 	},{
 		text : '运行',  

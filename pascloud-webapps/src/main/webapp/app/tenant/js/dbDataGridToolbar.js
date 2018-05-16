@@ -10,7 +10,13 @@ var toolbar = function(){
 		text : '删除数据库',  
         iconCls : 'icon-delete',  
         handler : function(){
-        	delDatanode();
+        	delDB();
+        }
+	},{
+		text : '同步上传',  
+        iconCls : 'icon-disk_upload',  
+        handler : function(){
+        	uploadConfig();
         }
 	}];
 }();

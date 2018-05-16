@@ -77,6 +77,19 @@ function copyMainServiceContainer(){
 	});
 }
 
+function copyPaspmServiceContainer(){
+	
+	var param = {};
+	
+	$.post("copyPaspmServiceContainer.json",param,function(data,status){
+		if(data.code = 10000){
+			$('#mainDataGrid').datagrid('reload');//刷新
+		}
+		
+	});
+}
+
+
 function startContainer(){
 	
 	var row = $('#mainDataGrid').datagrid('getSelected'); 
@@ -95,8 +108,14 @@ function stopContainer(){
 	var row = $('#mainDataGrid').datagrid('getSelected'); 
 	if(row.state == 'running'){
 		$.post("/module/container/stopContainer.json",{containerId:row.id,ip:row.ip},function(data,status){
-			alert(data.code);
-			$('#mainDataGrid').datagrid('reload');//刷新
+			if(data.code == 10000){
+				
+				$.messager.alert('提示','成功');
+				$('#mainDataGrid').datagrid('reload');//刷新
+			}else{
+				$.messager.alert('提示','失败');
+			}
+			
 		});
 	}else{
 		alert('已经运行');
@@ -108,8 +127,12 @@ function restartContainer(){
 	var row = $('#mainDataGrid').datagrid('getSelected'); 
 	if(row.state != 'running'){
 		$.post("/module/container/restartContainer.json",{containerId:row.id,ip:row.ip},function(data,status){
-			alert(data.code);
-			$('#mainDataGrid').datagrid('reload');//刷新
+            if(data.code == 10000){
+				$.messager.alert('提示','成功');
+				$('#mainDataGrid').datagrid('reload');//刷新
+			}else{
+				$.messager.alert('提示','失败');
+			}
 		});
 	}else{
 		alert('已经运行');

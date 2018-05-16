@@ -36,6 +36,7 @@ public class DBUtils {
             conn = DriverManager.getConnection(url, username, password);  
             if(null !=conn){
             	flag = true;
+            	log.info("连接成功...");
             }
             log.info("连接结束...");
         } catch (SQLException | ClassNotFoundException e) {  
@@ -47,7 +48,7 @@ public class DBUtils {
         	try {
         		log.info("关闭连接...");
 				conn.close();
-			} catch (SQLException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
 			}

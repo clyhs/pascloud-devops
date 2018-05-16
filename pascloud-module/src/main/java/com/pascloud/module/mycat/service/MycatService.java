@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.pascloud.bean.mycat.DataHostVo;
 import com.pascloud.bean.mycat.DataNodeVo;
 import com.pascloud.module.config.PasCloudConfig;
+import com.pascloud.utils.xml.MycatXmlUtils;
 import com.pascloud.utils.xml.XmlParser;
 
 @Service
@@ -21,11 +22,15 @@ public class MycatService {
 	@Autowired
 	private PasCloudConfig m_config;
 	
+	private String mycat_schema_name = "schema.xml";
+	
+	private String mycat_server_name = "server.xml";
+	
 	public List<DataHostVo> getDataHosts(){
 		
 		List<DataHostVo> result = new ArrayList<>();
 		
-		String mycat_schema_path = m_config.getPASCLOUD_MYCAT_DIR()+File.separator+"schema.xml";
+		String mycat_schema_path = m_config.getPASCLOUD_MYCAT_DIR()+File.separator+this.mycat_schema_name;
 		Document doc = XmlParser.getDocument(mycat_schema_path);
 		Element root = doc.getRootElement();
 		List<Element> nodes = root.elements("dataHost");
@@ -50,7 +55,7 @@ public class MycatService {
 	
 	public List<DataNodeVo> getDataNodes(){
 		List<DataNodeVo> result = new ArrayList<>();
-		String mycat_schema_path = m_config.getPASCLOUD_MYCAT_DIR()+File.separator+"schema.xml";
+		String mycat_schema_path = m_config.getPASCLOUD_MYCAT_DIR()+File.separator+this.mycat_schema_name;
 		Document doc = XmlParser.getDocument(mycat_schema_path);
 		Element root = doc.getRootElement();
 		List<Element> nodes = root.elements("dataNode");
@@ -78,6 +83,25 @@ public class MycatService {
 			}	
 		}
 		return result;
+	}
+	
+	public void addDatanode(String name,String dbType,String ip,String user,String password,String database,Integer port){
+		String mycat_schema_path = m_config.getPASCLOUD_MYCAT_DIR()+File.separator+this.mycat_schema_name;
+		String mycat_server_path = m_config.getPASCLOUD_MYCAT_DIR()+File.separator+this.mycat_server_name;
+		
+		MycatXmlUtils.addSchemaAndNodeAndHost(mycat_schema_path, name, dbType, ip, user, password, database, port);
+		
+		MycatXmlUtils.addServer(mycat_server_path, name);
+		
+		//MycatXmlUtils.addSchemaAndNodeAndHost(mycat_schema_path,"dn22", "oracle", "192.168.0.16", "pas", "pas", "cpas", 1521);
+	}
+	
+	public void delDatanode(String name){
+		String mycat_schema_path = m_config.getPASCLOUD_MYCAT_DIR()+File.separator+this.mycat_schema_name;
+		String mycat_server_path = m_config.getPASCLOUD_MYCAT_DIR()+File.separator+this.mycat_server_name;
+		MycatXmlUtils.delSchemaAndNodeAndHost(mycat_schema_path, name);
+		
+		MycatXmlUtils.delServer(mycat_server_path, name);
 	}
 	
     private List<DataHostVo> getDataHosts(Element root){
