@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!-- status=debug 可以查看log4j的装配过程 -->  
+<!-- 开启异步功能，需加入参数-DLog4jContextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector -->
+<configuration status="OFF"  monitorInterval="1800">  
+    
+    <appenders>  
+        <!-- 定义控制台输出 -->  
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level %c:%line - %msg%n" />  
+        </Console>
+        <!-- 程序员调试日志 -->  
+        <RollingRandomAccessFile name="DevLog" fileName="${PROJECT_PATH}/${SERVER_NAME}.log"
+            filePattern="${PROJECT_PATH}/${SERVER_NAME}.%d{yyyy-MM-dd-HH}.log">  
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level %thread %c:%line - %msg%n" />  
+            <Policies>  
+                <TimeBasedTriggeringPolicy interval="360" modulate="true" />  
+            </Policies>  
+        </RollingRandomAccessFile>  
+        
+        
+    </appenders>  
+    <loggers>  
+        <!-- 3rdparty Loggers -->  
+		<logger name="org.springframework" level="error" />
+		<logger name="com.google" level="error" />
+		<logger name="net.rubyeye" level="error" />
+		<logger name="org.mybatis" level="error" />
+		<logger name="jrds" level="error" />
+		<logger name="org.apache" level="error" />
+		<!-- pattern layout actually uses location, so we need to include it -->
+
+		<Root  level="info">
+			<appender-ref ref="DevLog" />
+			<appender-ref ref="Console" />
+		</Root>
+		
+    </loggers>  
+    
+</configuration>  

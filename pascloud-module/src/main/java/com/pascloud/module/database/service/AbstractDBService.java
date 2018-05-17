@@ -26,6 +26,7 @@ public abstract class AbstractDBService {
 		}else if(dcn.equalsIgnoreCase("oracle.jdbc.driver.OracleDriver")){
 			sql = "select table_name id,table_name name from user_tables order by name asc";
 		}
+		log.info(sql);
 		return sql;
 	}
 	

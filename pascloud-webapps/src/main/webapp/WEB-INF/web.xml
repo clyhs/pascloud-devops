@@ -12,6 +12,15 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	<listener>
+		<listener-class>com.pascloud.listen.PasCloudListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>jrds.webapp.StartListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.apache.commons.fileupload.servlet.FileCleanerCleanup</listener-class>
+	</listener>
+	<listener>
 		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
 	</listener>
 	<filter>
@@ -40,7 +49,7 @@
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>*.html</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>*.json</url-pattern>
@@ -49,5 +58,182 @@
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>*.xml</url-pattern>
 	</servlet-mapping>
-	
+
+
+
+
+	<!-- Jrds -->
+	<servlet>
+		<servlet-name>CheckValues</servlet-name>
+		<servlet-class>jrds.webapp.CheckValues</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Graph</servlet-name>
+		<servlet-class>jrds.webapp.Graph</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Last</servlet-name>
+		<servlet-class>jrds.webapp.Last</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>download</servlet-name>
+		<servlet-class>jrds.webapp.Download</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>reload</servlet-name>
+		<servlet-class>jrds.webapp.ReloadHostList</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>probesummary</servlet-name>
+		<servlet-class>jrds.webapp.ProbeSummary</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>probedetails</servlet-name>
+		<servlet-class>jrds.webapp.JSonDetails</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>whichlibs</servlet-name>
+		<servlet-class>jrds.webapp.WhichLibs</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>status</servlet-name>
+		<servlet-class>jrds.webapp.Status</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>discover</servlet-name>
+		<servlet-class>jrds.webapp.Discover</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>JSonTree</servlet-name>
+		<servlet-class>jrds.webapp.JSonTree</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>JSonGraph</servlet-name>
+		<servlet-class>jrds.webapp.JSonGraph</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>JSonPeriod</servlet-name>
+		<servlet-class>jrds.webapp.JSonPeriod</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>JSonQueryParams</servlet-name>
+		<servlet-class>jrds.webapp.JSonQueryParams</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Cmd</servlet-name>
+		<servlet-class>
+			jrds.webapp.Cmd</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>XmlRpcServlet</servlet-name>
+		<servlet-class>jrds.webapp.rpc.JrdsXmlRpcServlet</servlet-class>
+		<init-param>
+			<param-name>enabledForExtensions</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</servlet>
+	<servlet>
+		<servlet-name>JSonPack</servlet-name>
+		<servlet-class>
+			jrds.webapp.JSonPack</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>upload</servlet-name>
+		<servlet-class>
+			jrds.webapp.Upload</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>GetDiscoverHtmlCode</servlet-name>
+		<servlet-class>
+			jrds.webapp.GetDiscoverHtmlCode</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CheckValues</servlet-name>
+		<url-pattern>/values/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Last</servlet-name>
+		<url-pattern>/last</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Graph</servlet-name>
+		<url-pattern>/graph</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Graph</servlet-name>
+		<url-pattern>/graph/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>download</servlet-name>
+		<url-pattern>/download</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>download</servlet-name>
+		<url-pattern>/download/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>reload</servlet-name>
+		<url-pattern>/reload</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>probesummary</servlet-name>
+		<url-pattern>/summary</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>probedetails</servlet-name>
+		<url-pattern>/details</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>whichlibs</servlet-name>
+		<url-pattern>/whichlibs</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>status</servlet-name>
+		<url-pattern>/status</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>discover</servlet-name>
+		<url-pattern>/discover</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>JSonTree</servlet-name>
+		<url-pattern>/jsontree</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>JSonGraph</servlet-name>
+		<url-pattern>/jsongraph</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>JSonPeriod</servlet-name>
+		<url-pattern>/jsonperiod</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>JSonQueryParams</servlet-name>
+		<url-pattern>/queryparams</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Cmd</servlet-name>
+		<url-pattern>/cmd/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>XmlRpcServlet</servlet-name>
+		<url-pattern>/xmlrpc</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>XmlRpcServlet</servlet-name>
+		<url-pattern>/xmlrpc/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>JSonPack</servlet-name>
+		<url-pattern>/jsonpack/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>upload</servlet-name>
+		<url-pattern>/upload</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetDiscoverHtmlCode</servlet-name>
+		<url-pattern>/discoverhtml</url-pattern>
+	</servlet-mapping>
+
 </web-app>

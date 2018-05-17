@@ -3,6 +3,9 @@ package com.pascloud.module.config.init;
 import java.io.File;
 import java.util.List;
 
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +36,14 @@ public class PasCloudInitConfig implements ApplicationListener<ContextRefreshedE
 	@Autowired
 	private PasCloudConfig m_config;
 	
+	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		// TODO Auto-generated method stub
 		if(event.getApplicationContext().getParent() == null){
 			//initDataSource();
 			//initRedisPool();
+			
 		}
 		
 	}
@@ -119,5 +124,7 @@ public class PasCloudInitConfig implements ApplicationListener<ContextRefreshedE
 			log.info("初始化redis--结束--");
 		}
 	}
+
+	
 
 }

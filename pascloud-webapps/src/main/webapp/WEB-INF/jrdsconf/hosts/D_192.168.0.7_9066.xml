@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<host name="D_192.168.0.7_9066" dnsName="192.168.0.7">
+	<connection type="jrds.probe.jdbc.JdbcConnection" name="mycat">
+		   <arg type="String" value="root" />
+		   <arg type="String" value="root" />
+		   <arg type="String" value="jdbc:mysql://192.168.0.7:9066/alldb" />
+		   <arg type="String" value="com.mysql.jdbc.Driver" />
+	</connection>
+	<probe  type="MycatPerfProbe" connection="mycat" />
+	<probe  type="MycatThreadPool" connection="mycat" />
+	<probe  type="MycatMemory" connection="mycat" />
+</host>

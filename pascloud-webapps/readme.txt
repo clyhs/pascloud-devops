@@ -11,6 +11,10 @@ docker run --name pas_mycat   -d -v /home/pascloud16/mycat:/home/pascloud16/myca
 #zookeeper
 docker run --name pas_zk_dubbo_admin  --restart=always  -d -p 8686:8686 -p 2181:2181 pascloud/zk_dubbo:v1.1
 
+http://localhost:8080/graph/D_192.168.0.7_9066/MycatActiveThreadGraph?probe=MycatThreadPool
+
+http://localhost:8080/graph/D_192.168.0.7_9066/MycatActiveThreadGraph?probe=MycatThreadPool&begin=2018-05-17%2000:00&end=2018-05-17%2016:54
+
 
 菜单
   |--服务器管理

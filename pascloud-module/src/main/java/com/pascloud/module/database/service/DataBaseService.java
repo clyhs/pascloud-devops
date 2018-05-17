@@ -184,7 +184,8 @@ public class DataBaseService extends AbstractDBService{
 			conn = dataSource.getConnection();
 			QueryRunner qRunner = new QueryRunner();  
 			long beginTime = System.currentTimeMillis();  
-			result =  qRunner.query(conn,sb.toString(), new MapListHandler());
+			log.info(sb.toString());
+			result =  qRunner.query(conn,sb.toString().toUpperCase(), new MapListHandler());
 			long endTime = System.currentTimeMillis(); 
 			double longTime =(double)(endTime - beginTime)/1000;
 			Gson g = new Gson();
@@ -261,6 +262,7 @@ public class DataBaseService extends AbstractDBService{
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			ResultSetMetaData data = rs.getMetaData();
+			log.info(data.getColumnCount()+"");
 			for (int i = 1; i <= data.getColumnCount(); i++) {
 				String columnName = data.getColumnName(i);
 				columnNames.add(columnName);

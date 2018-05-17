@@ -129,14 +129,14 @@ public class MainController extends BaseController {
 		
 		TreeVo t3 = new TreeVo();
 		t3.setId("3000");
-		t3.setText("工具管理");
+		t3.setText("数据库管理");
 		t3.setLeaf(false);
 		t3.setIconCls("icon-folder");
 		t3.setUrl("#");
 		
 		TreeVo t31 = new TreeVo();
 		t31.setId("3100");
-		t31.setText("mycat中间件配置");
+		t31.setText("数据库中间件");
 		t31.setLeaf(true);
 		t31.setIconCls("icon-application");
 		t31.setUrl("/module/mycat/index.html");
@@ -148,20 +148,33 @@ public class MainController extends BaseController {
 		t32.setIconCls("icon-application");
 		t32.setUrl("/module/database/index.html");
 		
-		TreeVo t33= new TreeVo();
-		t33.setId("3300");
-		t33.setText("PB应用管理");
-		t33.setLeaf(true);
-		t33.setIconCls("icon-application");
-		t33.setUrl("/module/paspb/index.html");
+		
 		
 		List<TreeVo> t3children = new ArrayList<>();
-		t3children.add(t31);
 		t3children.add(t32);
-		t3children.add(t33);
+		t3children.add(t31);
+		//t3children.add(t33);
 		t3.setChildren(t3children);
 		trees.add(t3);
 		
+		TreeVo t4 = new TreeVo();
+		t4.setId("4000");
+		t4.setText("其它管理");
+		t4.setLeaf(false);
+		t4.setIconCls("icon-folder");
+		t4.setUrl("#");
+		
+		TreeVo t41= new TreeVo();
+		t41.setId("4100");
+		t41.setText("PB应用管理");
+		t41.setLeaf(true);
+		t41.setIconCls("icon-application");
+		t41.setUrl("/module/paspb/index.html");
+		
+		List<TreeVo> t4children = new ArrayList<>();
+		t4children.add(t41);
+		t4.setChildren(t4children);
+		trees.add(t4);
 		return trees;
 	}
 	@RequestMapping("leaveSwarm.json")

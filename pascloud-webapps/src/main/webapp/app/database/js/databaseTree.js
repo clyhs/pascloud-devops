@@ -1,7 +1,7 @@
 function initDatabaseTree(){
     EasyUILoad('databaseTree');
     $('#databaseTree').tree({
-	    url:'dbTrees.json',
+	    url:'dbTreesFromMycat.json',
 	    cascadeCheck: false,
 	    checkbox: false,
 		method:'get',

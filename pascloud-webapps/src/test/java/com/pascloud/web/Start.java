@@ -15,6 +15,8 @@ import org.mortbay.jetty.bio.SocketConnector;
 import org.mortbay.jetty.webapp.WebAppContext;
 import org.mortbay.xml.XmlConfiguration;
 
+import jrds.PropertiesManager;
+
 
 /**
  * Jetty starter
