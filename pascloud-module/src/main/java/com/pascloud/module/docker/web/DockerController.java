@@ -29,7 +29,7 @@ public class DockerController extends BaseController {
 	@ResponseBody
 	public List<NodeVo> getNodes(){
 		List<NodeVo> nodes = new ArrayList<>();
-		nodes = m_dockerService.getNodes(dockerClient);
+		nodes = m_dockerService.getNodes(getDockerClient());
 		return nodes;
 	}
 	
@@ -39,7 +39,7 @@ public class DockerController extends BaseController {
 			@RequestParam(value="index",defaultValue="",required=true) int index){
 		
 		List<NodeVo> nodes = new ArrayList<>();
-		nodes = m_dockerService.getNodes(dockerClient);
+		nodes = m_dockerService.getNodes(getDockerClient());
 		
 		List<MapVo> maps = new ArrayList<>();
 		ScpClientUtils client = new ScpClientUtils(nodes.get(index).getAddr(),"root","tccp@2012");

@@ -37,7 +37,7 @@ public class ImageController extends BaseController {
 	public List<ImageVo> getImageList(){
 		List<ImageVo> result = new ArrayList<>();
 		List<NodeVo> nodes = new ArrayList<>();
-		nodes = m_dockerService.getNodes(dockerClient);
+		nodes = m_dockerService.getNodes(getDockerClient());
 		
 		for(NodeVo vo: nodes){
 			DefaultDockerClient client = DefaultDockerClient.builder()

@@ -38,5 +38,29 @@ public class ServerService {
 		
 		return servers;
 	}
+	
+    public String getMasterDockerUrl(){
+		
+    	String url="";
+		List<ServerVo> servers = new ArrayList<ServerVo>();
+		String serverPath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_SERVER_DIR()+this.m_server_file;
+		
+		File file = new File(serverPath);
+        XStream xstream = new XStream(); 
+        xstream.alias("server", ServerVo.class);
+        servers =  (List<ServerVo>) xstream.fromXML(file);
+        ServerVo master = new ServerVo();
+        if(servers.size()>0){
+        	for(ServerVo vo:servers){
+        		if("master".equals(vo.getType())){
+        			master=vo;
+        		}
+        	}
+        }
+        
+        url ="http://"+ master.getIp()+":"+"2375";
+		
+		return url;
+	}
 
 }

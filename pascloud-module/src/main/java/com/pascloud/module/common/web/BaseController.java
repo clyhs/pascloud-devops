@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pascloud.constant.Constants;
 import com.pascloud.module.config.PasCloudConfig;
+import com.pascloud.module.server.service.ServerService;
 import com.spotify.docker.client.DefaultDockerClient;
 
 import net.sf.json.JSONObject;
@@ -22,6 +23,9 @@ import net.sf.json.JSONObject;
 public abstract class BaseController {
 	
 	protected final Logger log = LoggerFactory.getLogger(getClass());
+	
+	@Autowired
+	protected ServerService m_serverService;
 	
 	protected URI dockerEndpoint;
 
@@ -38,10 +42,10 @@ public abstract class BaseController {
 	{
 		try{
 			
-			DefaultDockerClient docker = DefaultDockerClient.builder().uri("http://192.168.0.16:"+defaultPort).build();
-			dockerClient = docker;
-			dockerEndpoint = docker.builder().uri();
-			dockerApiVersion = dockerClient.version().apiVersion();
+			//DefaultDockerClient docker = DefaultDockerClient.builder().uri("http://192.168.0.16:"+defaultPort).build();
+			//dockerClient = docker;
+			//dockerEndpoint = docker.builder().uri();
+			//dockerApiVersion = dockerClient.version().apiVersion();
 			
 			
 		}catch(Exception e){
@@ -60,6 +64,11 @@ public abstract class BaseController {
 		json.put("msg", ex.getMessage());
 		ex.printStackTrace();
 		return json.toString();
+	}
+	
+	public DefaultDockerClient getDockerClient(){
+		this.dockerClient = DefaultDockerClient.builder().uri(m_serverService.getMasterDockerUrl()).build();
+		return dockerClient;
 	}
 
 }

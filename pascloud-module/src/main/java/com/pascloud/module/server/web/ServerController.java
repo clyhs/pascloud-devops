@@ -32,9 +32,7 @@ public class ServerController extends BaseController {
 	public List<ServerVo> getServers(){
 		
 		List<ServerVo> result = new ArrayList<>();
-		
 		result = m_serverService.getServers();
-		
 		return result;
 		
 	}

@@ -33,7 +33,7 @@ public class MainController extends BaseController {
 		
 		List<SysServerInfo> servers = new ArrayList<>();
 		List<NodeVo> nodes = new ArrayList<>();
-		nodes = m_dockerService.getNodes(dockerClient);
+		nodes = m_dockerService.getNodes(getDockerClient());
 		ModelAndView view = new ModelAndView("main/index");
 		view.addObject("nodes", nodes);
 		return view;
@@ -44,7 +44,7 @@ public class MainController extends BaseController {
 		
 		List<SysServerInfo> servers = new ArrayList<>();
 		List<NodeVo> nodes = new ArrayList<>();
-		nodes = m_dockerService.getNodes(dockerClient);
+		nodes = m_dockerService.getNodes(getDockerClient());
 		ModelAndView view = new ModelAndView("main/server");
 		view.addObject("nodes", nodes);
 		return view;
@@ -189,7 +189,7 @@ public class MainController extends BaseController {
 			@RequestParam(value="ip",defaultValue="",required=true) String ip){
 		ResultCommon result = null;
 		
-		Boolean flag = m_dockerService.leaveSwarm(dockerClient,ip);
+		Boolean flag = m_dockerService.leaveSwarm(getDockerClient(),ip);
 		if(!flag){
 			result = new ResultCommon(20000,"失败");
 		}else{

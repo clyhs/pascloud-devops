@@ -101,7 +101,7 @@ public class TenantController extends BaseController {
 		//containers = m_dockerService.getContainer(dockerClient);
 		List<NodeVo> nodes = new ArrayList<>();
 		
-		nodes = m_dockerService.getNodes(dockerClient);
+		nodes = m_dockerService.getNodes(getDockerClient());
 		/****查询运行的服务***/
 		for(NodeVo vo: nodes){
 			DefaultDockerClient client = DefaultDockerClient.builder()

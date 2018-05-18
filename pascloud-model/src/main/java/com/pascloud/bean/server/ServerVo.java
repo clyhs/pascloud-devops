@@ -18,6 +18,17 @@ public class ServerVo implements Serializable {
 	private String port;
 	
 	private String desc;
+	
+	private String type;
+	
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	public String getIp() {
 		return ip;

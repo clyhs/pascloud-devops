@@ -35,7 +35,7 @@ public class ContainerController extends BaseController {
 		//containers = m_dockerService.getContainer(dockerClient);
 		List<NodeVo> nodes = new ArrayList<>();
 		
-		nodes = m_dockerService.getNodes(dockerClient);
+		nodes = m_dockerService.getNodes(getDockerClient());
 		
 		for(NodeVo vo: nodes){
 			DefaultDockerClient client = DefaultDockerClient.builder()

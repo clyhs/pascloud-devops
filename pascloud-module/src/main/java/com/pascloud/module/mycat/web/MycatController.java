@@ -140,7 +140,7 @@ public class MycatController extends BaseController {
 		String mycat_server_path =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SERVER;
 		List<NodeVo> nodes = new ArrayList<>();
 		
-		nodes = m_dockerService.getNodes(dockerClient);
+		nodes = m_dockerService.getNodes(getDockerClient());
 		/****查询运行的服务***/
 		for(NodeVo vo: nodes){
 			DefaultDockerClient client = DefaultDockerClient.builder()
@@ -178,7 +178,7 @@ public class MycatController extends BaseController {
 		List<DataSourceVo> ds = new ArrayList<>();
 		DataSourceVo vo = null;
 		try {
-			ds = m_mycatService.getDataSource(dockerClient, defaultPort);
+			ds = m_mycatService.getDataSource(getDockerClient(), defaultPort);
 			if(ds.size()>0){
 				for(DataSourceVo v:ds){
 					if(v.getDatanode().equals(name)){
