@@ -1,5 +1,6 @@
 package com.pascloud.module.mycat.web;
 
+import java.beans.PropertyVetoException;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,19 +15,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.druid.pool.DruidDataSource;
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.pascloud.bean.docker.ContainerVo;
 import com.pascloud.bean.docker.NodeVo;
-import com.pascloud.bean.mycat.DataHostVo;
 import com.pascloud.bean.mycat.DataNodeVo;
-import com.pascloud.bean.pasdev.PasfileVo;
+import com.pascloud.bean.mycat.DataSourceVo;
+import com.pascloud.constant.Constants;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.config.PasCloudConfig;
+import com.pascloud.module.database.service.DataBaseService;
 import com.pascloud.module.docker.service.DockerService;
 import com.pascloud.module.mycat.service.MycatService;
 import com.pascloud.utils.PasCloudCode;
 import com.pascloud.utils.ScpClientUtils;
+import com.pascloud.vo.database.DBInfo;
 import com.pascloud.vo.result.ResultBean;
 import com.pascloud.vo.result.ResultCommon;
+import com.pascloud.vo.result.ResultListData;
 import com.spotify.docker.client.DefaultDockerClient;
 
 
@@ -42,13 +48,16 @@ public class MycatController extends BaseController {
 	@Autowired
 	private DockerService m_dockerService;
 	
-    private String mycat_schema_name = "schema.xml";
-	
-	private String mycat_server_name = "server.xml";
 	
 	@RequestMapping("/index.html")
 	public ModelAndView index(HttpServletRequest request){
 		ModelAndView view = new ModelAndView("mycat/index");
+		return view;
+	}
+	
+	@RequestMapping("/monitor.html")
+	public ModelAndView monitor(HttpServletRequest request){
+		ModelAndView view = new ModelAndView("mycat/monitor");
 		return view;
 	}
 	
@@ -123,13 +132,12 @@ public class MycatController extends BaseController {
 	
 	@RequestMapping("uploadConfig.json")
 	@ResponseBody
-	public ResultCommon uploadConfig(HttpServletRequest 
-			request){
+	public ResultCommon uploadConfig(HttpServletRequest request){
 		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
 		List<ContainerVo> containers = new ArrayList<>();
 		//containers = m_dockerService.getContainer(dockerClient);
-		String mycat_schema_path = m_config.getPASCLOUD_MYCAT_DIR()+File.separator+this.mycat_schema_name;
-		String mycat_server_path = m_config.getPASCLOUD_MYCAT_DIR()+File.separator+this.mycat_server_name;
+		String mycat_schema_path =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SCHEMA;
+		String mycat_server_path =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SERVER;
 		List<NodeVo> nodes = new ArrayList<>();
 		
 		nodes = m_dockerService.getNodes(dockerClient);
@@ -159,7 +167,36 @@ public class MycatController extends BaseController {
 		return result;
 		
 	}
-	
-	
+	@RequestMapping("getDataSourceByName.json")
+	@ResponseBody
+	public ResultBean<DataSourceVo> getDataSourceByName(HttpServletRequest request,
+			@RequestParam(value="name",defaultValue="",required=true) String name){
+		ResultBean<DataSourceVo> result = new ResultBean<DataSourceVo>(PasCloudCode.SUCCESS);
+		
+		//ComboPooledDataSource dataSource = new ComboPooledDataSource();
+		
+		List<DataSourceVo> ds = new ArrayList<>();
+		DataSourceVo vo = null;
+		try {
+			ds = m_mycatService.getDataSource(dockerClient, defaultPort);
+			if(ds.size()>0){
+				for(DataSourceVo v:ds){
+					if(v.getDatanode().equals(name)){
+						vo = v;
+					}
+				}
+			}
+			if(null!=vo){
+				result.setBean(vo);
+			}else{
+				result = new ResultBean<DataSourceVo>(PasCloudCode.ERROR);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e.getMessage());
+			result = new ResultBean<DataSourceVo>(PasCloudCode.ERROR);
+		}
+		return result;
+	}
 
 }

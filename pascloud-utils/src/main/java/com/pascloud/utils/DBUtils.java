@@ -3,6 +3,7 @@ package com.pascloud.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +34,9 @@ public class DBUtils {
         try {  
         	Class.forName(driverClass); 
         	log.info("连接开始...");
+        	Locale originalLocale = Locale.getDefault();
+        	// Set "en_US" as the safe default
+        	Locale.setDefault( Locale.US );
             conn = DriverManager.getConnection(url, username, password);  
             if(null !=conn){
             	flag = true;
@@ -54,6 +58,25 @@ public class DBUtils {
 			}
         }        
         return flag;  
+    }
+	
+	public Connection  getConnection(){
+        Connection conn = null;  
+        try {  
+        	Class.forName(driverClass); 
+        	log.info("连接开始...");
+        	Locale originalLocale = Locale.getDefault();
+        	// Set "en_US" as the safe default
+        	Locale.setDefault( Locale.US );
+            conn = DriverManager.getConnection(url, username, password);  
+            
+            log.info("连接结束...");
+        } catch (SQLException | ClassNotFoundException e) {  
+            System.out.println("connect failed!");  
+            //e.printStackTrace();  
+            log.info("连接失败...");
+        }         
+        return conn;  
     }
 	
 	public static String getDirverClassName(String dbType){

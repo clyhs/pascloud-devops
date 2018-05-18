@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pascloud.bean.server.ServerVo;
+import com.pascloud.constant.Constants;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.passervice.service.ConfigService;
 import com.thoughtworks.xstream.XStream;
@@ -28,7 +29,7 @@ public class ServerService {
 		
 		List<ServerVo> servers = new ArrayList<ServerVo>();
 		
-		String serverPath = m_config.getPASCLOUD_SERVER_DIR()+this.m_server_file;
+		String serverPath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_SERVER_DIR()+this.m_server_file;
 		
 		File file = new File(serverPath);
         XStream xstream = new XStream(); 

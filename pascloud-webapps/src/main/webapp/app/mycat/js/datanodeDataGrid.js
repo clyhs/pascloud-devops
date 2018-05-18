@@ -27,13 +27,19 @@ function initMainDataGrid(){
             { field: 'url', title: '数据库连接', width: 150, align: 'left'  },
             { field: 'database', title: '数据库实例', width: 40, align: 'left' },
             { field: 'user', title: '用户', width: 40, align: 'left' },
-            { field: 'password', title: '密码', width: 40, align: 'left' }
+            { field: 'password', title: '密码', width: 40, align: 'left' },
+            { field: 'sysc', title: '是否配置到服务器', width: 60, align: 'left' }
         ]],
         toolbar:toolbar,
         onBeforeLoad: function (param) {
         },
         onLoadSuccess: function (data) {
-            
+        	for(var i=0;i<data.rows.length;i++)
+            {
+        		
+                setInterval("checkSysc('"+data.rows[i].name+"','"+i+"')",1000*10);
+                //alert(data.rows[i].name);
+            }
         },
         onLoadError: function () {
         
@@ -53,4 +59,21 @@ function initMainDataGrid(){
         }
     });
 }
+
+function checkSysc(name,index){
+	var $tr=$(".datagrid-view2 .datagrid-btable tbody tr:eq("+index+")");
+    var obj=$tr.find("td[field='sysc'] div");
+	var params = {name:name};
+	//alert(driverClassVal + passwordVal);
+	$.get('getDataSourceByName.json',params,function(data,status){
+		if(data.code == 10000){
+			obj.html('<font color="blue">已配置到服务器</font>');
+			//alert(obj);
+		}else{
+			obj.html('<font color="red">未配置到服务器</font>');
+		}
+	});
+	
+}
+
 

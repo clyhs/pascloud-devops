@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.pascloud.constant.Constants;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.redis.service.RedisService;
@@ -51,7 +52,7 @@ public class RedisController extends BaseController {
 	}
 	
 	private void initRedisPool(){
-		String redis_dir = m_config.getPASCLOUD_REDIS_DIR();
+		String redis_dir =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_REDIS_DIR();
 		
 		if(null!=redis_dir){
 			log.info("初始化redis--开始--");

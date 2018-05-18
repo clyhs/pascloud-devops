@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pascloud.bean.pasdev.PasfileVo;
+import com.pascloud.constant.Constants;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.utils.FileUtils;
 import com.pascloud.utils.xml.XmlParser;
@@ -24,7 +25,7 @@ public class PasdevService {
 	public List<PasfileVo> getPasdevFiles(){
 		List<PasfileVo> result = new ArrayList<>();
 		List<File> files = new ArrayList<File>();
-		files = FileUtils.listFilesInDirWithFilter(m_config.getPASCLOUD_DEV_DIR(), ".xml", false);
+		files = FileUtils.listFilesInDirWithFilter(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR(), ".xml", false);
 		//System.out.println(m_config.getPASCLOUD_DEV_DIR());
 		if(files.size()>0){
 			Iterator<File> it = files.iterator();

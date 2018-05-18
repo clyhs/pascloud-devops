@@ -5,9 +5,11 @@ import java.io.File;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import com.pascloud.constant.Constants;
+
 public class PasCloudListener implements ServletContextListener {
 	
-	private final String WEB_APP_ROOT_DEFAULT = "webapp.root";
+	//private final String WEB_APP_ROOT_DEFAULT = "webapp.root";
 
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
@@ -18,7 +20,7 @@ public class PasCloudListener implements ServletContextListener {
 			prefix = prefix.replaceAll("\\\\", "/");
 		}
 		System.out.println(prefix);
-		System.setProperty(WEB_APP_ROOT_DEFAULT, prefix);
+		System.setProperty(Constants.WEB_APP_ROOT_DEFAULT, prefix);
 	}
 
 	@Override

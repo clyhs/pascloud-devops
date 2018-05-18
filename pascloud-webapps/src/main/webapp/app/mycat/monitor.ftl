@@ -17,14 +17,20 @@
     
     <script type="text/javascript" src="/static/js/common/pascloudfunctions.js"></script>
     
-    <script type="text/javascript" src="/app/mycat/js/datanodeForm.js"></script>
-    <script type="text/javascript" src="/app/mycat/js/datanodeDataGridToolbar.js"></script>
-    <script type="text/javascript" src="/app/mycat/js/datanodeDataGrid.js"></script>
+    <script type="text/javascript" src="/app/mycat/js/monitor.js"></script>
     
 	<script type="text/javascript">
 		$(function(){
-		    initMainDataGrid();
+		    
+		    var intervalId;
+		    clearInterval(intervalId); 
+            intervalId = setInterval(function() {
+		        var url = $('#contentGraph').attr('src');
+		        $('#contentGraph').attr('src', url+"&timestamp="+(new Date()).getTime());
+	        }, 20000)
 		});
+		
+		
 		
 	</script>
 	<style>
@@ -42,10 +48,17 @@
 
 		<div id="mainCenter" data-options="region:'center'" style="padding:0px;">
 		    <!--内容  开始-->
-		   
-		    <table id="mainDataGrid" >	
-		        
-	        </table>
+		    <div style="padding:5px;background:#fafafa;width:100%;border:0px solid #ccc">
+		        <a href="#" class="easyui-linkbutton" iconCls="" onClick="change('1')">活动线程分析</a>
+		        <a href="#" class="easyui-linkbutton" iconCls="" onClick="change('2')">缓冲队列分析</a>
+		        <a href="#" class="easyui-linkbutton" iconCls="" onClick="change('3')">tps分析</a>
+		        <a href="#" class="easyui-linkbutton" iconCls="" onClick="change('4')">内存分析</a>
+		        <a href="#" class="easyui-linkbutton" onClick="change('5')">浏量分析</a>
+		        <a href="#" class="easyui-linkbutton" iconCls="" onClick="change('6')">连接分析</a>
+            </div>
+		    <div style="width:100%;">	
+		        <img id="contentGraph" src="/graph/D_192.168.0.7_9066/MycatActiveThreadGraph?probe=MycatThreadPool" height="380" width="100%">
+	        </div>
 		    <!--内容  结束-->
 		</div>
 

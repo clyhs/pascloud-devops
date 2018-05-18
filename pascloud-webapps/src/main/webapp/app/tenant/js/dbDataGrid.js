@@ -26,6 +26,7 @@ function initMainDataGrid(){
             { field: 'username', title: '用户', width: 80, align: 'center' },
             { field: 'password', title: '密码', width: 80, align: 'center' },
             { field: 'desc', title: '描述', width: 80, align: 'center' },
+            { field: 'userCount', title: '行员数', width: 40, align: 'center' },
             { field: '_operate',title: '状态', width: 80, align: 'center',formatter:formatOper }
         ]],
         toolbar:toolbar,
@@ -36,7 +37,7 @@ function initMainDataGrid(){
         	for(var i=0;i<data.rows.length;i++)
             {
         		
-                setInterval("checkConnStatus('"+data.rows[i].dbType+"','"+data.rows[i].url+"','"+data.rows[i].username+"','"+data.rows[i].password+"','"+i+"')",1000*10);
+                setInterval("checkConnStatus('"+data.rows[i].id+"','"+data.rows[i].dbType+"','"+data.rows[i].url+"','"+data.rows[i].username+"','"+data.rows[i].password+"','"+i+"')",1000*10);
                 //alert(data.rows[i].name);
             }
         	//data = data;
@@ -65,17 +66,20 @@ function formatOper(val,row,index){
     return 'unknown';  
 } 
 
-function checkConnStatus( dbType, url,user,password,index){
+function checkConnStatus(id, dbType, url,user,password,index){
 	var $tr=$(".datagrid-view2 .datagrid-btable tbody tr:eq("+index+")");
     var obj=$tr.find("td[field='_operate'] div");
-	var params = {dbType:dbType,url:url,username:user,password:password};
+    var obj2=$tr.find("td[field='userCount'] div");
+	var params = {id:id,dbType:dbType,url:url,username:user,password:password};
 	//alert(driverClassVal + passwordVal);
-	$.get('/module/database/connectDbWidthUrl.json',params,function(data,status){
+	$.get('connectDbWidthUrl.json',params,function(data,status){
 		if(data.code == 10000){
 			obj.html('<font color="blue">连接成功</font>'); 
+			obj2.html(data.bean);
 			//alert(obj);
 		}else{
 			obj.html('<font color="red">连接失败</font>'); 
+			obj2.html('未知');
 		}
 	});
 	

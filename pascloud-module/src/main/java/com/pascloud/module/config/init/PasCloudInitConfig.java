@@ -15,6 +15,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Repository;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.pascloud.constant.Constants;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.utils.FileUtils;
 import com.pascloud.utils.PasCloudUtils;
@@ -49,7 +50,7 @@ public class PasCloudInitConfig implements ApplicationListener<ContextRefreshedE
 	}
 	
 	private void initDataSource(){
-		String database_dir = m_config.getPASCLOUD_DATABASE_DIR();
+		String database_dir =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_DATABASE_DIR();
 		if(null!=database_dir){
 			log.info("初始化数据库--开始--");
 			XStream xstream = new  XStream();
@@ -89,7 +90,7 @@ public class PasCloudInitConfig implements ApplicationListener<ContextRefreshedE
 	} 
 	
 	private void initRedisPool(){
-		String redis_dir = m_config.getPASCLOUD_REDIS_DIR();
+		String redis_dir =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_REDIS_DIR();
 		
 		if(null!=redis_dir){
 			log.info("初始化redis--开始--");

@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.sql.DataSource;
+
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -133,6 +135,33 @@ public class DataBaseService extends AbstractDBService{
 		return result;
 	}
 	
+	public List<Map<String, Object>> getDataList(DataSource dataSource,String sql){
+		List<Map<String, Object>> result = new ArrayList<>();
+		
+		Connection conn = null;
+		//String sql = "select * from "+tableName+" limit "+startRow+","+pageSize;
+		try {
+			conn = dataSource.getConnection();
+			QueryRunner qRunner = new QueryRunner();  
+			result =  qRunner.query(conn,sql, new MapListHandler());
+			Gson g = new Gson();
+			System.out.println(g.toJson(result));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.info("查询表所有数据--失败--");
+			log.error(e.getMessage());
+			//e.printStackTrace();
+		}finally{
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
 	public Integer getDataCounts(String tableName,String dsId){
 		
 		ComboPooledDataSource dataSource = null;
@@ -143,6 +172,34 @@ public class DataBaseService extends AbstractDBService{
 			log.info("统计表总条数--开始--");
 			dataSource = DataSourceUtils.getDataSource(dsId);
 			conn = dataSource.getConnection();
+			QueryRunner qRunner = new QueryRunner();  
+			Number num =  (Number)qRunner.query(conn,sql, new ScalarHandler());
+			//Gson g = new Gson();
+			total = num.intValue();
+			//System.out.println(g.toJson(total));
+			log.info("统计表总条数--完成--");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.info("统计表总条数--失败--");
+			log.error(e.getMessage());
+			//e.printStackTrace();
+		}finally{
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return total;
+	}
+	
+    public Integer getDataCountsByConn(Connection conn,String tableName){
+		
+		Integer total = -1;
+		String sql = "select count(1)  from "+tableName;
+		try {
+			log.info("统计表总条数--开始--");
 			QueryRunner qRunner = new QueryRunner();  
 			Number num =  (Number)qRunner.query(conn,sql, new ScalarHandler());
 			//Gson g = new Gson();

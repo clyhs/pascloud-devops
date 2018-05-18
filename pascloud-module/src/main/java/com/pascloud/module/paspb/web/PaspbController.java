@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pascloud.bean.docker.ContainerVo;
 import com.pascloud.bean.docker.NodeVo;
+import com.pascloud.constant.Constants;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.docker.service.DockerService;
@@ -132,9 +133,9 @@ public class PaspbController extends BaseController {
 			return result;
 		}
 		
-		String config_dir = m_config.getPASCLOUD_SPRINGXML_DIR();
+		String config_dir =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_SPRINGXML_DIR();
 		String newfiledir = config_dir+"/"+name;
-		String tmpfilepath = m_config.getPASCLOUD_SPRINGXML_PATH();
+		String tmpfilepath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_SPRINGXML_PATH();
 		String newfilepath = newfiledir+"/applicationContext_resources.xml";
 		
 		String serverPath  = "/home/"+name+"/pas_db2/WEB-INF/classes/";

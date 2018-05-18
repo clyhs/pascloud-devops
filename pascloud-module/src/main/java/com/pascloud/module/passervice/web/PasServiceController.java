@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.pascloud.constant.Constants;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.docker.service.DockerService;
@@ -125,12 +126,12 @@ public class PasServiceController extends BaseController {
 		ScpClientUtils scpClient = new ScpClientUtils(ip, "root", "tccp@2012");
 		scpClient.copyFolder("/home/pascloud/pas-cloud-service-demo", bindVolumeFrom);
 		//scpClient.close();
-		String dubbofilepath = m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"dubbo.properties";
+		String dubbofilepath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"dubbo.properties";
 		System.out.println(dubbofilepath);
 		m_configService.setApplicationName(containerName);
 		scpClient.putFileToServer(dubbofilepath, bindVolumeFrom+"/conf/");
 		
-		String configfilepath = m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"config.properties";
+		String configfilepath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"config.properties";
 		m_configService.setHomePath(bindVolumeFrom);
 		scpClient.putFileToServer(configfilepath, bindVolumeFrom+"/conf/");
 		
@@ -167,12 +168,12 @@ public class PasServiceController extends BaseController {
 		ScpClientUtils scpClient = new ScpClientUtils(ip, "root", "tccp@2012");
 		scpClient.copyFolder("/home/pascloud/pas-cloud-service-paspm", bindVolumeFrom);
 		//scpClient.close();
-		String dubbofilepath = m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"dubbo.properties";
+		String dubbofilepath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"dubbo.properties";
 		System.out.println(dubbofilepath);
 		m_configService.setApplicationName(containerName);
 		scpClient.putFileToServer(dubbofilepath, bindVolumeFrom+"/conf/");
 		
-		String configfilepath = m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"config.properties";
+		String configfilepath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"config.properties";
 		m_configService.setHomePath("/home/pascloud/pas-cloud-service-demo");
 		m_configService.setDev("true");
 		scpClient.putFileToServer(configfilepath, bindVolumeFrom+"/conf/");

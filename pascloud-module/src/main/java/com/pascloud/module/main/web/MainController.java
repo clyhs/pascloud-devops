@@ -136,7 +136,7 @@ public class MainController extends BaseController {
 		
 		TreeVo t31 = new TreeVo();
 		t31.setId("3100");
-		t31.setText("数据库中间件");
+		t31.setText("MYCAT配置");
 		t31.setLeaf(true);
 		t31.setIconCls("icon-application");
 		t31.setUrl("/module/mycat/index.html");
@@ -148,12 +148,18 @@ public class MainController extends BaseController {
 		t32.setIconCls("icon-application");
 		t32.setUrl("/module/database/index.html");
 		
+		TreeVo t33 = new TreeVo();
+		t33.setId("3300");
+		t33.setText("MYCAT监控");
+		t33.setLeaf(true);
+		t33.setIconCls("icon-application");
+		t33.setUrl("/module/mycat/monitor.html");
 		
 		
 		List<TreeVo> t3children = new ArrayList<>();
 		t3children.add(t32);
 		t3children.add(t31);
-		//t3children.add(t33);
+		t3children.add(t33);
 		t3.setChildren(t3children);
 		trees.add(t3);
 		

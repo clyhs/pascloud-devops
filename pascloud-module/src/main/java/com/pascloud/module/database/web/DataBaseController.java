@@ -92,7 +92,7 @@ public class DataBaseController extends BaseController {
 	}
 
 	private void initDataSource() {
-		String database_dir = m_config.getPASCLOUD_DATABASE_DIR();
+		String database_dir = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DATABASE_DIR();
 		if (null != database_dir) {
 			log.info("初始化数据库--开始--");
 			XStream xstream = new XStream();

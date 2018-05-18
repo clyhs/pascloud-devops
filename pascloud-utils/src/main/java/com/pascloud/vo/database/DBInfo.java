@@ -27,7 +27,28 @@ public class DBInfo implements Serializable {
 	
 	private String  desc;
 	
+	private String  dataSourceName;
 	
+	private Integer userCount;
+	
+	
+	
+
+	public Integer getUserCount() {
+		return userCount;
+	}
+
+	public void setUserCount(Integer userCount) {
+		this.userCount = userCount;
+	}
+
+	public String getDataSourceName() {
+		return dataSourceName;
+	}
+
+	public void setDataSourceName(String dataSourceName) {
+		this.dataSourceName = dataSourceName;
+	}
 
 	public String getDesc() {
 		return desc;

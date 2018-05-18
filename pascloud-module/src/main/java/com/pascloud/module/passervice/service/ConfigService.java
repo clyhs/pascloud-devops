@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.pascloud.constant.Constants;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.utils.DBUtils;
 import com.pascloud.utils.PropertiesUtil;
@@ -54,7 +55,7 @@ public class ConfigService {
 	public void addDBConfig(String ip,Integer port,String user,String password,
 			String dbType,String dnName,String database){
 		PropertiesUtil p =new PropertiesUtil();
-		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
+		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
 		String url = DBUtils.getUrlByParams(dbType, ip, database, port);
 		String driverClass = DBUtils.getDirverClassName(dbType);
 		p.setValueByKey(dnName+".driverClass", driverClass, "");
@@ -74,9 +75,9 @@ public class ConfigService {
 	public List<DBInfo> getDBFromConfig(){
 		List<DBInfo> dbs = new ArrayList<DBInfo>();
 		PropertiesUtil p =new PropertiesUtil();
-		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
+		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
 		
-		System.out.println(m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
+		System.out.println(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
 		
 		Map map = p.getByFuzzyKey("dn");
 		Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
@@ -119,13 +120,55 @@ public class ConfigService {
 		
 		return dbs;
 	}
+	
+	public DBInfo getDBByName(String sname){
+		DBInfo vo = null;
+		PropertiesUtil p =new PropertiesUtil();
+		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
+		
+		System.out.println(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
+		
+		Map map = p.getByFuzzyKey("dn");
+		Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry<String, String> obj = it.next();
+			if(obj.getKey().contains("driverClass")){
+			    System.out.println(obj.getKey()+"="+p.getValueByKey(obj.getKey()));
+			    String id = obj.getKey().split("\\.")[0];
+			    if(id.equals(sname)){
+			    	vo = new DBInfo();
+					vo.setId(id);
+					vo.setName(id);
+					vo.setDriverClassName(p.getValueByKey(obj.getKey()));
+					vo.setUrl(p.getValueByKey(id+".url"));
+					vo.setPassword(p.getValueByKey(id+".username"));
+					vo.setUsername(p.getValueByKey(id+".password"));
+					if(p.getValueByKey(id+".type").equals("ora")){
+						vo.setDbType("oracle");
+					}else{
+						vo.setDbType(p.getValueByKey(id+".type"));
+					}
+					if(id.equals("dn0")){
+						vo.setDesc("公共数据库实例");
+					}else{
+						vo.setDesc("租户数据库实例");
+					}
+			    }
+			    
+			}
+			
+		}
+		
+		
+		return vo;
+	}
 	/**
 	 * 删除DB配置
 	 * @param dnName
 	 */
 	public void delDBConfig(String dnName){
 		PropertiesUtil p =new PropertiesUtil();
-		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
+		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
 		Map map = p.getByFuzzyKey(dnName);
 		Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
 		while (it.hasNext()) {
@@ -138,7 +181,7 @@ public class ConfigService {
 	
 	public void updateRedisConfig(String ip,Integer port,String user,String password){
 		PropertiesUtil p =new PropertiesUtil();
-		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_redis_file);
+		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_redis_file);
 		p.setValueByKey("redis.host", ip, "");
 		p.setValueByKey("redis.port", port+"", "");
 		p.setValueByKey("redis.password", password, "");
@@ -159,7 +202,7 @@ public class ConfigService {
 	 */
 	public void setMycatConfig(String ip,String user,String password){
 		PropertiesUtil p =new PropertiesUtil();
-		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
+		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
 		String url = DBUtils.getUrlByParams("mysql", ip, "alldb", 8066);
 		url = url + "?autoReconnect=true";
 		p.setValueByKey("db.mcat.url", url, "");
@@ -174,7 +217,7 @@ public class ConfigService {
 	 */
 	public void setMQConfig(String ip,Integer port){
 		PropertiesUtil p =new PropertiesUtil();
-		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
+		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
 		StringBuffer sb = new StringBuffer();
 		sb.append("tcp://").append(ip).append(":").append(port);
 		p.setValueByKey("mq.brokerUrl", sb.toString(), "");
@@ -188,7 +231,7 @@ public class ConfigService {
 	 */
 	public void setZookeeperConfig(String ip,Integer port){
 		PropertiesUtil p =new PropertiesUtil();
-		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_zk_file);
+		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_zk_file);
 		StringBuffer sb = new StringBuffer();
 		sb.append("zookeeper://").append(ip);
 		p.setValueByKey("zookeeper.host", sb.toString(), "");
@@ -229,20 +272,20 @@ public class ConfigService {
 	public void setApplicationName(String appName){
 		log.info("setApplicationName "+appName);
 		PropertiesUtil p =new PropertiesUtil();
-		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_dubbo_file);
+		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_dubbo_file);
 		p.setValueByKey("dubbo.application.name", appName, "");
 	
 	}
 	
 	public void setHomePath(String projectPath){
 		PropertiesUtil p =new PropertiesUtil();
-		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
+		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
 		p.setValueByKey("pascloud.home", projectPath, "");
 	}
 	
 	public void setDev(String flag){
 		PropertiesUtil p =new PropertiesUtil();
-		p.load(m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
+		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
 		p.setValueByKey("pascloud.dev", flag, "");
 	}
 	

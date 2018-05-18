@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.pascloud.constant.Constants;
 import com.pascloud.module.config.PasCloudConfig;
 import com.spotify.docker.client.DefaultDockerClient;
 
@@ -32,6 +33,8 @@ public abstract class BaseController {
 	
 	protected String dockerApiVersion;
 	
+	protected String webappPath;
+	
 	{
 		try{
 			
@@ -40,8 +43,9 @@ public abstract class BaseController {
 			dockerEndpoint = docker.builder().uri();
 			dockerApiVersion = dockerClient.version().apiVersion();
 			
+			
 		}catch(Exception e){
-			e.printStackTrace();
+			//e.printStackTrace();
 			log.error(e.getMessage());
 		}
 		

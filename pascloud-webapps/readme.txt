@@ -15,6 +15,17 @@ http://localhost:8080/graph/D_192.168.0.7_9066/MycatActiveThreadGraph?probe=Myca
 
 http://localhost:8080/graph/D_192.168.0.7_9066/MycatActiveThreadGraph?probe=MycatThreadPool&begin=2018-05-17%2000:00&end=2018-05-17%2016:54
 
+缓冲队列分析
+/mycat/graph/D_192.168.0.7_9066/MycatTaskQueueGraph?probe=MycatThreadPool
+tps分析
+/mycat/graph/D_192.168.0.7_9066/MycatTPSGraph?probe=MycatThreadPool
+内存分析
+/mycat/graph/D_192.168.0.7_9066/MycatMemoryGraph?probe=MycatMemory
+浏量分析
+/mycat/graph/D_192.168.0.7_9066/MycatFluxGraph?probe=MycatPerfProbe
+连接分析
+/mycat/graph/D_192.168.0.7_9066/MycatConnectionGraph?probe=MycatPerfProbe
+
 
 菜单
   |--服务器管理

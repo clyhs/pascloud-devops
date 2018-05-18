@@ -21,6 +21,12 @@
   <schema name="dn16_schema" checkSQLschema="false" sqlMaxLimit="100">
     <table name="khdx_jg" primaryKey="KHDXDH" autoIncrement="true" dataNode="dn16"/>
   </schema>
+  <schema name="dn15_schema" checkSQLschema="false" sqlMaxLimit="100">
+    <table name="khdx_jg" primaryKey="KHDXDH" autoIncrement="true" dataNode="dn15"/>
+  </schema>
+  <schema name="dn3_schema" checkSQLschema="false" sqlMaxLimit="100">
+    <table name="khdx_jg" primaryKey="KHDXDH" autoIncrement="true" dataNode="dn3"/>
+  </schema>
   <dataNode name="dn0" dataHost="dataHost_dn0" database="pascloud"/>
   <dataNode name="dn1" dataHost="dataHost_dn1" database="cloudpas"/>
   <dataNode name="dn14" dataHost="dataHost_dn14" database="cpas12"/>
@@ -28,6 +34,8 @@
   <dataNode name="dn19" dataHost="dataHost_dn19" database="cpas19"/>
   <dataNode name="dn18" dataHost="dataHost_dn18" database="cpas18"/>
   <dataNode name="dn16" dataHost="dataHost_dn16" database="cpas14"/>
+  <dataNode name="dn15" dataHost="dataHost_dn15" database="cpas13"/>
+  <dataNode name="dn3" dataHost="dataHost_dn3" database="cpas02"/>
   <dataHost name="dataHost_dn0" maxCon="1000" minCon="10" balance="0" writeType="0" dbType="mysql" dbDriver="native">
     <heartbeat>select user()</heartbeat>
     <writeHost host="hostM1" url="192.168.0.7:3306" user="root" password="root"/>
@@ -61,5 +69,14 @@
     <heartbeat>select 1 from dual</heartbeat>
     <connectionInitSql>alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss'</connectionInitSql>
     <writeHost host="hostM1" url="jdbc:oracle:thin:@192.168.1.196:1521:cpas14" user="pas" password="pas"/>
+  </dataHost>
+  <dataHost name="dataHost_dn15" maxCon="1000" minCon="10" balance="0" writeType="0" dbType="oracle" dbDriver="jdbc">
+    <heartbeat>select 1 from dual</heartbeat>
+    <connectionInitSql>alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss'</connectionInitSql>
+    <writeHost host="hostM1" url="jdbc:oracle:thin:@192.168.1.196:1521:cpas13" user="pas" password="pas"/>
+  </dataHost>
+  <dataHost name="dataHost_dn3" maxCon="1000" minCon="10" balance="0" writeType="0" dbType="db2" dbDriver="jdbc">
+    <heartbeat>select 1 from sysibm.sysdummy1</heartbeat>
+    <writeHost host="hostM1" url="jdbc:db2://192.168.0.17:50000/cpas02" user="pas" password="pas"/>
   </dataHost>
 </mycat:schema>

@@ -10,4 +10,10 @@ public class Constants {
 	
 	public static String PASCLOUD_SERVICE_DEMO = "pas-cloud-service-demo";
 	public static String PASCLOUD_SERVICE_PASPM= "pas-cloud-service-paspm";
+	
+	public static String MYCAT_SCHEMA = "schema.xml";
+	public static String MYCAT_SERVER = "server.xml";
+	
+	public static String WEB_APP_ROOT_DEFAULT = "webapp.root";
+	
 }
