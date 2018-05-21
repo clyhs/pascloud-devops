@@ -103,7 +103,7 @@ public class PasdevService {
 			while(it.hasNext()){
 				File f = it.next();
 				//parserPasfileForID(f.getAbsolutePath());
-				modifyPasfileForID(f.getAbsolutePath(),dbSchema);
+				totals+=modifyPasfileForID(f.getAbsolutePath(),dbSchema);
 			}
 		}
 		
@@ -111,7 +111,8 @@ public class PasdevService {
 		
 	}
 	
-	private void modifyPasfileForID(String filepath,String dbSchema){
+	private Integer modifyPasfileForID(String filepath,String dbSchema){
+		Integer num = 0;
 		Document doc = XmlParser.getDocument(filepath);
 		Element root = doc.getRootElement();
 		Element sqlmap = (Element) root.selectNodes("sqlMap").get(0);
@@ -120,8 +121,9 @@ public class PasdevService {
 		for(Element node:selectNodes){
 			//System.out.println(node.attributeValue("id"));
 			String id = node.attributeValue("id").replaceAll("^dn[0-9]{1,}", dbSchema);
-			System.out.println(id);
+			//System.out.println(id);
 			node.addAttribute("id", id);
+			num++;
 		}
 		
 		List<Element> insertNodes = sqlmap.selectNodes("insert");
@@ -129,6 +131,7 @@ public class PasdevService {
 			//System.out.println(node.attributeValue("id"));
 			String id = node.attributeValue("id").replaceAll("^dn[0-9]{1,}", dbSchema);
 			node.addAttribute("id", id);
+			num++;
 		}
 		
 		List<Element> updateNodes = sqlmap.selectNodes("update");
@@ -136,6 +139,7 @@ public class PasdevService {
 			//System.out.println(node.attributeValue("id"));
 			String id = node.attributeValue("id").replaceAll("^dn[0-9]{1,}", dbSchema);
 			node.addAttribute("id", id);
+			num++;
 		}
 		
 		List<Element> deleteNodes = sqlmap.selectNodes("delete");
@@ -143,8 +147,10 @@ public class PasdevService {
 			//System.out.println(node.attributeValue("id"));
 			String id = node.attributeValue("id").replaceAll("^dn[0-9]{1,}", dbSchema);
 			node.addAttribute("id", id);
+			num++;
 		}
 		saveDocument(filepath,doc);
+		return num;
 		
 	}
 	

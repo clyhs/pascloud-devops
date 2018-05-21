@@ -43,7 +43,8 @@ public class PasdevController extends BaseController {
 	@ResponseBody
 	public ResultCommon modifyPasFiles(HttpServletRequest request){
 		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
-		m_pasdevService.modifyPasdevFilesWidthID("dn0");
+		Integer total = m_pasdevService.modifyPasdevFilesWidthID("dn0");
+		result.setDesc("总共修改了"+total+"Id");
 		return result;
 	}
 }
