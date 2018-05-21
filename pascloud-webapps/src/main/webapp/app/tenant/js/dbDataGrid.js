@@ -1,6 +1,6 @@
 
 function initMainDataGrid(){
-    
+	EasyUILoad('mainDataGrid');
     $('#mainDataGrid').datagrid({
         height: 'auto',
         url: '/module/tenant/dbs.json',
@@ -33,11 +33,11 @@ function initMainDataGrid(){
         onBeforeLoad: function (param) {
         },
         onLoadSuccess: function (data) {
-        	
+        	dispalyEasyUILoad( 'mainDataGrid' );
         	for(var i=0;i<data.rows.length;i++)
             {
         		
-                setInterval("checkConnStatus('"+data.rows[i].id+"','"+data.rows[i].dbType+"','"+data.rows[i].url+"','"+data.rows[i].username+"','"+data.rows[i].password+"','"+i+"')",1000*10);
+                setInterval("checkConnStatus('"+data.rows[i].id+"','"+data.rows[i].dbType+"','"+data.rows[i].url+"','"+data.rows[i].username+"','"+data.rows[i].password+"','"+i+"')",1000*20);
                 //alert(data.rows[i].name);
             }
         	//data = data;
@@ -82,5 +82,37 @@ function checkConnStatus(id, dbType, url,user,password,index){
 			obj2.html('未知');
 		}
 	});
+	
+}
+
+
+function sysHy(){
+	var row = $('#mainDataGrid').datagrid('getSelected'); 
+	var id = row.id;
+	var dbType = row.dbType;
+	var url = row.url;
+	var user = row.username;
+	var password = row.password;
+	
+	if(id == 'dn0'){
+		$.messager.alert('提示','不能选择公共库，请重新选择');
+	}else{
+		var params = {id:id,dbType:dbType,url:url,username:user,password:password};
+		//alert(driverClassVal + passwordVal);
+		EasyUILoad('mainCenter');
+		//alert(EasyUILoad('mainDataGrid'));
+		$.get('syscHy.json',params,function(data,status){
+			if(data.code == 10000){
+				dispalyEasyUILoad( 'mainCenter' );
+				$.messager.alert('提示','同步成功');
+				//alert(obj);
+			}else{
+				dispalyEasyUILoad( 'mainCenter' );
+				$.messager.alert('提示',data.desc);
+			}
+		});
+	}
+	
+	
 	
 }

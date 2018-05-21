@@ -199,16 +199,16 @@ public class DataBaseService extends AbstractDBService{
 		Integer total = -1;
 		String sql = "select count(1)  from "+tableName;
 		try {
-			log.info("统计表总条数--开始--");
+			//log.info("统计表总条数--开始--");
 			QueryRunner qRunner = new QueryRunner();  
 			Number num =  (Number)qRunner.query(conn,sql, new ScalarHandler());
 			//Gson g = new Gson();
 			total = num.intValue();
 			//System.out.println(g.toJson(total));
-			log.info("统计表总条数--完成--");
+			//log.info("统计表总条数--完成--");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			log.info("统计表总条数--失败--");
+			//log.info("统计表总条数--失败--");
 			log.error(e.getMessage());
 			//e.printStackTrace();
 		}finally{

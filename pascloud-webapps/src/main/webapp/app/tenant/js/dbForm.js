@@ -136,20 +136,24 @@ function delDB(){
 	var row = $('#mainDataGrid').datagrid('getSelected'); 
 	var name = row.name;
 	var params = {name:name};
+	
 	if(name.length>0){
+		if(name == 'dn0'){
+			$.messager.alert('提示','不能选择公共库，请重新选择');
+		}else{
+			$.messager.confirm('提示框','你确定要删除些节点，会影响到云平台的租户，请再确定？',function(r){
+			    if (r){
+			    	$.post("delTenantDB.json",params,function(data,status){
+						if(data.code = 10000){
+							//alert(data.desc);
+							//alert("修改成功，请重新启动应用");
+							$('#mainDataGrid').datagrid('reload');//刷新
+						}
+					});
+			    }
+			});
+		}
 		
-		$.messager.confirm('提示框','你确定要删除些节点，会影响到云平台的租户，请再确定？',function(r){
-		    if (r){
-		    	$.post("delTenantDB.json",params,function(data,status){
-					if(data.code = 10000){
-						//alert(data.desc);
-						//alert("修改成功，请重新启动应用");
-						$('#tenantAddDb').dialog('close');
-						$('#mainDataGrid').datagrid('reload');//刷新
-					}
-				});
-		    }
-		});
 		
 	}
 	

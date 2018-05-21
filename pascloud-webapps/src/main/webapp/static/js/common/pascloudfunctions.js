@@ -34,6 +34,15 @@ function EasyUILoad(obj) {
 	    .css({ display: "block", left: ($('#'+obj).outerWidth(true) - 190) / 2, top: ($('#'+obj).height - 45) / 2 });
 }
 
+function EasyUILoadForMsg(obj,msg) {
+	$("<div class=\"datagrid-mask\"></div>")
+	    .css({ display: "block", width:"100%",height:"auto !important"})
+	    .appendTo($('#'+obj));
+	$("<div class=\"datagrid-mask-msg\"></div>")
+	    .html(msg+"。。。").appendTo($('#'+obj))
+	    .css({ display: "block", left: ($('#'+obj).outerWidth(true) - 190) / 2, top: ($('#'+obj).height - 45) / 2 });
+}
+
 function EasyUILoadSimple(obj) {
 	$("<div class=\"datagrid-mask\"></div>")
 	    .css({ display: "block", width:"100%",height:"auto !important"})

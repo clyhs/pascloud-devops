@@ -70,7 +70,7 @@ public class DBUtils {
         	Locale.setDefault( Locale.US );
             conn = DriverManager.getConnection(url, username, password);  
             
-            log.info("连接结束...");
+            log.info("连接成功...");
         } catch (SQLException | ClassNotFoundException e) {  
             System.out.println("connect failed!");  
             //e.printStackTrace();  

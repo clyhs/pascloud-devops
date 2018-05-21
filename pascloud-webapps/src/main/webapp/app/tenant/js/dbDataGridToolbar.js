@@ -22,7 +22,7 @@ var toolbar = function(){
 		text : '行员同步',  
         iconCls : 'icon-20130406125647919_easyicon_net_16',  
         handler : function(){
-        	
+        	sysHy();
         }
 	}];
 }();
