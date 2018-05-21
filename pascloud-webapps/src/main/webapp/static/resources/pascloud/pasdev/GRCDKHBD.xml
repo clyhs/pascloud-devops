@@ -1,401 +1,305 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="GRCDKHBD" title="个人存贷客户变动" type="query" version="2.0.0">
-  <conPart>
-    <tags>
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期">
-        <attribute key="dateFmt" value="yyyyMMdd" />
-        <attribute key="defValType" value="sysDate" />
-        <attribute key="editable" value="true" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="tjrq" />
-        <attribute key="minDate" value="no" />
-        <attribute key="readonly" value="false" />
-      </tag>
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Hidden" label="">
-        <attribute key="name" value="tjrq_year" />
-      </tag>
-      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员">
-        <attribute key="isDisplayXN" value="false" />
-        <attribute key="hyckbz" value="hy_jg" />
-        <attribute key="editable" value="true" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="jgckbz" value="jg_ckhy" />
-        <attribute key="name" value="khdxdh" />
-        <attribute key="multiple" value="false" />
-      </tag>
-      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="业务类别">
-        <attribute key="isMultiple" value="false" />
-        <attribute key="width" value="120px;" />
-        <attribute key="evenName" value="change" />
-        <attribute key="editable" value="true" />
-        <attribute key="isSearch" value="false" />
-        <attribute key="sql" value="SELECT YWLB AS KEY,MS AS VALUE FROM CSB_YWLB WHERE MS IN('存款业务','贷款业务')" />
-        <attribute key="isRequired" value="false" />
-        <attribute key="name" value="ywlb" />
-        <attribute key="isAll" value="false" />
-        <attribute key="multiple" value="false" />
-        <attribute key="isEditable" value="true" />
-      </tag>
-      <tag row="0" col="4" colspan="1" rowspan="1" name="MSQL4Select" label="客户类型">
-        <attribute key="isMultiple" value="false" />
-        <attribute key="width" value="120px;" />
-        <attribute key="evenName" value="change" />
-        <attribute key="editable" value="true" />
-        <attribute key="isSearch" value="false" />
-        <attribute key="sql" value="select dmz as key,dmms as value from csb_dmms where dmmc = 'ZHBS'" />
-        <attribute key="isRequired" value="false" />
-        <attribute key="name" value="khlx" />
-        <attribute key="isAll" value="true" />
-        <attribute key="multiple" value="false" />
-        <attribute key="isEditable" value="true" />
-      </tag>
-      <tag row="1" col="0" colspan="1" rowspan="1" name="Date" label="对比日期">
-        <attribute key="dateFmt" value="yyyyMMdd" />
-        <attribute key="defValType" value="yc" />
-        <attribute key="editable" value="true" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="dbrq" />
-        <attribute key="minDate" value="no" />
-        <attribute key="readonly" value="false" />
-      </tag>
-      <tag row="1" col="1" colspan="1" rowspan="1" name="Text" label="客户名称">
-        <attribute key="editable" value="true" />
-        <attribute key="name" value="khmc" />
-        <attribute key="readonly" value="false" />
-      </tag>
-      <tag row="1" col="1" colspan="1" rowspan="1" name="DataInterface" label="null">
-        <attribute key="dataType" value="select" />
-        <attribute key="sql" value="select xtb.csz&#xD;&#xA;  from XTB_XTCS xtb&#xD;&#xA; where xtb.CSMC = (case&#xD;&#xA;         when $ywlb$ = 1 then&#xD;&#xA;          'CKYJGXMS'&#xD;&#xA;         when $ywlb$ = 2 then&#xD;&#xA;          'DKYJGXMS'&#xD;&#xA;       end)&#xD;&#xA;" />
-        <attribute key="name" value="cdkbdcsz" />
-      </tag>
-      <tag row="1" col="2" colspan="1" rowspan="1" name="Text" label="余额变动从">
-        <attribute key="styleClass" value="number" />
-        <attribute key="editable" value="true" />
-        <attribute key="name" value="yebdfrom" />
-        <attribute key="readonly" value="false" />
-      </tag>
-      <tag row="1" col="2" colspan="1" rowspan="1" name="Hidden" label="">
-        <attribute key="name" value="bdcsz" />
-      </tag>
-      <tag row="1" col="3" colspan="1" rowspan="1" name="Text" label="到">
-        <attribute key="styleClass" value="number" />
-        <attribute key="editable" value="true" />
-        <attribute key="name" value="yebdto" />
-        <attribute key="readonly" value="false" />
-      </tag>
-      <tag row="1" col="4" colspan="1" rowspan="1" name="Dmms" label="变动方向">
-        <attribute key="width" value="120px;" />
-        <attribute key="dmmc" value="khbdfx" />
-        <attribute key="editable" value="true" />
-        <attribute key="name" value="bdfx" />
-        <attribute key="isAll" value="false" />
-        <attribute key="multiple" value="false" />
-      </tag>
-      <tag row="1" col="4" colspan="1" rowspan="1" name="Hidden" label="">
-        <attribute key="name" value="bdfx1" />
-      </tag>
-    </tags>
-  </conPart>
-  <table id="GRCDKHBD_ckzhjgj" title="存款账户结果集" page="noCount">
-    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="ZHHM" title="客户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KHRQ" title="开户日期" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="TJRYE" title="统计日余额" align="left" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="DBRYE" title="对比日余额" align="left" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="YEBD" title="余额变动" align="left" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-  </table>
-  <table id="GRCDKHBD_dkzhjgj" title="贷款账户结果集" page="noCount">
-    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="ZHHM" title="客户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KHRQ" title="开户日期" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="TJRYE" title="统计日余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="DBRYE" title="对比日余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="YEBD" title="余额变动" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-  </table>
-  <table id="GRCDKHBD_ck_zzhjgj" title="存款_子账号结果集" page="noCount">
-    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="ZHDH" title="账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="ZHHM" title="客户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KHRQ" title="开户日期" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="TJRYE" title="统计日余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="DBRYE" title="对比日余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="YEBD" title="余额变动" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-  </table>
-  <table id="GRCDKHBD_dk_zzhjgj" title="贷款_子账号结果集" page="noCount">
-    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KHRQ" title="开户日期" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="TJRYE" title="统计日余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="DBRYE" title="对比日余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="YEBD" title="余额变动" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-  </table>
-  <sqlMap namespace="studio.GRCDKHBD">
-    <select id="dn12.GRCDKHBDList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      <isEqual property="bdcsz" compareValue="1">
-        select * from (  select $tjrq$ TJRQ,jg.KHDXDH JGKHDXDH,JG.JGMC,HY.KHDXDH,HY.HYDH,HY.HYMC,gx.KHH,gx.ZHDH,gx.ZHHM,gx.KHRQ, gx.KMH, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty>
-        then gx.clbl                                                            when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01) as tjrye,  sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty>
-        then gx.clbl                                                                  when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as dbrye,  sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty>
-        then gx.clbl                                                            when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01)-sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty>
-        then gx.clbl                                                                  when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as yebd from (  select sjw.tjrq as tjrq,zh.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.khrq,zh.jxdxdh, zh.gxhslx,0 as clbl,100 as zlbl ,zh.KMH ,mx.zhye from jxdx_ckzh zh,csb_sjw sjw,jxdx_ckzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.gxhslx='0' and sjw.tjrq in($tjrq$,$dbrq$)
-        <isNotEmpty property="khdxdh">and zh.khdxdh=$khdxdh$</isNotEmpty>
-        and sjw.tjrq between zh.khrq and zh.xhrq and sjw.tjrq between mx.qsrq and mx.jsrq
-        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>
-        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty>
-        union all  select sjw.tjrq as tjrq,gx.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.khrq,gx.jxdxdh,gx.gxhslx,gx.clbl,gx.zlbl ,zh.KMH ,mx.zhye from jxdx_ckzh zh ,dxgx_hyyjgx_ck gx,csb_sjw sjw ,jxdx_ckzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.jxdxdh=gx.jxdxdh and zh.gxhslx='1' and sjw.tjrq in($tjrq$,$dbrq$)
-        <isNotEmpty property="khdxdh">and gx.khdxdh=$khdxdh$</isNotEmpty>
-        and sjw.tjrq between gx.qsrq and gx.jsrq and sjw.tjrq between mx.qsrq and mx.jsrq
-        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>
-        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty>
-        )gx inner join KHDX_HY HY ON gx.KHDXDH = HY.KHDXDH  inner JOIN KHDX_JGCY JGCY ON HY.KHDXDH = JGCY.KHDXDH
-        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty>
-        inner JOIN KHDX_JG JG ON JGCY.JGKHDXDH = JG.KHDXDH  INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh  group by $tjrq$, jg.KHDXDH, JG.JGMC, HY.KHDXDH, HY.HYDH, HY.HYMC, gx.KHH, gx.ZHDH, gx.ZHHM, gx.KHRQ, gx.KMH )rs where 1=1
-        <isNotEmpty property="yebdfrom"><![CDATA[and abs(rs.yebd) >= $yebdfrom$]]></isNotEmpty>
-        <isNotEmpty property="yebdto"><![CDATA[and abs(rs.yebd) <= $yebdto$]]></isNotEmpty>
-        and rs.yebd $bdfx1$ 0 ORDER BY abs(rs.YEBD) DESC
-      </isEqual>
-      <isEqual property="bdcsz" compareValue="2">
-        select * from (  select $tjrq$ TJRQ,jg.KHDXDH JGKHDXDH,JG.JGMC,HY.KHDXDH,HY.HYDH,HY.HYMC,gx.KHH,gx.ZHDH,gx.ZHHM,gx.KHRQ, gx.KMH, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty>
-        then gx.clbl                                                            when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01) as tjrye,  sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty>
-        then gx.clbl                                                                  when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as dbrye,  sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty>
-        then gx.clbl                                                            when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01)-sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty>
-        then gx.clbl                                                                  when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as yebd from (  select sjw.tjrq as tjrq,zh.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.khrq,zh.jxdxdh, zh.gxhslx,0 as clbl,100 as zlbl ,zh.KMH ,mx.zhye from jxdx_dkzh zh,csb_sjw sjw,jxdx_dkzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.gxhslx='0' and sjw.tjrq in($tjrq$,$dbrq$)
-        <isNotEmpty property="khdxdh">and zh.khdxdh=$khdxdh$</isNotEmpty>
-        and sjw.tjrq between zh.khrq and zh.xhrq and sjw.tjrq between mx.qsrq and mx.jsrq
-        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>
-        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty>
-        union all  select sjw.tjrq as tjrq,gx.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.khrq,gx.jxdxdh,gx.gxhslx,gx.clbl,gx.zlbl ,zh.KMH ,mx.zhye from jxdx_dkzh zh ,dxgx_hyyjgx_dk gx,csb_sjw sjw ,jxdx_dkzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.jxdxdh=gx.jxdxdh and zh.gxhslx='1' and sjw.tjrq in($tjrq$,$dbrq$)
-        <isNotEmpty property="khdxdh">and gx.khdxdh=$khdxdh$</isNotEmpty>
-        and sjw.tjrq between gx.qsrq and gx.jsrq and sjw.tjrq between mx.qsrq and mx.jsrq
-        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>
-        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty>
-        )gx inner join KHDX_HY HY ON gx.KHDXDH = HY.KHDXDH  inner JOIN KHDX_JGCY JGCY ON HY.KHDXDH = JGCY.KHDXDH
-        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty>
-        inner JOIN KHDX_JG JG ON JGCY.JGKHDXDH = JG.KHDXDH  INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh  group by $tjrq$, jg.KHDXDH, JG.JGMC, HY.KHDXDH, HY.HYDH, HY.HYMC, gx.KHH, gx.ZHDH, gx.ZHHM, gx.KHRQ, gx.KMH )rs where 1=1
-        <isNotEmpty property="yebdfrom"><![CDATA[and abs(rs.yebd) >= $yebdfrom$]]></isNotEmpty>
-        <isNotEmpty property="yebdto"><![CDATA[and abs(rs.yebd) <= $yebdto$]]></isNotEmpty>
-        and rs.yebd $bdfx1$ 0 ORDER BY abs(rs.YEBD) DESC
-      </isEqual>
-      <isEqual property="bdcsz" compareValue="3">
-        select * from (  select $tjrq$ TJRQ,jg.KHDXDH JGKHDXDH,JG.JGMC,HY.KHDXDH,HY.HYDH,HY.HYMC,gx.KHH,gx.ZHDH,gx.ZHHM,gx.zzh,gx.KHRQ, gx.KMH, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty>
-        then gx.clbl                                                            when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01) as tjrye,  sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty>
-        then gx.clbl                                                                  when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as dbrye,  sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty>
-        then gx.clbl                                                            when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01)-sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty>
-        then gx.clbl                                                                  when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as yebd from (  select sjw.tjrq as tjrq,zh.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.zzh,zh.khrq,zh.jxdxdh, zh.gxhslx,0 as clbl,100 as zlbl ,zh.KMH ,mx.zhye from jxdx_ckzh zh,csb_sjw sjw,jxdx_ckzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.gxhslx='0' and sjw.tjrq in($tjrq$,$dbrq$)
-        <isNotEmpty property="khdxdh">and zh.khdxdh=$khdxdh$</isNotEmpty>
-        and sjw.tjrq between zh.khrq and zh.xhrq and sjw.tjrq between mx.qsrq and mx.jsrq
-        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>
-        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty>
-        union all  select sjw.tjrq as tjrq,gx.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.zzh,zh.khrq,gx.jxdxdh,gx.gxhslx,gx.clbl,gx.zlbl ,zh.KMH ,mx.zhye from jxdx_ckzh zh ,dxgx_hyyjgx_ck gx,csb_sjw sjw ,jxdx_ckzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.jxdxdh=gx.jxdxdh and zh.gxhslx='1' and sjw.tjrq in($tjrq$,$dbrq$)
-        <isNotEmpty property="khdxdh">and gx.khdxdh=$khdxdh$</isNotEmpty>
-        and sjw.tjrq between gx.qsrq and gx.jsrq and sjw.tjrq between mx.qsrq and mx.jsrq
-        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>
-        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty>
-        )gx inner join KHDX_HY HY ON gx.KHDXDH = HY.KHDXDH  inner JOIN KHDX_JGCY JGCY ON HY.KHDXDH = JGCY.KHDXDH
-        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty>
-        inner JOIN KHDX_JG JG ON JGCY.JGKHDXDH = JG.KHDXDH  INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh  group by $tjrq$, jg.KHDXDH, JG.JGMC, HY.KHDXDH, HY.HYDH, HY.HYMC, gx.KHH, gx.ZHDH, gx.ZHHM,gx.zzh, gx.KHRQ, gx.KMH )rs where 1=1
-        <isNotEmpty property="yebdfrom"><![CDATA[and abs(rs.yebd) >= $yebdfrom$]]></isNotEmpty>
-        <isNotEmpty property="yebdto"><![CDATA[and abs(rs.yebd) <= $yebdto$]]></isNotEmpty>
-        and rs.yebd $bdfx1$ 0 ORDER BY abs(rs.YEBD) DESC
-      </isEqual>
-      <isEqual property="bdcsz" compareValue="4">
-        select * from (  select $tjrq$ TJRQ,jg.KHDXDH JGKHDXDH,JG.JGMC,HY.KHDXDH,HY.HYDH,HY.HYMC,gx.KHH,gx.ZHDH,gx.zzh,gx.ZHHM,gx.KHRQ, gx.KMH, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty>
-        then gx.clbl                                                            when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01) as tjrye,  sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty>
-        then gx.clbl                                                                  when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as dbrye,  sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty>
-        then gx.clbl                                                            when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01)-sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty>
-        then gx.clbl                                                                  when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as yebd from (  select sjw.tjrq as tjrq,zh.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.zzh,zh.khrq,zh.jxdxdh, zh.gxhslx,0 as clbl,100 as zlbl ,zh.KMH ,mx.zhye from jxdx_dkzh zh,csb_sjw sjw,jxdx_dkzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.gxhslx='0' and sjw.tjrq in($tjrq$,$dbrq$)
-        <isNotEmpty property="khdxdh">and zh.khdxdh=$khdxdh$</isNotEmpty>
-        and sjw.tjrq between zh.khrq and zh.xhrq and sjw.tjrq between mx.qsrq and mx.jsrq
-        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>
-        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty>
-        union all  select sjw.tjrq as tjrq,gx.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.zzh,zh.khrq,gx.jxdxdh,gx.gxhslx,gx.clbl,gx.zlbl ,zh.KMH ,mx.zhye from jxdx_dkzh zh ,dxgx_hyyjgx_dk gx,csb_sjw sjw ,jxdx_dkzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.jxdxdh=gx.jxdxdh and zh.gxhslx='1' and sjw.tjrq in($tjrq$,$dbrq$)
-        <isNotEmpty property="khdxdh">and gx.khdxdh=$khdxdh$</isNotEmpty>
-        and sjw.tjrq between gx.qsrq and gx.jsrq and sjw.tjrq between mx.qsrq and mx.jsrq
-        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>
-        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty>
-        )gx inner join KHDX_HY HY ON gx.KHDXDH = HY.KHDXDH  inner JOIN KHDX_JGCY JGCY ON HY.KHDXDH = JGCY.KHDXDH
-        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty>
-        inner JOIN KHDX_JG JG ON JGCY.JGKHDXDH = JG.KHDXDH  INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh  group by $tjrq$, jg.KHDXDH, JG.JGMC, HY.KHDXDH, HY.HYDH, HY.HYMC, gx.KHH, gx.ZHDH, gx.ZHHM,gx.zzh, gx.KHRQ, gx.KMH )rs where 1=1
-        <isNotEmpty property="yebdfrom"><![CDATA[and abs(rs.yebd) >= $yebdfrom$]]></isNotEmpty>
-        <isNotEmpty property="yebdto"><![CDATA[and abs(rs.yebd) <= $yebdto$]]></isNotEmpty>
-        and rs.yebd $bdfx1$ 0 ORDER BY abs(rs.YEBD) DESC
-      </isEqual>
-    </select>
-    <select id="dn12.GRCDKHBDCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from (
-      <isEqual property="bdcsz" compareValue="1">
-        select * from (  select $tjrq$ TJRQ,jg.KHDXDH JGKHDXDH,JG.JGMC,HY.KHDXDH,HY.HYDH,HY.HYMC,gx.KHH,gx.ZHDH,gx.ZHHM,gx.KHRQ, gx.KMH, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty>
-        then gx.clbl                                                            when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01) as tjrye,  sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty>
-        then gx.clbl                                                                  when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as dbrye,  sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty>
-        then gx.clbl                                                            when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01)-sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty>
-        then gx.clbl                                                                  when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as yebd from (  select sjw.tjrq as tjrq,zh.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.khrq,zh.jxdxdh, zh.gxhslx,0 as clbl,100 as zlbl ,zh.KMH ,mx.zhye from jxdx_ckzh zh,csb_sjw sjw,jxdx_ckzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.gxhslx='0' and sjw.tjrq in($tjrq$,$dbrq$)
-        <isNotEmpty property="khdxdh">and zh.khdxdh=$khdxdh$</isNotEmpty>
-        and sjw.tjrq between zh.khrq and zh.xhrq and sjw.tjrq between mx.qsrq and mx.jsrq
-        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>
-        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty>
-        union all  select sjw.tjrq as tjrq,gx.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.khrq,gx.jxdxdh,gx.gxhslx,gx.clbl,gx.zlbl ,zh.KMH ,mx.zhye from jxdx_ckzh zh ,dxgx_hyyjgx_ck gx,csb_sjw sjw ,jxdx_ckzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.jxdxdh=gx.jxdxdh and zh.gxhslx='1' and sjw.tjrq in($tjrq$,$dbrq$)
-        <isNotEmpty property="khdxdh">and gx.khdxdh=$khdxdh$</isNotEmpty>
-        and sjw.tjrq between gx.qsrq and gx.jsrq and sjw.tjrq between mx.qsrq and mx.jsrq
-        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>
-        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty>
-        )gx inner join KHDX_HY HY ON gx.KHDXDH = HY.KHDXDH  inner JOIN KHDX_JGCY JGCY ON HY.KHDXDH = JGCY.KHDXDH
-        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty>
-        inner JOIN KHDX_JG JG ON JGCY.JGKHDXDH = JG.KHDXDH  INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh  group by $tjrq$, jg.KHDXDH, JG.JGMC, HY.KHDXDH, HY.HYDH, HY.HYMC, gx.KHH, gx.ZHDH, gx.ZHHM, gx.KHRQ, gx.KMH )rs where 1=1
-        <isNotEmpty property="yebdfrom"><![CDATA[and abs(rs.yebd) >= $yebdfrom$]]></isNotEmpty>
-        <isNotEmpty property="yebdto"><![CDATA[and abs(rs.yebd) <= $yebdto$]]></isNotEmpty>
-        and rs.yebd $bdfx1$ 0 ORDER BY abs(rs.YEBD) DESC
-      </isEqual>
-      <isEqual property="bdcsz" compareValue="2">
-        select * from (  select $tjrq$ TJRQ,jg.KHDXDH JGKHDXDH,JG.JGMC,HY.KHDXDH,HY.HYDH,HY.HYMC,gx.KHH,gx.ZHDH,gx.ZHHM,gx.KHRQ, gx.KMH, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty>
-        then gx.clbl                                                            when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01) as tjrye,  sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty>
-        then gx.clbl                                                                  when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as dbrye,  sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty>
-        then gx.clbl                                                            when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01)-sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty>
-        then gx.clbl                                                                  when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as yebd from (  select sjw.tjrq as tjrq,zh.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.khrq,zh.jxdxdh, zh.gxhslx,0 as clbl,100 as zlbl ,zh.KMH ,mx.zhye from jxdx_dkzh zh,csb_sjw sjw,jxdx_dkzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.gxhslx='0' and sjw.tjrq in($tjrq$,$dbrq$)
-        <isNotEmpty property="khdxdh">and zh.khdxdh=$khdxdh$</isNotEmpty>
-        and sjw.tjrq between zh.khrq and zh.xhrq and sjw.tjrq between mx.qsrq and mx.jsrq
-        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>
-        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty>
-        union all  select sjw.tjrq as tjrq,gx.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.khrq,gx.jxdxdh,gx.gxhslx,gx.clbl,gx.zlbl ,zh.KMH ,mx.zhye from jxdx_dkzh zh ,dxgx_hyyjgx_dk gx,csb_sjw sjw ,jxdx_dkzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.jxdxdh=gx.jxdxdh and zh.gxhslx='1' and sjw.tjrq in($tjrq$,$dbrq$)
-        <isNotEmpty property="khdxdh">and gx.khdxdh=$khdxdh$</isNotEmpty>
-        and sjw.tjrq between gx.qsrq and gx.jsrq and sjw.tjrq between mx.qsrq and mx.jsrq
-        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>
-        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty>
-        )gx inner join KHDX_HY HY ON gx.KHDXDH = HY.KHDXDH  inner JOIN KHDX_JGCY JGCY ON HY.KHDXDH = JGCY.KHDXDH
-        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty>
-        inner JOIN KHDX_JG JG ON JGCY.JGKHDXDH = JG.KHDXDH  INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh  group by $tjrq$, jg.KHDXDH, JG.JGMC, HY.KHDXDH, HY.HYDH, HY.HYMC, gx.KHH, gx.ZHDH, gx.ZHHM, gx.KHRQ, gx.KMH )rs where 1=1
-        <isNotEmpty property="yebdfrom"><![CDATA[and abs(rs.yebd) >= $yebdfrom$]]></isNotEmpty>
-        <isNotEmpty property="yebdto"><![CDATA[and abs(rs.yebd) <= $yebdto$]]></isNotEmpty>
-        and rs.yebd $bdfx1$ 0 ORDER BY abs(rs.YEBD) DESC
-      </isEqual>
-      <isEqual property="bdcsz" compareValue="3">
-        select * from (  select $tjrq$ TJRQ,jg.KHDXDH JGKHDXDH,JG.JGMC,HY.KHDXDH,HY.HYDH,HY.HYMC,gx.KHH,gx.ZHDH,gx.ZHHM,gx.zzh,gx.KHRQ, gx.KMH, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty>
-        then gx.clbl                                                            when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01) as tjrye,  sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty>
-        then gx.clbl                                                                  when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as dbrye,  sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty>
-        then gx.clbl                                                            when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01)-sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty>
-        then gx.clbl                                                                  when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as yebd from (  select sjw.tjrq as tjrq,zh.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.zzh,zh.khrq,zh.jxdxdh, zh.gxhslx,0 as clbl,100 as zlbl ,zh.KMH ,mx.zhye from jxdx_ckzh zh,csb_sjw sjw,jxdx_ckzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.gxhslx='0' and sjw.tjrq in($tjrq$,$dbrq$)
-        <isNotEmpty property="khdxdh">and zh.khdxdh=$khdxdh$</isNotEmpty>
-        and sjw.tjrq between zh.khrq and zh.xhrq and sjw.tjrq between mx.qsrq and mx.jsrq
-        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>
-        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty>
-        union all  select sjw.tjrq as tjrq,gx.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.zzh,zh.khrq,gx.jxdxdh,gx.gxhslx,gx.clbl,gx.zlbl ,zh.KMH ,mx.zhye from jxdx_ckzh zh ,dxgx_hyyjgx_ck gx,csb_sjw sjw ,jxdx_ckzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.jxdxdh=gx.jxdxdh and zh.gxhslx='1' and sjw.tjrq in($tjrq$,$dbrq$)
-        <isNotEmpty property="khdxdh">and gx.khdxdh=$khdxdh$</isNotEmpty>
-        and sjw.tjrq between gx.qsrq and gx.jsrq and sjw.tjrq between mx.qsrq and mx.jsrq
-        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>
-        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty>
-        )gx inner join KHDX_HY HY ON gx.KHDXDH = HY.KHDXDH  inner JOIN KHDX_JGCY JGCY ON HY.KHDXDH = JGCY.KHDXDH
-        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty>
-        inner JOIN KHDX_JG JG ON JGCY.JGKHDXDH = JG.KHDXDH  INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh  group by $tjrq$, jg.KHDXDH, JG.JGMC, HY.KHDXDH, HY.HYDH, HY.HYMC, gx.KHH, gx.ZHDH, gx.ZHHM,gx.zzh, gx.KHRQ, gx.KMH )rs where 1=1
-        <isNotEmpty property="yebdfrom"><![CDATA[and abs(rs.yebd) >= $yebdfrom$]]></isNotEmpty>
-        <isNotEmpty property="yebdto"><![CDATA[and abs(rs.yebd) <= $yebdto$]]></isNotEmpty>
-        and rs.yebd $bdfx1$ 0 ORDER BY abs(rs.YEBD) DESC
-      </isEqual>
-      <isEqual property="bdcsz" compareValue="4">
-        select * from (  select $tjrq$ TJRQ,jg.KHDXDH JGKHDXDH,JG.JGMC,HY.KHDXDH,HY.HYDH,HY.HYMC,gx.KHH,gx.ZHDH,gx.zzh,gx.ZHHM,gx.KHRQ, gx.KMH, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty>
-        then gx.clbl                                                            when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01) as tjrye,  sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty>
-        then gx.clbl                                                                  when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as dbrye,  sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty>
-        then gx.clbl                                                            when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01)-sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2'
-        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty>
-        then gx.clbl                                                                  when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as yebd from (  select sjw.tjrq as tjrq,zh.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.zzh,zh.khrq,zh.jxdxdh, zh.gxhslx,0 as clbl,100 as zlbl ,zh.KMH ,mx.zhye from jxdx_dkzh zh,csb_sjw sjw,jxdx_dkzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.gxhslx='0' and sjw.tjrq in($tjrq$,$dbrq$)
-        <isNotEmpty property="khdxdh">and zh.khdxdh=$khdxdh$</isNotEmpty>
-        and sjw.tjrq between zh.khrq and zh.xhrq and sjw.tjrq between mx.qsrq and mx.jsrq
-        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>
-        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty>
-        union all  select sjw.tjrq as tjrq,gx.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.zzh,zh.khrq,gx.jxdxdh,gx.gxhslx,gx.clbl,gx.zlbl ,zh.KMH ,mx.zhye from jxdx_dkzh zh ,dxgx_hyyjgx_dk gx,csb_sjw sjw ,jxdx_dkzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.jxdxdh=gx.jxdxdh and zh.gxhslx='1' and sjw.tjrq in($tjrq$,$dbrq$)
-        <isNotEmpty property="khdxdh">and gx.khdxdh=$khdxdh$</isNotEmpty>
-        and sjw.tjrq between gx.qsrq and gx.jsrq and sjw.tjrq between mx.qsrq and mx.jsrq
-        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>
-        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty>
-        )gx inner join KHDX_HY HY ON gx.KHDXDH = HY.KHDXDH  inner JOIN KHDX_JGCY JGCY ON HY.KHDXDH = JGCY.KHDXDH
-        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty>
-        inner JOIN KHDX_JG JG ON JGCY.JGKHDXDH = JG.KHDXDH  INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh  group by $tjrq$, jg.KHDXDH, JG.JGMC, HY.KHDXDH, HY.HYDH, HY.HYMC, gx.KHH, gx.ZHDH, gx.ZHHM,gx.zzh, gx.KHRQ, gx.KMH )rs where 1=1
-        <isNotEmpty property="yebdfrom"><![CDATA[and abs(rs.yebd) >= $yebdfrom$]]></isNotEmpty>
-        <isNotEmpty property="yebdto"><![CDATA[and abs(rs.yebd) <= $yebdto$]]></isNotEmpty>
-        and rs.yebd $bdfx1$ 0 ORDER BY abs(rs.YEBD) DESC
-      </isEqual>
-      ) t
-    </select>
-    <select id="dn12.GRCDKHBD_MSQL4SELECT_ywlb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT YWLB AS KEY,MS AS VALUE FROM CSB_YWLB WHERE MS IN('存款业务','贷款业务')</select>
-    <select id="dn12.GRCDKHBD_MSQL4SELECT_khlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc = 'ZHBS'</select>
-    <select id="dn12.GRCDKHBD_cdkbdcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select xtb.csz
-  from XTB_XTCS xtb
- where xtb.CSMC = (case
-         when $ywlb$ = 1 then
-          'CKYJGXMS'
-         when $ywlb$ = 2 then
-          'DKYJGXMS'
-       end)</select>
-  </sqlMap>
-  <rels>
-    <items id="GRCDKHBD_ckzhjgj">
-      <item name="bdcsz" compareValue="1" operate="isEqual" />
-    </items>
-    <items id="GRCDKHBD_dkzhjgj">
-      <item name="bdcsz" compareValue="2" operate="isEqual" />
-    </items>
-    <items id="GRCDKHBD_ck_zzhjgj">
-      <item name="bdcsz" compareValue="3" operate="isEqual" />
-    </items>
-    <items id="GRCDKHBD_dk_zzhjgj">
-      <item name="bdcsz" compareValue="4" operate="isEqual" />
-    </items>
-  </rels>
+
+<pageSetting id="GRCDKHBD" title="个人存贷客户变动" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期"> 
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="tjrq"/>  
+        <attribute key="minDate" value="no"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="name" value="tjrq_year"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员"> 
+        <attribute key="isDisplayXN" value="false"/>  
+        <attribute key="hyckbz" value="hy_jg"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="jgckbz" value="jg_ckhy"/>  
+        <attribute key="name" value="khdxdh"/>  
+        <attribute key="multiple" value="false"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="业务类别"> 
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="evenName" value="change"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isSearch" value="false"/>  
+        <attribute key="sql" value="SELECT YWLB AS KEY,MS AS VALUE FROM CSB_YWLB WHERE MS IN('存款业务','贷款业务')"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="ywlb"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="multiple" value="false"/>  
+        <attribute key="isEditable" value="true"/> 
+      </tag>  
+      <tag row="0" col="4" colspan="1" rowspan="1" name="MSQL4Select" label="客户类型"> 
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="evenName" value="change"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isSearch" value="false"/>  
+        <attribute key="sql" value="select dmz as key,dmms as value from csb_dmms where dmmc = 'ZHBS'"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="khlx"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="multiple" value="false"/>  
+        <attribute key="isEditable" value="true"/> 
+      </tag>  
+      <tag row="1" col="0" colspan="1" rowspan="1" name="Date" label="对比日期"> 
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="yc"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="dbrq"/>  
+        <attribute key="minDate" value="no"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="1" col="1" colspan="1" rowspan="1" name="Text" label="客户名称"> 
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="khmc"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="1" col="1" colspan="1" rowspan="1" name="DataInterface" label="null"> 
+        <attribute key="dataType" value="select"/>  
+        <attribute key="sql" value="select xtb.csz   from XTB_XTCS xtb  where xtb.CSMC = (case          when $ywlb$ = 1 then           'CKYJGXMS'          when $ywlb$ = 2 then           'DKYJGXMS'        end) "/>  
+        <attribute key="name" value="cdkbdcsz"/> 
+      </tag>  
+      <tag row="1" col="2" colspan="1" rowspan="1" name="Text" label="余额变动从"> 
+        <attribute key="styleClass" value="number"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="yebdfrom"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="1" col="2" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="name" value="bdcsz"/> 
+      </tag>  
+      <tag row="1" col="3" colspan="1" rowspan="1" name="Text" label="到"> 
+        <attribute key="styleClass" value="number"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="yebdto"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="1" col="4" colspan="1" rowspan="1" name="Dmms" label="变动方向"> 
+        <attribute key="width" value="120px;"/>  
+        <attribute key="dmmc" value="khbdfx"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="bdfx"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="multiple" value="false"/> 
+      </tag>  
+      <tag row="1" col="4" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="name" value="bdfx1"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="GRCDKHBD_ckzhjgj" title="存款账户结果集" page="noCount"> 
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHHM" title="客户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHRQ" title="开户日期" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="TJRYE" title="统计日余额" align="left" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="DBRYE" title="对比日余额" align="left" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="YEBD" title="余额变动" align="left" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <table id="GRCDKHBD_dkzhjgj" title="贷款账户结果集" page="noCount"> 
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHHM" title="客户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHRQ" title="开户日期" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="TJRYE" title="统计日余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="DBRYE" title="对比日余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="YEBD" title="余额变动" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <table id="GRCDKHBD_ck_zzhjgj" title="存款_子账号结果集" page="noCount"> 
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHDH" title="账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHHM" title="客户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHRQ" title="开户日期" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="TJRYE" title="统计日余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="DBRYE" title="对比日余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="YEBD" title="余额变动" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <table id="GRCDKHBD_dk_zzhjgj" title="贷款_子账号结果集" page="noCount"> 
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHRQ" title="开户日期" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="TJRYE" title="统计日余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="DBRYE" title="对比日余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="YEBD" title="余额变动" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <sqlMap namespace="studio.GRCDKHBD"> 
+    <select id="dn0.GRCDKHBDList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
+      <isEqual property="bdcsz" compareValue="1">select * from ( select $tjrq$ TJRQ,jg.KHDXDH JGKHDXDH,JG.JGMC,HY.KHDXDH,HY.HYDH,HY.HYMC,gx.KHH,gx.ZHDH,gx.ZHHM,gx.KHRQ, gx.KMH, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty> then gx.clbl when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01) as tjrye, sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty> then gx.clbl when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as dbrye, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty> then gx.clbl when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01)-sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty> then gx.clbl when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as yebd from ( select sjw.tjrq as tjrq,zh.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.khrq,zh.jxdxdh, zh.gxhslx,0 as clbl,100 as zlbl ,zh.KMH ,mx.zhye from jxdx_ckzh zh,csb_sjw sjw,jxdx_ckzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.gxhslx='0' and sjw.tjrq in($tjrq$,$dbrq$)
+        <isNotEmpty property="khdxdh">and zh.khdxdh=$khdxdh$</isNotEmpty> and sjw.tjrq between zh.khrq and zh.xhrq and sjw.tjrq between mx.qsrq and mx.jsrq 
+        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty> union all select sjw.tjrq as tjrq,gx.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.khrq,gx.jxdxdh,gx.gxhslx,gx.clbl,gx.zlbl ,zh.KMH ,mx.zhye from jxdx_ckzh zh ,dxgx_hyyjgx_ck gx,csb_sjw sjw ,jxdx_ckzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.jxdxdh=gx.jxdxdh and zh.gxhslx='1' and sjw.tjrq in($tjrq$,$dbrq$) 
+        <isNotEmpty property="khdxdh">and gx.khdxdh=$khdxdh$</isNotEmpty> and sjw.tjrq between gx.qsrq and gx.jsrq and sjw.tjrq between mx.qsrq and mx.jsrq 
+        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty> )gx inner join KHDX_HY HY ON gx.KHDXDH = HY.KHDXDH inner JOIN KHDX_JGCY JGCY ON HY.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> inner JOIN KHDX_JG JG ON JGCY.JGKHDXDH = JG.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh group by $tjrq$, jg.KHDXDH, JG.JGMC, HY.KHDXDH, HY.HYDH, HY.HYMC, gx.KHH, gx.ZHDH, gx.ZHHM, gx.KHRQ, gx.KMH )rs where 1=1 
+        <isNotEmpty property="yebdfrom"><![CDATA[and abs(rs.yebd) >= $yebdfrom$]]></isNotEmpty>  
+        <isNotEmpty property="yebdto"><![CDATA[and abs(rs.yebd) <= $yebdto$]]></isNotEmpty> and rs.yebd $bdfx1$ 0 ORDER BY abs(rs.YEBD) DESC
+      </isEqual>  
+      <isEqual property="bdcsz" compareValue="2">select * from ( select $tjrq$ TJRQ,jg.KHDXDH JGKHDXDH,JG.JGMC,HY.KHDXDH,HY.HYDH,HY.HYMC,gx.KHH,gx.ZHDH,gx.ZHHM,gx.KHRQ, gx.KMH, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty> then gx.clbl when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01) as tjrye, sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty> then gx.clbl when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as dbrye, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty> then gx.clbl when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01)-sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty> then gx.clbl when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as yebd from ( select sjw.tjrq as tjrq,zh.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.khrq,zh.jxdxdh, zh.gxhslx,0 as clbl,100 as zlbl ,zh.KMH ,mx.zhye from jxdx_dkzh zh,csb_sjw sjw,jxdx_dkzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.gxhslx='0' and sjw.tjrq in($tjrq$,$dbrq$) 
+        <isNotEmpty property="khdxdh">and zh.khdxdh=$khdxdh$</isNotEmpty> and sjw.tjrq between zh.khrq and zh.xhrq and sjw.tjrq between mx.qsrq and mx.jsrq 
+        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty> union all select sjw.tjrq as tjrq,gx.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.khrq,gx.jxdxdh,gx.gxhslx,gx.clbl,gx.zlbl ,zh.KMH ,mx.zhye from jxdx_dkzh zh ,dxgx_hyyjgx_dk gx,csb_sjw sjw ,jxdx_dkzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.jxdxdh=gx.jxdxdh and zh.gxhslx='1' and sjw.tjrq in($tjrq$,$dbrq$) 
+        <isNotEmpty property="khdxdh">and gx.khdxdh=$khdxdh$</isNotEmpty> and sjw.tjrq between gx.qsrq and gx.jsrq and sjw.tjrq between mx.qsrq and mx.jsrq 
+        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty> )gx inner join KHDX_HY HY ON gx.KHDXDH = HY.KHDXDH inner JOIN KHDX_JGCY JGCY ON HY.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> inner JOIN KHDX_JG JG ON JGCY.JGKHDXDH = JG.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh group by $tjrq$, jg.KHDXDH, JG.JGMC, HY.KHDXDH, HY.HYDH, HY.HYMC, gx.KHH, gx.ZHDH, gx.ZHHM, gx.KHRQ, gx.KMH )rs where 1=1 
+        <isNotEmpty property="yebdfrom"><![CDATA[and abs(rs.yebd) >= $yebdfrom$]]></isNotEmpty>  
+        <isNotEmpty property="yebdto"><![CDATA[and abs(rs.yebd) <= $yebdto$]]></isNotEmpty> and rs.yebd $bdfx1$ 0 ORDER BY abs(rs.YEBD) DESC
+      </isEqual>  
+      <isEqual property="bdcsz" compareValue="3">select * from ( select $tjrq$ TJRQ,jg.KHDXDH JGKHDXDH,JG.JGMC,HY.KHDXDH,HY.HYDH,HY.HYMC,gx.KHH,gx.ZHDH,gx.ZHHM,gx.zzh,gx.KHRQ, gx.KMH, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty> then gx.clbl when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01) as tjrye, sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty> then gx.clbl when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as dbrye, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty> then gx.clbl when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01)-sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty> then gx.clbl when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as yebd from ( select sjw.tjrq as tjrq,zh.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.zzh,zh.khrq,zh.jxdxdh, zh.gxhslx,0 as clbl,100 as zlbl ,zh.KMH ,mx.zhye from jxdx_ckzh zh,csb_sjw sjw,jxdx_ckzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.gxhslx='0' and sjw.tjrq in($tjrq$,$dbrq$) 
+        <isNotEmpty property="khdxdh">and zh.khdxdh=$khdxdh$</isNotEmpty> and sjw.tjrq between zh.khrq and zh.xhrq and sjw.tjrq between mx.qsrq and mx.jsrq 
+        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty> union all select sjw.tjrq as tjrq,gx.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.zzh,zh.khrq,gx.jxdxdh,gx.gxhslx,gx.clbl,gx.zlbl ,zh.KMH ,mx.zhye from jxdx_ckzh zh ,dxgx_hyyjgx_ck gx,csb_sjw sjw ,jxdx_ckzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.jxdxdh=gx.jxdxdh and zh.gxhslx='1' and sjw.tjrq in($tjrq$,$dbrq$) 
+        <isNotEmpty property="khdxdh">and gx.khdxdh=$khdxdh$</isNotEmpty> and sjw.tjrq between gx.qsrq and gx.jsrq and sjw.tjrq between mx.qsrq and mx.jsrq 
+        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty> )gx inner join KHDX_HY HY ON gx.KHDXDH = HY.KHDXDH inner JOIN KHDX_JGCY JGCY ON HY.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> inner JOIN KHDX_JG JG ON JGCY.JGKHDXDH = JG.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh group by $tjrq$, jg.KHDXDH, JG.JGMC, HY.KHDXDH, HY.HYDH, HY.HYMC, gx.KHH, gx.ZHDH, gx.ZHHM,gx.zzh, gx.KHRQ, gx.KMH )rs where 1=1 
+        <isNotEmpty property="yebdfrom"><![CDATA[and abs(rs.yebd) >= $yebdfrom$]]></isNotEmpty>  
+        <isNotEmpty property="yebdto"><![CDATA[and abs(rs.yebd) <= $yebdto$]]></isNotEmpty> and rs.yebd $bdfx1$ 0 ORDER BY abs(rs.YEBD) DESC
+      </isEqual>  
+      <isEqual property="bdcsz" compareValue="4">select * from ( select $tjrq$ TJRQ,jg.KHDXDH JGKHDXDH,JG.JGMC,HY.KHDXDH,HY.HYDH,HY.HYMC,gx.KHH,gx.ZHDH,gx.zzh,gx.ZHHM,gx.KHRQ, gx.KMH, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty> then gx.clbl when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01) as tjrye, sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty> then gx.clbl when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as dbrye, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty> then gx.clbl when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01)-sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty> then gx.clbl when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as yebd from ( select sjw.tjrq as tjrq,zh.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.zzh,zh.khrq,zh.jxdxdh, zh.gxhslx,0 as clbl,100 as zlbl ,zh.KMH ,mx.zhye from jxdx_dkzh zh,csb_sjw sjw,jxdx_dkzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.gxhslx='0' and sjw.tjrq in($tjrq$,$dbrq$) 
+        <isNotEmpty property="khdxdh">and zh.khdxdh=$khdxdh$</isNotEmpty> and sjw.tjrq between zh.khrq and zh.xhrq and sjw.tjrq between mx.qsrq and mx.jsrq 
+        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty> union all select sjw.tjrq as tjrq,gx.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.zzh,zh.khrq,gx.jxdxdh,gx.gxhslx,gx.clbl,gx.zlbl ,zh.KMH ,mx.zhye from jxdx_dkzh zh ,dxgx_hyyjgx_dk gx,csb_sjw sjw ,jxdx_dkzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.jxdxdh=gx.jxdxdh and zh.gxhslx='1' and sjw.tjrq in($tjrq$,$dbrq$) 
+        <isNotEmpty property="khdxdh">and gx.khdxdh=$khdxdh$</isNotEmpty> and sjw.tjrq between gx.qsrq and gx.jsrq and sjw.tjrq between mx.qsrq and mx.jsrq 
+        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty> )gx inner join KHDX_HY HY ON gx.KHDXDH = HY.KHDXDH inner JOIN KHDX_JGCY JGCY ON HY.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> inner JOIN KHDX_JG JG ON JGCY.JGKHDXDH = JG.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh group by $tjrq$, jg.KHDXDH, JG.JGMC, HY.KHDXDH, HY.HYDH, HY.HYMC, gx.KHH, gx.ZHDH, gx.ZHHM,gx.zzh, gx.KHRQ, gx.KMH )rs where 1=1 
+        <isNotEmpty property="yebdfrom"><![CDATA[and abs(rs.yebd) >= $yebdfrom$]]></isNotEmpty>  
+        <isNotEmpty property="yebdto"><![CDATA[and abs(rs.yebd) <= $yebdto$]]></isNotEmpty> and rs.yebd $bdfx1$ 0 ORDER BY abs(rs.YEBD) DESC
+      </isEqual> 
+    </select>  
+    <select id="dn0.GRCDKHBDCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
+      <isEqual property="bdcsz" compareValue="1">select * from ( select $tjrq$ TJRQ,jg.KHDXDH JGKHDXDH,JG.JGMC,HY.KHDXDH,HY.HYDH,HY.HYMC,gx.KHH,gx.ZHDH,gx.ZHHM,gx.KHRQ, gx.KMH, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty> then gx.clbl when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01) as tjrye, sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty> then gx.clbl when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as dbrye, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty> then gx.clbl when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01)-sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty> then gx.clbl when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as yebd from ( select sjw.tjrq as tjrq,zh.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.khrq,zh.jxdxdh, zh.gxhslx,0 as clbl,100 as zlbl ,zh.KMH ,mx.zhye from jxdx_ckzh zh,csb_sjw sjw,jxdx_ckzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.gxhslx='0' and sjw.tjrq in($tjrq$,$dbrq$) 
+        <isNotEmpty property="khdxdh">and zh.khdxdh=$khdxdh$</isNotEmpty> and sjw.tjrq between zh.khrq and zh.xhrq and sjw.tjrq between mx.qsrq and mx.jsrq 
+        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty> union all select sjw.tjrq as tjrq,gx.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.khrq,gx.jxdxdh,gx.gxhslx,gx.clbl,gx.zlbl ,zh.KMH ,mx.zhye from jxdx_ckzh zh ,dxgx_hyyjgx_ck gx,csb_sjw sjw ,jxdx_ckzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.jxdxdh=gx.jxdxdh and zh.gxhslx='1' and sjw.tjrq in($tjrq$,$dbrq$) 
+        <isNotEmpty property="khdxdh">and gx.khdxdh=$khdxdh$</isNotEmpty> and sjw.tjrq between gx.qsrq and gx.jsrq and sjw.tjrq between mx.qsrq and mx.jsrq 
+        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty> )gx inner join KHDX_HY HY ON gx.KHDXDH = HY.KHDXDH inner JOIN KHDX_JGCY JGCY ON HY.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> inner JOIN KHDX_JG JG ON JGCY.JGKHDXDH = JG.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh group by $tjrq$, jg.KHDXDH, JG.JGMC, HY.KHDXDH, HY.HYDH, HY.HYMC, gx.KHH, gx.ZHDH, gx.ZHHM, gx.KHRQ, gx.KMH )rs where 1=1 
+        <isNotEmpty property="yebdfrom"><![CDATA[and abs(rs.yebd) >= $yebdfrom$]]></isNotEmpty>  
+        <isNotEmpty property="yebdto"><![CDATA[and abs(rs.yebd) <= $yebdto$]]></isNotEmpty> and rs.yebd $bdfx1$ 0 ORDER BY abs(rs.YEBD) DESC
+      </isEqual>  
+      <isEqual property="bdcsz" compareValue="2">select * from ( select $tjrq$ TJRQ,jg.KHDXDH JGKHDXDH,JG.JGMC,HY.KHDXDH,HY.HYDH,HY.HYMC,gx.KHH,gx.ZHDH,gx.ZHHM,gx.KHRQ, gx.KMH, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty> then gx.clbl when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01) as tjrye, sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty> then gx.clbl when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as dbrye, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty> then gx.clbl when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01)-sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty> then gx.clbl when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as yebd from ( select sjw.tjrq as tjrq,zh.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.khrq,zh.jxdxdh, zh.gxhslx,0 as clbl,100 as zlbl ,zh.KMH ,mx.zhye from jxdx_dkzh zh,csb_sjw sjw,jxdx_dkzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.gxhslx='0' and sjw.tjrq in($tjrq$,$dbrq$) 
+        <isNotEmpty property="khdxdh">and zh.khdxdh=$khdxdh$</isNotEmpty> and sjw.tjrq between zh.khrq and zh.xhrq and sjw.tjrq between mx.qsrq and mx.jsrq 
+        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty> union all select sjw.tjrq as tjrq,gx.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.khrq,gx.jxdxdh,gx.gxhslx,gx.clbl,gx.zlbl ,zh.KMH ,mx.zhye from jxdx_dkzh zh ,dxgx_hyyjgx_dk gx,csb_sjw sjw ,jxdx_dkzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.jxdxdh=gx.jxdxdh and zh.gxhslx='1' and sjw.tjrq in($tjrq$,$dbrq$) 
+        <isNotEmpty property="khdxdh">and gx.khdxdh=$khdxdh$</isNotEmpty> and sjw.tjrq between gx.qsrq and gx.jsrq and sjw.tjrq between mx.qsrq and mx.jsrq 
+        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty> )gx inner join KHDX_HY HY ON gx.KHDXDH = HY.KHDXDH inner JOIN KHDX_JGCY JGCY ON HY.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> inner JOIN KHDX_JG JG ON JGCY.JGKHDXDH = JG.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh group by $tjrq$, jg.KHDXDH, JG.JGMC, HY.KHDXDH, HY.HYDH, HY.HYMC, gx.KHH, gx.ZHDH, gx.ZHHM, gx.KHRQ, gx.KMH )rs where 1=1 
+        <isNotEmpty property="yebdfrom"><![CDATA[and abs(rs.yebd) >= $yebdfrom$]]></isNotEmpty>  
+        <isNotEmpty property="yebdto"><![CDATA[and abs(rs.yebd) <= $yebdto$]]></isNotEmpty> and rs.yebd $bdfx1$ 0 ORDER BY abs(rs.YEBD) DESC
+      </isEqual>  
+      <isEqual property="bdcsz" compareValue="3">select * from ( select $tjrq$ TJRQ,jg.KHDXDH JGKHDXDH,JG.JGMC,HY.KHDXDH,HY.HYDH,HY.HYMC,gx.KHH,gx.ZHDH,gx.ZHHM,gx.zzh,gx.KHRQ, gx.KMH, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty> then gx.clbl when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01) as tjrye, sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty> then gx.clbl when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as dbrye, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty> then gx.clbl when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01)-sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty> then gx.clbl when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as yebd from ( select sjw.tjrq as tjrq,zh.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.zzh,zh.khrq,zh.jxdxdh, zh.gxhslx,0 as clbl,100 as zlbl ,zh.KMH ,mx.zhye from jxdx_ckzh zh,csb_sjw sjw,jxdx_ckzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.gxhslx='0' and sjw.tjrq in($tjrq$,$dbrq$) 
+        <isNotEmpty property="khdxdh">and zh.khdxdh=$khdxdh$</isNotEmpty> and sjw.tjrq between zh.khrq and zh.xhrq and sjw.tjrq between mx.qsrq and mx.jsrq 
+        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty> union all select sjw.tjrq as tjrq,gx.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.zzh,zh.khrq,gx.jxdxdh,gx.gxhslx,gx.clbl,gx.zlbl ,zh.KMH ,mx.zhye from jxdx_ckzh zh ,dxgx_hyyjgx_ck gx,csb_sjw sjw ,jxdx_ckzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.jxdxdh=gx.jxdxdh and zh.gxhslx='1' and sjw.tjrq in($tjrq$,$dbrq$) 
+        <isNotEmpty property="khdxdh">and gx.khdxdh=$khdxdh$</isNotEmpty> and sjw.tjrq between gx.qsrq and gx.jsrq and sjw.tjrq between mx.qsrq and mx.jsrq 
+        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty> )gx inner join KHDX_HY HY ON gx.KHDXDH = HY.KHDXDH inner JOIN KHDX_JGCY JGCY ON HY.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> inner JOIN KHDX_JG JG ON JGCY.JGKHDXDH = JG.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh group by $tjrq$, jg.KHDXDH, JG.JGMC, HY.KHDXDH, HY.HYDH, HY.HYMC, gx.KHH, gx.ZHDH, gx.ZHHM,gx.zzh, gx.KHRQ, gx.KMH )rs where 1=1 
+        <isNotEmpty property="yebdfrom"><![CDATA[and abs(rs.yebd) >= $yebdfrom$]]></isNotEmpty>  
+        <isNotEmpty property="yebdto"><![CDATA[and abs(rs.yebd) <= $yebdto$]]></isNotEmpty> and rs.yebd $bdfx1$ 0 ORDER BY abs(rs.YEBD) DESC
+      </isEqual>  
+      <isEqual property="bdcsz" compareValue="4">select * from ( select $tjrq$ TJRQ,jg.KHDXDH JGKHDXDH,JG.JGMC,HY.KHDXDH,HY.HYDH,HY.HYMC,gx.KHH,gx.ZHDH,gx.zzh,gx.ZHHM,gx.KHRQ, gx.KMH, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty> then gx.clbl when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01) as tjrye, sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty> then gx.clbl when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as dbrye, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty> then gx.clbl when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01)-sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
+        <isNotEmpty property="dbrq">and gx.tjrq=$dbrq$</isNotEmpty> then gx.clbl when gx.tjrq=$dbrq$ then gx.zlbl else 0 end)*0.01) as yebd from ( select sjw.tjrq as tjrq,zh.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.zzh,zh.khrq,zh.jxdxdh, zh.gxhslx,0 as clbl,100 as zlbl ,zh.KMH ,mx.zhye from jxdx_dkzh zh,csb_sjw sjw,jxdx_dkzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.gxhslx='0' and sjw.tjrq in($tjrq$,$dbrq$) 
+        <isNotEmpty property="khdxdh">and zh.khdxdh=$khdxdh$</isNotEmpty> and sjw.tjrq between zh.khrq and zh.xhrq and sjw.tjrq between mx.qsrq and mx.jsrq 
+        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty> union all select sjw.tjrq as tjrq,gx.khdxdh,zh.khh,zh.zhdh,zh.zhhm,zh.zzh,zh.khrq,gx.jxdxdh,gx.gxhslx,gx.clbl,gx.zlbl ,zh.KMH ,mx.zhye from jxdx_dkzh zh ,dxgx_hyyjgx_dk gx,csb_sjw sjw ,jxdx_dkzhmx_$tjrq_year$ mx where zh.jxdxdh=mx.jxdxdh and zh.jxdxdh=gx.jxdxdh and zh.gxhslx='1' and sjw.tjrq in($tjrq$,$dbrq$) 
+        <isNotEmpty property="khdxdh">and gx.khdxdh=$khdxdh$</isNotEmpty> and sjw.tjrq between gx.qsrq and gx.jsrq and sjw.tjrq between mx.qsrq and mx.jsrq 
+        <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">and zh.zhbs='$khlx$'</isNotEmpty> )gx inner join KHDX_HY HY ON gx.KHDXDH = HY.KHDXDH inner JOIN KHDX_JGCY JGCY ON HY.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> inner JOIN KHDX_JG JG ON JGCY.JGKHDXDH = JG.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh group by $tjrq$, jg.KHDXDH, JG.JGMC, HY.KHDXDH, HY.HYDH, HY.HYMC, gx.KHH, gx.ZHDH, gx.ZHHM,gx.zzh, gx.KHRQ, gx.KMH )rs where 1=1 
+        <isNotEmpty property="yebdfrom"><![CDATA[and abs(rs.yebd) >= $yebdfrom$]]></isNotEmpty>  
+        <isNotEmpty property="yebdto"><![CDATA[and abs(rs.yebd) <= $yebdto$]]></isNotEmpty> and rs.yebd $bdfx1$ 0 ORDER BY abs(rs.YEBD) DESC
+      </isEqual> ) t
+    </select>  
+    <select id="dn0.GRCDKHBD_MSQL4SELECT_ywlb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT YWLB AS KEY,MS AS VALUE FROM CSB_YWLB WHERE MS IN('存款业务','贷款业务')</select>  
+    <select id="dn0.GRCDKHBD_MSQL4SELECT_khlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc = 'ZHBS'</select>  
+    <select id="dn0.GRCDKHBD_cdkbdcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select xtb.csz from XTB_XTCS xtb where xtb.CSMC = (case when $ywlb$ = 1 then 'CKYJGXMS' when $ywlb$ = 2 then 'DKYJGXMS' end)</select> 
+  </sqlMap>  
+  <rels> 
+    <items id="GRCDKHBD_ckzhjgj"> 
+      <item name="bdcsz" compareValue="1" operate="isEqual"/> 
+    </items>  
+    <items id="GRCDKHBD_dkzhjgj"> 
+      <item name="bdcsz" compareValue="2" operate="isEqual"/> 
+    </items>  
+    <items id="GRCDKHBD_ck_zzhjgj"> 
+      <item name="bdcsz" compareValue="3" operate="isEqual"/> 
+    </items>  
+    <items id="GRCDKHBD_dk_zzhjgj"> 
+      <item name="bdcsz" compareValue="4" operate="isEqual"/> 
+    </items> 
+  </rels>  
   <javascript><![CDATA[jQuery(document).ready(function () {
   init_bdfx().pipe(init_khlx).pipe(init_ywlb).pipe(function(){
     PAS.di.execute('GRCDKHBD_cdkbdcsz',checkZzhBack);//判断有没有子账号
@@ -461,6 +365,5 @@ function sdyevalidate(){
         
          return true;
          
-}]]></javascript>
+}]]></javascript> 
 </pageSetting>
-

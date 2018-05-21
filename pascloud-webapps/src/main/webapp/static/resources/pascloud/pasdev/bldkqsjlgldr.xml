@@ -1,499 +1,383 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="bldkqsjlgldr" title="不良贷款清收奖励管理导入" type="import" version="2.0.0">
-  <template>
-    <src>ONLINE</src>
-    <column>
-      <text>贷款账号</text>
-      <name>zhdh</name>
-      <index>0</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>账户名称</text>
-      <name>zhhm</name>
-      <index>1</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>贷款期限</text>
-      <name>dkqx</name>
-      <index>2</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate>请输入贷款期限代号：
-D007	通知七天
-M013M024	1-2年(含)
-M025M036	2-3年(含)
-M037M060	3-5年(含)
-M040	40月期存款
-M096	5年以上
-Y001	1年定期
-Y003	3年定期
-D000	活期
-M000M006	6个月以下
-M001	1月定期
-M003	3月定期
-M006	6月定期
-M007M012	6个月-1年(含)
-M061M9999	5年以上
-Y002	2年定期
-Y005	5年定期
-D001	通知一天
-Y001Y002	1-2年(含)
-Y003Y005	3-5年(含)
-Y006	5年以上</annotate>
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>清收方式</text>
-      <name>qsfs</name>
-      <index>3</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate>请输入代号：
-1 现金清收
-2 呆账核销
-3 票据置换
-4 以物抵债</annotate>
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>不良类型</text>
-      <name>bllx</name>
-      <index>4</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate>请输入代号：
-1- 表内
-2- 表外</annotate>
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>清收人</text>
-      <name>hydh</name>
-      <index>5</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate>请输入行员代号</annotate>
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>清收日期</text>
-      <name>qsrq</name>
-      <index>6</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate>日期格式 yyyyMMdd</annotate>
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>五级分类</text>
-      <name>wjfl</name>
-      <index>7</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate>请输入代号
-3-次级
-4-可疑
-5-损失</annotate>
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>逾期日期</text>
-      <name>yqrq</name>
-      <index>8</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate>日期格式 yyyyMMdd</annotate>
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>收回本金</text>
-      <name>shbj</name>
-      <index>9</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>本金计提比例</text>
-      <name>bjjtbl</name>
-      <index>10</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>收回利息</text>
-      <name>shlx</name>
-      <index>11</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>利息计提比列</text>
-      <name>lxjtbl</name>
-      <index>12</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>计提工资</text>
-      <name>jtgz</name>
-      <index>13</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>备注说明</text>
-      <name>bzsm</name>
-      <index>14</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>N</req>
-    </column>
-  </template>
-  <table id="bldkqsjlgldr_table" page="true">
-    <col id="ZT" title="状态" align="center" type="string" width="50" />
-    <col id="ERROR" title="错误原因" align="center" type="string" width="250" />
-    <col id="ZHDH" title="贷款账号" align="center" type="" width="120" />
-    <col id="ZHHM" title="账户名称" align="center" type="" width="120" />
-    <col id="DKQX" title="贷款期限" align="center" type="" width="120" />
-    <col id="QSFS" title="清收方式" align="center" type="" width="120" />
-    <col id="BLLX" title="不良类型" align="center" type="" width="120" />
-    <col id="HYDH" title="清收人" align="center" type="" width="120" />
-    <col id="QSRQ" title="清收日期" align="center" type="" width="120" />
-    <col id="WJFL" title="五级分类" align="center" type="" width="120" />
-    <col id="YQRQ" title="逾期日期" align="center" type="" width="120" />
-    <col id="SHBJ" title="收回本金" align="center" type="" width="120" />
-    <col id="BJJTBL" title="本金计提比例" align="center" type="" width="120" />
-    <col id="SHLX" title="收回利息" align="center" type="" width="120" />
-    <col id="LXJTBL" title="利息计提比列" align="center" type="" width="120" />
-    <col id="JTGZ" title="计提工资" align="center" type="" width="120" />
-    <col id="BZSM" title="备注说明" align="center" type="" width="120" />
-  </table>
-  <flow>
-    <rule>
-      <sql type="update">bldkqsjlgldr_check_zhdh_0</sql>
-      <sql type="update">bldkqsjlgldr_check_zhdh_1</sql>
-      <sql type="update">bldkqsjlgldr_check_zhdh_2</sql>
-      <sql type="update">bldkqsjlgldr_check_zhhm_3</sql>
-      <sql type="update">bldkqsjlgldr_check_zhhm_4</sql>
-      <sql type="update">bldkqsjlgldr_check_dkqx_5</sql>
-      <sql type="update">bldkqsjlgldr_check_qsfs_6</sql>
-      <sql type="update">bldkqsjlgldr_check_qsfs_7</sql>
-      <sql type="update">bldkqsjlgldr_check_bllx_8</sql>
-      <sql type="update">bldkqsjlgldr_check_bllx_9</sql>
-      <sql type="update">bldkqsjlgldr_check_hydh_10</sql>
-      <sql type="update">bldkqsjlgldr_check_hydh_11</sql>
-      <sql type="update">bldkqsjlgldr_check_qsrq_12</sql>
-      <sql type="update">bldkqsjlgldr_check_qsrq_13</sql>
-      <sql type="update">bldkqsjlgldr_check_wjfl_14</sql>
-      <sql type="update">bldkqsjlgldr_check_wjfl_15</sql>
-      <sql type="update">bldkqsjlgldr_check_yqrq_16</sql>
-      <sql type="update">bldkqsjlgldr_check_yqrq_17</sql>
-      <sql type="update">bldkqsjlgldr_check_shbj_18</sql>
-      <sql type="update">bldkqsjlgldr_check_shbj_19</sql>
-      <sql type="update">bldkqsjlgldr_check_bjjtbl_20</sql>
-      <sql type="update">bldkqsjlgldr_check_bjjtbl_21</sql>
-      <sql type="update">bldkqsjlgldr_check_shlx_22</sql>
-      <sql type="update">bldkqsjlgldr_check_shlx_23</sql>
-      <sql type="update">bldkqsjlgldr_check_lxjtbl_24</sql>
-      <sql type="update">bldkqsjlgldr_check_lxjtbl_25</sql>
-      <sql type="update">bldkqsjlgldr_check_jtgz_26</sql>
-      <sql type="update">bldkqsjlgldr_check_jtgz_27</sql>
-      <sql type="update">bldkqsjlgldr_check_bzsm_28</sql>
-      <sql type="update">bldkqsjlgldr_checkupdate_dkqx_0</sql>
-      <sql type="update">bldkqsjlgldr_checkupdate_yqrq_0</sql>
-      <sql type="update">bldkqsjlgldr_checkupdate_shbj_0</sql>
-      <sql type="update">bldkqsjlgldr_checkupdate_bjjtbl_0</sql>
-      <sql type="update">bldkqsjlgldr_checkupdate_shlx_0</sql>
-      <sql type="update">bldkqsjlgldr_checkupdate_lxjtbl_0</sql>
-      <sql type="update">bldkqsjlgldr_exists_target</sql>
-      <sql type="update">bldkqsjlgldr_exists_same_temp</sql>
-    </rule>
-    <before />
-    <cover>
-      <sql type="delete">bldkqsjlgldr_delete_before_override</sql>
-    </cover>
-    <insert>
-      <sql type="insert">bldkqsjlgldr_insert_into_target</sql>
-    </insert>
-    <after />
-  </flow>
-  <sqlMap namespace="studio.bldkqsjlgldr">
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_zhdh_0">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=t.error||'贷款账号输入错误，不能为空!' 
-		where  f_java_rule_length(t.zhdh)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_zhdh_1">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=t.error||'贷款账号输入错误，长度不能超过:40!' 
-		where  f_java_rule_length(t.zhdh)&gt;40  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_zhdh_2">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=t.error||'贷款账号不存在!'  where  not  exists(select  1  from  jxdx_dkzh  d  where  rtrim(t.zhdh)=rtrim(d.zhdh))  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_zhhm_3">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=t.error||'账户名称输入错误，不能为空!' 
-		where  f_java_rule_length(t.zhhm)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_zhhm_4">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=t.error||'账户名称输入错误，长度不能超过:100!' 
-		where  f_java_rule_length(t.zhhm)&gt;100  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_dkqx_5">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=t.error||'贷款期限输入错误，不能为空!' 
-		where  f_java_rule_length(t.dkqx)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_qsfs_6">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=t.error||'清收方式输入错误，不能为空!' 
-		where  f_java_rule_length(t.qsfs)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_qsfs_7">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=t.error||'清收方式不存在!'  where  not  exists(select  1  from  csb_dmms  ms  where  lower(ms.dmmc)=lower('QSFS')  and  rtrim(t.qsfs)=rtrim(ms.dmz))  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_bllx_8">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=t.error||'不良类型输入错误，不能为空!' 
-		where  f_java_rule_length(t.bllx)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_bllx_9">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=t.error||'不良类型不存在!'  where  not  exists(select  1  from  csb_dmms  ms  where  lower(ms.dmmc)=lower('BLLX')  and  rtrim(t.bllx)=rtrim(ms.dmz))  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_hydh_10">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=t.error||'清收人输入错误，不能为空!' 
-		where  f_java_rule_length(t.hydh)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_hydh_11">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=t.error||'清收人不存在!'  
-		where  not  exists(select  1  from  khdx_hy  h  where  rtrim(t.hydh)=rtrim(h.hydh))  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_qsrq_12">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  
-		set  t.error=t.error||'清收日期输入错误，格式应该是:yyyyMMdd!'  
-		where  f_java_rule_date(t.qsrq,'yyyyMMdd')=1  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_qsrq_13">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=t.error||'清收日期输入错误，不能为空!' 
-		where  f_java_rule_length(t.qsrq)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_wjfl_14">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=t.error||'五级分类输入错误，不能为空!' 
-		where  f_java_rule_length(t.wjfl)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_wjfl_15">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=t.error||'五级分类不存在!'  where  not  exists(select  1  from  csb_dmms  ms  where  lower(ms.dmmc)=lower('BLWJFL')  and  rtrim(t.wjfl)=rtrim(ms.dmz))  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_yqrq_16">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  
-		set  t.error=t.error||'逾期日期输入错误，格式应该是:yyyyMMdd!'  
-		where  f_java_rule_date(t.yqrq,'yyyyMMdd')=1  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_yqrq_17">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=t.error||'逾期日期输入错误，不能为空!' 
-		where  f_java_rule_length(t.yqrq)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_shbj_18">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  
-		set  t.error=t.error||'收回本金输入错误，只能输入:21位整数,4位小数!'  
-		where f_java_rule_length(t.shbj)&gt;0 and f_java_rule_number(t.shbj,21,4)=1  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_shbj_19">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=t.error||'收回本金输入错误，不能为空!' 
-		where  f_java_rule_length(t.shbj)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_bjjtbl_20">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  
-		set  t.error=t.error||'本金计提比例输入错误，只能输入:14位整数,4位小数!'  
-		where f_java_rule_length(t.bjjtbl)&gt;0 and f_java_rule_number(t.bjjtbl,14,4)=1  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_bjjtbl_21">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=t.error||'本金计提比例输入错误，不能为空!' 
-		where  f_java_rule_length(t.bjjtbl)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_shlx_22">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  
-		set  t.error=t.error||'收回利息输入错误，只能输入:21位整数,4位小数!'  
-		where f_java_rule_length(t.shlx)&gt;0 and f_java_rule_number(t.shlx,21,4)=1  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_shlx_23">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=t.error||'收回利息输入错误，不能为空!' 
-		where  f_java_rule_length(t.shlx)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_lxjtbl_24">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  
-		set  t.error=t.error||'利息计提比列输入错误，只能输入:14位整数,4位小数!'  
-		where f_java_rule_length(t.lxjtbl)&gt;0 and f_java_rule_number(t.lxjtbl,14,4)=1  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_lxjtbl_25">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=t.error||'利息计提比列输入错误，不能为空!' 
-		where  f_java_rule_length(t.lxjtbl)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_jtgz_26">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  
-		set  t.error=t.error||'计提工资输入错误，只能输入:21位整数,4位小数!'  
-		where f_java_rule_length(t.jtgz)&gt;0 and f_java_rule_number(t.jtgz,21,4)=1  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_jtgz_27">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=t.error||'计提工资输入错误，不能为空!' 
-		where  f_java_rule_length(t.jtgz)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_check_bzsm_28">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=t.error||'备注说明输入错误，长度不能超过:100!' 
-		where  f_java_rule_length(t.bzsm)&gt;100  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_checkupdate_dkqx_0">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update bldkqsjlgldr_temp t set error=error||'此贷款期限不存在' where  not exists (
- select 1 from CSB_QXSDB where JXDXLX = 2 and qxdh = t.dkqx)
- and t.khdxdh=$login_khdxdh$ and length(t.dkqx)&gt;0
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_checkupdate_yqrq_0">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update bldkqsjlgldr_temp set error=error||'逾期日期填写错误！正确格式为“yyyyMMdd”'
-		where khdxdh=$login_khdxdh$ and error='error' and (length(yqrq)!=8 or F_JAVA_RULE_DATE(rtrim(yqrq),'yyyyMMdd')=1)  and length(yqrq)&gt;0
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_checkupdate_shbj_0">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update bldkqsjlgldr_temp set error=error||'收回本金填写错误,必须为数字!'
-		where khdxdh=$login_khdxdh$ and F_JAVA_RULE_NUMBER(rtrim(shbj),21,2)=1 and length(shbj) &gt; 0
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_checkupdate_bjjtbl_0">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update bldkqsjlgldr_temp set error=error||'本金计提比例填写错误,不能超过14位整数，4位小数!'
-		where khdxdh=$login_khdxdh$ and F_JAVA_RULE_NUMBER(rtrim(bjjtbl),14,4)=1 and length(bjjtbl) &gt; 0
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_checkupdate_shlx_0">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update bldkqsjlgldr_temp set error=error||'收回利息填写错误,必须为数字!'
-		where khdxdh=$login_khdxdh$ and F_JAVA_RULE_NUMBER(rtrim(shlx),21,2)=1 and length(shlx) &gt; 0
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_checkupdate_lxjtbl_0">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update bldkqsjlgldr_temp set error=error||'利息计提比列填写错误,必须为14位整数，4位小数！'
-		where khdxdh=$login_khdxdh$ and F_JAVA_RULE_NUMBER(rtrim(lxjtbl),14,4)=1 and length(lxjtbl) &gt; 0
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_exists_target">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=t.error||'数据已存在!'  where  exists(select  1  from  SGLR_BLDKQSMX  tar  ,KHDX_HY  KHDX_HY0  where  1=1   and  cast(t.qsrq  as  INTEGER)=tar.QSRQ  and  t.zhdh  =tar.ZHDH  and  t.hydh=KHDX_HY0.HYDH  and  KHDX_HY0.KHDXDH=tar.KHDXDH  and  t.khdxdh=$login_khdxdh$  and  (length(t.error)=0  or  t.error  is  null  ))
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_exists_same_temp">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  bldkqsjlgldr_temp  t  set  t.error=error||'存在重复数据!'  where  exists(  select  1  from   (select  zhdh,hydh  from  bldkqsjlgldr_temp  dr  where  khdxdh=$login_khdxdh$  group  by  zhdh,hydh  having  count(1)<![CDATA[>]]>1  )  dr  where  1=1   and  t.zhdh=dr.zhdh  and  t.hydh=dr.hydh)  and  khdxdh=$login_khdxdh$
-    </update>
-    <insert parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_create_lsb">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      CREATE  TABLE   bldkqsjlgldr_temp   (   zhdh  varchar(100)  ,  zhhm  varchar(100)  ,  dkqx  varchar(100)  ,  qsfs  varchar(100)  ,  bllx  varchar(100)  ,  hydh  varchar(100)  ,  qsrq  varchar(100)  ,  wjfl  varchar(100)  ,  yqrq  varchar(100)  ,  shbj  varchar(100)  ,  bjjtbl  varchar(100)  ,  shlx  varchar(100)  ,  lxjtbl  varchar(100)  ,  jtgz  varchar(100)  ,  bzsm  varchar(100)  ,  khdxdh  integer,error  varchar(1000)   )
-    </insert>
-    <delete parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_delete_lsb">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      delete from bldkqsjlgldr_temp where khdxdh=$login_khdxdh$
-    </delete>
-    <insert parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_insert_into_lsb">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      insert  into  BLDKQSJLGLDR_TEMP  (zhdh,zhhm,dkqx,qsfs,bllx,hydh,qsrq,wjfl,yqrq,shbj,bjjtbl,shlx,lxjtbl,jtgz,bzsm,khdxdh,error)  values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
-    </insert>
-    <select parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_exists_error_msg" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  count(1)  from  bldkqsjlgldr_temp  where  length(error) <![CDATA[>]]> 0  and  khdxdh  =  $login_khdxdh$
-    </select>
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn12.bldkqsjlgldr_exists_same_data">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  count(1)  from  bldkqsjlgldr_temp  where  length(error) <![CDATA[>]]> 0  and  error  !=  '数据已存在!'  and  khdxdh  =  $login_khdxdh$
-    </select>
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn12.bldkqsjlgldr_select_error_msg">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/cancel.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  zhdh,zhhm,dkqx,qsfs,bllx,hydh,qsrq,wjfl,yqrq,shbj,bjjtbl,shlx,lxjtbl,jtgz,bzsm,khdxdh,error  from  bldkqsjlgldr_temp  where  khdxdh=$login_khdxdh$  and  length(error)<![CDATA[>]]>0
-    </select>
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn12.bldkqsjlgldr_count_all_msg">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  count(1)  from  (select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/ok.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  zhdh,zhhm,dkqx,qsfs,bllx,hydh,qsrq,wjfl,yqrq,shbj,bjjtbl,shlx,lxjtbl,jtgz,bzsm,khdxdh,error  from  bldkqsjlgldr_temp  where  khdxdh=$login_khdxdh$  )a
-    </select>
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn12.bldkqsjlgldr_select_all_msg">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/ok.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  zhdh,zhhm,dkqx,qsfs,bllx,hydh,qsrq,wjfl,yqrq,shbj,bjjtbl,shlx,lxjtbl,jtgz,bzsm,khdxdh,error  from  bldkqsjlgldr_temp  where  khdxdh=$login_khdxdh$
-    </select>
-    <insert parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_insert_into_target">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      insert into SGLR_BLDKQSMX(QSRQ,ZHDH,KHDXDH,ZHHM,DKQX,QSFS,WJFL,SHBJ,SHLX,BLLX,YQRQ,BJJTBL,LXJTBL,JTGZ,BZSM,CZR,CZSJ) select cast (t.qsrq as INTEGER), t.zhdh ,KHDX_HY0.KHDXDH, t.zhhm , t.dkqx , t.qsfs , t.wjfl ,cast (t.shbj as DECIMAL(25,4)),cast (t.shlx as DECIMAL(25,4)), t.bllx ,cast (t.yqrq as INTEGER),cast (t.bjjtbl as DECIMAL(19,5)),cast (t.lxjtbl as DECIMAL(19,5)),cast (t.jtgz as DECIMAL(25,4)), t.bzsm ,'$login_hydh$',F_GET_SYSTIME() from bldkqsjlgldr_temp t ,KHDX_HY KHDX_HY0 where t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null)  and KHDX_HY0.HYDH=cast (t.hydh as VARCHAR(20))
-    </insert>
-    <delete parameterClass="java.util.Map" id="dn12.bldkqsjlgldr_delete_before_override">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      delete  from  SGLR_BLDKQSMX  tar  where  exists(select  1  from  bldkqsjlgldr_temp  t  ,KHDX_HY  KHDX_HY0  where  1=1   and  cast(t.qsrq  as  INTEGER)=tar.QSRQ  and  t.zhdh=tar.ZHDH  and  t.hydh=KHDX_HY0.HYDH  and  KHDX_HY0.KHDXDH=tar.KHDXDH  and  t.khdxdh=$login_khdxdh$  )
-    </delete>
-  </sqlMap>
-</pageSetting>
 
+<pageSetting id="bldkqsjlgldr" title="不良贷款清收奖励管理导入" type="import" version="2.0.0"> 
+  <template> 
+    <src>ONLINE</src>  
+    <column> 
+      <text>贷款账号</text>  
+      <name>zhdh</name>  
+      <index>0</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>账户名称</text>  
+      <name>zhhm</name>  
+      <index>1</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>贷款期限</text>  
+      <name>dkqx</name>  
+      <index>2</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate>请输入贷款期限代号： D007 通知七天 M013M024 1-2年(含) M025M036 2-3年(含) M037M060 3-5年(含) M040 40月期存款 M096 5年以上 Y001 1年定期 Y003 3年定期 D000 活期 M000M006 6个月以下 M001 1月定期 M003 3月定期 M006 6月定期 M007M012 6个月-1年(含) M061M9999 5年以上 Y002 2年定期 Y005 5年定期 D001 通知一天 Y001Y002 1-2年(含) Y003Y005 3-5年(含) Y006 5年以上</annotate>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>清收方式</text>  
+      <name>qsfs</name>  
+      <index>3</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate>请输入代号： 1 现金清收 2 呆账核销 3 票据置换 4 以物抵债</annotate>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>不良类型</text>  
+      <name>bllx</name>  
+      <index>4</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate>请输入代号： 1- 表内 2- 表外</annotate>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>清收人</text>  
+      <name>hydh</name>  
+      <index>5</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate>请输入行员代号</annotate>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>清收日期</text>  
+      <name>qsrq</name>  
+      <index>6</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate>日期格式 yyyyMMdd</annotate>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>五级分类</text>  
+      <name>wjfl</name>  
+      <index>7</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate>请输入代号 3-次级 4-可疑 5-损失</annotate>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>逾期日期</text>  
+      <name>yqrq</name>  
+      <index>8</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate>日期格式 yyyyMMdd</annotate>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>收回本金</text>  
+      <name>shbj</name>  
+      <index>9</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>本金计提比例</text>  
+      <name>bjjtbl</name>  
+      <index>10</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>收回利息</text>  
+      <name>shlx</name>  
+      <index>11</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>利息计提比列</text>  
+      <name>lxjtbl</name>  
+      <index>12</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>计提工资</text>  
+      <name>jtgz</name>  
+      <index>13</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>备注说明</text>  
+      <name>bzsm</name>  
+      <index>14</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>N</req> 
+    </column> 
+  </template>  
+  <table id="bldkqsjlgldr_table" page="true"> 
+    <col id="ZT" title="状态" align="center" type="string" width="50"/>  
+    <col id="ERROR" title="错误原因" align="center" type="string" width="250"/>  
+    <col id="ZHDH" title="贷款账号" align="center" type="" width="120"/>  
+    <col id="ZHHM" title="账户名称" align="center" type="" width="120"/>  
+    <col id="DKQX" title="贷款期限" align="center" type="" width="120"/>  
+    <col id="QSFS" title="清收方式" align="center" type="" width="120"/>  
+    <col id="BLLX" title="不良类型" align="center" type="" width="120"/>  
+    <col id="HYDH" title="清收人" align="center" type="" width="120"/>  
+    <col id="QSRQ" title="清收日期" align="center" type="" width="120"/>  
+    <col id="WJFL" title="五级分类" align="center" type="" width="120"/>  
+    <col id="YQRQ" title="逾期日期" align="center" type="" width="120"/>  
+    <col id="SHBJ" title="收回本金" align="center" type="" width="120"/>  
+    <col id="BJJTBL" title="本金计提比例" align="center" type="" width="120"/>  
+    <col id="SHLX" title="收回利息" align="center" type="" width="120"/>  
+    <col id="LXJTBL" title="利息计提比列" align="center" type="" width="120"/>  
+    <col id="JTGZ" title="计提工资" align="center" type="" width="120"/>  
+    <col id="BZSM" title="备注说明" align="center" type="" width="120"/> 
+  </table>  
+  <flow> 
+    <rule> 
+      <sql type="update">bldkqsjlgldr_check_zhdh_0</sql>  
+      <sql type="update">bldkqsjlgldr_check_zhdh_1</sql>  
+      <sql type="update">bldkqsjlgldr_check_zhdh_2</sql>  
+      <sql type="update">bldkqsjlgldr_check_zhhm_3</sql>  
+      <sql type="update">bldkqsjlgldr_check_zhhm_4</sql>  
+      <sql type="update">bldkqsjlgldr_check_dkqx_5</sql>  
+      <sql type="update">bldkqsjlgldr_check_qsfs_6</sql>  
+      <sql type="update">bldkqsjlgldr_check_qsfs_7</sql>  
+      <sql type="update">bldkqsjlgldr_check_bllx_8</sql>  
+      <sql type="update">bldkqsjlgldr_check_bllx_9</sql>  
+      <sql type="update">bldkqsjlgldr_check_hydh_10</sql>  
+      <sql type="update">bldkqsjlgldr_check_hydh_11</sql>  
+      <sql type="update">bldkqsjlgldr_check_qsrq_12</sql>  
+      <sql type="update">bldkqsjlgldr_check_qsrq_13</sql>  
+      <sql type="update">bldkqsjlgldr_check_wjfl_14</sql>  
+      <sql type="update">bldkqsjlgldr_check_wjfl_15</sql>  
+      <sql type="update">bldkqsjlgldr_check_yqrq_16</sql>  
+      <sql type="update">bldkqsjlgldr_check_yqrq_17</sql>  
+      <sql type="update">bldkqsjlgldr_check_shbj_18</sql>  
+      <sql type="update">bldkqsjlgldr_check_shbj_19</sql>  
+      <sql type="update">bldkqsjlgldr_check_bjjtbl_20</sql>  
+      <sql type="update">bldkqsjlgldr_check_bjjtbl_21</sql>  
+      <sql type="update">bldkqsjlgldr_check_shlx_22</sql>  
+      <sql type="update">bldkqsjlgldr_check_shlx_23</sql>  
+      <sql type="update">bldkqsjlgldr_check_lxjtbl_24</sql>  
+      <sql type="update">bldkqsjlgldr_check_lxjtbl_25</sql>  
+      <sql type="update">bldkqsjlgldr_check_jtgz_26</sql>  
+      <sql type="update">bldkqsjlgldr_check_jtgz_27</sql>  
+      <sql type="update">bldkqsjlgldr_check_bzsm_28</sql>  
+      <sql type="update">bldkqsjlgldr_checkupdate_dkqx_0</sql>  
+      <sql type="update">bldkqsjlgldr_checkupdate_yqrq_0</sql>  
+      <sql type="update">bldkqsjlgldr_checkupdate_shbj_0</sql>  
+      <sql type="update">bldkqsjlgldr_checkupdate_bjjtbl_0</sql>  
+      <sql type="update">bldkqsjlgldr_checkupdate_shlx_0</sql>  
+      <sql type="update">bldkqsjlgldr_checkupdate_lxjtbl_0</sql>  
+      <sql type="update">bldkqsjlgldr_exists_target</sql>  
+      <sql type="update">bldkqsjlgldr_exists_same_temp</sql> 
+    </rule>  
+    <before/>  
+    <cover> 
+      <sql type="delete">bldkqsjlgldr_delete_before_override</sql> 
+    </cover>  
+    <insert> 
+      <sql type="insert">bldkqsjlgldr_insert_into_target</sql> 
+    </insert>  
+    <after/> 
+  </flow>  
+  <sqlMap namespace="studio.bldkqsjlgldr"> 
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_zhdh_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'贷款账号输入错误，不能为空!' where f_java_rule_length(t.zhdh)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_zhdh_1"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'贷款账号输入错误，长度不能超过:40!' where f_java_rule_length(t.zhdh)&gt;40 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_zhdh_2"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'贷款账号不存在!' where not exists(select 1 from jxdx_dkzh d where rtrim(t.zhdh)=rtrim(d.zhdh)) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_zhhm_3"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'账户名称输入错误，不能为空!' where f_java_rule_length(t.zhhm)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_zhhm_4"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'账户名称输入错误，长度不能超过:100!' where f_java_rule_length(t.zhhm)&gt;100 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_dkqx_5"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'贷款期限输入错误，不能为空!' where f_java_rule_length(t.dkqx)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_qsfs_6"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'清收方式输入错误，不能为空!' where f_java_rule_length(t.qsfs)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_qsfs_7"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'清收方式不存在!' where not exists(select 1 from csb_dmms ms where lower(ms.dmmc)=lower('QSFS') and rtrim(t.qsfs)=rtrim(ms.dmz)) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_bllx_8"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'不良类型输入错误，不能为空!' where f_java_rule_length(t.bllx)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_bllx_9"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'不良类型不存在!' where not exists(select 1 from csb_dmms ms where lower(ms.dmmc)=lower('BLLX') and rtrim(t.bllx)=rtrim(ms.dmz)) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_hydh_10"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'清收人输入错误，不能为空!' where f_java_rule_length(t.hydh)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_hydh_11"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'清收人不存在!' where not exists(select 1 from khdx_hy h where rtrim(t.hydh)=rtrim(h.hydh)) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_qsrq_12"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'清收日期输入错误，格式应该是:yyyyMMdd!' where f_java_rule_date(t.qsrq,'yyyyMMdd')=1 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_qsrq_13"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'清收日期输入错误，不能为空!' where f_java_rule_length(t.qsrq)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_wjfl_14"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'五级分类输入错误，不能为空!' where f_java_rule_length(t.wjfl)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_wjfl_15"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'五级分类不存在!' where not exists(select 1 from csb_dmms ms where lower(ms.dmmc)=lower('BLWJFL') and rtrim(t.wjfl)=rtrim(ms.dmz)) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_yqrq_16"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'逾期日期输入错误，格式应该是:yyyyMMdd!' where f_java_rule_date(t.yqrq,'yyyyMMdd')=1 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_yqrq_17"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'逾期日期输入错误，不能为空!' where f_java_rule_length(t.yqrq)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_shbj_18"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'收回本金输入错误，只能输入:21位整数,4位小数!' where f_java_rule_length(t.shbj)&gt;0 and f_java_rule_number(t.shbj,21,4)=1 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_shbj_19"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'收回本金输入错误，不能为空!' where f_java_rule_length(t.shbj)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_bjjtbl_20"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'本金计提比例输入错误，只能输入:14位整数,4位小数!' where f_java_rule_length(t.bjjtbl)&gt;0 and f_java_rule_number(t.bjjtbl,14,4)=1 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_bjjtbl_21"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'本金计提比例输入错误，不能为空!' where f_java_rule_length(t.bjjtbl)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_shlx_22"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'收回利息输入错误，只能输入:21位整数,4位小数!' where f_java_rule_length(t.shlx)&gt;0 and f_java_rule_number(t.shlx,21,4)=1 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_shlx_23"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'收回利息输入错误，不能为空!' where f_java_rule_length(t.shlx)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_lxjtbl_24"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'利息计提比列输入错误，只能输入:14位整数,4位小数!' where f_java_rule_length(t.lxjtbl)&gt;0 and f_java_rule_number(t.lxjtbl,14,4)=1 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_lxjtbl_25"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'利息计提比列输入错误，不能为空!' where f_java_rule_length(t.lxjtbl)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_jtgz_26"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'计提工资输入错误，只能输入:21位整数,4位小数!' where f_java_rule_length(t.jtgz)&gt;0 and f_java_rule_number(t.jtgz,21,4)=1 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_jtgz_27"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'计提工资输入错误，不能为空!' where f_java_rule_length(t.jtgz)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_check_bzsm_28"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'备注说明输入错误，长度不能超过:100!' where f_java_rule_length(t.bzsm)&gt;100 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_checkupdate_dkqx_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set error=error||'此贷款期限不存在' where not exists ( select 1 from CSB_QXSDB where JXDXLX = 2 and qxdh = t.dkqx) and t.khdxdh=$login_khdxdh$ and length(t.dkqx)&gt;0
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_checkupdate_yqrq_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp set error=error||'逾期日期填写错误！正确格式为“yyyyMMdd”' where khdxdh=$login_khdxdh$ and error='error' and (length(yqrq)!=8 or F_JAVA_RULE_DATE(rtrim(yqrq),'yyyyMMdd')=1) and length(yqrq)&gt;0
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_checkupdate_shbj_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp set error=error||'收回本金填写错误,必须为数字!' where khdxdh=$login_khdxdh$ and F_JAVA_RULE_NUMBER(rtrim(shbj),21,2)=1 and length(shbj) &gt; 0
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_checkupdate_bjjtbl_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp set error=error||'本金计提比例填写错误,不能超过14位整数，4位小数!' where khdxdh=$login_khdxdh$ and F_JAVA_RULE_NUMBER(rtrim(bjjtbl),14,4)=1 and length(bjjtbl) &gt; 0
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_checkupdate_shlx_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp set error=error||'收回利息填写错误,必须为数字!' where khdxdh=$login_khdxdh$ and F_JAVA_RULE_NUMBER(rtrim(shlx),21,2)=1 and length(shlx) &gt; 0
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_checkupdate_lxjtbl_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp set error=error||'利息计提比列填写错误,必须为14位整数，4位小数！' where khdxdh=$login_khdxdh$ and F_JAVA_RULE_NUMBER(rtrim(lxjtbl),14,4)=1 and length(lxjtbl) &gt; 0
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_exists_target"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=t.error||'数据已存在!' where exists(select 1 from SGLR_BLDKQSMX tar ,KHDX_HY KHDX_HY0 where 1=1 and cast(t.qsrq as INTEGER)=tar.QSRQ and t.zhdh =tar.ZHDH and t.hydh=KHDX_HY0.HYDH and KHDX_HY0.KHDXDH=tar.KHDXDH and t.khdxdh=$login_khdxdh$ and (length(t.error)=0 or t.error is null ))
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_exists_same_temp"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update bldkqsjlgldr_temp t set t.error=error||'存在重复数据!' where exists( select 1 from (select zhdh,hydh from bldkqsjlgldr_temp dr where khdxdh=$login_khdxdh$ group by zhdh,hydh having count(1)<![CDATA[>]]>1 ) dr where 1=1 and t.zhdh=dr.zhdh and t.hydh=dr.hydh) and khdxdh=$login_khdxdh$
+    </update>  
+    <insert parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_create_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> CREATE TABLE bldkqsjlgldr_temp ( zhdh varchar(100) , zhhm varchar(100) , dkqx varchar(100) , qsfs varchar(100) , bllx varchar(100) , hydh varchar(100) , qsrq varchar(100) , wjfl varchar(100) , yqrq varchar(100) , shbj varchar(100) , bjjtbl varchar(100) , shlx varchar(100) , lxjtbl varchar(100) , jtgz varchar(100) , bzsm varchar(100) , khdxdh integer,error varchar(1000) )
+    </insert>  
+    <delete parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_delete_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from bldkqsjlgldr_temp where khdxdh=$login_khdxdh$
+    </delete>  
+    <insert parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_insert_into_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into BLDKQSJLGLDR_TEMP (zhdh,zhhm,dkqx,qsfs,bllx,hydh,qsrq,wjfl,yqrq,shbj,bjjtbl,shlx,lxjtbl,jtgz,bzsm,khdxdh,error) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+    </insert>  
+    <select parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_exists_error_msg" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from bldkqsjlgldr_temp where length(error) <![CDATA[>]]> 0 and khdxdh = $login_khdxdh$
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn0.bldkqsjlgldr_exists_same_data"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from bldkqsjlgldr_temp where length(error) <![CDATA[>]]> 0 and error != '数据已存在!' and khdxdh = $login_khdxdh$
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn0.bldkqsjlgldr_select_error_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/cancel.jpg" border="0"/<![CDATA[>]]>' as zt, zhdh,zhhm,dkqx,qsfs,bllx,hydh,qsrq,wjfl,yqrq,shbj,bjjtbl,shlx,lxjtbl,jtgz,bzsm,khdxdh,error from bldkqsjlgldr_temp where khdxdh=$login_khdxdh$ and length(error)<![CDATA[>]]>0
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn0.bldkqsjlgldr_count_all_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, zhdh,zhhm,dkqx,qsfs,bllx,hydh,qsrq,wjfl,yqrq,shbj,bjjtbl,shlx,lxjtbl,jtgz,bzsm,khdxdh,error from bldkqsjlgldr_temp where khdxdh=$login_khdxdh$ )a
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn0.bldkqsjlgldr_select_all_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, zhdh,zhhm,dkqx,qsfs,bllx,hydh,qsrq,wjfl,yqrq,shbj,bjjtbl,shlx,lxjtbl,jtgz,bzsm,khdxdh,error from bldkqsjlgldr_temp where khdxdh=$login_khdxdh$
+    </select>  
+    <insert parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_insert_into_target"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into SGLR_BLDKQSMX(QSRQ,ZHDH,KHDXDH,ZHHM,DKQX,QSFS,WJFL,SHBJ,SHLX,BLLX,YQRQ,BJJTBL,LXJTBL,JTGZ,BZSM,CZR,CZSJ) select cast (t.qsrq as INTEGER), t.zhdh ,KHDX_HY0.KHDXDH, t.zhhm , t.dkqx , t.qsfs , t.wjfl ,cast (t.shbj as DECIMAL(25,4)),cast (t.shlx as DECIMAL(25,4)), t.bllx ,cast (t.yqrq as INTEGER),cast (t.bjjtbl as DECIMAL(19,5)),cast (t.lxjtbl as DECIMAL(19,5)),cast (t.jtgz as DECIMAL(25,4)), t.bzsm ,'$login_hydh$',F_GET_SYSTIME() from bldkqsjlgldr_temp t ,KHDX_HY KHDX_HY0 where t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null) and KHDX_HY0.HYDH=cast (t.hydh as VARCHAR(20))
+    </insert>  
+    <delete parameterClass="java.util.Map" id="dn0.bldkqsjlgldr_delete_before_override"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from SGLR_BLDKQSMX tar where exists(select 1 from bldkqsjlgldr_temp t ,KHDX_HY KHDX_HY0 where 1=1 and cast(t.qsrq as INTEGER)=tar.QSRQ and t.zhdh=tar.ZHDH and t.hydh=KHDX_HY0.HYDH and KHDX_HY0.KHDXDH=tar.KHDXDH and t.khdxdh=$login_khdxdh$ )
+    </delete> 
+  </sqlMap> 
+</pageSetting>

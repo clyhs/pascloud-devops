@@ -1,143 +1,130 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="jglrmxb" title="机构利润明细表" type="query" version="2.0.0">
-  <conPart>
-    <tags>
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期">
-        <attribute key="dateFmt" value="yyyyMMdd" />
-        <attribute key="defValType" value="sysDate" />
-        <attribute key="editable" value="true" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="tjrq" />
-      </tag>
-      <tag row="0" col="1" colspan="1" rowspan="1" name="NewJg" label="机构">
-        <attribute key="cascadeCheck" value="true" />
-        <attribute key="editable" value="true" />
-        <attribute key="ckbz" value="jg_ckhy" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="jgkhdxdh" />
-        <attribute key="multiple" value="true" />
-      </tag>
-      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="账户类型">
-        <attribute key="width" value="120px;" />
-        <attribute key="dmmc" value="zhlx" />
-        <attribute key="editable" value="true" />
-        <attribute key="name" value="zhlx" />
-        <attribute key="isAll" value="false" />
-        <attribute key="multiple" value="false" />
-      </tag>
-      <tag row="1" col="0" colspan="1" rowspan="1" name="Dmms" label="统计口径">
-        <attribute key="defVal" value="1" />
-        <attribute key="width" value="120px;" />
-        <attribute key="dmmc" value="tjkj" />
-        <attribute key="editable" value="true" />
-        <attribute key="name" value="tjkj" />
-        <attribute key="isAll" value="false" />
-        <attribute key="multiple" value="false" />
-      </tag>
-      <tag row="1" col="1" colspan="1" rowspan="1" name="MSQL4Select" label="时段标识">
-        <attribute key="isMultiple" value="false" />
-        <attribute key="width" value="120px;" />
-        <attribute key="isSearch" value="false" />
-        <attribute key="sql" value="select dmz as key,dmms as value from csb_dmms where dmmc='ZBSDBS' and dmz in('5','6','7') order by dmz" />
-        <attribute key="isRequired" value="false" />
-        <attribute key="name" value="sdbs" />
-        <attribute key="isAll" value="false" />
-        <attribute key="isEditable" value="true" />
-      </tag>
-      <tag row="1" col="2" colspan="1" rowspan="1" name="Dmms" label="机构等级">
-        <attribute key="width" value="120px;" />
-        <attribute key="dmmc" value="jgdj" />
-        <attribute key="editable" value="true" />
-        <attribute key="name" value="jgdj" />
-        <attribute key="isAll" value="true" />
-        <attribute key="multiple" value="false" />
-      </tag>
-    </tags>
-  </conPart>
-  <table id="jglrmxb_xsjy1jgj" title="新数据源1结果集" page="true">
-    <col id="TJRQ" title="统计日期" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="1383038125533" title="FTP利润" align="left" type="string" width="480" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false">
-      <col id="FTPSR" title="FTP收入" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="ZBJSR" title="准备金收入" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false" />
-      <col id="TQZQLXHK" title="提前支取利息扣回" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LXZC" title="利息支出" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    </col>
-    <col id="HJ" title="合计" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-  </table>
-  <table id="jglrmxb_xsjy2jgj" title="新数据源2结果集" page="true">
-    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="1383038085517" title="FTP利润" align="left" type="string" width="480" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false">
-      <col id="LXSR" title="利息收入" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false" />
-      <col id="FTPZC" title="FTP支出" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false" />
-      <col id="JZZB" title="减值准备" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false" />
-      <col id="YSWSLXXZ" title="应收未收利息新增" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false" />
-    </col>
-    <col id="HJ" title="合计" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-  </table>
-  <sqlMap namespace="studio.jglrmxb">
-    <select id="dn12.jglrmxbList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      <isEqual property="zhlx" compareValue="1">
-        select tjrq,jgmc,jgdh,ftpsr,zbjsr,tqzqlxhk,lxzc,(ftpsr+zbjsr+tqzqlxhk-lxzc) hj from(   select yj.tjrq,jg.jgdh,jg.jgmc,   sum(case when gl.pxxh=1 then yj.zbz else 0 end) ftpsr,   sum(case when gl.pxxh=2 then yj.zbz else 0 end) zbjsr,   sum(case when gl.pxxh=3 then yj.zbz else 0 end) tqzqlxhk,   sum(case when gl.pxxh=4 then yj.zbz else 0 end) lxzc   from  khdx_zbbbgl gl   inner join yjzb_jg_all yj on gl.zbdh=yj.zbdh  and gl.bz=yj.bz    inner join khdx_jg jg on yj.khdxdh=jg.khdxdh
-        <isNotEmpty property="jgdj">and jg.jgdj='$jgdj$'</isNotEmpty>
-        inner join table (FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,0) ) qxjg on qxjg.khdxdh=jg.khdxdh   where 1=1
-        <isNotEmpty property="tjrq">and  yj.tjrq=$tjrq$</isNotEmpty>
-        <isNotEmpty property="tjkj">and yj.tjkj='$tjkj$'</isNotEmpty>
-        <isNotEmpty property="sdbs">and yj.sdbs='$sdbs$'</isNotEmpty>
-        and jg.khdxdh in($jgkhdxdh$) and gl.bbdh=1001   group by yj.tjrq,jg.jgdh,jg.jgmc,jg.pxbz   order by jg.jgdh,jg.pxbz ) z
-      </isEqual>
-      <isEqual property="zhlx" compareValue="2">
-        select tjrq, jgmc, jgdh, lxsr, ftpzc, jzzb, yswslxxz, (lxsr-ftpzc-jzzb-yswslxxz) hj  from(      select yj.tjrq, jg.jgmc, jg.jgdh,      sum(case when gl.pxxh=1 then yj.zbz else 0 end) lxsr,      sum(case when gl.pxxh=2 then yj.zbz else 0 end) ftpzc,      sum(case when gl.pxxh=3 then yj.zbz else 0 end) jzzb,      sum(case when gl.pxxh=4 then yj.zbz else 0 end) yswslxxz      from khdx_zbbbgl gl      inner join yjzb_jg_all yj on gl.zbdh=yj.zbdh and gl.bz=yj.bz      inner join khdx_jg jg on yj.khdxdh=jg.khdxdh
-        <isNotEmpty property="jgdj">and jg.jgdj='$jgdj$'</isNotEmpty>
-        inner join table (fn_getsjjg_java_qx($tjrq$, $login_khdxdh$, 0) ) qxjg on qxjg.khdxdh=jg.khdxdh      where 1=1
-        <isNotEmpty property="tjrq">and  yj.tjrq=$tjrq$</isNotEmpty>
-        <isNotEmpty property="tjkj">and yj.tjkj='$tjkj$'</isNotEmpty>
-        <isNotEmpty property="sdbs">and yj.sdbs='$sdbs$'</isNotEmpty>
-        and jg.khdxdh in($jgkhdxdh$) and gl.bbdh=1002      group by yj.tjrq, jg.jgdh, jg.jgmc, jg.pxbz      order by jg.jgdh, jg.pxbz desc  ) z
-      </isEqual>
-    </select>
-    <select id="dn12.jglrmxbCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from (
-      <isEqual property="zhlx" compareValue="1">
-        select tjrq,jgmc,jgdh,ftpsr,zbjsr,tqzqlxhk,lxzc,(ftpsr+zbjsr+tqzqlxhk-lxzc) hj from(   select yj.tjrq,jg.jgdh,jg.jgmc,   sum(case when gl.pxxh=1 then yj.zbz else 0 end) ftpsr,   sum(case when gl.pxxh=2 then yj.zbz else 0 end) zbjsr,   sum(case when gl.pxxh=3 then yj.zbz else 0 end) tqzqlxhk,   sum(case when gl.pxxh=4 then yj.zbz else 0 end) lxzc   from  khdx_zbbbgl gl   inner join yjzb_jg_all yj on gl.zbdh=yj.zbdh  and gl.bz=yj.bz    inner join khdx_jg jg on yj.khdxdh=jg.khdxdh
-        <isNotEmpty property="jgdj">and jg.jgdj='$jgdj$'</isNotEmpty>
-        inner join table (FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,0) ) qxjg on qxjg.khdxdh=jg.khdxdh   where 1=1
-        <isNotEmpty property="tjrq">and  yj.tjrq=$tjrq$</isNotEmpty>
-        <isNotEmpty property="tjkj">and yj.tjkj='$tjkj$'</isNotEmpty>
-        <isNotEmpty property="sdbs">and yj.sdbs='$sdbs$'</isNotEmpty>
-        and jg.khdxdh in($jgkhdxdh$) and gl.bbdh=1001   group by yj.tjrq,jg.jgdh,jg.jgmc,jg.pxbz   order by jg.jgdh,jg.pxbz ) z
-      </isEqual>
-      <isEqual property="zhlx" compareValue="2">
-        select tjrq, jgmc, jgdh, lxsr, ftpzc, jzzb, yswslxxz, (lxsr-ftpzc-jzzb-yswslxxz) hj  from(      select yj.tjrq, jg.jgmc, jg.jgdh,      sum(case when gl.pxxh=1 then yj.zbz else 0 end) lxsr,      sum(case when gl.pxxh=2 then yj.zbz else 0 end) ftpzc,      sum(case when gl.pxxh=3 then yj.zbz else 0 end) jzzb,      sum(case when gl.pxxh=4 then yj.zbz else 0 end) yswslxxz      from khdx_zbbbgl gl      inner join yjzb_jg_all yj on gl.zbdh=yj.zbdh and gl.bz=yj.bz      inner join khdx_jg jg on yj.khdxdh=jg.khdxdh
-        <isNotEmpty property="jgdj">and jg.jgdj='$jgdj$'</isNotEmpty>
-        inner join table (fn_getsjjg_java_qx($tjrq$, $login_khdxdh$, 0) ) qxjg on qxjg.khdxdh=jg.khdxdh      where 1=1
-        <isNotEmpty property="tjrq">and  yj.tjrq=$tjrq$</isNotEmpty>
-        <isNotEmpty property="tjkj">and yj.tjkj='$tjkj$'</isNotEmpty>
-        <isNotEmpty property="sdbs">and yj.sdbs='$sdbs$'</isNotEmpty>
-        and jg.khdxdh in($jgkhdxdh$) and gl.bbdh=1002      group by yj.tjrq, jg.jgdh, jg.jgmc, jg.pxbz      order by jg.jgdh, jg.pxbz desc  ) z
-      </isEqual>
-      ) t
-    </select>
-    <select id="dn12.jglrmxb_MSQL4SELECT_sdbs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc='ZBSDBS' and dmz in('5','6','7') order by dmz</select>
-  </sqlMap>
-  <finger custPlotMth="">
-    <plotType />
-    <needPlot>false</needPlot>
-    <plotTitle />
-  </finger>
-  <rels>
-    <items id="jglrmxb_xsjy1jgj">
-      <item name="zhlx" compareValue="1" operate="isEqual" />
-    </items>
-    <items id="jglrmxb_xsjy2jgj">
-      <item name="zhlx" compareValue="2" operate="isEqual" />
-    </items>
-  </rels>
+
+<pageSetting id="jglrmxb" title="机构利润明细表" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期"> 
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="tjrq"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewJg" label="机构"> 
+        <attribute key="cascadeCheck" value="true"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="ckbz" value="jg_ckhy"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="jgkhdxdh"/>  
+        <attribute key="multiple" value="true"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="账户类型"> 
+        <attribute key="width" value="120px;"/>  
+        <attribute key="dmmc" value="zhlx"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="zhlx"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="multiple" value="false"/> 
+      </tag>  
+      <tag row="1" col="0" colspan="1" rowspan="1" name="Dmms" label="统计口径"> 
+        <attribute key="defVal" value="1"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="dmmc" value="tjkj"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="tjkj"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="multiple" value="false"/> 
+      </tag>  
+      <tag row="1" col="1" colspan="1" rowspan="1" name="MSQL4Select" label="时段标识"> 
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="isSearch" value="false"/>  
+        <attribute key="sql" value="select dmz as key,dmms as value from csb_dmms where dmmc='ZBSDBS' and dmz in('5','6','7') order by dmz"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="sdbs"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="isEditable" value="true"/> 
+      </tag>  
+      <tag row="1" col="2" colspan="1" rowspan="1" name="Dmms" label="机构等级"> 
+        <attribute key="width" value="120px;"/>  
+        <attribute key="dmmc" value="jgdj"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="jgdj"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="multiple" value="false"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="jglrmxb_xsjy1jgj" title="新数据源1结果集" page="true"> 
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="1383038125533" title="FTP利润" align="left" type="string" width="480" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"> 
+      <col id="FTPSR" title="FTP收入" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="ZBJSR" title="准备金收入" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+      <col id="TQZQLXHK" title="提前支取利息扣回" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LXZC" title="利息支出" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col>  
+    <col id="HJ" title="合计" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <table id="jglrmxb_xsjy2jgj" title="新数据源2结果集" page="true"> 
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="1383038085517" title="FTP利润" align="left" type="string" width="480" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"> 
+      <col id="LXSR" title="利息收入" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+      <col id="FTPZC" title="FTP支出" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+      <col id="JZZB" title="减值准备" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+      <col id="YSWSLXXZ" title="应收未收利息新增" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false"/> 
+    </col>  
+    <col id="HJ" title="合计" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <sqlMap namespace="studio.jglrmxb"> 
+    <select id="dn0.jglrmxbList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
+      <isEqual property="zhlx" compareValue="1">select tjrq,jgmc,jgdh,ftpsr,zbjsr,tqzqlxhk,lxzc,(ftpsr+zbjsr+tqzqlxhk-lxzc) hj from( select yj.tjrq,jg.jgdh,jg.jgmc, sum(case when gl.pxxh=1 then yj.zbz else 0 end) ftpsr, sum(case when gl.pxxh=2 then yj.zbz else 0 end) zbjsr, sum(case when gl.pxxh=3 then yj.zbz else 0 end) tqzqlxhk, sum(case when gl.pxxh=4 then yj.zbz else 0 end) lxzc from khdx_zbbbgl gl inner join yjzb_jg_all yj on gl.zbdh=yj.zbdh and gl.bz=yj.bz inner join khdx_jg jg on yj.khdxdh=jg.khdxdh 
+        <isNotEmpty property="jgdj">and jg.jgdj='$jgdj$'</isNotEmpty> inner join table (FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,0) ) qxjg on qxjg.khdxdh=jg.khdxdh where 1=1 
+        <isNotEmpty property="tjrq">and yj.tjrq=$tjrq$</isNotEmpty>  
+        <isNotEmpty property="tjkj">and yj.tjkj='$tjkj$'</isNotEmpty>  
+        <isNotEmpty property="sdbs">and yj.sdbs='$sdbs$'</isNotEmpty> and jg.khdxdh in($jgkhdxdh$) and gl.bbdh=1001 group by yj.tjrq,jg.jgdh,jg.jgmc,jg.pxbz order by jg.jgdh,jg.pxbz ) z
+      </isEqual>  
+      <isEqual property="zhlx" compareValue="2">select tjrq, jgmc, jgdh, lxsr, ftpzc, jzzb, yswslxxz, (lxsr-ftpzc-jzzb-yswslxxz) hj from( select yj.tjrq, jg.jgmc, jg.jgdh, sum(case when gl.pxxh=1 then yj.zbz else 0 end) lxsr, sum(case when gl.pxxh=2 then yj.zbz else 0 end) ftpzc, sum(case when gl.pxxh=3 then yj.zbz else 0 end) jzzb, sum(case when gl.pxxh=4 then yj.zbz else 0 end) yswslxxz from khdx_zbbbgl gl inner join yjzb_jg_all yj on gl.zbdh=yj.zbdh and gl.bz=yj.bz inner join khdx_jg jg on yj.khdxdh=jg.khdxdh 
+        <isNotEmpty property="jgdj">and jg.jgdj='$jgdj$'</isNotEmpty> inner join table (fn_getsjjg_java_qx($tjrq$, $login_khdxdh$, 0) ) qxjg on qxjg.khdxdh=jg.khdxdh where 1=1 
+        <isNotEmpty property="tjrq">and yj.tjrq=$tjrq$</isNotEmpty>  
+        <isNotEmpty property="tjkj">and yj.tjkj='$tjkj$'</isNotEmpty>  
+        <isNotEmpty property="sdbs">and yj.sdbs='$sdbs$'</isNotEmpty> and jg.khdxdh in($jgkhdxdh$) and gl.bbdh=1002 group by yj.tjrq, jg.jgdh, jg.jgmc, jg.pxbz order by jg.jgdh, jg.pxbz desc ) z
+      </isEqual> 
+    </select>  
+    <select id="dn0.jglrmxbCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
+      <isEqual property="zhlx" compareValue="1">select tjrq,jgmc,jgdh,ftpsr,zbjsr,tqzqlxhk,lxzc,(ftpsr+zbjsr+tqzqlxhk-lxzc) hj from( select yj.tjrq,jg.jgdh,jg.jgmc, sum(case when gl.pxxh=1 then yj.zbz else 0 end) ftpsr, sum(case when gl.pxxh=2 then yj.zbz else 0 end) zbjsr, sum(case when gl.pxxh=3 then yj.zbz else 0 end) tqzqlxhk, sum(case when gl.pxxh=4 then yj.zbz else 0 end) lxzc from khdx_zbbbgl gl inner join yjzb_jg_all yj on gl.zbdh=yj.zbdh and gl.bz=yj.bz inner join khdx_jg jg on yj.khdxdh=jg.khdxdh 
+        <isNotEmpty property="jgdj">and jg.jgdj='$jgdj$'</isNotEmpty> inner join table (FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,0) ) qxjg on qxjg.khdxdh=jg.khdxdh where 1=1 
+        <isNotEmpty property="tjrq">and yj.tjrq=$tjrq$</isNotEmpty>  
+        <isNotEmpty property="tjkj">and yj.tjkj='$tjkj$'</isNotEmpty>  
+        <isNotEmpty property="sdbs">and yj.sdbs='$sdbs$'</isNotEmpty> and jg.khdxdh in($jgkhdxdh$) and gl.bbdh=1001 group by yj.tjrq,jg.jgdh,jg.jgmc,jg.pxbz order by jg.jgdh,jg.pxbz ) z
+      </isEqual>  
+      <isEqual property="zhlx" compareValue="2">select tjrq, jgmc, jgdh, lxsr, ftpzc, jzzb, yswslxxz, (lxsr-ftpzc-jzzb-yswslxxz) hj from( select yj.tjrq, jg.jgmc, jg.jgdh, sum(case when gl.pxxh=1 then yj.zbz else 0 end) lxsr, sum(case when gl.pxxh=2 then yj.zbz else 0 end) ftpzc, sum(case when gl.pxxh=3 then yj.zbz else 0 end) jzzb, sum(case when gl.pxxh=4 then yj.zbz else 0 end) yswslxxz from khdx_zbbbgl gl inner join yjzb_jg_all yj on gl.zbdh=yj.zbdh and gl.bz=yj.bz inner join khdx_jg jg on yj.khdxdh=jg.khdxdh 
+        <isNotEmpty property="jgdj">and jg.jgdj='$jgdj$'</isNotEmpty> inner join table (fn_getsjjg_java_qx($tjrq$, $login_khdxdh$, 0) ) qxjg on qxjg.khdxdh=jg.khdxdh where 1=1 
+        <isNotEmpty property="tjrq">and yj.tjrq=$tjrq$</isNotEmpty>  
+        <isNotEmpty property="tjkj">and yj.tjkj='$tjkj$'</isNotEmpty>  
+        <isNotEmpty property="sdbs">and yj.sdbs='$sdbs$'</isNotEmpty> and jg.khdxdh in($jgkhdxdh$) and gl.bbdh=1002 group by yj.tjrq, jg.jgdh, jg.jgmc, jg.pxbz order by jg.jgdh, jg.pxbz desc ) z
+      </isEqual> ) t
+    </select>  
+    <select id="dn0.jglrmxb_MSQL4SELECT_sdbs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc='ZBSDBS' and dmz in('5','6','7') order by dmz</select> 
+  </sqlMap>  
+  <finger custPlotMth=""> 
+    <plotType/>  
+    <needPlot>false</needPlot>  
+    <plotTitle/> 
+  </finger>  
+  <rels> 
+    <items id="jglrmxb_xsjy1jgj"> 
+      <item name="zhlx" compareValue="1" operate="isEqual"/> 
+    </items>  
+    <items id="jglrmxb_xsjy2jgj"> 
+      <item name="zhlx" compareValue="2" operate="isEqual"/> 
+    </items> 
+  </rels>  
   <javascript><![CDATA[jQuery(document).ready(function () {
 
 });
@@ -145,6 +132,5 @@
 //自定义验证，在提交时执行。通过返回true，否则返回false
 function customValidate(){
  return true;
-}]]></javascript>
+}]]></javascript> 
 </pageSetting>
-

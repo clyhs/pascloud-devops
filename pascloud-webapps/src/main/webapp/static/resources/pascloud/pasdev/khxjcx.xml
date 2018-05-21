@@ -1,117 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="khxjcx" title="客户星级查询" type="query" version="2.0.0">
-  <conPart>
-    <tags>
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期">
-        <attribute key="dateFmt" value="yyyyMMdd" />
-        <attribute key="defValType" value="sysDate" />
-        <attribute key="editable" value="true" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="tjrq" />
-        <attribute key="minDate" value="no" />
-      </tag>
-      <tag row="0" col="1" colspan="1" rowspan="1" name="NewJg" label="开户机构">
-        <attribute key="cascadeCheck" value="true" />
-        <attribute key="editable" value="true" />
-        <attribute key="ckbz" value="jg_ckhy" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="jgkhdxdh" />
-        <attribute key="multiple" value="true" />
-      </tag>
-      <tag row="0" col="2" colspan="1" rowspan="1" name="Text" label="客户号">
-        <attribute key="editable" value="true" />
-        <attribute key="name" value="khh" />
-        <attribute key="readonly" value="false" />
-      </tag>
-      <tag row="0" col="3" colspan="1" rowspan="1" name="Text" label="客户名称">
-        <attribute key="editable" value="true" />
-        <attribute key="name" value="khmc" />
-        <attribute key="readonly" value="false" />
-      </tag>
-      <tag row="0" col="4" colspan="1" rowspan="1" name="Hidden" label="">
-        <attribute key="defVal" value="khxj_pdjgxmmx_yyyymm" />
-        <attribute key="name" value="yearMouth" />
-      </tag>
-      <tag row="1" col="0" colspan="1" rowspan="1" name="MSQL4Select" label="评定方案">
-        <attribute key="isMultiple" value="false" />
-        <attribute key="width" value="120px;" />
-        <attribute key="isSearch" value="false" />
-        <attribute key="sql" value="SELECT FA.PDBH AS KEY, FA.PDMC AS VALUE FROM KHXJ_PDFA FA  WHERE FA.PDNF=cast(SUBSTR('$tjrq$',1,4) as integer) order by FA.PDBH" />
-        <attribute key="isRequired" value="false" />
-        <attribute key="name" value="pdfabh" />
-        <attribute key="isAll" value="false" />
-        <attribute key="isEditable" value="true" />
-      </tag>
-      <tag row="1" col="1" colspan="1" rowspan="1" name="MSQL4Select" label="星级名称">
-        <attribute key="parents" value="pdfabh" />
-        <attribute key="isMultiple" value="false" />
-        <attribute key="width" value="120px;" />
-        <attribute key="isSearch" value="false" />
-        <attribute key="sql" value="select distinct max(xj.xjbh) as key, xj.xjmc as value from khxj_pdxj xj  where xj.pdbh=$pdfabh$  group by xj.xjmc  order by key" />
-        <attribute key="isRequired" value="false" />
-        <attribute key="name" value="xjmc" />
-        <attribute key="isAll" value="true" />
-        <attribute key="isEditable" value="true" />
-      </tag>
-      <tag row="1" col="2" colspan="1" rowspan="1" name="Hidden" label="">
-        <attribute key="name" value="nf" />
-      </tag>
-    </tags>
-  </conPart>
-  <table id="khxjcx_xsjy1jgj" title="新数据源1结果集" page="noCount" isDym="true">
-    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" orderby="desc" mergeCells="false" footerCells="false" />
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="" mergeCells="false" footerCells="false" />
-    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KHMC" title="客户名称" align="left" type="string" width="200" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="showMx" />
-    <col id="KHLB" title="客户类别" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="PDFA" title="评定方案" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" orderby="desc" mergeCells="false" footerCells="false" />
-    <col id="XJMC" title="星级名称" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="$XMMC$" title="XMMC" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" refcolumn="XMBH" orderby="desc" mergeCells="false" footerCells="false" dym="true">
-      <col id="XMZ" title="项目值" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    </col>
-    <col id="PDBZ" title="评定标准" align="left" type="string" width="250" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="PDBH" title="评定编号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="XJBH" title="XJBH" align="left" type="hidden" width="120" frozen="false" format="" exp="true" showDymCol="false" orderby="asc" mergeCells="false" footerCells="false" />
-  </table>
-  <sqlMap namespace="studio.khxjcx">
-    <select id="dn12.khxjcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      SELECT pdjg.TJRQ AS TJRQ,        JG.JGDH AS JGDH,        jg.jgmc as jgmc,        pdjg.KHH AS KHH,        pdjg.KHMC AS KHMC,        DMMS.DMMS AS KHLB,        PDFA.PDMC AS PDFA,        PDJG.XJMC AS XJMC,        MX.XMMC AS XMMC,        MX.XMZ AS XMZ,        pdjg.PDBZMS AS PDBZ,        pdfa.pdbh as pdbh,        mx.xmbh as xmbh,        pdjg.xjbh as xjbh FROM   khxj_pdjg_$nf$ pdjg INNER JOIN KHDX_JG JG ON JG.KHDXDH = pdjg.JGKHDXDH INNER JOIN CSB_DMMS DMMS ON DMMS.DMMC='DJPDKHLB' AND DMMS.DMZ=pdjg.KHLB INNER JOIN KHXJ_PDFA PDFA ON PDFA.PDBH = pdjg.PDBH INNER JOIN $yearMouth$ MX ON MX.PDBH = pdjg.PDBH    and mx.khh = pdjg.khh and mx.tjrq = PDJG.TJRQ where 1=1
-      <isNotEmpty property="tjrq">and  pdjg.tjrq= $tjrq$</isNotEmpty>
-      <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
-      <isNotEmpty property="khh">and pdjg.khh like '%$khh$%'</isNotEmpty>
-      <isNotEmpty property="khmc">and pdjg.khmc like '%$khmc$%'</isNotEmpty>
-      <isNotEmpty property="pdfabh">and pdfa.pdbh = $pdfabh$</isNotEmpty>
-      <isNotEmpty property="xjmc">and pdjg.xjbh = '$xjmc$'</isNotEmpty>
-      order by pdjg.xjbh,jg.jgdh,pdjg.XJMC
-    </select>
-    <select id="dn12.khxjcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from ( SELECT pdjg.TJRQ AS TJRQ,        JG.JGDH AS JGDH,        jg.jgmc as jgmc,        pdjg.KHH AS KHH,        pdjg.KHMC AS KHMC,        DMMS.DMMS AS KHLB,        PDFA.PDMC AS PDFA,        PDJG.XJMC AS XJMC,        MX.XMMC AS XMMC,        MX.XMZ AS XMZ,        pdjg.PDBZMS AS PDBZ,        pdfa.pdbh as pdbh,        mx.xmbh as xmbh,        pdjg.xjbh as xjbh FROM   khxj_pdjg_$nf$ pdjg INNER JOIN KHDX_JG JG ON JG.KHDXDH = pdjg.JGKHDXDH INNER JOIN CSB_DMMS DMMS ON DMMS.DMMC='DJPDKHLB' AND DMMS.DMZ=pdjg.KHLB INNER JOIN KHXJ_PDFA PDFA ON PDFA.PDBH = pdjg.PDBH INNER JOIN $yearMouth$ MX ON MX.PDBH = pdjg.PDBH    and mx.khh = pdjg.khh and mx.tjrq = PDJG.TJRQ where 1=1
-      <isNotEmpty property="tjrq">and  pdjg.tjrq= $tjrq$</isNotEmpty>
-      <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
-      <isNotEmpty property="khh">and pdjg.khh like '%$khh$%'</isNotEmpty>
-      <isNotEmpty property="khmc">and pdjg.khmc like '%$khmc$%'</isNotEmpty>
-      <isNotEmpty property="pdfabh">and pdfa.pdbh = $pdfabh$</isNotEmpty>
-      <isNotEmpty property="xjmc">and pdjg.xjbh = '$xjmc$'</isNotEmpty>
-      order by pdjg.xjbh,jg.jgdh,pdjg.XJMC ) t
-    </select>
-    <select id="dn12.khxjcx_MSQL4SELECT_pdfabh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT FA.PDBH AS KEY, FA.PDMC AS VALUE FROM KHXJ_PDFA FA  WHERE FA.PDNF=cast(SUBSTR('$tjrq$',1,4) as integer) order by FA.PDBH</select>
-    <select id="dn12.khxjcx_MSQL4SELECT_xjmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      /**!mycat:datanode=$db$**/ select distinct max(xj.xjbh) as key, xj.xjmc as value from khxj_pdxj xj  where 1=1
-      <isNotEmpty property="pdfabh">and  xj.pdbh=$pdfabh$</isNotEmpty>
-      group by xj.xjmc  order by key
-    </select>
-  </sqlMap>
-  <finger custPlotMth="">
-    <plotType />
-    <needPlot>false</needPlot>
-    <plotTitle />
-  </finger>
-  <rels>
-    <items id="khxjcx_xsjy1jgj" />
-  </rels>
+
+<pageSetting id="khxjcx" title="客户星级查询" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期"> 
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="tjrq"/>  
+        <attribute key="minDate" value="no"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewJg" label="开户机构"> 
+        <attribute key="cascadeCheck" value="true"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="ckbz" value="jg_ckhy"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="jgkhdxdh"/>  
+        <attribute key="multiple" value="true"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Text" label="客户号"> 
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="khh"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Text" label="客户名称"> 
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="khmc"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="0" col="4" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="defVal" value="khxj_pdjgxmmx_yyyymm"/>  
+        <attribute key="name" value="yearMouth"/> 
+      </tag>  
+      <tag row="1" col="0" colspan="1" rowspan="1" name="MSQL4Select" label="评定方案"> 
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="isSearch" value="false"/>  
+        <attribute key="sql" value="SELECT FA.PDBH AS KEY, FA.PDMC AS VALUE FROM KHXJ_PDFA FA  WHERE FA.PDNF=cast(SUBSTR('$tjrq$',1,4) as integer) order by FA.PDBH"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="pdfabh"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="isEditable" value="true"/> 
+      </tag>  
+      <tag row="1" col="1" colspan="1" rowspan="1" name="MSQL4Select" label="星级名称"> 
+        <attribute key="parents" value="pdfabh"/>  
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="isSearch" value="false"/>  
+        <attribute key="sql" value="select distinct max(xj.xjbh) as key, xj.xjmc as value from khxj_pdxj xj  where xj.pdbh=$pdfabh$  group by xj.xjmc  order by key"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="xjmc"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="isEditable" value="true"/> 
+      </tag>  
+      <tag row="1" col="2" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="name" value="nf"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="khxjcx_xsjy1jgj" title="新数据源1结果集" page="noCount" isDym="true"> 
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" orderby="desc" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHMC" title="客户名称" align="left" type="string" width="200" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="showMx"/>  
+    <col id="KHLB" title="客户类别" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="PDFA" title="评定方案" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" orderby="desc" mergeCells="false" footerCells="false"/>  
+    <col id="XJMC" title="星级名称" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="$XMMC$" title="XMMC" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" refcolumn="XMBH" orderby="desc" mergeCells="false" footerCells="false" dym="true"> 
+      <col id="XMZ" title="项目值" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col>  
+    <col id="PDBZ" title="评定标准" align="left" type="string" width="250" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="PDBH" title="评定编号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="XJBH" title="XJBH" align="left" type="hidden" width="120" frozen="false" format="" exp="true" showDymCol="false" orderby="asc" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <sqlMap namespace="studio.khxjcx"> 
+    <select id="dn0.khxjcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> SELECT pdjg.TJRQ AS TJRQ, JG.JGDH AS JGDH, jg.jgmc as jgmc, pdjg.KHH AS KHH, pdjg.KHMC AS KHMC, DMMS.DMMS AS KHLB, PDFA.PDMC AS PDFA, PDJG.XJMC AS XJMC, MX.XMMC AS XMMC, MX.XMZ AS XMZ, pdjg.PDBZMS AS PDBZ, pdfa.pdbh as pdbh, mx.xmbh as xmbh, pdjg.xjbh as xjbh FROM khxj_pdjg_$nf$ pdjg INNER JOIN KHDX_JG JG ON JG.KHDXDH = pdjg.JGKHDXDH INNER JOIN CSB_DMMS DMMS ON DMMS.DMMC='DJPDKHLB' AND DMMS.DMZ=pdjg.KHLB INNER JOIN KHXJ_PDFA PDFA ON PDFA.PDBH = pdjg.PDBH INNER JOIN $yearMouth$ MX ON MX.PDBH = pdjg.PDBH and mx.khh = pdjg.khh and mx.tjrq = PDJG.TJRQ where 1=1 
+      <isNotEmpty property="tjrq">and pdjg.tjrq= $tjrq$</isNotEmpty>  
+      <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>  
+      <isNotEmpty property="khh">and pdjg.khh like '%$khh$%'</isNotEmpty>  
+      <isNotEmpty property="khmc">and pdjg.khmc like '%$khmc$%'</isNotEmpty>  
+      <isNotEmpty property="pdfabh">and pdfa.pdbh = $pdfabh$</isNotEmpty>  
+      <isNotEmpty property="xjmc">and pdjg.xjbh = '$xjmc$'</isNotEmpty> order by pdjg.xjbh,jg.jgdh,pdjg.XJMC
+    </select>  
+    <select id="dn0.khxjcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( SELECT pdjg.TJRQ AS TJRQ, JG.JGDH AS JGDH, jg.jgmc as jgmc, pdjg.KHH AS KHH, pdjg.KHMC AS KHMC, DMMS.DMMS AS KHLB, PDFA.PDMC AS PDFA, PDJG.XJMC AS XJMC, MX.XMMC AS XMMC, MX.XMZ AS XMZ, pdjg.PDBZMS AS PDBZ, pdfa.pdbh as pdbh, mx.xmbh as xmbh, pdjg.xjbh as xjbh FROM khxj_pdjg_$nf$ pdjg INNER JOIN KHDX_JG JG ON JG.KHDXDH = pdjg.JGKHDXDH INNER JOIN CSB_DMMS DMMS ON DMMS.DMMC='DJPDKHLB' AND DMMS.DMZ=pdjg.KHLB INNER JOIN KHXJ_PDFA PDFA ON PDFA.PDBH = pdjg.PDBH INNER JOIN $yearMouth$ MX ON MX.PDBH = pdjg.PDBH and mx.khh = pdjg.khh and mx.tjrq = PDJG.TJRQ where 1=1 
+      <isNotEmpty property="tjrq">and pdjg.tjrq= $tjrq$</isNotEmpty>  
+      <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>  
+      <isNotEmpty property="khh">and pdjg.khh like '%$khh$%'</isNotEmpty>  
+      <isNotEmpty property="khmc">and pdjg.khmc like '%$khmc$%'</isNotEmpty>  
+      <isNotEmpty property="pdfabh">and pdfa.pdbh = $pdfabh$</isNotEmpty>  
+      <isNotEmpty property="xjmc">and pdjg.xjbh = '$xjmc$'</isNotEmpty> order by pdjg.xjbh,jg.jgdh,pdjg.XJMC ) t
+    </select>  
+    <select id="dn0.khxjcx_MSQL4SELECT_pdfabh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT FA.PDBH AS KEY, FA.PDMC AS VALUE FROM KHXJ_PDFA FA WHERE FA.PDNF=cast(SUBSTR('$tjrq$',1,4) as integer) order by FA.PDBH</select>  
+    <select id="dn0.khxjcx_MSQL4SELECT_xjmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct max(xj.xjbh) as key, xj.xjmc as value from khxj_pdxj xj where 1=1 
+      <isNotEmpty property="pdfabh">and xj.pdbh=$pdfabh$</isNotEmpty> group by xj.xjmc order by key
+    </select> 
+  </sqlMap>  
+  <finger custPlotMth=""> 
+    <plotType/>  
+    <needPlot>false</needPlot>  
+    <plotTitle/> 
+  </finger>  
+  <rels> 
+    <items id="khxjcx_xsjy1jgj"/> 
+  </rels>  
   <javascript><![CDATA[jQuery(document).ready(function () {
 var yearsMouths = $('#tjrq').val().substring(0,6);
 $('#yearMouth').val('khxj_pdjgxmmx_'+yearsMouths);
@@ -135,6 +130,5 @@ function showMx(obj){
  var paramsJasonString = "{khh:'"+obj['KHH']+"',tjrq:'"+obj['TJRQ']+"',pdbh:'"+obj['PDBH']+"',nf:'KHXJ_PDJGGXXMX_"+obj['TJRQ'].substring(0,6)+"'}";
  //alert(paramsJasonString);
  querySubQuery(paramsJasonString,"khgxddfcx",'80','40','tag')
-}]]></javascript>
+}]]></javascript> 
 </pageSetting>
-

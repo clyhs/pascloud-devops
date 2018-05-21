@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="khzbjxgzhz" title="考核指标绩效工资汇总" type="query" version="2.0.0">
-  <conPart>
-    <tags>
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="查询日期">
-        <attribute key="dateFmt" value="yyyyMM" />
-        <attribute key="defValType" value="yc" />
-        <attribute key="editable" value="true" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="qsrq" />
-        <attribute key="readonly" value="false" />
-      </tag>
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Hidden" label="">
-        <attribute key="name" value="qsrq_ym" />
-      </tag>
-      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="至">
-        <attribute key="dateFmt" value="yyyyMM" />
-        <attribute key="defValType" value="ym" />
-        <attribute key="editable" value="true" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="jsrq" />
-        <attribute key="readonly" value="false" />
-      </tag>
-      <tag row="0" col="1" colspan="1" rowspan="1" name="Hidden" label="">
-        <attribute key="name" value="jsrq_ym" />
-      </tag>
-      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="考核指标">
-        <attribute key="isMultiple" value="false" />
-        <attribute key="width" value="305px;" />
-        <attribute key="isSearch" value="true" />
-        <attribute key="sql" value="select key ,value from (select khzbdh as key, khzbmc as value from khfa_khzb_hy union all select distinct zbpz.khzbdh key ,zbpz.xmmc value from khfa_fapz fapz, khfa_khzbpz zbpz  where fapz.yyzlbh = 1 and zbpz.khzbdh &lt; 0 and fapz.fabh = zbpz.fabh ) t  order by key" />
-        <attribute key="isRequired" value="false" />
-        <attribute key="name" value="khzb" />
-        <attribute key="isAll" value="true" />
-        <attribute key="isEditable" value="true" />
-      </tag>
-    </tags>
-  </conPart>
-  <table id="khzbjxgzhz_xsjy1jgj" title="新数据源1结果集" page="true" isDym="true">
-    <col id="NF" title="年份" align="left" type="string" width="75" frozen="true" format="" showDymCol="true" mergeCells="true" footerCells="false" />
-    <col id="KHZBMC" title="考核指标名称" align="left" type="string" width="220" frozen="true" format="" showDymCol="true" mergeCells="false" footerCells="false" />
-    <col id="KHZBDH" title="KHZBDH" align="left" type="hidden" width="120" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false" />
-    <col id="$yf$" title="YF" align="left" type="string" width="175" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" dym="true">
-      <col id="YYJG" title="绩效工资(元)" align="right" type="float" width="100" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="true" />
-      <col id="ZB" title="占比(%)" align="right" type="float" width="75" frozen="false" format="##0" showDymCol="true" mergeCells="false" footerCells="true" />
-    </col>
-    <col id="QSRQ" title="起始日期" align="left" type="hidden" width="75" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JSRQ" title="结束日期" align="left" type="hidden" width="75" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
-  </table>
-  <sqlMap namespace="studio.khzbjxgzhz">
-    <select id="dn12.khzbjxgzhzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      <![CDATA[select $qsrq$ qsrq,$jsrq$ jsrq,nf,khzbdh,khzbmc,yf,yyjg,zb from (
+
+<pageSetting id="khzbjxgzhz" title="考核指标绩效工资汇总" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="查询日期"> 
+        <attribute key="dateFmt" value="yyyyMM"/>  
+        <attribute key="defValType" value="yc"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="qsrq"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="name" value="qsrq_ym"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="至"> 
+        <attribute key="dateFmt" value="yyyyMM"/>  
+        <attribute key="defValType" value="ym"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="jsrq"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="name" value="jsrq_ym"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="考核指标"> 
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="305px;"/>  
+        <attribute key="isSearch" value="true"/>  
+        <attribute key="sql" value="select key ,value from (select khzbdh as key, khzbmc as value from khfa_khzb_hy union all select distinct zbpz.khzbdh key ,zbpz.xmmc value from khfa_fapz fapz, khfa_khzbpz zbpz  where fapz.yyzlbh = 1 and zbpz.khzbdh &lt; 0 and fapz.fabh = zbpz.fabh ) t  order by key"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="khzb"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="isEditable" value="true"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="khzbjxgzhz_xsjy1jgj" title="新数据源1结果集" page="true" isDym="true"> 
+    <col id="NF" title="年份" align="left" type="string" width="75" frozen="true" format="" showDymCol="true" mergeCells="true" footerCells="false"/>  
+    <col id="KHZBMC" title="考核指标名称" align="left" type="string" width="220" frozen="true" format="" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="KHZBDH" title="KHZBDH" align="left" type="hidden" width="120" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="$yf$" title="YF" align="left" type="string" width="175" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" dym="true"> 
+      <col id="YYJG" title="绩效工资(元)" align="right" type="float" width="100" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="true"/>  
+      <col id="ZB" title="占比(%)" align="right" type="float" width="75" frozen="false" format="##0" showDymCol="true" mergeCells="false" footerCells="true"/> 
+    </col>  
+    <col id="QSRQ" title="起始日期" align="left" type="hidden" width="75" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JSRQ" title="结束日期" align="left" type="hidden" width="75" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <sqlMap namespace="studio.khzbjxgzhz"> 
+    <select id="dn0.khzbjxgzhzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select $qsrq$ qsrq,$jsrq$ jsrq,nf,khzbdh,khzbmc,yf,yyjg,zb from (
 select t.nf,t.KHZBMC,t.khzbdh,t.YF,t.YYJG,case when t.qh=0 then 0 else round(cast(t.yyjg*100 as decimal(19,3))/cast(t.qh as decimal(19,3)),2) end zb from (
 select y.nf,y.KHZBMC,y.khzbdh,y.YF,y.YYJG,sum(y.YYJG) over(partition by y.NF,y.yf) qh from (
     select nf,yf,khzbmc,khzbdh,sum(yyjg) yyjg from (
@@ -64,9 +64,8 @@ select y.nf,y.KHZBMC,y.khzbdh,y.YF,y.YYJG,sum(y.YYJG) over(partition by y.NF,y.y
                      when ym between $sysdate$ and (select ym from csb_sjw where tjrq=$sysdate$) then $sysdate$
                     else ym end as ym
                     from csb_sjw 
-                    where ym=tjrq]]>
-      <isNotEmpty property="qsrq_ym">and tjrq between $qsrq_ym$ and $jsrq_ym$</isNotEmpty>
-      <![CDATA[) sjw
+                    where ym=tjrq]]>  
+      <isNotEmpty property="qsrq_ym">and tjrq between $qsrq_ym$ and $jsrq_ym$</isNotEmpty>  <![CDATA[) sjw
         inner join KHFA_YYJG_HY yyjg on sjw.YM=yyjg.TJRQ
         left join (
           select khzbdh, khzbmc from khfa_khzb_hy
@@ -83,9 +82,8 @@ select y.nf,y.KHZBMC,y.khzbdh,y.YF,y.YYJG,sum(y.YYJG) over(partition by y.NF,y.y
     
 
 )y 
-)t where 1=1]]>
-      <isNotEmpty property="khzb">and  t.khzbdh=$khzb$</isNotEmpty>
-      <![CDATA[union all
+)t where 1=1]]>  
+      <isNotEmpty property="khzb">and t.khzbdh=$khzb$</isNotEmpty>  <![CDATA[union all
 
 select t.nf,t.KHZBMC,t.khzbdh,'月份合计' YF,sum(t.YYJG) yyjg,
 case when sum(t.qh)=0 then 0 else round(cast(sum(t.yyjg)*100 as decimal(19,3))/cast(sum(t.qh) as decimal(19,3)),2) end zb
@@ -102,9 +100,8 @@ select y.nf,y.KHZBMC,y.khzbdh,y.YF,y.YYJG,sum(y.YYJG) over(partition by y.NF,y.y
                      when ym between $sysdate$ and (select ym from csb_sjw where tjrq=$sysdate$) then $sysdate$
                     else ym end as ym
                     from csb_sjw 
-                    where ym=tjrq]]>
-      <isNotEmpty property="qsrq_ym">and tjrq between $qsrq_ym$ and $jsrq_ym$</isNotEmpty>
-      <![CDATA[) sjw
+                    where ym=tjrq]]>  
+      <isNotEmpty property="qsrq_ym">and tjrq between $qsrq_ym$ and $jsrq_ym$</isNotEmpty>  <![CDATA[) sjw
         inner join KHFA_YYJG_HY yyjg on sjw.YM=yyjg.TJRQ
         left join (
           select khzbdh, khzbmc from khfa_khzb_hy
@@ -120,13 +117,11 @@ select y.nf,y.KHZBMC,y.khzbdh,y.YF,y.YYJG,sum(y.YYJG) over(partition by y.NF,y.y
    
 
 )y 
-)t where 1=1]]>
-      <isNotEmpty property="khzb">and  t.khzbdh=$khzb$</isNotEmpty>
-      group by t.nf,t.khzbmc,t.khzbdh ) b order by b.yf
-    </select>
-    <select id="dn12.khzbjxgzhzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from ( <![CDATA[select $qsrq$ qsrq,$jsrq$ jsrq,nf,khzbdh,khzbmc,yf,yyjg,zb from (
+)t where 1=1]]>  
+      <isNotEmpty property="khzb">and t.khzbdh=$khzb$</isNotEmpty> group by t.nf,t.khzbmc,t.khzbdh ) b order by b.yf
+    </select>  
+    <select id="dn0.khzbjxgzhzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( <![CDATA[select $qsrq$ qsrq,$jsrq$ jsrq,nf,khzbdh,khzbmc,yf,yyjg,zb from (
 select t.nf,t.KHZBMC,t.khzbdh,t.YF,t.YYJG,case when t.qh=0 then 0 else round(cast(t.yyjg*100 as decimal(19,3))/cast(t.qh as decimal(19,3)),2) end zb from (
 select y.nf,y.KHZBMC,y.khzbdh,y.YF,y.YYJG,sum(y.YYJG) over(partition by y.NF,y.yf) qh from (
     select nf,yf,khzbmc,khzbdh,sum(yyjg) yyjg from (
@@ -140,9 +135,8 @@ select y.nf,y.KHZBMC,y.khzbdh,y.YF,y.YYJG,sum(y.YYJG) over(partition by y.NF,y.y
                      when ym between $sysdate$ and (select ym from csb_sjw where tjrq=$sysdate$) then $sysdate$
                     else ym end as ym
                     from csb_sjw 
-                    where ym=tjrq]]>
-      <isNotEmpty property="qsrq_ym">and tjrq between $qsrq_ym$ and $jsrq_ym$</isNotEmpty>
-      <![CDATA[) sjw
+                    where ym=tjrq]]>  
+      <isNotEmpty property="qsrq_ym">and tjrq between $qsrq_ym$ and $jsrq_ym$</isNotEmpty>  <![CDATA[) sjw
         inner join KHFA_YYJG_HY yyjg on sjw.YM=yyjg.TJRQ
         left join (
           select khzbdh, khzbmc from khfa_khzb_hy
@@ -159,9 +153,8 @@ select y.nf,y.KHZBMC,y.khzbdh,y.YF,y.YYJG,sum(y.YYJG) over(partition by y.NF,y.y
     
 
 )y 
-)t where 1=1]]>
-      <isNotEmpty property="khzb">and  t.khzbdh=$khzb$</isNotEmpty>
-      <![CDATA[union all
+)t where 1=1]]>  
+      <isNotEmpty property="khzb">and t.khzbdh=$khzb$</isNotEmpty>  <![CDATA[union all
 
 select t.nf,t.KHZBMC,t.khzbdh,'月份合计' YF,sum(t.YYJG) yyjg,
 case when sum(t.qh)=0 then 0 else round(cast(sum(t.yyjg)*100 as decimal(19,3))/cast(sum(t.qh) as decimal(19,3)),2) end zb
@@ -178,9 +171,8 @@ select y.nf,y.KHZBMC,y.khzbdh,y.YF,y.YYJG,sum(y.YYJG) over(partition by y.NF,y.y
                      when ym between $sysdate$ and (select ym from csb_sjw where tjrq=$sysdate$) then $sysdate$
                     else ym end as ym
                     from csb_sjw 
-                    where ym=tjrq]]>
-      <isNotEmpty property="qsrq_ym">and tjrq between $qsrq_ym$ and $jsrq_ym$</isNotEmpty>
-      <![CDATA[) sjw
+                    where ym=tjrq]]>  
+      <isNotEmpty property="qsrq_ym">and tjrq between $qsrq_ym$ and $jsrq_ym$</isNotEmpty>  <![CDATA[) sjw
         inner join KHFA_YYJG_HY yyjg on sjw.YM=yyjg.TJRQ
         left join (
           select khzbdh, khzbmc from khfa_khzb_hy
@@ -196,15 +188,14 @@ select y.nf,y.KHZBMC,y.khzbdh,y.YF,y.YYJG,sum(y.YYJG) over(partition by y.NF,y.y
    
 
 )y 
-)t where 1=1]]>
-      <isNotEmpty property="khzb">and  t.khzbdh=$khzb$</isNotEmpty>
-      group by t.nf,t.khzbmc,t.khzbdh ) b order by b.yf ) t
-    </select>
-    <select id="dn12.khzbjxgzhz_MSQL4SELECT_khzb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ <![CDATA[select key ,value from (select khzbdh as key, khzbmc as value from khfa_khzb_hy union all select distinct zbpz.khzbdh key ,zbpz.xmmc value from khfa_fapz fapz, khfa_khzbpz zbpz  where fapz.yyzlbh = 1 and zbpz.khzbdh < 0 and fapz.fabh = zbpz.fabh ) t  order by key]]></select>
-  </sqlMap>
-  <rels>
-    <items id="khzbjxgzhz_xsjy1jgj" />
-  </rels>
+)t where 1=1]]>  
+      <isNotEmpty property="khzb">and t.khzbdh=$khzb$</isNotEmpty> group by t.nf,t.khzbmc,t.khzbdh ) b order by b.yf ) t
+    </select>  
+    <select id="dn0.khzbjxgzhz_MSQL4SELECT_khzb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ <![CDATA[select key ,value from (select khzbdh as key, khzbmc as value from khfa_khzb_hy union all select distinct zbpz.khzbdh key ,zbpz.xmmc value from khfa_fapz fapz, khfa_khzbpz zbpz  where fapz.yyzlbh = 1 and zbpz.khzbdh < 0 and fapz.fabh = zbpz.fabh ) t  order by key]]></select> 
+  </sqlMap>  
+  <rels> 
+    <items id="khzbjxgzhz_xsjy1jgj"/> 
+  </rels>  
   <javascript><![CDATA[jQuery(document).ready(function () {
   
 });
@@ -297,6 +288,5 @@ function customOnLoadSuccess(data){
                   +'</div></td>');
     }
   }
-}]]></javascript>
+}]]></javascript> 
 </pageSetting>
-

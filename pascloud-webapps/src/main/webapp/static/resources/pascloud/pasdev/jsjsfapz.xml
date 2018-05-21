@@ -1,287 +1,142 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="jsjsfapz" title="基数计算方案配置" type="manage">
-  <conPart>
-    <tags>
-      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="年份" fieldName="">
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="khnf" />
-        <attribute key="defValType" value="sysDate" />
-        <attribute key="dateFmt" value="yyyy" />
-        <attribute key="readonly" value="false" />
-        <attribute key="editable" value="true" />
-      </tag>
-    </tags>
-  </conPart>
-  <table page="true" id="jsjsfapztable">
-    <col id="KHNF" title="年份" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" />
-    <col id="JSFA" title="基数方案" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" />
-    <col id="JSTS" title="基数天数" align="left" type="string" width="220" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" />
-  </table>
-  <rels>
-    <items id="jsjsfapztable" />
-  </rels>
-  <addPage title="编辑页面">
-    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="年份" fieldName="KHNF">
-      <attribute key="isRequired" value="true" />
-      <attribute key="name" value="khnf" />
-      <attribute key="defValType" value="sysDate" />
-      <attribute key="dateFmt" value="yyyy" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSTS">
-      <attribute key="name" value="jsts" />
-    </tag>
-    <tag row="1" col="0" rowspan="1" colspan="1" name="Dmms" label="基数方案" fieldName="JSFA">
-      <attribute key="name" value="jsfa" />
-      <attribute key="width" value="120px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="dmmc" value="jsfalx" />
-      <attribute key="multiple" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="1" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="SCBZ">
-      <attribute key="defVal" value="0" />
-      <attribute key="name" value="scbz" />
-    </tag>
-    <tag row="2" col="0" rowspan="1" colspan="1" name="Date" label="日期" fieldName="">
-      <attribute key="isRequired" value="true" />
-      <attribute key="name" value="tjrq_0" />
-      <attribute key="defValType" value="nm" />
-      <attribute key="dateFmt" value="yyyyMMdd" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="2" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
-      <attribute key="defVal" value="$sysdate$" />
-      <attribute key="name" value="xtsj" />
-    </tag>
-  </addPage>
-  <updatePage title="编辑页面">
-    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="年份" fieldName="KHNF">
-      <attribute key="isRequired" value="true" />
-      <attribute key="name" value="khnf" />
-      <attribute key="isAll" value="false" />
-      <attribute key="defValType" value="sysDate" />
-      <attribute key="dateFmt" value="yyyy" />
-      <attribute key="readonly" value="false" />
-      <attribute key="isEditable" value="false" />
-      <attribute key="editable" value="false" />
-    </tag>
-    <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSTS">
-      <attribute key="name" value="jsts" />
-    </tag>
-    <tag row="1" col="0" rowspan="1" colspan="1" name="Dmms" label="基数方案" fieldName="JSFA">
-      <attribute key="name" value="jsfa" />
-      <attribute key="width" value="120px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="dmmc" value="jsfalx" />
-      <attribute key="multiple" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="1" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="SCBZ">
-      <attribute key="defVal" value="0" />
-      <attribute key="name" value="scbz" />
-    </tag>
-    <tag row="2" col="0" rowspan="1" colspan="1" name="Date" label="日期" fieldName="">
-      <attribute key="isRequired" value="true" />
-      <attribute key="name" value="tjrq_0" />
-      <attribute key="defValType" value="nm" />
-      <attribute key="dateFmt" value="yyyyMMdd" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="2" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
-      <attribute key="defVal" value="$sysdate$" />
-      <attribute key="name" value="xtsj" />
-    </tag>
-  </updatePage>
-  <buttons>
-    <button>add</button>
-    <button>edit</button>
-    <button>delete</button>
-  </buttons>
-  <flow>
-    <insertbefore />
-    <insertafter />
-    <deletebefore />
-    <deleteafter />
-    <updatebefore />
-    <updateafter />
-  </flow>
-  <sqlMap namespace="studio.jsjsfapz">
-    <select id="dn12.jsjsfapzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select js.khnf,ms.dmms as jsfa,js.jsts from XTB_JSCS js inner join csb_dmms ms on ms.dmmc='JSFALX' and js.jsfa=ms.dmz where 1=1
-      <isNotEmpty property="khnf">and  js.khnf=$khnf$</isNotEmpty>
-    </select>
-    <select id="dn12.jsjsfapzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from ( select js.khnf,ms.dmms as jsfa,js.jsts from XTB_JSCS js inner join csb_dmms ms on ms.dmmc='JSFALX' and js.jsfa=ms.dmz where 1=1
-      <isNotEmpty property="khnf">and  js.khnf=$khnf$</isNotEmpty>
-      ) t
-    </select>
-    <select id="dn12.jsjsfapz_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  KHNF, JSTS, SCBZ, JSFA  from XTB_JSCS where 1= 1  and KHNF = $khnf$
-    </select>
-    <select id="dn12.jsjsfapz_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  KHNF, JSTS, SCBZ, JSFA  from XTB_JSCS where 1= 1  and KHNF = $khnf$
-    </select>
-    <insert id="dn12.jsjsfapz_insert" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      insert into XTB_JSCS( JSTS, SCBZ, KHNF, JSFA ) values ( '$jsts$','$scbz$',$khnf$,'$jsfa$')
-    </insert>
-    <update id="dn12.jsjsfapz_update" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update XTB_JSCS set JSTS = '$jsts$',SCBZ = '$scbz$',JSFA = '$jsfa$' where 1=1  and KHNF = $khnf$
-    </update>
-    <delete id="dn12.jsjsfapz_delete" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      delete from XTB_JSCS where 1=1  and KHNF = $khnf$
-    </delete>
-  </sqlMap>
-  <javascript>
-    <query>jQuery(document).ready(function () {
 
-});
-
-//自定义验证，在提交时执行。通过返回true，否则返回false
-function customValidate(){
- return true;
-}</query>
-    <edit>jQuery(document).ready(function () {
-//这里的js脚本，会在页面加载完成后执行
-  var tjrq = $('#tjrq_0');
-  var jsfa = $('#jsfa');
-  var addBar = $('&lt;a id="add" href="#"&gt;添加&lt;/a&gt;');
-  $("#add").live("click",function(){
-    var tb = $('#khnf').parent().parent().parent();
-    var id = 'tjrq_'+($('.Wdate[maxlength=8]').size());
-    var de = "WdatePicker({el:$dp.$('"+id+"'),dateFmt:'yyyyMMdd'});";
-    var ce = "{required:true,dateFmt:'yyyyMMdd'} ";
-    var tr = $('&lt;tr&gt;&lt;td align="right"&gt;日期&lt;/td&gt;&lt;td align="left"&gt;&lt;input type="text" name="'+id+'" id="'+id+'" maxlength="8" value="" style="width:120px;" onfocus="'+de+'" class="'+ce+' Wdate"&gt;&lt;a href="#" class="del" onclick="deleteTjrq(this);"&gt;删除&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;');
-    tb.append(tr);
-  });
-  jsfa.change(function(){
-     if(jQuery(this).val()==1){
-        jQuery("#tjrq_0").after(addBar);
-        $(".zdat").remove();
-     }else{
-        $(".del").trigger("click");
-        addBar.remove();
-        var tb = $('#khnf').parent().parent().parent();
-        var id = 'tjrq_1';
-        var de = "WdatePicker({el:$dp.$('"+id+"'),dateFmt:'yyyyMMdd'});";
-        var ce = "{required:true,dateFmt:'yyyyMMdd'} ";
-        var tr = $('&lt;tr class="zdat"&gt;&lt;td align="right"&gt;至日期&lt;/td&gt;&lt;td align="left"&gt;&lt;input type="text" name="'+id+'" id="'+id+'" maxlength="8" value="" style="width:120px;" onfocus="'+de+'" class="'+ce+' Wdate"&gt;&lt;/td&gt;&lt;/tr&gt;');
-        tb.append(tr);
-     }
-  });
-  if($('#page_operate').val()=='update'){
-    var jsfa = $('#jsfa').val();
-    if(jsfa=='1'){
-       tjrq.parent().parent().remove();
-       var tjrqs = $('#jsts').val().split(',');
-       for(var i=0;i&lt;tjrqs.length;i++){
-          addBar.trigger('click');
-          $('#tjrq_'+i).val(tjrqs[i]);
-       }
-       $('#tjrq_0').parent().append(addBar).find('a:first').remove();
-    }else{
-       var tjrqs = $('#jsts').val().split('-');
-       var tb = $('#khnf').parent().parent().parent();
-       var id = 'tjrq_1';
-       var de = "WdatePicker({el:$dp.$('"+id+"'),dateFmt:'yyyyMMdd'});";
-       var ce = "{required:true,dateFmt:'yyyyMMdd'} ";
-       var tr = $('&lt;tr class="zdat"&gt;&lt;td align="right"&gt;至日期&lt;/td&gt;&lt;td align="left"&gt;&lt;input type="text" name="'+id+'" id="'+id+'" maxlength="8" value="'+tjrqs[1]+'" style="width:120px;" onfocus="'+de+'" class="'+ce+' Wdate"&gt;&lt;/td&gt;&lt;/tr&gt;');
-       tb.append(tr);
-       $('#tjrq_0').val(tjrqs[0]);
-    }
-    
-    
-  }else{
-    $('#tjrq_0').parent().append(addBar);
-  }
-  //$('#khnf').val($('#tjrq_0').val());
-  $('#scbz').val(0);
-});
-
-function addTr(){
- 
-}
-
-//自定义验证，在提交时执行。通过返回true，否则返回false
-function customValidate(){
- if(checkDate()){
- var b = ",";
- if($('#jsfa').val() == '2'){
-    b = "-";
- }
- var tjrqs = '';
- $('.Wdate[maxlength=8]').each(function(idx){
-     tjrqs+=$(this).val()+b;
- });
- $('#jsts').val(tjrqs.substring(0,tjrqs.length-1));
- return true;
- }else{
-   return false;
- }
-}
-
-function deleteTjrq(t){
-  $(t).parent().parent().remove();
-}
-
-function checkDate(){
-  var jsfa = $('#jsfa').val();
-  var nf =parseInt( $('#khnf').val());
-  var xtsj = parseInt($('#xtsj').val());
-  var pass = true;
-  if(jsfa=='1'){
-    $('.Wdate[maxlength=8]').each(function(){
-       if(parseInt($(this).val().substring(0,4))&gt;parseInt(nf)){
-         pass=false;
-         parent.custom_alert('选择的日期必须是小于等于'+nf+'年',null,null,null,300,150);
-       }else if(parseInt($(this).val())&gt;parseInt(xtsj)){
-         pass=false;
-         parent.custom_alert('选择的日期必须小于'+xtsj,null,null,null,300,150);
-       }
-    });
-  }
-  else if(jsfa=='2'){
-       if(parseInt($("#tjrq_0").val())&gt;parseInt($("#tjrq_1").val())){
-          pass=false;
-          parent.custom_alert('后面的日期不能小于前面的日期',null,null,null,300,150);
-       }
-  }
-  
- /* else if(jsfa=='3'){
-    $('.Wdate[maxlength=8]').each(function(){
-      var d = parseInt($(this).val());
-      if(parseInt($(this).val().substring(0,4))!=parseInt(nf)){
-         pass=false;
-         parent.custom_alert('选择的日期必须是在'+nf+'年第4季度内'+xtsj,null,null,null,300,150);
-       }else if(d&lt;parseInt(nf+'1001') ||d&gt;parseInt(nf+'1231')){
-         pass=false;
-         parent.custom_alert('选择的日期必须是在第4季度内',null,null,null,300,150);
-       }
-    });
-  }else if(jsfa=='4'){
-    $('.Wdate[maxlength=8]').each(function(){
-      var d = parseInt($(this).val());
-       if(parseInt($(this).val().substring(0,4))!=parseInt(nf)){
-         pass=false;
-         parent.custom_alert('选择的日期必须是在'+nf+'年12月内',null,null,null,300,150);
-       }else if(d&lt;parseInt(nf+'1201') ||d&gt;parseInt(nf+'1231')){
-         pass=false;
-         parent.custom_alert('选择的日期必须是在12月内',null,null,null,300,150);
-       }
-    });
-  }*/
-  return pass;
-}</edit>
-  </javascript>
+<pageSetting id="jsjsfapz" title="基数计算方案配置" type="manage"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="年份" fieldName=""> 
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="khnf"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="dateFmt" value="yyyy"/>  
+        <attribute key="readonly" value="false"/>  
+        <attribute key="editable" value="true"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table page="true" id="jsjsfapztable"> 
+    <col id="KHNF" title="年份" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy=""/>  
+    <col id="JSFA" title="基数方案" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy=""/>  
+    <col id="JSTS" title="基数天数" align="left" type="string" width="220" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy=""/> 
+  </table>  
+  <rels> 
+    <items id="jsjsfapztable"/> 
+  </rels>  
+  <addPage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="年份" fieldName="KHNF"> 
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="name" value="khnf"/>  
+      <attribute key="defValType" value="sysDate"/>  
+      <attribute key="dateFmt" value="yyyy"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSTS"> 
+      <attribute key="name" value="jsts"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Dmms" label="基数方案" fieldName="JSFA"> 
+      <attribute key="name" value="jsfa"/>  
+      <attribute key="width" value="120px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="dmmc" value="jsfalx"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="1" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="SCBZ"> 
+      <attribute key="defVal" value="0"/>  
+      <attribute key="name" value="scbz"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Date" label="日期" fieldName=""> 
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="name" value="tjrq_0"/>  
+      <attribute key="defValType" value="nm"/>  
+      <attribute key="dateFmt" value="yyyyMMdd"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="2" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
+      <attribute key="defVal" value="$sysdate$"/>  
+      <attribute key="name" value="xtsj"/> 
+    </tag> 
+  </addPage>  
+  <updatePage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="年份" fieldName="KHNF"> 
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="name" value="khnf"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="defValType" value="sysDate"/>  
+      <attribute key="dateFmt" value="yyyy"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="isEditable" value="false"/>  
+      <attribute key="editable" value="false"/> 
+    </tag>  
+    <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSTS"> 
+      <attribute key="name" value="jsts"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Dmms" label="基数方案" fieldName="JSFA"> 
+      <attribute key="name" value="jsfa"/>  
+      <attribute key="width" value="120px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="dmmc" value="jsfalx"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="1" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="SCBZ"> 
+      <attribute key="defVal" value="0"/>  
+      <attribute key="name" value="scbz"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Date" label="日期" fieldName=""> 
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="name" value="tjrq_0"/>  
+      <attribute key="defValType" value="nm"/>  
+      <attribute key="dateFmt" value="yyyyMMdd"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="2" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
+      <attribute key="defVal" value="$sysdate$"/>  
+      <attribute key="name" value="xtsj"/> 
+    </tag> 
+  </updatePage>  
+  <buttons> 
+    <button>add</button>  
+    <button>edit</button>  
+    <button>delete</button> 
+  </buttons>  
+  <flow> 
+    <insertbefore/>  
+    <insertafter/>  
+    <deletebefore/>  
+    <deleteafter/>  
+    <updatebefore/>  
+    <updateafter/> 
+  </flow>  
+  <sqlMap namespace="studio.jsjsfapz"> 
+    <select id="dn0.jsjsfapzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select js.khnf,ms.dmms as jsfa,js.jsts from XTB_JSCS js inner join csb_dmms ms on ms.dmmc='JSFALX' and js.jsfa=ms.dmz where 1=1 
+      <isNotEmpty property="khnf">and js.khnf=$khnf$</isNotEmpty> 
+    </select>  
+    <select id="dn0.jsjsfapzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select js.khnf,ms.dmms as jsfa,js.jsts from XTB_JSCS js inner join csb_dmms ms on ms.dmmc='JSFALX' and js.jsfa=ms.dmz where 1=1 
+      <isNotEmpty property="khnf">and js.khnf=$khnf$</isNotEmpty> ) t
+    </select>  
+    <select id="dn0.jsjsfapz_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select KHNF, JSTS, SCBZ, JSFA from XTB_JSCS where 1= 1 and KHNF = $khnf$
+    </select>  
+    <select id="dn0.jsjsfapz_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select KHNF, JSTS, SCBZ, JSFA from XTB_JSCS where 1= 1 and KHNF = $khnf$
+    </select>  
+    <insert id="dn0.jsjsfapz_insert" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into XTB_JSCS( JSTS, SCBZ, KHNF, JSFA ) values ( '$jsts$','$scbz$',$khnf$,'$jsfa$')
+    </insert>  
+    <update id="dn0.jsjsfapz_update" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update XTB_JSCS set JSTS = '$jsts$',SCBZ = '$scbz$',JSFA = '$jsfa$' where 1=1 and KHNF = $khnf$
+    </update>  
+    <delete id="dn0.jsjsfapz_delete" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from XTB_JSCS where 1=1 and KHNF = $khnf$
+    </delete> 
+  </sqlMap>  
+  <javascript> 
+    <query>jQuery(document).ready(function () { }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; }</query>  
+    <edit>jQuery(document).ready(function () { //这里的js脚本，会在页面加载完成后执行 var tjrq = $('#tjrq_0'); var jsfa = $('#jsfa'); var addBar = $('&lt;a id="add" href="#"&gt;添加&lt;/a&gt;'); $("#add").live("click",function(){ var tb = $('#khnf').parent().parent().parent(); var id = 'tjrq_'+($('.Wdate[maxlength=8]').size()); var de = "WdatePicker({el:$dp.$('"+id+"'),dateFmt:'yyyyMMdd'});"; var ce = "{required:true,dateFmt:'yyyyMMdd'} "; var tr = $('&lt;tr&gt;&lt;td align="right"&gt;日期&lt;/td&gt;&lt;td align="left"&gt;&lt;input type="text" name="'+id+'" id="'+id+'" maxlength="8" value="" style="width:120px;" onfocus="'+de+'" class="'+ce+' Wdate"&gt;&lt;a href="#" class="del" onclick="deleteTjrq(this);"&gt;删除&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;'); tb.append(tr); }); jsfa.change(function(){ if(jQuery(this).val()==1){ jQuery("#tjrq_0").after(addBar); $(".zdat").remove(); }else{ $(".del").trigger("click"); addBar.remove(); var tb = $('#khnf').parent().parent().parent(); var id = 'tjrq_1'; var de = "WdatePicker({el:$dp.$('"+id+"'),dateFmt:'yyyyMMdd'});"; var ce = "{required:true,dateFmt:'yyyyMMdd'} "; var tr = $('&lt;tr class="zdat"&gt;&lt;td align="right"&gt;至日期&lt;/td&gt;&lt;td align="left"&gt;&lt;input type="text" name="'+id+'" id="'+id+'" maxlength="8" value="" style="width:120px;" onfocus="'+de+'" class="'+ce+' Wdate"&gt;&lt;/td&gt;&lt;/tr&gt;'); tb.append(tr); } }); if($('#page_operate').val()=='update'){ var jsfa = $('#jsfa').val(); if(jsfa=='1'){ tjrq.parent().parent().remove(); var tjrqs = $('#jsts').val().split(','); for(var i=0;i&lt;tjrqs.length;i++){ addBar.trigger('click'); $('#tjrq_'+i).val(tjrqs[i]); } $('#tjrq_0').parent().append(addBar).find('a:first').remove(); }else{ var tjrqs = $('#jsts').val().split('-'); var tb = $('#khnf').parent().parent().parent(); var id = 'tjrq_1'; var de = "WdatePicker({el:$dp.$('"+id+"'),dateFmt:'yyyyMMdd'});"; var ce = "{required:true,dateFmt:'yyyyMMdd'} "; var tr = $('&lt;tr class="zdat"&gt;&lt;td align="right"&gt;至日期&lt;/td&gt;&lt;td align="left"&gt;&lt;input type="text" name="'+id+'" id="'+id+'" maxlength="8" value="'+tjrqs[1]+'" style="width:120px;" onfocus="'+de+'" class="'+ce+' Wdate"&gt;&lt;/td&gt;&lt;/tr&gt;'); tb.append(tr); $('#tjrq_0').val(tjrqs[0]); } }else{ $('#tjrq_0').parent().append(addBar); } //$('#khnf').val($('#tjrq_0').val()); $('#scbz').val(0); }); function addTr(){ } //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ if(checkDate()){ var b = ","; if($('#jsfa').val() == '2'){ b = "-"; } var tjrqs = ''; $('.Wdate[maxlength=8]').each(function(idx){ tjrqs+=$(this).val()+b; }); $('#jsts').val(tjrqs.substring(0,tjrqs.length-1)); return true; }else{ return false; } } function deleteTjrq(t){ $(t).parent().parent().remove(); } function checkDate(){ var jsfa = $('#jsfa').val(); var nf =parseInt( $('#khnf').val()); var xtsj = parseInt($('#xtsj').val()); var pass = true; if(jsfa=='1'){ $('.Wdate[maxlength=8]').each(function(){ if(parseInt($(this).val().substring(0,4))&gt;parseInt(nf)){ pass=false; parent.custom_alert('选择的日期必须是小于等于'+nf+'年',null,null,null,300,150); }else if(parseInt($(this).val())&gt;parseInt(xtsj)){ pass=false; parent.custom_alert('选择的日期必须小于'+xtsj,null,null,null,300,150); } }); } else if(jsfa=='2'){ if(parseInt($("#tjrq_0").val())&gt;parseInt($("#tjrq_1").val())){ pass=false; parent.custom_alert('后面的日期不能小于前面的日期',null,null,null,300,150); } } /* else if(jsfa=='3'){ $('.Wdate[maxlength=8]').each(function(){ var d = parseInt($(this).val()); if(parseInt($(this).val().substring(0,4))!=parseInt(nf)){ pass=false; parent.custom_alert('选择的日期必须是在'+nf+'年第4季度内'+xtsj,null,null,null,300,150); }else if(d&lt;parseInt(nf+'1001') ||d&gt;parseInt(nf+'1231')){ pass=false; parent.custom_alert('选择的日期必须是在第4季度内',null,null,null,300,150); } }); }else if(jsfa=='4'){ $('.Wdate[maxlength=8]').each(function(){ var d = parseInt($(this).val()); if(parseInt($(this).val().substring(0,4))!=parseInt(nf)){ pass=false; parent.custom_alert('选择的日期必须是在'+nf+'年12月内',null,null,null,300,150); }else if(d&lt;parseInt(nf+'1201') ||d&gt;parseInt(nf+'1231')){ pass=false; parent.custom_alert('选择的日期必须是在12月内',null,null,null,300,150); } }); }*/ return pass; }</edit> 
+  </javascript> 
 </pageSetting>
-

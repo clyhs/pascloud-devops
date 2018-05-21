@@ -1,317 +1,239 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="gybcywlgl" title="柜员补偿业务量管理" type="manage">
-  <conPart>
-    <tags>
-      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName="">
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="tjrq" />
-        <attribute key="minDate" value="no" />
-        <attribute key="defValType" value="xtrzympd" />
-        <attribute key="dateFmt" value="yyyyMM" />
-        <attribute key="editable" value="true" />
-      </tag>
-      <tag row="0" col="1" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="">
-        <attribute key="isRequired" value="false" />
-        <attribute key="style" value="width:100px;" />
-        <attribute key="isDisplayXN" value="true" />
-        <attribute key="jgckbz" value="jg_ckhy" />
-        <attribute key="name" value="khdxdh" />
-        <attribute key="multiple" value="true" />
-        <attribute key="editable" value="true" />
-      </tag>
-      <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
-        <attribute key="name" value="tjrq_ym" />
-      </tag>
-    </tags>
-  </conPart>
-  <table page="true" id="gybcywlgltable">
-    <col id="TJNY" title="统计年月" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="HYDH" title="行员代号" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="HYMC" title="行员名称" align="left" type="string" width="90" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="JGBCYWL" title="机构补偿业务量绩效" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="BCYWL" title="已分配补偿业务量" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="BZSM" title="备注说明" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="TJRQ" title="统计日期" align="left" type="hidden" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="KHDXDH" title="考核对象代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" hidden="true" />
-  </table>
-  <rels>
-    <items id="gybcywlgltable" />
-  </rels>
-  <addPage title="编辑页面">
-    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName="">
-      <attribute key="style" value="width:200px;" />
-      <attribute key="isRequired" value="true" />
-      <attribute key="name" value="tjrq" />
-      <attribute key="minDate" value="no" />
-      <attribute key="defValType" value="sysDate" />
-      <attribute key="dateFmt" value="yyyyMM" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="khdxdh">
-      <attribute key="isRequired" value="true" />
-      <attribute key="style" value="width:180px;" />
-      <attribute key="isDisplayXN" value="true" />
-      <attribute key="jgckbz" value="jg_ckhy" />
-      <attribute key="name" value="khdxdh" />
-      <attribute key="multiple" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="2" col="0" rowspan="1" colspan="1" name="Text" label="机构补偿业务量" fieldName="">
-      <attribute key="style" value="background-color: #b3b3b3;width:200px;text-align:right;" />
-      <attribute key="name" value="jgbcywl" />
-      <attribute key="value" value="0.00" />
-      <attribute key="readonly" value="true" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="2" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
-      <attribute key="dataType" value="select" />
-      <attribute key="sql" value="select round(coalesce(sum(jgkh_ywl.bcywl),0),2) as bcywl  from khdx_jgcy jgcy  left join nbzz_jgkh_ywl jgkh_ywl on jgkh_ywl.khdxdh=jgcy.jgkhdxdh and jgkh_ywl.tjrq=$tjrq_ym$ where jgcy.khdxdh=$khdxdh$ and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq" />
-      <attribute key="name" value="getJgywbcl" />
-    </tag>
-    <tag row="3" col="0" rowspan="1" colspan="1" name="Text" label="可分配补偿业务量" fieldName="">
-      <attribute key="style" value="background-color: #b3b3b3;width:200px;text-align:right;" />
-      <attribute key="name" value="kfpbcywl" />
-      <attribute key="readonly" value="true" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="3" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
-      <attribute key="dataType" value="select" />
-      <attribute key="sql" value="select round(coalesce(sum(sg.bcywl),0),2) bcywl from khdx_jgcy jgcy inner join khdx_jgcy jgcy2 on jgcy2.jgkhdxdh=jgcy.jgkhdxdh and $tjrq_ym$ between jgcy2.qsrq and jgcy2.jsrq and jgcy2.khdxdh!=$khdxdh$ left join sgdr_gybcywl sg on sg.khdxdh=jgcy2.khdxdh and sg.tjrq=$tjrq_ym$ where jgcy.khdxdh=$khdxdh$ and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq" />
-      <attribute key="name" value="getsgdrbcywl" />
-    </tag>
-    <tag row="3" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="tjrq">
-      <attribute key="name" value="tjrq_ym" />
-    </tag>
-    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="分配补偿业务量" fieldName="bcywl">
-      <attribute key="min" value="0" />
-      <attribute key="precision" value="2" />
-      <attribute key="style" value="width:200px;text-align:right;" />
-      <attribute key="name" value="bcywl" />
-      <attribute key="intparts" value="21" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="4" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
-      <attribute key="name" value="czsj" />
-    </tag>
-    <tag row="5" col="0" rowspan="1" colspan="1" name="Textarea" label="备注说明" fieldName="bzsm">
-      <attribute key="cols" value="26" />
-      <attribute key="style" value="width:200px;" />
-      <attribute key="name" value="bzsm" />
-      <attribute key="styleClass" value="{maxlength:200}" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-      <attribute key="rows" value="3" />
-    </tag>
-    <tag row="5" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="czr">
-      <attribute key="defVal" value="$login_hydh$" />
-      <attribute key="name" value="czr" />
-    </tag>
-  </addPage>
-  <updatePage title="编辑页面">
-    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName="">
-      <attribute key="style" value="width:200px;" />
-      <attribute key="isRequired" value="true" />
-      <attribute key="name" value="tjrq" />
-      <attribute key="minDate" value="no" />
-      <attribute key="defValType" value="sysDate" />
-      <attribute key="dateFmt" value="yyyyMM" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="khdxdh">
-      <attribute key="isRequired" value="true" />
-      <attribute key="style" value="width:180px;" />
-      <attribute key="isDisplayXN" value="true" />
-      <attribute key="jgckbz" value="jg_ckhy" />
-      <attribute key="name" value="khdxdh" />
-      <attribute key="isAll" value="false" />
-      <attribute key="multiple" value="false" />
-      <attribute key="isEditable" value="false" />
-      <attribute key="editable" value="false" />
-    </tag>
-    <tag row="2" col="0" rowspan="1" colspan="1" name="Text" label="机构补偿业务量" fieldName="">
-      <attribute key="style" value="background-color: #b3b3b3;width:200px;text-align:right;" />
-      <attribute key="name" value="jgbcywl" />
-      <attribute key="value" value="0.00" />
-      <attribute key="readonly" value="true" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="2" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
-      <attribute key="dataType" value="select" />
-      <attribute key="sql" value="select round(coalesce(sum(jgkh_ywl.bcywl),0),2) as bcywl  from khdx_jgcy jgcy  left join nbzz_jgkh_ywl jgkh_ywl on jgkh_ywl.khdxdh=jgcy.jgkhdxdh and jgkh_ywl.tjrq=$tjrq_ym$ where jgcy.khdxdh=$khdxdh$ and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq" />
-      <attribute key="name" value="getJgywbcl" />
-    </tag>
-    <tag row="3" col="0" rowspan="1" colspan="1" name="Text" label="可分配补偿业务量" fieldName="">
-      <attribute key="style" value="background-color: #b3b3b3;width:200px;text-align:right;" />
-      <attribute key="name" value="kfpbcywl" />
-      <attribute key="readonly" value="true" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="3" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
-      <attribute key="dataType" value="select" />
-      <attribute key="sql" value="select round(coalesce(sum(sg.bcywl),0),2) bcywl from khdx_jgcy jgcy inner join khdx_jgcy jgcy2 on jgcy2.jgkhdxdh=jgcy.jgkhdxdh and $tjrq_ym$ between jgcy2.qsrq and jgcy2.jsrq and jgcy2.khdxdh!=$khdxdh$ left join sgdr_gybcywl sg on sg.khdxdh=jgcy2.khdxdh and sg.tjrq=$tjrq_ym$ where jgcy.khdxdh=$khdxdh$ and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq" />
-      <attribute key="name" value="getsgdrbcywl" />
-    </tag>
-    <tag row="3" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="tjrq">
-      <attribute key="name" value="tjrq_ym" />
-    </tag>
-    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="分配补偿业务量" fieldName="bcywl">
-      <attribute key="min" value="0" />
-      <attribute key="precision" value="2" />
-      <attribute key="style" value="width:200px;text-align:right;" />
-      <attribute key="name" value="bcywl" />
-      <attribute key="intparts" value="21" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="4" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
-      <attribute key="name" value="czsj" />
-    </tag>
-    <tag row="5" col="0" rowspan="1" colspan="1" name="Textarea" label="备注说明" fieldName="bzsm">
-      <attribute key="cols" value="26" />
-      <attribute key="style" value="width:200px;" />
-      <attribute key="name" value="bzsm" />
-      <attribute key="styleClass" value="{maxlength:200}" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-      <attribute key="rows" value="3" />
-    </tag>
-    <tag row="5" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="czr">
-      <attribute key="defVal" value="$login_hydh$" />
-      <attribute key="name" value="czr" />
-    </tag>
-  </updatePage>
-  <buttons>
-    <button>add</button>
-    <button>edit</button>
-    <button>delete</button>
-    <button>import</button>
-  </buttons>
-  <flow>
-    <insertbefore />
-    <insertafter />
-    <deletebefore />
-    <deleteafter />
-    <updatebefore />
-    <updateafter />
-  </flow>
-  <sqlMap namespace="studio.gybcywlgl">
-    <select id="dn12.gybcywlglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      SELECT bcywl.TJRQ,jg.JGDH,jg.JGMC,hy.KHDXDH,hy.HYDH,hy.HYMC,  coalesce(round(sum(jgkh_ywl.BCYWL),2),0) as JGBCYWL,round(bcywl.BCYWL,2) as BCYWL,bcywl.BZSM,  substr(bcywl.TJRQ,1,6) as tjny FROM SGDR_GYBCYWL bcywl  INNER JOIN KHDX_HY hy ON hy.KHDXDH = bcywl.KHDXDH INNER JOIN KHDX_JGCY jgcy ON jgcy.KHDXDH = hy.KHDXDH
-      <isNotEmpty property="tjrq_ym">AND $tjrq_ym$ BETWEEN jgcy.QSRQ AND jgcy.JSRQ</isNotEmpty>
-      INNER JOIN KHDX_JG jg ON jg.KHDXDH = jgcy.JGKHDXDH left JOIN NBZZ_JGKH_YWL jgkh_ywl ON jgkh_ywl.KHDXDH = jg.KHDXDH
-      <isNotEmpty property="tjrq_ym">AND jgkh_ywl.TJRQ = $tjrq_ym$</isNotEmpty>
-      inner join table(fn_getsjjg_java_qxhy($tjrq_ym$,$login_khdxdh$,0)) qx on qx.khdxdh=hy.khdxdh
-      <isNotEmpty property="khdxdh">where hy.khdxdh in ($khdxdh$)</isNotEmpty>
-      <isNotEmpty property="tjrq_ym">and bcywl.tjrq = $tjrq_ym$</isNotEmpty>
-      group by bcywl.TJRQ, jg.JGDH, jg.JGMC, hy.KHDXDH, hy.HYDH, hy.HYMC, bcywl.BCYWL, bcywl.BZSM
-    </select>
-    <select id="dn12.gybcywlglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from ( SELECT bcywl.TJRQ,jg.JGDH,jg.JGMC,hy.KHDXDH,hy.HYDH,hy.HYMC,  coalesce(round(sum(jgkh_ywl.BCYWL),2),0) as JGBCYWL,round(bcywl.BCYWL,2) as BCYWL,bcywl.BZSM,  substr(bcywl.TJRQ,1,6) as tjny FROM SGDR_GYBCYWL bcywl  INNER JOIN KHDX_HY hy ON hy.KHDXDH = bcywl.KHDXDH INNER JOIN KHDX_JGCY jgcy ON jgcy.KHDXDH = hy.KHDXDH
-      <isNotEmpty property="tjrq_ym">AND $tjrq_ym$ BETWEEN jgcy.QSRQ AND jgcy.JSRQ</isNotEmpty>
-      INNER JOIN KHDX_JG jg ON jg.KHDXDH = jgcy.JGKHDXDH left JOIN NBZZ_JGKH_YWL jgkh_ywl ON jgkh_ywl.KHDXDH = jg.KHDXDH
-      <isNotEmpty property="tjrq_ym">AND jgkh_ywl.TJRQ = $tjrq_ym$</isNotEmpty>
-      inner join table(fn_getsjjg_java_qxhy($tjrq_ym$,$login_khdxdh$,0)) qx on qx.khdxdh=hy.khdxdh
-      <isNotEmpty property="khdxdh">where hy.khdxdh in ($khdxdh$)</isNotEmpty>
-      <isNotEmpty property="tjrq_ym">and bcywl.tjrq = $tjrq_ym$</isNotEmpty>
-      group by bcywl.TJRQ, jg.JGDH, jg.JGMC, hy.KHDXDH, hy.HYDH, hy.HYMC, bcywl.BCYWL, bcywl.BZSM ) t
-    </select>
-    <select id="dn12.gybcywlgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  bcywl, khdxdh, czsj, czr, tjrq, bzsm  from SGDR_GYBCYWL where 1= 1  and khdxdh = '$khdxdh$' and tjrq = '$tjrq$'
-    </select>
-    <select id="dn12.gybcywlgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  bcywl, khdxdh, czsj, czr, tjrq, bzsm  from SGDR_GYBCYWL where 1= 1  and khdxdh = '$khdxdh$' and tjrq = '$tjrq_ym$'
-    </select>
-    <insert id="dn12.gybcywlgl_insert" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      insert into SGDR_GYBCYWL( bcywl, khdxdh, czr, tjrq, bzsm ) values ( $bcywl$,$khdxdh$,'$czr$',$tjrq_ym$,'$bzsm$')
-    </insert>
-    <update id="dn12.gybcywlgl_update" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update SGDR_GYBCYWL set bcywl = $bcywl$,bzsm = '$bzsm$' where 1=1  and khdxdh = '$khdxdh$' and tjrq = '$tjrq_ym$'
-    </update>
-    <delete id="dn12.gybcywlgl_delete" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      delete from SGDR_GYBCYWL where 1=1  and khdxdh = '$khdxdh$' and tjrq = '$tjrq$'
-    </delete>
-    <select id="dn12.gybcywlgl_getJgywbcl" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select round(coalesce(sum(jgkh_ywl.bcywl),0),2) as bcywl 
-from khdx_jgcy jgcy 
-left join nbzz_jgkh_ywl jgkh_ywl on jgkh_ywl.khdxdh=jgcy.jgkhdxdh and jgkh_ywl.tjrq=$tjrq_ym$
-where jgcy.khdxdh=$khdxdh$ and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq</select>
-    <select id="dn12.gybcywlgl_getsgdrbcywl" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select round(coalesce(sum(sg.bcywl),0),2) bcywl
-from khdx_jgcy jgcy
-inner join khdx_jgcy jgcy2 on jgcy2.jgkhdxdh=jgcy.jgkhdxdh and $tjrq_ym$ between jgcy2.qsrq and jgcy2.jsrq and jgcy2.khdxdh!=$khdxdh$
-left join sgdr_gybcywl sg on sg.khdxdh=jgcy2.khdxdh and sg.tjrq=$tjrq_ym$
-where jgcy.khdxdh=$khdxdh$ and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq</select>
-  </sqlMap>
-  <javascript>
-    <import>parent.addTab('gybcywlgldr','柜员补偿业务量管理','/module/parser/import/visitHtml/gybcywlgldr');</import>
-    <query>jQuery(document).ready(function () {
-  editpage_height=450;
-  editpage_width=500;
-});
 
-//自定义验证，在提交时执行。通过返回true，否则返回false
-function customValidate(){
-  $('#tjrq_ym').val(createTimeObj($('#tjrq').val()).ym);
-  return true;
-}</query>
-    <edit>jQuery(document).ready(function () {
-//这里的js脚本，会在页面加载完成后执行
-  $('#tjrq_ym').val(createTimeObj($('#tjrq').val() + '01').ym);
-  PAS.di.execute('gybcywlgl_getJgywbcl', getJgywbclFromDb);
-  
-  $('#tjrq').blur(function(){
-    $('#tjrq_ym').val(createTimeObj($('#tjrq').val()).ym);
-    PAS.di.execute('gybcywlgl_getJgywbcl', getJgywbclFromDb);
-  });
-  
-  $('#khdxdh').change(function(){
-    $('#tjrq_ym').val(createTimeObj($('#tjrq').val()).ym);
-    PAS.di.execute('gybcywlgl_getJgywbcl', getJgywbclFromDb);
-  });
-  
-  if($('#page_operate').val() == 'update'){
-    $('#tjrq').attr('disabled',true);
-  }
-});
-
-//自定义验证，在提交时执行。通过返回true，否则返回false
-function customValidate(){
-  var bcywl = $('#bcywl').val(); 
-  var kfpbcywl = $('#kfpbcywl').val();
-  if(parseFloat(bcywl) &gt; parseFloat(kfpbcywl)){
-    custom_alert("柜员补偿业务量必须小于等于可分配补偿业务量!");
-    return false;
-  }
-   return true;
-}
-
-function getJgywbclFromDb(obj){
-  if(obj.data.length&gt;0){
-    var jgbcywl = obj.data[0].BCYWL;
-    $('#jgbcywl').val(new Number(jgbcywl).toFixed(2));
-    PAS.di.execute('gybcywlgl_getsgdrbcywl', getJgywbclFromDbywl);
-    PAS.di.setDone(obj.sqlid);
-  }else{
-    custom_alert("当前月份不存在机构补偿业务量！！");
-  }
-}
-
-function getJgywbclFromDbywl(obj){  
-  if(obj.data.length&gt;0){ 
-    var ycz = obj.data[0].BCYWL; 
-    var jgbcywl = $('#jgbcywl').val();
-    $('#kfpbcywl').val(parseFloat(jgbcywl-ycz).toFixed(2)); 
-    PAS.di.setDone(obj.sqlid);
-  }
-}</edit>
-  </javascript>
+<pageSetting id="gybcywlgl" title="柜员补偿业务量管理" type="manage"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName=""> 
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="tjrq"/>  
+        <attribute key="minDate" value="no"/>  
+        <attribute key="defValType" value="xtrzympd"/>  
+        <attribute key="dateFmt" value="yyyyMM"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag row="0" col="1" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName=""> 
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="style" value="width:100px;"/>  
+        <attribute key="isDisplayXN" value="true"/>  
+        <attribute key="jgckbz" value="jg_ckhy"/>  
+        <attribute key="name" value="khdxdh"/>  
+        <attribute key="multiple" value="true"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
+        <attribute key="name" value="tjrq_ym"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table page="true" id="gybcywlgltable"> 
+    <col id="TJNY" title="统计年月" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="JGBCYWL" title="机构补偿业务量绩效" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="BCYWL" title="已分配补偿业务量" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="BZSM" title="备注说明" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="TJRQ" title="统计日期" align="left" type="hidden" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="KHDXDH" title="考核对象代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" hidden="true"/> 
+  </table>  
+  <rels> 
+    <items id="gybcywlgltable"/> 
+  </rels>  
+  <addPage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName=""> 
+      <attribute key="style" value="width:200px;"/>  
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="name" value="tjrq"/>  
+      <attribute key="minDate" value="no"/>  
+      <attribute key="defValType" value="sysDate"/>  
+      <attribute key="dateFmt" value="yyyyMM"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="khdxdh"> 
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="style" value="width:180px;"/>  
+      <attribute key="isDisplayXN" value="true"/>  
+      <attribute key="jgckbz" value="jg_ckhy"/>  
+      <attribute key="name" value="khdxdh"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Text" label="机构补偿业务量" fieldName=""> 
+      <attribute key="style" value="background-color: #b3b3b3;width:200px;text-align:right;"/>  
+      <attribute key="name" value="jgbcywl"/>  
+      <attribute key="value" value="0.00"/>  
+      <attribute key="readonly" value="true"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="2" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select round(coalesce(sum(jgkh_ywl.bcywl),0),2) as bcywl  from khdx_jgcy jgcy  left join nbzz_jgkh_ywl jgkh_ywl on jgkh_ywl.khdxdh=jgcy.jgkhdxdh and jgkh_ywl.tjrq=$tjrq_ym$ where jgcy.khdxdh=$khdxdh$ and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq"/>  
+      <attribute key="name" value="getJgywbcl"/> 
+    </tag>  
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Text" label="可分配补偿业务量" fieldName=""> 
+      <attribute key="style" value="background-color: #b3b3b3;width:200px;text-align:right;"/>  
+      <attribute key="name" value="kfpbcywl"/>  
+      <attribute key="readonly" value="true"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="3" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select round(coalesce(sum(sg.bcywl),0),2) bcywl from khdx_jgcy jgcy inner join khdx_jgcy jgcy2 on jgcy2.jgkhdxdh=jgcy.jgkhdxdh and $tjrq_ym$ between jgcy2.qsrq and jgcy2.jsrq and jgcy2.khdxdh!=$khdxdh$ left join sgdr_gybcywl sg on sg.khdxdh=jgcy2.khdxdh and sg.tjrq=$tjrq_ym$ where jgcy.khdxdh=$khdxdh$ and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq"/>  
+      <attribute key="name" value="getsgdrbcywl"/> 
+    </tag>  
+    <tag row="3" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="tjrq"> 
+      <attribute key="name" value="tjrq_ym"/> 
+    </tag>  
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="分配补偿业务量" fieldName="bcywl"> 
+      <attribute key="min" value="0"/>  
+      <attribute key="precision" value="2"/>  
+      <attribute key="style" value="width:200px;text-align:right;"/>  
+      <attribute key="name" value="bcywl"/>  
+      <attribute key="intparts" value="21"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="4" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
+      <attribute key="name" value="czsj"/> 
+    </tag>  
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Textarea" label="备注说明" fieldName="bzsm"> 
+      <attribute key="cols" value="26"/>  
+      <attribute key="style" value="width:200px;"/>  
+      <attribute key="name" value="bzsm"/>  
+      <attribute key="styleClass" value="{maxlength:200}"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/>  
+      <attribute key="rows" value="3"/> 
+    </tag>  
+    <tag row="5" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="czr"> 
+      <attribute key="defVal" value="$login_hydh$"/>  
+      <attribute key="name" value="czr"/> 
+    </tag> 
+  </addPage>  
+  <updatePage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName=""> 
+      <attribute key="style" value="width:200px;"/>  
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="name" value="tjrq"/>  
+      <attribute key="minDate" value="no"/>  
+      <attribute key="defValType" value="sysDate"/>  
+      <attribute key="dateFmt" value="yyyyMM"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="khdxdh"> 
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="style" value="width:180px;"/>  
+      <attribute key="isDisplayXN" value="true"/>  
+      <attribute key="jgckbz" value="jg_ckhy"/>  
+      <attribute key="name" value="khdxdh"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="isEditable" value="false"/>  
+      <attribute key="editable" value="false"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Text" label="机构补偿业务量" fieldName=""> 
+      <attribute key="style" value="background-color: #b3b3b3;width:200px;text-align:right;"/>  
+      <attribute key="name" value="jgbcywl"/>  
+      <attribute key="value" value="0.00"/>  
+      <attribute key="readonly" value="true"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="2" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select round(coalesce(sum(jgkh_ywl.bcywl),0),2) as bcywl  from khdx_jgcy jgcy  left join nbzz_jgkh_ywl jgkh_ywl on jgkh_ywl.khdxdh=jgcy.jgkhdxdh and jgkh_ywl.tjrq=$tjrq_ym$ where jgcy.khdxdh=$khdxdh$ and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq"/>  
+      <attribute key="name" value="getJgywbcl"/> 
+    </tag>  
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Text" label="可分配补偿业务量" fieldName=""> 
+      <attribute key="style" value="background-color: #b3b3b3;width:200px;text-align:right;"/>  
+      <attribute key="name" value="kfpbcywl"/>  
+      <attribute key="readonly" value="true"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="3" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select round(coalesce(sum(sg.bcywl),0),2) bcywl from khdx_jgcy jgcy inner join khdx_jgcy jgcy2 on jgcy2.jgkhdxdh=jgcy.jgkhdxdh and $tjrq_ym$ between jgcy2.qsrq and jgcy2.jsrq and jgcy2.khdxdh!=$khdxdh$ left join sgdr_gybcywl sg on sg.khdxdh=jgcy2.khdxdh and sg.tjrq=$tjrq_ym$ where jgcy.khdxdh=$khdxdh$ and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq"/>  
+      <attribute key="name" value="getsgdrbcywl"/> 
+    </tag>  
+    <tag row="3" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="tjrq"> 
+      <attribute key="name" value="tjrq_ym"/> 
+    </tag>  
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="分配补偿业务量" fieldName="bcywl"> 
+      <attribute key="min" value="0"/>  
+      <attribute key="precision" value="2"/>  
+      <attribute key="style" value="width:200px;text-align:right;"/>  
+      <attribute key="name" value="bcywl"/>  
+      <attribute key="intparts" value="21"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="4" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
+      <attribute key="name" value="czsj"/> 
+    </tag>  
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Textarea" label="备注说明" fieldName="bzsm"> 
+      <attribute key="cols" value="26"/>  
+      <attribute key="style" value="width:200px;"/>  
+      <attribute key="name" value="bzsm"/>  
+      <attribute key="styleClass" value="{maxlength:200}"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/>  
+      <attribute key="rows" value="3"/> 
+    </tag>  
+    <tag row="5" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="czr"> 
+      <attribute key="defVal" value="$login_hydh$"/>  
+      <attribute key="name" value="czr"/> 
+    </tag> 
+  </updatePage>  
+  <buttons> 
+    <button>add</button>  
+    <button>edit</button>  
+    <button>delete</button>  
+    <button>import</button> 
+  </buttons>  
+  <flow> 
+    <insertbefore/>  
+    <insertafter/>  
+    <deletebefore/>  
+    <deleteafter/>  
+    <updatebefore/>  
+    <updateafter/> 
+  </flow>  
+  <sqlMap namespace="studio.gybcywlgl"> 
+    <select id="dn0.gybcywlglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> SELECT bcywl.TJRQ,jg.JGDH,jg.JGMC,hy.KHDXDH,hy.HYDH,hy.HYMC, coalesce(round(sum(jgkh_ywl.BCYWL),2),0) as JGBCYWL,round(bcywl.BCYWL,2) as BCYWL,bcywl.BZSM, substr(bcywl.TJRQ,1,6) as tjny FROM SGDR_GYBCYWL bcywl INNER JOIN KHDX_HY hy ON hy.KHDXDH = bcywl.KHDXDH INNER JOIN KHDX_JGCY jgcy ON jgcy.KHDXDH = hy.KHDXDH 
+      <isNotEmpty property="tjrq_ym">AND $tjrq_ym$ BETWEEN jgcy.QSRQ AND jgcy.JSRQ</isNotEmpty> INNER JOIN KHDX_JG jg ON jg.KHDXDH = jgcy.JGKHDXDH left JOIN NBZZ_JGKH_YWL jgkh_ywl ON jgkh_ywl.KHDXDH = jg.KHDXDH 
+      <isNotEmpty property="tjrq_ym">AND jgkh_ywl.TJRQ = $tjrq_ym$</isNotEmpty> inner join table(fn_getsjjg_java_qxhy($tjrq_ym$,$login_khdxdh$,0)) qx on qx.khdxdh=hy.khdxdh 
+      <isNotEmpty property="khdxdh">where hy.khdxdh in ($khdxdh$)</isNotEmpty>  
+      <isNotEmpty property="tjrq_ym">and bcywl.tjrq = $tjrq_ym$</isNotEmpty> group by bcywl.TJRQ, jg.JGDH, jg.JGMC, hy.KHDXDH, hy.HYDH, hy.HYMC, bcywl.BCYWL, bcywl.BZSM
+    </select>  
+    <select id="dn0.gybcywlglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( SELECT bcywl.TJRQ,jg.JGDH,jg.JGMC,hy.KHDXDH,hy.HYDH,hy.HYMC, coalesce(round(sum(jgkh_ywl.BCYWL),2),0) as JGBCYWL,round(bcywl.BCYWL,2) as BCYWL,bcywl.BZSM, substr(bcywl.TJRQ,1,6) as tjny FROM SGDR_GYBCYWL bcywl INNER JOIN KHDX_HY hy ON hy.KHDXDH = bcywl.KHDXDH INNER JOIN KHDX_JGCY jgcy ON jgcy.KHDXDH = hy.KHDXDH 
+      <isNotEmpty property="tjrq_ym">AND $tjrq_ym$ BETWEEN jgcy.QSRQ AND jgcy.JSRQ</isNotEmpty> INNER JOIN KHDX_JG jg ON jg.KHDXDH = jgcy.JGKHDXDH left JOIN NBZZ_JGKH_YWL jgkh_ywl ON jgkh_ywl.KHDXDH = jg.KHDXDH 
+      <isNotEmpty property="tjrq_ym">AND jgkh_ywl.TJRQ = $tjrq_ym$</isNotEmpty> inner join table(fn_getsjjg_java_qxhy($tjrq_ym$,$login_khdxdh$,0)) qx on qx.khdxdh=hy.khdxdh 
+      <isNotEmpty property="khdxdh">where hy.khdxdh in ($khdxdh$)</isNotEmpty>  
+      <isNotEmpty property="tjrq_ym">and bcywl.tjrq = $tjrq_ym$</isNotEmpty> group by bcywl.TJRQ, jg.JGDH, jg.JGMC, hy.KHDXDH, hy.HYDH, hy.HYMC, bcywl.BCYWL, bcywl.BZSM ) t
+    </select>  
+    <select id="dn0.gybcywlgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select bcywl, khdxdh, czsj, czr, tjrq, bzsm from SGDR_GYBCYWL where 1= 1 and khdxdh = '$khdxdh$' and tjrq = '$tjrq$'
+    </select>  
+    <select id="dn0.gybcywlgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select bcywl, khdxdh, czsj, czr, tjrq, bzsm from SGDR_GYBCYWL where 1= 1 and khdxdh = '$khdxdh$' and tjrq = '$tjrq_ym$'
+    </select>  
+    <insert id="dn0.gybcywlgl_insert" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into SGDR_GYBCYWL( bcywl, khdxdh, czr, tjrq, bzsm ) values ( $bcywl$,$khdxdh$,'$czr$',$tjrq_ym$,'$bzsm$')
+    </insert>  
+    <update id="dn0.gybcywlgl_update" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update SGDR_GYBCYWL set bcywl = $bcywl$,bzsm = '$bzsm$' where 1=1 and khdxdh = '$khdxdh$' and tjrq = '$tjrq_ym$'
+    </update>  
+    <delete id="dn0.gybcywlgl_delete" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from SGDR_GYBCYWL where 1=1 and khdxdh = '$khdxdh$' and tjrq = '$tjrq$'
+    </delete>  
+    <select id="dn0.gybcywlgl_getJgywbcl" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select round(coalesce(sum(jgkh_ywl.bcywl),0),2) as bcywl from khdx_jgcy jgcy left join nbzz_jgkh_ywl jgkh_ywl on jgkh_ywl.khdxdh=jgcy.jgkhdxdh and jgkh_ywl.tjrq=$tjrq_ym$ where jgcy.khdxdh=$khdxdh$ and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq</select>  
+    <select id="dn0.gybcywlgl_getsgdrbcywl" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select round(coalesce(sum(sg.bcywl),0),2) bcywl from khdx_jgcy jgcy inner join khdx_jgcy jgcy2 on jgcy2.jgkhdxdh=jgcy.jgkhdxdh and $tjrq_ym$ between jgcy2.qsrq and jgcy2.jsrq and jgcy2.khdxdh!=$khdxdh$ left join sgdr_gybcywl sg on sg.khdxdh=jgcy2.khdxdh and sg.tjrq=$tjrq_ym$ where jgcy.khdxdh=$khdxdh$ and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq</select> 
+  </sqlMap>  
+  <javascript> 
+    <import>parent.addTab('gybcywlgldr','柜员补偿业务量管理','/module/parser/import/visitHtml/gybcywlgldr');</import>  
+    <query>jQuery(document).ready(function () { editpage_height=450; editpage_width=500; }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ $('#tjrq_ym').val(createTimeObj($('#tjrq').val()).ym); return true; }</query>  
+    <edit>jQuery(document).ready(function () { //这里的js脚本，会在页面加载完成后执行 $('#tjrq_ym').val(createTimeObj($('#tjrq').val() + '01').ym); PAS.di.execute('gybcywlgl_getJgywbcl', getJgywbclFromDb); $('#tjrq').blur(function(){ $('#tjrq_ym').val(createTimeObj($('#tjrq').val()).ym); PAS.di.execute('gybcywlgl_getJgywbcl', getJgywbclFromDb); }); $('#khdxdh').change(function(){ $('#tjrq_ym').val(createTimeObj($('#tjrq').val()).ym); PAS.di.execute('gybcywlgl_getJgywbcl', getJgywbclFromDb); }); if($('#page_operate').val() == 'update'){ $('#tjrq').attr('disabled',true); } }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ var bcywl = $('#bcywl').val(); var kfpbcywl = $('#kfpbcywl').val(); if(parseFloat(bcywl) &gt; parseFloat(kfpbcywl)){ custom_alert("柜员补偿业务量必须小于等于可分配补偿业务量!"); return false; } return true; } function getJgywbclFromDb(obj){ if(obj.data.length&gt;0){ var jgbcywl = obj.data[0].BCYWL; $('#jgbcywl').val(new Number(jgbcywl).toFixed(2)); PAS.di.execute('gybcywlgl_getsgdrbcywl', getJgywbclFromDbywl); PAS.di.setDone(obj.sqlid); }else{ custom_alert("当前月份不存在机构补偿业务量！！"); } } function getJgywbclFromDbywl(obj){ if(obj.data.length&gt;0){ var ycz = obj.data[0].BCYWL; var jgbcywl = $('#jgbcywl').val(); $('#kfpbcywl').val(parseFloat(jgbcywl-ycz).toFixed(2)); PAS.di.setDone(obj.sqlid); } }</edit> 
+  </javascript> 
 </pageSetting>
-

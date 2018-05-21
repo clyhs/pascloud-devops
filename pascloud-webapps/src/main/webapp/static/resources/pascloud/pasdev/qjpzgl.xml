@@ -1,232 +1,199 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="qjpzgl" title="区间配置管理" type="manage">
-  <conPart>
-    <tags>
-      <tag row="0" col="0" rowspan="1" colspan="1" name="Dmms" label="参数名称" fieldName="">
-        <attribute key="style" value="width:aotu;" />
-        <attribute key="selectedList" value="1" />
-        <attribute key="name" value="qjmc" />
-        <attribute key="width" value="220px;" />
-        <attribute key="isAll" value="true" />
-        <attribute key="mulShowType" value="null" />
-        <attribute key="dmmc" value="qjcslx" />
-        <attribute key="multiple" value="false" />
-        <attribute key="editable" value="true" />
-      </tag>
-    </tags>
-  </conPart>
-  <table page="true" id="qjpzgltable">
-    <col id="QJMC" title="区间代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="DMMS" title="区间名称" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="QSRQ" title="起始日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-  </table>
-  <rels>
-    <items id="qjpzgltable" />
-  </rels>
-  <addPage title="编辑页面">
-    <tag row="0" col="0" rowspan="1" colspan="1" name="Dmms" label="区间参数" fieldName="QJMC">
-      <attribute key="selectedList" value="1" />
-      <attribute key="name" value="qjcslx" />
-      <attribute key="width" value="140px;" />
-      <attribute key="styleClass" value="required" />
-      <attribute key="isAll" value="false" />
-      <attribute key="mulShowType" value="null" />
-      <attribute key="dmmc" value="qjcslx" />
-      <attribute key="multiple" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="0" col="1" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ">
-      <attribute key="style" value="width:140px;" />
-      <attribute key="isRequired" value="true" />
-      <attribute key="name" value="qsrq" />
-      <attribute key="minDate" value="no" />
-      <attribute key="defValType" value="sysDate" />
-      <attribute key="dateFmt" value="yyyyMMdd" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="1" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ">
-      <attribute key="defVal" value="29991231" />
-      <attribute key="name" value="jsrq" />
-    </tag>
-    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="区间上限" fieldName="QJSX">
-      <attribute key="precision" value="2" />
-      <attribute key="style" value="width:140px;" />
-      <attribute key="name" value="qjsx" />
-      <attribute key="intparts" value="10" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="2" col="1" rowspan="1" colspan="1" name="Number" label="区间下限" fieldName="QJXX">
-      <attribute key="precision" value="2" />
-      <attribute key="style" value="width:140px;" />
-      <attribute key="name" value="qjxx" />
-      <attribute key="intparts" value="10" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="区间值" fieldName="QJZ">
-      <attribute key="precision" value="2" />
-      <attribute key="style" value="width:140px;" />
-      <attribute key="name" value="qjz" />
-      <attribute key="intparts" value="10" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-  </addPage>
-  <updatePage title="编辑页面">
-    <tag row="0" col="0" rowspan="1" colspan="1" name="Dmms" label="区间参数" fieldName="QJMC">
-      <attribute key="selectedList" value="1" />
-      <attribute key="name" value="qjcslx" />
-      <attribute key="width" value="140px;" />
-      <attribute key="styleClass" value="required" />
-      <attribute key="isAll" value="false" />
-      <attribute key="mulShowType" value="null" />
-      <attribute key="dmmc" value="qjcslx" />
-      <attribute key="multiple" value="false" />
-      <attribute key="isEditable" value="false" />
-      <attribute key="editable" value="false" />
-    </tag>
-    <tag row="0" col="1" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ">
-      <attribute key="style" value="width:140px;" />
-      <attribute key="isRequired" value="true" />
-      <attribute key="name" value="qsrq" />
-      <attribute key="isAll" value="false" />
-      <attribute key="minDate" value="no" />
-      <attribute key="defValType" value="sysDate" />
-      <attribute key="dateFmt" value="yyyyMMdd" />
-      <attribute key="isEditable" value="false" />
-      <attribute key="editable" value="false" />
-    </tag>
-    <tag row="1" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ">
-      <attribute key="defVal" value="29991231" />
-      <attribute key="name" value="jsrq" />
-    </tag>
-    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="区间上限" fieldName="QJSX">
-      <attribute key="precision" value="2" />
-      <attribute key="style" value="width:140px;" />
-      <attribute key="name" value="qjsx" />
-      <attribute key="intparts" value="10" />
-      <attribute key="isAll" value="false" />
-      <attribute key="readonly" value="false" />
-      <attribute key="isEditable" value="false" />
-      <attribute key="editable" value="false" />
-    </tag>
-    <tag row="2" col="1" rowspan="1" colspan="1" name="Number" label="区间下限" fieldName="QJXX">
-      <attribute key="precision" value="2" />
-      <attribute key="style" value="width:140px;" />
-      <attribute key="name" value="qjxx" />
-      <attribute key="intparts" value="10" />
-      <attribute key="isAll" value="false" />
-      <attribute key="readonly" value="false" />
-      <attribute key="isEditable" value="false" />
-      <attribute key="editable" value="false" />
-    </tag>
-    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="区间值" fieldName="QJZ">
-      <attribute key="precision" value="2" />
-      <attribute key="style" value="width:140px;" />
-      <attribute key="name" value="qjz" />
-      <attribute key="intparts" value="10" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-  </updatePage>
-  <buttons>
-    <button>add</button>
-    <button>edit</button>
-    <button>delete</button>
-  </buttons>
-  <flow>
-    <insertbefore>
-      <sql type="delete">qjpzgl_check_itemAddDel</sql>
-      <sql type="update">qjpzgl_check_itemUP</sql>
-    </insertbefore>
-    <insertafter />
-    <deletebefore>
-      <sql type="selectmaxqsrq">qjpzgl_check_itemMAX_del</sql>
-      <sql type="update">qjpzgl_check_itemDELUP</sql>
-    </deletebefore>
-    <deleteafter />
-    <updatebefore />
-    <updateafter />
-  </flow>
-  <sqlMap namespace="studio.qjpzgl">
-    <select id="dn12.qjpzglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select distinct qjpz.qjmc as qjmc1,dmms.dmms,qjpz.qsrq,qjpz.jsrq from csb_qjpz qjpz         inner join csb_dmms dmms on qjpz.qjmc = dmms.dmz         where 1=1
-      <isNotEmpty property="qjmc">and  qjpz.qjmc = '$qjmc$'</isNotEmpty>
-      order by qjpz.qjmc,qjpz.qsrq ASC
-    </select>
-    <select id="dn12.qjpzglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from ( select distinct qjpz.qjmc as qjmc1,dmms.dmms,qjpz.qsrq,qjpz.jsrq from csb_qjpz qjpz         inner join csb_dmms dmms on qjpz.qjmc = dmms.dmz         where 1=1
-      <isNotEmpty property="qjmc">and  qjpz.qjmc = '$qjmc$'</isNotEmpty>
-      order by qjpz.qjmc,qjpz.qsrq ASC ) t
-    </select>
-    <select id="dn12.qjpzgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  QJSX, QJMS, QJZ, QJMC, QSRQ, JSRQ, QJXX  from CSB_QJPZ where 1= 1  and QJMC = '$qjmc$' and QSRQ = $qsrq$
-    </select>
-    <select id="dn12.qjpzgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  QJSX, QJMS, QJZ, QJMC, QSRQ, JSRQ, QJXX  from CSB_QJPZ where 1= 1  and QJMC = '$qjcslx$' and QSRQ = $qsrq$
-    </select>
-    <insert id="dn12.qjpzgl_insert" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      insert into CSB_QJPZ( QJMC, QJSX, QJZ, QSRQ, JSRQ, QJXX ) values ( '$qjcslx$',$qjsx$,'$qjz$',$qsrq$,$jsrq$,$qjxx$)
-    </insert>
-    <update id="dn12.qjpzgl_update" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update CSB_QJPZ set QJZ = '$qjz$' where 1=1  and QJMC = '$qjcslx$' and QSRQ = $qsrq$
-    </update>
-    <delete id="dn12.qjpzgl_delete" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      delete from CSB_QJPZ where 1=1  and QJMC = '$qjmc$' and QSRQ = $qsrq$
-    </delete>
-    <delete id="dn12.qjpzgl_check_itemAddDel" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      <![CDATA[delete from CSB_QJPZ where qsrq >=$qsrq$  and QJMC = '$qjcslx$']]>
-    </delete>
-    <update id="dn12.qjpzgl_check_itemUP" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update CSB_QJPZ set jsrq=$qdate$
-      <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty>
-      and QJMC = '$qjcslx$'
-    </update>
-    <select id="dn12.qjpzgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select max(qsrq) from CSB_QJPZ where 1=1  and QJMC = '$qjmc$'
-    </select>
-    <select id="dn12.qjpzgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      <![CDATA[select  QJSX, QJMS, QJZ, QJMC, QSRQ, JSRQ, QJXX from CSB_QJPZ where 1=1  and QJMC = '$qjcslx$' and $qsrq$ > $maxqsrq$]]>
-    </select>
-    <update id="dn12.qjpzgl_check_itemDELUP" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update CSB_QJPZ set jsrq =29991231 where 1=1 and QJMC = '$qjmc$' and jsrq =$lastjsrq$
-    </update>
-  </sqlMap>
-  <javascript>
-    <query>jQuery(document).ready(function () {
 
-});
-
-//自定义验证，在提交时执行。通过返回true，否则返回false
-function customValidate(){
- return true;
-}</query>
-    <edit>jQuery(document).ready(function () {
-//这里的js脚本，会在页面加载完成后执行
-
-$("#qjpzTable").css("border","1px solid #CCC");
-$('.tablecolor').find('tr').eq(0).find('td').eq(0).attr('align','left');
-//$('.tablecolor').find('tr').eq(0).find('td').eq(3).attr('colspan','2');
-$('.tablecolor').find('tr').eq(0).append('&lt;td&gt;&lt;label&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/lable&gt;&lt;/td&gt;');
-});
-//自定义验证，在提交时执行。通过返回true，否则返回false
-function customValidate(){
- return true;
-}</edit>
-  </javascript>
+<pageSetting id="qjpzgl" title="区间配置管理" type="manage"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Dmms" label="参数名称" fieldName=""> 
+        <attribute key="style" value="width:aotu;"/>  
+        <attribute key="selectedList" value="1"/>  
+        <attribute key="name" value="qjmc"/>  
+        <attribute key="width" value="220px;"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="mulShowType" value="null"/>  
+        <attribute key="dmmc" value="qjcslx"/>  
+        <attribute key="multiple" value="false"/>  
+        <attribute key="editable" value="true"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table page="true" id="qjpzgltable"> 
+    <col id="QJMC" title="区间代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="DMMS" title="区间名称" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="QSRQ" title="起始日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/> 
+  </table>  
+  <rels> 
+    <items id="qjpzgltable"/> 
+  </rels>  
+  <addPage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Dmms" label="区间参数" fieldName="QJMC"> 
+      <attribute key="selectedList" value="1"/>  
+      <attribute key="name" value="qjcslx"/>  
+      <attribute key="width" value="140px;"/>  
+      <attribute key="styleClass" value="required"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="mulShowType" value="null"/>  
+      <attribute key="dmmc" value="qjcslx"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="0" col="1" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ"> 
+      <attribute key="style" value="width:140px;"/>  
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="name" value="qsrq"/>  
+      <attribute key="minDate" value="no"/>  
+      <attribute key="defValType" value="sysDate"/>  
+      <attribute key="dateFmt" value="yyyyMMdd"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ"> 
+      <attribute key="defVal" value="29991231"/>  
+      <attribute key="name" value="jsrq"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="区间上限" fieldName="QJSX"> 
+      <attribute key="precision" value="2"/>  
+      <attribute key="style" value="width:140px;"/>  
+      <attribute key="name" value="qjsx"/>  
+      <attribute key="intparts" value="10"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="2" col="1" rowspan="1" colspan="1" name="Number" label="区间下限" fieldName="QJXX"> 
+      <attribute key="precision" value="2"/>  
+      <attribute key="style" value="width:140px;"/>  
+      <attribute key="name" value="qjxx"/>  
+      <attribute key="intparts" value="10"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="区间值" fieldName="QJZ"> 
+      <attribute key="precision" value="2"/>  
+      <attribute key="style" value="width:140px;"/>  
+      <attribute key="name" value="qjz"/>  
+      <attribute key="intparts" value="10"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag> 
+  </addPage>  
+  <updatePage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Dmms" label="区间参数" fieldName="QJMC"> 
+      <attribute key="selectedList" value="1"/>  
+      <attribute key="name" value="qjcslx"/>  
+      <attribute key="width" value="140px;"/>  
+      <attribute key="styleClass" value="required"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="mulShowType" value="null"/>  
+      <attribute key="dmmc" value="qjcslx"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="isEditable" value="false"/>  
+      <attribute key="editable" value="false"/> 
+    </tag>  
+    <tag row="0" col="1" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ"> 
+      <attribute key="style" value="width:140px;"/>  
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="name" value="qsrq"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="minDate" value="no"/>  
+      <attribute key="defValType" value="sysDate"/>  
+      <attribute key="dateFmt" value="yyyyMMdd"/>  
+      <attribute key="isEditable" value="false"/>  
+      <attribute key="editable" value="false"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ"> 
+      <attribute key="defVal" value="29991231"/>  
+      <attribute key="name" value="jsrq"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="区间上限" fieldName="QJSX"> 
+      <attribute key="precision" value="2"/>  
+      <attribute key="style" value="width:140px;"/>  
+      <attribute key="name" value="qjsx"/>  
+      <attribute key="intparts" value="10"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="isEditable" value="false"/>  
+      <attribute key="editable" value="false"/> 
+    </tag>  
+    <tag row="2" col="1" rowspan="1" colspan="1" name="Number" label="区间下限" fieldName="QJXX"> 
+      <attribute key="precision" value="2"/>  
+      <attribute key="style" value="width:140px;"/>  
+      <attribute key="name" value="qjxx"/>  
+      <attribute key="intparts" value="10"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="isEditable" value="false"/>  
+      <attribute key="editable" value="false"/> 
+    </tag>  
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="区间值" fieldName="QJZ"> 
+      <attribute key="precision" value="2"/>  
+      <attribute key="style" value="width:140px;"/>  
+      <attribute key="name" value="qjz"/>  
+      <attribute key="intparts" value="10"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag> 
+  </updatePage>  
+  <buttons> 
+    <button>add</button>  
+    <button>edit</button>  
+    <button>delete</button> 
+  </buttons>  
+  <flow> 
+    <insertbefore> 
+      <sql type="delete">qjpzgl_check_itemAddDel</sql>  
+      <sql type="update">qjpzgl_check_itemUP</sql> 
+    </insertbefore>  
+    <insertafter/>  
+    <deletebefore> 
+      <sql type="selectmaxqsrq">qjpzgl_check_itemMAX_del</sql>  
+      <sql type="update">qjpzgl_check_itemDELUP</sql> 
+    </deletebefore>  
+    <deleteafter/>  
+    <updatebefore/>  
+    <updateafter/> 
+  </flow>  
+  <sqlMap namespace="studio.qjpzgl"> 
+    <select id="dn0.qjpzglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select distinct qjpz.qjmc as qjmc1,dmms.dmms,qjpz.qsrq,qjpz.jsrq from csb_qjpz qjpz inner join csb_dmms dmms on qjpz.qjmc = dmms.dmz where 1=1 
+      <isNotEmpty property="qjmc">and qjpz.qjmc = '$qjmc$'</isNotEmpty> order by qjpz.qjmc,qjpz.qsrq ASC
+    </select>  
+    <select id="dn0.qjpzglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select distinct qjpz.qjmc as qjmc1,dmms.dmms,qjpz.qsrq,qjpz.jsrq from csb_qjpz qjpz inner join csb_dmms dmms on qjpz.qjmc = dmms.dmz where 1=1
+      <isNotEmpty property="qjmc">and qjpz.qjmc = '$qjmc$'</isNotEmpty> order by qjpz.qjmc,qjpz.qsrq ASC ) t
+    </select>  
+    <select id="dn0.qjpzgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select QJSX, QJMS, QJZ, QJMC, QSRQ, JSRQ, QJXX from CSB_QJPZ where 1= 1 and QJMC = '$qjmc$' and QSRQ = $qsrq$
+    </select>  
+    <select id="dn0.qjpzgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select QJSX, QJMS, QJZ, QJMC, QSRQ, JSRQ, QJXX from CSB_QJPZ where 1= 1 and QJMC = '$qjcslx$' and QSRQ = $qsrq$
+    </select>  
+    <insert id="dn0.qjpzgl_insert" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into CSB_QJPZ( QJMC, QJSX, QJZ, QSRQ, JSRQ, QJXX ) values ( '$qjcslx$',$qjsx$,'$qjz$',$qsrq$,$jsrq$,$qjxx$)
+    </insert>  
+    <update id="dn0.qjpzgl_update" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_QJPZ set QJZ = '$qjz$' where 1=1 and QJMC = '$qjcslx$' and QSRQ = $qsrq$
+    </update>  
+    <delete id="dn0.qjpzgl_delete" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from CSB_QJPZ where 1=1 and QJMC = '$qjmc$' and QSRQ = $qsrq$
+    </delete>  
+    <delete id="dn0.qjpzgl_check_itemAddDel" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[delete from CSB_QJPZ where qsrq >=$qsrq$  and QJMC = '$qjcslx$']]> 
+    </delete>  
+    <update id="dn0.qjpzgl_check_itemUP" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_QJPZ set jsrq=$qdate$ 
+      <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty> and QJMC = '$qjcslx$'
+    </update>  
+    <select id="dn0.qjpzgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select max(qsrq) from CSB_QJPZ where 1=1 and QJMC = '$qjmc$'
+    </select>  
+    <select id="dn0.qjpzgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select  QJSX, QJMS, QJZ, QJMC, QSRQ, JSRQ, QJXX from CSB_QJPZ where 1=1  and QJMC = '$qjcslx$' and $qsrq$ > $maxqsrq$]]> 
+    </select>  
+    <update id="dn0.qjpzgl_check_itemDELUP" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_QJPZ set jsrq =29991231 where 1=1 and QJMC = '$qjmc$' and jsrq =$lastjsrq$
+    </update> 
+  </sqlMap>  
+  <javascript> 
+    <query>jQuery(document).ready(function () { }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; }</query>  
+    <edit>jQuery(document).ready(function () { //这里的js脚本，会在页面加载完成后执行 $("#qjpzTable").css("border","1px solid #CCC"); $('.tablecolor').find('tr').eq(0).find('td').eq(0).attr('align','left'); //$('.tablecolor').find('tr').eq(0).find('td').eq(3).attr('colspan','2'); $('.tablecolor').find('tr').eq(0).append('&lt;td&gt;&lt;label&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/lable&gt;&lt;/td&gt;'); }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; }</edit> 
+  </javascript> 
 </pageSetting>
-

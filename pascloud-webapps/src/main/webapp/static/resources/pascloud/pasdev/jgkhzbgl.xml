@@ -1,486 +1,294 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="jgkhzbgl" title="机构考核指标管理" type="manage">
-  <conPart>
-    <tags>
-      <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="考核指标名称" fieldName="">
-        <attribute key="name" value="khzbmc" />
-        <attribute key="readonly" value="false" />
-        <attribute key="editable" value="true" />
-      </tag>
-      <tag row="0" col="1" rowspan="1" colspan="1" name="Text" label="基础指标名称" fieldName="">
-        <attribute key="name" value="zbmc" />
-        <attribute key="readonly" value="false" />
-        <attribute key="editable" value="true" />
-      </tag>
-      <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
-        <attribute key="name" value="khzbdh" />
-      </tag>
-      <tag row="0" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
-        <attribute key="name" value="dkhzbmc" />
-      </tag>
-      <tag row="0" col="4" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
-        <attribute key="dataType" value="select" />
-        <attribute key="sql" value="select fa.fabh from khfa_khzbpz pz,KHFA_FAPZ fa where pz.fabh=fa.fabh and pz.khzbdh=$khzbdh$ and fa.khdx='1'" />
-        <attribute key="name" value="checkDelete" />
-      </tag>
-      <tag row="1" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
-        <attribute key="dataType" value="delete" />
-        <attribute key="sql" value="delete from csb_khzbxs_jg where khzbdh=$khzbdh$" />
-        <attribute key="name" value="deleteJgKhzbxs" />
-      </tag>
-    </tags>
-  </conPart>
-  <table page="true" id="jgkhzbgltable">
-    <col id="KHZBDH" title="考核指标代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="KHZBMC" title="考核指标名称" align="left" type="string" width="250" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="ZBDH" title="基础指标代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="ZBMC" title="基础指标名称" align="left" type="string" width="200" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="SDBS" title="时段标识" align="left" type="hidden" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="SDBSMC" title="时段标识" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="BZ" title="币种" align="left" type="hidden" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="BZMC" title="币种" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="TJKJ" title="统计口径" align="left" type="hidden" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="TJKJMC" title="统计口径" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="YWLB" title="业务类别" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="ZBPX" title="排序顺序" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="YYFA" title="引用方案" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" xsType="href" onclick="showYyfa" />
-  </table>
-  <rels>
-    <items id="jgkhzbgltable" />
-  </rels>
-  <addPage title="编辑页面">
-    <tag row="0" col="0" rowspan="1" colspan="2" name="Text" label="考核指标名称" fieldName="KHZBMC">
-      <attribute key="maxlength" value="100" />
-      <attribute key="style" value="width:400px;" />
-      <attribute key="name" value="khzbmc" />
-      <attribute key="styleClass" value="{required:true}" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
-      <attribute key="name" value="oldkhzbmc" />
-    </tag>
-    <tag row="1" col="0" rowspan="1" colspan="1" name="Qxyw" label="业务类别" fieldName="">
-      <attribute key="name" value="ywlb" />
-      <attribute key="width" value="165px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="multiple" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="1" col="1" rowspan="1" colspan="1" name="MSQL4Select" label="基础指标" fieldName="ZBDH">
-      <attribute key="parents" value="ywlb" />
-      <attribute key="sql" value="select distinct key,value from ( select a.zbdh as key, a.zbmc as value from khdx_zb a inner join khdx_zbtjkj b on a.zbdh=b.zbdh inner join khdx_zblb c on  a.zbdh=c.zbdh and  $sysdate$ between c.qsrq and c.jsrq where  a.zbzt!=1 and  a.sfxs != '1' and c.ywlb='$ywlb$'  and b.tjkj!=2  order by a.zbpx, a.zbdh) d" />
-      <attribute key="isSearch" value="true" />
-      <attribute key="isRequired" value="true" />
-      <attribute key="isMultiple" value="false" />
-      <attribute key="name" value="zbdh" />
-      <attribute key="width" value="165px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="isEditable" value="true" />
-    </tag>
-    <tag row="2" col="0" rowspan="1" colspan="1" name="ZbParam" label="币种" fieldName="BZ">
-      <attribute key="parents" value="zbdh" />
-      <attribute key="isRequired" value="false" />
-      <attribute key="isMultiple" value="false" />
-      <attribute key="name" value="bz" />
-      <attribute key="width" value="165px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="multiple" value="false" />
-      <attribute key="isEditable" value="true" />
-      <attribute key="editable" value="true" />
-      <attribute key="paramType" value="bz" />
-    </tag>
-    <tag row="2" col="1" rowspan="1" colspan="1" name="ZbParam" label="时段标识" fieldName="SDBS">
-      <attribute key="parents" value="zbdh" />
-      <attribute key="isRequired" value="false" />
-      <attribute key="isMultiple" value="false" />
-      <attribute key="name" value="sdbs" />
-      <attribute key="width" value="165px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="multiple" value="false" />
-      <attribute key="isEditable" value="true" />
-      <attribute key="editable" value="true" />
-      <attribute key="paramType" value="sdbs" />
-    </tag>
-    <tag row="3" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="统计口径" fieldName="TJKJ">
-      <attribute key="parents" value="zbdh" />
-      <attribute key="sql" value="select  dmz as key, dmms as value   from csb_dmms  where  lower(dmmc) = 'zbtjkj'    and rtrim(dmz) in (select cast(tjkj as VARCHAR(20))                    from khdx_zbtjkj                      where zbdh= $zbdh$  and tjkj!=2)  order by dmz" />
-      <attribute key="isSearch" value="false" />
-      <attribute key="isRequired" value="true" />
-      <attribute key="isMultiple" value="false" />
-      <attribute key="name" value="tjkj" />
-      <attribute key="width" value="165px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="isEditable" value="true" />
-    </tag>
-    <tag row="3" col="1" rowspan="1" colspan="1" name="Number" label="排序顺序" fieldName="ZBPX">
-      <attribute key="precision" value="0" />
-      <attribute key="style" value="width:165px;" />
-      <attribute key="name" value="zbpx" />
-      <attribute key="intparts" value="10" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="4" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
-      <attribute key="dataType" value="select" />
-      <attribute key="sql" value="select count(1) as nums from khfa_khzbpz zbpz inner join khfa_khzb_jg hy on hy.KHZBDH=zbpz.KHZBDH  where hy.KHZBMC = '$dkhzbmc$'" />
-      <attribute key="name" value="selectIsExist" />
-    </tag>
-    <tag row="5" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHZBDH">
-      <attribute key="name" value="khzbdh" />
-    </tag>
-    <tag row="5" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
-      <attribute key="dataType" value="select" />
-      <attribute key="sql" value="select coalesce(max(khzbdh),0)+1 as ID from khfa_khzb_jg" />
-      <attribute key="name" value="getKhzbdh" />
-    </tag>
-    <tag row="6" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
-      <attribute key="dataType" value="select" />
-      <attribute key="sql" value="select jg.khzbdh from khfa_khzb_jg jg where jg.khzbmc!='$oldkhzbmc$' and jg.khzbmc='$khzbmc$'" />
-      <attribute key="name" value="checkKhzbmc" />
-    </tag>
-  </addPage>
-  <updatePage title="编辑页面">
-    <tag row="0" col="0" rowspan="1" colspan="2" name="Text" label="考核指标名称" fieldName="KHZBMC">
-      <attribute key="maxlength" value="100" />
-      <attribute key="style" value="width:400px;" />
-      <attribute key="name" value="khzbmc" />
-      <attribute key="styleClass" value="{required:true}" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
-      <attribute key="name" value="oldkhzbmc" />
-    </tag>
-    <tag row="1" col="0" rowspan="1" colspan="1" name="Qxyw" label="业务类别" fieldName="">
-      <attribute key="name" value="ywlb" />
-      <attribute key="width" value="165px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="multiple" value="false" />
-      <attribute key="isEditable" value="false" />
-      <attribute key="editable" value="false" />
-    </tag>
-    <tag row="1" col="1" rowspan="1" colspan="1" name="MSQL4Select" label="基础指标" fieldName="ZBDH">
-      <attribute key="parents" value="ywlb" />
-      <attribute key="sql" value="select distinct key,value from ( select a.zbdh as key, a.zbmc as value from khdx_zb a inner join khdx_zbtjkj b on a.zbdh=b.zbdh inner join khdx_zblb c on  a.zbdh=c.zbdh and  $sysdate$ between c.qsrq and c.jsrq where  a.zbzt!=1 and  a.sfxs != '1' and c.ywlb='$ywlb$'  and b.tjkj!=2  order by a.zbpx, a.zbdh) d" />
-      <attribute key="isSearch" value="true" />
-      <attribute key="isRequired" value="true" />
-      <attribute key="isMultiple" value="false" />
-      <attribute key="name" value="zbdh" />
-      <attribute key="width" value="165px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="editable" value="false" />
-      <attribute key="isEditable" value="false" />
-    </tag>
-    <tag row="2" col="0" rowspan="1" colspan="1" name="ZbParam" label="币种" fieldName="BZ">
-      <attribute key="parents" value="zbdh" />
-      <attribute key="isRequired" value="false" />
-      <attribute key="isMultiple" value="false" />
-      <attribute key="name" value="bz" />
-      <attribute key="width" value="165px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="multiple" value="false" />
-      <attribute key="isEditable" value="true" />
-      <attribute key="editable" value="true" />
-      <attribute key="paramType" value="bz" />
-    </tag>
-    <tag row="2" col="1" rowspan="1" colspan="1" name="ZbParam" label="时段标识" fieldName="SDBS">
-      <attribute key="parents" value="zbdh" />
-      <attribute key="isRequired" value="false" />
-      <attribute key="isMultiple" value="false" />
-      <attribute key="name" value="sdbs" />
-      <attribute key="width" value="165px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="multiple" value="false" />
-      <attribute key="isEditable" value="true" />
-      <attribute key="editable" value="true" />
-      <attribute key="paramType" value="sdbs" />
-    </tag>
-    <tag row="3" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="统计口径" fieldName="TJKJ">
-      <attribute key="parents" value="zbdh" />
-      <attribute key="sql" value="select  dmz as key, dmms as value   from csb_dmms  where  lower(dmmc) = 'zbtjkj'    and rtrim(dmz) in (select cast(tjkj as VARCHAR(20))                    from khdx_zbtjkj                      where zbdh= $zbdh$  and tjkj!=2)  order by dmz" />
-      <attribute key="isSearch" value="false" />
-      <attribute key="isRequired" value="true" />
-      <attribute key="isMultiple" value="false" />
-      <attribute key="name" value="tjkj" />
-      <attribute key="width" value="165px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="isEditable" value="true" />
-    </tag>
-    <tag row="3" col="1" rowspan="1" colspan="1" name="Number" label="排序顺序" fieldName="ZBPX">
-      <attribute key="precision" value="0" />
-      <attribute key="style" value="width:165px;" />
-      <attribute key="name" value="zbpx" />
-      <attribute key="intparts" value="10" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="4" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
-      <attribute key="dataType" value="select" />
-      <attribute key="sql" value="select count(1) as nums from khfa_khzbpz zbpz inner join khfa_khzb_jg hy on hy.KHZBDH=zbpz.KHZBDH  where hy.KHZBMC = '$dkhzbmc$'" />
-      <attribute key="name" value="selectIsExist" />
-    </tag>
-    <tag row="5" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHZBDH">
-      <attribute key="name" value="khzbdh" />
-    </tag>
-    <tag row="5" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
-      <attribute key="dataType" value="select" />
-      <attribute key="sql" value="select coalesce(max(khzbdh),0)+1 as ID from khfa_khzb_jg" />
-      <attribute key="name" value="getKhzbdh" />
-    </tag>
-    <tag row="6" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
-      <attribute key="dataType" value="select" />
-      <attribute key="sql" value="select jg.khzbdh from khfa_khzb_jg jg where jg.khzbmc!='$oldkhzbmc$' and jg.khzbmc='$khzbmc$'" />
-      <attribute key="name" value="checkKhzbmc" />
-    </tag>
-  </updatePage>
-  <buttons>
-    <button>add</button>
-    <button>edit</button>
-    <button>delete</button>
-    <button>import</button>
-  </buttons>
-  <flow>
-    <insertbefore />
-    <insertafter />
-    <deletebefore />
-    <deleteafter />
-    <updatebefore />
-    <updateafter />
-  </flow>
-  <sqlMap namespace="studio.jgkhzbgl">
-    <select id="dn12.jgkhzbglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select khzb.khzbdh,khzb.khzbmc,khzb.zbdh,zb.zbmc,khzb.sdbs,dmms1.dmms as sdbsmc, khzb.bz,dmms2.dmms as bzmc,khzb.tjkj,dmms3.dmms as tjkjmc, zblb.ywlb,khzb.zbpx,'引用方案' as yyfa from khfa_khzb_jg khzb inner join khdx_zblb zblb on zblb.zbdh=khzb.zbdh and zblb.jsrq=29991231 inner join khdx_zb zb on zb.zbdh=khzb.zbdh inner join csb_dmms dmms1 on lower(dmms1.dmmc)='zbsdbs' and dmms1.dmz=khzb.sdbs inner join csb_dmms dmms2 on lower(dmms2.dmmc)='zbbz' and dmms2.dmz=khzb.bz inner join csb_dmms dmms3 on lower(dmms3.dmmc)='tjkj' and dmms3.dmz=khzb.tjkj where 1=1
-      <isNotEmpty property="khzbmc">and  khzb.khzbmc like '%$khzbmc$%'</isNotEmpty>
-      <isNotEmpty property="zbmc">and zb.zbmc like '%$zbmc$%'</isNotEmpty>
-      order by zbpx
-    </select>
-    <select id="dn12.jgkhzbglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from ( select khzb.khzbdh,khzb.khzbmc,khzb.zbdh,zb.zbmc,khzb.sdbs,dmms1.dmms as sdbsmc, khzb.bz,dmms2.dmms as bzmc,khzb.tjkj,dmms3.dmms as tjkjmc, zblb.ywlb,khzb.zbpx,'引用方案' as yyfa from khfa_khzb_jg khzb inner join khdx_zblb zblb on zblb.zbdh=khzb.zbdh and zblb.jsrq=29991231 inner join khdx_zb zb on zb.zbdh=khzb.zbdh inner join csb_dmms dmms1 on lower(dmms1.dmmc)='zbsdbs' and dmms1.dmz=khzb.sdbs inner join csb_dmms dmms2 on lower(dmms2.dmmc)='zbbz' and dmms2.dmz=khzb.bz inner join csb_dmms dmms3 on lower(dmms3.dmmc)='tjkj' and dmms3.dmz=khzb.tjkj where 1=1
-      <isNotEmpty property="khzbmc">and  khzb.khzbmc like '%$khzbmc$%'</isNotEmpty>
-      <isNotEmpty property="zbmc">and zb.zbmc like '%$zbmc$%'</isNotEmpty>
-      order by zbpx ) t
-    </select>
-    <select id="dn12.jgkhzbgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  ZBPX, ZBDH, TJKJ, KHZBDH, KHZBMC, SDBS, BZ  from KHFA_KHZB_JG where 1= 1  and KHZBDH = $khzbdh$
-    </select>
-    <select id="dn12.jgkhzbgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  ZBPX, ZBDH, TJKJ, KHZBDH, KHZBMC, SDBS, BZ  from KHFA_KHZB_JG where 1= 1  and KHZBDH = $khzbdh$
-    </select>
-    <insert id="dn12.jgkhzbgl_insert" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      insert into KHFA_KHZB_JG( BZ, ZBPX, ZBDH, TJKJ, KHZBMC, KHZBDH, SDBS ) values ( '$bz$',$zbpx$,$zbdh$,'$tjkj$','$khzbmc$',$khzbdh$,'$sdbs$')
-    </insert>
-    <update id="dn12.jgkhzbgl_update" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update KHFA_KHZB_JG set BZ = '$bz$',ZBPX = $zbpx$,ZBDH = $zbdh$,TJKJ = '$tjkj$',KHZBMC = '$khzbmc$',SDBS = '$sdbs$' where 1=1  and KHZBDH = $khzbdh$
-    </update>
-    <delete id="dn12.jgkhzbgl_delete" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      delete from KHFA_KHZB_JG where 1=1  and KHZBDH = $khzbdh$
-    </delete>
-    <select id="dn12.jgkhzbgl_checkDelete" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select fa.fabh from khfa_khzbpz pz,KHFA_FAPZ fa where pz.fabh=fa.fabh and pz.khzbdh=$khzbdh$ and fa.khdx='1'</select>
-    <delete id="dn12.jgkhzbgl_deleteJgKhzbxs" parameterClass="java.util.Map">/**!mycat:datanode=$db$**/ delete from csb_khzbxs_jg
-where khzbdh=$khzbdh$</delete>
-    <select id="dn12.jgkhzbgl_selectIsExist" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select count(1) as nums from khfa_khzbpz zbpz
-inner join khfa_khzb_jg hy on hy.KHZBDH=zbpz.KHZBDH 
-where hy.KHZBMC = '$dkhzbmc$'</select>
-    <select id="dn12.jgkhzbgl_getKhzbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select coalesce(max(khzbdh),0)+1 as ID from khfa_khzb_jg</select>
-    <select id="dn12.jgkhzbgl_checkKhzbmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select jg.khzbdh from khfa_khzb_jg jg where jg.khzbmc!='$oldkhzbmc$' and jg.khzbmc='$khzbmc$'</select>
-    <select id="dn12.jgkhzbgl_MSQL4SELECT_zbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      /**!mycat:datanode=$db$**/ select distinct key,value from ( select a.zbdh as key, a.zbmc as value from khdx_zb a inner join khdx_zbtjkj b on a.zbdh=b.zbdh inner join khdx_zblb c on  a.zbdh=c.zbdh
-      <isNotEmpty property="sysdate">and  $sysdate$ between c.qsrq and c.jsrq</isNotEmpty>
-      where  a.zbzt!=1 and  a.sfxs != '1'
-      <isNotEmpty property="ywlb">and c.ywlb='$ywlb$'</isNotEmpty>
-      and b.tjkj!=2  order by a.zbpx, a.zbdh) d
-    </select>
-    <select id="dn12.jgkhzbgl_MSQL4SELECT_tjkj" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select  dmz as key, dmms as value   from csb_dmms  where  lower(dmmc) = 'zbtjkj'    and rtrim(dmz) in (select cast(tjkj as VARCHAR(20))                    from khdx_zbtjkj                      where zbdh= $zbdh$  and tjkj!=2)  order by dmz</select>
-  </sqlMap>
-  <javascript>
-    <import>parent.addTab('jgkhzbgldr','机构考核指标管理','/module/parser/import/visitHtml/jgkhzbgldr');</import>
-    <query>var maxqsrq = 0;
-var editpage_height = 500;
-jQuery(document).ready(function () {
-PAS.di.execute('hykhzbgl_getMaxqsrq',getMaxqsrqBack);//加载最大的起始日期
-});
 
-//自定义验证，在提交时执行。通过返回true，否则返回false
-function customValidate(){
- return true;
-}
-
-function jcdjmx(obj){
-       var param="{khzbdh:'"+obj['KHZBDH']+"',qsrq:'"+obj['QSRQ']+"'}";
-       //querySubQuery(param,'jgjcdjmxcx','50','35','moda');
-       custom_window("../studio/querySubQuery.do?method=visitHTML&amp;funId=jgjcdjmxcx&amp;paramsJson="+param,700,600,'标准计酬系数');    
-}
-function getMaxqsrqBack(obj){
-  if(obj.data.length&gt;0){
-        maxqsrq = obj.data[0].MAXQSRQ;
-        PAS.di.setDone(obj.sqlid);
-  }
-}
-
-function isExist(obj){
-  if(obj.data.length&gt;0){
-    if(obj.data[0].NUMS != 0){
-       parent.custom_alert("此考核指标正在被考核方案使用，不能删除");
-       return;
-    }
-  }
-}
-
-function showDeleteDialog(sel){
-        var jsrq=sel["JSRQ"];    
-        if(null!=jsrq){
-            if(jsrq!='29991231')
-            {
-                custom_alert("只能删除结束日期为29991231的记录，请重新操作!");
-                return ;
-            }
-        }        
-        var khzbdh=sel["KHZBDH"];
-        $("#khzbdh").val(khzbdh);
-        PAS.di.execute("jgkhzbgl_checkDelete",function(obj){
-          if(obj.data.length&gt;0){
-             parent.custom_alert("此考核指标正在被考核方案使用，不能删除");
-          }else{          
-            custom_confirm('你确定要删除所选记录吗？','提示',function(){
-            /*先删除指标系数*/
-               PAS.di.execute("jgkhzbgl_deleteJgKhzbxs",function(obj){
-                 if(obj.status == 0){   
-                     var colIds="KHZBDH,KHZBMC,ZBDH,ZBMC,SDBS,SDBSMC,BZ,BZMC,TJKJ,TJKJMC,YWLB,KHJS,ZBPX";
-                      var colId=colIds.split(",");//所有的主键名
-                      var params="?"; //URL的参数
-                      for(var i=0;i&lt;colId.length;i++){
-                          params+=colId[i].toLowerCase()+"="+sel[colId[i]]+"&amp;";
-                      }
-                      params=encodeURI(params.substring(0,params.length-1));
-                      $.post('/module/parser/manage/deleteData/jgkhzbgl'+params,{},function(cb){
-                              custom_alert(cb);
-                              loadData();
-                      }).error(function(){
-                          custom_alert("发生内部错误，无法删除所选记录！");
-                      });   
-                 PAS.di.setDone(); 
-                 }else{
-                   custom_alert("发生内部错误，无法删除所选记录！");
-                 }      
-               });                 
-            });
-            PAS.di.setDone(obj.sqlid);
-          }
-        });        
-        
-    }
-    
-function showYyfa(obj){
-  var paramsJasonString = "{'khzbdh':'"+obj['KHZBDH']+"','khdx':'1'}";
-  querySubQuery(paramsJasonString,"yyfamx",'80','40','tag'); 
-}</query>
-    <edit>setSelectSearch('zbdh','ywlb');BindParent('zbdh','ywlb','change');
-var maxqsrq = 0;
-flag=true;
-function getTjkjBack(obj){
-  if(obj.data.length&gt;0){
-    var d = obj.data;
-    $('#tjkj').html('');
-    for(var i=0;i&lt;d.length;i++){       
-      $('#tjkj').append('&lt;option value="'+d[i].KEY+'"&gt;'+d[i].VALUE+'&lt;/option&gt;');
-    }
-  }
-  
-}
-
-jQuery(document).ready(function () {
-//这里的js脚本，会在页面加载完成后执行
- //检测考核指标名称的唯一性
-   $("#oldkhzbmc").val("");
-  jQuery('#khzbmc').parent().attr('colspan',3); 
-  jQuery('#khzbmc').executeOnEvent('blur','jgkhzbgl_checkKhzbmc',checkKhzbmcBack);
-  
- if(jQuery('#page_operate').val()=='add'){
-     //获取考核指标代号
-    $("#oldkhzbmc").val("abcdefg123456789");
-    PAS.di.execute('jgkhzbgl_getKhzbdh',getKhzbdhBack); 
-    jQuery('#zbdh').bind('change',zbdhChange).trigger('change');
-  }else{
-      $("#oldkhzbmc").val($("#khzbmc").val());
-      $("#ywlb").attr("disabled",false);
-      $("#zbdh").attr("disabled",false);
-      //修改时，不能修改起始日期：
-      jQuery('#qsrq').attr('disabled',true);
-      jQuery('#qsrq').next().hide();
-  }
-  PAS.di.execute('hykhzbgl_getMaxqsrq',getMaxqsrqBack);//加载最大的起始日期
-  $('#khjs').parent().parent().hide();//暂时隐藏角色
-});
-//自定义验证，在提交时执行。通过返回true，否则返回false
-function customValidate(){
- 
-  if(maxqsrq&gt;parseInt($('#qsrq').val())){
-    parent.custom_alert('由于重算天数的限制，起始日期最大只能是：'+maxqsrq);
-    return false;   
-  }
-  
-    
-    if(fucCheckLength($('#khzbmc').val())&gt;100){
-        parent.custom_alert('考核指标名称超过100个字符！');
-        return false;
-    }
-    
-    if(fucCheckLength($('#zbpx').val())&gt;10){
-        parent.custom_alert('排序顺序大于10位数！');
-        return false;
-        
-    }
-      // PAS.di.execute('jgkhzbgl_checkKhzbmc',checkKhzbmcBack); 
-    if($('#boolmc').val() == "false"){
-      return false;
-    }
-    return true;
-}
-
-
-
-function fucCheckLength(str) {  
- var len = str.match(/[^ -~]/g) == null ? str.length : str.length + str.match(/[^ -~]/g).length ; 
- return len;
-}  
-
-
-function getKhzbdhBack(obj){
-  if(obj.data.length&gt;0){
-        jQuery('#khzbdh').val(obj.data[0].ID);
-        
-  }
-}
-
-function checkKhzbmcBack(obj){
- 
-  if(obj.data.length&gt;0){
-    $('#khzbmc').validationFiled('考核指标名称已存在!');
-    $('#boolmc').val("false");
- }else{
-   $("#khzbmc").validationPass(obj.sqlid);
-   $('#boolmc').val("true");
- }
-}
-
-function getMaxqsrqBack(obj){
-  if(obj.data.length&gt;0){
-        maxqsrq = obj.data[0].MAXQSRQ;
-        
-  }
-}
-function zbdhChange(){
-$("#khzbmc").val($("#zbdh option:selected").text());
-PAS.di.execute('jgkhzbgl_checkKhzbmc',checkKhzbmcBack); 
-}</edit>
-  </javascript>
+<pageSetting id="jgkhzbgl" title="机构考核指标管理" type="manage"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="考核指标名称" fieldName=""> 
+        <attribute key="name" value="khzbmc"/>  
+        <attribute key="readonly" value="false"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag row="0" col="1" rowspan="1" colspan="1" name="Text" label="基础指标名称" fieldName=""> 
+        <attribute key="name" value="zbmc"/>  
+        <attribute key="readonly" value="false"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
+        <attribute key="name" value="khzbdh"/> 
+      </tag>  
+      <tag row="0" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
+        <attribute key="name" value="dkhzbmc"/> 
+      </tag>  
+      <tag row="0" col="4" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+        <attribute key="dataType" value="select"/>  
+        <attribute key="sql" value="select fa.fabh from khfa_khzbpz pz,KHFA_FAPZ fa where pz.fabh=fa.fabh and pz.khzbdh=$khzbdh$ and fa.khdx='1'"/>  
+        <attribute key="name" value="checkDelete"/> 
+      </tag>  
+      <tag row="1" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+        <attribute key="dataType" value="delete"/>  
+        <attribute key="sql" value="delete from csb_khzbxs_jg where khzbdh=$khzbdh$"/>  
+        <attribute key="name" value="deleteJgKhzbxs"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table page="true" id="jgkhzbgltable"> 
+    <col id="KHZBDH" title="考核指标代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="KHZBMC" title="考核指标名称" align="left" type="string" width="250" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="ZBDH" title="基础指标代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="ZBMC" title="基础指标名称" align="left" type="string" width="200" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="SDBS" title="时段标识" align="left" type="hidden" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="SDBSMC" title="时段标识" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="BZ" title="币种" align="left" type="hidden" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="BZMC" title="币种" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="TJKJ" title="统计口径" align="left" type="hidden" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="TJKJMC" title="统计口径" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="YWLB" title="业务类别" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="ZBPX" title="排序顺序" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="YYFA" title="引用方案" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" xsType="href" onclick="showYyfa"/> 
+  </table>  
+  <rels> 
+    <items id="jgkhzbgltable"/> 
+  </rels>  
+  <addPage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="2" name="Text" label="考核指标名称" fieldName="KHZBMC"> 
+      <attribute key="maxlength" value="100"/>  
+      <attribute key="style" value="width:400px;"/>  
+      <attribute key="name" value="khzbmc"/>  
+      <attribute key="styleClass" value="{required:true}"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
+      <attribute key="name" value="oldkhzbmc"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Qxyw" label="业务类别" fieldName=""> 
+      <attribute key="name" value="ywlb"/>  
+      <attribute key="width" value="165px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="1" col="1" rowspan="1" colspan="1" name="MSQL4Select" label="基础指标" fieldName="ZBDH"> 
+      <attribute key="parents" value="ywlb"/>  
+      <attribute key="sql" value="select distinct key,value from ( select a.zbdh as key, a.zbmc as value from khdx_zb a inner join khdx_zbtjkj b on a.zbdh=b.zbdh inner join khdx_zblb c on  a.zbdh=c.zbdh and  $sysdate$ between c.qsrq and c.jsrq where  a.zbzt!=1 and  a.sfxs != '1' and c.ywlb='$ywlb$'  and b.tjkj!=2  order by a.zbpx, a.zbdh) d"/>  
+      <attribute key="isSearch" value="true"/>  
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="isMultiple" value="false"/>  
+      <attribute key="name" value="zbdh"/>  
+      <attribute key="width" value="165px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="isEditable" value="true"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="ZbParam" label="币种" fieldName="BZ"> 
+      <attribute key="parents" value="zbdh"/>  
+      <attribute key="isRequired" value="false"/>  
+      <attribute key="isMultiple" value="false"/>  
+      <attribute key="name" value="bz"/>  
+      <attribute key="width" value="165px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="isEditable" value="true"/>  
+      <attribute key="editable" value="true"/>  
+      <attribute key="paramType" value="bz"/> 
+    </tag>  
+    <tag row="2" col="1" rowspan="1" colspan="1" name="ZbParam" label="时段标识" fieldName="SDBS"> 
+      <attribute key="parents" value="zbdh"/>  
+      <attribute key="isRequired" value="false"/>  
+      <attribute key="isMultiple" value="false"/>  
+      <attribute key="name" value="sdbs"/>  
+      <attribute key="width" value="165px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="isEditable" value="true"/>  
+      <attribute key="editable" value="true"/>  
+      <attribute key="paramType" value="sdbs"/> 
+    </tag>  
+    <tag row="3" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="统计口径" fieldName="TJKJ"> 
+      <attribute key="parents" value="zbdh"/>  
+      <attribute key="sql" value="select  dmz as key, dmms as value   from csb_dmms  where  lower(dmmc) = 'zbtjkj'    and rtrim(dmz) in (select cast(tjkj as VARCHAR(20))                    from khdx_zbtjkj                      where zbdh= $zbdh$  and tjkj!=2)  order by dmz"/>  
+      <attribute key="isSearch" value="false"/>  
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="isMultiple" value="false"/>  
+      <attribute key="name" value="tjkj"/>  
+      <attribute key="width" value="165px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="isEditable" value="true"/> 
+    </tag>  
+    <tag row="3" col="1" rowspan="1" colspan="1" name="Number" label="排序顺序" fieldName="ZBPX"> 
+      <attribute key="precision" value="0"/>  
+      <attribute key="style" value="width:165px;"/>  
+      <attribute key="name" value="zbpx"/>  
+      <attribute key="intparts" value="10"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="4" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select count(1) as nums from khfa_khzbpz zbpz inner join khfa_khzb_jg hy on hy.KHZBDH=zbpz.KHZBDH  where hy.KHZBMC = '$dkhzbmc$'"/>  
+      <attribute key="name" value="selectIsExist"/> 
+    </tag>  
+    <tag row="5" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHZBDH"> 
+      <attribute key="name" value="khzbdh"/> 
+    </tag>  
+    <tag row="5" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select coalesce(max(khzbdh),0)+1 as ID from khfa_khzb_jg"/>  
+      <attribute key="name" value="getKhzbdh"/> 
+    </tag>  
+    <tag row="6" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select jg.khzbdh from khfa_khzb_jg jg where jg.khzbmc!='$oldkhzbmc$' and jg.khzbmc='$khzbmc$'"/>  
+      <attribute key="name" value="checkKhzbmc"/> 
+    </tag> 
+  </addPage>  
+  <updatePage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="2" name="Text" label="考核指标名称" fieldName="KHZBMC"> 
+      <attribute key="maxlength" value="100"/>  
+      <attribute key="style" value="width:400px;"/>  
+      <attribute key="name" value="khzbmc"/>  
+      <attribute key="styleClass" value="{required:true}"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
+      <attribute key="name" value="oldkhzbmc"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Qxyw" label="业务类别" fieldName=""> 
+      <attribute key="name" value="ywlb"/>  
+      <attribute key="width" value="165px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="isEditable" value="false"/>  
+      <attribute key="editable" value="false"/> 
+    </tag>  
+    <tag row="1" col="1" rowspan="1" colspan="1" name="MSQL4Select" label="基础指标" fieldName="ZBDH"> 
+      <attribute key="parents" value="ywlb"/>  
+      <attribute key="sql" value="select distinct key,value from ( select a.zbdh as key, a.zbmc as value from khdx_zb a inner join khdx_zbtjkj b on a.zbdh=b.zbdh inner join khdx_zblb c on  a.zbdh=c.zbdh and  $sysdate$ between c.qsrq and c.jsrq where  a.zbzt!=1 and  a.sfxs != '1' and c.ywlb='$ywlb$'  and b.tjkj!=2  order by a.zbpx, a.zbdh) d"/>  
+      <attribute key="isSearch" value="true"/>  
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="isMultiple" value="false"/>  
+      <attribute key="name" value="zbdh"/>  
+      <attribute key="width" value="165px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="editable" value="false"/>  
+      <attribute key="isEditable" value="false"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="ZbParam" label="币种" fieldName="BZ"> 
+      <attribute key="parents" value="zbdh"/>  
+      <attribute key="isRequired" value="false"/>  
+      <attribute key="isMultiple" value="false"/>  
+      <attribute key="name" value="bz"/>  
+      <attribute key="width" value="165px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="isEditable" value="true"/>  
+      <attribute key="editable" value="true"/>  
+      <attribute key="paramType" value="bz"/> 
+    </tag>  
+    <tag row="2" col="1" rowspan="1" colspan="1" name="ZbParam" label="时段标识" fieldName="SDBS"> 
+      <attribute key="parents" value="zbdh"/>  
+      <attribute key="isRequired" value="false"/>  
+      <attribute key="isMultiple" value="false"/>  
+      <attribute key="name" value="sdbs"/>  
+      <attribute key="width" value="165px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="isEditable" value="true"/>  
+      <attribute key="editable" value="true"/>  
+      <attribute key="paramType" value="sdbs"/> 
+    </tag>  
+    <tag row="3" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="统计口径" fieldName="TJKJ"> 
+      <attribute key="parents" value="zbdh"/>  
+      <attribute key="sql" value="select  dmz as key, dmms as value   from csb_dmms  where  lower(dmmc) = 'zbtjkj'    and rtrim(dmz) in (select cast(tjkj as VARCHAR(20))                    from khdx_zbtjkj                      where zbdh= $zbdh$  and tjkj!=2)  order by dmz"/>  
+      <attribute key="isSearch" value="false"/>  
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="isMultiple" value="false"/>  
+      <attribute key="name" value="tjkj"/>  
+      <attribute key="width" value="165px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="isEditable" value="true"/> 
+    </tag>  
+    <tag row="3" col="1" rowspan="1" colspan="1" name="Number" label="排序顺序" fieldName="ZBPX"> 
+      <attribute key="precision" value="0"/>  
+      <attribute key="style" value="width:165px;"/>  
+      <attribute key="name" value="zbpx"/>  
+      <attribute key="intparts" value="10"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="4" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select count(1) as nums from khfa_khzbpz zbpz inner join khfa_khzb_jg hy on hy.KHZBDH=zbpz.KHZBDH  where hy.KHZBMC = '$dkhzbmc$'"/>  
+      <attribute key="name" value="selectIsExist"/> 
+    </tag>  
+    <tag row="5" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHZBDH"> 
+      <attribute key="name" value="khzbdh"/> 
+    </tag>  
+    <tag row="5" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select coalesce(max(khzbdh),0)+1 as ID from khfa_khzb_jg"/>  
+      <attribute key="name" value="getKhzbdh"/> 
+    </tag>  
+    <tag row="6" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select jg.khzbdh from khfa_khzb_jg jg where jg.khzbmc!='$oldkhzbmc$' and jg.khzbmc='$khzbmc$'"/>  
+      <attribute key="name" value="checkKhzbmc"/> 
+    </tag> 
+  </updatePage>  
+  <buttons> 
+    <button>add</button>  
+    <button>edit</button>  
+    <button>delete</button>  
+    <button>import</button> 
+  </buttons>  
+  <flow> 
+    <insertbefore/>  
+    <insertafter/>  
+    <deletebefore/>  
+    <deleteafter/>  
+    <updatebefore/>  
+    <updateafter/> 
+  </flow>  
+  <sqlMap namespace="studio.jgkhzbgl"> 
+    <select id="dn0.jgkhzbglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select khzb.khzbdh,khzb.khzbmc,khzb.zbdh,zb.zbmc,khzb.sdbs,dmms1.dmms as sdbsmc, khzb.bz,dmms2.dmms as bzmc,khzb.tjkj,dmms3.dmms as tjkjmc, zblb.ywlb,khzb.zbpx,'引用方案' as yyfa from khfa_khzb_jg khzb inner join khdx_zblb zblb on zblb.zbdh=khzb.zbdh and zblb.jsrq=29991231 inner join khdx_zb zb on zb.zbdh=khzb.zbdh inner join csb_dmms dmms1 on lower(dmms1.dmmc)='zbsdbs' and dmms1.dmz=khzb.sdbs inner join csb_dmms dmms2 on lower(dmms2.dmmc)='zbbz' and dmms2.dmz=khzb.bz inner join csb_dmms dmms3 on lower(dmms3.dmmc)='tjkj' and dmms3.dmz=khzb.tjkj where 1=1 
+      <isNotEmpty property="khzbmc">and khzb.khzbmc like '%$khzbmc$%'</isNotEmpty>  
+      <isNotEmpty property="zbmc">and zb.zbmc like '%$zbmc$%'</isNotEmpty> order by zbpx
+    </select>  
+    <select id="dn0.jgkhzbglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select khzb.khzbdh,khzb.khzbmc,khzb.zbdh,zb.zbmc,khzb.sdbs,dmms1.dmms as sdbsmc, khzb.bz,dmms2.dmms as bzmc,khzb.tjkj,dmms3.dmms as tjkjmc, zblb.ywlb,khzb.zbpx,'引用方案' as yyfa from khfa_khzb_jg khzb inner join khdx_zblb zblb on zblb.zbdh=khzb.zbdh and zblb.jsrq=29991231 inner join khdx_zb zb on zb.zbdh=khzb.zbdh inner join csb_dmms dmms1 on lower(dmms1.dmmc)='zbsdbs' and dmms1.dmz=khzb.sdbs inner join csb_dmms dmms2 on lower(dmms2.dmmc)='zbbz' and dmms2.dmz=khzb.bz inner join csb_dmms dmms3 on lower(dmms3.dmmc)='tjkj' and dmms3.dmz=khzb.tjkj where 1=1 
+      <isNotEmpty property="khzbmc">and khzb.khzbmc like '%$khzbmc$%'</isNotEmpty>  
+      <isNotEmpty property="zbmc">and zb.zbmc like '%$zbmc$%'</isNotEmpty> order by zbpx ) t
+    </select>  
+    <select id="dn0.jgkhzbgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select ZBPX, ZBDH, TJKJ, KHZBDH, KHZBMC, SDBS, BZ from KHFA_KHZB_JG where 1= 1 and KHZBDH = $khzbdh$
+    </select>  
+    <select id="dn0.jgkhzbgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select ZBPX, ZBDH, TJKJ, KHZBDH, KHZBMC, SDBS, BZ from KHFA_KHZB_JG where 1= 1 and KHZBDH = $khzbdh$
+    </select>  
+    <insert id="dn0.jgkhzbgl_insert" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into KHFA_KHZB_JG( BZ, ZBPX, ZBDH, TJKJ, KHZBMC, KHZBDH, SDBS ) values ( '$bz$',$zbpx$,$zbdh$,'$tjkj$','$khzbmc$',$khzbdh$,'$sdbs$')
+    </insert>  
+    <update id="dn0.jgkhzbgl_update" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update KHFA_KHZB_JG set BZ = '$bz$',ZBPX = $zbpx$,ZBDH = $zbdh$,TJKJ = '$tjkj$',KHZBMC = '$khzbmc$',SDBS = '$sdbs$' where 1=1 and KHZBDH = $khzbdh$
+    </update>  
+    <delete id="dn0.jgkhzbgl_delete" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from KHFA_KHZB_JG where 1=1 and KHZBDH = $khzbdh$
+    </delete>  
+    <select id="dn0.jgkhzbgl_checkDelete" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select fa.fabh from khfa_khzbpz pz,KHFA_FAPZ fa where pz.fabh=fa.fabh and pz.khzbdh=$khzbdh$ and fa.khdx='1'</select>  
+    <delete id="dn0.jgkhzbgl_deleteJgKhzbxs" parameterClass="java.util.Map">/**!mycat:datanode=$db$**/ delete from csb_khzbxs_jg where khzbdh=$khzbdh$</delete>  
+    <select id="dn0.jgkhzbgl_selectIsExist" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select count(1) as nums from khfa_khzbpz zbpz inner join khfa_khzb_jg hy on hy.KHZBDH=zbpz.KHZBDH where hy.KHZBMC = '$dkhzbmc$'</select>  
+    <select id="dn0.jgkhzbgl_getKhzbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select coalesce(max(khzbdh),0)+1 as ID from khfa_khzb_jg</select>  
+    <select id="dn0.jgkhzbgl_checkKhzbmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select jg.khzbdh from khfa_khzb_jg jg where jg.khzbmc!='$oldkhzbmc$' and jg.khzbmc='$khzbmc$'</select>  
+    <select id="dn0.jgkhzbgl_MSQL4SELECT_zbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct key,value from ( select a.zbdh as key, a.zbmc as value from khdx_zb a inner join khdx_zbtjkj b on a.zbdh=b.zbdh inner join khdx_zblb c on a.zbdh=c.zbdh 
+      <isNotEmpty property="sysdate">and $sysdate$ between c.qsrq and c.jsrq</isNotEmpty> where a.zbzt!=1 and a.sfxs != '1' 
+      <isNotEmpty property="ywlb">and c.ywlb='$ywlb$'</isNotEmpty> and b.tjkj!=2 order by a.zbpx, a.zbdh) d
+    </select>  
+    <select id="dn0.jgkhzbgl_MSQL4SELECT_tjkj" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where lower(dmmc) = 'zbtjkj' and rtrim(dmz) in (select cast(tjkj as VARCHAR(20)) from khdx_zbtjkj where zbdh= $zbdh$ and tjkj!=2) order by dmz</select> 
+  </sqlMap>  
+  <javascript> 
+    <import>parent.addTab('jgkhzbgldr','机构考核指标管理','/module/parser/import/visitHtml/jgkhzbgldr');</import>  
+    <query>var maxqsrq = 0; var editpage_height = 500; jQuery(document).ready(function () { PAS.di.execute('hykhzbgl_getMaxqsrq',getMaxqsrqBack);//加载最大的起始日期 }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; } function jcdjmx(obj){ var param="{khzbdh:'"+obj['KHZBDH']+"',qsrq:'"+obj['QSRQ']+"'}"; //querySubQuery(param,'jgjcdjmxcx','50','35','moda'); custom_window("../studio/querySubQuery.do?method=visitHTML&amp;funId=jgjcdjmxcx&amp;paramsJson="+param,700,600,'标准计酬系数'); } function getMaxqsrqBack(obj){ if(obj.data.length&gt;0){ maxqsrq = obj.data[0].MAXQSRQ; PAS.di.setDone(obj.sqlid); } } function isExist(obj){ if(obj.data.length&gt;0){ if(obj.data[0].NUMS != 0){ parent.custom_alert("此考核指标正在被考核方案使用，不能删除"); return; } } } function showDeleteDialog(sel){ var jsrq=sel["JSRQ"]; if(null!=jsrq){ if(jsrq!='29991231') { custom_alert("只能删除结束日期为29991231的记录，请重新操作!"); return ; } } var khzbdh=sel["KHZBDH"]; $("#khzbdh").val(khzbdh); PAS.di.execute("jgkhzbgl_checkDelete",function(obj){ if(obj.data.length&gt;0){ parent.custom_alert("此考核指标正在被考核方案使用，不能删除"); }else{ custom_confirm('你确定要删除所选记录吗？','提示',function(){ /*先删除指标系数*/ PAS.di.execute("jgkhzbgl_deleteJgKhzbxs",function(obj){ if(obj.status == 0){ var colIds="KHZBDH,KHZBMC,ZBDH,ZBMC,SDBS,SDBSMC,BZ,BZMC,TJKJ,TJKJMC,YWLB,KHJS,ZBPX"; var colId=colIds.split(",");//所有的主键名 var params="?"; //URL的参数 for(var i=0;i&lt;colId.length;i++){ params+=colId[i].toLowerCase()+"="+sel[colId[i]]+"&amp;"; } params=encodeURI(params.substring(0,params.length-1)); $.post('/module/parser/manage/deleteData/jgkhzbgl'+params,{},function(cb){ custom_alert(cb); loadData(); }).error(function(){ custom_alert("发生内部错误，无法删除所选记录！"); }); PAS.di.setDone(); }else{ custom_alert("发生内部错误，无法删除所选记录！"); } }); }); PAS.di.setDone(obj.sqlid); } }); } function showYyfa(obj){ var paramsJasonString = "{'khzbdh':'"+obj['KHZBDH']+"','khdx':'1'}"; querySubQuery(paramsJasonString,"yyfamx",'80','40','tag'); }</query>  
+    <edit>setSelectSearch('zbdh','ywlb');BindParent('zbdh','ywlb','change'); var maxqsrq = 0; flag=true; function getTjkjBack(obj){ if(obj.data.length&gt;0){ var d = obj.data; $('#tjkj').html(''); for(var i=0;i&lt;d.length;i++){ $('#tjkj').append('&lt;option value="'+d[i].KEY+'"&gt;'+d[i].VALUE+'&lt;/option&gt;'); } } } jQuery(document).ready(function () { //这里的js脚本，会在页面加载完成后执行 //检测考核指标名称的唯一性 $("#oldkhzbmc").val(""); jQuery('#khzbmc').parent().attr('colspan',3); jQuery('#khzbmc').executeOnEvent('blur','jgkhzbgl_checkKhzbmc',checkKhzbmcBack); if(jQuery('#page_operate').val()=='add'){ //获取考核指标代号 $("#oldkhzbmc").val("abcdefg123456789"); PAS.di.execute('jgkhzbgl_getKhzbdh',getKhzbdhBack); jQuery('#zbdh').bind('change',zbdhChange).trigger('change'); }else{ $("#oldkhzbmc").val($("#khzbmc").val()); $("#ywlb").attr("disabled",false); $("#zbdh").attr("disabled",false); //修改时，不能修改起始日期： jQuery('#qsrq').attr('disabled',true); jQuery('#qsrq').next().hide(); } PAS.di.execute('hykhzbgl_getMaxqsrq',getMaxqsrqBack);//加载最大的起始日期 $('#khjs').parent().parent().hide();//暂时隐藏角色 }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ if(maxqsrq&gt;parseInt($('#qsrq').val())){ parent.custom_alert('由于重算天数的限制，起始日期最大只能是：'+maxqsrq); return false; } if(fucCheckLength($('#khzbmc').val())&gt;100){ parent.custom_alert('考核指标名称超过100个字符！'); return false; } if(fucCheckLength($('#zbpx').val())&gt;10){ parent.custom_alert('排序顺序大于10位数！'); return false; } // PAS.di.execute('jgkhzbgl_checkKhzbmc',checkKhzbmcBack); if($('#boolmc').val() == "false"){ return false; } return true; } function fucCheckLength(str) { var len = str.match(/[^ -~]/g) == null ? str.length : str.length + str.match(/[^ -~]/g).length ; return len; } function getKhzbdhBack(obj){ if(obj.data.length&gt;0){ jQuery('#khzbdh').val(obj.data[0].ID); } } function checkKhzbmcBack(obj){ if(obj.data.length&gt;0){ $('#khzbmc').validationFiled('考核指标名称已存在!'); $('#boolmc').val("false"); }else{ $("#khzbmc").validationPass(obj.sqlid); $('#boolmc').val("true"); } } function getMaxqsrqBack(obj){ if(obj.data.length&gt;0){ maxqsrq = obj.data[0].MAXQSRQ; } } function zbdhChange(){ $("#khzbmc").val($("#zbdh option:selected").text()); PAS.di.execute('jgkhzbgl_checkKhzbmc',checkKhzbmcBack); }</edit> 
+  </javascript> 
 </pageSetting>
-

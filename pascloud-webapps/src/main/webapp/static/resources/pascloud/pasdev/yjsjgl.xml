@@ -1,489 +1,395 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="yjsjgl" title="预警事件管理" type="manage">
-  <conPart>
-    <tags>
-      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="预警起始日期" fieldName="">
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="yjqsrq" />
-        <attribute key="minDate" value="no" />
-        <attribute key="defValType" value="yc" />
-        <attribute key="dateFmt" value="yyyyMMdd" />
-        <attribute key="editable" value="true" />
-      </tag>
-      <tag row="0" col="1" rowspan="1" colspan="1" name="Date" label="预警结束日期" fieldName="">
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="yjjsrq" />
-        <attribute key="minDate" value="no" />
-        <attribute key="defValType" value="sysDate" />
-        <attribute key="dateFmt" value="yyyyMMdd" />
-        <attribute key="editable" value="true" />
-      </tag>
-      <tag row="0" col="2" rowspan="1" colspan="1" name="Dmms" label="报警级别" fieldName="">
-        <attribute key="name" value="bjjb" />
-        <attribute key="width" value="120px;" />
-        <attribute key="isAll" value="true" />
-        <attribute key="dmmc" value="bjjb" />
-        <attribute key="multiple" value="false" />
-        <attribute key="editable" value="true" />
-      </tag>
-      <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="预警责任人" fieldName="">
-        <attribute key="isRequired" value="false" />
-        <attribute key="isDisplayXN" value="true" />
-        <attribute key="jgckbz" value="jg_ckhy" />
-        <attribute key="name" value="yjzrr" />
-        <attribute key="multiple" value="true" />
-        <attribute key="editable" value="true" />
-      </tag>
-      <tag row="1" col="1" rowspan="1" colspan="1" name="NewMultipleHy" label="处理责任人" fieldName="">
-        <attribute key="isRequired" value="false" />
-        <attribute key="isDisplayXN" value="true" />
-        <attribute key="jgckbz" value="jg_ckhy" />
-        <attribute key="name" value="clzrr" />
-        <attribute key="multiple" value="true" />
-        <attribute key="editable" value="true" />
-      </tag>
-      <tag row="1" col="2" rowspan="1" colspan="1" name="Dmms" label="处理结果" fieldName="">
-        <attribute key="name" value="cljg" />
-        <attribute key="width" value="120px;" />
-        <attribute key="isAll" value="true" />
-        <attribute key="dmmc" value="cljg" />
-        <attribute key="multiple" value="false" />
-        <attribute key="editable" value="true" />
-      </tag>
-      <tag row="1" col="2" rowspan="1" colspan="1" name="Date" label="" fieldName="">
-        <attribute key="style" value="display:none" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="tjrq" />
-        <attribute key="minDate" value="no" />
-        <attribute key="defValType" value="sysDate" />
-        <attribute key="dateFmt" value="yyyyMMdd" />
-        <attribute key="editable" value="true" />
-      </tag>
-      <tag row="1" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
-        <attribute key="name" value="sjbh" />
-      </tag>
-      <tag row="2" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
-        <attribute key="dataType" value="update" />
-        <attribute key="sql" value="update WGJF_YJSJDJ set qrzt = '1',qrr ='$login_hydh$',qrrq= $tjrq$  where sjbh = $sjbh$" />
-        <attribute key="name" value="updateQrr" />
-      </tag>
-    </tags>
-  </conPart>
-  <table page="true" id="yjsjgltable">
-    <col id="YJRQ" title="预警日期" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="WGXMC" title="违规分类名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="XMMC" title="违规项名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="JE" title="金额" align="right" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="SY" title="事由" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="BJJB" title="报警级别" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="KF" title="扣分" align="right" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="YJHYDH" title="预警行员代号" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="YJHYMC" title="预警行员名称" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="CLRQ" title="处理日期" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="CLJG" title="处理结果" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="CLZRR" title="处理责任人" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="JBR" title="经办人" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="QRR" title="确认人" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
-    <col id="BZ" title="备注" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="QRZT" title="确认状态" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="SJBH" title="事件编号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" />
-  </table>
-  <rels>
-    <items id="yjsjgltable" />
-  </rels>
-  <addPage title="编辑页面">
-    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="预警日期" fieldName="YJRQ">
-      <attribute key="isRequired" value="true" />
-      <attribute key="name" value="yjrq" />
-      <attribute key="minDate" value="no" />
-      <attribute key="defValType" value="sysDate" />
-      <attribute key="dateFmt" value="yyyyMMdd" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="0" col="1" rowspan="1" colspan="1" name="MSQL4Select" label="违规项" fieldName="WGXMDH">
-      <attribute key="sql" value="select wgxmdh as key,xmmc as value from wgjf_wgxm" />
-      <attribute key="isSearch" value="false" />
-      <attribute key="isRequired" value="false" />
-      <attribute key="isMultiple" value="false" />
-      <attribute key="name" value="wgx" />
-      <attribute key="width" value="120px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="isEditable" value="true" />
-    </tag>
-    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="预警责任人" fieldName="YJZRR">
-      <attribute key="isRequired" value="true" />
-      <attribute key="isDisplayXN" value="true" />
-      <attribute key="jgckbz" value="jg_ckhy" />
-      <attribute key="name" value="yjzrr" />
-      <attribute key="multiple" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="1" col="1" rowspan="1" colspan="1" name="Dmms" label="报警级别" fieldName="BJJB">
-      <attribute key="name" value="bjjb" />
-      <attribute key="width" value="120px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="dmmc" value="bjjb" />
-      <attribute key="multiple" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="金   额" fieldName="JE">
-      <attribute key="precision" value="4" />
-      <attribute key="name" value="je" />
-      <attribute key="intparts" value="21" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="2" col="1" rowspan="1" colspan="1" name="Number" label="扣    分" fieldName="KF">
-      <attribute key="precision" value="4" />
-      <attribute key="name" value="kf" />
-      <attribute key="intparts" value="21" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="3" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="处理责任人" fieldName="CLZRR">
-      <attribute key="isRequired" value="true" />
-      <attribute key="isDisplayXN" value="true" />
-      <attribute key="jgckbz" value="jg_ckhy" />
-      <attribute key="name" value="clzrr" />
-      <attribute key="multiple" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="3" col="1" rowspan="1" colspan="1" name="Date" label="处理日期" fieldName="CLRQ">
-      <attribute key="isRequired" value="true" />
-      <attribute key="name" value="clrq" />
-      <attribute key="minDate" value="no" />
-      <attribute key="defValType" value="sysDate" />
-      <attribute key="dateFmt" value="yyyyMMdd" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="4" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="经办人" fieldName="JBR">
-      <attribute key="isRequired" value="true" />
-      <attribute key="isDisplayXN" value="true" />
-      <attribute key="jgckbz" value="jg_ckhy" />
-      <attribute key="name" value="jbr" />
-      <attribute key="multiple" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="4" col="1" rowspan="1" colspan="1" name="Dmms" label="处理结果" fieldName="CLJG">
-      <attribute key="name" value="cljg" />
-      <attribute key="width" value="120px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="dmmc" value="cljg" />
-      <attribute key="multiple" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="5" col="0" rowspan="1" colspan="1" name="Textarea" label="事   由" fieldName="SY">
-      <attribute key="cols" value="14" />
-      <attribute key="style" value="length:100" />
-      <attribute key="name" value="sy" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-      <attribute key="rows" value="5" />
-    </tag>
-    <tag row="5" col="1" rowspan="1" colspan="1" name="Textarea" label="备注" fieldName="BZ">
-      <attribute key="cols" value="14" />
-      <attribute key="style" value="length:100" />
-      <attribute key="name" value="bz" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-      <attribute key="rows" value="5" />
-    </tag>
-    <tag row="6" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
-      <attribute key="dataType" value="select" />
-      <attribute key="sql" value="select coalesce(max(sjbh),0)+1 as sjbh from  WGJF_YJSJDJ" />
-      <attribute key="name" value="selectMaxSjbh" />
-    </tag>
-    <tag row="6" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
-      <attribute key="dataType" value="select" />
-      <attribute key="sql" value="select kfbz from wgjf_wgxm where wgxmdh = '$wgx$' and $yjrq$ between qsrq and jsrq" />
-      <attribute key="name" value="getPfbz" />
-    </tag>
-    <tag row="6" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="SJBH">
-      <attribute key="name" value="sjbh" />
-    </tag>
-    <tag row="7" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="QRZT">
-      <attribute key="defVal" value="0" />
-      <attribute key="name" value="qrzt" />
-    </tag>
-    <tag row="7" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZR">
-      <attribute key="defVal" value="$login_hydh$" />
-      <attribute key="name" value="czr" />
-    </tag>
-    <tag row="7" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZSJ">
-      <attribute key="defVal" value="systime" />
-      <attribute key="name" value="czsj" />
-    </tag>
-  </addPage>
-  <updatePage title="编辑页面">
-    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="预警日期" fieldName="YJRQ">
-      <attribute key="isRequired" value="true" />
-      <attribute key="name" value="yjrq" />
-      <attribute key="minDate" value="no" />
-      <attribute key="defValType" value="sysDate" />
-      <attribute key="dateFmt" value="yyyyMMdd" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="0" col="1" rowspan="1" colspan="1" name="MSQL4Select" label="违规项" fieldName="WGXMDH">
-      <attribute key="sql" value="select wgxmdh as key,xmmc as value from wgjf_wgxm" />
-      <attribute key="isSearch" value="false" />
-      <attribute key="isRequired" value="false" />
-      <attribute key="isMultiple" value="false" />
-      <attribute key="name" value="wgx" />
-      <attribute key="width" value="120px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="isEditable" value="true" />
-    </tag>
-    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="预警责任人" fieldName="YJZRR">
-      <attribute key="isRequired" value="true" />
-      <attribute key="isDisplayXN" value="true" />
-      <attribute key="jgckbz" value="jg_ckhy" />
-      <attribute key="name" value="yjzrr" />
-      <attribute key="multiple" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="1" col="1" rowspan="1" colspan="1" name="Dmms" label="报警级别" fieldName="BJJB">
-      <attribute key="name" value="bjjb" />
-      <attribute key="width" value="120px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="dmmc" value="bjjb" />
-      <attribute key="multiple" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="金   额" fieldName="JE">
-      <attribute key="precision" value="4" />
-      <attribute key="name" value="je" />
-      <attribute key="intparts" value="21" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="2" col="1" rowspan="1" colspan="1" name="Number" label="扣    分" fieldName="KF">
-      <attribute key="precision" value="4" />
-      <attribute key="name" value="kf" />
-      <attribute key="intparts" value="21" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="3" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="处理责任人" fieldName="CLZRR">
-      <attribute key="isRequired" value="true" />
-      <attribute key="isDisplayXN" value="true" />
-      <attribute key="jgckbz" value="jg_ckhy" />
-      <attribute key="name" value="clzrr" />
-      <attribute key="multiple" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="3" col="1" rowspan="1" colspan="1" name="Date" label="处理日期" fieldName="CLRQ">
-      <attribute key="isRequired" value="true" />
-      <attribute key="name" value="clrq" />
-      <attribute key="minDate" value="no" />
-      <attribute key="defValType" value="sysDate" />
-      <attribute key="dateFmt" value="yyyyMMdd" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="4" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="经办人" fieldName="JBR">
-      <attribute key="isRequired" value="true" />
-      <attribute key="isDisplayXN" value="true" />
-      <attribute key="jgckbz" value="jg_ckhy" />
-      <attribute key="name" value="jbr" />
-      <attribute key="multiple" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="4" col="1" rowspan="1" colspan="1" name="Dmms" label="处理结果" fieldName="CLJG">
-      <attribute key="name" value="cljg" />
-      <attribute key="width" value="120px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="dmmc" value="cljg" />
-      <attribute key="multiple" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="5" col="0" rowspan="1" colspan="1" name="Textarea" label="事   由" fieldName="SY">
-      <attribute key="cols" value="14" />
-      <attribute key="style" value="length:100" />
-      <attribute key="name" value="sy" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-      <attribute key="rows" value="5" />
-    </tag>
-    <tag row="5" col="1" rowspan="1" colspan="1" name="Textarea" label="备注" fieldName="BZ">
-      <attribute key="cols" value="14" />
-      <attribute key="style" value="length:100" />
-      <attribute key="name" value="bz" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-      <attribute key="rows" value="5" />
-    </tag>
-    <tag row="6" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
-      <attribute key="dataType" value="select" />
-      <attribute key="sql" value="select coalesce(max(sjbh),0)+1 as sjbh from  WGJF_YJSJDJ" />
-      <attribute key="name" value="selectMaxSjbh" />
-    </tag>
-    <tag row="6" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
-      <attribute key="dataType" value="select" />
-      <attribute key="sql" value="select kfbz from wgjf_wgxm where wgxmdh = '$wgx$' and $yjrq$ between qsrq and jsrq" />
-      <attribute key="name" value="getPfbz" />
-    </tag>
-    <tag row="6" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="SJBH">
-      <attribute key="name" value="sjbh" />
-    </tag>
-    <tag row="7" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="QRZT">
-      <attribute key="defVal" value="0" />
-      <attribute key="name" value="qrzt" />
-    </tag>
-    <tag row="7" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZR">
-      <attribute key="defVal" value="$login_hydh$" />
-      <attribute key="name" value="czr" />
-    </tag>
-    <tag row="7" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZSJ">
-      <attribute key="defVal" value="systime" />
-      <attribute key="name" value="czsj" />
-    </tag>
-  </updatePage>
-  <buttons>
-    <button>add</button>
-    <button>edit</button>
-    <button>delete</button>
-  </buttons>
-  <flow>
-    <insertbefore />
-    <insertafter />
-    <deletebefore />
-    <deleteafter />
-    <updatebefore />
-    <updateafter />
-  </flow>
-  <sqlMap namespace="studio.yjsjgl">
-    <select id="dn12.yjsjglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select dj.sjbh,dj.yjrq, fl.wgxmc, wgxm.xmmc, dj.je, dj.sy, bjjb.dmms as bjjb, dj.kf, yjhy.hydh as yjhydh, yjhy.hymc as yjhymc, dj.clrq, cljg.dmms as cljg, clzrr.hymc as clzrr, jbr.hymc as jbr, qrr.hymc as qrr,dj.bz,  case when dj.qrzt='0' then '未确认' when dj.qrzt='1' then '确认' end qrzt  from wgjf_yjsjdj dj  left join wgjf_wgxm wgxm on wgxm.wgxmdh = dj.wgxmdh  left join wgjf_wgxmfl fl on wgxm.wgxlb = fl.wgxlb and dj.yjrq between fl.qsrq and fl.jsrq inner join khdx_hy yjhy on yjhy.khdxdh = dj.yjzrr    inner join khdx_hy clzrr on clzrr.khdxdh = dj.clzrr    inner join khdx_hy jbr on jbr.khdxdh = dj.jbr  left join khdx_hy qrr on qrr.hydh = dj.qrr  left join csb_dmms bjjb on bjjb.dmz = dj.bjjb and bjjb.dmmc = 'BJJB' left join csb_dmms cljg on cljg.dmz = dj.cljg and cljg.dmmc = 'CLJG' where 1=1
-      <isNotEmpty property="yjqsrq">and dj.yjrq between $yjqsrq$ and $yjjsrq$</isNotEmpty>
-      <isNotEmpty property="bjjb">and dj.bjjb = '$bjjb$'</isNotEmpty>
-      <isNotEmpty property="yjzrr">and dj.yjzrr = $yjzrr$</isNotEmpty>
-      <isNotEmpty property="clzrr">and dj.clzrr = $clzrr$</isNotEmpty>
-      <isNotEmpty property="cljg">and dj.cljg = '$cljg$'</isNotEmpty>
-    </select>
-    <select id="dn12.yjsjglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from ( select dj.sjbh,dj.yjrq, fl.wgxmc, wgxm.xmmc, dj.je, dj.sy, bjjb.dmms as bjjb, dj.kf, yjhy.hydh as yjhydh, yjhy.hymc as yjhymc, dj.clrq, cljg.dmms as cljg, clzrr.hymc as clzrr, jbr.hymc as jbr, qrr.hymc as qrr,dj.bz,  case when dj.qrzt='0' then '未确认' when dj.qrzt='1' then '确认' end qrzt  from wgjf_yjsjdj dj  left join wgjf_wgxm wgxm on wgxm.wgxmdh = dj.wgxmdh  left join wgjf_wgxmfl fl on wgxm.wgxlb = fl.wgxlb and dj.yjrq between fl.qsrq and fl.jsrq inner join khdx_hy yjhy on yjhy.khdxdh = dj.yjzrr    inner join khdx_hy clzrr on clzrr.khdxdh = dj.clzrr    inner join khdx_hy jbr on jbr.khdxdh = dj.jbr  left join khdx_hy qrr on qrr.hydh = dj.qrr  left join csb_dmms bjjb on bjjb.dmz = dj.bjjb and bjjb.dmmc = 'BJJB' left join csb_dmms cljg on cljg.dmz = dj.cljg and cljg.dmmc = 'CLJG' where 1=1
-      <isNotEmpty property="yjqsrq">and dj.yjrq between $yjqsrq$ and $yjjsrq$</isNotEmpty>
-      <isNotEmpty property="bjjb">and dj.bjjb = '$bjjb$'</isNotEmpty>
-      <isNotEmpty property="yjzrr">and dj.yjzrr = $yjzrr$</isNotEmpty>
-      <isNotEmpty property="clzrr">and dj.clzrr = $clzrr$</isNotEmpty>
-      <isNotEmpty property="cljg">and dj.cljg = '$cljg$'</isNotEmpty>
-      ) t
-    </select>
-    <select id="dn12.yjsjgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  CLJG, QRRQ, WGXMDH, YJZRR, QRZT, BJJB, CZR, SJBH, BZ, CLZRR, QRR, CLRQ, SY, JBR, JE, CZSJ, YJRQ, KF  from WGJF_YJSJDJ where 1= 1  and SJBH = $sjbh$
-    </select>
-    <select id="dn12.yjsjgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  CLJG, QRRQ, WGXMDH, YJZRR, QRZT, BJJB, CZR, SJBH, BZ, CLZRR, QRR, CLRQ, SY, JBR, JE, CZSJ, YJRQ, KF  from WGJF_YJSJDJ where 1= 1  and SJBH = $sjbh$
-    </select>
-    <insert id="dn12.yjsjgl_insert" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      insert into WGJF_YJSJDJ( CLZRR, CLRQ, BZ, CZSJ, CZR, YJRQ, YJZRR, JE, KF, JBR, CLJG, WGXMDH, QRZT, BJJB, SY, SJBH ) values ( $clzrr$,$clrq$,'$bz$',f_get_timestamp('$czsj$'),'$czr$',$yjrq$,$yjzrr$,$je$,$kf$,$jbr$,'$cljg$','$wgx$','$qrzt$','$bjjb$','$sy$',$sjbh$)
-    </insert>
-    <update id="dn12.yjsjgl_update" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update WGJF_YJSJDJ set CLZRR = $clzrr$,CLRQ = $clrq$,BZ = '$bz$',YJRQ = $yjrq$,YJZRR = $yjzrr$,JE = $je$,KF = $kf$,JBR = $jbr$,CLJG = '$cljg$',WGXMDH = '$wgx$',QRZT = '$qrzt$',BJJB = '$bjjb$',SY = '$sy$' where 1=1  and SJBH = $sjbh$
-    </update>
-    <delete id="dn12.yjsjgl_delete" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      delete from WGJF_YJSJDJ where 1=1  and SJBH = $sjbh$
-    </delete>
-    <update id="dn12.yjsjgl_updateQrr" parameterClass="java.util.Map">/**!mycat:datanode=$db$**/ update WGJF_YJSJDJ set qrzt = '1',qrr ='$login_hydh$',qrrq= $tjrq$  where sjbh = $sjbh$</update>
-    <select id="dn12.yjsjgl_selectMaxSjbh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select coalesce(max(sjbh),0)+1 as sjbh from  WGJF_YJSJDJ</select>
-    <select id="dn12.yjsjgl_getPfbz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select kfbz from wgjf_wgxm where wgxmdh = '$wgx$' and $yjrq$ between qsrq and jsrq</select>
-    <select id="dn12.yjsjgl_MSQL4SELECT_wgx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select wgxmdh as key,xmmc as value from wgjf_wgxm</select>
-  </sqlMap>
-  <javascript>
-    <query>jQuery(document).ready(function () {
- $("#tool_bar").append('&lt;input type="button" value="确 认" class="operation cbutton cbutton_bg_70" onClick="javascript:showQrDialog();" /&gt;');
-});
 
-//自定义验证，在提交时执行。通过返回true，否则返回false
-function customValidate(){
- return true;
-}
-function showQrDialog(){
-   var sel=jQuery("#yjsjglList").datagrid("getSelected");
-   var qrzt=sel["QRZT"];
-   var sjbh=sel["SJBH"];
- if(qrzt=='确认'){
-       custom_alert("数据已经确认，不需要再确认!");
-       return ;
-  }else{
-    custom_confirm('是否确认该信息？','提示',function(){
-      $("#sjbh").val(sjbh);
-      PAS.di.execute('yjsjgl_updateQrr',updateQrr);
-    });
-  }
- 
-}
-function updateQrr(obj){
-     custom_alert("数据已经确认");
-     loadData();
-}
-    function showDeleteDialog(sel){
-        var jsrq=sel["JSRQ"];
-        var qrzt=sel["QRZT"];
-        if(qrzt=='确认'){
-             custom_alert("数据已经确认，不允许删除!");
-             return ;
-        }
-        if(null!=jsrq){
-            if(jsrq!='29991231')
-            {
-                custom_alert("只能删除结束日期为29991231的记录，请重新操作!");
-                return ;
-            }
-        }
-        custom_confirm('你确定要删除所选记录吗？','提示',function(){
-            var colIds="YJRQ,WGXMC,XMMC,JE,SY,BJJB,KF,YJHYDH,YJHYMC,CLRQ,CLJG,CLZRR,JBR,BZ,QRZT,SJBH";
-            var colId=colIds.split(",");//所有的主键名
-            var params="&amp;"; //URL的参数
-            for(var i=0;i&lt;colId.length;i++){
-                params+=colId[i].toLowerCase()+"="+sel[colId[i]]+"&amp;";
-            }
-            params=encodeURI(params.substring(0,params.length-1));
-            //alert(params);
-            $.post('/module/parser/manage/deleteData/yjsjgl?'+params,{},function(cb){
-                    custom_alert(cb);
-                    loadData();
-            }).error(function(){
-                custom_alert("发生内部错误，无法删除所选记录！");
-            });
-        });
-    }
-   function showAddEditDialog(){
-        var width = editpage_width||700;    
-        var height = editpage_height||500;    
-        custom_window('/module/parser/manage/getById/yjsjgl?operate=add&amp;funId=yjsjgl',width,height,'预警事件管理编辑');
-    }</query>
-    <edit>jQuery(document).ready(function () {
-//这里的js脚本，会在页面加载完成后执行  
-   $("#wgx").executeOnEvent('change','yjsjgl_getPfbz',getPfbz);
-   $("#yjrq").executeOnEvent('blur','yjsjgl_getPfbz',getPfbz);
-   if($("#page_operate").val()=="add"){
-      PAS.di.execute('yjsjgl_selectMaxSjbh',selectMaxSjbh);
-      $("#wgx").change();
-   } 
-   jQuery("#sy").attr("maxlength","100");
-   jQuery("#bz").attr("maxlength","100");
-});
-//自定义验证，在提交时执行。通过返回true，否则返回false
-function customValidate(){
- return true;
-}
-function selectMaxSjbh(obj){
-   if(obj.data.length&gt;0){
-       $("#sjbh").val(obj.data[0].SJBH);
-   }
-}
-function getPfbz(obj){
-   if(obj.data.length&gt;0){
-       $("#kf").val(obj.data[0].KFBZ);
-   }
-}</edit>
-  </javascript>
+<pageSetting id="yjsjgl" title="预警事件管理" type="manage"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="预警起始日期" fieldName=""> 
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="yjqsrq"/>  
+        <attribute key="minDate" value="no"/>  
+        <attribute key="defValType" value="yc"/>  
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag row="0" col="1" rowspan="1" colspan="1" name="Date" label="预警结束日期" fieldName=""> 
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="yjjsrq"/>  
+        <attribute key="minDate" value="no"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag row="0" col="2" rowspan="1" colspan="1" name="Dmms" label="报警级别" fieldName=""> 
+        <attribute key="name" value="bjjb"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="dmmc" value="bjjb"/>  
+        <attribute key="multiple" value="false"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="预警责任人" fieldName=""> 
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="isDisplayXN" value="true"/>  
+        <attribute key="jgckbz" value="jg_ckhy"/>  
+        <attribute key="name" value="yjzrr"/>  
+        <attribute key="multiple" value="true"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag row="1" col="1" rowspan="1" colspan="1" name="NewMultipleHy" label="处理责任人" fieldName=""> 
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="isDisplayXN" value="true"/>  
+        <attribute key="jgckbz" value="jg_ckhy"/>  
+        <attribute key="name" value="clzrr"/>  
+        <attribute key="multiple" value="true"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag row="1" col="2" rowspan="1" colspan="1" name="Dmms" label="处理结果" fieldName=""> 
+        <attribute key="name" value="cljg"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="dmmc" value="cljg"/>  
+        <attribute key="multiple" value="false"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag row="1" col="2" rowspan="1" colspan="1" name="Date" label="" fieldName=""> 
+        <attribute key="style" value="display:none"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="tjrq"/>  
+        <attribute key="minDate" value="no"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag row="1" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
+        <attribute key="name" value="sjbh"/> 
+      </tag>  
+      <tag row="2" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+        <attribute key="dataType" value="update"/>  
+        <attribute key="sql" value="update WGJF_YJSJDJ set qrzt = '1',qrr ='$login_hydh$',qrrq= $tjrq$  where sjbh = $sjbh$"/>  
+        <attribute key="name" value="updateQrr"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table page="true" id="yjsjgltable"> 
+    <col id="YJRQ" title="预警日期" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="WGXMC" title="违规分类名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="XMMC" title="违规项名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="JE" title="金额" align="right" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="SY" title="事由" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="BJJB" title="报警级别" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="KF" title="扣分" align="right" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="YJHYDH" title="预警行员代号" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="YJHYMC" title="预警行员名称" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="CLRQ" title="处理日期" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="CLJG" title="处理结果" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="CLZRR" title="处理责任人" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="JBR" title="经办人" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="QRR" title="确认人" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true"/>  
+    <col id="BZ" title="备注" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="QRZT" title="确认状态" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="SJBH" title="事件编号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true"/> 
+  </table>  
+  <rels> 
+    <items id="yjsjgltable"/> 
+  </rels>  
+  <addPage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="预警日期" fieldName="YJRQ"> 
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="name" value="yjrq"/>  
+      <attribute key="minDate" value="no"/>  
+      <attribute key="defValType" value="sysDate"/>  
+      <attribute key="dateFmt" value="yyyyMMdd"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="0" col="1" rowspan="1" colspan="1" name="MSQL4Select" label="违规项" fieldName="WGXMDH"> 
+      <attribute key="sql" value="select wgxmdh as key,xmmc as value from wgjf_wgxm"/>  
+      <attribute key="isSearch" value="false"/>  
+      <attribute key="isRequired" value="false"/>  
+      <attribute key="isMultiple" value="false"/>  
+      <attribute key="name" value="wgx"/>  
+      <attribute key="width" value="120px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="isEditable" value="true"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="预警责任人" fieldName="YJZRR"> 
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="isDisplayXN" value="true"/>  
+      <attribute key="jgckbz" value="jg_ckhy"/>  
+      <attribute key="name" value="yjzrr"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="1" col="1" rowspan="1" colspan="1" name="Dmms" label="报警级别" fieldName="BJJB"> 
+      <attribute key="name" value="bjjb"/>  
+      <attribute key="width" value="120px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="dmmc" value="bjjb"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="金   额" fieldName="JE"> 
+      <attribute key="precision" value="4"/>  
+      <attribute key="name" value="je"/>  
+      <attribute key="intparts" value="21"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="2" col="1" rowspan="1" colspan="1" name="Number" label="扣    分" fieldName="KF"> 
+      <attribute key="precision" value="4"/>  
+      <attribute key="name" value="kf"/>  
+      <attribute key="intparts" value="21"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="3" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="处理责任人" fieldName="CLZRR"> 
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="isDisplayXN" value="true"/>  
+      <attribute key="jgckbz" value="jg_ckhy"/>  
+      <attribute key="name" value="clzrr"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="3" col="1" rowspan="1" colspan="1" name="Date" label="处理日期" fieldName="CLRQ"> 
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="name" value="clrq"/>  
+      <attribute key="minDate" value="no"/>  
+      <attribute key="defValType" value="sysDate"/>  
+      <attribute key="dateFmt" value="yyyyMMdd"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="4" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="经办人" fieldName="JBR"> 
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="isDisplayXN" value="true"/>  
+      <attribute key="jgckbz" value="jg_ckhy"/>  
+      <attribute key="name" value="jbr"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="4" col="1" rowspan="1" colspan="1" name="Dmms" label="处理结果" fieldName="CLJG"> 
+      <attribute key="name" value="cljg"/>  
+      <attribute key="width" value="120px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="dmmc" value="cljg"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Textarea" label="事   由" fieldName="SY"> 
+      <attribute key="cols" value="14"/>  
+      <attribute key="style" value="length:100"/>  
+      <attribute key="name" value="sy"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/>  
+      <attribute key="rows" value="5"/> 
+    </tag>  
+    <tag row="5" col="1" rowspan="1" colspan="1" name="Textarea" label="备注" fieldName="BZ"> 
+      <attribute key="cols" value="14"/>  
+      <attribute key="style" value="length:100"/>  
+      <attribute key="name" value="bz"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/>  
+      <attribute key="rows" value="5"/> 
+    </tag>  
+    <tag row="6" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select coalesce(max(sjbh),0)+1 as sjbh from  WGJF_YJSJDJ"/>  
+      <attribute key="name" value="selectMaxSjbh"/> 
+    </tag>  
+    <tag row="6" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select kfbz from wgjf_wgxm where wgxmdh = '$wgx$' and $yjrq$ between qsrq and jsrq"/>  
+      <attribute key="name" value="getPfbz"/> 
+    </tag>  
+    <tag row="6" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="SJBH"> 
+      <attribute key="name" value="sjbh"/> 
+    </tag>  
+    <tag row="7" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="QRZT"> 
+      <attribute key="defVal" value="0"/>  
+      <attribute key="name" value="qrzt"/> 
+    </tag>  
+    <tag row="7" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZR"> 
+      <attribute key="defVal" value="$login_hydh$"/>  
+      <attribute key="name" value="czr"/> 
+    </tag>  
+    <tag row="7" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZSJ"> 
+      <attribute key="defVal" value="systime"/>  
+      <attribute key="name" value="czsj"/> 
+    </tag> 
+  </addPage>  
+  <updatePage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="预警日期" fieldName="YJRQ"> 
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="name" value="yjrq"/>  
+      <attribute key="minDate" value="no"/>  
+      <attribute key="defValType" value="sysDate"/>  
+      <attribute key="dateFmt" value="yyyyMMdd"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="0" col="1" rowspan="1" colspan="1" name="MSQL4Select" label="违规项" fieldName="WGXMDH"> 
+      <attribute key="sql" value="select wgxmdh as key,xmmc as value from wgjf_wgxm"/>  
+      <attribute key="isSearch" value="false"/>  
+      <attribute key="isRequired" value="false"/>  
+      <attribute key="isMultiple" value="false"/>  
+      <attribute key="name" value="wgx"/>  
+      <attribute key="width" value="120px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="isEditable" value="true"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="预警责任人" fieldName="YJZRR"> 
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="isDisplayXN" value="true"/>  
+      <attribute key="jgckbz" value="jg_ckhy"/>  
+      <attribute key="name" value="yjzrr"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="1" col="1" rowspan="1" colspan="1" name="Dmms" label="报警级别" fieldName="BJJB"> 
+      <attribute key="name" value="bjjb"/>  
+      <attribute key="width" value="120px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="dmmc" value="bjjb"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="金   额" fieldName="JE"> 
+      <attribute key="precision" value="4"/>  
+      <attribute key="name" value="je"/>  
+      <attribute key="intparts" value="21"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="2" col="1" rowspan="1" colspan="1" name="Number" label="扣    分" fieldName="KF"> 
+      <attribute key="precision" value="4"/>  
+      <attribute key="name" value="kf"/>  
+      <attribute key="intparts" value="21"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="3" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="处理责任人" fieldName="CLZRR"> 
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="isDisplayXN" value="true"/>  
+      <attribute key="jgckbz" value="jg_ckhy"/>  
+      <attribute key="name" value="clzrr"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="3" col="1" rowspan="1" colspan="1" name="Date" label="处理日期" fieldName="CLRQ"> 
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="name" value="clrq"/>  
+      <attribute key="minDate" value="no"/>  
+      <attribute key="defValType" value="sysDate"/>  
+      <attribute key="dateFmt" value="yyyyMMdd"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="4" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="经办人" fieldName="JBR"> 
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="isDisplayXN" value="true"/>  
+      <attribute key="jgckbz" value="jg_ckhy"/>  
+      <attribute key="name" value="jbr"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="4" col="1" rowspan="1" colspan="1" name="Dmms" label="处理结果" fieldName="CLJG"> 
+      <attribute key="name" value="cljg"/>  
+      <attribute key="width" value="120px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="dmmc" value="cljg"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Textarea" label="事   由" fieldName="SY"> 
+      <attribute key="cols" value="14"/>  
+      <attribute key="style" value="length:100"/>  
+      <attribute key="name" value="sy"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/>  
+      <attribute key="rows" value="5"/> 
+    </tag>  
+    <tag row="5" col="1" rowspan="1" colspan="1" name="Textarea" label="备注" fieldName="BZ"> 
+      <attribute key="cols" value="14"/>  
+      <attribute key="style" value="length:100"/>  
+      <attribute key="name" value="bz"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/>  
+      <attribute key="rows" value="5"/> 
+    </tag>  
+    <tag row="6" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select coalesce(max(sjbh),0)+1 as sjbh from  WGJF_YJSJDJ"/>  
+      <attribute key="name" value="selectMaxSjbh"/> 
+    </tag>  
+    <tag row="6" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select kfbz from wgjf_wgxm where wgxmdh = '$wgx$' and $yjrq$ between qsrq and jsrq"/>  
+      <attribute key="name" value="getPfbz"/> 
+    </tag>  
+    <tag row="6" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="SJBH"> 
+      <attribute key="name" value="sjbh"/> 
+    </tag>  
+    <tag row="7" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="QRZT"> 
+      <attribute key="defVal" value="0"/>  
+      <attribute key="name" value="qrzt"/> 
+    </tag>  
+    <tag row="7" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZR"> 
+      <attribute key="defVal" value="$login_hydh$"/>  
+      <attribute key="name" value="czr"/> 
+    </tag>  
+    <tag row="7" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZSJ"> 
+      <attribute key="defVal" value="systime"/>  
+      <attribute key="name" value="czsj"/> 
+    </tag> 
+  </updatePage>  
+  <buttons> 
+    <button>add</button>  
+    <button>edit</button>  
+    <button>delete</button> 
+  </buttons>  
+  <flow> 
+    <insertbefore/>  
+    <insertafter/>  
+    <deletebefore/>  
+    <deleteafter/>  
+    <updatebefore/>  
+    <updateafter/> 
+  </flow>  
+  <sqlMap namespace="studio.yjsjgl"> 
+    <select id="dn0.yjsjglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select dj.sjbh,dj.yjrq, fl.wgxmc, wgxm.xmmc, dj.je, dj.sy, bjjb.dmms as bjjb, dj.kf, yjhy.hydh as yjhydh, yjhy.hymc as yjhymc, dj.clrq, cljg.dmms as cljg, clzrr.hymc as clzrr, jbr.hymc as jbr, qrr.hymc as qrr,dj.bz, case when dj.qrzt='0' then '未确认' when dj.qrzt='1' then '确认' end qrzt from wgjf_yjsjdj dj left join wgjf_wgxm wgxm on wgxm.wgxmdh = dj.wgxmdh left join wgjf_wgxmfl fl on wgxm.wgxlb = fl.wgxlb and dj.yjrq between fl.qsrq and fl.jsrq inner join khdx_hy yjhy on yjhy.khdxdh = dj.yjzrr inner join khdx_hy clzrr on clzrr.khdxdh = dj.clzrr inner join khdx_hy jbr on jbr.khdxdh = dj.jbr left join khdx_hy qrr on qrr.hydh = dj.qrr left join csb_dmms bjjb on bjjb.dmz = dj.bjjb and bjjb.dmmc = 'BJJB' left join csb_dmms cljg on cljg.dmz = dj.cljg and cljg.dmmc = 'CLJG' where 1=1 
+      <isNotEmpty property="yjqsrq">and dj.yjrq between $yjqsrq$ and $yjjsrq$</isNotEmpty>  
+      <isNotEmpty property="bjjb">and dj.bjjb = '$bjjb$'</isNotEmpty>  
+      <isNotEmpty property="yjzrr">and dj.yjzrr = $yjzrr$</isNotEmpty>  
+      <isNotEmpty property="clzrr">and dj.clzrr = $clzrr$</isNotEmpty>  
+      <isNotEmpty property="cljg">and dj.cljg = '$cljg$'</isNotEmpty> 
+    </select>  
+    <select id="dn0.yjsjglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select dj.sjbh,dj.yjrq, fl.wgxmc, wgxm.xmmc, dj.je, dj.sy, bjjb.dmms as bjjb, dj.kf, yjhy.hydh as yjhydh, yjhy.hymc as yjhymc, dj.clrq, cljg.dmms as cljg, clzrr.hymc as clzrr, jbr.hymc as jbr, qrr.hymc as qrr,dj.bz, case when dj.qrzt='0' then '未确认' when dj.qrzt='1' then '确认' end qrzt from wgjf_yjsjdj dj left join wgjf_wgxm wgxm on wgxm.wgxmdh = dj.wgxmdh left join wgjf_wgxmfl fl on wgxm.wgxlb = fl.wgxlb and dj.yjrq between fl.qsrq and fl.jsrq inner join khdx_hy yjhy on yjhy.khdxdh = dj.yjzrr inner join khdx_hy clzrr on clzrr.khdxdh = dj.clzrr inner join khdx_hy jbr on jbr.khdxdh = dj.jbr left join khdx_hy qrr on qrr.hydh = dj.qrr left join csb_dmms bjjb on bjjb.dmz = dj.bjjb and bjjb.dmmc = 'BJJB' left join csb_dmms cljg on cljg.dmz = dj.cljg and cljg.dmmc = 'CLJG' where 1=1 
+      <isNotEmpty property="yjqsrq">and dj.yjrq between $yjqsrq$ and $yjjsrq$</isNotEmpty>  
+      <isNotEmpty property="bjjb">and dj.bjjb = '$bjjb$'</isNotEmpty>  
+      <isNotEmpty property="yjzrr">and dj.yjzrr = $yjzrr$</isNotEmpty>  
+      <isNotEmpty property="clzrr">and dj.clzrr = $clzrr$</isNotEmpty>  
+      <isNotEmpty property="cljg">and dj.cljg = '$cljg$'</isNotEmpty> ) t
+    </select>  
+    <select id="dn0.yjsjgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select CLJG, QRRQ, WGXMDH, YJZRR, QRZT, BJJB, CZR, SJBH, BZ, CLZRR, QRR, CLRQ, SY, JBR, JE, CZSJ, YJRQ, KF from WGJF_YJSJDJ where 1= 1 and SJBH = $sjbh$
+    </select>  
+    <select id="dn0.yjsjgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select CLJG, QRRQ, WGXMDH, YJZRR, QRZT, BJJB, CZR, SJBH, BZ, CLZRR, QRR, CLRQ, SY, JBR, JE, CZSJ, YJRQ, KF from WGJF_YJSJDJ where 1= 1 and SJBH = $sjbh$
+    </select>  
+    <insert id="dn0.yjsjgl_insert" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into WGJF_YJSJDJ( CLZRR, CLRQ, BZ, CZSJ, CZR, YJRQ, YJZRR, JE, KF, JBR, CLJG, WGXMDH, QRZT, BJJB, SY, SJBH ) values ( $clzrr$,$clrq$,'$bz$',f_get_timestamp('$czsj$'),'$czr$',$yjrq$,$yjzrr$,$je$,$kf$,$jbr$,'$cljg$','$wgx$','$qrzt$','$bjjb$','$sy$',$sjbh$)
+    </insert>  
+    <update id="dn0.yjsjgl_update" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update WGJF_YJSJDJ set CLZRR = $clzrr$,CLRQ = $clrq$,BZ = '$bz$',YJRQ = $yjrq$,YJZRR = $yjzrr$,JE = $je$,KF = $kf$,JBR = $jbr$,CLJG = '$cljg$',WGXMDH = '$wgx$',QRZT = '$qrzt$',BJJB = '$bjjb$',SY = '$sy$' where 1=1 and SJBH = $sjbh$
+    </update>  
+    <delete id="dn0.yjsjgl_delete" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from WGJF_YJSJDJ where 1=1 and SJBH = $sjbh$
+    </delete>  
+    <update id="dn0.yjsjgl_updateQrr" parameterClass="java.util.Map">/**!mycat:datanode=$db$**/ update WGJF_YJSJDJ set qrzt = '1',qrr ='$login_hydh$',qrrq= $tjrq$ where sjbh = $sjbh$</update>  
+    <select id="dn0.yjsjgl_selectMaxSjbh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select coalesce(max(sjbh),0)+1 as sjbh from WGJF_YJSJDJ</select>  
+    <select id="dn0.yjsjgl_getPfbz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select kfbz from wgjf_wgxm where wgxmdh = '$wgx$' and $yjrq$ between qsrq and jsrq</select>  
+    <select id="dn0.yjsjgl_MSQL4SELECT_wgx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select wgxmdh as key,xmmc as value from wgjf_wgxm</select> 
+  </sqlMap>  
+  <javascript> 
+    <query>jQuery(document).ready(function () { $("#tool_bar").append('&lt;input type="button" value="确 认" class="operation cbutton cbutton_bg_70" onClick="javascript:showQrDialog();" /&gt;'); }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; } function showQrDialog(){ var sel=jQuery("#yjsjglList").datagrid("getSelected"); var qrzt=sel["QRZT"]; var sjbh=sel["SJBH"]; if(qrzt=='确认'){ custom_alert("数据已经确认，不需要再确认!"); return ; }else{ custom_confirm('是否确认该信息？','提示',function(){ $("#sjbh").val(sjbh); PAS.di.execute('yjsjgl_updateQrr',updateQrr); }); } } function updateQrr(obj){ custom_alert("数据已经确认"); loadData(); } function showDeleteDialog(sel){ var jsrq=sel["JSRQ"]; var qrzt=sel["QRZT"]; if(qrzt=='确认'){ custom_alert("数据已经确认，不允许删除!"); return ; } if(null!=jsrq){ if(jsrq!='29991231') { custom_alert("只能删除结束日期为29991231的记录，请重新操作!"); return ; } } custom_confirm('你确定要删除所选记录吗？','提示',function(){ var colIds="YJRQ,WGXMC,XMMC,JE,SY,BJJB,KF,YJHYDH,YJHYMC,CLRQ,CLJG,CLZRR,JBR,BZ,QRZT,SJBH"; var colId=colIds.split(",");//所有的主键名 var params="&amp;"; //URL的参数 for(var i=0;i&lt;colId.length;i++){ params+=colId[i].toLowerCase()+"="+sel[colId[i]]+"&amp;"; } params=encodeURI(params.substring(0,params.length-1)); //alert(params); $.post('/module/parser/manage/deleteData/yjsjgl?'+params,{},function(cb){ custom_alert(cb); loadData(); }).error(function(){ custom_alert("发生内部错误，无法删除所选记录！"); }); }); } function showAddEditDialog(){ var width = editpage_width||700; var height = editpage_height||500; custom_window('/module/parser/manage/getById/yjsjgl?operate=add&amp;funId=yjsjgl',width,height,'预警事件管理编辑'); }</query>  
+    <edit>jQuery(document).ready(function () { //这里的js脚本，会在页面加载完成后执行 $("#wgx").executeOnEvent('change','yjsjgl_getPfbz',getPfbz); $("#yjrq").executeOnEvent('blur','yjsjgl_getPfbz',getPfbz); if($("#page_operate").val()=="add"){ PAS.di.execute('yjsjgl_selectMaxSjbh',selectMaxSjbh); $("#wgx").change(); } jQuery("#sy").attr("maxlength","100"); jQuery("#bz").attr("maxlength","100"); }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; } function selectMaxSjbh(obj){ if(obj.data.length&gt;0){ $("#sjbh").val(obj.data[0].SJBH); } } function getPfbz(obj){ if(obj.data.length&gt;0){ $("#kf").val(obj.data[0].KFBZ); } }</edit> 
+  </javascript> 
 </pageSetting>
-

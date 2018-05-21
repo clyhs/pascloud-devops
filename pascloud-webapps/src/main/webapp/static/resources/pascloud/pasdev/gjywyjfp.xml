@@ -1,228 +1,205 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="gjywyjfp" title="国际业务业绩分配" type="yjgx" version="2.0.0">
-  <mainPage>
-    <tags>
-      <tag name="Date" fieldName="JXDX_GJYWKH.KHRQ" condition="between ? and 1" col="0" row="0" colspan="1" label="开户日期">
-        <attribute key="label" value="开户日期" />
-        <attribute key="name" value="QSRQ" />
-        <attribute key="dateFmt" value="yyyyMMdd" />
-        <attribute key="defValType" value="yc" />
-        <attribute key="styleClass" value="" />
-        <attribute key="defVal" value="" />
-        <attribute key="style" value="" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="editable" value="true" />
-      </tag>
-      <tag name="Date" fieldName="JXDX_GJYWKH.KHRQ" condition="between 1 and ?" col="1" row="0" colspan="1" label="到">
-        <attribute key="label" value="到" />
-        <attribute key="name" value="JSRQ" />
-        <attribute key="dateFmt" value="yyyyMMdd" />
-        <attribute key="defValType" value="sysDate" />
-        <attribute key="styleClass" value="" />
-        <attribute key="defVal" value="" />
-        <attribute key="style" value="" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="editable" value="true" />
-      </tag>
-      <tag name="NewJg" fieldName="JXDX_GJYWKH.JGDH" condition="in" col="2" row="0" colspan="1" label="签约机构">
-        <attribute key="label" value="签约机构" />
-        <attribute key="name" value="JGKHDXDH" />
-        <attribute key="ckbz" value="jg_ckhy" />
-        <attribute key="multiple" value="false" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="style" value="" />
-        <attribute key="editable" value="true" />
-      </tag>
-      <tag name="Text" fieldName="JXDX_GJYWKH.KHH" condition="like %?%" col="0" row="1" colspan="1" label="客户号">
-        <attribute key="label" value="客户号" />
-        <attribute key="name" value="KHH" />
-        <attribute key="value" value="" />
-        <attribute key="maxlength" value="" />
-        <attribute key="readonly" value="false" />
-        <attribute key="style" value="" />
-        <attribute key="styleClass" value="" />
-        <attribute key="editable" value="true" />
-      </tag>
-      <tag name="Text" fieldName="JXDX_GJYWKH.KHMC" condition="like %?%" col="1" row="1" colspan="1" label="客户名称">
-        <attribute key="label" value="客户名称" />
-        <attribute key="name" value="KHMC" />
-        <attribute key="value" value="" />
-        <attribute key="maxlength" value="" />
-        <attribute key="readonly" value="false" />
-        <attribute key="style" value="" />
-        <attribute key="styleClass" value="" />
-        <attribute key="editable" value="true" />
-      </tag>
-    </tags>
-    <javascript />
-  </mainPage>
-  <listPage>
-    <tags>
-      <tag name="Label" fieldName="KHH" condition="=" col="0" row="0" colspan="1" label="客户号">
-        <attribute key="label" value="客户号" />
-        <attribute key="name" value="KHH" />
-      </tag>
-      <tag name="Label" fieldName="KHMC" condition="=" col="1" row="0" colspan="1" label="客户名称">
-        <attribute key="label" value="客户名称" />
-        <attribute key="name" value="KHMC" />
-      </tag>
-    </tags>
-    <javascript />
-  </listPage>
-  <table page="true" id="gjywyjfp_table_main">
-    <col id="KHH" title="客户号" align="left" type="string" width="120" format="" frozen="" exp="true" />
-    <col id="KHMC" title="客户名称" align="left" type="string" width="200" format="" frozen="" exp="true" />
-    <col id="KHRQ" title="开户日期" align="left" type="string" width="80" format="" frozen="" exp="true" />
-    <col id="DQFPGX" title="当前分配关系" align="left" type="string" width="200" format="" frozen="" exp="true" />
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" format="" frozen="" exp="true" />
-    <col id="KHZT" title="客户状态" align="left" type="string" width="80" format="" frozen="" exp="true" />
-  </table>
-  <table page="true" id="gjywyjfp_table_list">
-    <col id="JGDH" title="机构代号" align="left" type="string" width="100" format="" frozen="" />
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" format="" frozen="" />
-    <col id="HYDH" title="行员代号" align="left" type="string" width="80" format="" frozen="" />
-    <col id="HYMC" title="行员名称" align="left" type="string" width="90" format="" frozen="" />
-    <col id="QSRQ" title="起始日期" align="left" type="string" width="80" format="" frozen="" />
-    <col id="JSRQ" title="结束日期" align="left" type="string" width="80" format="" frozen="" />
-    <col id="ZLBL" title="分配比例" align="right" type="float" width="80" format="" frozen="" />
-    <col id="KHH" title="khh1" align="right" type="hidden" width="180" format="true" frozen="false" hidden="true" />
-  </table>
-  <rels>
-    <items id="gjywyjfp_table_main">
-      <item name="hideZd" compareValue="main" operate="isEqual" />
-    </items>
-    <items id="gjywyjfp_table_list">
-      <item name="hideZd" compareValue="list" operate="isEqual" />
-    </items>
-  </rels>
-  <performance>
-    <primaryKey>KHH</primaryKey>
-  </performance>
-  <sqlMap>
-    <select id="dn12.gjywyjfp_select_validateDate" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from JXDX_GJYWKH JXDX_GJYWKH where 1=1  and JXDX_GJYWKH.KHH = '$KHH$' and KHRQ &gt; $QSRQ$
-    </select>
-    <select id="dn12.gjywyjfp_select_maxQsrq" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select max(qsrq) from dxgx_yjgx_gjyw where 1=1  and KHH = '$KHH$'
-    </select>
-    <select id="dn12.gjywyjfp_select_khrq" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select KHRQ from JXDX_GJYWKH where 1=1  and KHH = '$KHH$'
-    </select>
-    <select id="dn12.gjywyjfp_select_minQsrq" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select min(qsrq) from dxgx_yjgx_gjyw gx where 1=1  and gx.KHH = '$KHH$'
-    </select>
-    <select id="dn12.gjywyjfp_select_mainPage_db2" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select JXDX_GJYWKH.KHMC as KHMC,JXDX_GJYWKH.KHZT as KHZT,JXDX_GJYWKH.KHRQ as KHRQ,JXDX_GJYWKH.KHH as KHH,khdx_jg.JGMC as JGMC, case when coalesce(max(dxgx_yjgx_gjyw.zlbl),0) = 0 then '无关系' when max(dxgx_yjgx_gjyw.zlbl)=100 then max(khdx_hy.hymc)||'|100' else cast('百分比:'||replace(replace(xml2clob(xmlagg(xmlelement(name a, khdx_hy.hymc||'|'||f_numtochar(dxgx_yjgx_gjyw.zlbl)||','))),'&lt;A&gt;',''),'&lt;/A&gt;',' ') as varchar(200)) end as DQFPGX from JXDX_GJYWKH JXDX_GJYWKH left outer join dxgx_yjgx_gjyw dxgx_yjgx_gjyw on 1=1  and dxgx_yjgx_gjyw.KHH=JXDX_GJYWKH.KHH and $sysdate$ between dxgx_yjgx_gjyw.qsrq and dxgx_yjgx_gjyw.jsrq left outer join khdx_hy khdx_hy on dxgx_yjgx_gjyw.khdxdh=khdx_hy.khdxdh inner join khdx_jg khdx_jg on khdx_jg.jgdh=JXDX_GJYWKH.jgdh inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,$JGKHDXDH$)) qx on qx.khdxdh=khdx_jg.khdxdh where 1=1
-      <isNotEmpty property="KHMC">and JXDX_GJYWKH.KHMC like '%$KHMC$%'</isNotEmpty>
-      <isNotEmpty property="KHH">and JXDX_GJYWKH.KHH like '%$KHH$%'</isNotEmpty>
-      <isNotEmpty property="JSRQ">
-        <isEmpty property="QSRQ">and JXDX_GJYWKH.KHRQ between 20081231 and $JSRQ$</isEmpty>
-      </isNotEmpty>
-      <isNotEmpty property="QSRQ">
-        <isEmpty property="JSRQ">and JXDX_GJYWKH.KHRQ between $QSRQ$ and 29991231</isEmpty>
-      </isNotEmpty>
-      <isNotEmpty property="QSRQ">
-        <isNotEmpty property="JSRQ">and JXDX_GJYWKH.KHRQ between $QSRQ$ and $JSRQ$</isNotEmpty>
-      </isNotEmpty>
-      group by JXDX_GJYWKH.KHMC,JXDX_GJYWKH.KHZT,JXDX_GJYWKH.KHRQ,JXDX_GJYWKH.KHH,khdx_jg.JGMC order by JXDX_GJYWKH.KHH
-    </select>
-    <select id="dn12.gjywyjfp_select_mainPage_ora" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select JXDX_GJYWKH.KHMC as KHMC,JXDX_GJYWKH.KHZT as KHZT,JXDX_GJYWKH.KHRQ as KHRQ,JXDX_GJYWKH.KHH as KHH,khdx_jg.JGMC as JGMC, F_WM_CONCAT(khdx_hy.hymc || dxgx_yjgx_gjyw.zlbl) DQFPGX  from JXDX_GJYWKH JXDX_GJYWKH left outer join dxgx_yjgx_gjyw dxgx_yjgx_gjyw on 1=1  and dxgx_yjgx_gjyw.KHH=JXDX_GJYWKH.KHH and $sysdate$ between dxgx_yjgx_gjyw.qsrq and dxgx_yjgx_gjyw.jsrq left outer join khdx_hy khdx_hy on dxgx_yjgx_gjyw.khdxdh=khdx_hy.khdxdh inner join khdx_jg khdx_jg on khdx_jg.jgdh=JXDX_GJYWKH.jgdh inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,$JGKHDXDH$)) qx on qx.khdxdh=khdx_jg.khdxdh where 1=1
-      <isNotEmpty property="KHMC">and JXDX_GJYWKH.KHMC like '%$KHMC$%'</isNotEmpty>
-      <isNotEmpty property="KHH">and JXDX_GJYWKH.KHH like '%$KHH$%'</isNotEmpty>
-      <isNotEmpty property="JSRQ">
-        <isEmpty property="QSRQ">and JXDX_GJYWKH.KHRQ between 20081231 and $JSRQ$</isEmpty>
-      </isNotEmpty>
-      <isNotEmpty property="QSRQ">
-        <isEmpty property="JSRQ">and JXDX_GJYWKH.KHRQ between $QSRQ$ and 29991231</isEmpty>
-      </isNotEmpty>
-      <isNotEmpty property="QSRQ">
-        <isNotEmpty property="JSRQ">and JXDX_GJYWKH.KHRQ between $QSRQ$ and $JSRQ$</isNotEmpty>
-      </isNotEmpty>
-      group by JXDX_GJYWKH.KHMC,JXDX_GJYWKH.KHZT,JXDX_GJYWKH.KHRQ,JXDX_GJYWKH.KHH,khdx_jg.JGMC order by JXDX_GJYWKH.KHH
-    </select>
-    <select id="dn12.gjywyjfp_select_mainCount_db2" parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from (select JXDX_GJYWKH.KHMC as KHMC,JXDX_GJYWKH.KHZT as KHZT,JXDX_GJYWKH.KHRQ as KHRQ,JXDX_GJYWKH.KHH as KHH,khdx_jg.JGMC as JGMC, case when coalesce(max(dxgx_yjgx_gjyw.zlbl),0) = 0 then '无关系' when max(dxgx_yjgx_gjyw.zlbl)=100 then max(khdx_hy.hymc)||'|100' else cast('百分比:'||replace(replace(xml2clob(xmlagg(xmlelement(name a, khdx_hy.hymc||'|'||f_numtochar(dxgx_yjgx_gjyw.zlbl)||','))),'&lt;A&gt;',''),'&lt;/A&gt;',' ') as varchar(200)) end as DQFPGX from JXDX_GJYWKH JXDX_GJYWKH left outer join dxgx_yjgx_gjyw dxgx_yjgx_gjyw on 1=1  and dxgx_yjgx_gjyw.KHH=JXDX_GJYWKH.KHH and $sysdate$ between dxgx_yjgx_gjyw.qsrq and dxgx_yjgx_gjyw.jsrq left outer join khdx_hy khdx_hy on dxgx_yjgx_gjyw.khdxdh=khdx_hy.khdxdh inner join khdx_jg khdx_jg on khdx_jg.jgdh=JXDX_GJYWKH.jgdh inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,$JGKHDXDH$)) qx on qx.khdxdh=khdx_jg.khdxdh where 1=1
-      <isNotEmpty property="KHMC">and JXDX_GJYWKH.KHMC like '%$KHMC$%'</isNotEmpty>
-      <isNotEmpty property="KHH">and JXDX_GJYWKH.KHH like '%$KHH$%'</isNotEmpty>
-      <isNotEmpty property="JSRQ">
-        <isEmpty property="QSRQ">and JXDX_GJYWKH.KHRQ between 20081231 and $JSRQ$</isEmpty>
-      </isNotEmpty>
-      <isNotEmpty property="QSRQ">
-        <isEmpty property="JSRQ">and JXDX_GJYWKH.KHRQ between $QSRQ$ and 29991231</isEmpty>
-      </isNotEmpty>
-      <isNotEmpty property="QSRQ">
-        <isNotEmpty property="JSRQ">and JXDX_GJYWKH.KHRQ between $QSRQ$ and $JSRQ$</isNotEmpty>
-      </isNotEmpty>
-      group by JXDX_GJYWKH.KHMC,JXDX_GJYWKH.KHZT,JXDX_GJYWKH.KHRQ,JXDX_GJYWKH.KHH,khdx_jg.JGMC order by JXDX_GJYWKH.KHH) count
-    </select>
-    <select id="dn12.gjywyjfp_select_mainCount_ora" parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from (select JXDX_GJYWKH.KHMC as KHMC,JXDX_GJYWKH.KHZT as KHZT,JXDX_GJYWKH.KHRQ as KHRQ,JXDX_GJYWKH.KHH as KHH,khdx_jg.JGMC as JGMC, F_WM_CONCAT(khdx_hy.hymc || dxgx_yjgx_gjyw.zlbl) DQFPGX  from JXDX_GJYWKH JXDX_GJYWKH left outer join dxgx_yjgx_gjyw dxgx_yjgx_gjyw on 1=1  and dxgx_yjgx_gjyw.KHH=JXDX_GJYWKH.KHH and $sysdate$ between dxgx_yjgx_gjyw.qsrq and dxgx_yjgx_gjyw.jsrq left outer join khdx_hy khdx_hy on dxgx_yjgx_gjyw.khdxdh=khdx_hy.khdxdh inner join khdx_jg khdx_jg on khdx_jg.jgdh=JXDX_GJYWKH.jgdh inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,$JGKHDXDH$)) qx on qx.khdxdh=khdx_jg.khdxdh where 1=1
-      <isNotEmpty property="KHMC">and JXDX_GJYWKH.KHMC like '%$KHMC$%'</isNotEmpty>
-      <isNotEmpty property="KHH">and JXDX_GJYWKH.KHH like '%$KHH$%'</isNotEmpty>
-      <isNotEmpty property="JSRQ">
-        <isEmpty property="QSRQ">and JXDX_GJYWKH.KHRQ between 20081231 and $JSRQ$</isEmpty>
-      </isNotEmpty>
-      <isNotEmpty property="QSRQ">
-        <isEmpty property="JSRQ">and JXDX_GJYWKH.KHRQ between $QSRQ$ and 29991231</isEmpty>
-      </isNotEmpty>
-      <isNotEmpty property="QSRQ">
-        <isNotEmpty property="JSRQ">and JXDX_GJYWKH.KHRQ between $QSRQ$ and $JSRQ$</isNotEmpty>
-      </isNotEmpty>
-      group by JXDX_GJYWKH.KHMC,JXDX_GJYWKH.KHZT,JXDX_GJYWKH.KHRQ,JXDX_GJYWKH.KHH,khdx_jg.JGMC order by JXDX_GJYWKH.KHH) count
-    </select>
-    <select id="dn12.gjywyjfp_select_gxmxPage" parameterClass="java.util.Map" resultClass="java.util.HashMap">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select distinct JXDX_GJYWKH.KHH,khdx_jg.JGDH as JGDH,khdx_hy.HYMC as HYMC,khdx_hy.HYDH as HYDH,DXGX_YJGX_GJYW.QSRQ as QSRQ,DXGX_YJGX_GJYW.JSRQ as JSRQ,khdx_jg.JGMC as JGMC,DXGX_YJGX_GJYW.ZLBL as ZLBL from dxgx_yjgx_gjyw dxgx_yjgx_gjyw inner join JXDX_GJYWKH JXDX_GJYWKH on 1=1  and JXDX_GJYWKH.KHH=dxgx_yjgx_gjyw.KHH inner join khdx_hy khdx_hy on dxgx_yjgx_gjyw.khdxdh=khdx_hy.khdxdh inner join khdx_jgcy khdx_jgcy on khdx_hy.khdxdh=khdx_jgcy.khdxdh inner join khdx_jg khdx_jg on khdx_jgcy.jgkhdxdh=khdx_jg.khdxdh and $sysdate$ between khdx_jgcy.qsrq and khdx_jgcy.jsrq where 1=1  and dxgx_yjgx_gjyw.KHH = '$KHH$' order by dxgx_yjgx_gjyw.qsrq
-    </select>
-    <select id="dn12.gjywyjfp_select_gxmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from (select distinct JXDX_GJYWKH.KHH,khdx_jg.JGDH as JGDH,khdx_hy.HYMC as HYMC,khdx_hy.HYDH as HYDH,DXGX_YJGX_GJYW.QSRQ as QSRQ,DXGX_YJGX_GJYW.JSRQ as JSRQ,khdx_jg.JGMC as JGMC,DXGX_YJGX_GJYW.ZLBL as ZLBL from dxgx_yjgx_gjyw dxgx_yjgx_gjyw inner join JXDX_GJYWKH JXDX_GJYWKH on 1=1  and JXDX_GJYWKH.KHH=dxgx_yjgx_gjyw.KHH inner join khdx_hy khdx_hy on dxgx_yjgx_gjyw.khdxdh=khdx_hy.khdxdh inner join khdx_jgcy khdx_jgcy on khdx_hy.khdxdh=khdx_jgcy.khdxdh inner join khdx_jg khdx_jg on khdx_jgcy.jgkhdxdh=khdx_jg.khdxdh and $sysdate$ between khdx_jgcy.qsrq and khdx_jgcy.jsrq where 1=1  and dxgx_yjgx_gjyw.KHH = '$KHH$' order by dxgx_yjgx_gjyw.qsrq) a
-    </select>
-    <delete id="dn12.gjywyjfp_delete_last_yjgx" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      delete from dxgx_yjgx_gjyw where 1=1  and KHH = '$KHH$' and jsrq=29991231
-    </delete>
-    <update id="dn12.gjywyjfp_before_insert_yjgx2" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update dxgx_yjgx_gjyw set jsrq=$BEFORE$  where 1=1  and KHH = '$KHH$' and qsrq=(select max(qsrq) from dxgx_yjgx_gjyw where 1=1  and KHH = '$KHH$')
-    </update>
-    <insert id="dn12.gjywyjfp_before_insert_yjgx" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update dxgx_yjgx_gjyw set jsrq=$BEFORE$  where 1=1  and KHH = '$KHH$' and jsrq=29991231
-    </insert>
-    <insert id="dn12.gjywyjfp_insert_yjgx" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      insert into DXGX_YJGX_GJYW(KHH,KHDXDH,QSRQ,JSRQ,ZLBL) values('$KHH$',$KHDXDH$,$QSRQ$,$JSRQ$,$ZLBL$)
-    </insert>
-    <delete id="dn12.gjywyjfp_delete_yjgx" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      delete from dxgx_yjgx_gjyw gx where 1=1  and gx.KHH = '$KHH$' and gx.jsrq=29991231
-    </delete>
-    <update id="dn12.gjywyjfp_after_delete_yjgx" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update dxgx_yjgx_gjyw set jsrq=29991231  where 1=1  and KHH = '$KHH$' and jsrq=(select max(jsrq) from dxgx_yjgx_gjyw where 1=1  and KHH = '$KHH$')
-    </update>
-    <select id="dn12.gjywyjfp_select_maxjldh" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  coalesce(max(jldh),0) from XTB_HYGXRZ_GJYW
-    </select>
-    <insert id="dn12.gjywyjfp_insert_gxrz" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      insert into XTB_HYGXRZ_GJYW(JLDH,JLSJ,CZLX,XGRDH,KHH) values($JLDH$,F_GET_SYSTIME(),'$CZLX$',$XGRDH$,'$KHH$')
-    </insert>
-    <insert id="dn12.gjywyjfp_insert_gxjl" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      insert into XTB_HYGXJL_GJYW(JLDH,GGBZ,KHDXDH,QSRQ,JSRQ,ZLBL) select $JLDH$,'$GGBZ$',gx.KHDXDH,gx.QSRQ,gx.JSRQ,gx.ZLBL from dxgx_yjgx_gjyw gx where 1=1  and gx.KHH = '$KHH$' and jsrq=29991231
-    </insert>
-  </sqlMap>
-</pageSetting>
 
+<pageSetting id="gjywyjfp" title="国际业务业绩分配" type="yjgx" version="2.0.0"> 
+  <mainPage> 
+    <tags> 
+      <tag name="Date" fieldName="JXDX_GJYWKH.KHRQ" condition="between ? and 1" col="0" row="0" colspan="1" label="开户日期"> 
+        <attribute key="label" value="开户日期"/>  
+        <attribute key="name" value="QSRQ"/>  
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="yc"/>  
+        <attribute key="styleClass" value=""/>  
+        <attribute key="defVal" value=""/>  
+        <attribute key="style" value=""/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag name="Date" fieldName="JXDX_GJYWKH.KHRQ" condition="between 1 and ?" col="1" row="0" colspan="1" label="到"> 
+        <attribute key="label" value="到"/>  
+        <attribute key="name" value="JSRQ"/>  
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="styleClass" value=""/>  
+        <attribute key="defVal" value=""/>  
+        <attribute key="style" value=""/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag name="NewJg" fieldName="JXDX_GJYWKH.JGDH" condition="in" col="2" row="0" colspan="1" label="签约机构"> 
+        <attribute key="label" value="签约机构"/>  
+        <attribute key="name" value="JGKHDXDH"/>  
+        <attribute key="ckbz" value="jg_ckhy"/>  
+        <attribute key="multiple" value="false"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="style" value=""/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag name="Text" fieldName="JXDX_GJYWKH.KHH" condition="like %?%" col="0" row="1" colspan="1" label="客户号"> 
+        <attribute key="label" value="客户号"/>  
+        <attribute key="name" value="KHH"/>  
+        <attribute key="value" value=""/>  
+        <attribute key="maxlength" value=""/>  
+        <attribute key="readonly" value="false"/>  
+        <attribute key="style" value=""/>  
+        <attribute key="styleClass" value=""/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag name="Text" fieldName="JXDX_GJYWKH.KHMC" condition="like %?%" col="1" row="1" colspan="1" label="客户名称"> 
+        <attribute key="label" value="客户名称"/>  
+        <attribute key="name" value="KHMC"/>  
+        <attribute key="value" value=""/>  
+        <attribute key="maxlength" value=""/>  
+        <attribute key="readonly" value="false"/>  
+        <attribute key="style" value=""/>  
+        <attribute key="styleClass" value=""/>  
+        <attribute key="editable" value="true"/> 
+      </tag> 
+    </tags>  
+    <javascript/> 
+  </mainPage>  
+  <listPage> 
+    <tags> 
+      <tag name="Label" fieldName="KHH" condition="=" col="0" row="0" colspan="1" label="客户号"> 
+        <attribute key="label" value="客户号"/>  
+        <attribute key="name" value="KHH"/> 
+      </tag>  
+      <tag name="Label" fieldName="KHMC" condition="=" col="1" row="0" colspan="1" label="客户名称"> 
+        <attribute key="label" value="客户名称"/>  
+        <attribute key="name" value="KHMC"/> 
+      </tag> 
+    </tags>  
+    <javascript/> 
+  </listPage>  
+  <table page="true" id="gjywyjfp_table_main"> 
+    <col id="KHH" title="客户号" align="left" type="string" width="120" format="" frozen="" exp="true"/>  
+    <col id="KHMC" title="客户名称" align="left" type="string" width="200" format="" frozen="" exp="true"/>  
+    <col id="KHRQ" title="开户日期" align="left" type="string" width="80" format="" frozen="" exp="true"/>  
+    <col id="DQFPGX" title="当前分配关系" align="left" type="string" width="200" format="" frozen="" exp="true"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" format="" frozen="" exp="true"/>  
+    <col id="KHZT" title="客户状态" align="left" type="string" width="80" format="" frozen="" exp="true"/> 
+  </table>  
+  <table page="true" id="gjywyjfp_table_list"> 
+    <col id="JGDH" title="机构代号" align="left" type="string" width="100" format="" frozen=""/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" format="" frozen=""/>  
+    <col id="HYDH" title="行员代号" align="left" type="string" width="80" format="" frozen=""/>  
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" format="" frozen=""/>  
+    <col id="QSRQ" title="起始日期" align="left" type="string" width="80" format="" frozen=""/>  
+    <col id="JSRQ" title="结束日期" align="left" type="string" width="80" format="" frozen=""/>  
+    <col id="ZLBL" title="分配比例" align="right" type="float" width="80" format="" frozen=""/>  
+    <col id="KHH" title="khh1" align="right" type="hidden" width="180" format="true" frozen="false" hidden="true"/> 
+  </table>  
+  <rels> 
+    <items id="gjywyjfp_table_main"> 
+      <item name="hideZd" compareValue="main" operate="isEqual"/> 
+    </items>  
+    <items id="gjywyjfp_table_list"> 
+      <item name="hideZd" compareValue="list" operate="isEqual"/> 
+    </items> 
+  </rels>  
+  <performance> 
+    <primaryKey>KHH</primaryKey> 
+  </performance>  
+  <sqlMap> 
+    <select id="dn0.gjywyjfp_select_validateDate" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from JXDX_GJYWKH JXDX_GJYWKH where 1=1 and JXDX_GJYWKH.KHH = '$KHH$' and KHRQ &gt; $QSRQ$
+    </select>  
+    <select id="dn0.gjywyjfp_select_maxQsrq" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select max(qsrq) from dxgx_yjgx_gjyw where 1=1 and KHH = '$KHH$'
+    </select>  
+    <select id="dn0.gjywyjfp_select_khrq" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select KHRQ from JXDX_GJYWKH where 1=1 and KHH = '$KHH$'
+    </select>  
+    <select id="dn0.gjywyjfp_select_minQsrq" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select min(qsrq) from dxgx_yjgx_gjyw gx where 1=1 and gx.KHH = '$KHH$'
+    </select>  
+    <select id="dn0.gjywyjfp_select_mainPage_db2" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select JXDX_GJYWKH.KHMC as KHMC,JXDX_GJYWKH.KHZT as KHZT,JXDX_GJYWKH.KHRQ as KHRQ,JXDX_GJYWKH.KHH as KHH,khdx_jg.JGMC as JGMC, case when coalesce(max(dxgx_yjgx_gjyw.zlbl),0) = 0 then '无关系' when max(dxgx_yjgx_gjyw.zlbl)=100 then max(khdx_hy.hymc)||'|100' else cast('百分比:'||replace(replace(xml2clob(xmlagg(xmlelement(name a, khdx_hy.hymc||'|'||f_numtochar(dxgx_yjgx_gjyw.zlbl)||','))),'&lt;A&gt;',''),'&lt;/A&gt;',' ') as varchar(200)) end as DQFPGX from JXDX_GJYWKH JXDX_GJYWKH left outer join dxgx_yjgx_gjyw dxgx_yjgx_gjyw on 1=1 and dxgx_yjgx_gjyw.KHH=JXDX_GJYWKH.KHH and $sysdate$ between dxgx_yjgx_gjyw.qsrq and dxgx_yjgx_gjyw.jsrq left outer join khdx_hy khdx_hy on dxgx_yjgx_gjyw.khdxdh=khdx_hy.khdxdh inner join khdx_jg khdx_jg on khdx_jg.jgdh=JXDX_GJYWKH.jgdh inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,$JGKHDXDH$)) qx on qx.khdxdh=khdx_jg.khdxdh where 1=1
+      <isNotEmpty property="KHMC">and JXDX_GJYWKH.KHMC like '%$KHMC$%'</isNotEmpty>  
+      <isNotEmpty property="KHH">and JXDX_GJYWKH.KHH like '%$KHH$%'</isNotEmpty>  
+      <isNotEmpty property="JSRQ"> 
+        <isEmpty property="QSRQ">and JXDX_GJYWKH.KHRQ between 20081231 and $JSRQ$</isEmpty> 
+      </isNotEmpty>  
+      <isNotEmpty property="QSRQ"> 
+        <isEmpty property="JSRQ">and JXDX_GJYWKH.KHRQ between $QSRQ$ and 29991231</isEmpty> 
+      </isNotEmpty>  
+      <isNotEmpty property="QSRQ"> 
+        <isNotEmpty property="JSRQ">and JXDX_GJYWKH.KHRQ between $QSRQ$ and $JSRQ$</isNotEmpty> 
+      </isNotEmpty> group by JXDX_GJYWKH.KHMC,JXDX_GJYWKH.KHZT,JXDX_GJYWKH.KHRQ,JXDX_GJYWKH.KHH,khdx_jg.JGMC order by JXDX_GJYWKH.KHH
+    </select>  
+    <select id="dn0.gjywyjfp_select_mainPage_ora" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select JXDX_GJYWKH.KHMC as KHMC,JXDX_GJYWKH.KHZT as KHZT,JXDX_GJYWKH.KHRQ as KHRQ,JXDX_GJYWKH.KHH as KHH,khdx_jg.JGMC as JGMC, F_WM_CONCAT(khdx_hy.hymc || dxgx_yjgx_gjyw.zlbl) DQFPGX from JXDX_GJYWKH JXDX_GJYWKH left outer join dxgx_yjgx_gjyw dxgx_yjgx_gjyw on 1=1 and dxgx_yjgx_gjyw.KHH=JXDX_GJYWKH.KHH and $sysdate$ between dxgx_yjgx_gjyw.qsrq and dxgx_yjgx_gjyw.jsrq left outer join khdx_hy khdx_hy on dxgx_yjgx_gjyw.khdxdh=khdx_hy.khdxdh inner join khdx_jg khdx_jg on khdx_jg.jgdh=JXDX_GJYWKH.jgdh inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,$JGKHDXDH$)) qx on qx.khdxdh=khdx_jg.khdxdh where 1=1 
+      <isNotEmpty property="KHMC">and JXDX_GJYWKH.KHMC like '%$KHMC$%'</isNotEmpty>  
+      <isNotEmpty property="KHH">and JXDX_GJYWKH.KHH like '%$KHH$%'</isNotEmpty>  
+      <isNotEmpty property="JSRQ"> 
+        <isEmpty property="QSRQ">and JXDX_GJYWKH.KHRQ between 20081231 and $JSRQ$</isEmpty> 
+      </isNotEmpty>  
+      <isNotEmpty property="QSRQ"> 
+        <isEmpty property="JSRQ">and JXDX_GJYWKH.KHRQ between $QSRQ$ and 29991231</isEmpty> 
+      </isNotEmpty>  
+      <isNotEmpty property="QSRQ"> 
+        <isNotEmpty property="JSRQ">and JXDX_GJYWKH.KHRQ between $QSRQ$ and $JSRQ$</isNotEmpty> 
+      </isNotEmpty> group by JXDX_GJYWKH.KHMC,JXDX_GJYWKH.KHZT,JXDX_GJYWKH.KHRQ,JXDX_GJYWKH.KHH,khdx_jg.JGMC order by JXDX_GJYWKH.KHH
+    </select>  
+    <select id="dn0.gjywyjfp_select_mainCount_db2" parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select JXDX_GJYWKH.KHMC as KHMC,JXDX_GJYWKH.KHZT as KHZT,JXDX_GJYWKH.KHRQ as KHRQ,JXDX_GJYWKH.KHH as KHH,khdx_jg.JGMC as JGMC, case when coalesce(max(dxgx_yjgx_gjyw.zlbl),0) = 0 then '无关系' when max(dxgx_yjgx_gjyw.zlbl)=100 then max(khdx_hy.hymc)||'|100' else cast('百分比:'||replace(replace(xml2clob(xmlagg(xmlelement(name a, khdx_hy.hymc||'|'||f_numtochar(dxgx_yjgx_gjyw.zlbl)||','))),'&lt;A&gt;',''),'&lt;/A&gt;',' ') as varchar(200)) end as DQFPGX from JXDX_GJYWKH JXDX_GJYWKH left outer join dxgx_yjgx_gjyw dxgx_yjgx_gjyw on 1=1 and dxgx_yjgx_gjyw.KHH=JXDX_GJYWKH.KHH and $sysdate$ between dxgx_yjgx_gjyw.qsrq and dxgx_yjgx_gjyw.jsrq left outer join khdx_hy khdx_hy on dxgx_yjgx_gjyw.khdxdh=khdx_hy.khdxdh inner join khdx_jg khdx_jg on khdx_jg.jgdh=JXDX_GJYWKH.jgdh inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,$JGKHDXDH$)) qx on qx.khdxdh=khdx_jg.khdxdh where 1=1
+      <isNotEmpty property="KHMC">and JXDX_GJYWKH.KHMC like '%$KHMC$%'</isNotEmpty>  
+      <isNotEmpty property="KHH">and JXDX_GJYWKH.KHH like '%$KHH$%'</isNotEmpty>  
+      <isNotEmpty property="JSRQ"> 
+        <isEmpty property="QSRQ">and JXDX_GJYWKH.KHRQ between 20081231 and $JSRQ$</isEmpty> 
+      </isNotEmpty>  
+      <isNotEmpty property="QSRQ"> 
+        <isEmpty property="JSRQ">and JXDX_GJYWKH.KHRQ between $QSRQ$ and 29991231</isEmpty> 
+      </isNotEmpty>  
+      <isNotEmpty property="QSRQ"> 
+        <isNotEmpty property="JSRQ">and JXDX_GJYWKH.KHRQ between $QSRQ$ and $JSRQ$</isNotEmpty> 
+      </isNotEmpty> group by JXDX_GJYWKH.KHMC,JXDX_GJYWKH.KHZT,JXDX_GJYWKH.KHRQ,JXDX_GJYWKH.KHH,khdx_jg.JGMC order by JXDX_GJYWKH.KHH) count
+    </select>  
+    <select id="dn0.gjywyjfp_select_mainCount_ora" parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select JXDX_GJYWKH.KHMC as KHMC,JXDX_GJYWKH.KHZT as KHZT,JXDX_GJYWKH.KHRQ as KHRQ,JXDX_GJYWKH.KHH as KHH,khdx_jg.JGMC as JGMC, F_WM_CONCAT(khdx_hy.hymc || dxgx_yjgx_gjyw.zlbl) DQFPGX from JXDX_GJYWKH JXDX_GJYWKH left outer join dxgx_yjgx_gjyw dxgx_yjgx_gjyw on 1=1 and dxgx_yjgx_gjyw.KHH=JXDX_GJYWKH.KHH and $sysdate$ between dxgx_yjgx_gjyw.qsrq and dxgx_yjgx_gjyw.jsrq left outer join khdx_hy khdx_hy on dxgx_yjgx_gjyw.khdxdh=khdx_hy.khdxdh inner join khdx_jg khdx_jg on khdx_jg.jgdh=JXDX_GJYWKH.jgdh inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,$JGKHDXDH$)) qx on qx.khdxdh=khdx_jg.khdxdh where 1=1 
+      <isNotEmpty property="KHMC">and JXDX_GJYWKH.KHMC like '%$KHMC$%'</isNotEmpty>  
+      <isNotEmpty property="KHH">and JXDX_GJYWKH.KHH like '%$KHH$%'</isNotEmpty>  
+      <isNotEmpty property="JSRQ"> 
+        <isEmpty property="QSRQ">and JXDX_GJYWKH.KHRQ between 20081231 and $JSRQ$</isEmpty> 
+      </isNotEmpty>  
+      <isNotEmpty property="QSRQ"> 
+        <isEmpty property="JSRQ">and JXDX_GJYWKH.KHRQ between $QSRQ$ and 29991231</isEmpty> 
+      </isNotEmpty>  
+      <isNotEmpty property="QSRQ"> 
+        <isNotEmpty property="JSRQ">and JXDX_GJYWKH.KHRQ between $QSRQ$ and $JSRQ$</isNotEmpty> 
+      </isNotEmpty> group by JXDX_GJYWKH.KHMC,JXDX_GJYWKH.KHZT,JXDX_GJYWKH.KHRQ,JXDX_GJYWKH.KHH,khdx_jg.JGMC order by JXDX_GJYWKH.KHH) count
+    </select>  
+    <select id="dn0.gjywyjfp_select_gxmxPage" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select distinct JXDX_GJYWKH.KHH,khdx_jg.JGDH as JGDH,khdx_hy.HYMC as HYMC,khdx_hy.HYDH as HYDH,DXGX_YJGX_GJYW.QSRQ as QSRQ,DXGX_YJGX_GJYW.JSRQ as JSRQ,khdx_jg.JGMC as JGMC,DXGX_YJGX_GJYW.ZLBL as ZLBL from dxgx_yjgx_gjyw dxgx_yjgx_gjyw inner join JXDX_GJYWKH JXDX_GJYWKH on 1=1 and JXDX_GJYWKH.KHH=dxgx_yjgx_gjyw.KHH inner join khdx_hy khdx_hy on dxgx_yjgx_gjyw.khdxdh=khdx_hy.khdxdh inner join khdx_jgcy khdx_jgcy on khdx_hy.khdxdh=khdx_jgcy.khdxdh inner join khdx_jg khdx_jg on khdx_jgcy.jgkhdxdh=khdx_jg.khdxdh and $sysdate$ between khdx_jgcy.qsrq and khdx_jgcy.jsrq where 1=1 and dxgx_yjgx_gjyw.KHH = '$KHH$' order by dxgx_yjgx_gjyw.qsrq
+    </select>  
+    <select id="dn0.gjywyjfp_select_gxmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select distinct JXDX_GJYWKH.KHH,khdx_jg.JGDH as JGDH,khdx_hy.HYMC as HYMC,khdx_hy.HYDH as HYDH,DXGX_YJGX_GJYW.QSRQ as QSRQ,DXGX_YJGX_GJYW.JSRQ as JSRQ,khdx_jg.JGMC as JGMC,DXGX_YJGX_GJYW.ZLBL as ZLBL from dxgx_yjgx_gjyw dxgx_yjgx_gjyw inner join JXDX_GJYWKH JXDX_GJYWKH on 1=1 and JXDX_GJYWKH.KHH=dxgx_yjgx_gjyw.KHH inner join khdx_hy khdx_hy on dxgx_yjgx_gjyw.khdxdh=khdx_hy.khdxdh inner join khdx_jgcy khdx_jgcy on khdx_hy.khdxdh=khdx_jgcy.khdxdh inner join khdx_jg khdx_jg on khdx_jgcy.jgkhdxdh=khdx_jg.khdxdh and $sysdate$ between khdx_jgcy.qsrq and khdx_jgcy.jsrq where 1=1 and dxgx_yjgx_gjyw.KHH = '$KHH$' order by dxgx_yjgx_gjyw.qsrq) a
+    </select>  
+    <delete id="dn0.gjywyjfp_delete_last_yjgx" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from dxgx_yjgx_gjyw where 1=1 and KHH = '$KHH$' and jsrq=29991231
+    </delete>  
+    <update id="dn0.gjywyjfp_before_insert_yjgx2" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dxgx_yjgx_gjyw set jsrq=$BEFORE$ where 1=1 and KHH = '$KHH$' and qsrq=(select max(qsrq) from dxgx_yjgx_gjyw where 1=1 and KHH = '$KHH$')
+    </update>  
+    <insert id="dn0.gjywyjfp_before_insert_yjgx" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dxgx_yjgx_gjyw set jsrq=$BEFORE$ where 1=1 and KHH = '$KHH$' and jsrq=29991231
+    </insert>  
+    <insert id="dn0.gjywyjfp_insert_yjgx" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into DXGX_YJGX_GJYW(KHH,KHDXDH,QSRQ,JSRQ,ZLBL) values('$KHH$',$KHDXDH$,$QSRQ$,$JSRQ$,$ZLBL$)
+    </insert>  
+    <delete id="dn0.gjywyjfp_delete_yjgx" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from dxgx_yjgx_gjyw gx where 1=1 and gx.KHH = '$KHH$' and gx.jsrq=29991231
+    </delete>  
+    <update id="dn0.gjywyjfp_after_delete_yjgx" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dxgx_yjgx_gjyw set jsrq=29991231 where 1=1 and KHH = '$KHH$' and jsrq=(select max(jsrq) from dxgx_yjgx_gjyw where 1=1 and KHH = '$KHH$')
+    </update>  
+    <select id="dn0.gjywyjfp_select_maxjldh" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select coalesce(max(jldh),0) from XTB_HYGXRZ_GJYW
+    </select>  
+    <insert id="dn0.gjywyjfp_insert_gxrz" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into XTB_HYGXRZ_GJYW(JLDH,JLSJ,CZLX,XGRDH,KHH) values($JLDH$,F_GET_SYSTIME(),'$CZLX$',$XGRDH$,'$KHH$')
+    </insert>  
+    <insert id="dn0.gjywyjfp_insert_gxjl" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into XTB_HYGXJL_GJYW(JLDH,GGBZ,KHDXDH,QSRQ,JSRQ,ZLBL) select $JLDH$,'$GGBZ$',gx.KHDXDH,gx.QSRQ,gx.JSRQ,gx.ZLBL from dxgx_yjgx_gjyw gx where 1=1 and gx.KHH = '$KHH$' and jsrq=29991231
+    </insert> 
+  </sqlMap> 
+</pageSetting>

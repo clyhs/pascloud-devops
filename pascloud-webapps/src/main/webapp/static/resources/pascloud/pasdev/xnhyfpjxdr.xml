@@ -1,324 +1,235 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="xnhyfpjxdr" title="虚拟行员绩效工资分配导入" type="import" version="2.0.0">
-  <template>
-    <src>ONLINE</src>
-    <column>
-      <text>统计日期</text>
-      <name>tjrq</name>
-      <index>0</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate>日期格式:yyyyMM 
-如：201401</annotate>
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>行员代号</text>
-      <name>hydh</name>
-      <index>1</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>行员名称</text>
-      <name>hymc</name>
-      <index>2</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>N</req>
-    </column>
-    <column>
-      <text>虚拟行员绩效</text>
-      <name>xnhyjx</name>
-      <index>3</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>可分配绩效</text>
-      <name>kfpjx</name>
-      <index>4</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>分配绩效</text>
-      <name>fpjx</name>
-      <index>5</index>
-      <width>120</width>
-      <height />
-      <align>right</align>
-      <annotate />
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>备注说明</text>
-      <name>bzsm</name>
-      <index>6</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>N</req>
-    </column>
-    <data>
-      <tags>
-        <tag row="0" col="0" name="Date" label="统计日期" colspan="1" rowspan="1">
-          <attribute key="style" value="width:180px" />
-          <attribute key="isRequired" value="true" />
-          <attribute key="defVal" value="" />
-          <attribute key="name" value="tjrq" />
-          <attribute key="styleClass" value="" />
-          <attribute key="minDate" value="no" />
-          <attribute key="defValType" value="ym" />
-          <attribute key="dateFmt" value="yyyyMM" />
-          <attribute key="editable" value="true" />
-        </tag>
-        <tag row="1" col="0" name="NewJg" label="机构" colspan="1" rowspan="1">
-          <attribute key="ckbz" value="jg_ckhy" />
-          <attribute key="cascadeCheck" value="true" />
-          <attribute key="isRequired" value="true" />
-          <attribute key="style" value="width:180px" />
-          <attribute key="defVal" value="" />
-          <attribute key="name" value="jgkhdxdh" />
-          <attribute key="multiple" value="false" />
-          <attribute key="editable" value="true" />
-        </tag>
-        <tag row="2" col="0" name="Hidden" label="" colspan="1" rowspan="1">
-          <attribute key="defVal" value="$login_khdxdh$" />
-          <attribute key="name" value="login_khdxdh" />
-        </tag>
-      </tags>
-    </data>
-  </template>
-  <table id="xnhyfpjxdr_table" page="true">
-    <col id="ZT" title="状态" align="center" type="string" width="50" />
-    <col id="ERROR" title="错误原因" align="center" type="string" width="250" />
-    <col id="TJRQ" title="统计日期" align="center" type="" width="120" />
-    <col id="HYDH" title="行员代号" align="center" type="" width="120" />
-    <col id="HYMC" title="行员名称" align="center" type="" width="120" />
-    <col id="XNHYJX" title="虚拟行员绩效" align="center" type="" width="120" />
-    <col id="KFPJX" title="可分配绩效" align="center" type="" width="120" />
-    <col id="FPJX" title="分配绩效" align="right" type="" width="120" />
-    <col id="BZSM" title="备注说明" align="center" type="" width="120" />
-  </table>
-  <flow>
-    <rule>
-      <sql type="update">xnhyfpjxdr_check_tjrq_0</sql>
-      <sql type="update">xnhyfpjxdr_check_tjrq_1</sql>
-      <sql type="update">xnhyfpjxdr_check_hydh_2</sql>
-      <sql type="update">xnhyfpjxdr_check_hydh_3</sql>
-      <sql type="update">xnhyfpjxdr_check_xnhyjx_4</sql>
-      <sql type="update">xnhyfpjxdr_check_kfpjx_5</sql>
-      <sql type="update">xnhyfpjxdr_check_fpjx_6</sql>
-      <sql type="update">xnhyfpjxdr_check_fpjx_7</sql>
-      <sql type="update">xnhyfpjxdr_check_bzsm_8</sql>
-      <sql type="update">xnhyfpjxdr_checkupdate_tjrq_0</sql>
-      <sql type="update">xnhyfpjxdr_checkupdate_tjrq_1</sql>
-      <sql type="update">xnhyfpjxdr_checkupdate_hymc_0</sql>
-      <sql type="update">xnhyfpjxdr_checkupdate_xnhyjx_0</sql>
-      <sql type="update">xnhyfpjxdr_checkupdate_xnhyjx_1</sql>
-      <sql type="update">xnhyfpjxdr_exists_target</sql>
-      <sql type="update">xnhyfpjxdr_exists_same_temp</sql>
-    </rule>
-    <before />
-    <cover>
-      <sql type="delete">xnhyfpjxdr_delete_before_override</sql>
-    </cover>
-    <insert>
-      <sql type="insert">xnhyfpjxdr_insert_into_target</sql>
-    </insert>
-    <after />
-  </flow>
-  <sqlMap namespace="studio.xnhyfpjxdr">
-    <update parameterClass="java.util.Map" id="dn12.xnhyfpjxdr_check_tjrq_0">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  xnhyfpjxdr_temp  t  
-		set  t.error=t.error||'统计日期输入错误，格式应该是:yyyyMM!'  
-		where  f_java_rule_date(t.tjrq,'yyyyMM')=1  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.xnhyfpjxdr_check_tjrq_1">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  xnhyfpjxdr_temp  t  set  t.error=t.error||'统计日期输入错误，不能为空!' 
-		where  f_java_rule_length(t.tjrq)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.xnhyfpjxdr_check_hydh_2">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  xnhyfpjxdr_temp  t  set  t.error=t.error||'行员代号输入错误，不能为空!' 
-		where  f_java_rule_length(t.hydh)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.xnhyfpjxdr_check_hydh_3">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  xnhyfpjxdr_temp  t  set  t.error=t.error||'行员代号不存在!'  
-		where  not  exists(select  1  from  khdx_hy  h  where  rtrim(t.hydh)=rtrim(h.hydh))  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.xnhyfpjxdr_check_xnhyjx_4">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  xnhyfpjxdr_temp  t  set  t.error=t.error||'虚拟行员绩效输入错误，不能为空!' 
-		where  f_java_rule_length(t.xnhyjx)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.xnhyfpjxdr_check_kfpjx_5">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  xnhyfpjxdr_temp  t  set  t.error=t.error||'可分配绩效输入错误，不能为空!' 
-		where  f_java_rule_length(t.kfpjx)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.xnhyfpjxdr_check_fpjx_6">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  xnhyfpjxdr_temp  t  
-		set  t.error=t.error||'分配绩效输入错误，只能输入:21位整数,4位小数!'  
-		where f_java_rule_length(t.fpjx)&gt;0 and f_java_rule_number(t.fpjx,21,4)=1  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.xnhyfpjxdr_check_fpjx_7">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  xnhyfpjxdr_temp  t  set  t.error=t.error||'分配绩效输入错误，不能为空!' 
-		where  f_java_rule_length(t.fpjx)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.xnhyfpjxdr_check_bzsm_8">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  xnhyfpjxdr_temp  t  set  t.error=t.error||'备注说明输入错误，长度不能超过:100!' 
-		where  f_java_rule_length(t.bzsm)&gt;100  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.xnhyfpjxdr_checkupdate_tjrq_0">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update xnhyfpjxdr_temp t set t.tjrq=(select cast(ym as char(8)) from csb_sjw s where cast(t.tjrq||'01' as integer)=s.tjrq) where exists(select 1 from csb_sjw s where cast(t.tjrq||'01' as integer)=s.tjrq)
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.xnhyfpjxdr_checkupdate_tjrq_1">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      UPDATE xnhyfpjxdr_temp t SET t.error = (SELECT t.error  || '分配日期不能小于(系统日期-重跑天数)' || cast ( f_change_days (cast (rq.csz AS INTEGER),
--cast (cs.csz AS INTEGER)) AS CHAR (8))   || '!'    AS error FROM xtb_xtcs rq, xtb_xtcs cs WHERE rq.csmc = 'SYS_DATE' AND cs.csmc = 'SYS_CSTS')
-WHERE cast (t.tjrq AS INTEGER) &lt; (SELECT f_change_days (cast (rq.csz AS INTEGER),  -cast (cs.csz AS INTEGER))  FROM xtb_xtcs rq, xtb_xtcs cs       
-WHERE rq.csmc = 'SYS_DATE' AND cs.csmc = 'SYS_CSTS')  AND (error = '' OR error IS NULL) AND khdxdh = $login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.xnhyfpjxdr_checkupdate_hymc_0">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update xnhyfpjxdr_temp t set error=error||'行员代号和名称必须一致' where  not exists (    select 1 from khdx_hy hy     where t.hydh=hy.hydh and hy.hymc=t.hymc) and t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.xnhyfpjxdr_checkupdate_xnhyjx_0">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      UPDATE xnhyfpjxdr_temp t SET t.FPJX = NULL WHERE t.FPJX =''
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.xnhyfpjxdr_checkupdate_xnhyjx_1">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      UPDATE xnhyfpjxdr_temp t SET t.error = t.error || '分配绩效数据之和不能大于虚拟行员绩效!' 
-where exists ( select 1 from 
-                    ( select a.tjrq,a.jgkhdxdh,a.sumfpjx,b.zjx,c.fpjx from
-                        (select t.tjrq,jgcy.jgkhdxdh,sum(cast(t.fpjx AS DECIMAL(19,2))) sumfpjx from xnhyfpjxdr_temp t 
-                         inner join khdx_hy hy on hy.hydh=t.hydh 
-                         inner join khdx_jgcy jgcy on jgcy.khdxdh=hy.khdxdh and cast(t.tjrq AS integer) between jgcy.qsrq and jgcy.jsrq 
-                         where t.khdxdh=$login_khdxdh$ group by t.tjrq,jgcy.jgkhdxdh
-                         ) a 
-                         left join ( 
-                            SELECT cy.jgkhdxdh,cast(sum(yyjg.yyjg) AS DECIMAL(19,2)) AS zjx 
-                            from khfa_yyjg_hy yyjg 
-                            inner join khfa_fapz pz on yyjg.fabh = pz.fabh and pz.yyzlbh = 1 
-                            inner join khdx_hy hy on yyjg.khdxdh = hy.khdxdh and hy.hydh like 'XN%' 
-                            inner join khdx_jgcy cy on hy.khdxdh = cy.khdxdh and yyjg.tjrq between cy.qsrq and cy.jsrq 
-                            inner join csb_sjw w on w.tjrq=yyjg.tjrq and w.tjrq=w.ym 
-                            inner join (select distinct cast (tjrq AS integer) tjrq from xnhyfpjxdr_temp ) x on 1=1 
-                            INNER JOIN csb_sjw sjw ON sjw.TJRQ=x.tjrq inner join xtb_xtcs cs on cs.csmc='XNHYJZQSRQ' 
-                            where yyjg.TJRQ &lt;=sjw.ym AND yyjg.TJRQ &gt;=(CASE WHEN (select csz from xtb_xtcs where csmc='XNHYJXJZBZ')='0' 
-                            THEN sjw.YM WHEN (select csz from xtb_xtcs where csmc='XNHYJXJZBZ')='1' 
-                            THEN sjw.NC WHEN (select csz from xtb_xtcs where csmc='XNHYJXJZBZ')='2' 
-                            THEN cast(cs.csz as integer) end)
-                            group by cy.jgkhdxdh
-                        ) b on  a.jgkhdxdh=b.jgkhdxdh                            
-                        left join ( 
-                            select b.jgkhdxdh,coalesce(sum(a.fpjx) ,0)as fpjx 
-                            from sgdr_xnhyfpjx a 
-                            inner join khdx_jgcy b on a.khdxdh=b.khdxdh and cast(a.tjrq AS integer) between b.qsrq and b.jsrq 
-                            inner join (select distinct cast (tjrq AS integer) tjrq from xnhyfpjxdr_temp ) x on 1=1 
-                            INNER JOIN csb_sjw sjw ON sjw.TJRQ=cast(x.tjrq AS integer) left join xtb_xtcs s on csmc='XNHYJXJZBZ'
-                            where cast(a.tjrq AS integer) &lt;=sjw.ym AND cast(a.tjrq AS integer) &gt;=(CASE s.csz when '0' THEN sjw.YM WHEN '1' THEN sjw.NC WHEN '2' 
-                            THEN cast(csz as integer) else sjw.YM end) and not exists 
-                            (select 1 from xnhyfpjxdr_temp k inner join khdx_hy hy on hy.hydh= k.hydh where cast(k.tjrq AS integer) =cast(a.tjrq AS integer) 
-                            and hy.khdxdh=a.khdxdh and k.khdxdh=$login_khdxdh$ ) 
-                            group by b.jgkhdxdh
-                        ) c on c.jgkhdxdh=a.jgkhdxdh                         
-                         )   d where cast(d.sumfpjx AS DECIMAL(19,2)) &gt; cast((coalesce(d.zjx,0)-coalesce(d.fpjx,0)) AS DECIMAL(19,2)) ) 
-                        and t.khdxdh=$login_khdxdh$ and (length(t.error)=0 or t.error is null )
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.xnhyfpjxdr_exists_target">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  xnhyfpjxdr_temp  t  set  t.error=t.error||'数据已存在!'  where  exists(select  1  from  SGDR_XNHYFPJX  tar  ,CSB_SJW  CSB_SJW0,KHDX_HY  KHDX_HY1  where  1=1   and  cast(t.tjrq  as  INTEGER)=CSB_SJW0.TJRQ  and  CSB_SJW0.YM=tar.TJRQ  and  t.hydh=KHDX_HY1.HYDH  and  KHDX_HY1.KHDXDH=tar.KHDXDH  and  t.khdxdh=$login_khdxdh$  and  (length(t.error)=0  or  t.error  is  null  ))
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.xnhyfpjxdr_exists_same_temp">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  xnhyfpjxdr_temp  t  set  t.error=error||'存在重复数据!'  where  exists(  select  1  from   (select  tjrq,hydh  from  xnhyfpjxdr_temp  dr  where  khdxdh=$login_khdxdh$  group  by  tjrq,hydh  having  count(1)<![CDATA[>]]>1  )  dr  where  1=1   and  t.tjrq=dr.tjrq  and  t.hydh=dr.hydh)  and  khdxdh=$login_khdxdh$
-    </update>
-    <insert parameterClass="java.util.Map" id="dn12.xnhyfpjxdr_create_lsb">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      CREATE  TABLE   xnhyfpjxdr_temp   (   tjrq  varchar(100)  ,  hydh  varchar(100)  ,  hymc  varchar(100)  ,  xnhyjx  varchar(100)  ,  kfpjx  varchar(100)  ,  fpjx  varchar(100)  ,  bzsm  varchar(100)  ,  khdxdh  integer,error  varchar(1000)   )
-    </insert>
-    <delete parameterClass="java.util.Map" id="dn12.xnhyfpjxdr_delete_lsb">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      delete from xnhyfpjxdr_temp where khdxdh=$login_khdxdh$
-    </delete>
-    <insert parameterClass="java.util.Map" id="dn12.xnhyfpjxdr_insert_into_lsb">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      insert  into  XNHYFPJXDR_TEMP  (tjrq,hydh,hymc,xnhyjx,kfpjx,fpjx,bzsm,khdxdh,error)  values(?,?,?,?,?,?,?,?,?)
-    </insert>
-    <select parameterClass="java.util.Map" id="dn12.xnhyfpjxdr_exists_error_msg" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  count(1)  from  xnhyfpjxdr_temp  where  length(error) <![CDATA[>]]> 0  and  khdxdh  =  $login_khdxdh$
-    </select>
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn12.xnhyfpjxdr_exists_same_data">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  count(1)  from  xnhyfpjxdr_temp  where  length(error) <![CDATA[>]]> 0  and  error  !=  '数据已存在!'  and  khdxdh  =  $login_khdxdh$
-    </select>
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn12.xnhyfpjxdr_select_error_msg">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/cancel.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  tjrq,hydh,hymc,xnhyjx,kfpjx,fpjx,bzsm,khdxdh,error  from  xnhyfpjxdr_temp  where  khdxdh=$login_khdxdh$  and  length(error)<![CDATA[>]]>0
-    </select>
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn12.xnhyfpjxdr_count_all_msg">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  count(1)  from  (select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/ok.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  tjrq,hydh,hymc,xnhyjx,kfpjx,fpjx,bzsm,khdxdh,error  from  xnhyfpjxdr_temp  where  khdxdh=$login_khdxdh$  )a
-    </select>
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn12.xnhyfpjxdr_select_all_msg">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/ok.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  tjrq,hydh,hymc,xnhyjx,kfpjx,fpjx,bzsm,khdxdh,error  from  xnhyfpjxdr_temp  where  khdxdh=$login_khdxdh$
-    </select>
-    <insert parameterClass="java.util.Map" id="dn12.xnhyfpjxdr_insert_into_target">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      insert into SGDR_XNHYFPJX(TJRQ,KHDXDH,FPJX,BZSM,CZR,CZSJ) select CSB_SJW0.YM,KHDX_HY1.KHDXDH,cast (t.fpjx as DECIMAL(25,4)), t.bzsm ,'$login_hydh$',F_GET_SYSTIME() from xnhyfpjxdr_temp t ,CSB_SJW CSB_SJW0,KHDX_HY KHDX_HY1 where t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null)  and CSB_SJW0.TJRQ=cast (t.tjrq as INTEGER) and KHDX_HY1.HYDH=cast (t.hydh as VARCHAR(20))
-    </insert>
-    <delete parameterClass="java.util.Map" id="dn12.xnhyfpjxdr_delete_before_override">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      delete  from  SGDR_XNHYFPJX  tar  where  exists(select  1  from  xnhyfpjxdr_temp  t  ,CSB_SJW  CSB_SJW0,KHDX_HY  KHDX_HY1  where  1=1   and  cast(t.tjrq  as  INTEGER)=CSB_SJW0.TJRQ  and  CSB_SJW0.YM=tar.TJRQ  and  t.hydh=KHDX_HY1.HYDH  and  KHDX_HY1.KHDXDH=tar.KHDXDH  and  t.khdxdh=$login_khdxdh$  )
-    </delete>
-    <select id="dn12.xnhyfpjxdr_select_template_data" parameterClass="java.util.Map" remapResults="true" resultClass="java.util.LinkedHashMap">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select $tjrq$ tjrq,hy.hydh,hy.hymc,cast(coalesce(b.zjx,0) as decimal(19,2)) AS xnhyjx,cast(coalesce(b.zjx,0)-coalesce(c.fpjx,0) as decimal(19,2)) AS kfpjx, cast(coalesce(xnjx.fpjx,0) as decimal(19,2)) fpjx 
-,xnjx.bzsm
-from khdx_jg jg
-inner join csb_sjw sjw on substr(cast(sjw.tjrq as char(8)),1,6)='$tjrq$' and sjw.tjrq=sjw.ym
-inner join khdx_jgcy jgcy on jgcy.jgkhdxdh=jg.khdxdh and sjw.ym between jgcy.qsrq and jgcy.jsrq inner join khdx_hy hy on hy.khdxdh = jgcy.khdxdh and hy.hydh not like 'XN%'
-left join sgdr_xnhyfpjx xnjx on xnjx.khdxdh=hy.khdxdh and xnjx.tjrq=sjw.tjrq
-inner join table(FN_GETSJJG_JAVA_QXHY(sjw.ym,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh
-LEFT JOIN (
-     SELECT cy.jgkhdxdh,sum (yyjg.yyjg) AS zjx
-     from   khfa_yyjg_hy yyjg
-     inner join khfa_fapz pz on yyjg.fabh = pz.fabh and pz.yyzlbh = 1
-     inner join khdx_hy hy  on yyjg.khdxdh = hy.khdxdh and hy.hydh like 'XN%'
-     inner join  khdx_jgcy cy  on hy.khdxdh = cy.khdxdh and yyjg.tjrq  between cy.qsrq and  cy.jsrq <![CDATA[inner join csb_sjw w on w.tjrq=yyjg.tjrq and w.tjrq=w.ym
+
+<pageSetting id="xnhyfpjxdr" title="虚拟行员绩效工资分配导入" type="import" version="2.0.0"> 
+  <template> 
+    <src>ONLINE</src>  
+    <column> 
+      <text>统计日期</text>  
+      <name>tjrq</name>  
+      <index>0</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate>日期格式:yyyyMM 如：201401</annotate>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>行员代号</text>  
+      <name>hydh</name>  
+      <index>1</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>行员名称</text>  
+      <name>hymc</name>  
+      <index>2</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>N</req> 
+    </column>  
+    <column> 
+      <text>虚拟行员绩效</text>  
+      <name>xnhyjx</name>  
+      <index>3</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>可分配绩效</text>  
+      <name>kfpjx</name>  
+      <index>4</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>分配绩效</text>  
+      <name>fpjx</name>  
+      <index>5</index>  
+      <width>120</width>  
+      <height/>  
+      <align>right</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>备注说明</text>  
+      <name>bzsm</name>  
+      <index>6</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>N</req> 
+    </column>  
+    <data> 
+      <tags> 
+        <tag row="0" col="0" name="Date" label="统计日期" colspan="1" rowspan="1"> 
+          <attribute key="style" value="width:180px"/>  
+          <attribute key="isRequired" value="true"/>  
+          <attribute key="defVal" value=""/>  
+          <attribute key="name" value="tjrq"/>  
+          <attribute key="styleClass" value=""/>  
+          <attribute key="minDate" value="no"/>  
+          <attribute key="defValType" value="ym"/>  
+          <attribute key="dateFmt" value="yyyyMM"/>  
+          <attribute key="editable" value="true"/> 
+        </tag>  
+        <tag row="1" col="0" name="NewJg" label="机构" colspan="1" rowspan="1"> 
+          <attribute key="ckbz" value="jg_ckhy"/>  
+          <attribute key="cascadeCheck" value="true"/>  
+          <attribute key="isRequired" value="true"/>  
+          <attribute key="style" value="width:180px"/>  
+          <attribute key="defVal" value=""/>  
+          <attribute key="name" value="jgkhdxdh"/>  
+          <attribute key="multiple" value="false"/>  
+          <attribute key="editable" value="true"/> 
+        </tag>  
+        <tag row="2" col="0" name="Hidden" label="" colspan="1" rowspan="1"> 
+          <attribute key="defVal" value="$login_khdxdh$"/>  
+          <attribute key="name" value="login_khdxdh"/> 
+        </tag> 
+      </tags> 
+    </data> 
+  </template>  
+  <table id="xnhyfpjxdr_table" page="true"> 
+    <col id="ZT" title="状态" align="center" type="string" width="50"/>  
+    <col id="ERROR" title="错误原因" align="center" type="string" width="250"/>  
+    <col id="TJRQ" title="统计日期" align="center" type="" width="120"/>  
+    <col id="HYDH" title="行员代号" align="center" type="" width="120"/>  
+    <col id="HYMC" title="行员名称" align="center" type="" width="120"/>  
+    <col id="XNHYJX" title="虚拟行员绩效" align="center" type="" width="120"/>  
+    <col id="KFPJX" title="可分配绩效" align="center" type="" width="120"/>  
+    <col id="FPJX" title="分配绩效" align="right" type="" width="120"/>  
+    <col id="BZSM" title="备注说明" align="center" type="" width="120"/> 
+  </table>  
+  <flow> 
+    <rule> 
+      <sql type="update">xnhyfpjxdr_check_tjrq_0</sql>  
+      <sql type="update">xnhyfpjxdr_check_tjrq_1</sql>  
+      <sql type="update">xnhyfpjxdr_check_hydh_2</sql>  
+      <sql type="update">xnhyfpjxdr_check_hydh_3</sql>  
+      <sql type="update">xnhyfpjxdr_check_xnhyjx_4</sql>  
+      <sql type="update">xnhyfpjxdr_check_kfpjx_5</sql>  
+      <sql type="update">xnhyfpjxdr_check_fpjx_6</sql>  
+      <sql type="update">xnhyfpjxdr_check_fpjx_7</sql>  
+      <sql type="update">xnhyfpjxdr_check_bzsm_8</sql>  
+      <sql type="update">xnhyfpjxdr_checkupdate_tjrq_0</sql>  
+      <sql type="update">xnhyfpjxdr_checkupdate_tjrq_1</sql>  
+      <sql type="update">xnhyfpjxdr_checkupdate_hymc_0</sql>  
+      <sql type="update">xnhyfpjxdr_checkupdate_xnhyjx_0</sql>  
+      <sql type="update">xnhyfpjxdr_checkupdate_xnhyjx_1</sql>  
+      <sql type="update">xnhyfpjxdr_exists_target</sql>  
+      <sql type="update">xnhyfpjxdr_exists_same_temp</sql> 
+    </rule>  
+    <before/>  
+    <cover> 
+      <sql type="delete">xnhyfpjxdr_delete_before_override</sql> 
+    </cover>  
+    <insert> 
+      <sql type="insert">xnhyfpjxdr_insert_into_target</sql> 
+    </insert>  
+    <after/> 
+  </flow>  
+  <sqlMap namespace="studio.xnhyfpjxdr"> 
+    <update parameterClass="java.util.Map" id="dn0.xnhyfpjxdr_check_tjrq_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update xnhyfpjxdr_temp t set t.error=t.error||'统计日期输入错误，格式应该是:yyyyMM!' where f_java_rule_date(t.tjrq,'yyyyMM')=1 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.xnhyfpjxdr_check_tjrq_1"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update xnhyfpjxdr_temp t set t.error=t.error||'统计日期输入错误，不能为空!' where f_java_rule_length(t.tjrq)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.xnhyfpjxdr_check_hydh_2"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update xnhyfpjxdr_temp t set t.error=t.error||'行员代号输入错误，不能为空!' where f_java_rule_length(t.hydh)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.xnhyfpjxdr_check_hydh_3"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update xnhyfpjxdr_temp t set t.error=t.error||'行员代号不存在!' where not exists(select 1 from khdx_hy h where rtrim(t.hydh)=rtrim(h.hydh)) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.xnhyfpjxdr_check_xnhyjx_4"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update xnhyfpjxdr_temp t set t.error=t.error||'虚拟行员绩效输入错误，不能为空!' where f_java_rule_length(t.xnhyjx)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.xnhyfpjxdr_check_kfpjx_5"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update xnhyfpjxdr_temp t set t.error=t.error||'可分配绩效输入错误，不能为空!' where f_java_rule_length(t.kfpjx)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.xnhyfpjxdr_check_fpjx_6"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update xnhyfpjxdr_temp t set t.error=t.error||'分配绩效输入错误，只能输入:21位整数,4位小数!' where f_java_rule_length(t.fpjx)&gt;0 and f_java_rule_number(t.fpjx,21,4)=1 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.xnhyfpjxdr_check_fpjx_7"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update xnhyfpjxdr_temp t set t.error=t.error||'分配绩效输入错误，不能为空!' where f_java_rule_length(t.fpjx)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.xnhyfpjxdr_check_bzsm_8"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update xnhyfpjxdr_temp t set t.error=t.error||'备注说明输入错误，长度不能超过:100!' where f_java_rule_length(t.bzsm)&gt;100 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.xnhyfpjxdr_checkupdate_tjrq_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update xnhyfpjxdr_temp t set t.tjrq=(select cast(ym as char(8)) from csb_sjw s where cast(t.tjrq||'01' as integer)=s.tjrq) where exists(select 1 from csb_sjw s where cast(t.tjrq||'01' as integer)=s.tjrq)
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.xnhyfpjxdr_checkupdate_tjrq_1"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> UPDATE xnhyfpjxdr_temp t SET t.error = (SELECT t.error || '分配日期不能小于(系统日期-重跑天数)' || cast ( f_change_days (cast (rq.csz AS INTEGER), -cast (cs.csz AS INTEGER)) AS CHAR (8)) || '!' AS error FROM xtb_xtcs rq, xtb_xtcs cs WHERE rq.csmc = 'SYS_DATE' AND cs.csmc = 'SYS_CSTS') WHERE cast (t.tjrq AS INTEGER) &lt; (SELECT f_change_days (cast (rq.csz AS INTEGER), -cast (cs.csz AS INTEGER)) FROM xtb_xtcs rq, xtb_xtcs cs WHERE rq.csmc = 'SYS_DATE' AND cs.csmc = 'SYS_CSTS') AND (error = '' OR error IS NULL) AND khdxdh = $login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.xnhyfpjxdr_checkupdate_hymc_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update xnhyfpjxdr_temp t set error=error||'行员代号和名称必须一致' where not exists ( select 1 from khdx_hy hy where t.hydh=hy.hydh and hy.hymc=t.hymc) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.xnhyfpjxdr_checkupdate_xnhyjx_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> UPDATE xnhyfpjxdr_temp t SET t.FPJX = NULL WHERE t.FPJX =''
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.xnhyfpjxdr_checkupdate_xnhyjx_1"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> UPDATE xnhyfpjxdr_temp t SET t.error = t.error || '分配绩效数据之和不能大于虚拟行员绩效!' where exists ( select 1 from ( select a.tjrq,a.jgkhdxdh,a.sumfpjx,b.zjx,c.fpjx from (select t.tjrq,jgcy.jgkhdxdh,sum(cast(t.fpjx AS DECIMAL(19,2))) sumfpjx from xnhyfpjxdr_temp t inner join khdx_hy hy on hy.hydh=t.hydh inner join khdx_jgcy jgcy on jgcy.khdxdh=hy.khdxdh and cast(t.tjrq AS integer) between jgcy.qsrq and jgcy.jsrq where t.khdxdh=$login_khdxdh$ group by t.tjrq,jgcy.jgkhdxdh ) a left join ( SELECT cy.jgkhdxdh,cast(sum(yyjg.yyjg) AS DECIMAL(19,2)) AS zjx from khfa_yyjg_hy yyjg inner join khfa_fapz pz on yyjg.fabh = pz.fabh and pz.yyzlbh = 1 inner join khdx_hy hy on yyjg.khdxdh = hy.khdxdh and hy.hydh like 'XN%' inner join khdx_jgcy cy on hy.khdxdh = cy.khdxdh and yyjg.tjrq between cy.qsrq and cy.jsrq inner join csb_sjw w on w.tjrq=yyjg.tjrq and w.tjrq=w.ym inner join (select distinct cast (tjrq AS integer) tjrq from xnhyfpjxdr_temp ) x on 1=1 INNER JOIN csb_sjw sjw ON sjw.TJRQ=x.tjrq inner join xtb_xtcs cs on cs.csmc='XNHYJZQSRQ' where yyjg.TJRQ &lt;=sjw.ym AND yyjg.TJRQ &gt;=(CASE WHEN (select csz from xtb_xtcs where csmc='XNHYJXJZBZ')='0' THEN sjw.YM WHEN (select csz from xtb_xtcs where csmc='XNHYJXJZBZ')='1' THEN sjw.NC WHEN (select csz from xtb_xtcs where csmc='XNHYJXJZBZ')='2' THEN cast(cs.csz as integer) end) group by cy.jgkhdxdh ) b on a.jgkhdxdh=b.jgkhdxdh left join ( select b.jgkhdxdh,coalesce(sum(a.fpjx) ,0)as fpjx from sgdr_xnhyfpjx a inner join khdx_jgcy b on a.khdxdh=b.khdxdh and cast(a.tjrq AS integer) between b.qsrq and b.jsrq inner join (select distinct cast (tjrq AS integer) tjrq from xnhyfpjxdr_temp ) x on 1=1 INNER JOIN csb_sjw sjw ON sjw.TJRQ=cast(x.tjrq AS integer) left join xtb_xtcs s on csmc='XNHYJXJZBZ' where cast(a.tjrq AS integer) &lt;=sjw.ym AND cast(a.tjrq AS integer) &gt;=(CASE s.csz when '0' THEN sjw.YM WHEN '1' THEN sjw.NC WHEN '2' THEN cast(csz as integer) else sjw.YM end) and not exists (select 1 from xnhyfpjxdr_temp k inner join khdx_hy hy on hy.hydh= k.hydh where cast(k.tjrq AS integer) =cast(a.tjrq AS integer) and hy.khdxdh=a.khdxdh and k.khdxdh=$login_khdxdh$ ) group by b.jgkhdxdh ) c on c.jgkhdxdh=a.jgkhdxdh ) d where cast(d.sumfpjx AS DECIMAL(19,2)) &gt; cast((coalesce(d.zjx,0)-coalesce(d.fpjx,0)) AS DECIMAL(19,2)) ) and t.khdxdh=$login_khdxdh$ and (length(t.error)=0 or t.error is null )
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.xnhyfpjxdr_exists_target"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update xnhyfpjxdr_temp t set t.error=t.error||'数据已存在!' where exists(select 1 from SGDR_XNHYFPJX tar ,CSB_SJW CSB_SJW0,KHDX_HY KHDX_HY1 where 1=1 and cast(t.tjrq as INTEGER)=CSB_SJW0.TJRQ and CSB_SJW0.YM=tar.TJRQ and t.hydh=KHDX_HY1.HYDH and KHDX_HY1.KHDXDH=tar.KHDXDH and t.khdxdh=$login_khdxdh$ and (length(t.error)=0 or t.error is null ))
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.xnhyfpjxdr_exists_same_temp"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update xnhyfpjxdr_temp t set t.error=error||'存在重复数据!' where exists( select 1 from (select tjrq,hydh from xnhyfpjxdr_temp dr where khdxdh=$login_khdxdh$ group by tjrq,hydh having count(1)<![CDATA[>]]>1 ) dr where 1=1 and t.tjrq=dr.tjrq and t.hydh=dr.hydh) and khdxdh=$login_khdxdh$
+    </update>  
+    <insert parameterClass="java.util.Map" id="dn0.xnhyfpjxdr_create_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> CREATE TABLE xnhyfpjxdr_temp ( tjrq varchar(100) , hydh varchar(100) , hymc varchar(100) , xnhyjx varchar(100) , kfpjx varchar(100) , fpjx varchar(100) , bzsm varchar(100) , khdxdh integer,error varchar(1000) )
+    </insert>  
+    <delete parameterClass="java.util.Map" id="dn0.xnhyfpjxdr_delete_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from xnhyfpjxdr_temp where khdxdh=$login_khdxdh$
+    </delete>  
+    <insert parameterClass="java.util.Map" id="dn0.xnhyfpjxdr_insert_into_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into XNHYFPJXDR_TEMP (tjrq,hydh,hymc,xnhyjx,kfpjx,fpjx,bzsm,khdxdh,error) values(?,?,?,?,?,?,?,?,?)
+    </insert>  
+    <select parameterClass="java.util.Map" id="dn0.xnhyfpjxdr_exists_error_msg" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from xnhyfpjxdr_temp where length(error) <![CDATA[>]]> 0 and khdxdh = $login_khdxdh$
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn0.xnhyfpjxdr_exists_same_data"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from xnhyfpjxdr_temp where length(error) <![CDATA[>]]> 0 and error != '数据已存在!' and khdxdh = $login_khdxdh$
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn0.xnhyfpjxdr_select_error_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/cancel.jpg" border="0"/<![CDATA[>]]>' as zt, tjrq,hydh,hymc,xnhyjx,kfpjx,fpjx,bzsm,khdxdh,error from xnhyfpjxdr_temp where khdxdh=$login_khdxdh$ and length(error)<![CDATA[>]]>0
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn0.xnhyfpjxdr_count_all_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, tjrq,hydh,hymc,xnhyjx,kfpjx,fpjx,bzsm,khdxdh,error from xnhyfpjxdr_temp where khdxdh=$login_khdxdh$ )a
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn0.xnhyfpjxdr_select_all_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, tjrq,hydh,hymc,xnhyjx,kfpjx,fpjx,bzsm,khdxdh,error from xnhyfpjxdr_temp where khdxdh=$login_khdxdh$
+    </select>  
+    <insert parameterClass="java.util.Map" id="dn0.xnhyfpjxdr_insert_into_target"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into SGDR_XNHYFPJX(TJRQ,KHDXDH,FPJX,BZSM,CZR,CZSJ) select CSB_SJW0.YM,KHDX_HY1.KHDXDH,cast (t.fpjx as DECIMAL(25,4)), t.bzsm ,'$login_hydh$',F_GET_SYSTIME() from xnhyfpjxdr_temp t ,CSB_SJW CSB_SJW0,KHDX_HY KHDX_HY1 where t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null) and CSB_SJW0.TJRQ=cast (t.tjrq as INTEGER) and KHDX_HY1.HYDH=cast (t.hydh as VARCHAR(20))
+    </insert>  
+    <delete parameterClass="java.util.Map" id="dn0.xnhyfpjxdr_delete_before_override"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from SGDR_XNHYFPJX tar where exists(select 1 from xnhyfpjxdr_temp t ,CSB_SJW CSB_SJW0,KHDX_HY KHDX_HY1 where 1=1 and cast(t.tjrq as INTEGER)=CSB_SJW0.TJRQ and CSB_SJW0.YM=tar.TJRQ and t.hydh=KHDX_HY1.HYDH and KHDX_HY1.KHDXDH=tar.KHDXDH and t.khdxdh=$login_khdxdh$ )
+    </delete>  
+    <select id="dn0.xnhyfpjxdr_select_template_data" parameterClass="java.util.Map" remapResults="true" resultClass="java.util.LinkedHashMap"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select $tjrq$ tjrq,hy.hydh,hy.hymc,cast(coalesce(b.zjx,0) as decimal(19,2)) AS xnhyjx,cast(coalesce(b.zjx,0)-coalesce(c.fpjx,0) as decimal(19,2)) AS kfpjx, cast(coalesce(xnjx.fpjx,0) as decimal(19,2)) fpjx ,xnjx.bzsm from khdx_jg jg inner join csb_sjw sjw on substr(cast(sjw.tjrq as char(8)),1,6)='$tjrq$' and sjw.tjrq=sjw.ym inner join khdx_jgcy jgcy on jgcy.jgkhdxdh=jg.khdxdh and sjw.ym between jgcy.qsrq and jgcy.jsrq inner join khdx_hy hy on hy.khdxdh = jgcy.khdxdh and hy.hydh not like 'XN%' left join sgdr_xnhyfpjx xnjx on xnjx.khdxdh=hy.khdxdh and xnjx.tjrq=sjw.tjrq inner join table(FN_GETSJJG_JAVA_QXHY(sjw.ym,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh LEFT JOIN ( SELECT cy.jgkhdxdh,sum (yyjg.yyjg) AS zjx from khfa_yyjg_hy yyjg inner join khfa_fapz pz on yyjg.fabh = pz.fabh and pz.yyzlbh = 1 inner join khdx_hy hy on yyjg.khdxdh = hy.khdxdh and hy.hydh like 'XN%' inner join khdx_jgcy cy on hy.khdxdh = cy.khdxdh and yyjg.tjrq between cy.qsrq and cy.jsrq<![CDATA[inner join csb_sjw w on w.tjrq=yyjg.tjrq and w.tjrq=w.ym
            INNER JOIN  csb_sjw sjw ON  sjw.TJRQ=  cast ('$tjrq$'||'01' AS integer)
      inner join  xtb_xtcs cs on  cs.csmc='XNHYJZQSRQ'
      where  yyjg.TJRQ <=sjw.ym AND
@@ -342,8 +253,7 @@ select b.jgkhdxdh,coalesce(sum(a.fpjx) ,0)as fpjx
                             end)
           group by b.jgkhdxdh
 )c ON  c.jgkhdxdh  = jgcy.jgkhdxdh 
-where jg.khdxdh in($jgkhdxdh$) order by hy.hydh]]>
-    </select>
-  </sqlMap>
+where jg.khdxdh in($jgkhdxdh$) order by hy.hydh]]> 
+    </select> 
+  </sqlMap> 
 </pageSetting>
-

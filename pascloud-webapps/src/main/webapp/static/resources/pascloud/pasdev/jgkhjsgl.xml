@@ -1,191 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="jgkhjsgl" title="机构考核角色管理" type="manage">
-  <conPart>
-    <tags>
-      <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="考核角色名称" fieldName="">
-        <attribute key="name" value="lbmc" />
-        <attribute key="readonly" value="false" />
-        <attribute key="editable" value="true" />
-      </tag>
-    </tags>
-  </conPart>
-  <table page="true" id="jgkhjsgltable">
-    <col id="LBDH" title="考核角色代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="LBMC" title="考核角色名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-  </table>
-  <rels>
-    <items id="jgkhjsgltable" />
-  </rels>
-  <addPage title="编辑页面">
-    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="机构考核角色代号" fieldName="LBDH">
-      <attribute key="style" value="width:200px" />
-      <attribute key="name" value="lbdh" />
-      <attribute key="styleClass" value="required justEnNu max-length-10" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="1" col="0" rowspan="1" colspan="1" name="Text" label="机构考核角色名称" fieldName="LBMC">
-      <attribute key="style" value="width:200px" />
-      <attribute key="name" value="lbmc" />
-      <attribute key="styleClass" value="required max-length-50" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="2" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
-      <attribute key="dataType" value="select" />
-      <attribute key="sql" value="select lbdh from csb_jglb where lbdh='$lbdh$'" />
-      <attribute key="name" value="checkLbdh" />
-    </tag>
-    <tag row="3" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
-      <attribute key="dataType" value="select" />
-      <attribute key="sql" value="select lbdh from csb_jglb where lbmc='$lbmc$'" />
-      <attribute key="name" value="checkLbmc" />
-    </tag>
-  </addPage>
-  <updatePage title="编辑页面">
-    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="机构考核角色代号" fieldName="LBDH">
-      <attribute key="style" value="width:200px" />
-      <attribute key="name" value="lbdh" />
-      <attribute key="styleClass" value="required justEnNu max-length-10" />
-      <attribute key="isAll" value="false" />
-      <attribute key="readonly" value="false" />
-      <attribute key="isEditable" value="false" />
-      <attribute key="editable" value="false" />
-    </tag>
-    <tag row="1" col="0" rowspan="1" colspan="1" name="Text" label="机构考核角色名称" fieldName="LBMC">
-      <attribute key="style" value="width:200px" />
-      <attribute key="name" value="lbmc" />
-      <attribute key="styleClass" value="required max-length-50" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="2" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
-      <attribute key="dataType" value="select" />
-      <attribute key="sql" value="select lbdh from csb_jglb where lbdh='$lbdh$'" />
-      <attribute key="name" value="checkLbdh" />
-    </tag>
-    <tag row="3" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
-      <attribute key="dataType" value="select" />
-      <attribute key="sql" value="select lbdh from csb_jglb where lbmc='$lbmc$'" />
-      <attribute key="name" value="checkLbmc" />
-    </tag>
-  </updatePage>
-  <buttons>
-    <button>add</button>
-    <button>edit</button>
-    <button>delete</button>
-  </buttons>
-  <flow>
-    <insertbefore />
-    <insertafter />
-    <deletebefore />
-    <deleteafter />
-    <updatebefore />
-    <updateafter />
-  </flow>
-  <sqlMap namespace="studio.jgkhjsgl">
-    <select id="dn12.jgkhjsglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select * from CSB_JGLB where lbmc like '%$lbmc$%' order by lbdh asc
-    </select>
-    <select id="dn12.jgkhjsglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from ( select * from CSB_JGLB where lbmc like '%$lbmc$%' order by lbdh asc ) t
-    </select>
-    <select id="dn12.jgkhjsgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  LBMC, LBDH  from CSB_JGLB where 1= 1  and LBDH = '$lbdh$'
-    </select>
-    <select id="dn12.jgkhjsgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  LBMC, LBDH  from CSB_JGLB where 1= 1  and LBDH = '$lbdh$'
-    </select>
-    <insert id="dn12.jgkhjsgl_insert" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      insert into CSB_JGLB( LBMC, LBDH ) values ( '$lbmc$','$lbdh$')
-    </insert>
-    <update id="dn12.jgkhjsgl_update" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update CSB_JGLB set LBMC = '$lbmc$' where 1=1  and LBDH = '$lbdh$'
-    </update>
-    <delete id="dn12.jgkhjsgl_delete" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      delete from CSB_JGLB where 1=1  and LBDH = '$lbdh$'
-    </delete>
-    <select id="dn12.jgkhjsgl_checkLbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh from csb_jglb where lbdh='$lbdh$'</select>
-    <select id="dn12.jgkhjsgl_checkLbmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh from csb_jglb where lbmc='$lbmc$'</select>
-  </sqlMap>
-  <javascript>
-    <query>jQuery(document).ready(function () {
-});
 
-//自定义验证，在提交时执行。通过返回true，否则返回false
-function customValidate(){
- return true;
-}
-
-function showDeleteDialog(sel){
-        
-        var jsrq=sel["JSRQ"];    
-        if(null!=jsrq){
-            if(jsrq!='29991231')
-            {
-                alert("只能删除结束日期为29991231的记录，请重新操作!");
-                return ;
-            }
-        }
-         var jglb=sel['LBDH'];
-        $.post('../paramoper/khjsgl.do?method=checkJgKhjs&amp;jglb='+jglb,{},function(cb){
-         if(cb!='true'){
-                      alert(cb);
-                    }else{
-                /*        custom_confirm('你确定要删除所选记录吗？','提示',function(){
-                            var colIds="LBDH,LBMC";
-                            var colId=colIds.split(",");//所有的主键名
-                            var params="&amp;"; //URL的参数
-                            for(var i=0;i&lt;colId.length;i++){
-                                params+=colId[i].toLowerCase()+"="+sel[colId[i]]+"&amp;";
-                            }
-                            params=encodeURI(params.substring(0,params.length-1));
-                            //alert(params);
-                            $.post('manageParser.do?method=deleteData&amp;funId=jgkhjsgl'+params,{},function(cb){
-                                    custom_alert(cb);
-                                    loadData();
-                            }).error(function(){
-                                alert("发生内部错误，无法删除所选记录！");
-                            });
-                        });
-                        
-                         }
-            }).error(function(){
-                alert("发生内部错误，无法删除所选记录！");
-            }); */
-    }</query>
-    <edit>jQuery(document).ready(function () {
-//这里的js脚本，会在页面加载完成后执行
-  jQuery('#lbdh').executeOnEvent('change','jgkhjsgl_checkLbdh',checkLbdhBack);
-  jQuery('#lbmc').executeOnEvent('change','jgkhjsgl_checkLbmc',checkLbmcBack);
-});
-//自定义验证，在提交时执行。通过返回true，否则返回false
-function customValidate(){
- return PAS.di.isDone();
-}
-
-function checkLbdhBack(obj){
-  if(obj.data.length&gt;0){
-    alert("该机构考核角色代号已经存在!");
-  }else{
-    PAS.di.setDone(obj.sqlid);
-  }
-}
-
-function checkLbmcBack(obj){
-  if(obj.data.length&gt;0){
-    alert("该机构考核角色名称已经存在!");
-  }else{
-    PAS.di.setDone(obj.sqlid);
-  }
-}</edit>
-  </javascript>
+<pageSetting id="jgkhjsgl" title="机构考核角色管理" type="manage"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="考核角色名称" fieldName=""> 
+        <attribute key="name" value="lbmc"/>  
+        <attribute key="readonly" value="false"/>  
+        <attribute key="editable" value="true"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table page="true" id="jgkhjsgltable"> 
+    <col id="LBDH" title="考核角色代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="LBMC" title="考核角色名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/> 
+  </table>  
+  <rels> 
+    <items id="jgkhjsgltable"/> 
+  </rels>  
+  <addPage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="机构考核角色代号" fieldName="LBDH"> 
+      <attribute key="style" value="width:200px"/>  
+      <attribute key="name" value="lbdh"/>  
+      <attribute key="styleClass" value="required justEnNu max-length-10"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Text" label="机构考核角色名称" fieldName="LBMC"> 
+      <attribute key="style" value="width:200px"/>  
+      <attribute key="name" value="lbmc"/>  
+      <attribute key="styleClass" value="required max-length-50"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select lbdh from csb_jglb where lbdh='$lbdh$'"/>  
+      <attribute key="name" value="checkLbdh"/> 
+    </tag>  
+    <tag row="3" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select lbdh from csb_jglb where lbmc='$lbmc$'"/>  
+      <attribute key="name" value="checkLbmc"/> 
+    </tag> 
+  </addPage>  
+  <updatePage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="机构考核角色代号" fieldName="LBDH"> 
+      <attribute key="style" value="width:200px"/>  
+      <attribute key="name" value="lbdh"/>  
+      <attribute key="styleClass" value="required justEnNu max-length-10"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="isEditable" value="false"/>  
+      <attribute key="editable" value="false"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Text" label="机构考核角色名称" fieldName="LBMC"> 
+      <attribute key="style" value="width:200px"/>  
+      <attribute key="name" value="lbmc"/>  
+      <attribute key="styleClass" value="required max-length-50"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select lbdh from csb_jglb where lbdh='$lbdh$'"/>  
+      <attribute key="name" value="checkLbdh"/> 
+    </tag>  
+    <tag row="3" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select lbdh from csb_jglb where lbmc='$lbmc$'"/>  
+      <attribute key="name" value="checkLbmc"/> 
+    </tag> 
+  </updatePage>  
+  <buttons> 
+    <button>add</button>  
+    <button>edit</button>  
+    <button>delete</button> 
+  </buttons>  
+  <flow> 
+    <insertbefore/>  
+    <insertafter/>  
+    <deletebefore/>  
+    <deleteafter/>  
+    <updatebefore/>  
+    <updateafter/> 
+  </flow>  
+  <sqlMap namespace="studio.jgkhjsgl"> 
+    <select id="dn0.jgkhjsglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select * from CSB_JGLB where lbmc like '%$lbmc$%' order by lbdh asc
+    </select>  
+    <select id="dn0.jgkhjsglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select * from CSB_JGLB where lbmc like '%$lbmc$%' order by lbdh asc ) t
+    </select>  
+    <select id="dn0.jgkhjsgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select LBMC, LBDH from CSB_JGLB where 1= 1 and LBDH = '$lbdh$'
+    </select>  
+    <select id="dn0.jgkhjsgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select LBMC, LBDH from CSB_JGLB where 1= 1 and LBDH = '$lbdh$'
+    </select>  
+    <insert id="dn0.jgkhjsgl_insert" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into CSB_JGLB( LBMC, LBDH ) values ( '$lbmc$','$lbdh$')
+    </insert>  
+    <update id="dn0.jgkhjsgl_update" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_JGLB set LBMC = '$lbmc$' where 1=1 and LBDH = '$lbdh$'
+    </update>  
+    <delete id="dn0.jgkhjsgl_delete" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from CSB_JGLB where 1=1 and LBDH = '$lbdh$'
+    </delete>  
+    <select id="dn0.jgkhjsgl_checkLbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh from csb_jglb where lbdh='$lbdh$'</select>  
+    <select id="dn0.jgkhjsgl_checkLbmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh from csb_jglb where lbmc='$lbmc$'</select> 
+  </sqlMap>  
+  <javascript> 
+    <query>jQuery(document).ready(function () { }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; } function showDeleteDialog(sel){ var jsrq=sel["JSRQ"]; if(null!=jsrq){ if(jsrq!='29991231') { alert("只能删除结束日期为29991231的记录，请重新操作!"); return ; } } var jglb=sel['LBDH']; $.post('../paramoper/khjsgl.do?method=checkJgKhjs&amp;jglb='+jglb,{},function(cb){ if(cb!='true'){ alert(cb); }else{ /* custom_confirm('你确定要删除所选记录吗？','提示',function(){ var colIds="LBDH,LBMC"; var colId=colIds.split(",");//所有的主键名 var params="&amp;"; //URL的参数 for(var i=0;i&lt;colId.length;i++){ params+=colId[i].toLowerCase()+"="+sel[colId[i]]+"&amp;"; } params=encodeURI(params.substring(0,params.length-1)); //alert(params); $.post('manageParser.do?method=deleteData&amp;funId=jgkhjsgl'+params,{},function(cb){ custom_alert(cb); loadData(); }).error(function(){ alert("发生内部错误，无法删除所选记录！"); }); }); } }).error(function(){ alert("发生内部错误，无法删除所选记录！"); }); */ }</query>  
+    <edit>jQuery(document).ready(function () { //这里的js脚本，会在页面加载完成后执行 jQuery('#lbdh').executeOnEvent('change','jgkhjsgl_checkLbdh',checkLbdhBack); jQuery('#lbmc').executeOnEvent('change','jgkhjsgl_checkLbmc',checkLbmcBack); }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return PAS.di.isDone(); } function checkLbdhBack(obj){ if(obj.data.length&gt;0){ alert("该机构考核角色代号已经存在!"); }else{ PAS.di.setDone(obj.sqlid); } } function checkLbmcBack(obj){ if(obj.data.length&gt;0){ alert("该机构考核角色名称已经存在!"); }else{ PAS.di.setDone(obj.sqlid); } }</edit> 
+  </javascript> 
 </pageSetting>
-

@@ -1,75 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="dkyjfpjk" title="贷款业绩分配监控" type="query" version="2.0.0">
-  <conPart>
-    <tags>
-      <tag row="0" col="0" colspan="1" rowspan="1" name="NewJg" label="机构">
-        <attribute key="cascadeCheck" value="true" />
-        <attribute key="editable" value="true" />
-        <attribute key="ckbz" value="jg_ckhy" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="jgkhdxdh" />
-        <attribute key="multiple" value="false" />
-      </tag>
-      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="发放日期">
-        <attribute key="dateFmt" value="yyyyMMdd" />
-        <attribute key="defValType" value="sysDate" />
-        <attribute key="editable" value="true" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="qsrq" />
-        <attribute key="minDate" value="no" />
-        <attribute key="readonly" value="false" />
-      </tag>
-      <tag row="0" col="2" colspan="1" rowspan="1" name="Date" label="到">
-        <attribute key="dateFmt" value="yyyyMMdd" />
-        <attribute key="defValType" value="sysDate" />
-        <attribute key="editable" value="true" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="jsrq" />
-        <attribute key="minDate" value="no" />
-        <attribute key="readonly" value="false" />
-      </tag>
-      <tag row="0" col="3" colspan="1" rowspan="1" name="Number" label="余额大于">
-        <attribute key="precision" value="0" />
-        <attribute key="defVal" value="10000" />
-        <attribute key="intparts" value="17" />
-        <attribute key="editable" value="true" />
-        <attribute key="name" value="zhye" />
-        <attribute key="readonly" value="false" />
-      </tag>
-    </tags>
-  </conPart>
-  <table id="dkyjfpjk_xsjy1jgj" title="新数据源1结果集" page="true">
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="QSRQ" title="起始日期" align="left" type="hidden" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JSRQ" title="结束日期" align="left" type="hidden" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="ZHYE" title="账户余额" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="MFP" title="未分配账户数" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" xsType="href" onclick="openMFPMx" />
-    <col id="YFP" title="已分配账户数" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" xsType="href" onclick="openYFPMx" />
-  </table>
-  <sqlMap namespace="studio.dkyjfpjk">
-    <select id="dn12.dkyjfpjkList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select /*+ append parallel(zh,8) */ zh.jgdh,max(jg.jgmc) as jgmc,$qsrq$ as qsrq,$jsrq$ as jsrq,$zhye$ as zhye, sum(case when zh.gxhslx='0' and hy.hydh like 'XN%' then 1 else 0 end) as mfp, sum(case when zh.gxhslx='0' and hy.hydh like 'XN%' then 0 else 1 end) as yfp from jxdx_dkzh zh left join khdx_hy hy on zh.khdxdh=hy.khdxdh inner join khdx_jg jg on jg.jgdh=zh.jgdh  inner join xtb_jggxst st on st.jgkhdxdh=jg.khdxdh
-      <isNotEmpty property="jgkhdxdh">and st.sjjgkhdxdh=$jgkhdxdh$</isNotEmpty>
-      <isNotEmpty property="jsrq">and $jsrq$ between st.qsrq and st.jsrq</isNotEmpty>
-      <isNotEmpty property="qsrq">where zh.ffrq between $qsrq$ and $jsrq$</isNotEmpty>
-      <isNotEmpty property="zhye"><![CDATA[and zh.zhye>$zhye$]]></isNotEmpty>
-      group by zh.jgdh
-    </select>
-    <select id="dn12.dkyjfpjkCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from ( select /*+ append parallel(zh,8) */ zh.jgdh,max(jg.jgmc) as jgmc,$qsrq$ as qsrq,$jsrq$ as jsrq,$zhye$ as zhye, sum(case when zh.gxhslx='0' and hy.hydh like 'XN%' then 1 else 0 end) as mfp, sum(case when zh.gxhslx='0' and hy.hydh like 'XN%' then 0 else 1 end) as yfp from jxdx_dkzh zh left join khdx_hy hy on zh.khdxdh=hy.khdxdh inner join khdx_jg jg on jg.jgdh=zh.jgdh  inner join xtb_jggxst st on st.jgkhdxdh=jg.khdxdh
-      <isNotEmpty property="jgkhdxdh">and st.sjjgkhdxdh=$jgkhdxdh$</isNotEmpty>
-      <isNotEmpty property="jsrq">and $jsrq$ between st.qsrq and st.jsrq</isNotEmpty>
-      <isNotEmpty property="qsrq">where zh.ffrq between $qsrq$ and $jsrq$</isNotEmpty>
-      <isNotEmpty property="zhye"><![CDATA[and zh.zhye>$zhye$]]></isNotEmpty>
-      group by zh.jgdh ) t
-    </select>
-  </sqlMap>
-  <rels>
-    <items id="dkyjfpjk_xsjy1jgj" />
-  </rels>
+
+<pageSetting id="dkyjfpjk" title="贷款业绩分配监控" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="NewJg" label="机构"> 
+        <attribute key="cascadeCheck" value="true"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="ckbz" value="jg_ckhy"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="jgkhdxdh"/>  
+        <attribute key="multiple" value="false"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="发放日期"> 
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="qsrq"/>  
+        <attribute key="minDate" value="no"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Date" label="到"> 
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="jsrq"/>  
+        <attribute key="minDate" value="no"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Number" label="余额大于"> 
+        <attribute key="precision" value="0"/>  
+        <attribute key="defVal" value="10000"/>  
+        <attribute key="intparts" value="17"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="zhye"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="dkyjfpjk_xsjy1jgj" title="新数据源1结果集" page="true"> 
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="QSRQ" title="起始日期" align="left" type="hidden" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JSRQ" title="结束日期" align="left" type="hidden" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHYE" title="账户余额" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="MFP" title="未分配账户数" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" xsType="href" onclick="openMFPMx"/>  
+    <col id="YFP" title="已分配账户数" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" xsType="href" onclick="openYFPMx"/> 
+  </table>  
+  <sqlMap namespace="studio.dkyjfpjk"> 
+    <select id="dn0.dkyjfpjkList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select /*+ append parallel(zh,8) */ zh.jgdh,max(jg.jgmc) as jgmc,$qsrq$ as qsrq,$jsrq$ as jsrq,$zhye$ as zhye, sum(case when zh.gxhslx='0' and hy.hydh like 'XN%' then 1 else 0 end) as mfp, sum(case when zh.gxhslx='0' and hy.hydh like 'XN%' then 0 else 1 end) as yfp from jxdx_dkzh zh left join khdx_hy hy on zh.khdxdh=hy.khdxdh inner join khdx_jg jg on jg.jgdh=zh.jgdh inner join xtb_jggxst st on st.jgkhdxdh=jg.khdxdh 
+      <isNotEmpty property="jgkhdxdh">and st.sjjgkhdxdh=$jgkhdxdh$</isNotEmpty>  
+      <isNotEmpty property="jsrq">and $jsrq$ between st.qsrq and st.jsrq</isNotEmpty>  
+      <isNotEmpty property="qsrq">where zh.ffrq between $qsrq$ and $jsrq$</isNotEmpty>  
+      <isNotEmpty property="zhye"><![CDATA[and zh.zhye>$zhye$]]></isNotEmpty> group by zh.jgdh
+    </select>  
+    <select id="dn0.dkyjfpjkCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select /*+ append parallel(zh,8) */ zh.jgdh,max(jg.jgmc) as jgmc,$qsrq$ as qsrq,$jsrq$ as jsrq,$zhye$ as zhye, sum(case when zh.gxhslx='0' and hy.hydh like 'XN%' then 1 else 0 end) as mfp, sum(case when zh.gxhslx='0' and hy.hydh like 'XN%' then 0 else 1 end) as yfp from jxdx_dkzh zh left join khdx_hy hy on zh.khdxdh=hy.khdxdh inner join khdx_jg jg on jg.jgdh=zh.jgdh inner join xtb_jggxst st on st.jgkhdxdh=jg.khdxdh 
+      <isNotEmpty property="jgkhdxdh">and st.sjjgkhdxdh=$jgkhdxdh$</isNotEmpty>  
+      <isNotEmpty property="jsrq">and $jsrq$ between st.qsrq and st.jsrq</isNotEmpty>  
+      <isNotEmpty property="qsrq">where zh.ffrq between $qsrq$ and $jsrq$</isNotEmpty>  
+      <isNotEmpty property="zhye"><![CDATA[and zh.zhye>$zhye$]]></isNotEmpty> group by zh.jgdh ) t
+    </select> 
+  </sqlMap>  
+  <rels> 
+    <items id="dkyjfpjk_xsjy1jgj"/> 
+  </rels>  
   <javascript><![CDATA[jQuery(document).ready(function () {
 var year = $('#jsrq').val().substring(0,4);
 var month = $('#jsrq').val().substring(4,6);
@@ -112,6 +109,5 @@ function openMFPMx(obj){
     var pars = "{qsrq:'"+obj['QSRQ']+"',jsrq:'"+obj['JSRQ']+"',jgdh:'"+obj['JGDH']+"',zhye:'"+obj['ZHYE']+"'}";
     //alert(pars);
     querySubQuery(pars,'dkyjmfpmx','45','30','tag');
-}]]></javascript>
+}]]></javascript> 
 </pageSetting>
-

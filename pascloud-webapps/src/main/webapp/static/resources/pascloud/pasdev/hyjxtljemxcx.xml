@@ -1,38 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="hyjxtljemxcx" title="行员绩效提留金额明细查询" type="query" version="2.0.0">
-  <conPart>
-    <tags />
-  </conPart>
-  <table id="hyjxtljemxcx_xsjy1jgj" title="新数据源1结果集" page="true">
-    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" mergeCells="false" footerCells="false" />
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" mergeCells="false" footerCells="false" />
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" mergeCells="false" footerCells="false" />
-    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" mergeCells="false" footerCells="false" />
-    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" mergeCells="false" footerCells="false" />
-    <col id="FAMC" title="方案名称" align="left" type="string" width="200" frozen="false" format="" mergeCells="false" footerCells="false" />
-    <col id="KHZBMC" title="考核指标" align="left" type="string" width="200" frozen="false" format="" mergeCells="false" footerCells="false" />
-    <col id="TLJE" title="提留金额" align="right" type="float" width="120" frozen="false" format="" mergeCells="false" footerCells="false" />
-  </table>
-  <sqlMap namespace="studio.hyjxtljemxcx">
-    <select id="dn12.hyjxtljemxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select yyjg.tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,fapz.famc,khzb.khzbmc,yyjg.tlje  from khfa_yyjg_hy yyjg  inner join khdx_hy hy on hy.khdxdh=yyjg.khdxdh  inner join khdx_jgcy cy on  cy.khdxdh = hy.khdxdh and yyjg.tjrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh    inner join khfa_fapz fapz on fapz.fabh=yyjg.fabh  inner join khfa_khzb_hy khzb on khzb.khzbdh=yyjg.khzbdh  INNER JOIN table(FN_GETSJJG_JAVA_QXHY(yyjg.tjrq,2,0)) qx on qx.khdxdh = hy.khdxdh      where 1=1
-      <isNotEmpty property="khdxdh">and  hy.khdxdh =$khdxdh$</isNotEmpty>
-      <isNotEmpty property="tjrq">and yyjg.tjrq=$tjrq$</isNotEmpty>
-      <isNotEmpty property="fabh">and yyjg.fabh=$fabh$</isNotEmpty>
-    </select>
-    <select id="dn12.hyjxtljemxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from ( select yyjg.tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,fapz.famc,khzb.khzbmc,yyjg.tlje  from khfa_yyjg_hy yyjg  inner join khdx_hy hy on hy.khdxdh=yyjg.khdxdh  inner join khdx_jgcy cy on  cy.khdxdh = hy.khdxdh and yyjg.tjrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh    inner join khfa_fapz fapz on fapz.fabh=yyjg.fabh  inner join khfa_khzb_hy khzb on khzb.khzbdh=yyjg.khzbdh  INNER JOIN table(FN_GETSJJG_JAVA_QXHY(yyjg.tjrq,2,0)) qx on qx.khdxdh = hy.khdxdh      where 1=1
-      <isNotEmpty property="khdxdh">and  hy.khdxdh =$khdxdh$</isNotEmpty>
-      <isNotEmpty property="tjrq">and yyjg.tjrq=$tjrq$</isNotEmpty>
-      <isNotEmpty property="fabh">and yyjg.fabh=$fabh$</isNotEmpty>
-      ) t
-    </select>
-  </sqlMap>
-  <rels>
-    <items id="hyjxtljemxcx_xsjy1jgj" />
-  </rels>
+
+<pageSetting id="hyjxtljemxcx" title="行员绩效提留金额明细查询" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags/> 
+  </conPart>  
+  <table id="hyjxtljemxcx_xsjy1jgj" title="新数据源1结果集" page="true"> 
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" mergeCells="false" footerCells="false"/>  
+    <col id="FAMC" title="方案名称" align="left" type="string" width="200" frozen="false" format="" mergeCells="false" footerCells="false"/>  
+    <col id="KHZBMC" title="考核指标" align="left" type="string" width="200" frozen="false" format="" mergeCells="false" footerCells="false"/>  
+    <col id="TLJE" title="提留金额" align="right" type="float" width="120" frozen="false" format="" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <sqlMap namespace="studio.hyjxtljemxcx"> 
+    <select id="dn0.hyjxtljemxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select yyjg.tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,fapz.famc,khzb.khzbmc,yyjg.tlje from khfa_yyjg_hy yyjg inner join khdx_hy hy on hy.khdxdh=yyjg.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh and yyjg.tjrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join khfa_fapz fapz on fapz.fabh=yyjg.fabh inner join khfa_khzb_hy khzb on khzb.khzbdh=yyjg.khzbdh INNER JOIN table(FN_GETSJJG_JAVA_QXHY(yyjg.tjrq,2,0)) qx on qx.khdxdh = hy.khdxdh where 1=1 
+      <isNotEmpty property="khdxdh">and hy.khdxdh =$khdxdh$</isNotEmpty>  
+      <isNotEmpty property="tjrq">and yyjg.tjrq=$tjrq$</isNotEmpty>  
+      <isNotEmpty property="fabh">and yyjg.fabh=$fabh$</isNotEmpty> 
+    </select>  
+    <select id="dn0.hyjxtljemxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select yyjg.tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,fapz.famc,khzb.khzbmc,yyjg.tlje from khfa_yyjg_hy yyjg inner join khdx_hy hy on hy.khdxdh=yyjg.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh and yyjg.tjrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join khfa_fapz fapz on fapz.fabh=yyjg.fabh inner join khfa_khzb_hy khzb on khzb.khzbdh=yyjg.khzbdh INNER JOIN table(FN_GETSJJG_JAVA_QXHY(yyjg.tjrq,2,0)) qx on qx.khdxdh = hy.khdxdh where 1=1 
+      <isNotEmpty property="khdxdh">and hy.khdxdh =$khdxdh$</isNotEmpty>  
+      <isNotEmpty property="tjrq">and yyjg.tjrq=$tjrq$</isNotEmpty>  
+      <isNotEmpty property="fabh">and yyjg.fabh=$fabh$</isNotEmpty> ) t
+    </select> 
+  </sqlMap>  
+  <rels> 
+    <items id="hyjxtljemxcx_xsjy1jgj"/> 
+  </rels>  
   <javascript><![CDATA[jQuery(document).ready(function () {
 $('#query_conn_panel').hide();
 });
@@ -40,6 +38,5 @@ $('#query_conn_panel').hide();
 //自定义验证，在提交时执行。通过返回true，否则返回false
 function customValidate(){
  return true;
-}]]></javascript>
+}]]></javascript> 
 </pageSetting>
-

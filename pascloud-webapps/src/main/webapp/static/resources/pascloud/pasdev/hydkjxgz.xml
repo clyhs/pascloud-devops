@@ -1,91 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="hydkjxgz" title="行员贷款绩效工资查询" type="query" version="2.0.0">
-  <conPart>
-    <tags>
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月">
-        <attribute key="dateFmt" value="yyyyMM" />
-        <attribute key="defValType" value="xtrzympd" />
-        <attribute key="editable" value="true" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="tjrq" />
-        <attribute key="minDate" value="no" />
-      </tag>
-      <tag row="0" col="1" colspan="1" rowspan="1" name="Hidden" label="">
-        <attribute key="name" value="tjrq_ym" />
-      </tag>
-      <tag row="0" col="2" colspan="1" rowspan="1" name="NewMultipleHy" label="行员">
-        <attribute key="isDisplayXN" value="true" />
-        <attribute key="editable" value="true" />
-        <attribute key="style" value="width:100px;" />
-        <attribute key="isRequired" value="false" />
-        <attribute key="jgckbz" value="jg_ckhy" />
-        <attribute key="name" value="khdxdh" />
-        <attribute key="multiple" value="true" />
-      </tag>
-      <tag row="0" col="3" colspan="1" rowspan="1" name="MSQL4Select" label="行员类别">
-        <attribute key="selectedList" value="1" />
-        <attribute key="isMultiple" value="false" />
-        <attribute key="width" value="120px;" />
-        <attribute key="mulShowType" value="null" />
-        <attribute key="key_SELECTTYPE" value="Integer" />
-        <attribute key="isSearch" value="false" />
-        <attribute key="sql" value="select lbdh as key, lbmc as value from csb_hylb" />
-        <attribute key="isRequired" value="false" />
-        <attribute key="name" value="hylb" />
-        <attribute key="isAll" value="true" />
-        <attribute key="isEditable" value="true" />
-      </tag>
-      <tag row="0" col="4" colspan="1" rowspan="1" name="Hidden" label="">
-        <attribute key="defVal" value="$sysdate$" />
-        <attribute key="name" value="sysdate" />
-      </tag>
-    </tags>
-  </conPart>
-  <table id="hydkjxgz_xsjy1jgj" title="新数据源1结果集" page="true">
-    <col id="TJRQ" title="统计年月" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false" />
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="HYGW" title="行员岗位" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="SQQE" title="上期欠额" align="right" type="float" width="85" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false" />
-    <col id="YFDKJXGZ" title="应发绩效工资" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="SFDKJXGZ" title="实发绩效工资" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false" />
-    <col id="LXSRJX" title="利息收入绩效" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="lxsr" />
-    <col id="KHGLJX" title="客户管理绩效" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="khgljx" />
-    <col id="DKFFJX" title="贷款发放绩效" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="dkffjx" />
-    <col id="FYJDKKF" title="新增不良贷款扣罚" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="xzblkfjx" />
-    <col id="FYJDKKFFH" title="新增不良贷款扣罚返还" align="right" type="float" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="xzblffjx" />
-    <col id="DKKFKZXM1" title="应收未收利息扣罚或返还" align="right" type="float" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="lxkfffjx" />
-    <col id="DKYJKZXM2" title="贷款新增客户绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="dkxzkhjx" />
-    <col id="DKYJKZXM1" title="贷款客户数绩效工资" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="DKYJKZXM3" title="贷款议价奖励工资" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="DKKFKZXM2" title="非应计贷款压降奖惩" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="HYLB" title="行员类别" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="LBMC" title="机构类别" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false" />
-  </table>
-  <sqlMap namespace="studio.hydkjxgz">
-    <select id="dn12.hydkjxgzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select substr(cast(jxgz.tjrq as char(8)),1,6) as tjrq,   jglb.lbmc,jg.jgmc,hy.hydh,hy.hymc,hylb.lbmc as hylb,   hygw.gwmc as hygw,jxgz.sqqe,jxgz.yfdkjxgz,jxgz.sfdkjxgz, jxgz.lxsrjx, jxgz.khgljx, jxgz.dkffjx, jxgz.dkmnlrjx, jxgz.dkyjkzxm1, jxgz.dkyjkzxm2, jxgz.dkyjkzxm3,  jxgz.fyjdkkf, jxgz.fyjdkkffh, jxgz.dqdkshljq, jxgz.dkkfkzxm1, jxgz.dkkfkzxm2, jxgz.dkkfkzxm3, jxgz.kzxs1, jxgz.kzxs2, jxgz.kzxs3, jxgz.sqqe, jxgz.yfdkjxgz, jxgz.sfdkjxgz, jxgz.khdxdh from jxgz_dkjxgz  jxgz inner join khdx_hy hy on jxgz.khdxdh=hy.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh=hy.khdxdh and jxgz.tjrq between jgcy.qsrq and jgcy.jsrq inner join khdx_jg jg on jg.khdxdh=jgcy.jgkhdxdh  inner join khdx_hylb hylb on hylb.khdxdh=hy.khdxdh and jxgz.tjrq between hylb.qsrq and hylb.jsrq inner join khdx_jglb jglb on jglb.khdxdh=jg.khdxdh and jxgz.tjrq between jglb.qsrq and jglb.jsrq left join khdx_hygw hygw on hygw.khdxdh=hy.khdxdh and jxgz.tjrq between hygw.qsrq and hygw.jsrq inner join table(FN_GETSJJG_JAVA_QXHY($tjrq_ym$,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh where 1=1
-      <isNotEmpty property="tjrq_ym">and  jxgz.tjrq=$tjrq_ym$</isNotEmpty>
-      <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
-      <isNotEmpty property="hylb">and hylb.lbdh='$hylb$'</isNotEmpty>
-      order by jg.jgdh,hy.hydh
-    </select>
-    <select id="dn12.hydkjxgzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from ( select substr(cast(jxgz.tjrq as char(8)),1,6) as tjrq,   jglb.lbmc,jg.jgmc,hy.hydh,hy.hymc,hylb.lbmc as hylb,   hygw.gwmc as hygw,jxgz.sqqe,jxgz.yfdkjxgz,jxgz.sfdkjxgz, jxgz.lxsrjx, jxgz.khgljx, jxgz.dkffjx, jxgz.dkmnlrjx, jxgz.dkyjkzxm1, jxgz.dkyjkzxm2, jxgz.dkyjkzxm3,  jxgz.fyjdkkf, jxgz.fyjdkkffh, jxgz.dqdkshljq, jxgz.dkkfkzxm1, jxgz.dkkfkzxm2, jxgz.dkkfkzxm3, jxgz.kzxs1, jxgz.kzxs2, jxgz.kzxs3, jxgz.sqqe, jxgz.yfdkjxgz, jxgz.sfdkjxgz, jxgz.khdxdh from jxgz_dkjxgz  jxgz inner join khdx_hy hy on jxgz.khdxdh=hy.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh=hy.khdxdh and jxgz.tjrq between jgcy.qsrq and jgcy.jsrq inner join khdx_jg jg on jg.khdxdh=jgcy.jgkhdxdh  inner join khdx_hylb hylb on hylb.khdxdh=hy.khdxdh and jxgz.tjrq between hylb.qsrq and hylb.jsrq inner join khdx_jglb jglb on jglb.khdxdh=jg.khdxdh and jxgz.tjrq between jglb.qsrq and jglb.jsrq left join khdx_hygw hygw on hygw.khdxdh=hy.khdxdh and jxgz.tjrq between hygw.qsrq and hygw.jsrq inner join table(FN_GETSJJG_JAVA_QXHY($tjrq_ym$,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh where 1=1
-      <isNotEmpty property="tjrq_ym">and  jxgz.tjrq=$tjrq_ym$</isNotEmpty>
-      <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
-      <isNotEmpty property="hylb">and hylb.lbdh='$hylb$'</isNotEmpty>
-      order by jg.jgdh,hy.hydh ) t
-    </select>
-    <select id="dn12.hydkjxgz_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_hylb</select>
-  </sqlMap>
-  <rels>
-    <items id="hydkjxgz_xsjy1jgj" />
-  </rels>
+
+<pageSetting id="hydkjxgz" title="行员贷款绩效工资查询" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月"> 
+        <attribute key="dateFmt" value="yyyyMM"/>  
+        <attribute key="defValType" value="xtrzympd"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="tjrq"/>  
+        <attribute key="minDate" value="no"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="name" value="tjrq_ym"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="NewMultipleHy" label="行员"> 
+        <attribute key="isDisplayXN" value="true"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="style" value="width:100px;"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="jgckbz" value="jg_ckhy"/>  
+        <attribute key="name" value="khdxdh"/>  
+        <attribute key="multiple" value="true"/> 
+      </tag>  
+      <tag row="0" col="3" colspan="1" rowspan="1" name="MSQL4Select" label="行员类别"> 
+        <attribute key="selectedList" value="1"/>  
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="mulShowType" value="null"/>  
+        <attribute key="key_SELECTTYPE" value="Integer"/>  
+        <attribute key="isSearch" value="false"/>  
+        <attribute key="sql" value="select lbdh as key, lbmc as value from csb_hylb"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="hylb"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="isEditable" value="true"/> 
+      </tag>  
+      <tag row="0" col="4" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="defVal" value="$sysdate$"/>  
+        <attribute key="name" value="sysdate"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="hydkjxgz_xsjy1jgj" title="新数据源1结果集" page="true"> 
+    <col id="TJRQ" title="统计年月" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYGW" title="行员岗位" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="SQQE" title="上期欠额" align="right" type="float" width="85" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="YFDKJXGZ" title="应发绩效工资" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="SFDKJXGZ" title="实发绩效工资" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="LXSRJX" title="利息收入绩效" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="lxsr"/>  
+    <col id="KHGLJX" title="客户管理绩效" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="khgljx"/>  
+    <col id="DKFFJX" title="贷款发放绩效" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="dkffjx"/>  
+    <col id="FYJDKKF" title="新增不良贷款扣罚" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="xzblkfjx"/>  
+    <col id="FYJDKKFFH" title="新增不良贷款扣罚返还" align="right" type="float" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="xzblffjx"/>  
+    <col id="DKKFKZXM1" title="应收未收利息扣罚或返还" align="right" type="float" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="lxkfffjx"/>  
+    <col id="DKYJKZXM2" title="贷款新增客户绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="dkxzkhjx"/>  
+    <col id="DKYJKZXM1" title="贷款客户数绩效工资" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="DKYJKZXM3" title="贷款议价奖励工资" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="DKKFKZXM2" title="非应计贷款压降奖惩" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYLB" title="行员类别" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="LBMC" title="机构类别" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <sqlMap namespace="studio.hydkjxgz"> 
+    <select id="dn0.hydkjxgzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select substr(cast(jxgz.tjrq as char(8)),1,6) as tjrq, jglb.lbmc,jg.jgmc,hy.hydh,hy.hymc,hylb.lbmc as hylb, hygw.gwmc as hygw,jxgz.sqqe,jxgz.yfdkjxgz,jxgz.sfdkjxgz, jxgz.lxsrjx, jxgz.khgljx, jxgz.dkffjx, jxgz.dkmnlrjx, jxgz.dkyjkzxm1, jxgz.dkyjkzxm2, jxgz.dkyjkzxm3, jxgz.fyjdkkf, jxgz.fyjdkkffh, jxgz.dqdkshljq, jxgz.dkkfkzxm1, jxgz.dkkfkzxm2, jxgz.dkkfkzxm3, jxgz.kzxs1, jxgz.kzxs2, jxgz.kzxs3, jxgz.sqqe, jxgz.yfdkjxgz, jxgz.sfdkjxgz, jxgz.khdxdh from jxgz_dkjxgz jxgz inner join khdx_hy hy on jxgz.khdxdh=hy.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh=hy.khdxdh and jxgz.tjrq between jgcy.qsrq and jgcy.jsrq inner join khdx_jg jg on jg.khdxdh=jgcy.jgkhdxdh inner join khdx_hylb hylb on hylb.khdxdh=hy.khdxdh and jxgz.tjrq between hylb.qsrq and hylb.jsrq inner join khdx_jglb jglb on jglb.khdxdh=jg.khdxdh and jxgz.tjrq between jglb.qsrq and jglb.jsrq left join khdx_hygw hygw on hygw.khdxdh=hy.khdxdh and jxgz.tjrq between hygw.qsrq and hygw.jsrq inner join table(FN_GETSJJG_JAVA_QXHY($tjrq_ym$,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh where 1=1 
+      <isNotEmpty property="tjrq_ym">and jxgz.tjrq=$tjrq_ym$</isNotEmpty>  
+      <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
+      <isNotEmpty property="hylb">and hylb.lbdh='$hylb$'</isNotEmpty> order by jg.jgdh,hy.hydh
+    </select>  
+    <select id="dn0.hydkjxgzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select substr(cast(jxgz.tjrq as char(8)),1,6) as tjrq, jglb.lbmc,jg.jgmc,hy.hydh,hy.hymc,hylb.lbmc as hylb, hygw.gwmc as hygw,jxgz.sqqe,jxgz.yfdkjxgz,jxgz.sfdkjxgz, jxgz.lxsrjx, jxgz.khgljx, jxgz.dkffjx, jxgz.dkmnlrjx, jxgz.dkyjkzxm1, jxgz.dkyjkzxm2, jxgz.dkyjkzxm3, jxgz.fyjdkkf, jxgz.fyjdkkffh, jxgz.dqdkshljq, jxgz.dkkfkzxm1, jxgz.dkkfkzxm2, jxgz.dkkfkzxm3, jxgz.kzxs1, jxgz.kzxs2, jxgz.kzxs3, jxgz.sqqe, jxgz.yfdkjxgz, jxgz.sfdkjxgz, jxgz.khdxdh from jxgz_dkjxgz jxgz inner join khdx_hy hy on jxgz.khdxdh=hy.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh=hy.khdxdh and jxgz.tjrq between jgcy.qsrq and jgcy.jsrq inner join khdx_jg jg on jg.khdxdh=jgcy.jgkhdxdh inner join khdx_hylb hylb on hylb.khdxdh=hy.khdxdh and jxgz.tjrq between hylb.qsrq and hylb.jsrq inner join khdx_jglb jglb on jglb.khdxdh=jg.khdxdh and jxgz.tjrq between jglb.qsrq and jglb.jsrq left join khdx_hygw hygw on hygw.khdxdh=hy.khdxdh and jxgz.tjrq between hygw.qsrq and hygw.jsrq inner join table(FN_GETSJJG_JAVA_QXHY($tjrq_ym$,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh where 1=1 
+      <isNotEmpty property="tjrq_ym">and jxgz.tjrq=$tjrq_ym$</isNotEmpty>  
+      <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
+      <isNotEmpty property="hylb">and hylb.lbdh='$hylb$'</isNotEmpty> order by jg.jgdh,hy.hydh ) t
+    </select>  
+    <select id="dn0.hydkjxgz_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_hylb</select> 
+  </sqlMap>  
+  <rels> 
+    <items id="hydkjxgz_xsjy1jgj"/> 
+  </rels>  
   <javascript><![CDATA[jQuery(document).ready(function () {
   init_hylb();
    /*var obj=createTimeObj(jQuery("#sysdate").val());
@@ -197,6 +194,5 @@ function clghjx(obj){
 
    querySubQuery(paramsJsonString,"dkclghjxcx",'80','40','tag');
    
-}*/]]></javascript>
+}*/]]></javascript> 
 </pageSetting>
-

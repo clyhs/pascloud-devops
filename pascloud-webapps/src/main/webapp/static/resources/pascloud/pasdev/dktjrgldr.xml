@@ -1,226 +1,187 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="dktjrgldr" title="贷款推荐人管理导入" type="import" version="2.0.0">
-  <template>
-    <src>ONLINE</src>
-    <column>
-      <text>账号</text>
-      <name>zhdh</name>
-      <index>0</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>推荐人1行员代号</text>
-      <name>tjr1</name>
-      <index>1</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>推荐人1分配比例</text>
-      <name>tjr1fpbl</name>
-      <index>2</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>推荐人2行员代号</text>
-      <name>tjr2</name>
-      <index>3</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>N</req>
-    </column>
-    <column>
-      <text>推荐人2分配比例</text>
-      <name>tjr2fpbl</name>
-      <index>4</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>N</req>
-    </column>
-    <column>
-      <text>备注</text>
-      <name>bzsm</name>
-      <index>5</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>N</req>
-    </column>
-  </template>
-  <table id="dktjrgldr_table" page="true">
-    <col id="ZT" title="状态" align="center" type="string" width="50" />
-    <col id="ERROR" title="错误原因" align="center" type="string" width="250" />
-    <col id="ZHDH" title="账号" align="center" type="" width="120" />
-    <col id="TJR1" title="推荐人1行员代号" align="center" type="" width="120" />
-    <col id="TJR1FPBL" title="推荐人1分配比例" align="center" type="" width="120" />
-    <col id="TJR2" title="推荐人2行员代号" align="center" type="" width="120" />
-    <col id="TJR2FPBL" title="推荐人2分配比例" align="center" type="" width="120" />
-    <col id="BZSM" title="备注" align="center" type="" width="120" />
-  </table>
-  <flow>
-    <rule>
-      <sql type="update">dktjrgldr_check_zhdh_0</sql>
-      <sql type="update">dktjrgldr_check_zhdh_1</sql>
-      <sql type="update">dktjrgldr_check_tjr1_2</sql>
-      <sql type="update">dktjrgldr_check_tjr1_3</sql>
-      <sql type="update">dktjrgldr_check_tjr1fpbl_4</sql>
-      <sql type="update">dktjrgldr_check_tjr1fpbl_5</sql>
-      <sql type="update">dktjrgldr_check_tjr2fpbl_6</sql>
-      <sql type="update">dktjrgldr_check_bzsm_7</sql>
-      <sql type="update">dktjrgldr_checkupdate_tjr1fpbl_0</sql>
-      <sql type="update">dktjrgldr_checkupdate_tjr2_0</sql>
-      <sql type="update">dktjrgldr_checkupdate_tjr2fpbl_0</sql>
-      <sql type="update">dktjrgldr_checkupdate_tjr2fpbl_1</sql>
-      <sql type="update">dktjrgldr_checkupdate_tjr2fpbl_2</sql>
-      <sql type="update">dktjrgldr_exists_target</sql>
-      <sql type="update">dktjrgldr_exists_same_temp</sql>
-    </rule>
-    <before />
-    <cover>
-      <sql type="delete">dktjrgldr_delete_before_override</sql>
-    </cover>
-    <insert>
-      <sql type="insert">dktjrgldr_insert_into_target</sql>
-    </insert>
-    <after />
-  </flow>
-  <sqlMap namespace="studio.dktjrgldr">
-    <update parameterClass="java.util.Map" id="dn12.dktjrgldr_check_zhdh_0">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  dktjrgldr_temp  t  set  t.error=t.error||'账号输入错误，不能为空!' 
-		where  f_java_rule_length(t.zhdh)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dktjrgldr_check_zhdh_1">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  dktjrgldr_temp  t  set  t.error=t.error||'账号不存在!'  where  not  exists(select  1  from  jxdx_dkzh  d  where  rtrim(t.zhdh)=rtrim(d.zhdh))  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dktjrgldr_check_tjr1_2">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  dktjrgldr_temp  t  set  t.error=t.error||'推荐人1行员代号输入错误，不能为空!' 
-		where  f_java_rule_length(t.tjr1)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dktjrgldr_check_tjr1_3">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  dktjrgldr_temp  t  set  t.error=t.error||'推荐人1行员代号不存在!'  
-		where  not  exists(select  1  from  khdx_hy  h  where  rtrim(t.tjr1)=rtrim(h.hydh))  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dktjrgldr_check_tjr1fpbl_4">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  dktjrgldr_temp  t  
-		set  t.error=t.error||'推荐人1分配比例输入错误，只能输入:4位整数,2位小数!'  
-		where f_java_rule_length(t.tjr1fpbl)&gt;0 and f_java_rule_number(t.tjr1fpbl,4,2)=1  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dktjrgldr_check_tjr1fpbl_5">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  dktjrgldr_temp  t  set  t.error=t.error||'推荐人1分配比例输入错误，不能为空!' 
-		where  f_java_rule_length(t.tjr1fpbl)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dktjrgldr_check_tjr2fpbl_6">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  dktjrgldr_temp  t  
-		set  t.error=t.error||'推荐人2分配比例输入错误，只能输入:4位整数,2位小数!'  
-		where f_java_rule_length(t.tjr2fpbl)&gt;0 and f_java_rule_number(t.tjr2fpbl,4,2)=1  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dktjrgldr_check_bzsm_7">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  dktjrgldr_temp  t  set  t.error=t.error||'备注输入错误，长度不能超过:200!' 
-		where  f_java_rule_length(t.bzsm)&gt;200  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dktjrgldr_checkupdate_tjr1fpbl_0">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update dktjrgldr_temp t set error=error||'推荐人比例必须小于或等于100!' where  t.tjr1fpbl&gt;100
- and t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dktjrgldr_checkupdate_tjr2_0">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update dktjrgldr_temp t set error=error||'推荐人不能同时为一个人!' where  t.tjr1=t.tjr2
- and t.khdxdh=$login_khdxdh$ and t.tjr2!=''
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dktjrgldr_checkupdate_tjr2fpbl_0">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update dktjrgldr_temp t set error=error||'推荐人2分配比例不能为空!' where t.tjr2!='' and t.tjr2fpbl=''
- and t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dktjrgldr_checkupdate_tjr2fpbl_1">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update dktjrgldr_temp t set error=error||'推荐人2比例存在推荐人2不能为空!' where t.tjr2='' and t.tjr2fpbl!=''
- and t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dktjrgldr_checkupdate_tjr2fpbl_2">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update dktjrgldr_temp t set error=error||'推荐比例之和必须小于或等于100!' where (t.tjr1fpbl+t.tjr2fpbl)&gt;100
- and t.khdxdh=$login_khdxdh$ and tjr2!=''
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dktjrgldr_exists_target">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update   dktjrgldr_temp  t   set   t.error=t.error||'数据已存在!'   where   exists(select   1   from   SGLR_DKTJR   tar   ,JXDX_DKZH   JXDX_DKZH0   where   1=1    and   t.zhdh=JXDX_DKZH0.ZHDH   and   JXDX_DKZH0.JXDXDH=tar.JXDXDH   and   t.khdxdh=$login_khdxdh$   and   (length(t.error)=0   or   t.error   is   null   ))
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dktjrgldr_exists_same_temp">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  dktjrgldr_temp  t  set  t.error=error||'存在重复数据!'  where  exists(  select  1  from   (select  zhdh  from  dktjrgldr_temp  dr  where  khdxdh=$login_khdxdh$  group  by  zhdh  having  count(1)<![CDATA[>]]>1  )  dr  where  1=1   and  t.zhdh=dr.zhdh)  and  khdxdh=$login_khdxdh$
-    </update>
-    <insert parameterClass="java.util.Map" id="dn12.dktjrgldr_create_lsb">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      CREATE  TABLE   dktjrgldr_temp   (   zhdh  varchar(100)  ,  tjr1  varchar(100)  ,  tjr1fpbl  varchar(100)  ,  tjr2  varchar(100)  ,  tjr2fpbl  varchar(100)  ,  bzsm  varchar(100)  ,  khdxdh  integer,error  varchar(1000)   )
-    </insert>
-    <delete parameterClass="java.util.Map" id="dn12.dktjrgldr_delete_lsb">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      delete from dktjrgldr_temp where khdxdh=$login_khdxdh$
-    </delete>
-    <insert parameterClass="java.util.Map" id="dn12.dktjrgldr_insert_into_lsb">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      insert  into  DKTJRGLDR_TEMP  (zhdh,tjr1,tjr1fpbl,tjr2,tjr2fpbl,bzsm,khdxdh,error)  values(?,?,?,?,?,?,?,?)
-    </insert>
-    <select parameterClass="java.util.Map" id="dn12.dktjrgldr_exists_error_msg" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  count(1)  from  dktjrgldr_temp  where  length(error) <![CDATA[>]]> 0  and  khdxdh  =  $login_khdxdh$
-    </select>
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn12.dktjrgldr_exists_same_data">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  count(1)  from  dktjrgldr_temp  where  length(error) <![CDATA[>]]> 0  and  error  !=  '数据已存在!'  and  khdxdh  =  $login_khdxdh$
-    </select>
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn12.dktjrgldr_select_error_msg">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/cancel.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  zhdh,tjr1,tjr1fpbl,tjr2,tjr2fpbl,bzsm,khdxdh,error  from  dktjrgldr_temp  where  khdxdh=$login_khdxdh$  and  length(error)<![CDATA[>]]>0
-    </select>
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn12.dktjrgldr_count_all_msg">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  count(1)  from  (select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/ok.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  zhdh,tjr1,tjr1fpbl,tjr2,tjr2fpbl,bzsm,khdxdh,error  from  dktjrgldr_temp  where  khdxdh=$login_khdxdh$  )a
-    </select>
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn12.dktjrgldr_select_all_msg">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/ok.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  zhdh,tjr1,tjr1fpbl,tjr2,tjr2fpbl,bzsm,khdxdh,error  from  dktjrgldr_temp  where  khdxdh=$login_khdxdh$
-    </select>
-    <insert id="dn12.dktjrgldr_insert_into_target" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      insert  into  SGLR_DKTJR(JXDXDH,TJR1,TJR1FPBL,TJR2,TJR2FPBL,BZSM,CZR,CZSJ)   select  JXDX_DKZH0.JXDXDH,  t.tjr1  ,cast  (t.tjr1fpbl  as  DECIMAL(9,5)),  t.tjr2  ,  case  when  t.tjr2fpbl=''  then  0   else  cast  (t.tjr2fpbl  as  DECIMAL(9,5))  end,  t.bzsm  ,'$login_hydh$',F_GET_SYSTIME()  from  dktjrgldr_temp   t  ,JXDX_DKZH  JXDX_DKZH0  where  t.khdxdh=$login_khdxdh$  and  (t.error  =  '数据已存在!'  or  length(t.error)  =  0  or  t.error  is  null)   and  JXDX_DKZH0.ZHDH=cast  (t.zhdh  as  VARCHAR(40))
-    </insert>
-    <delete id="dn12.dktjrgldr_delete_before_override" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      delete   from   SGLR_DKTJR   tar   where   exists(select   1   from   dktjrgldr_temp  t   ,JXDX_DKZH   JXDX_DKZH0   where   1=1    and   t.zhdh=JXDX_DKZH0.ZHDH   and   JXDX_DKZH0.JXDXDH=tar.JXDXDH   and   t.khdxdh=$login_khdxdh$   )
-    </delete>
-  </sqlMap>
-</pageSetting>
 
+<pageSetting id="dktjrgldr" title="贷款推荐人管理导入" type="import" version="2.0.0"> 
+  <template> 
+    <src>ONLINE</src>  
+    <column> 
+      <text>账号</text>  
+      <name>zhdh</name>  
+      <index>0</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>推荐人1行员代号</text>  
+      <name>tjr1</name>  
+      <index>1</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>推荐人1分配比例</text>  
+      <name>tjr1fpbl</name>  
+      <index>2</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>推荐人2行员代号</text>  
+      <name>tjr2</name>  
+      <index>3</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>N</req> 
+    </column>  
+    <column> 
+      <text>推荐人2分配比例</text>  
+      <name>tjr2fpbl</name>  
+      <index>4</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>N</req> 
+    </column>  
+    <column> 
+      <text>备注</text>  
+      <name>bzsm</name>  
+      <index>5</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>N</req> 
+    </column> 
+  </template>  
+  <table id="dktjrgldr_table" page="true"> 
+    <col id="ZT" title="状态" align="center" type="string" width="50"/>  
+    <col id="ERROR" title="错误原因" align="center" type="string" width="250"/>  
+    <col id="ZHDH" title="账号" align="center" type="" width="120"/>  
+    <col id="TJR1" title="推荐人1行员代号" align="center" type="" width="120"/>  
+    <col id="TJR1FPBL" title="推荐人1分配比例" align="center" type="" width="120"/>  
+    <col id="TJR2" title="推荐人2行员代号" align="center" type="" width="120"/>  
+    <col id="TJR2FPBL" title="推荐人2分配比例" align="center" type="" width="120"/>  
+    <col id="BZSM" title="备注" align="center" type="" width="120"/> 
+  </table>  
+  <flow> 
+    <rule> 
+      <sql type="update">dktjrgldr_check_zhdh_0</sql>  
+      <sql type="update">dktjrgldr_check_zhdh_1</sql>  
+      <sql type="update">dktjrgldr_check_tjr1_2</sql>  
+      <sql type="update">dktjrgldr_check_tjr1_3</sql>  
+      <sql type="update">dktjrgldr_check_tjr1fpbl_4</sql>  
+      <sql type="update">dktjrgldr_check_tjr1fpbl_5</sql>  
+      <sql type="update">dktjrgldr_check_tjr2fpbl_6</sql>  
+      <sql type="update">dktjrgldr_check_bzsm_7</sql>  
+      <sql type="update">dktjrgldr_checkupdate_tjr1fpbl_0</sql>  
+      <sql type="update">dktjrgldr_checkupdate_tjr2_0</sql>  
+      <sql type="update">dktjrgldr_checkupdate_tjr2fpbl_0</sql>  
+      <sql type="update">dktjrgldr_checkupdate_tjr2fpbl_1</sql>  
+      <sql type="update">dktjrgldr_checkupdate_tjr2fpbl_2</sql>  
+      <sql type="update">dktjrgldr_exists_target</sql>  
+      <sql type="update">dktjrgldr_exists_same_temp</sql> 
+    </rule>  
+    <before/>  
+    <cover> 
+      <sql type="delete">dktjrgldr_delete_before_override</sql> 
+    </cover>  
+    <insert> 
+      <sql type="insert">dktjrgldr_insert_into_target</sql> 
+    </insert>  
+    <after/> 
+  </flow>  
+  <sqlMap namespace="studio.dktjrgldr"> 
+    <update parameterClass="java.util.Map" id="dn0.dktjrgldr_check_zhdh_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dktjrgldr_temp t set t.error=t.error||'账号输入错误，不能为空!' where f_java_rule_length(t.zhdh)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dktjrgldr_check_zhdh_1"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dktjrgldr_temp t set t.error=t.error||'账号不存在!' where not exists(select 1 from jxdx_dkzh d where rtrim(t.zhdh)=rtrim(d.zhdh)) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dktjrgldr_check_tjr1_2"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dktjrgldr_temp t set t.error=t.error||'推荐人1行员代号输入错误，不能为空!' where f_java_rule_length(t.tjr1)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dktjrgldr_check_tjr1_3"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dktjrgldr_temp t set t.error=t.error||'推荐人1行员代号不存在!' where not exists(select 1 from khdx_hy h where rtrim(t.tjr1)=rtrim(h.hydh)) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dktjrgldr_check_tjr1fpbl_4"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dktjrgldr_temp t set t.error=t.error||'推荐人1分配比例输入错误，只能输入:4位整数,2位小数!' where f_java_rule_length(t.tjr1fpbl)&gt;0 and f_java_rule_number(t.tjr1fpbl,4,2)=1 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dktjrgldr_check_tjr1fpbl_5"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dktjrgldr_temp t set t.error=t.error||'推荐人1分配比例输入错误，不能为空!' where f_java_rule_length(t.tjr1fpbl)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dktjrgldr_check_tjr2fpbl_6"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dktjrgldr_temp t set t.error=t.error||'推荐人2分配比例输入错误，只能输入:4位整数,2位小数!' where f_java_rule_length(t.tjr2fpbl)&gt;0 and f_java_rule_number(t.tjr2fpbl,4,2)=1 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dktjrgldr_check_bzsm_7"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dktjrgldr_temp t set t.error=t.error||'备注输入错误，长度不能超过:200!' where f_java_rule_length(t.bzsm)&gt;200 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dktjrgldr_checkupdate_tjr1fpbl_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dktjrgldr_temp t set error=error||'推荐人比例必须小于或等于100!' where t.tjr1fpbl&gt;100 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dktjrgldr_checkupdate_tjr2_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dktjrgldr_temp t set error=error||'推荐人不能同时为一个人!' where t.tjr1=t.tjr2 and t.khdxdh=$login_khdxdh$ and t.tjr2!=''
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dktjrgldr_checkupdate_tjr2fpbl_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dktjrgldr_temp t set error=error||'推荐人2分配比例不能为空!' where t.tjr2!='' and t.tjr2fpbl='' and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dktjrgldr_checkupdate_tjr2fpbl_1"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dktjrgldr_temp t set error=error||'推荐人2比例存在推荐人2不能为空!' where t.tjr2='' and t.tjr2fpbl!='' and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dktjrgldr_checkupdate_tjr2fpbl_2"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dktjrgldr_temp t set error=error||'推荐比例之和必须小于或等于100!' where (t.tjr1fpbl+t.tjr2fpbl)&gt;100 and t.khdxdh=$login_khdxdh$ and tjr2!=''
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dktjrgldr_exists_target"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dktjrgldr_temp t set t.error=t.error||'数据已存在!' where exists(select 1 from SGLR_DKTJR tar ,JXDX_DKZH JXDX_DKZH0 where 1=1 and t.zhdh=JXDX_DKZH0.ZHDH and JXDX_DKZH0.JXDXDH=tar.JXDXDH and t.khdxdh=$login_khdxdh$ and (length(t.error)=0 or t.error is null ))
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dktjrgldr_exists_same_temp"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dktjrgldr_temp t set t.error=error||'存在重复数据!' where exists( select 1 from (select zhdh from dktjrgldr_temp dr where khdxdh=$login_khdxdh$ group by zhdh having count(1)<![CDATA[>]]>1 ) dr where 1=1 and t.zhdh=dr.zhdh) and khdxdh=$login_khdxdh$
+    </update>  
+    <insert parameterClass="java.util.Map" id="dn0.dktjrgldr_create_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> CREATE TABLE dktjrgldr_temp ( zhdh varchar(100) , tjr1 varchar(100) , tjr1fpbl varchar(100) , tjr2 varchar(100) , tjr2fpbl varchar(100) , bzsm varchar(100) , khdxdh integer,error varchar(1000) )
+    </insert>  
+    <delete parameterClass="java.util.Map" id="dn0.dktjrgldr_delete_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from dktjrgldr_temp where khdxdh=$login_khdxdh$
+    </delete>  
+    <insert parameterClass="java.util.Map" id="dn0.dktjrgldr_insert_into_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into DKTJRGLDR_TEMP (zhdh,tjr1,tjr1fpbl,tjr2,tjr2fpbl,bzsm,khdxdh,error) values(?,?,?,?,?,?,?,?)
+    </insert>  
+    <select parameterClass="java.util.Map" id="dn0.dktjrgldr_exists_error_msg" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from dktjrgldr_temp where length(error) <![CDATA[>]]> 0 and khdxdh = $login_khdxdh$
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn0.dktjrgldr_exists_same_data"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from dktjrgldr_temp where length(error) <![CDATA[>]]> 0 and error != '数据已存在!' and khdxdh = $login_khdxdh$
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn0.dktjrgldr_select_error_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/cancel.jpg" border="0"/<![CDATA[>]]>' as zt, zhdh,tjr1,tjr1fpbl,tjr2,tjr2fpbl,bzsm,khdxdh,error from dktjrgldr_temp where khdxdh=$login_khdxdh$ and length(error)<![CDATA[>]]>0
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn0.dktjrgldr_count_all_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, zhdh,tjr1,tjr1fpbl,tjr2,tjr2fpbl,bzsm,khdxdh,error from dktjrgldr_temp where khdxdh=$login_khdxdh$ )a
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn0.dktjrgldr_select_all_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, zhdh,tjr1,tjr1fpbl,tjr2,tjr2fpbl,bzsm,khdxdh,error from dktjrgldr_temp where khdxdh=$login_khdxdh$
+    </select>  
+    <insert id="dn0.dktjrgldr_insert_into_target" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into SGLR_DKTJR(JXDXDH,TJR1,TJR1FPBL,TJR2,TJR2FPBL,BZSM,CZR,CZSJ) select JXDX_DKZH0.JXDXDH, t.tjr1 ,cast (t.tjr1fpbl as DECIMAL(9,5)), t.tjr2 , case when t.tjr2fpbl='' then 0 else cast (t.tjr2fpbl as DECIMAL(9,5)) end, t.bzsm ,'$login_hydh$',F_GET_SYSTIME() from dktjrgldr_temp t ,JXDX_DKZH JXDX_DKZH0 where t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null) and JXDX_DKZH0.ZHDH=cast (t.zhdh as VARCHAR(40))
+    </insert>  
+    <delete id="dn0.dktjrgldr_delete_before_override" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from SGLR_DKTJR tar where exists(select 1 from dktjrgldr_temp t ,JXDX_DKZH JXDX_DKZH0 where 1=1 and t.zhdh=JXDX_DKZH0.ZHDH and JXDX_DKZH0.JXDXDH=tar.JXDXDH and t.khdxdh=$login_khdxdh$ )
+    </delete> 
+  </sqlMap> 
+</pageSetting>

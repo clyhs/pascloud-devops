@@ -1,162 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="cdkqxjgmx" title="客户存贷款期限结构明细" type="query" version="2.0.0">
-  <conPart>
-    <tags>
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月">
-        <attribute key="dateFmt" value="yyyyMM" />
-        <attribute key="defValType" value="sysDate" />
-        <attribute key="editable" value="true" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="tjrq" />
-      </tag>
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Hidden" label="">
-        <attribute key="defVal" value="$sysdate$" />
-        <attribute key="name" value="sysdate" />
-      </tag>
-      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员">
-        <attribute key="isDisplayXN" value="true" />
-        <attribute key="editable" value="true" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="jgckbz" value="jg_ckhy" />
-        <attribute key="name" value="khdxdh" />
-        <attribute key="multiple" value="false" />
-      </tag>
-      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="业务类型">
-        <attribute key="width" value="120px;" />
-        <attribute key="dmmc" value="zhlx" />
-        <attribute key="editable" value="true" />
-        <attribute key="name" value="ywlx" />
-        <attribute key="isAll" value="false" />
-        <attribute key="multiple" value="false" />
-      </tag>
-      <tag row="0" col="3" colspan="1" rowspan="1" name="Dmms" label="客户类型">
-        <attribute key="width" value="120px;" />
-        <attribute key="dmmc" value="khlx" />
-        <attribute key="editable" value="true" />
-        <attribute key="name" value="khlx" />
-        <attribute key="isAll" value="false" />
-        <attribute key="multiple" value="false" />
-      </tag>
-      <tag row="1" col="0" colspan="1" rowspan="1" name="Text" label="客户号">
-        <attribute key="editable" value="true" />
-        <attribute key="name" value="khh" />
-        <attribute key="readonly" value="false" />
-      </tag>
-      <tag row="1" col="1" colspan="1" rowspan="1" name="Text" label="客户名称">
-        <attribute key="editable" value="true" />
-        <attribute key="name" value="khmc" />
-        <attribute key="readonly" value="false" />
-      </tag>
-      <tag row="1" col="2" colspan="1" rowspan="1" name="Number" label="前">
-        <attribute key="precision" value="2" />
-        <attribute key="defVal" value="20" />
-        <attribute key="intparts" value="10" />
-        <attribute key="editable" value="true" />
-        <attribute key="name" value="pm" />
-        <attribute key="readonly" value="false" />
-      </tag>
-    </tags>
-  </conPart>
-  <table id="cdkqxjgmx_xsjy1jgj" title="新数据源1结果集" page="false" isDym="true">
-    <col id="KHLX" title="客户类型" align="left" type="string" width="120" frozen="true" format="" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="true" format="" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KHMC" title="客户名称" align="left" type="string" width="120" frozen="true" format="" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="HZYE" title="汇总余额" align="right" type="float" width="150" frozen="true" format="" showDymCol="false" mergeCells="false" footerCells="true" />
-    <col id="$qxmc$" title="QXMC" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" refcolumn="qxdh" mergeCells="false" footerCells="false" dym="true">
-      <col id="KHYE" title="余额" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="true" />
-    </col>
-  </table>
-  <table id="cdkqxjgmx_dkjgj" title="贷款结果集" page="true" isDym="true">
-    <col id="KHLX" title="客户类型" align="left" type="string" width="120" frozen="true" format="" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="true" format="" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KHMC" title="客户名称" align="left" type="string" width="120" frozen="true" format="" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="HZYE" title="汇总余额" align="right" type="float" width="150" frozen="true" format="" showDymCol="false" mergeCells="false" footerCells="true" />
-    <col id="$qxmc$" title="QXMC" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" refcolumn="qxdh" mergeCells="false" footerCells="false" dym="true">
-      <col id="KHYE" title="余额" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="true" />
-    </col>
-  </table>
-  <sqlMap namespace="studio.cdkqxjgmx">
-    <select id="dn12.cdkqxjgmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      <isEqual property="ywlx" compareValue="1">
-        select khlx,khh,khmc,hzye,qxmc,khye,qxdh from (      select khlx.dmms khlx,fx.khh,fx.khmc,hz.hzye,qx.qxmc,fx.khye,fx.qxdh,      rank() OVER(ORDER BY hz.hzye DESC) AS PM      from KHFX_CKQXJGMX_$tjrq$ fx      inner join CSB_DMMS khlx on fx.khlx=khlx.dmz and khlx.dmmc='KHLX'      inner join (select tjrq,khdxdh,khh,sum(khye) hzye from KHFX_CKQXJGMX_$tjrq$ mx        where 1=1
-        <isNotEmpty property="khdxdh">and  mx.khdxdh =$khdxdh$</isNotEmpty>
-        <isNotEmpty property="khlx">and mx.khlx='$khlx$'</isNotEmpty>
-        <isNotEmpty property="khh">and mx.khh = '$khh$'</isNotEmpty>
-        <isNotEmpty property="khmc">and mx.khmc like '%$khmc$%'</isNotEmpty>
-        group by tjrq, khdxdh, khh    ) hz      on hz.tjrq=fx.tjrq and hz.khdxdh=fx.khdxdh and hz.khh=fx.khh       inner join csb_qxsdb qx on qx.qxdh=fx.qxdh
-        <isNotEmpty property="ywlx">and qx.jxdxlx=$ywlx$</isNotEmpty>
-        inner join TABLE(FN_GETSJJG_JAVA_QXHY(fx.tjrq,$login_khdxdh$, 0)) QX on qx.khdxdh=fx.khdxdh     where 1=1
-        <isNotEmpty property="khdxdh">and  fx.khdxdh =$khdxdh$</isNotEmpty>
-        <isNotEmpty property="khlx">and fx.khlx='$khlx$'</isNotEmpty>
-        <isNotEmpty property="khh">and fx.khh = '$khh$'</isNotEmpty>
-        <isNotEmpty property="khmc">and fx.khmc like '%$khmc$%'</isNotEmpty>
-        ) a where 1=1
-        <isNotEmpty property="pm"><![CDATA[and  a.pm <= $pm$]]></isNotEmpty>
-      </isEqual>
-      <isEqual property="ywlx" compareValue="2">
-        select khlx,khh,khmc,hzye,qxmc,khye,qxdh from (      select khlx.dmms khlx,fx.khh,fx.khmc,hz.hzye,qx.qxmc,fx.khye,fx.qxdh,      rank() OVER(ORDER BY hz.hzye DESC) AS PM      from KHFX_DKQXJGMX_$tjrq$ fx      inner join CSB_DMMS khlx on fx.khlx=khlx.dmz and khlx.dmmc='KHLX'      inner join (select tjrq,khdxdh,khh,sum(khye) hzye from KHFX_DKQXJGMX_$tjrq$ mx        where 1=1
-        <isNotEmpty property="khdxdh">and  mx.khdxdh =$khdxdh$</isNotEmpty>
-        <isNotEmpty property="khlx">and mx.khlx='$khlx$'</isNotEmpty>
-        <isNotEmpty property="khh">and mx.khh = '$khh$'</isNotEmpty>
-        <isNotEmpty property="khmc">and mx.khmc like '%$khmc$%'</isNotEmpty>
-        group by tjrq, khdxdh, khh    ) hz      on hz.tjrq=fx.tjrq and hz.khdxdh=fx.khdxdh and hz.khh=fx.khh       inner join csb_qxsdb qx on qx.qxdh=fx.qxdh
-        <isNotEmpty property="ywlx">and qx.jxdxlx=$ywlx$</isNotEmpty>
-        inner join TABLE(FN_GETSJJG_JAVA_QXHY(fx.tjrq,$login_khdxdh$, 0)) QX on qx.khdxdh=fx.khdxdh     where 1=1
-        <isNotEmpty property="khdxdh">and  fx.khdxdh =$khdxdh$</isNotEmpty>
-        <isNotEmpty property="khlx">and fx.khlx='$khlx$'</isNotEmpty>
-        <isNotEmpty property="khh">and fx.khh = '$khh$'</isNotEmpty>
-        <isNotEmpty property="khmc">and fx.khmc like '%$khmc$%'</isNotEmpty>
-        ) a where 1=1
-        <isNotEmpty property="pm"><![CDATA[and  a.pm <= $pm$]]></isNotEmpty>
-      </isEqual>
-    </select>
-    <select id="dn12.cdkqxjgmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from (
-      <isEqual property="ywlx" compareValue="1">
-        select khlx,khh,khmc,hzye,qxmc,khye,qxdh from (      select khlx.dmms khlx,fx.khh,fx.khmc,hz.hzye,qx.qxmc,fx.khye,fx.qxdh,      rank() OVER(ORDER BY hz.hzye DESC) AS PM      from KHFX_CKQXJGMX_$tjrq$ fx      inner join CSB_DMMS khlx on fx.khlx=khlx.dmz and khlx.dmmc='KHLX'      inner join (select tjrq,khdxdh,khh,sum(khye) hzye from KHFX_CKQXJGMX_$tjrq$ mx        where 1=1
-        <isNotEmpty property="khdxdh">and  mx.khdxdh =$khdxdh$</isNotEmpty>
-        <isNotEmpty property="khlx">and mx.khlx='$khlx$'</isNotEmpty>
-        <isNotEmpty property="khh">and mx.khh = '$khh$'</isNotEmpty>
-        <isNotEmpty property="khmc">and mx.khmc like '%$khmc$%'</isNotEmpty>
-        group by tjrq, khdxdh, khh    ) hz      on hz.tjrq=fx.tjrq and hz.khdxdh=fx.khdxdh and hz.khh=fx.khh       inner join csb_qxsdb qx on qx.qxdh=fx.qxdh
-        <isNotEmpty property="ywlx">and qx.jxdxlx=$ywlx$</isNotEmpty>
-        inner join TABLE(FN_GETSJJG_JAVA_QXHY(fx.tjrq,$login_khdxdh$, 0)) QX on qx.khdxdh=fx.khdxdh     where 1=1
-        <isNotEmpty property="khdxdh">and  fx.khdxdh =$khdxdh$</isNotEmpty>
-        <isNotEmpty property="khlx">and fx.khlx='$khlx$'</isNotEmpty>
-        <isNotEmpty property="khh">and fx.khh = '$khh$'</isNotEmpty>
-        <isNotEmpty property="khmc">and fx.khmc like '%$khmc$%'</isNotEmpty>
-        ) a where 1=1
-        <isNotEmpty property="pm"><![CDATA[and  a.pm <= $pm$]]></isNotEmpty>
-      </isEqual>
-      <isEqual property="ywlx" compareValue="2">
-        select khlx,khh,khmc,hzye,qxmc,khye,qxdh from (      select khlx.dmms khlx,fx.khh,fx.khmc,hz.hzye,qx.qxmc,fx.khye,fx.qxdh,      rank() OVER(ORDER BY hz.hzye DESC) AS PM      from KHFX_DKQXJGMX_$tjrq$ fx      inner join CSB_DMMS khlx on fx.khlx=khlx.dmz and khlx.dmmc='KHLX'      inner join (select tjrq,khdxdh,khh,sum(khye) hzye from KHFX_DKQXJGMX_$tjrq$ mx        where 1=1
-        <isNotEmpty property="khdxdh">and  mx.khdxdh =$khdxdh$</isNotEmpty>
-        <isNotEmpty property="khlx">and mx.khlx='$khlx$'</isNotEmpty>
-        <isNotEmpty property="khh">and mx.khh = '$khh$'</isNotEmpty>
-        <isNotEmpty property="khmc">and mx.khmc like '%$khmc$%'</isNotEmpty>
-        group by tjrq, khdxdh, khh    ) hz      on hz.tjrq=fx.tjrq and hz.khdxdh=fx.khdxdh and hz.khh=fx.khh       inner join csb_qxsdb qx on qx.qxdh=fx.qxdh
-        <isNotEmpty property="ywlx">and qx.jxdxlx=$ywlx$</isNotEmpty>
-        inner join TABLE(FN_GETSJJG_JAVA_QXHY(fx.tjrq,$login_khdxdh$, 0)) QX on qx.khdxdh=fx.khdxdh     where 1=1
-        <isNotEmpty property="khdxdh">and  fx.khdxdh =$khdxdh$</isNotEmpty>
-        <isNotEmpty property="khlx">and fx.khlx='$khlx$'</isNotEmpty>
-        <isNotEmpty property="khh">and fx.khh = '$khh$'</isNotEmpty>
-        <isNotEmpty property="khmc">and fx.khmc like '%$khmc$%'</isNotEmpty>
-        ) a where 1=1
-        <isNotEmpty property="pm"><![CDATA[and  a.pm <= $pm$]]></isNotEmpty>
-      </isEqual>
-      ) t
-    </select>
-  </sqlMap>
-  <rels>
-    <items id="cdkqxjgmx_xsjy1jgj">
-      <item name="ywlx" compareValue="1" operate="isEqual" />
-    </items>
-    <items id="cdkqxjgmx_dkjgj">
-      <item name="ywlx" compareValue="2" operate="isEqual" />
-    </items>
-  </rels>
+
+<pageSetting id="cdkqxjgmx" title="客户存贷款期限结构明细" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月"> 
+        <attribute key="dateFmt" value="yyyyMM"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="tjrq"/> 
+      </tag>  
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="defVal" value="$sysdate$"/>  
+        <attribute key="name" value="sysdate"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员"> 
+        <attribute key="isDisplayXN" value="true"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="jgckbz" value="jg_ckhy"/>  
+        <attribute key="name" value="khdxdh"/>  
+        <attribute key="multiple" value="false"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="业务类型"> 
+        <attribute key="width" value="120px;"/>  
+        <attribute key="dmmc" value="zhlx"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="ywlx"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="multiple" value="false"/> 
+      </tag>  
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Dmms" label="客户类型"> 
+        <attribute key="width" value="120px;"/>  
+        <attribute key="dmmc" value="khlx"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="khlx"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="multiple" value="false"/> 
+      </tag>  
+      <tag row="1" col="0" colspan="1" rowspan="1" name="Text" label="客户号"> 
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="khh"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="1" col="1" colspan="1" rowspan="1" name="Text" label="客户名称"> 
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="khmc"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="1" col="2" colspan="1" rowspan="1" name="Number" label="前"> 
+        <attribute key="precision" value="2"/>  
+        <attribute key="defVal" value="20"/>  
+        <attribute key="intparts" value="10"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="pm"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="cdkqxjgmx_xsjy1jgj" title="新数据源1结果集" page="false" isDym="true"> 
+    <col id="KHLX" title="客户类型" align="left" type="string" width="120" frozen="true" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="true" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHMC" title="客户名称" align="left" type="string" width="120" frozen="true" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HZYE" title="汇总余额" align="right" type="float" width="150" frozen="true" format="" showDymCol="false" mergeCells="false" footerCells="true"/>  
+    <col id="$qxmc$" title="QXMC" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" refcolumn="qxdh" mergeCells="false" footerCells="false" dym="true"> 
+      <col id="KHYE" title="余额" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="true"/> 
+    </col> 
+  </table>  
+  <table id="cdkqxjgmx_dkjgj" title="贷款结果集" page="true" isDym="true"> 
+    <col id="KHLX" title="客户类型" align="left" type="string" width="120" frozen="true" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="true" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHMC" title="客户名称" align="left" type="string" width="120" frozen="true" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HZYE" title="汇总余额" align="right" type="float" width="150" frozen="true" format="" showDymCol="false" mergeCells="false" footerCells="true"/>  
+    <col id="$qxmc$" title="QXMC" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" refcolumn="qxdh" mergeCells="false" footerCells="false" dym="true"> 
+      <col id="KHYE" title="余额" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="true"/> 
+    </col> 
+  </table>  
+  <sqlMap namespace="studio.cdkqxjgmx"> 
+    <select id="dn0.cdkqxjgmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
+      <isEqual property="ywlx" compareValue="1">select khlx,khh,khmc,hzye,qxmc,khye,qxdh from ( select khlx.dmms khlx,fx.khh,fx.khmc,hz.hzye,qx.qxmc,fx.khye,fx.qxdh, rank() OVER(ORDER BY hz.hzye DESC) AS PM from KHFX_CKQXJGMX_$tjrq$ fx inner join CSB_DMMS khlx on fx.khlx=khlx.dmz and khlx.dmmc='KHLX' inner join (select tjrq,khdxdh,khh,sum(khye) hzye from KHFX_CKQXJGMX_$tjrq$ mx where 1=1 
+        <isNotEmpty property="khdxdh">and mx.khdxdh =$khdxdh$</isNotEmpty>  
+        <isNotEmpty property="khlx">and mx.khlx='$khlx$'</isNotEmpty>  
+        <isNotEmpty property="khh">and mx.khh = '$khh$'</isNotEmpty>  
+        <isNotEmpty property="khmc">and mx.khmc like '%$khmc$%'</isNotEmpty> group by tjrq, khdxdh, khh ) hz on hz.tjrq=fx.tjrq and hz.khdxdh=fx.khdxdh and hz.khh=fx.khh inner join csb_qxsdb qx on qx.qxdh=fx.qxdh 
+        <isNotEmpty property="ywlx">and qx.jxdxlx=$ywlx$</isNotEmpty> inner join TABLE(FN_GETSJJG_JAVA_QXHY(fx.tjrq,$login_khdxdh$, 0)) QX on qx.khdxdh=fx.khdxdh where 1=1 
+        <isNotEmpty property="khdxdh">and fx.khdxdh =$khdxdh$</isNotEmpty>  
+        <isNotEmpty property="khlx">and fx.khlx='$khlx$'</isNotEmpty>  
+        <isNotEmpty property="khh">and fx.khh = '$khh$'</isNotEmpty>  
+        <isNotEmpty property="khmc">and fx.khmc like '%$khmc$%'</isNotEmpty> ) a where 1=1 
+        <isNotEmpty property="pm"><![CDATA[and  a.pm <= $pm$]]></isNotEmpty> 
+      </isEqual>  
+      <isEqual property="ywlx" compareValue="2">select khlx,khh,khmc,hzye,qxmc,khye,qxdh from ( select khlx.dmms khlx,fx.khh,fx.khmc,hz.hzye,qx.qxmc,fx.khye,fx.qxdh, rank() OVER(ORDER BY hz.hzye DESC) AS PM from KHFX_DKQXJGMX_$tjrq$ fx inner join CSB_DMMS khlx on fx.khlx=khlx.dmz and khlx.dmmc='KHLX' inner join (select tjrq,khdxdh,khh,sum(khye) hzye from KHFX_DKQXJGMX_$tjrq$ mx where 1=1 
+        <isNotEmpty property="khdxdh">and mx.khdxdh =$khdxdh$</isNotEmpty>  
+        <isNotEmpty property="khlx">and mx.khlx='$khlx$'</isNotEmpty>  
+        <isNotEmpty property="khh">and mx.khh = '$khh$'</isNotEmpty>  
+        <isNotEmpty property="khmc">and mx.khmc like '%$khmc$%'</isNotEmpty> group by tjrq, khdxdh, khh ) hz on hz.tjrq=fx.tjrq and hz.khdxdh=fx.khdxdh and hz.khh=fx.khh inner join csb_qxsdb qx on qx.qxdh=fx.qxdh 
+        <isNotEmpty property="ywlx">and qx.jxdxlx=$ywlx$</isNotEmpty> inner join TABLE(FN_GETSJJG_JAVA_QXHY(fx.tjrq,$login_khdxdh$, 0)) QX on qx.khdxdh=fx.khdxdh where 1=1 
+        <isNotEmpty property="khdxdh">and fx.khdxdh =$khdxdh$</isNotEmpty>  
+        <isNotEmpty property="khlx">and fx.khlx='$khlx$'</isNotEmpty>  
+        <isNotEmpty property="khh">and fx.khh = '$khh$'</isNotEmpty>  
+        <isNotEmpty property="khmc">and fx.khmc like '%$khmc$%'</isNotEmpty> ) a where 1=1 
+        <isNotEmpty property="pm"><![CDATA[and  a.pm <= $pm$]]></isNotEmpty> 
+      </isEqual> 
+    </select>  
+    <select id="dn0.cdkqxjgmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
+      <isEqual property="ywlx" compareValue="1">select khlx,khh,khmc,hzye,qxmc,khye,qxdh from ( select khlx.dmms khlx,fx.khh,fx.khmc,hz.hzye,qx.qxmc,fx.khye,fx.qxdh, rank() OVER(ORDER BY hz.hzye DESC) AS PM from KHFX_CKQXJGMX_$tjrq$ fx inner join CSB_DMMS khlx on fx.khlx=khlx.dmz and khlx.dmmc='KHLX' inner join (select tjrq,khdxdh,khh,sum(khye) hzye from KHFX_CKQXJGMX_$tjrq$ mx where 1=1 
+        <isNotEmpty property="khdxdh">and mx.khdxdh =$khdxdh$</isNotEmpty>  
+        <isNotEmpty property="khlx">and mx.khlx='$khlx$'</isNotEmpty>  
+        <isNotEmpty property="khh">and mx.khh = '$khh$'</isNotEmpty>  
+        <isNotEmpty property="khmc">and mx.khmc like '%$khmc$%'</isNotEmpty> group by tjrq, khdxdh, khh ) hz on hz.tjrq=fx.tjrq and hz.khdxdh=fx.khdxdh and hz.khh=fx.khh inner join csb_qxsdb qx on qx.qxdh=fx.qxdh 
+        <isNotEmpty property="ywlx">and qx.jxdxlx=$ywlx$</isNotEmpty> inner join TABLE(FN_GETSJJG_JAVA_QXHY(fx.tjrq,$login_khdxdh$, 0)) QX on qx.khdxdh=fx.khdxdh where 1=1 
+        <isNotEmpty property="khdxdh">and fx.khdxdh =$khdxdh$</isNotEmpty>  
+        <isNotEmpty property="khlx">and fx.khlx='$khlx$'</isNotEmpty>  
+        <isNotEmpty property="khh">and fx.khh = '$khh$'</isNotEmpty>  
+        <isNotEmpty property="khmc">and fx.khmc like '%$khmc$%'</isNotEmpty> ) a where 1=1 
+        <isNotEmpty property="pm"><![CDATA[and  a.pm <= $pm$]]></isNotEmpty> 
+      </isEqual>  
+      <isEqual property="ywlx" compareValue="2">select khlx,khh,khmc,hzye,qxmc,khye,qxdh from ( select khlx.dmms khlx,fx.khh,fx.khmc,hz.hzye,qx.qxmc,fx.khye,fx.qxdh, rank() OVER(ORDER BY hz.hzye DESC) AS PM from KHFX_DKQXJGMX_$tjrq$ fx inner join CSB_DMMS khlx on fx.khlx=khlx.dmz and khlx.dmmc='KHLX' inner join (select tjrq,khdxdh,khh,sum(khye) hzye from KHFX_DKQXJGMX_$tjrq$ mx where 1=1 
+        <isNotEmpty property="khdxdh">and mx.khdxdh =$khdxdh$</isNotEmpty>  
+        <isNotEmpty property="khlx">and mx.khlx='$khlx$'</isNotEmpty>  
+        <isNotEmpty property="khh">and mx.khh = '$khh$'</isNotEmpty>  
+        <isNotEmpty property="khmc">and mx.khmc like '%$khmc$%'</isNotEmpty> group by tjrq, khdxdh, khh ) hz on hz.tjrq=fx.tjrq and hz.khdxdh=fx.khdxdh and hz.khh=fx.khh inner join csb_qxsdb qx on qx.qxdh=fx.qxdh 
+        <isNotEmpty property="ywlx">and qx.jxdxlx=$ywlx$</isNotEmpty> inner join TABLE(FN_GETSJJG_JAVA_QXHY(fx.tjrq,$login_khdxdh$, 0)) QX on qx.khdxdh=fx.khdxdh where 1=1 
+        <isNotEmpty property="khdxdh">and fx.khdxdh =$khdxdh$</isNotEmpty>  
+        <isNotEmpty property="khlx">and fx.khlx='$khlx$'</isNotEmpty>  
+        <isNotEmpty property="khh">and fx.khh = '$khh$'</isNotEmpty>  
+        <isNotEmpty property="khmc">and fx.khmc like '%$khmc$%'</isNotEmpty> ) a where 1=1 
+        <isNotEmpty property="pm"><![CDATA[and  a.pm <= $pm$]]></isNotEmpty> 
+      </isEqual> ) t
+    </select> 
+  </sqlMap>  
+  <rels> 
+    <items id="cdkqxjgmx_xsjy1jgj"> 
+      <item name="ywlx" compareValue="1" operate="isEqual"/> 
+    </items>  
+    <items id="cdkqxjgmx_dkjgj"> 
+      <item name="ywlx" compareValue="2" operate="isEqual"/> 
+    </items> 
+  </rels>  
   <javascript><![CDATA[jQuery(document).ready(function () {
   var obj=createTimeObj(jQuery("#sysdate").val());
     if(jQuery("#sysdate").val()!=obj.ym){
@@ -169,6 +152,5 @@
 //自定义验证，在提交时执行。通过返回true，否则返回false
 function customValidate(){
  return true;
-}]]></javascript>
+}]]></javascript> 
 </pageSetting>
-

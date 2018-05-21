@@ -1,332 +1,307 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="jgjhjdcx" title="机构计划进度查询" type="query" version="2.0.0">
-  <conPart>
-    <tags>
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="年份">
-        <attribute key="dateFmt" value="yyyy" />
-        <attribute key="defValType" value="sysDate" />
-        <attribute key="editable" value="true" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="khnf" />
-        <attribute key="minDate" value="no" />
-        <attribute key="readonly" value="false" />
-      </tag>
-      <tag row="0" col="1" colspan="1" rowspan="1" name="NewJg" label="机构">
-        <attribute key="cascadeCheck" value="true" />
-        <attribute key="editable" value="true" />
-        <attribute key="ckbz" value="jg" />
-        <attribute key="style" value="width:160px;" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="jgkhdxdh" />
-        <attribute key="multiple" value="true" />
-      </tag>
-      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="考核周期">
-        <attribute key="width" value="120px;" />
-        <attribute key="dmmc" value="khzq" />
-        <attribute key="editable" value="true" />
-        <attribute key="name" value="khzq" />
-        <attribute key="isAll" value="false" />
-        <attribute key="multiple" value="false" />
-      </tag>
-      <tag row="0" col="3" colspan="1" rowspan="1" name="JGKhzbSelect" label="考核指标">
-        <attribute key="isMultiple" value="false" />
-        <attribute key="width" value="305px;" />
-        <attribute key="editable" value="true" />
-        <attribute key="isSearch" value="true" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="khzbdh" />
-        <attribute key="isAll" value="true" />
-        <attribute key="multiple" value="false" />
-        <attribute key="isEditable" value="true" />
-      </tag>
-      <tag row="0" col="4" colspan="1" rowspan="1" name="Hidden" label="">
-        <attribute key="defVal" value="$sysDate$" />
-        <attribute key="name" value="sysDate" />
-      </tag>
-      <tag row="0" col="4" colspan="1" rowspan="1" name="Hidden" label="">
-        <attribute key="name" value="tjrq_qytnf" />
-      </tag>
-      <tag row="0" col="4" colspan="1" rowspan="1" name="Hidden" label="">
-        <attribute key="name" value="sjwdStr" />
-      </tag>
-    </tags>
-  </conPart>
-  <table id="jgjhjdcx_xsjy1jgj" title="新数据源1结果集" page="noCount">
-    <col id="KHNF" title="年份" align="left" type="string" width="120" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KHZBMC" title="考核指标名称" align="left" type="string" width="200" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="5" title="1季" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false">
-      <col id="ZBZ1" title="指标值1" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHZ1" title="计划值1" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZZ1" title="力争值1" align="left" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHWCBL1" title="计划完成比例1" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZWCB11" title="力争完成比例1" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    </col>
-    <col id="6" title="2季" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false">
-      <col id="ZBZ2" title="指标值2" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHZ2" title="计划值2" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZZ2" title="力争值2" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHWCBL2" title="计划完成比例2" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZWCBL2" title="力争完成比例2" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    </col>
-    <col id="7" title="3季" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false">
-      <col id="ZBZ3" title="指标值3" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHZ3" title="计划值3" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZZ3" title="力争值3" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHWCBL3" title="计划完成比例3" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZWCBL3" title="力争完成比例3" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    </col>
-    <col id="8" title="4季" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false">
-      <col id="ZBZ4" title="指标值4" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHZ4" title="计划值4" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZZ4" title="力争值4" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHWCBL4" title="计划完成比例4" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZWCBL4" title="力争完成比例4" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    </col>
-  </table>
-  <table id="jgjhjdcx_njgj" title="年结果集" page="noCount">
-    <col id="KHNF" title="年份" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KHZBMC" title="考核指标名称" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="ZBZ" title="指标值" align="right" type="float" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JHZ" title="计划值" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JHWCBL" title="计划完成比例" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="LZZ" title="力争值" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="LZWCB1" title="力争完成比例" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false" />
-  </table>
-  <table id="jgjhjdcx_yjgj" title="月结果集" page="noCount">
-    <col id="KHNF" title="年份" align="left" type="string" width="120" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KHZBMC" title="考核指标名称" align="left" type="string" width="200" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="5" title="1月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
-      <col id="ZBZ1" title="指标值1" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHZ1" title="计划值1" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZZ1" title="力争值1" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHWCBL1" title="计划完成比例1" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZWCB11" title="力争完成比例1" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    </col>
-    <col id="6" title="2月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
-      <col id="ZBZ2" title="指标值2" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHZ2" title="计划值2" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZZ2" title="力争值2" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHWCBL2" title="计划完成比例2" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZWCBL2" title="力争完成比例2" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    </col>
-    <col id="7" title="3月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
-      <col id="ZBZ3" title="指标值3" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHZ3" title="计划值3" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZZ3" title="力争值3" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHWCBL3" title="计划完成比例3" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZWCBL3" title="力争完成比例3" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    </col>
-    <col id="8" title="4月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
-      <col id="ZBZ4" title="指标值4" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHZ4" title="计划值4" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZZ4" title="力争值4" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHWCBL4" title="计划完成比例4" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZWCBL4" title="力争完成比例4" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    </col>
-    <col id="9" title="5月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
-      <col id="ZBZ5" title="指标值5" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHZ5" title="计划值5" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZZ5" title="力争值5" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHWCBL5" title="计划完成比例5" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZWCBL5" title="力争完成比例5" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    </col>
-    <col id="10" title="6月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
-      <col id="ZBZ6" title="指标值6" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHZ6" title="计划值6" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZZ6" title="力争值6" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHWCBL6" title="计划完成比例6" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZWCBL6" title="力争完成比例6" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    </col>
-    <col id="11" title="7月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
-      <col id="ZBZ7" title="指标值7" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHZ7" title="计划值7" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZZ7" title="力争值7" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHWCBL7" title="计划完成比例7" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZWCBL7" title="力争完成比例7" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    </col>
-    <col id="12" title="8月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
-      <col id="ZBZ8" title="指标值8" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHZ8" title="计划值8" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZZ8" title="力争值8" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHWCBL8" title="计划完成比例8" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZWCBL8" title="力争完成比例8" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    </col>
-    <col id="13" title="9月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
-      <col id="ZBZ9" title="指标值9" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHZ9" title="计划值9" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZZ9" title="力争值9" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHWCBL9" title="计划完成比例9" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZWCBL9" title="力争完成比例9" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    </col>
-    <col id="14" title="10月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
-      <col id="ZBZ10" title="指标值10" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHZ10" title="计划值10" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZZ10" title="力争值10" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHWCBL10" title="计划完成比例10" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZWCBL10" title="力争完成比例10" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    </col>
-    <col id="15" title="11月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
-      <col id="ZBZ11" title="指标值11" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHZ11" title="计划值11" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZZ11" title="力争值11" align="left" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHWCBL11" title="计划完成比例11" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZWCBL11" title="力争完成比例11" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    </col>
-    <col id="16" title="12月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
-      <col id="ZBZ12" title="指标值12" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHZ12" title="计划值12" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZZ12" title="力争值12" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JHWCBL12" title="计划完成比例12" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="LZWCBL12" title="力争完成比例12" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    </col>
-  </table>
-  <sqlMap namespace="studio.jgjhjdcx">
-    <select id="dn12.jgjhjdcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      <isEqual property="khzq" compareValue="2">
-        SELECT jh.khnf, qx.jgdh, qx.jgmc, yj.khzbmc,'1', '2', '3', '4', yj.zbz1,yj.zbz2,yj.zbz3,yj.zbz4,jh.jhz1,jh.jhz2,jh.jhz3,jh.jhz4,jh.lzz1,jh.lzz2,jh.lzz3,jh.lzz4, CASE WHEN jh.jhz1 =0 OR jh.jhz1 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz1,0)/CAST(CASE WHEN jh.JHZ1=0 THEN NULL ELSE jh.JHZ1 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl1, CASE WHEN jh.jhz2 =0 OR jh.jhz2 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz2,0)/CAST(CASE WHEN jh.JHZ2=0 THEN NULL ELSE jh.JHZ2 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl2, CASE WHEN jh.jhz3 =0 OR jh.jhz3 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz3,0)/CAST(CASE WHEN jh.JHZ3=0 THEN NULL ELSE jh.JHZ3 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl3, CASE WHEN jh.jhz4 =0 OR jh.jhz4 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz4,0)/CAST(CASE WHEN jh.JHZ4=0 THEN NULL ELSE jh.JHZ4 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl4, CASE WHEN jh.lzz1 =0 OR jh.lzz1 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz1,0)/CAST(CASE WHEN jh.lzz1=0 THEN NULL ELSE jh.lzz1 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcb11, CASE WHEN jh.lzz2 =0 OR jh.lzz2 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz2,0)/CAST(CASE WHEN jh.lzz2=0 THEN NULL ELSE jh.lzz2 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl2, CASE WHEN jh.lzz3 =0 OR jh.lzz3 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz3,0)/CAST(CASE WHEN jh.lzz3=0 THEN NULL ELSE jh.lzz3 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl3, CASE WHEN jh.lzz4 =0 OR jh.lzz4 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz4,0)/CAST(CASE WHEN jh.lzz4=0 THEN NULL ELSE jh.lzz4 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl4 from(select yj.khzbdh,yj.khzbmc,yj.zbpx,yj.khdxdh,sum(yj.zbz1) as zbz1,sum(yj.zbz2) as zbz2,sum(yj.zbz3) as zbz3,sum(yj.zbz4) as zbz4     from(SELECT khzb.khzbdh,khzb.khzbmc,khzb.zbpx,yj.khdxdh,yj.sjwd         ,case when cast(substr(rtrim(f_numtochar(sjw.tjrq)),5,2) as integer) between 1 and 3 then COALESCE(yj.zbz,0) else 0 end as zbz1         ,case when cast(substr(rtrim(f_numtochar(sjw.tjrq)),5,2) as integer) between 4 and 6 then COALESCE(yj.zbz,0) else 0 end as zbz2         ,case when cast(substr(rtrim(f_numtochar(sjw.tjrq)),5,2) as integer) between 7 and 9 then COALESCE(yj.zbz,0) else 0 end as zbz3         ,case when cast(substr(rtrim(f_numtochar(sjw.tjrq)),5,2) as integer) between 10 and 12 then COALESCE(yj.zbz,0) else 0 end as zbz4         FROM khfa_khzb_jg khzb          INNER JOIN YJZB_GJYJ_JG yj ON khzb.zbdh = yj.zbdh AND khzb.bz =yj.bz AND khzb.sdbs=yj.sdbs AND khzb.tjkj=yj.tjkj          INNER JOIN         (SELECT tjrq FROM csb_sjw where tjrq=jm
-        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>
-        <![CDATA[and tjrq<=$sysdate$ 
+
+<pageSetting id="jgjhjdcx" title="机构计划进度查询" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="年份"> 
+        <attribute key="dateFmt" value="yyyy"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="khnf"/>  
+        <attribute key="minDate" value="no"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewJg" label="机构"> 
+        <attribute key="cascadeCheck" value="true"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="ckbz" value="jg"/>  
+        <attribute key="style" value="width:160px;"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="jgkhdxdh"/>  
+        <attribute key="multiple" value="true"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="考核周期"> 
+        <attribute key="width" value="120px;"/>  
+        <attribute key="dmmc" value="khzq"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="khzq"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="multiple" value="false"/> 
+      </tag>  
+      <tag row="0" col="3" colspan="1" rowspan="1" name="JGKhzbSelect" label="考核指标"> 
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="305px;"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isSearch" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="khzbdh"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="multiple" value="false"/>  
+        <attribute key="isEditable" value="true"/> 
+      </tag>  
+      <tag row="0" col="4" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="defVal" value="$sysDate$"/>  
+        <attribute key="name" value="sysDate"/> 
+      </tag>  
+      <tag row="0" col="4" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="name" value="tjrq_qytnf"/> 
+      </tag>  
+      <tag row="0" col="4" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="name" value="sjwdStr"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="jgjhjdcx_xsjy1jgj" title="新数据源1结果集" page="noCount"> 
+    <col id="KHNF" title="年份" align="left" type="string" width="120" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHZBMC" title="考核指标名称" align="left" type="string" width="200" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="5" title="1季" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"> 
+      <col id="ZBZ1" title="指标值1" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHZ1" title="计划值1" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZZ1" title="力争值1" align="left" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHWCBL1" title="计划完成比例1" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZWCB11" title="力争完成比例1" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col>  
+    <col id="6" title="2季" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"> 
+      <col id="ZBZ2" title="指标值2" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHZ2" title="计划值2" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZZ2" title="力争值2" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHWCBL2" title="计划完成比例2" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZWCBL2" title="力争完成比例2" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col>  
+    <col id="7" title="3季" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"> 
+      <col id="ZBZ3" title="指标值3" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHZ3" title="计划值3" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZZ3" title="力争值3" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHWCBL3" title="计划完成比例3" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZWCBL3" title="力争完成比例3" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col>  
+    <col id="8" title="4季" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"> 
+      <col id="ZBZ4" title="指标值4" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHZ4" title="计划值4" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZZ4" title="力争值4" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHWCBL4" title="计划完成比例4" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZWCBL4" title="力争完成比例4" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col> 
+  </table>  
+  <table id="jgjhjdcx_njgj" title="年结果集" page="noCount"> 
+    <col id="KHNF" title="年份" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHZBMC" title="考核指标名称" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZBZ" title="指标值" align="right" type="float" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JHZ" title="计划值" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JHWCBL" title="计划完成比例" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="LZZ" title="力争值" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="LZWCB1" title="力争完成比例" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <table id="jgjhjdcx_yjgj" title="月结果集" page="noCount"> 
+    <col id="KHNF" title="年份" align="left" type="string" width="120" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHZBMC" title="考核指标名称" align="left" type="string" width="200" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="5" title="1月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
+      <col id="ZBZ1" title="指标值1" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHZ1" title="计划值1" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZZ1" title="力争值1" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHWCBL1" title="计划完成比例1" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZWCB11" title="力争完成比例1" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col>  
+    <col id="6" title="2月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
+      <col id="ZBZ2" title="指标值2" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHZ2" title="计划值2" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZZ2" title="力争值2" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHWCBL2" title="计划完成比例2" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZWCBL2" title="力争完成比例2" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col>  
+    <col id="7" title="3月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
+      <col id="ZBZ3" title="指标值3" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHZ3" title="计划值3" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZZ3" title="力争值3" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHWCBL3" title="计划完成比例3" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZWCBL3" title="力争完成比例3" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col>  
+    <col id="8" title="4月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
+      <col id="ZBZ4" title="指标值4" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHZ4" title="计划值4" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZZ4" title="力争值4" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHWCBL4" title="计划完成比例4" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZWCBL4" title="力争完成比例4" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col>  
+    <col id="9" title="5月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
+      <col id="ZBZ5" title="指标值5" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHZ5" title="计划值5" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZZ5" title="力争值5" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHWCBL5" title="计划完成比例5" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZWCBL5" title="力争完成比例5" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col>  
+    <col id="10" title="6月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
+      <col id="ZBZ6" title="指标值6" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHZ6" title="计划值6" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZZ6" title="力争值6" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHWCBL6" title="计划完成比例6" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZWCBL6" title="力争完成比例6" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col>  
+    <col id="11" title="7月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
+      <col id="ZBZ7" title="指标值7" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHZ7" title="计划值7" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZZ7" title="力争值7" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHWCBL7" title="计划完成比例7" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZWCBL7" title="力争完成比例7" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col>  
+    <col id="12" title="8月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
+      <col id="ZBZ8" title="指标值8" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHZ8" title="计划值8" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZZ8" title="力争值8" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHWCBL8" title="计划完成比例8" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZWCBL8" title="力争完成比例8" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col>  
+    <col id="13" title="9月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
+      <col id="ZBZ9" title="指标值9" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHZ9" title="计划值9" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZZ9" title="力争值9" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHWCBL9" title="计划完成比例9" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZWCBL9" title="力争完成比例9" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col>  
+    <col id="14" title="10月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
+      <col id="ZBZ10" title="指标值10" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHZ10" title="计划值10" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZZ10" title="力争值10" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHWCBL10" title="计划完成比例10" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZWCBL10" title="力争完成比例10" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col>  
+    <col id="15" title="11月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
+      <col id="ZBZ11" title="指标值11" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHZ11" title="计划值11" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZZ11" title="力争值11" align="left" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHWCBL11" title="计划完成比例11" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZWCBL11" title="力争完成比例11" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col>  
+    <col id="16" title="12月" align="left" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
+      <col id="ZBZ12" title="指标值12" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHZ12" title="计划值12" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZZ12" title="力争值12" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JHWCBL12" title="计划完成比例12" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="LZWCBL12" title="力争完成比例12" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col> 
+  </table>  
+  <sqlMap namespace="studio.jgjhjdcx"> 
+    <select id="dn0.jgjhjdcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
+      <isEqual property="khzq" compareValue="2">SELECT jh.khnf, qx.jgdh, qx.jgmc, yj.khzbmc,'1', '2', '3', '4', yj.zbz1,yj.zbz2,yj.zbz3,yj.zbz4,jh.jhz1,jh.jhz2,jh.jhz3,jh.jhz4,jh.lzz1,jh.lzz2,jh.lzz3,jh.lzz4, CASE WHEN jh.jhz1 =0 OR jh.jhz1 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz1,0)/CAST(CASE WHEN jh.JHZ1=0 THEN NULL ELSE jh.JHZ1 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl1, CASE WHEN jh.jhz2 =0 OR jh.jhz2 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz2,0)/CAST(CASE WHEN jh.JHZ2=0 THEN NULL ELSE jh.JHZ2 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl2, CASE WHEN jh.jhz3 =0 OR jh.jhz3 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz3,0)/CAST(CASE WHEN jh.JHZ3=0 THEN NULL ELSE jh.JHZ3 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl3, CASE WHEN jh.jhz4 =0 OR jh.jhz4 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz4,0)/CAST(CASE WHEN jh.JHZ4=0 THEN NULL ELSE jh.JHZ4 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl4, CASE WHEN jh.lzz1 =0 OR jh.lzz1 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz1,0)/CAST(CASE WHEN jh.lzz1=0 THEN NULL ELSE jh.lzz1 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcb11, CASE WHEN jh.lzz2 =0 OR jh.lzz2 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz2,0)/CAST(CASE WHEN jh.lzz2=0 THEN NULL ELSE jh.lzz2 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl2, CASE WHEN jh.lzz3 =0 OR jh.lzz3 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz3,0)/CAST(CASE WHEN jh.lzz3=0 THEN NULL ELSE jh.lzz3 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl3, CASE WHEN jh.lzz4 =0 OR jh.lzz4 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz4,0)/CAST(CASE WHEN jh.lzz4=0 THEN NULL ELSE jh.lzz4 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl4 from(select yj.khzbdh,yj.khzbmc,yj.zbpx,yj.khdxdh,sum(yj.zbz1) as zbz1,sum(yj.zbz2) as zbz2,sum(yj.zbz3) as zbz3,sum(yj.zbz4) as zbz4 from(SELECT khzb.khzbdh,khzb.khzbmc,khzb.zbpx,yj.khdxdh,yj.sjwd ,case when cast(substr(rtrim(f_numtochar(sjw.tjrq)),5,2) as integer) between 1 and 3 then COALESCE(yj.zbz,0) else 0 end as zbz1 ,case when cast(substr(rtrim(f_numtochar(sjw.tjrq)),5,2) as integer) between 4 and 6 then COALESCE(yj.zbz,0) else 0 end as zbz2 ,case when cast(substr(rtrim(f_numtochar(sjw.tjrq)),5,2) as integer) between 7 and 9 then COALESCE(yj.zbz,0) else 0 end as zbz3 ,case when cast(substr(rtrim(f_numtochar(sjw.tjrq)),5,2) as integer) between 10 and 12 then COALESCE(yj.zbz,0) else 0 end as zbz4 FROM khfa_khzb_jg khzb INNER JOIN YJZB_GJYJ_JG yj ON khzb.zbdh = yj.zbdh AND khzb.bz =yj.bz AND khzb.sdbs=yj.sdbs AND khzb.tjkj=yj.tjkj INNER JOIN (SELECT tjrq FROM csb_sjw where tjrq=jm 
+        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>  <![CDATA[and tjrq<=$sysdate$ 
         UNION
-        SELECT tjrq FROM csb_sjw where tjrq=$sysdate$]]>
-        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>
-        <![CDATA[and tjrq<=$sysdate$
-        )sjw ON sjw.tjrq =yj.tjrq]]>
-        <isNotEmpty property="jgkhdxdh">WHERE yj.khdxdh IN ($jgkhdxdh$)</isNotEmpty>
-        <isNotEmpty property="khzbdh">and khzb.khzbdh=$khzbdh$</isNotEmpty>
-        <![CDATA[AND F_IS_EXISTS_STR('$sjwdStr$',yj.sjwd,',')>0
+        SELECT tjrq FROM csb_sjw where tjrq=$sysdate$]]>  
+        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>  <![CDATA[and tjrq<=$sysdate$
+        )sjw ON sjw.tjrq =yj.tjrq]]>  
+        <isNotEmpty property="jgkhdxdh">WHERE yj.khdxdh IN ($jgkhdxdh$)</isNotEmpty>  
+        <isNotEmpty property="khzbdh">and khzb.khzbdh=$khzbdh$</isNotEmpty>  <![CDATA[AND F_IS_EXISTS_STR('$sjwdStr$',yj.sjwd,',')>0
         )yj group by yj.khzbdh,yj.khzbmc,yj.zbpx,yj.khdxdh
 )yj
 INNER JOIN yjzb_jgjjh jh ON yj.khzbdh=jh.khzbdh AND jh.khdxdh=yj.khdxdh 
 INNER JOIN khdx_jg qx ON qx.khdxdh =jh.khdxdh
-where 1=1]]>
-        <isNotEmpty property="khnf">and  jh.khnf=$khnf$</isNotEmpty>
-      </isEqual>
-      <isEqual property="khzq" compareValue="1">
-        SELECT jh.khnf,qx.jgdh,qx.jgmc,yj.khzbmc,'1','2','3','4','5','6','7','8','9','10','11','12', yj.zbz1,yj.zbz2,yj.zbz3,yj.zbz4,yj.zbz5,yj.zbz6,yj.zbz7,yj.zbz8,yj.zbz9,yj.zbz10,yj.zbz11,yj.zbz12, jh.jhz1,jh.jhz2,jh.jhz3,jh.jhz4,jh.jhz5,jh.jhz6,jh.jhz7,jh.jhz8,jh.jhz9,jh.jhz10,jh.jhz11,jh.jhz12, jh.lzz1,jh.lzz2,jh.lzz3,jh.lzz4,jh.lzz5,jh.lzz6,jh.lzz7,jh.lzz8,jh.lzz9,jh.lzz10,jh.lzz11,jh.lzz12, CASE WHEN jh.jhz1 =0 OR jh.jhz1 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz1,0)/CAST(CASE WHEN jh.JHZ1=0 THEN NULL ELSE jh.JHZ1 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl1, CASE WHEN jh.jhz2 =0 OR jh.jhz2 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz2,0)/CAST(CASE WHEN jh.JHZ2=0 THEN NULL ELSE jh.JHZ2 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl2, CASE WHEN jh.jhz3 =0 OR jh.jhz3 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz3,0)/CAST(CASE WHEN jh.JHZ3=0 THEN NULL ELSE jh.JHZ3 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl3, CASE WHEN jh.jhz4 =0 OR jh.jhz4 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz4,0)/CAST(CASE WHEN jh.JHZ4=0 THEN NULL ELSE jh.JHZ4 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl4, CASE WHEN jh.jhz5 =0 OR jh.jhz5 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz5,0)/CAST(CASE WHEN jh.JHZ5=0 THEN NULL ELSE jh.JHZ5 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl5, CASE WHEN jh.jhz6 =0 OR jh.jhz6 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz6,0)/CAST(CASE WHEN jh.JHZ6=0 THEN NULL ELSE jh.JHZ6 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl6, CASE WHEN jh.jhz7 =0 OR jh.jhz7 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz7,0)/CAST(CASE WHEN jh.JHZ7=0 THEN NULL ELSE jh.JHZ7 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl7, CASE WHEN jh.jhz8 =0 OR jh.jhz8 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz8,0)/CAST(CASE WHEN jh.JHZ8=0 THEN NULL ELSE jh.JHZ8 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl8, CASE WHEN jh.jhz9 =0 OR jh.jhz9 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz9,0)/CAST(CASE WHEN jh.JHZ9=0 THEN NULL ELSE jh.JHZ9 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl9, CASE WHEN jh.jhz10 =0 OR jh.jhz10 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz10,0)/CAST(CASE WHEN jh.JHZ10=0 THEN NULL ELSE jh.JHZ10 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl10, CASE WHEN jh.jhz11 =0 OR jh.jhz11 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz11,0)/CAST(CASE WHEN jh.JHZ11=0 THEN NULL ELSE jh.JHZ11 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl11, CASE WHEN jh.jhz12 =0 OR jh.jhz12 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz12,0)/CAST(CASE WHEN jh.JHZ12=0 THEN NULL ELSE jh.JHZ12 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl12, CASE WHEN jh.lzz1 =0 OR jh.lzz1 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz1,0)/CAST(CASE WHEN jh.lzz1=0 THEN NULL ELSE jh.lzz1 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcb11, CASE WHEN jh.lzz2 =0 OR jh.lzz2 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz2,0)/CAST(CASE WHEN jh.lzz2=0 THEN NULL ELSE jh.lzz2 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl2, CASE WHEN jh.lzz3 =0 OR jh.lzz3 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz3,0)/CAST(CASE WHEN jh.lzz3=0 THEN NULL ELSE jh.lzz3 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl3, CASE WHEN jh.lzz4 =0 OR jh.lzz4 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz4,0)/CAST(CASE WHEN jh.lzz4=0 THEN NULL ELSE jh.lzz4 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl4, CASE WHEN jh.lzz5 =0 OR jh.lzz5 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz5,0)/CAST(CASE WHEN jh.lzz5=0 THEN NULL ELSE jh.lzz5 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl5, CASE WHEN jh.lzz6 =0 OR jh.lzz6 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz6,0)/CAST(CASE WHEN jh.lzz6=0 THEN NULL ELSE jh.lzz6 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl6, CASE WHEN jh.lzz7 =0 OR jh.lzz7 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz7,0)/CAST(CASE WHEN jh.lzz7=0 THEN NULL ELSE jh.lzz7 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl7, CASE WHEN jh.lzz8 =0 OR jh.lzz8 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz8,0)/CAST(CASE WHEN jh.lzz8=0 THEN NULL ELSE jh.lzz8 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl8, CASE WHEN jh.lzz9 =0 OR jh.lzz9 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz9,0)/CAST(CASE WHEN jh.lzz9=0 THEN NULL ELSE jh.lzz9 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl9, CASE WHEN jh.lzz10 =0 OR jh.lzz10 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz10,0)/CAST(CASE WHEN jh.lzz10=0 THEN NULL ELSE jh.lzz10 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl10, CASE WHEN jh.lzz11 =0 OR jh.lzz11 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz11,0)/CAST(CASE WHEN jh.lzz11=0 THEN NULL ELSE jh.lzz11 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl11, CASE WHEN jh.lzz12 =0 OR jh.lzz12 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz12,0)/CAST(CASE WHEN jh.lzz12=0 THEN NULL ELSE jh.lzz12 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl12 from(select yj.khzbdh,yj.khzbmc,yj.zbpx,yj.khdxdh     ,sum(yj.zbz1) as zbz1,sum(yj.zbz2) as zbz2,sum(yj.zbz3) as zbz3,sum(yj.zbz4) as zbz4,sum(yj.zbz5) as zbz5,sum(yj.zbz6) as zbz6     ,sum(yj.zbz7) as zbz7,sum(yj.zbz8) as zbz8,sum(yj.zbz9) as zbz9,sum(yj.zbz10) as zbz10,sum(yj.zbz11) as zbz11,sum(yj.zbz12) as zbz12     from(SELECT khzb.khzbdh,khzb.khzbmc,khzb.zbpx,yj.khdxdh         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='01' then COALESCE(yj.zbz,0) else 0 end as zbz1         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='02' then COALESCE(yj.zbz,0) else 0 end as zbz2         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='03' then COALESCE(yj.zbz,0) else 0 end as zbz3         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='04' then COALESCE(yj.zbz,0) else 0 end as zbz4         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='05' then COALESCE(yj.zbz,0) else 0 end as zbz5         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='06' then COALESCE(yj.zbz,0) else 0 end as zbz6         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='07' then COALESCE(yj.zbz,0) else 0 end as zbz7         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='08' then COALESCE(yj.zbz,0) else 0 end as zbz8         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='09' then COALESCE(yj.zbz,0) else 0 end as zbz9         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='10' then COALESCE(yj.zbz,0) else 0 end as zbz10         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='11' then COALESCE(yj.zbz,0) else 0 end as zbz11         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='12' then COALESCE(yj.zbz,0) else 0 end as zbz12         FROM khfa_khzb_jg khzb          INNER JOIN YJZB_GJYJ_JG yj ON khzb.zbdh = yj.zbdh AND khzb.bz =yj.bz AND khzb.sdbs=yj.sdbs AND khzb.tjkj=yj.tjkj          INNER JOIN         (SELECT tjrq FROM csb_sjw where tjrq=ym
-        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>
-        <![CDATA[and tjrq<=$sysdate$ 
+where 1=1]]>  
+        <isNotEmpty property="khnf">and jh.khnf=$khnf$</isNotEmpty> 
+      </isEqual>  
+      <isEqual property="khzq" compareValue="1">SELECT jh.khnf,qx.jgdh,qx.jgmc,yj.khzbmc,'1','2','3','4','5','6','7','8','9','10','11','12', yj.zbz1,yj.zbz2,yj.zbz3,yj.zbz4,yj.zbz5,yj.zbz6,yj.zbz7,yj.zbz8,yj.zbz9,yj.zbz10,yj.zbz11,yj.zbz12, jh.jhz1,jh.jhz2,jh.jhz3,jh.jhz4,jh.jhz5,jh.jhz6,jh.jhz7,jh.jhz8,jh.jhz9,jh.jhz10,jh.jhz11,jh.jhz12, jh.lzz1,jh.lzz2,jh.lzz3,jh.lzz4,jh.lzz5,jh.lzz6,jh.lzz7,jh.lzz8,jh.lzz9,jh.lzz10,jh.lzz11,jh.lzz12, CASE WHEN jh.jhz1 =0 OR jh.jhz1 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz1,0)/CAST(CASE WHEN jh.JHZ1=0 THEN NULL ELSE jh.JHZ1 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl1, CASE WHEN jh.jhz2 =0 OR jh.jhz2 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz2,0)/CAST(CASE WHEN jh.JHZ2=0 THEN NULL ELSE jh.JHZ2 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl2, CASE WHEN jh.jhz3 =0 OR jh.jhz3 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz3,0)/CAST(CASE WHEN jh.JHZ3=0 THEN NULL ELSE jh.JHZ3 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl3, CASE WHEN jh.jhz4 =0 OR jh.jhz4 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz4,0)/CAST(CASE WHEN jh.JHZ4=0 THEN NULL ELSE jh.JHZ4 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl4, CASE WHEN jh.jhz5 =0 OR jh.jhz5 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz5,0)/CAST(CASE WHEN jh.JHZ5=0 THEN NULL ELSE jh.JHZ5 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl5, CASE WHEN jh.jhz6 =0 OR jh.jhz6 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz6,0)/CAST(CASE WHEN jh.JHZ6=0 THEN NULL ELSE jh.JHZ6 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl6, CASE WHEN jh.jhz7 =0 OR jh.jhz7 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz7,0)/CAST(CASE WHEN jh.JHZ7=0 THEN NULL ELSE jh.JHZ7 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl7, CASE WHEN jh.jhz8 =0 OR jh.jhz8 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz8,0)/CAST(CASE WHEN jh.JHZ8=0 THEN NULL ELSE jh.JHZ8 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl8, CASE WHEN jh.jhz9 =0 OR jh.jhz9 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz9,0)/CAST(CASE WHEN jh.JHZ9=0 THEN NULL ELSE jh.JHZ9 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl9, CASE WHEN jh.jhz10 =0 OR jh.jhz10 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz10,0)/CAST(CASE WHEN jh.JHZ10=0 THEN NULL ELSE jh.JHZ10 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl10, CASE WHEN jh.jhz11 =0 OR jh.jhz11 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz11,0)/CAST(CASE WHEN jh.JHZ11=0 THEN NULL ELSE jh.JHZ11 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl11, CASE WHEN jh.jhz12 =0 OR jh.jhz12 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz12,0)/CAST(CASE WHEN jh.JHZ12=0 THEN NULL ELSE jh.JHZ12 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl12, CASE WHEN jh.lzz1 =0 OR jh.lzz1 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz1,0)/CAST(CASE WHEN jh.lzz1=0 THEN NULL ELSE jh.lzz1 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcb11, CASE WHEN jh.lzz2 =0 OR jh.lzz2 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz2,0)/CAST(CASE WHEN jh.lzz2=0 THEN NULL ELSE jh.lzz2 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl2, CASE WHEN jh.lzz3 =0 OR jh.lzz3 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz3,0)/CAST(CASE WHEN jh.lzz3=0 THEN NULL ELSE jh.lzz3 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl3, CASE WHEN jh.lzz4 =0 OR jh.lzz4 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz4,0)/CAST(CASE WHEN jh.lzz4=0 THEN NULL ELSE jh.lzz4 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl4, CASE WHEN jh.lzz5 =0 OR jh.lzz5 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz5,0)/CAST(CASE WHEN jh.lzz5=0 THEN NULL ELSE jh.lzz5 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl5, CASE WHEN jh.lzz6 =0 OR jh.lzz6 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz6,0)/CAST(CASE WHEN jh.lzz6=0 THEN NULL ELSE jh.lzz6 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl6, CASE WHEN jh.lzz7 =0 OR jh.lzz7 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz7,0)/CAST(CASE WHEN jh.lzz7=0 THEN NULL ELSE jh.lzz7 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl7, CASE WHEN jh.lzz8 =0 OR jh.lzz8 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz8,0)/CAST(CASE WHEN jh.lzz8=0 THEN NULL ELSE jh.lzz8 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl8, CASE WHEN jh.lzz9 =0 OR jh.lzz9 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz9,0)/CAST(CASE WHEN jh.lzz9=0 THEN NULL ELSE jh.lzz9 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl9, CASE WHEN jh.lzz10 =0 OR jh.lzz10 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz10,0)/CAST(CASE WHEN jh.lzz10=0 THEN NULL ELSE jh.lzz10 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl10, CASE WHEN jh.lzz11 =0 OR jh.lzz11 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz11,0)/CAST(CASE WHEN jh.lzz11=0 THEN NULL ELSE jh.lzz11 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl11, CASE WHEN jh.lzz12 =0 OR jh.lzz12 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz12,0)/CAST(CASE WHEN jh.lzz12=0 THEN NULL ELSE jh.lzz12 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl12 from(select yj.khzbdh,yj.khzbmc,yj.zbpx,yj.khdxdh ,sum(yj.zbz1) as zbz1,sum(yj.zbz2) as zbz2,sum(yj.zbz3) as zbz3,sum(yj.zbz4) as zbz4,sum(yj.zbz5) as zbz5,sum(yj.zbz6) as zbz6 ,sum(yj.zbz7) as zbz7,sum(yj.zbz8) as zbz8,sum(yj.zbz9) as zbz9,sum(yj.zbz10) as zbz10,sum(yj.zbz11) as zbz11,sum(yj.zbz12) as zbz12 from(SELECT khzb.khzbdh,khzb.khzbmc,khzb.zbpx,yj.khdxdh ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='01' then COALESCE(yj.zbz,0) else 0 end as zbz1 ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='02' then COALESCE(yj.zbz,0) else 0 end as zbz2 ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='03' then COALESCE(yj.zbz,0) else 0 end as zbz3 ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='04' then COALESCE(yj.zbz,0) else 0 end as zbz4 ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='05' then COALESCE(yj.zbz,0) else 0 end as zbz5 ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='06' then COALESCE(yj.zbz,0) else 0 end as zbz6 ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='07' then COALESCE(yj.zbz,0) else 0 end as zbz7 ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='08' then COALESCE(yj.zbz,0) else 0 end as zbz8 ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='09' then COALESCE(yj.zbz,0) else 0 end as zbz9 ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='10' then COALESCE(yj.zbz,0) else 0 end as zbz10 ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='11' then COALESCE(yj.zbz,0) else 0 end as zbz11 ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='12' then COALESCE(yj.zbz,0) else 0 end as zbz12 FROM khfa_khzb_jg khzb INNER JOIN YJZB_GJYJ_JG yj ON khzb.zbdh = yj.zbdh AND khzb.bz =yj.bz AND khzb.sdbs=yj.sdbs AND khzb.tjkj=yj.tjkj INNER JOIN (SELECT tjrq FROM csb_sjw where tjrq=ym
+        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>  <![CDATA[and tjrq<=$sysdate$ 
         UNION
-        SELECT tjrq FROM csb_sjw where tjrq=$sysdate$]]>
-        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>
-        <![CDATA[and tjrq<=$sysdate$
-        ) sjw ON sjw.tjrq =yj.tjrq]]>
-        <isNotEmpty property="jgkhdxdh">WHERE yj.khdxdh IN ($jgkhdxdh$)</isNotEmpty>
-        <isNotEmpty property="khzbdh">AND khzb.khzbdh=$khzbdh$</isNotEmpty>
-        <![CDATA[AND F_IS_EXISTS_STR('$sjwdStr$',yj.sjwd,',')>0
+        SELECT tjrq FROM csb_sjw where tjrq=$sysdate$]]>  
+        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>  <![CDATA[and tjrq<=$sysdate$
+        ) sjw ON sjw.tjrq =yj.tjrq]]>  
+        <isNotEmpty property="jgkhdxdh">WHERE yj.khdxdh IN ($jgkhdxdh$)</isNotEmpty>  
+        <isNotEmpty property="khzbdh">AND khzb.khzbdh=$khzbdh$</isNotEmpty>  <![CDATA[AND F_IS_EXISTS_STR('$sjwdStr$',yj.sjwd,',')>0
         )yj         
         group by yj.khzbdh,yj.khzbmc,yj.zbpx,yj.khdxdh
     )yj
 INNER JOIN yjzb_jgyjh jh ON yj.khzbdh=jh.khzbdh AND jh.khdxdh=yj.khdxdh 
 INNER JOIN khdx_jg qx ON qx.khdxdh =jh.khdxdh
 inner join table(fn_getsjjg_java_qx($sysdate$, $login_khdxdh$, 0)) qxx on qxx.khdxdh=qx.khdxdh
-WHERE 1=1]]>
-        <isNotEmpty property="khnf">and  jh.khnf=$khnf$</isNotEmpty>
-      </isEqual>
-      <isEqual property="khzq" compareValue="3">
-        SELECT jh.khnf, qx.jgdh, qx.jgmc, yjzb.khzbmc,yjzb.zbz,jh.jhz,jh.lzz, CASE WHEN jh.jhz =0 OR jh.jhz IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yjzb.zbz,0)/CAST(CASE WHEN jh.JHZ=0 THEN NULL ELSE jh.JHZ END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl, CASE WHEN jh.lzz =0 OR jh.lzz IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yjzb.zbz,0)/CAST(CASE WHEN jh.lzz=0 THEN NULL ELSE jh.lzz END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcb1 from(select yjzb.khzbdh,yjzb.khzbmc,yjzb.zbpx,yjzb.khdxdh     ,sum(yjzb.zbz) as zbz     from(SELECT khzb.khzbdh,khzb.khzbmc,khzb.zbpx,yjzb.khdxdh,COALESCE(yjzb.zbz,0) as zbz         FROM khfa_khzb_jg khzb          INNER JOIN YJZB_GJYJ_JG yjzb ON khzb.zbdh = yjzb.zbdh AND khzb.bz =yjzb.bz AND khzb.sdbs=yjzb.sdbs AND khzb.tjkj=yjzb.tjkj          INNER JOIN         (SELECT tjrq FROM csb_sjw where tjrq=nm
-        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>
-        <![CDATA[and tjrq<=$sysdate$ 
+WHERE 1=1]]>  
+        <isNotEmpty property="khnf">and jh.khnf=$khnf$</isNotEmpty> 
+      </isEqual>  
+      <isEqual property="khzq" compareValue="3">SELECT jh.khnf, qx.jgdh, qx.jgmc, yjzb.khzbmc,yjzb.zbz,jh.jhz,jh.lzz, CASE WHEN jh.jhz =0 OR jh.jhz IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yjzb.zbz,0)/CAST(CASE WHEN jh.JHZ=0 THEN NULL ELSE jh.JHZ END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl, CASE WHEN jh.lzz =0 OR jh.lzz IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yjzb.zbz,0)/CAST(CASE WHEN jh.lzz=0 THEN NULL ELSE jh.lzz END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcb1 from(select yjzb.khzbdh,yjzb.khzbmc,yjzb.zbpx,yjzb.khdxdh ,sum(yjzb.zbz) as zbz from(SELECT khzb.khzbdh,khzb.khzbmc,khzb.zbpx,yjzb.khdxdh,COALESCE(yjzb.zbz,0) as zbz FROM khfa_khzb_jg khzb INNER JOIN YJZB_GJYJ_JG yjzb ON khzb.zbdh = yjzb.zbdh AND khzb.bz =yjzb.bz AND khzb.sdbs=yjzb.sdbs AND khzb.tjkj=yjzb.tjkj INNER JOIN (SELECT tjrq FROM csb_sjw where tjrq=nm 
+        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>  <![CDATA[and tjrq<=$sysdate$ 
         UNION
-        SELECT tjrq FROM csb_sjw where tjrq=$sysdate$]]>
-        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>
-        <![CDATA[and tjrq<=$sysdate$
-        ) sjw ON sjw.tjrq =yjzb.tjrq]]>
-        <isNotEmpty property="jgkhdxdh">WHERE yjzb.khdxdh IN ($jgkhdxdh$)</isNotEmpty>
-        <isNotEmpty property="khzbdh">and khzb.khzbdh=$khzbdh$</isNotEmpty>
-        <![CDATA[AND F_IS_EXISTS_STR('$sjwdStr$',yjzb.sjwd,',')>0
+        SELECT tjrq FROM csb_sjw where tjrq=$sysdate$]]>  
+        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>  <![CDATA[and tjrq<=$sysdate$
+        ) sjw ON sjw.tjrq =yjzb.tjrq]]>  
+        <isNotEmpty property="jgkhdxdh">WHERE yjzb.khdxdh IN ($jgkhdxdh$)</isNotEmpty>  
+        <isNotEmpty property="khzbdh">and khzb.khzbdh=$khzbdh$</isNotEmpty>  <![CDATA[AND F_IS_EXISTS_STR('$sjwdStr$',yjzb.sjwd,',')>0
         )yjzb         
         group by yjzb.khzbdh,yjzb.khzbmc,yjzb.zbpx,yjzb.khdxdh
     )yjzb
 INNER JOIN yjzb_jgnjh jh ON yjzb.khzbdh=jh.khzbdh AND jh.khdxdh=yjzb.khdxdh 
 INNER JOIN khdx_jg qx ON qx.khdxdh =jh.khdxdh
-WHERE 1=1]]>
-        <isNotEmpty property="khnf">and  jh.khnf=$khnf$</isNotEmpty>
-      </isEqual>
-    </select>
-    <select id="dn12.jgjhjdcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from (
-      <isEqual property="khzq" compareValue="2">
-        SELECT jh.khnf, qx.jgdh, qx.jgmc, yj.khzbmc,'1', '2', '3', '4', yj.zbz1,yj.zbz2,yj.zbz3,yj.zbz4,jh.jhz1,jh.jhz2,jh.jhz3,jh.jhz4,jh.lzz1,jh.lzz2,jh.lzz3,jh.lzz4, CASE WHEN jh.jhz1 =0 OR jh.jhz1 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz1,0)/CAST(CASE WHEN jh.JHZ1=0 THEN NULL ELSE jh.JHZ1 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl1, CASE WHEN jh.jhz2 =0 OR jh.jhz2 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz2,0)/CAST(CASE WHEN jh.JHZ2=0 THEN NULL ELSE jh.JHZ2 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl2, CASE WHEN jh.jhz3 =0 OR jh.jhz3 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz3,0)/CAST(CASE WHEN jh.JHZ3=0 THEN NULL ELSE jh.JHZ3 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl3, CASE WHEN jh.jhz4 =0 OR jh.jhz4 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz4,0)/CAST(CASE WHEN jh.JHZ4=0 THEN NULL ELSE jh.JHZ4 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl4, CASE WHEN jh.lzz1 =0 OR jh.lzz1 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz1,0)/CAST(CASE WHEN jh.lzz1=0 THEN NULL ELSE jh.lzz1 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcb11, CASE WHEN jh.lzz2 =0 OR jh.lzz2 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz2,0)/CAST(CASE WHEN jh.lzz2=0 THEN NULL ELSE jh.lzz2 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl2, CASE WHEN jh.lzz3 =0 OR jh.lzz3 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz3,0)/CAST(CASE WHEN jh.lzz3=0 THEN NULL ELSE jh.lzz3 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl3, CASE WHEN jh.lzz4 =0 OR jh.lzz4 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz4,0)/CAST(CASE WHEN jh.lzz4=0 THEN NULL ELSE jh.lzz4 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl4 from(select yj.khzbdh,yj.khzbmc,yj.zbpx,yj.khdxdh,sum(yj.zbz1) as zbz1,sum(yj.zbz2) as zbz2,sum(yj.zbz3) as zbz3,sum(yj.zbz4) as zbz4     from(SELECT khzb.khzbdh,khzb.khzbmc,khzb.zbpx,yj.khdxdh,yj.sjwd         ,case when cast(substr(rtrim(f_numtochar(sjw.tjrq)),5,2) as integer) between 1 and 3 then COALESCE(yj.zbz,0) else 0 end as zbz1         ,case when cast(substr(rtrim(f_numtochar(sjw.tjrq)),5,2) as integer) between 4 and 6 then COALESCE(yj.zbz,0) else 0 end as zbz2         ,case when cast(substr(rtrim(f_numtochar(sjw.tjrq)),5,2) as integer) between 7 and 9 then COALESCE(yj.zbz,0) else 0 end as zbz3         ,case when cast(substr(rtrim(f_numtochar(sjw.tjrq)),5,2) as integer) between 10 and 12 then COALESCE(yj.zbz,0) else 0 end as zbz4         FROM khfa_khzb_jg khzb          INNER JOIN YJZB_GJYJ_JG yj ON khzb.zbdh = yj.zbdh AND khzb.bz =yj.bz AND khzb.sdbs=yj.sdbs AND khzb.tjkj=yj.tjkj          INNER JOIN         (SELECT tjrq FROM csb_sjw where tjrq=jm
-        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>
-        <![CDATA[and tjrq<=$sysdate$ 
+WHERE 1=1]]>  
+        <isNotEmpty property="khnf">and jh.khnf=$khnf$</isNotEmpty> 
+      </isEqual> 
+    </select>  
+    <select id="dn0.jgjhjdcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
+      <isEqual property="khzq" compareValue="2">SELECT jh.khnf, qx.jgdh, qx.jgmc, yj.khzbmc,'1', '2', '3', '4', yj.zbz1,yj.zbz2,yj.zbz3,yj.zbz4,jh.jhz1,jh.jhz2,jh.jhz3,jh.jhz4,jh.lzz1,jh.lzz2,jh.lzz3,jh.lzz4, CASE WHEN jh.jhz1 =0 OR jh.jhz1 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz1,0)/CAST(CASE WHEN jh.JHZ1=0 THEN NULL ELSE jh.JHZ1 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl1, CASE WHEN jh.jhz2 =0 OR jh.jhz2 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz2,0)/CAST(CASE WHEN jh.JHZ2=0 THEN NULL ELSE jh.JHZ2 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl2, CASE WHEN jh.jhz3 =0 OR jh.jhz3 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz3,0)/CAST(CASE WHEN jh.JHZ3=0 THEN NULL ELSE jh.JHZ3 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl3, CASE WHEN jh.jhz4 =0 OR jh.jhz4 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz4,0)/CAST(CASE WHEN jh.JHZ4=0 THEN NULL ELSE jh.JHZ4 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl4, CASE WHEN jh.lzz1 =0 OR jh.lzz1 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz1,0)/CAST(CASE WHEN jh.lzz1=0 THEN NULL ELSE jh.lzz1 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcb11, CASE WHEN jh.lzz2 =0 OR jh.lzz2 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz2,0)/CAST(CASE WHEN jh.lzz2=0 THEN NULL ELSE jh.lzz2 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl2, CASE WHEN jh.lzz3 =0 OR jh.lzz3 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz3,0)/CAST(CASE WHEN jh.lzz3=0 THEN NULL ELSE jh.lzz3 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl3, CASE WHEN jh.lzz4 =0 OR jh.lzz4 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz4,0)/CAST(CASE WHEN jh.lzz4=0 THEN NULL ELSE jh.lzz4 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl4 from(select yj.khzbdh,yj.khzbmc,yj.zbpx,yj.khdxdh,sum(yj.zbz1) as zbz1,sum(yj.zbz2) as zbz2,sum(yj.zbz3) as zbz3,sum(yj.zbz4) as zbz4 from(SELECT khzb.khzbdh,khzb.khzbmc,khzb.zbpx,yj.khdxdh,yj.sjwd ,case when cast(substr(rtrim(f_numtochar(sjw.tjrq)),5,2) as integer) between 1 and 3 then COALESCE(yj.zbz,0) else 0 end as zbz1 ,case when cast(substr(rtrim(f_numtochar(sjw.tjrq)),5,2) as integer) between 4 and 6 then COALESCE(yj.zbz,0) else 0 end as zbz2 ,case when cast(substr(rtrim(f_numtochar(sjw.tjrq)),5,2) as integer) between 7 and 9 then COALESCE(yj.zbz,0) else 0 end as zbz3 ,case when cast(substr(rtrim(f_numtochar(sjw.tjrq)),5,2) as integer) between 10 and 12 then COALESCE(yj.zbz,0) else 0 end as zbz4 FROM khfa_khzb_jg khzb INNER JOIN YJZB_GJYJ_JG yj ON khzb.zbdh = yj.zbdh AND khzb.bz =yj.bz AND khzb.sdbs=yj.sdbs AND khzb.tjkj=yj.tjkj INNER JOIN (SELECT tjrq FROM csb_sjw where tjrq=jm
+        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>  <![CDATA[and tjrq<=$sysdate$ 
         UNION
-        SELECT tjrq FROM csb_sjw where tjrq=$sysdate$]]>
-        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>
-        <![CDATA[and tjrq<=$sysdate$
-        )sjw ON sjw.tjrq =yj.tjrq]]>
-        <isNotEmpty property="jgkhdxdh">WHERE yj.khdxdh IN ($jgkhdxdh$)</isNotEmpty>
-        <isNotEmpty property="khzbdh">and khzb.khzbdh=$khzbdh$</isNotEmpty>
-        <![CDATA[AND F_IS_EXISTS_STR('$sjwdStr$',yj.sjwd,',')>0
+        SELECT tjrq FROM csb_sjw where tjrq=$sysdate$]]>  
+        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>  <![CDATA[and tjrq<=$sysdate$
+        )sjw ON sjw.tjrq =yj.tjrq]]>  
+        <isNotEmpty property="jgkhdxdh">WHERE yj.khdxdh IN ($jgkhdxdh$)</isNotEmpty>  
+        <isNotEmpty property="khzbdh">and khzb.khzbdh=$khzbdh$</isNotEmpty>  <![CDATA[AND F_IS_EXISTS_STR('$sjwdStr$',yj.sjwd,',')>0
         )yj group by yj.khzbdh,yj.khzbmc,yj.zbpx,yj.khdxdh
 )yj
 INNER JOIN yjzb_jgjjh jh ON yj.khzbdh=jh.khzbdh AND jh.khdxdh=yj.khdxdh 
 INNER JOIN khdx_jg qx ON qx.khdxdh =jh.khdxdh
-where 1=1]]>
-        <isNotEmpty property="khnf">and  jh.khnf=$khnf$</isNotEmpty>
-      </isEqual>
-      <isEqual property="khzq" compareValue="1">
-        SELECT jh.khnf,qx.jgdh,qx.jgmc,yj.khzbmc,'1','2','3','4','5','6','7','8','9','10','11','12', yj.zbz1,yj.zbz2,yj.zbz3,yj.zbz4,yj.zbz5,yj.zbz6,yj.zbz7,yj.zbz8,yj.zbz9,yj.zbz10,yj.zbz11,yj.zbz12, jh.jhz1,jh.jhz2,jh.jhz3,jh.jhz4,jh.jhz5,jh.jhz6,jh.jhz7,jh.jhz8,jh.jhz9,jh.jhz10,jh.jhz11,jh.jhz12, jh.lzz1,jh.lzz2,jh.lzz3,jh.lzz4,jh.lzz5,jh.lzz6,jh.lzz7,jh.lzz8,jh.lzz9,jh.lzz10,jh.lzz11,jh.lzz12, CASE WHEN jh.jhz1 =0 OR jh.jhz1 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz1,0)/CAST(CASE WHEN jh.JHZ1=0 THEN NULL ELSE jh.JHZ1 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl1, CASE WHEN jh.jhz2 =0 OR jh.jhz2 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz2,0)/CAST(CASE WHEN jh.JHZ2=0 THEN NULL ELSE jh.JHZ2 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl2, CASE WHEN jh.jhz3 =0 OR jh.jhz3 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz3,0)/CAST(CASE WHEN jh.JHZ3=0 THEN NULL ELSE jh.JHZ3 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl3, CASE WHEN jh.jhz4 =0 OR jh.jhz4 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz4,0)/CAST(CASE WHEN jh.JHZ4=0 THEN NULL ELSE jh.JHZ4 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl4, CASE WHEN jh.jhz5 =0 OR jh.jhz5 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz5,0)/CAST(CASE WHEN jh.JHZ5=0 THEN NULL ELSE jh.JHZ5 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl5, CASE WHEN jh.jhz6 =0 OR jh.jhz6 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz6,0)/CAST(CASE WHEN jh.JHZ6=0 THEN NULL ELSE jh.JHZ6 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl6, CASE WHEN jh.jhz7 =0 OR jh.jhz7 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz7,0)/CAST(CASE WHEN jh.JHZ7=0 THEN NULL ELSE jh.JHZ7 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl7, CASE WHEN jh.jhz8 =0 OR jh.jhz8 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz8,0)/CAST(CASE WHEN jh.JHZ8=0 THEN NULL ELSE jh.JHZ8 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl8, CASE WHEN jh.jhz9 =0 OR jh.jhz9 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz9,0)/CAST(CASE WHEN jh.JHZ9=0 THEN NULL ELSE jh.JHZ9 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl9, CASE WHEN jh.jhz10 =0 OR jh.jhz10 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz10,0)/CAST(CASE WHEN jh.JHZ10=0 THEN NULL ELSE jh.JHZ10 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl10, CASE WHEN jh.jhz11 =0 OR jh.jhz11 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz11,0)/CAST(CASE WHEN jh.JHZ11=0 THEN NULL ELSE jh.JHZ11 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl11, CASE WHEN jh.jhz12 =0 OR jh.jhz12 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz12,0)/CAST(CASE WHEN jh.JHZ12=0 THEN NULL ELSE jh.JHZ12 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl12, CASE WHEN jh.lzz1 =0 OR jh.lzz1 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz1,0)/CAST(CASE WHEN jh.lzz1=0 THEN NULL ELSE jh.lzz1 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcb11, CASE WHEN jh.lzz2 =0 OR jh.lzz2 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz2,0)/CAST(CASE WHEN jh.lzz2=0 THEN NULL ELSE jh.lzz2 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl2, CASE WHEN jh.lzz3 =0 OR jh.lzz3 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz3,0)/CAST(CASE WHEN jh.lzz3=0 THEN NULL ELSE jh.lzz3 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl3, CASE WHEN jh.lzz4 =0 OR jh.lzz4 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz4,0)/CAST(CASE WHEN jh.lzz4=0 THEN NULL ELSE jh.lzz4 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl4, CASE WHEN jh.lzz5 =0 OR jh.lzz5 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz5,0)/CAST(CASE WHEN jh.lzz5=0 THEN NULL ELSE jh.lzz5 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl5, CASE WHEN jh.lzz6 =0 OR jh.lzz6 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz6,0)/CAST(CASE WHEN jh.lzz6=0 THEN NULL ELSE jh.lzz6 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl6, CASE WHEN jh.lzz7 =0 OR jh.lzz7 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz7,0)/CAST(CASE WHEN jh.lzz7=0 THEN NULL ELSE jh.lzz7 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl7, CASE WHEN jh.lzz8 =0 OR jh.lzz8 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz8,0)/CAST(CASE WHEN jh.lzz8=0 THEN NULL ELSE jh.lzz8 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl8, CASE WHEN jh.lzz9 =0 OR jh.lzz9 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz9,0)/CAST(CASE WHEN jh.lzz9=0 THEN NULL ELSE jh.lzz9 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl9, CASE WHEN jh.lzz10 =0 OR jh.lzz10 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz10,0)/CAST(CASE WHEN jh.lzz10=0 THEN NULL ELSE jh.lzz10 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl10, CASE WHEN jh.lzz11 =0 OR jh.lzz11 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz11,0)/CAST(CASE WHEN jh.lzz11=0 THEN NULL ELSE jh.lzz11 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl11, CASE WHEN jh.lzz12 =0 OR jh.lzz12 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz12,0)/CAST(CASE WHEN jh.lzz12=0 THEN NULL ELSE jh.lzz12 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl12 from(select yj.khzbdh,yj.khzbmc,yj.zbpx,yj.khdxdh     ,sum(yj.zbz1) as zbz1,sum(yj.zbz2) as zbz2,sum(yj.zbz3) as zbz3,sum(yj.zbz4) as zbz4,sum(yj.zbz5) as zbz5,sum(yj.zbz6) as zbz6     ,sum(yj.zbz7) as zbz7,sum(yj.zbz8) as zbz8,sum(yj.zbz9) as zbz9,sum(yj.zbz10) as zbz10,sum(yj.zbz11) as zbz11,sum(yj.zbz12) as zbz12     from(SELECT khzb.khzbdh,khzb.khzbmc,khzb.zbpx,yj.khdxdh         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='01' then COALESCE(yj.zbz,0) else 0 end as zbz1         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='02' then COALESCE(yj.zbz,0) else 0 end as zbz2         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='03' then COALESCE(yj.zbz,0) else 0 end as zbz3         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='04' then COALESCE(yj.zbz,0) else 0 end as zbz4         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='05' then COALESCE(yj.zbz,0) else 0 end as zbz5         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='06' then COALESCE(yj.zbz,0) else 0 end as zbz6         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='07' then COALESCE(yj.zbz,0) else 0 end as zbz7         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='08' then COALESCE(yj.zbz,0) else 0 end as zbz8         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='09' then COALESCE(yj.zbz,0) else 0 end as zbz9         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='10' then COALESCE(yj.zbz,0) else 0 end as zbz10         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='11' then COALESCE(yj.zbz,0) else 0 end as zbz11         ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='12' then COALESCE(yj.zbz,0) else 0 end as zbz12         FROM khfa_khzb_jg khzb          INNER JOIN YJZB_GJYJ_JG yj ON khzb.zbdh = yj.zbdh AND khzb.bz =yj.bz AND khzb.sdbs=yj.sdbs AND khzb.tjkj=yj.tjkj          INNER JOIN         (SELECT tjrq FROM csb_sjw where tjrq=ym
-        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>
-        <![CDATA[and tjrq<=$sysdate$ 
+where 1=1]]>  
+        <isNotEmpty property="khnf">and jh.khnf=$khnf$</isNotEmpty> 
+      </isEqual>  
+      <isEqual property="khzq" compareValue="1">SELECT jh.khnf,qx.jgdh,qx.jgmc,yj.khzbmc,'1','2','3','4','5','6','7','8','9','10','11','12', yj.zbz1,yj.zbz2,yj.zbz3,yj.zbz4,yj.zbz5,yj.zbz6,yj.zbz7,yj.zbz8,yj.zbz9,yj.zbz10,yj.zbz11,yj.zbz12, jh.jhz1,jh.jhz2,jh.jhz3,jh.jhz4,jh.jhz5,jh.jhz6,jh.jhz7,jh.jhz8,jh.jhz9,jh.jhz10,jh.jhz11,jh.jhz12, jh.lzz1,jh.lzz2,jh.lzz3,jh.lzz4,jh.lzz5,jh.lzz6,jh.lzz7,jh.lzz8,jh.lzz9,jh.lzz10,jh.lzz11,jh.lzz12, CASE WHEN jh.jhz1 =0 OR jh.jhz1 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz1,0)/CAST(CASE WHEN jh.JHZ1=0 THEN NULL ELSE jh.JHZ1 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl1, CASE WHEN jh.jhz2 =0 OR jh.jhz2 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz2,0)/CAST(CASE WHEN jh.JHZ2=0 THEN NULL ELSE jh.JHZ2 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl2, CASE WHEN jh.jhz3 =0 OR jh.jhz3 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz3,0)/CAST(CASE WHEN jh.JHZ3=0 THEN NULL ELSE jh.JHZ3 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl3, CASE WHEN jh.jhz4 =0 OR jh.jhz4 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz4,0)/CAST(CASE WHEN jh.JHZ4=0 THEN NULL ELSE jh.JHZ4 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl4, CASE WHEN jh.jhz5 =0 OR jh.jhz5 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz5,0)/CAST(CASE WHEN jh.JHZ5=0 THEN NULL ELSE jh.JHZ5 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl5, CASE WHEN jh.jhz6 =0 OR jh.jhz6 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz6,0)/CAST(CASE WHEN jh.JHZ6=0 THEN NULL ELSE jh.JHZ6 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl6, CASE WHEN jh.jhz7 =0 OR jh.jhz7 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz7,0)/CAST(CASE WHEN jh.JHZ7=0 THEN NULL ELSE jh.JHZ7 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl7, CASE WHEN jh.jhz8 =0 OR jh.jhz8 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz8,0)/CAST(CASE WHEN jh.JHZ8=0 THEN NULL ELSE jh.JHZ8 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl8, CASE WHEN jh.jhz9 =0 OR jh.jhz9 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz9,0)/CAST(CASE WHEN jh.JHZ9=0 THEN NULL ELSE jh.JHZ9 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl9, CASE WHEN jh.jhz10 =0 OR jh.jhz10 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz10,0)/CAST(CASE WHEN jh.JHZ10=0 THEN NULL ELSE jh.JHZ10 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl10, CASE WHEN jh.jhz11 =0 OR jh.jhz11 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz11,0)/CAST(CASE WHEN jh.JHZ11=0 THEN NULL ELSE jh.JHZ11 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl11, CASE WHEN jh.jhz12 =0 OR jh.jhz12 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz12,0)/CAST(CASE WHEN jh.JHZ12=0 THEN NULL ELSE jh.JHZ12 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl12, CASE WHEN jh.lzz1 =0 OR jh.lzz1 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz1,0)/CAST(CASE WHEN jh.lzz1=0 THEN NULL ELSE jh.lzz1 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcb11, CASE WHEN jh.lzz2 =0 OR jh.lzz2 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz2,0)/CAST(CASE WHEN jh.lzz2=0 THEN NULL ELSE jh.lzz2 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl2, CASE WHEN jh.lzz3 =0 OR jh.lzz3 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz3,0)/CAST(CASE WHEN jh.lzz3=0 THEN NULL ELSE jh.lzz3 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl3, CASE WHEN jh.lzz4 =0 OR jh.lzz4 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz4,0)/CAST(CASE WHEN jh.lzz4=0 THEN NULL ELSE jh.lzz4 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl4, CASE WHEN jh.lzz5 =0 OR jh.lzz5 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz5,0)/CAST(CASE WHEN jh.lzz5=0 THEN NULL ELSE jh.lzz5 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl5, CASE WHEN jh.lzz6 =0 OR jh.lzz6 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz6,0)/CAST(CASE WHEN jh.lzz6=0 THEN NULL ELSE jh.lzz6 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl6, CASE WHEN jh.lzz7 =0 OR jh.lzz7 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz7,0)/CAST(CASE WHEN jh.lzz7=0 THEN NULL ELSE jh.lzz7 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl7, CASE WHEN jh.lzz8 =0 OR jh.lzz8 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz8,0)/CAST(CASE WHEN jh.lzz8=0 THEN NULL ELSE jh.lzz8 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl8, CASE WHEN jh.lzz9 =0 OR jh.lzz9 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz9,0)/CAST(CASE WHEN jh.lzz9=0 THEN NULL ELSE jh.lzz9 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl9, CASE WHEN jh.lzz10 =0 OR jh.lzz10 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz10,0)/CAST(CASE WHEN jh.lzz10=0 THEN NULL ELSE jh.lzz10 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl10, CASE WHEN jh.lzz11 =0 OR jh.lzz11 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz11,0)/CAST(CASE WHEN jh.lzz11=0 THEN NULL ELSE jh.lzz11 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl11, CASE WHEN jh.lzz12 =0 OR jh.lzz12 IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yj.zbz12,0)/CAST(CASE WHEN jh.lzz12=0 THEN NULL ELSE jh.lzz12 END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcbl12 from(select yj.khzbdh,yj.khzbmc,yj.zbpx,yj.khdxdh ,sum(yj.zbz1) as zbz1,sum(yj.zbz2) as zbz2,sum(yj.zbz3) as zbz3,sum(yj.zbz4) as zbz4,sum(yj.zbz5) as zbz5,sum(yj.zbz6) as zbz6 ,sum(yj.zbz7) as zbz7,sum(yj.zbz8) as zbz8,sum(yj.zbz9) as zbz9,sum(yj.zbz10) as zbz10,sum(yj.zbz11) as zbz11,sum(yj.zbz12) as zbz12 from(SELECT khzb.khzbdh,khzb.khzbmc,khzb.zbpx,yj.khdxdh ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='01' then COALESCE(yj.zbz,0) else 0 end as zbz1 ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='02' then COALESCE(yj.zbz,0) else 0 end as zbz2 ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='03' then COALESCE(yj.zbz,0) else 0 end as zbz3 ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='04' then COALESCE(yj.zbz,0) else 0 end as zbz4 ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='05' then COALESCE(yj.zbz,0) else 0 end as zbz5 ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='06' then COALESCE(yj.zbz,0) else 0 end as zbz6 ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='07' then COALESCE(yj.zbz,0) else 0 end as zbz7 ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='08' then COALESCE(yj.zbz,0) else 0 end as zbz8 ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='09' then COALESCE(yj.zbz,0) else 0 end as zbz9 ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='10' then COALESCE(yj.zbz,0) else 0 end as zbz10 ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='11' then COALESCE(yj.zbz,0) else 0 end as zbz11 ,case when substr(rtrim(f_numtochar(sjw.tjrq)),5,2)='12' then COALESCE(yj.zbz,0) else 0 end as zbz12 FROM khfa_khzb_jg khzb INNER JOIN YJZB_GJYJ_JG yj ON khzb.zbdh = yj.zbdh AND khzb.bz =yj.bz AND khzb.sdbs=yj.sdbs AND khzb.tjkj=yj.tjkj INNER JOIN (SELECT tjrq FROM csb_sjw where tjrq=ym
+        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>  <![CDATA[and tjrq<=$sysdate$ 
         UNION
-        SELECT tjrq FROM csb_sjw where tjrq=$sysdate$]]>
-        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>
-        <![CDATA[and tjrq<=$sysdate$
-        ) sjw ON sjw.tjrq =yj.tjrq]]>
-        <isNotEmpty property="jgkhdxdh">WHERE yj.khdxdh IN ($jgkhdxdh$)</isNotEmpty>
-        <isNotEmpty property="khzbdh">AND khzb.khzbdh=$khzbdh$</isNotEmpty>
-        <![CDATA[AND F_IS_EXISTS_STR('$sjwdStr$',yj.sjwd,',')>0
+        SELECT tjrq FROM csb_sjw where tjrq=$sysdate$]]>  
+        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>  <![CDATA[and tjrq<=$sysdate$
+        ) sjw ON sjw.tjrq =yj.tjrq]]>  
+        <isNotEmpty property="jgkhdxdh">WHERE yj.khdxdh IN ($jgkhdxdh$)</isNotEmpty>  
+        <isNotEmpty property="khzbdh">AND khzb.khzbdh=$khzbdh$</isNotEmpty>  <![CDATA[AND F_IS_EXISTS_STR('$sjwdStr$',yj.sjwd,',')>0
         )yj         
         group by yj.khzbdh,yj.khzbmc,yj.zbpx,yj.khdxdh
     )yj
 INNER JOIN yjzb_jgyjh jh ON yj.khzbdh=jh.khzbdh AND jh.khdxdh=yj.khdxdh 
 INNER JOIN khdx_jg qx ON qx.khdxdh =jh.khdxdh
 inner join table(fn_getsjjg_java_qx($sysdate$, $login_khdxdh$, 0)) qxx on qxx.khdxdh=qx.khdxdh
-WHERE 1=1]]>
-        <isNotEmpty property="khnf">and  jh.khnf=$khnf$</isNotEmpty>
-      </isEqual>
-      <isEqual property="khzq" compareValue="3">
-        SELECT jh.khnf, qx.jgdh, qx.jgmc, yjzb.khzbmc,yjzb.zbz,jh.jhz,jh.lzz, CASE WHEN jh.jhz =0 OR jh.jhz IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yjzb.zbz,0)/CAST(CASE WHEN jh.JHZ=0 THEN NULL ELSE jh.JHZ END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl, CASE WHEN jh.lzz =0 OR jh.lzz IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yjzb.zbz,0)/CAST(CASE WHEN jh.lzz=0 THEN NULL ELSE jh.lzz END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcb1 from(select yjzb.khzbdh,yjzb.khzbmc,yjzb.zbpx,yjzb.khdxdh     ,sum(yjzb.zbz) as zbz     from(SELECT khzb.khzbdh,khzb.khzbmc,khzb.zbpx,yjzb.khdxdh,COALESCE(yjzb.zbz,0) as zbz         FROM khfa_khzb_jg khzb          INNER JOIN YJZB_GJYJ_JG yjzb ON khzb.zbdh = yjzb.zbdh AND khzb.bz =yjzb.bz AND khzb.sdbs=yjzb.sdbs AND khzb.tjkj=yjzb.tjkj          INNER JOIN         (SELECT tjrq FROM csb_sjw where tjrq=nm
-        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>
-        <![CDATA[and tjrq<=$sysdate$ 
+WHERE 1=1]]>  
+        <isNotEmpty property="khnf">and jh.khnf=$khnf$</isNotEmpty> 
+      </isEqual>  
+      <isEqual property="khzq" compareValue="3">SELECT jh.khnf, qx.jgdh, qx.jgmc, yjzb.khzbmc,yjzb.zbz,jh.jhz,jh.lzz, CASE WHEN jh.jhz =0 OR jh.jhz IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yjzb.zbz,0)/CAST(CASE WHEN jh.JHZ=0 THEN NULL ELSE jh.JHZ END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END jhwcbl, CASE WHEN jh.lzz =0 OR jh.lzz IS NULL THEN '-' ELSE f_numtochar(CAST((COALESCE(yjzb.zbz,0)/CAST(CASE WHEN jh.lzz=0 THEN NULL ELSE jh.lzz END AS DECIMAL(19,2)))*100 AS DECIMAL(19,2))) ||'%' END lzwcb1 from(select yjzb.khzbdh,yjzb.khzbmc,yjzb.zbpx,yjzb.khdxdh ,sum(yjzb.zbz) as zbz from(SELECT khzb.khzbdh,khzb.khzbmc,khzb.zbpx,yjzb.khdxdh,COALESCE(yjzb.zbz,0) as zbz FROM khfa_khzb_jg khzb INNER JOIN YJZB_GJYJ_JG yjzb ON khzb.zbdh = yjzb.zbdh AND khzb.bz =yjzb.bz AND khzb.sdbs=yjzb.sdbs AND khzb.tjkj=yjzb.tjkj INNER JOIN (SELECT tjrq FROM csb_sjw where tjrq=nm 
+        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>  <![CDATA[and tjrq<=$sysdate$ 
         UNION
-        SELECT tjrq FROM csb_sjw where tjrq=$sysdate$]]>
-        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>
-        <![CDATA[and tjrq<=$sysdate$
-        ) sjw ON sjw.tjrq =yjzb.tjrq]]>
-        <isNotEmpty property="jgkhdxdh">WHERE yjzb.khdxdh IN ($jgkhdxdh$)</isNotEmpty>
-        <isNotEmpty property="khzbdh">and khzb.khzbdh=$khzbdh$</isNotEmpty>
-        <![CDATA[AND F_IS_EXISTS_STR('$sjwdStr$',yjzb.sjwd,',')>0
+        SELECT tjrq FROM csb_sjw where tjrq=$sysdate$]]>  
+        <isNotEmpty property="khnf">and tjrq between $khnf$0101 and $khnf$1231</isNotEmpty>  <![CDATA[and tjrq<=$sysdate$
+        ) sjw ON sjw.tjrq =yjzb.tjrq]]>  
+        <isNotEmpty property="jgkhdxdh">WHERE yjzb.khdxdh IN ($jgkhdxdh$)</isNotEmpty>  
+        <isNotEmpty property="khzbdh">and khzb.khzbdh=$khzbdh$</isNotEmpty>  <![CDATA[AND F_IS_EXISTS_STR('$sjwdStr$',yjzb.sjwd,',')>0
         )yjzb         
         group by yjzb.khzbdh,yjzb.khzbmc,yjzb.zbpx,yjzb.khdxdh
     )yjzb
 INNER JOIN yjzb_jgnjh jh ON yjzb.khzbdh=jh.khzbdh AND jh.khdxdh=yjzb.khdxdh 
 INNER JOIN khdx_jg qx ON qx.khdxdh =jh.khdxdh
-WHERE 1=1]]>
-        <isNotEmpty property="khnf">and  jh.khnf=$khnf$</isNotEmpty>
-      </isEqual>
-      ) t
-    </select>
-  </sqlMap>
-  <rels>
-    <items id="jgjhjdcx_xsjy1jgj">
-      <item name="khzq" compareValue="2" operate="isEqual" />
-    </items>
-    <items id="jgjhjdcx_njgj">
-      <item name="khzq" compareValue="3" operate="isEqual" />
-    </items>
-    <items id="jgjhjdcx_yjgj">
-      <item name="khzq" compareValue="1" operate="isEqual" />
-    </items>
-  </rels>
+WHERE 1=1]]>  
+        <isNotEmpty property="khnf">and jh.khnf=$khnf$</isNotEmpty> 
+      </isEqual> ) t
+    </select> 
+  </sqlMap>  
+  <rels> 
+    <items id="jgjhjdcx_xsjy1jgj"> 
+      <item name="khzq" compareValue="2" operate="isEqual"/> 
+    </items>  
+    <items id="jgjhjdcx_njgj"> 
+      <item name="khzq" compareValue="3" operate="isEqual"/> 
+    </items>  
+    <items id="jgjhjdcx_yjgj"> 
+      <item name="khzq" compareValue="1" operate="isEqual"/> 
+    </items> 
+  </rels>  
   <javascript><![CDATA[jQuery(document).ready(function () {
 });
 
@@ -354,6 +329,5 @@ function dayAdd(myTjrq,num){
   if(month<10){month=0+""+month;}
   if(day<10){day=0+""+day;}
   return year+""+month+""+day;
-}]]></javascript>
+}]]></javascript> 
 </pageSetting>
-

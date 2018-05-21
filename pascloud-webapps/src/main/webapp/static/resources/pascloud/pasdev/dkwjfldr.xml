@@ -1,260 +1,207 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="dkwjfldr" title="贷款五级分类导入" type="import" version="2.0.0">
-  <template>
-    <src>ONLINE</src>
-    <column>
-      <text>账户代号</text>
-      <name>default0</name>
-      <index>0</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>到期日期</text>
-      <name>dqrq</name>
-      <index>1</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>发放日期</text>
-      <name>ffrq</name>
-      <index>2</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>贷款金额</text>
-      <name>dkje</name>
-      <index>3</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>起始日期</text>
-      <name>qsrq</name>
-      <index>4</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate />
-      <length>100</length>
-      <req>Y</req>
-    </column>
-    <column>
-      <text>五级分类</text>
-      <name>wjfl</name>
-      <index>5</index>
-      <width>120</width>
-      <height />
-      <align>center</align>
-      <annotate>正常、关注、次级、
-可疑、损失</annotate>
-      <length>100</length>
-      <req>Y</req>
-    </column>
-  </template>
-  <table id="dkwjfldr_table" page="true">
-    <col id="ZT" title="状态" align="center" type="string" width="50" />
-    <col id="ERROR" title="错误原因" align="center" type="string" width="250" />
-    <col id="DEFAULT0" title="账户代号" align="center" type="" width="120" />
-    <col id="DQRQ" title="到期日期" align="center" type="" width="120" />
-    <col id="FFRQ" title="发放日期" align="center" type="" width="120" />
-    <col id="DKJE" title="贷款金额" align="center" type="" width="120" />
-    <col id="QSRQ" title="起始日期" align="center" type="" width="120" />
-    <col id="WJFL" title="五级分类" align="center" type="" width="120" />
-  </table>
-  <flow>
-    <rule>
-      <sql type="update">dkwjfldr_check_default0_0</sql>
-      <sql type="update">dkwjfldr_check_dqrq_1</sql>
-      <sql type="update">dkwjfldr_check_dqrq_2</sql>
-      <sql type="update">dkwjfldr_check_ffrq_3</sql>
-      <sql type="update">dkwjfldr_check_ffrq_4</sql>
-      <sql type="update">dkwjfldr_check_dkje_5</sql>
-      <sql type="update">dkwjfldr_check_dkje_6</sql>
-      <sql type="update">dkwjfldr_check_qsrq_7</sql>
-      <sql type="update">dkwjfldr_check_qsrq_8</sql>
-      <sql type="update">dkwjfldr_check_wjfl_9</sql>
-      <sql type="update">dkwjfldr_checkupdate_default0_0</sql>
-      <sql type="update">dkwjfldr_checkupdate_default0_1</sql>
-      <sql type="update">dkwjfldr_checkupdate_dqrq_0</sql>
-      <sql type="update">dkwjfldr_checkupdate_ffrq_0</sql>
-      <sql type="update">dkwjfldr_checkupdate_dkje_0</sql>
-      <sql type="update">dkwjfldr_checkupdate_wjfl_0</sql>
-      <sql type="update">dkwjfldr_exists_target</sql>
-      <sql type="update">dkwjfldr_exists_same_temp</sql>
-    </rule>
-    <before>
-      <sql type="delete">dkwjfldr_before_insert_delqsrqAndCover</sql>
-      <sql type="update">dkwjfldr_before_insert_cutqsrq</sql>
-      <sql type="update">dkwjfldr_before_insert_0</sql>
-    </before>
-    <cover />
-    <insert>
-      <sql type="insert">dkwjfldr_insert_into_target</sql>
-    </insert>
-    <after />
-  </flow>
-  <sqlMap namespace="studio.dkwjfldr">
-    <update parameterClass="java.util.Map" id="dn12.dkwjfldr_check_default0_0">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  dkwjfldr_temp  t  set  t.error=t.error||'账户代号输入错误，不能为空!' 
-		where  f_java_rule_length(t.default0)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dkwjfldr_check_dqrq_1">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  dkwjfldr_temp  t  
-		set  t.error=t.error||'到期日期输入错误，格式应该是:yyyyMMdd!'  
-		where  f_java_rule_date(t.dqrq,'yyyyMMdd')=1  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dkwjfldr_check_dqrq_2">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  dkwjfldr_temp  t  set  t.error=t.error||'到期日期输入错误，不能为空!' 
-		where  f_java_rule_length(t.dqrq)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dkwjfldr_check_ffrq_3">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  dkwjfldr_temp  t  
-		set  t.error=t.error||'发放日期输入错误，格式应该是:yyyyMMdd!'  
-		where  f_java_rule_date(t.ffrq,'yyyyMMdd')=1  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dkwjfldr_check_ffrq_4">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  dkwjfldr_temp  t  set  t.error=t.error||'发放日期输入错误，不能为空!' 
-		where  f_java_rule_length(t.ffrq)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dkwjfldr_check_dkje_5">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  dkwjfldr_temp  t  
-		set  t.error=t.error||'贷款金额输入错误，只能输入:17位整数,2位小数!'  
-		where f_java_rule_length(t.dkje)&gt;0 and f_java_rule_number(t.dkje,17,2)=1  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dkwjfldr_check_dkje_6">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  dkwjfldr_temp  t  set  t.error=t.error||'贷款金额输入错误，不能为空!' 
-		where  f_java_rule_length(t.dkje)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dkwjfldr_check_qsrq_7">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  dkwjfldr_temp  t  
-		set  t.error=t.error||'起始日期输入错误，格式应该是:yyyyMMdd!'  
-		where  f_java_rule_date(t.qsrq,'yyyyMMdd')=1  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dkwjfldr_check_qsrq_8">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  dkwjfldr_temp  t  set  t.error=t.error||'起始日期输入错误，不能为空!' 
-		where  f_java_rule_length(t.qsrq)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dkwjfldr_check_wjfl_9">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  dkwjfldr_temp  t  set  t.error=t.error||'五级分类输入错误，不能为空!' 
-		where  f_java_rule_length(t.wjfl)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dkwjfldr_checkupdate_default0_0">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update dkwjfldr_temp t set error=error||'账户代号错误!' where t.khdxdh=$login_khdxdh$ and not exists(
-select 1 from JXDX_DKZH dk where dk.zhdh=t.default0)
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dkwjfldr_checkupdate_default0_1">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update dkwjfldr_temp t set error=error||'存在重复数据!' where exists(
-	   select 1 from (select default0,qsrq from dkwjfldr_temp dr where khdxdh=$login_khdxdh$ group by default0,qsrq having count(1)&gt;1) dr
-		 where 1=1 and t.default0=dr.default0 and t.qsrq=dr.qsrq
-	) and  khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dkwjfldr_checkupdate_dqrq_0">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update dkwjfldr_temp t set error=error||'到期日期不正确!' where t.khdxdh=$login_khdxdh$ and not exists(
-select 1 from JXDX_DKZH dk where dk.zhdh=t.default0 and dk.dqrq=cast(t.dqrq as integer)) and exists(
-select 1 from JXDX_DKZH dk where dk.zhdh=t.default0)
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dkwjfldr_checkupdate_ffrq_0">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update dkwjfldr_temp t set error=error||'发放日期不正确!' where t.khdxdh=$login_khdxdh$ and not exists(
-select 1 from JXDX_DKZH dk where dk.zhdh=t.default0 and dk.ffrq=cast(t.ffrq as integer)) and exists( select 1 from JXDX_DKZH dk where dk.zhdh=t.default0)
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dkwjfldr_checkupdate_dkje_0">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update dkwjfldr_temp t set error=error||'贷款金额不正确!' where t.khdxdh=$login_khdxdh$ and not exists(
-select 1 from JXDX_DKZH dk where dk.zhdh=t.default0 and dk.dkje=cast(t.dkje as decimal(17,2))) and exists( select 1 from JXDX_DKZH dk where dk.zhdh=t.default0)
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dkwjfldr_checkupdate_wjfl_0">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update dkwjfldr_temp t set error=error||'五级分类错误!' where not exists(select 1 from csb_dmms ms where lower(ms.dmmc)='dkwjfl' and ms.dmms=rtrim(t.wjfl)) and t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dkwjfldr_exists_target">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  dkwjfldr_temp  t  set  t.error=t.error||'数据已存在!'  where  exists(select  1  from  SGLR_DKWJFL  tar   where  1=1   and  t.default0  =tar.ZHDH  and  tar.QSRQ <![CDATA[>]]>=  cast(t.qsrq  as  DECIMAL(22,0))  and  t.khdxdh=$login_khdxdh$  and  (length(t.error)=0  or  t.error  is  null  ))
-    </update>
-    <update parameterClass="java.util.Map" id="dn12.dkwjfldr_exists_same_temp">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  dkwjfldr_temp  t  set  t.error=error||'存在重复数据!'  where  exists(  select  1  from   (select  default0  from  dkwjfldr_temp  dr  where  khdxdh=$login_khdxdh$  group  by  default0  having  count(1)<![CDATA[>]]>1  )  dr  where  1=1   and  t.default0=dr.default0)  and  khdxdh=$login_khdxdh$
-    </update>
-    <insert parameterClass="java.util.Map" id="dn12.dkwjfldr_create_lsb">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      CREATE  TABLE   dkwjfldr_temp   (   default0  varchar(100)  ,  dqrq  varchar(100)  ,  ffrq  varchar(100)  ,  dkje  varchar(100)  ,  qsrq  varchar(100)  ,  wjfl  varchar(100)  ,  khdxdh  integer,error  varchar(1000)   )
-    </insert>
-    <delete parameterClass="java.util.Map" id="dn12.dkwjfldr_delete_lsb">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      delete from dkwjfldr_temp where khdxdh=$login_khdxdh$
-    </delete>
-    <insert parameterClass="java.util.Map" id="dn12.dkwjfldr_insert_into_lsb">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      insert  into  DKWJFLDR_TEMP  (default0,dqrq,ffrq,dkje,qsrq,wjfl,khdxdh,error)  values(?,?,?,?,?,?,?,?)
-    </insert>
-    <select parameterClass="java.util.Map" id="dn12.dkwjfldr_exists_error_msg" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  count(1)  from  dkwjfldr_temp  where  length(error) <![CDATA[>]]> 0  and  khdxdh  =  $login_khdxdh$
-    </select>
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn12.dkwjfldr_exists_same_data">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  count(1)  from  dkwjfldr_temp  where  length(error) <![CDATA[>]]> 0  and  error  !=  '数据已存在!'  and  khdxdh  =  $login_khdxdh$
-    </select>
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn12.dkwjfldr_select_error_msg">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/cancel.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  default0,dqrq,ffrq,dkje,qsrq,wjfl,khdxdh,error  from  dkwjfldr_temp  where  khdxdh=$login_khdxdh$  and  length(error)<![CDATA[>]]>0
-    </select>
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn12.dkwjfldr_count_all_msg">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  count(1)  from  (select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/ok.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  default0,dqrq,ffrq,dkje,qsrq,wjfl,khdxdh,error  from  dkwjfldr_temp  where  khdxdh=$login_khdxdh$  )a
-    </select>
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn12.dkwjfldr_select_all_msg">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/ok.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  default0,dqrq,ffrq,dkje,qsrq,wjfl,khdxdh,error  from  dkwjfldr_temp  where  khdxdh=$login_khdxdh$
-    </select>
-    <delete id="dn12.dkwjfldr_before_insert_delqsrqAndCover" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      delete  from  SGLR_DKWJFL  tar  where  exists  (   select  1  from  $temp$  t   where  (length(t.error)=0  or  t.error  is  null  or  t.error  ='数据已存在!')  and  t.khdxdh=$login_khdxdh$   and  cast(t.default0  as  VARCHAR(40))=tar.ZHDH  and  tar.qsrq<![CDATA[>]]>=  cast(t.qsrq  as  integer)  )
-    </delete>
-    <update id="dn12.dkwjfldr_before_insert_cutqsrq" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update SGLR_DKWJFL tar set jsrq=(select F_Change_Days(cast(dr.qsrq as Integer),-1) from dkwjfldr_temp dr where 1=1  and cast(dr.default0 as VARCHAR(40))=tar.ZHDH and (length(dr.error)=0 or dr.error is null or dr.error='数据已存在!') and dr.khdxdh=$login_khdxdh$) where exists( select 1 from dkwjfldr_temp t  where 1=1  and cast(t.default0 as VARCHAR(40))=tar.ZHDH and (length(t.error)=0 or t.error is null or t.error='数据已存在!') and t.khdxdh=$login_khdxdh$  and tar.jsrq&gt;=F_Change_Days(cast(t.qsrq as Integer),-1))
-    </update>
-    <update id="dn12.dkwjfldr_before_insert_0" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  SGLR_DKWJFL  tar  set  jsrq  =  (      select  distinct  F_Change_Days(cast(t.qsrq  as  Integer),  -1)      from  dkwjfldr_temp  t   inner  join  JXDX_DKZH  dk  on  dk.zhdh=t.default0      and  rtrim(cast(dk.dqrq  as  char(10)))  =  t.dqrq      and  rtrim(cast(dk.ffrq  as  char(10)))  =  t.ffrq      and  dk.dkje  =  cast(t.dkje  as  decimal(17,2))      where   t.khdxdh  =  $login_khdxdh$          and  cast(dk.zhdh  as  VARCHAR(40))  =  tar.ZHDH          and    coalesce(length(t.error),  0)  =  0  )  where  exists  (      select  1      from  dkwjfldr_temp  t      inner  join  JXDX_DKZH  dk  on  dk.zhdh=t.default0      and  rtrim(cast(dk.dqrq  as  char(10)))=  t.dqrq      and  rtrim(cast(dk.ffrq  as  char(10)))  =  t.ffrq      and  dk.dkje  =  cast(t.dkje  as  decimal(17,2))      where  t.khdxdh  =  $login_khdxdh$          and  cast(dk.zhdh  as  VARCHAR(40))  =  tar.ZHDH          and    coalesce(length(t.error),  0)  =  0)  and  tar.jsrq  =  29991231
-    </update>
-    <insert id="dn12.dkwjfldr_insert_into_target" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      insert  into        SGLR_DKWJFL(ZHDH,ZZH,QSRQ,FHDH,WJFL,JSRQ)        select  zhdh,zzh,qsrq,''  as  fhdh,dmz  as  wjfl,29991231  as  jsrq  from  (    select  max(dk.zhdh)  zhdh,'  '  zzh,t.default0,t.dqrq,t.ffrq,t.dkje,  cast(t.qsrq  as  integer)  qsrq,  ms.dmz      from  dkwjfldr_temp   t      inner  join  JXDX_DKZH  dk  on  dk.zhdh=t.default0      and  rtrim(cast(dk.dqrq  as  char(10)))  =  t.dqrq      and  rtrim(cast(dk.ffrq  as  char(10)))  =  t.ffrq      and  dk.dkje  =  cast(t.dkje  as  decimal(17,2))      inner  join  csb_dmms  ms  on  ms.dmms=rtrim(t.wjfl)  and  lower(dmmc)='dkwjfl'      where  t.khdxdh  =  $login_khdxdh$          and  (t.error  =  '数据已存在!'  or  length(t.error)  =  0  or  t.error  is  null)     group  by  t.default0,t.dqrq,t.ffrq,t.dkje,t.qsrq,  ms.dmz)  a
-    </insert>
-  </sqlMap>
-</pageSetting>
 
+<pageSetting id="dkwjfldr" title="贷款五级分类导入" type="import" version="2.0.0"> 
+  <template> 
+    <src>ONLINE</src>  
+    <column> 
+      <text>账户代号</text>  
+      <name>default0</name>  
+      <index>0</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>到期日期</text>  
+      <name>dqrq</name>  
+      <index>1</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>发放日期</text>  
+      <name>ffrq</name>  
+      <index>2</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>贷款金额</text>  
+      <name>dkje</name>  
+      <index>3</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>起始日期</text>  
+      <name>qsrq</name>  
+      <index>4</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>五级分类</text>  
+      <name>wjfl</name>  
+      <index>5</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate>正常、关注、次级、 可疑、损失</annotate>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column> 
+  </template>  
+  <table id="dkwjfldr_table" page="true"> 
+    <col id="ZT" title="状态" align="center" type="string" width="50"/>  
+    <col id="ERROR" title="错误原因" align="center" type="string" width="250"/>  
+    <col id="DEFAULT0" title="账户代号" align="center" type="" width="120"/>  
+    <col id="DQRQ" title="到期日期" align="center" type="" width="120"/>  
+    <col id="FFRQ" title="发放日期" align="center" type="" width="120"/>  
+    <col id="DKJE" title="贷款金额" align="center" type="" width="120"/>  
+    <col id="QSRQ" title="起始日期" align="center" type="" width="120"/>  
+    <col id="WJFL" title="五级分类" align="center" type="" width="120"/> 
+  </table>  
+  <flow> 
+    <rule> 
+      <sql type="update">dkwjfldr_check_default0_0</sql>  
+      <sql type="update">dkwjfldr_check_dqrq_1</sql>  
+      <sql type="update">dkwjfldr_check_dqrq_2</sql>  
+      <sql type="update">dkwjfldr_check_ffrq_3</sql>  
+      <sql type="update">dkwjfldr_check_ffrq_4</sql>  
+      <sql type="update">dkwjfldr_check_dkje_5</sql>  
+      <sql type="update">dkwjfldr_check_dkje_6</sql>  
+      <sql type="update">dkwjfldr_check_qsrq_7</sql>  
+      <sql type="update">dkwjfldr_check_qsrq_8</sql>  
+      <sql type="update">dkwjfldr_check_wjfl_9</sql>  
+      <sql type="update">dkwjfldr_checkupdate_default0_0</sql>  
+      <sql type="update">dkwjfldr_checkupdate_default0_1</sql>  
+      <sql type="update">dkwjfldr_checkupdate_dqrq_0</sql>  
+      <sql type="update">dkwjfldr_checkupdate_ffrq_0</sql>  
+      <sql type="update">dkwjfldr_checkupdate_dkje_0</sql>  
+      <sql type="update">dkwjfldr_checkupdate_wjfl_0</sql>  
+      <sql type="update">dkwjfldr_exists_target</sql>  
+      <sql type="update">dkwjfldr_exists_same_temp</sql> 
+    </rule>  
+    <before> 
+      <sql type="delete">dkwjfldr_before_insert_delqsrqAndCover</sql>  
+      <sql type="update">dkwjfldr_before_insert_cutqsrq</sql>  
+      <sql type="update">dkwjfldr_before_insert_0</sql> 
+    </before>  
+    <cover/>  
+    <insert> 
+      <sql type="insert">dkwjfldr_insert_into_target</sql> 
+    </insert>  
+    <after/> 
+  </flow>  
+  <sqlMap namespace="studio.dkwjfldr"> 
+    <update parameterClass="java.util.Map" id="dn0.dkwjfldr_check_default0_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dkwjfldr_temp t set t.error=t.error||'账户代号输入错误，不能为空!' where f_java_rule_length(t.default0)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dkwjfldr_check_dqrq_1"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dkwjfldr_temp t set t.error=t.error||'到期日期输入错误，格式应该是:yyyyMMdd!' where f_java_rule_date(t.dqrq,'yyyyMMdd')=1 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dkwjfldr_check_dqrq_2"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dkwjfldr_temp t set t.error=t.error||'到期日期输入错误，不能为空!' where f_java_rule_length(t.dqrq)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dkwjfldr_check_ffrq_3"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dkwjfldr_temp t set t.error=t.error||'发放日期输入错误，格式应该是:yyyyMMdd!' where f_java_rule_date(t.ffrq,'yyyyMMdd')=1 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dkwjfldr_check_ffrq_4"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dkwjfldr_temp t set t.error=t.error||'发放日期输入错误，不能为空!' where f_java_rule_length(t.ffrq)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dkwjfldr_check_dkje_5"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dkwjfldr_temp t set t.error=t.error||'贷款金额输入错误，只能输入:17位整数,2位小数!' where f_java_rule_length(t.dkje)&gt;0 and f_java_rule_number(t.dkje,17,2)=1 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dkwjfldr_check_dkje_6"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dkwjfldr_temp t set t.error=t.error||'贷款金额输入错误，不能为空!' where f_java_rule_length(t.dkje)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dkwjfldr_check_qsrq_7"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dkwjfldr_temp t set t.error=t.error||'起始日期输入错误，格式应该是:yyyyMMdd!' where f_java_rule_date(t.qsrq,'yyyyMMdd')=1 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dkwjfldr_check_qsrq_8"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dkwjfldr_temp t set t.error=t.error||'起始日期输入错误，不能为空!' where f_java_rule_length(t.qsrq)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dkwjfldr_check_wjfl_9"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dkwjfldr_temp t set t.error=t.error||'五级分类输入错误，不能为空!' where f_java_rule_length(t.wjfl)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dkwjfldr_checkupdate_default0_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dkwjfldr_temp t set error=error||'账户代号错误!' where t.khdxdh=$login_khdxdh$ and not exists( select 1 from JXDX_DKZH dk where dk.zhdh=t.default0)
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dkwjfldr_checkupdate_default0_1"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dkwjfldr_temp t set error=error||'存在重复数据!' where exists( select 1 from (select default0,qsrq from dkwjfldr_temp dr where khdxdh=$login_khdxdh$ group by default0,qsrq having count(1)&gt;1) dr where 1=1 and t.default0=dr.default0 and t.qsrq=dr.qsrq ) and khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dkwjfldr_checkupdate_dqrq_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dkwjfldr_temp t set error=error||'到期日期不正确!' where t.khdxdh=$login_khdxdh$ and not exists( select 1 from JXDX_DKZH dk where dk.zhdh=t.default0 and dk.dqrq=cast(t.dqrq as integer)) and exists( select 1 from JXDX_DKZH dk where dk.zhdh=t.default0)
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dkwjfldr_checkupdate_ffrq_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dkwjfldr_temp t set error=error||'发放日期不正确!' where t.khdxdh=$login_khdxdh$ and not exists( select 1 from JXDX_DKZH dk where dk.zhdh=t.default0 and dk.ffrq=cast(t.ffrq as integer)) and exists( select 1 from JXDX_DKZH dk where dk.zhdh=t.default0)
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dkwjfldr_checkupdate_dkje_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dkwjfldr_temp t set error=error||'贷款金额不正确!' where t.khdxdh=$login_khdxdh$ and not exists( select 1 from JXDX_DKZH dk where dk.zhdh=t.default0 and dk.dkje=cast(t.dkje as decimal(17,2))) and exists( select 1 from JXDX_DKZH dk where dk.zhdh=t.default0)
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dkwjfldr_checkupdate_wjfl_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dkwjfldr_temp t set error=error||'五级分类错误!' where not exists(select 1 from csb_dmms ms where lower(ms.dmmc)='dkwjfl' and ms.dmms=rtrim(t.wjfl)) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dkwjfldr_exists_target"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dkwjfldr_temp t set t.error=t.error||'数据已存在!' where exists(select 1 from SGLR_DKWJFL tar where 1=1 and t.default0 =tar.ZHDH and tar.QSRQ <![CDATA[>]]>= cast(t.qsrq as DECIMAL(22,0)) and t.khdxdh=$login_khdxdh$ and (length(t.error)=0 or t.error is null ))
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.dkwjfldr_exists_same_temp"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dkwjfldr_temp t set t.error=error||'存在重复数据!' where exists( select 1 from (select default0 from dkwjfldr_temp dr where khdxdh=$login_khdxdh$ group by default0 having count(1)<![CDATA[>]]>1 ) dr where 1=1 and t.default0=dr.default0) and khdxdh=$login_khdxdh$
+    </update>  
+    <insert parameterClass="java.util.Map" id="dn0.dkwjfldr_create_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> CREATE TABLE dkwjfldr_temp ( default0 varchar(100) , dqrq varchar(100) , ffrq varchar(100) , dkje varchar(100) , qsrq varchar(100) , wjfl varchar(100) , khdxdh integer,error varchar(1000) )
+    </insert>  
+    <delete parameterClass="java.util.Map" id="dn0.dkwjfldr_delete_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from dkwjfldr_temp where khdxdh=$login_khdxdh$
+    </delete>  
+    <insert parameterClass="java.util.Map" id="dn0.dkwjfldr_insert_into_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into DKWJFLDR_TEMP (default0,dqrq,ffrq,dkje,qsrq,wjfl,khdxdh,error) values(?,?,?,?,?,?,?,?)
+    </insert>  
+    <select parameterClass="java.util.Map" id="dn0.dkwjfldr_exists_error_msg" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from dkwjfldr_temp where length(error) <![CDATA[>]]> 0 and khdxdh = $login_khdxdh$
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn0.dkwjfldr_exists_same_data"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from dkwjfldr_temp where length(error) <![CDATA[>]]> 0 and error != '数据已存在!' and khdxdh = $login_khdxdh$
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn0.dkwjfldr_select_error_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/cancel.jpg" border="0"/<![CDATA[>]]>' as zt, default0,dqrq,ffrq,dkje,qsrq,wjfl,khdxdh,error from dkwjfldr_temp where khdxdh=$login_khdxdh$ and length(error)<![CDATA[>]]>0
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn0.dkwjfldr_count_all_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, default0,dqrq,ffrq,dkje,qsrq,wjfl,khdxdh,error from dkwjfldr_temp where khdxdh=$login_khdxdh$ )a
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn0.dkwjfldr_select_all_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, default0,dqrq,ffrq,dkje,qsrq,wjfl,khdxdh,error from dkwjfldr_temp where khdxdh=$login_khdxdh$
+    </select>  
+    <delete id="dn0.dkwjfldr_before_insert_delqsrqAndCover" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from SGLR_DKWJFL tar where exists ( select 1 from $temp$ t where (length(t.error)=0 or t.error is null or t.error ='数据已存在!') and t.khdxdh=$login_khdxdh$ and cast(t.default0 as VARCHAR(40))=tar.ZHDH and tar.qsrq<![CDATA[>]]>= cast(t.qsrq as integer) )
+    </delete>  
+    <update id="dn0.dkwjfldr_before_insert_cutqsrq" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update SGLR_DKWJFL tar set jsrq=(select F_Change_Days(cast(dr.qsrq as Integer),-1) from dkwjfldr_temp dr where 1=1 and cast(dr.default0 as VARCHAR(40))=tar.ZHDH and (length(dr.error)=0 or dr.error is null or dr.error='数据已存在!') and dr.khdxdh=$login_khdxdh$) where exists( select 1 from dkwjfldr_temp t where 1=1 and cast(t.default0 as VARCHAR(40))=tar.ZHDH and (length(t.error)=0 or t.error is null or t.error='数据已存在!') and t.khdxdh=$login_khdxdh$ and tar.jsrq&gt;=F_Change_Days(cast(t.qsrq as Integer),-1))
+    </update>  
+    <update id="dn0.dkwjfldr_before_insert_0" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update SGLR_DKWJFL tar set jsrq = ( select distinct F_Change_Days(cast(t.qsrq as Integer), -1) from dkwjfldr_temp t inner join JXDX_DKZH dk on dk.zhdh=t.default0 and rtrim(cast(dk.dqrq as char(10))) = t.dqrq and rtrim(cast(dk.ffrq as char(10))) = t.ffrq and dk.dkje = cast(t.dkje as decimal(17,2)) where t.khdxdh = $login_khdxdh$ and cast(dk.zhdh as VARCHAR(40)) = tar.ZHDH and coalesce(length(t.error), 0) = 0 ) where exists ( select 1 from dkwjfldr_temp t inner join JXDX_DKZH dk on dk.zhdh=t.default0 and rtrim(cast(dk.dqrq as char(10)))= t.dqrq and rtrim(cast(dk.ffrq as char(10))) = t.ffrq and dk.dkje = cast(t.dkje as decimal(17,2)) where t.khdxdh = $login_khdxdh$ and cast(dk.zhdh as VARCHAR(40)) = tar.ZHDH and coalesce(length(t.error), 0) = 0) and tar.jsrq = 29991231
+    </update>  
+    <insert id="dn0.dkwjfldr_insert_into_target" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into SGLR_DKWJFL(ZHDH,ZZH,QSRQ,FHDH,WJFL,JSRQ) select zhdh,zzh,qsrq,'' as fhdh,dmz as wjfl,29991231 as jsrq from ( select max(dk.zhdh) zhdh,' ' zzh,t.default0,t.dqrq,t.ffrq,t.dkje, cast(t.qsrq as integer) qsrq, ms.dmz from dkwjfldr_temp t inner join JXDX_DKZH dk on dk.zhdh=t.default0 and rtrim(cast(dk.dqrq as char(10))) = t.dqrq and rtrim(cast(dk.ffrq as char(10))) = t.ffrq and dk.dkje = cast(t.dkje as decimal(17,2)) inner join csb_dmms ms on ms.dmms=rtrim(t.wjfl) and lower(dmmc)='dkwjfl' where t.khdxdh = $login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null) group by t.default0,t.dqrq,t.ffrq,t.dkje,t.qsrq, ms.dmz) a
+    </insert> 
+  </sqlMap> 
+</pageSetting>

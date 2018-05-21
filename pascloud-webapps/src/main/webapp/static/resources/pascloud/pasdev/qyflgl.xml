@@ -1,155 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="qyflgl" title="区域分类管理" type="manage">
-  <conPart>
-    <tags>
-      <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="区域名称" fieldName="">
-        <attribute key="name" value="qymc" />
-        <attribute key="readonly" value="false" />
-        <attribute key="editable" value="true" />
-      </tag>
-    </tags>
-  </conPart>
-  <table page="true" id="qyflgltable">
-    <col id="QYDH" title="区域代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="QYMC" title="区域名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-  </table>
-  <rels>
-    <items id="qyflgltable" />
-  </rels>
-  <addPage title="编辑页面">
-    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="区域代号" fieldName="QYDH">
-      <attribute key="style" value="width:220px;" />
-      <attribute key="name" value="qydh" />
-      <attribute key="styleClass" value="{required:true,maxlength:10}" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="1" col="0" rowspan="1" colspan="1" name="Text" label="区域名称" fieldName="QYMC">
-      <attribute key="style" value="width:220px;" />
-      <attribute key="name" value="qymc" />
-      <attribute key="styleClass" value="{required:true,maxlength:50}" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-  </addPage>
-  <updatePage title="编辑页面">
-    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="区域代号" fieldName="QYDH">
-      <attribute key="style" value="width:220px;" />
-      <attribute key="name" value="qydh" />
-      <attribute key="styleClass" value="{required:true,maxlength:10}" />
-      <attribute key="isAll" value="false" />
-      <attribute key="readonly" value="false" />
-      <attribute key="isEditable" value="false" />
-      <attribute key="editable" value="false" />
-    </tag>
-    <tag row="1" col="0" rowspan="1" colspan="1" name="Text" label="区域名称" fieldName="QYMC">
-      <attribute key="style" value="width:220px;" />
-      <attribute key="name" value="qymc" />
-      <attribute key="styleClass" value="{required:true,maxlength:50}" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-  </updatePage>
-  <buttons>
-    <button>add</button>
-    <button>edit</button>
-    <button>delete</button>
-  </buttons>
-  <flow>
-    <insertbefore />
-    <insertafter />
-    <deletebefore />
-    <deleteafter />
-    <updatebefore />
-    <updateafter />
-  </flow>
-  <sqlMap namespace="studio.qyflgl">
-    <select id="dn12.qyflglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select qydh,qymc from csb_qylb where 1=1 and qymc like '%$qymc$%'  order by qydh
-    </select>
-    <select id="dn12.qyflglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from ( select qydh,qymc from csb_qylb where 1=1 and qymc like '%$qymc$%'  order by qydh ) t
-    </select>
-    <select id="dn12.qyflgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  QYMC, QYDH  from CSB_QYLB where 1= 1  and QYDH = '$qydh$'
-    </select>
-    <select id="dn12.qyflgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  QYMC, QYDH  from CSB_QYLB where 1= 1  and QYDH = '$qydh$'
-    </select>
-    <insert id="dn12.qyflgl_insert" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      insert into CSB_QYLB( QYDH, QYMC ) values ( '$qydh$','$qymc$')
-    </insert>
-    <update id="dn12.qyflgl_update" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update CSB_QYLB set QYMC = '$qymc$' where 1=1  and QYDH = '$qydh$'
-    </update>
-    <delete id="dn12.qyflgl_delete" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      delete from CSB_QYLB where 1=1  and QYDH = '$qydh$'
-    </delete>
-  </sqlMap>
-  <javascript>
-    <query>jQuery(document).ready(function () {
 
-    editpage_width=500;
-  editpage_height=300;
-});
-
-//自定义验证，在提交时执行。通过返回true，否则返回false
-function customValidate(){
- return true;
-}</query>
-    <edit>jQuery(document).ready(function () {
-//这里的js脚本，会在页面加载完成后执行
-  jQuery.ajaxSettings.async = false;
-});
-
-//自定义验证，在提交时执行。通过返回true，否则返回false
-function customValidate(){
-  $.ajaxSetup({   
-            async : false  
-        });
-  flag=true;
-  if($("#page_operate").val()=='add'){
-    $.post('/module/qyflgl/selectQydhCount?qydh='+$("#qydh").val(),{},function(hd){
-              if(hd&gt;0){
-                custom_alert("区域代号已存在!");
-                flag=false;
-              }else{
-                $.post('/module/qyflgl/selectQymcCount?qymc='+$("#qymc").val(),{},function(cb){
-                        if(cb&gt;0){
-                          custom_alert("区域名称已存在!");
-                          flag=false;
-                        }else{
-                          flag=true;
-                        }
-                }).error(function(){
-                    alert("发生内部错误！");
-                });
-              }
-      }).error(function(){
-          alert("发生内部错误！");
-      });
-    }else if($("#page_operate").val()=='update'){
-      $.post('/module/qyflgl/selectQymcCount?qymc='+$("#qymc").val(),{},function(cb){
-                        if(cb&gt;0){
-                          custom_alert("区域名称已存在!");
-                          flag=false;
-                        }else{
-                          flag=true;
-                        }
-                }).error(function(){
-                    alert("发生内部错误！");
-                });
-    }
-   return flag;
-  //return PAS.di.isDone();
-}</edit>
-  </javascript>
+<pageSetting id="qyflgl" title="区域分类管理" type="manage"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="区域名称" fieldName=""> 
+        <attribute key="name" value="qymc"/>  
+        <attribute key="readonly" value="false"/>  
+        <attribute key="editable" value="true"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table page="true" id="qyflgltable"> 
+    <col id="QYDH" title="区域代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="QYMC" title="区域名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/> 
+  </table>  
+  <rels> 
+    <items id="qyflgltable"/> 
+  </rels>  
+  <addPage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="区域代号" fieldName="QYDH"> 
+      <attribute key="style" value="width:220px;"/>  
+      <attribute key="name" value="qydh"/>  
+      <attribute key="styleClass" value="{required:true,maxlength:10}"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Text" label="区域名称" fieldName="QYMC"> 
+      <attribute key="style" value="width:220px;"/>  
+      <attribute key="name" value="qymc"/>  
+      <attribute key="styleClass" value="{required:true,maxlength:50}"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag> 
+  </addPage>  
+  <updatePage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="区域代号" fieldName="QYDH"> 
+      <attribute key="style" value="width:220px;"/>  
+      <attribute key="name" value="qydh"/>  
+      <attribute key="styleClass" value="{required:true,maxlength:10}"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="isEditable" value="false"/>  
+      <attribute key="editable" value="false"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Text" label="区域名称" fieldName="QYMC"> 
+      <attribute key="style" value="width:220px;"/>  
+      <attribute key="name" value="qymc"/>  
+      <attribute key="styleClass" value="{required:true,maxlength:50}"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag> 
+  </updatePage>  
+  <buttons> 
+    <button>add</button>  
+    <button>edit</button>  
+    <button>delete</button> 
+  </buttons>  
+  <flow> 
+    <insertbefore/>  
+    <insertafter/>  
+    <deletebefore/>  
+    <deleteafter/>  
+    <updatebefore/>  
+    <updateafter/> 
+  </flow>  
+  <sqlMap namespace="studio.qyflgl"> 
+    <select id="dn0.qyflglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select qydh,qymc from csb_qylb where 1=1 and qymc like '%$qymc$%' order by qydh
+    </select>  
+    <select id="dn0.qyflglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select qydh,qymc from csb_qylb where 1=1 and qymc like '%$qymc$%' order by qydh ) t
+    </select>  
+    <select id="dn0.qyflgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select QYMC, QYDH from CSB_QYLB where 1= 1 and QYDH = '$qydh$'
+    </select>  
+    <select id="dn0.qyflgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select QYMC, QYDH from CSB_QYLB where 1= 1 and QYDH = '$qydh$'
+    </select>  
+    <insert id="dn0.qyflgl_insert" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into CSB_QYLB( QYDH, QYMC ) values ( '$qydh$','$qymc$')
+    </insert>  
+    <update id="dn0.qyflgl_update" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_QYLB set QYMC = '$qymc$' where 1=1 and QYDH = '$qydh$'
+    </update>  
+    <delete id="dn0.qyflgl_delete" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from CSB_QYLB where 1=1 and QYDH = '$qydh$'
+    </delete> 
+  </sqlMap>  
+  <javascript> 
+    <query>jQuery(document).ready(function () { editpage_width=500; editpage_height=300; }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; }</query>  
+    <edit>jQuery(document).ready(function () { //这里的js脚本，会在页面加载完成后执行 jQuery.ajaxSettings.async = false; }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ $.ajaxSetup({ async : false }); flag=true; if($("#page_operate").val()=='add'){ $.post('/module/qyflgl/selectQydhCount?qydh='+$("#qydh").val(),{},function(hd){ if(hd&gt;0){ custom_alert("区域代号已存在!"); flag=false; }else{ $.post('/module/qyflgl/selectQymcCount?qymc='+$("#qymc").val(),{},function(cb){ if(cb&gt;0){ custom_alert("区域名称已存在!"); flag=false; }else{ flag=true; } }).error(function(){ alert("发生内部错误！"); }); } }).error(function(){ alert("发生内部错误！"); }); }else if($("#page_operate").val()=='update'){ $.post('/module/qyflgl/selectQymcCount?qymc='+$("#qymc").val(),{},function(cb){ if(cb&gt;0){ custom_alert("区域名称已存在!"); flag=false; }else{ flag=true; } }).error(function(){ alert("发生内部错误！"); }); } return flag; //return PAS.di.isDone(); }</edit> 
+  </javascript> 
 </pageSetting>
-

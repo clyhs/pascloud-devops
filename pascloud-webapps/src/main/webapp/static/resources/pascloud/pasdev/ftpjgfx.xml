@@ -1,189 +1,150 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="ftpjgfx" title="FTP价格分析" type="query" version="2.0.0">
-  <conPart>
-    <tags>
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期">
-        <attribute key="dateFmt" value="yyyyMMdd" />
-        <attribute key="defValType" value="sysDate" />
-        <attribute key="editable" value="true" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="tjrq" />
-        <attribute key="minDate" value="no" />
-      </tag>
-      <tag row="0" col="1" colspan="1" rowspan="1" name="Dmms" label="对象类型">
-        <attribute key="defVal" value="1" />
-        <attribute key="width" value="120px;" />
-        <attribute key="dmmc" value="zhlx" />
-        <attribute key="editable" value="true" />
-        <attribute key="name" value="dxlx" />
-        <attribute key="isAll" value="false" />
-        <attribute key="multiple" value="false" />
-      </tag>
-      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="业务类型">
-        <attribute key="width" value="120px;" />
-        <attribute key="dmmc" value="ywlx" />
-        <attribute key="editable" value="true" />
-        <attribute key="name" value="ywlx" />
-        <attribute key="isAll" value="true" />
-        <attribute key="multiple" value="false" />
-      </tag>
-      <tag row="0" col="3" colspan="1" rowspan="1" name="MSQL4Select" label="产品名称">
-        <attribute key="parents" value="dxlx" />
-        <attribute key="isMultiple" value="false" />
-        <attribute key="width" value="120px;" />
-        <attribute key="isSearch" value="true" />
-        <attribute key="sql" value="select cpdh as key,cpmc as value &#xD;&#xA;from pas.csb_cpxz t&#xD;&#xA;where 1=1&#xD;&#xA;and t.jxdxlx = $dxlx$&#xD;&#xA;and t.ywlx = '$ywlx$'" />
-        <attribute key="isRequired" value="false" />
-        <attribute key="name" value="cpdh" />
-        <attribute key="isAll" value="false" />
-        <attribute key="isEditable" value="true" />
-      </tag>
-    </tags>
-  </conPart>
-  <table id="ftpjgfx_xsjy1jgj" title="新数据源1结果集" page="true">
-    <col id="QX" title="期限" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="PJLL" title="平均利率" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JJJG" title="基准价格" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="ZXLL" title="执行利率" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="FTPJG" title="FTP价格" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-  </table>
-  <table id="ftpjgfx_xsjy2jgj" title="新数据源2结果集" page="true">
-    <col id="QX" title="期限" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="PJLL" title="平均利率" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JJJG" title="基准价格" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="ZXLL" title="执行利率" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="FTPJG" title="FTP价格" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-  </table>
-  <sqlMap namespace="studio.ftpjgfx">
-    <select id="dn12.ftpjgfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      <isEqual property="dxlx" compareValue="1">
-        select qx.qxmc as qx,           cp.pjll,           COALESCE(jj.jzjg,0) as jjjg,           zx.zxll,           dj.ftpjg  from csb_qxsdb qx  left join csb_ftpdj_ck dj on dj.qxdh = qx.qxdh
-        <isNotEmpty property="cpdh">and dj.cpdh = '$cpdh$'</isNotEmpty>
-        <isNotEmpty property="tjrq">and $tjrq$ between dj.qsrq and dj.jsrq</isNotEmpty>
-        left join csb_cppjll cp on cp.qxdh = qx.qxdh
-        <isNotEmpty property="cpdh">and cp.cpdh = '$cpdh$'</isNotEmpty>
-        and cp.jxdxlx = 1
-        <isNotEmpty property="tjrq">and $tjrq$ between cp.qsrq and cp.jsrq</isNotEmpty>
-        left join csb_cpxz xz on 1=1
-        <isNotEmpty property="cpdh">and  xz.cpdh= '$cpdh$'</isNotEmpty>
-        and xz.jxdxlx = 1
-        <isNotEmpty property="ywlx">and xz.ywlx = '$ywlx$'</isNotEmpty>
-        left join csb_zxll zx on zx.qxdh = qx.qxdh
-        <isNotEmpty property="cpdh">and zx.cpdh = '$cpdh$'</isNotEmpty>
-        and zx.jxdxlx = 1
-        <isNotEmpty property="ywlx">and zx.ywlx = '$ywlx$'</isNotEmpty>
-        <isNotEmpty property="tjrq">and $tjrq$ between zx.qsrq and zx.jsrq</isNotEmpty>
-        left join csb_ftpjzjg jj on jj.jxdxlx = 1
-        <isNotEmpty property="tjrq">and $tjrq$ between jj.qsrq and jj.jsrq</isNotEmpty>
-        where 1=1 and qx.jxdxlx = 1 order by qx.qxdh asc
-      </isEqual>
-      <isEqual property="dxlx" compareValue="2">
-        select qx.qxmc as qx,           cp.pjll,           COALESCE(jj.jzjg,0) as jjjg,           zx.zxll,           dj.ftpjg  from pas.csb_qxsdb qx  left join pas.csb_ftpdj_dk dj on dj.qxdh = qx.qxdh
-        <isNotEmpty property="cpdh">and dj.cpdh = '$cpdh$'</isNotEmpty>
-        <isNotEmpty property="tjrq">and $tjrq$ between dj.qsrq and dj.jsrq</isNotEmpty>
-        left join pas.csb_cppjll cp on cp.qxdh = qx.qxdh
-        <isNotEmpty property="cpdh">and cp.cpdh = '$cpdh$'</isNotEmpty>
-        and cp.jxdxlx = 2
-        <isNotEmpty property="tjrq">and $tjrq$ between cp.qsrq and cp.jsrq</isNotEmpty>
-        left join pas.csb_cpxz xz on 1=1
-        <isNotEmpty property="cpdh">and  xz.cpdh = '$cpdh$'</isNotEmpty>
-        and xz.jxdxlx = 2
-        <isNotEmpty property="ywlx">and xz.ywlx = '$ywlx$'</isNotEmpty>
-        left join pas.csb_zxll zx on zx.qxdh = qx.qxdh
-        <isNotEmpty property="cpdh">and zx.cpdh = '$cpdh$'</isNotEmpty>
-        and zx.jxdxlx = 2
-        <isNotEmpty property="ywlx">and zx.ywlx = '$ywlx$'</isNotEmpty>
-        <isNotEmpty property="tjrq">and $tjrq$ between zx.qsrq and zx.jsrq</isNotEmpty>
-        left join pas.csb_ftpjzjg jj on jj.jxdxlx = 2
-        <isNotEmpty property="tjrq">and $tjrq$ between jj.qsrq and jj.jsrq</isNotEmpty>
-        where 1=1 and qx.jxdxlx = 2 order by qx.qxdh asc
-      </isEqual>
-    </select>
-    <select id="dn12.ftpjgfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from (
-      <isEqual property="dxlx" compareValue="1">
-        select qx.qxmc as qx,           cp.pjll,           COALESCE(jj.jzjg,0) as jjjg,           zx.zxll,           dj.ftpjg  from csb_qxsdb qx  left join csb_ftpdj_ck dj on dj.qxdh = qx.qxdh
-        <isNotEmpty property="cpdh">and dj.cpdh = '$cpdh$'</isNotEmpty>
-        <isNotEmpty property="tjrq">and $tjrq$ between dj.qsrq and dj.jsrq</isNotEmpty>
-        left join csb_cppjll cp on cp.qxdh = qx.qxdh
-        <isNotEmpty property="cpdh">and cp.cpdh = '$cpdh$'</isNotEmpty>
-        and cp.jxdxlx = 1
-        <isNotEmpty property="tjrq">and $tjrq$ between cp.qsrq and cp.jsrq</isNotEmpty>
-        left join csb_cpxz xz on 1=1
-        <isNotEmpty property="cpdh">and  xz.cpdh= '$cpdh$'</isNotEmpty>
-        and xz.jxdxlx = 1
-        <isNotEmpty property="ywlx">and xz.ywlx = '$ywlx$'</isNotEmpty>
-        left join csb_zxll zx on zx.qxdh = qx.qxdh
-        <isNotEmpty property="cpdh">and zx.cpdh = '$cpdh$'</isNotEmpty>
-        and zx.jxdxlx = 1
-        <isNotEmpty property="ywlx">and zx.ywlx = '$ywlx$'</isNotEmpty>
-        <isNotEmpty property="tjrq">and $tjrq$ between zx.qsrq and zx.jsrq</isNotEmpty>
-        left join csb_ftpjzjg jj on jj.jxdxlx = 1
-        <isNotEmpty property="tjrq">and $tjrq$ between jj.qsrq and jj.jsrq</isNotEmpty>
-        where 1=1 and qx.jxdxlx = 1 order by qx.qxdh asc
-      </isEqual>
-      <isEqual property="dxlx" compareValue="2">
-        select qx.qxmc as qx,           cp.pjll,           COALESCE(jj.jzjg,0) as jjjg,           zx.zxll,           dj.ftpjg  from pas.csb_qxsdb qx  left join pas.csb_ftpdj_dk dj on dj.qxdh = qx.qxdh
-        <isNotEmpty property="cpdh">and dj.cpdh = '$cpdh$'</isNotEmpty>
-        <isNotEmpty property="tjrq">and $tjrq$ between dj.qsrq and dj.jsrq</isNotEmpty>
-        left join pas.csb_cppjll cp on cp.qxdh = qx.qxdh
-        <isNotEmpty property="cpdh">and cp.cpdh = '$cpdh$'</isNotEmpty>
-        and cp.jxdxlx = 2
-        <isNotEmpty property="tjrq">and $tjrq$ between cp.qsrq and cp.jsrq</isNotEmpty>
-        left join pas.csb_cpxz xz on 1=1
-        <isNotEmpty property="cpdh">and  xz.cpdh = '$cpdh$'</isNotEmpty>
-        and xz.jxdxlx = 2
-        <isNotEmpty property="ywlx">and xz.ywlx = '$ywlx$'</isNotEmpty>
-        left join pas.csb_zxll zx on zx.qxdh = qx.qxdh
-        <isNotEmpty property="cpdh">and zx.cpdh = '$cpdh$'</isNotEmpty>
-        and zx.jxdxlx = 2
-        <isNotEmpty property="ywlx">and zx.ywlx = '$ywlx$'</isNotEmpty>
-        <isNotEmpty property="tjrq">and $tjrq$ between zx.qsrq and zx.jsrq</isNotEmpty>
-        left join pas.csb_ftpjzjg jj on jj.jxdxlx = 2
-        <isNotEmpty property="tjrq">and $tjrq$ between jj.qsrq and jj.jsrq</isNotEmpty>
-        where 1=1 and qx.jxdxlx = 2 order by qx.qxdh asc
-      </isEqual>
-      ) t
-    </select>
-    <select id="dn12.ftpjgfx_MSQL4SELECT_cpdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      /**!mycat:datanode=$db$**/ select cpdh as key,cpmc as value  from pas.csb_cpxz t where 1=1
-      <isNotEmpty property="dxlx">and t.jxdxlx = $dxlx$</isNotEmpty>
-      <isNotEmpty property="ywlx">and t.ywlx = '$ywlx$'</isNotEmpty>
-    </select>
-  </sqlMap>
-  <finger custPlotMth="" id="ftpjgfx_xsjy2jgj">
-    <plotType>line</plotType>
-    <needPlot>true</needPlot>
-    <plotTitle>FTP价格分析</plotTitle>
-    <xLabel />
-    <xSeries>QX</xSeries>
-    <yLabel />
-    <ySeries>PJLL,JJJG,ZXLL,FTPJG</ySeries>
-    <ySeriesDesc>平均利率,基准价格,执行利率,FTP价格</ySeriesDesc>
-  </finger>
-  <finger custPlotMth="" id="ftpjgfx_xsjy1jgj">
-    <plotType>line</plotType>
-    <needPlot>true</needPlot>
-    <plotTitle>FTP价格分析</plotTitle>
-    <xLabel />
-    <xSeries>QX</xSeries>
-    <yLabel />
-    <ySeries>PJLL,JJJG,ZXLL,FTPJG</ySeries>
-    <ySeriesDesc>平均利率,基准价格,执行利率,FTP价格</ySeriesDesc>
-  </finger>
-  <rels>
-    <items id="ftpjgfx_xsjy1jgj">
-      <item name="dxlx" compareValue="1" operate="isEqual" />
-    </items>
-    <items id="ftpjgfx_xsjy2jgj">
-      <item name="dxlx" compareValue="2" operate="isEqual" />
-    </items>
-  </rels>
+
+<pageSetting id="ftpjgfx" title="FTP价格分析" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期"> 
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="tjrq"/>  
+        <attribute key="minDate" value="no"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Dmms" label="对象类型"> 
+        <attribute key="defVal" value="1"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="dmmc" value="zhlx"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="dxlx"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="multiple" value="false"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="业务类型"> 
+        <attribute key="width" value="120px;"/>  
+        <attribute key="dmmc" value="ywlx"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="ywlx"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="multiple" value="false"/> 
+      </tag>  
+      <tag row="0" col="3" colspan="1" rowspan="1" name="MSQL4Select" label="产品名称"> 
+        <attribute key="parents" value="dxlx"/>  
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="isSearch" value="true"/>  
+        <attribute key="sql" value="select cpdh as key,cpmc as value  from pas.csb_cpxz t where 1=1 and t.jxdxlx = $dxlx$ and t.ywlx = '$ywlx$'"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="cpdh"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="isEditable" value="true"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="ftpjgfx_xsjy1jgj" title="新数据源1结果集" page="true"> 
+    <col id="QX" title="期限" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="PJLL" title="平均利率" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JJJG" title="基准价格" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZXLL" title="执行利率" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="FTPJG" title="FTP价格" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <table id="ftpjgfx_xsjy2jgj" title="新数据源2结果集" page="true"> 
+    <col id="QX" title="期限" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="PJLL" title="平均利率" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JJJG" title="基准价格" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZXLL" title="执行利率" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="FTPJG" title="FTP价格" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <sqlMap namespace="studio.ftpjgfx"> 
+    <select id="dn0.ftpjgfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
+      <isEqual property="dxlx" compareValue="1">select qx.qxmc as qx, cp.pjll, COALESCE(jj.jzjg,0) as jjjg, zx.zxll, dj.ftpjg from csb_qxsdb qx left join csb_ftpdj_ck dj on dj.qxdh = qx.qxdh 
+        <isNotEmpty property="cpdh">and dj.cpdh = '$cpdh$'</isNotEmpty>  
+        <isNotEmpty property="tjrq">and $tjrq$ between dj.qsrq and dj.jsrq</isNotEmpty> left join csb_cppjll cp on cp.qxdh = qx.qxdh 
+        <isNotEmpty property="cpdh">and cp.cpdh = '$cpdh$'</isNotEmpty> and cp.jxdxlx = 1 
+        <isNotEmpty property="tjrq">and $tjrq$ between cp.qsrq and cp.jsrq</isNotEmpty> left join csb_cpxz xz on 1=1 
+        <isNotEmpty property="cpdh">and xz.cpdh= '$cpdh$'</isNotEmpty> and xz.jxdxlx = 1 
+        <isNotEmpty property="ywlx">and xz.ywlx = '$ywlx$'</isNotEmpty> left join csb_zxll zx on zx.qxdh = qx.qxdh 
+        <isNotEmpty property="cpdh">and zx.cpdh = '$cpdh$'</isNotEmpty> and zx.jxdxlx = 1 
+        <isNotEmpty property="ywlx">and zx.ywlx = '$ywlx$'</isNotEmpty>  
+        <isNotEmpty property="tjrq">and $tjrq$ between zx.qsrq and zx.jsrq</isNotEmpty> left join csb_ftpjzjg jj on jj.jxdxlx = 1 
+        <isNotEmpty property="tjrq">and $tjrq$ between jj.qsrq and jj.jsrq</isNotEmpty> where 1=1 and qx.jxdxlx = 1 order by qx.qxdh asc
+      </isEqual>  
+      <isEqual property="dxlx" compareValue="2">select qx.qxmc as qx, cp.pjll, COALESCE(jj.jzjg,0) as jjjg, zx.zxll, dj.ftpjg from pas.csb_qxsdb qx left join pas.csb_ftpdj_dk dj on dj.qxdh = qx.qxdh 
+        <isNotEmpty property="cpdh">and dj.cpdh = '$cpdh$'</isNotEmpty>  
+        <isNotEmpty property="tjrq">and $tjrq$ between dj.qsrq and dj.jsrq</isNotEmpty> left join pas.csb_cppjll cp on cp.qxdh = qx.qxdh 
+        <isNotEmpty property="cpdh">and cp.cpdh = '$cpdh$'</isNotEmpty> and cp.jxdxlx = 2 
+        <isNotEmpty property="tjrq">and $tjrq$ between cp.qsrq and cp.jsrq</isNotEmpty> left join pas.csb_cpxz xz on 1=1 
+        <isNotEmpty property="cpdh">and xz.cpdh = '$cpdh$'</isNotEmpty> and xz.jxdxlx = 2 
+        <isNotEmpty property="ywlx">and xz.ywlx = '$ywlx$'</isNotEmpty> left join pas.csb_zxll zx on zx.qxdh = qx.qxdh 
+        <isNotEmpty property="cpdh">and zx.cpdh = '$cpdh$'</isNotEmpty> and zx.jxdxlx = 2 
+        <isNotEmpty property="ywlx">and zx.ywlx = '$ywlx$'</isNotEmpty>  
+        <isNotEmpty property="tjrq">and $tjrq$ between zx.qsrq and zx.jsrq</isNotEmpty> left join pas.csb_ftpjzjg jj on jj.jxdxlx = 2 
+        <isNotEmpty property="tjrq">and $tjrq$ between jj.qsrq and jj.jsrq</isNotEmpty> where 1=1 and qx.jxdxlx = 2 order by qx.qxdh asc
+      </isEqual> 
+    </select>  
+    <select id="dn0.ftpjgfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
+      <isEqual property="dxlx" compareValue="1">select qx.qxmc as qx, cp.pjll, COALESCE(jj.jzjg,0) as jjjg, zx.zxll, dj.ftpjg from csb_qxsdb qx left join csb_ftpdj_ck dj on dj.qxdh = qx.qxdh 
+        <isNotEmpty property="cpdh">and dj.cpdh = '$cpdh$'</isNotEmpty>  
+        <isNotEmpty property="tjrq">and $tjrq$ between dj.qsrq and dj.jsrq</isNotEmpty> left join csb_cppjll cp on cp.qxdh = qx.qxdh 
+        <isNotEmpty property="cpdh">and cp.cpdh = '$cpdh$'</isNotEmpty> and cp.jxdxlx = 1 
+        <isNotEmpty property="tjrq">and $tjrq$ between cp.qsrq and cp.jsrq</isNotEmpty> left join csb_cpxz xz on 1=1 
+        <isNotEmpty property="cpdh">and xz.cpdh= '$cpdh$'</isNotEmpty> and xz.jxdxlx = 1 
+        <isNotEmpty property="ywlx">and xz.ywlx = '$ywlx$'</isNotEmpty> left join csb_zxll zx on zx.qxdh = qx.qxdh 
+        <isNotEmpty property="cpdh">and zx.cpdh = '$cpdh$'</isNotEmpty> and zx.jxdxlx = 1 
+        <isNotEmpty property="ywlx">and zx.ywlx = '$ywlx$'</isNotEmpty>  
+        <isNotEmpty property="tjrq">and $tjrq$ between zx.qsrq and zx.jsrq</isNotEmpty> left join csb_ftpjzjg jj on jj.jxdxlx = 1 
+        <isNotEmpty property="tjrq">and $tjrq$ between jj.qsrq and jj.jsrq</isNotEmpty> where 1=1 and qx.jxdxlx = 1 order by qx.qxdh asc
+      </isEqual>  
+      <isEqual property="dxlx" compareValue="2">select qx.qxmc as qx, cp.pjll, COALESCE(jj.jzjg,0) as jjjg, zx.zxll, dj.ftpjg from pas.csb_qxsdb qx left join pas.csb_ftpdj_dk dj on dj.qxdh = qx.qxdh 
+        <isNotEmpty property="cpdh">and dj.cpdh = '$cpdh$'</isNotEmpty>  
+        <isNotEmpty property="tjrq">and $tjrq$ between dj.qsrq and dj.jsrq</isNotEmpty> left join pas.csb_cppjll cp on cp.qxdh = qx.qxdh 
+        <isNotEmpty property="cpdh">and cp.cpdh = '$cpdh$'</isNotEmpty> and cp.jxdxlx = 2 
+        <isNotEmpty property="tjrq">and $tjrq$ between cp.qsrq and cp.jsrq</isNotEmpty> left join pas.csb_cpxz xz on 1=1 
+        <isNotEmpty property="cpdh">and xz.cpdh = '$cpdh$'</isNotEmpty> and xz.jxdxlx = 2 
+        <isNotEmpty property="ywlx">and xz.ywlx = '$ywlx$'</isNotEmpty> left join pas.csb_zxll zx on zx.qxdh = qx.qxdh 
+        <isNotEmpty property="cpdh">and zx.cpdh = '$cpdh$'</isNotEmpty> and zx.jxdxlx = 2 
+        <isNotEmpty property="ywlx">and zx.ywlx = '$ywlx$'</isNotEmpty>  
+        <isNotEmpty property="tjrq">and $tjrq$ between zx.qsrq and zx.jsrq</isNotEmpty> left join pas.csb_ftpjzjg jj on jj.jxdxlx = 2 
+        <isNotEmpty property="tjrq">and $tjrq$ between jj.qsrq and jj.jsrq</isNotEmpty> where 1=1 and qx.jxdxlx = 2 order by qx.qxdh asc
+      </isEqual> ) t
+    </select>  
+    <select id="dn0.ftpjgfx_MSQL4SELECT_cpdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select cpdh as key,cpmc as value from pas.csb_cpxz t where 1=1 
+      <isNotEmpty property="dxlx">and t.jxdxlx = $dxlx$</isNotEmpty>  
+      <isNotEmpty property="ywlx">and t.ywlx = '$ywlx$'</isNotEmpty> 
+    </select> 
+  </sqlMap>  
+  <finger custPlotMth="" id="ftpjgfx_xsjy2jgj"> 
+    <plotType>line</plotType>  
+    <needPlot>true</needPlot>  
+    <plotTitle>FTP价格分析</plotTitle>  
+    <xLabel/>  
+    <xSeries>QX</xSeries>  
+    <yLabel/>  
+    <ySeries>PJLL,JJJG,ZXLL,FTPJG</ySeries>  
+    <ySeriesDesc>平均利率,基准价格,执行利率,FTP价格</ySeriesDesc> 
+  </finger>  
+  <finger custPlotMth="" id="ftpjgfx_xsjy1jgj"> 
+    <plotType>line</plotType>  
+    <needPlot>true</needPlot>  
+    <plotTitle>FTP价格分析</plotTitle>  
+    <xLabel/>  
+    <xSeries>QX</xSeries>  
+    <yLabel/>  
+    <ySeries>PJLL,JJJG,ZXLL,FTPJG</ySeries>  
+    <ySeriesDesc>平均利率,基准价格,执行利率,FTP价格</ySeriesDesc> 
+  </finger>  
+  <rels> 
+    <items id="ftpjgfx_xsjy1jgj"> 
+      <item name="dxlx" compareValue="1" operate="isEqual"/> 
+    </items>  
+    <items id="ftpjgfx_xsjy2jgj"> 
+      <item name="dxlx" compareValue="2" operate="isEqual"/> 
+    </items> 
+  </rels>  
   <javascript><![CDATA[jQuery(document).ready(function (){
 
   BindParent('cpdh','ywlx','change');
-});]]></javascript>
+});]]></javascript> 
 </pageSetting>
-

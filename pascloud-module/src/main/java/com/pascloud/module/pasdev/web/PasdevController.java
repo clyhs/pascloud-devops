@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.pascloud.bean.pasdev.PasfileVo;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.pasdev.service.PasdevService;
+import com.pascloud.utils.PasCloudCode;
+import com.pascloud.vo.result.ResultCommon;
 
 @Controller
 @RequestMapping("module/pasdev")
@@ -31,9 +33,17 @@ public class PasdevController extends BaseController {
 
 	@RequestMapping("/pasfiles.json")
 	@ResponseBody
-	public List<PasfileVo> getPasFiles(){
+	public List<PasfileVo> getPasFiles(HttpServletRequest request){
 		List<PasfileVo> result = new ArrayList<>();
 		result = m_pasdevService.getPasdevFiles();
+		return result;
+	}
+	
+	@RequestMapping("/modifyPasfiles.json")
+	@ResponseBody
+	public ResultCommon modifyPasFiles(HttpServletRequest request){
+		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
+		m_pasdevService.modifyPasdevFilesWidthID("dn0");
 		return result;
 	}
 }

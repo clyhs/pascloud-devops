@@ -1,83 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="zfzjyjg" title="总分账检验结果" type="query" version="2.0.0">
-  <conPart>
-    <tags>
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期">
-        <attribute key="dateFmt" value="yyyyMMdd" />
-        <attribute key="defValType" value="sysDate" />
-        <attribute key="editable" value="true" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="tjrq" />
-        <attribute key="minDate" value="no" />
-      </tag>
-      <tag row="0" col="1" colspan="1" rowspan="1" name="Dmms" label="核对类型">
-        <attribute key="width" value="120px;" />
-        <attribute key="dmmc" value="kdlx" />
-        <attribute key="editable" value="true" />
-        <attribute key="name" value="kdlx" />
-        <attribute key="isAll" value="false" />
-        <attribute key="multiple" value="false" />
-      </tag>
-      <tag row="0" col="2" colspan="1" rowspan="1" name="NewJg" label="机构">
-        <attribute key="cascadeCheck" value="true" />
-        <attribute key="editable" value="true" />
-        <attribute key="ckbz" value="jg" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="jgkhdxdh" />
-        <attribute key="multiple" value="true" />
-      </tag>
-      <tag row="1" col="0" colspan="1" rowspan="1" name="Text" label="科目号">
-        <attribute key="editable" value="true" />
-        <attribute key="name" value="kmh" />
-        <attribute key="readonly" value="false" />
-      </tag>
-      <tag row="1" col="1" colspan="1" rowspan="1" name="Text" label="科目名称">
-        <attribute key="editable" value="true" />
-        <attribute key="name" value="kmmc" />
-        <attribute key="readonly" value="false" />
-      </tag>
-    </tags>
-  </conPart>
-  <table id="zfzjyjg_xsjy1jgj" title="新数据源1结果集" page="true">
-    <col id="SJSJ" title="事件时间" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="ZZRQ" title="系统日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KMMC" title="科目名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="BZZWMC" title="币种" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KDLX" title="核对类型" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="ZZYE" title="总帐余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openKmzzbb" />
-    <col id="FZYE" title="分户账余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="CB" title="差额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="WCFW" title="误差范围" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
-  </table>
-  <sqlMap namespace="studio.zfzjyjg">
-    <select id="dn12.zfzjyjgList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select f_timetochar(xtb.sjsj,'yyyy-mm-dd hh24:mi:ss') sjsj, xtb.zzrq,xtb.jgdh,jg.jgmc,xtb.kmh,km.kmmc,bz.bzzwmc, case  when xtb.jybz=1 then '接口与总账接口核对'        when xtb.jybz=2 then '帐户明细与总账核对'       when xtb.jybz=3 then '内部总账与总账核对'  end as kdlx, xtb.zzye,xtb.fzye,xtb.cb,xtb.wcfw,jg.khdxdh from xtb_zfjyjg xtb inner join khdx_jg jg on jg.jgdh=xtb.jgdh left join csb_bz bz on bz.bz=xtb.bz left join csb_km km on km.kmh=xtb.kmh inner join table(fn_getsjjg_java_qx($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh=jg.khdxdh where 1=1
-      <isNotEmpty property="tjrq">and  xtb.zzrq=$tjrq$</isNotEmpty>
-      <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
-      <isNotEmpty property="kdlx">and xtb.jybz=$kdlx$</isNotEmpty>
-      <isNotEmpty property="kmh">and xtb.kmh like '%$kmh$%'</isNotEmpty>
-      <isNotEmpty property="kmmc">and km.kmmc like '%$kmmc$%'</isNotEmpty>
-      order by xtb.sjdh desc
-    </select>
-    <select id="dn12.zfzjyjgCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from ( select f_timetochar(xtb.sjsj,'yyyy-mm-dd hh24:mi:ss') sjsj, xtb.zzrq,xtb.jgdh,jg.jgmc,xtb.kmh,km.kmmc,bz.bzzwmc, case  when xtb.jybz=1 then '接口与总账接口核对'        when xtb.jybz=2 then '帐户明细与总账核对'       when xtb.jybz=3 then '内部总账与总账核对'  end as kdlx, xtb.zzye,xtb.fzye,xtb.cb,xtb.wcfw,jg.khdxdh from xtb_zfjyjg xtb inner join khdx_jg jg on jg.jgdh=xtb.jgdh left join csb_bz bz on bz.bz=xtb.bz left join csb_km km on km.kmh=xtb.kmh inner join table(fn_getsjjg_java_qx($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh=jg.khdxdh where 1=1
-      <isNotEmpty property="tjrq">and  xtb.zzrq=$tjrq$</isNotEmpty>
-      <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
-      <isNotEmpty property="kdlx">and xtb.jybz=$kdlx$</isNotEmpty>
-      <isNotEmpty property="kmh">and xtb.kmh like '%$kmh$%'</isNotEmpty>
-      <isNotEmpty property="kmmc">and km.kmmc like '%$kmmc$%'</isNotEmpty>
-      order by xtb.sjdh desc ) t
-    </select>
-  </sqlMap>
-  <rels>
-    <items id="zfzjyjg_xsjy1jgj" />
-  </rels>
+
+<pageSetting id="zfzjyjg" title="总分账检验结果" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期"> 
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="tjrq"/>  
+        <attribute key="minDate" value="no"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Dmms" label="核对类型"> 
+        <attribute key="width" value="120px;"/>  
+        <attribute key="dmmc" value="kdlx"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="kdlx"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="multiple" value="false"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="NewJg" label="机构"> 
+        <attribute key="cascadeCheck" value="true"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="ckbz" value="jg"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="jgkhdxdh"/>  
+        <attribute key="multiple" value="true"/> 
+      </tag>  
+      <tag row="1" col="0" colspan="1" rowspan="1" name="Text" label="科目号"> 
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="kmh"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="1" col="1" colspan="1" rowspan="1" name="Text" label="科目名称"> 
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="kmmc"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="zfzjyjg_xsjy1jgj" title="新数据源1结果集" page="true"> 
+    <col id="SJSJ" title="事件时间" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZZRQ" title="系统日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KMMC" title="科目名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="BZZWMC" title="币种" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KDLX" title="核对类型" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZZYE" title="总帐余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openKmzzbb"/>  
+    <col id="FZYE" title="分户账余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="CB" title="差额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="WCFW" title="误差范围" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <sqlMap namespace="studio.zfzjyjg"> 
+    <select id="dn0.zfzjyjgList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select f_timetochar(xtb.sjsj,'yyyy-mm-dd hh24:mi:ss') sjsj, xtb.zzrq,xtb.jgdh,jg.jgmc,xtb.kmh,km.kmmc,bz.bzzwmc, case when xtb.jybz=1 then '接口与总账接口核对' when xtb.jybz=2 then '帐户明细与总账核对' when xtb.jybz=3 then '内部总账与总账核对' end as kdlx, xtb.zzye,xtb.fzye,xtb.cb,xtb.wcfw,jg.khdxdh from xtb_zfjyjg xtb inner join khdx_jg jg on jg.jgdh=xtb.jgdh left join csb_bz bz on bz.bz=xtb.bz left join csb_km km on km.kmh=xtb.kmh inner join table(fn_getsjjg_java_qx($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh=jg.khdxdh where 1=1 
+      <isNotEmpty property="tjrq">and xtb.zzrq=$tjrq$</isNotEmpty>  
+      <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>  
+      <isNotEmpty property="kdlx">and xtb.jybz=$kdlx$</isNotEmpty>  
+      <isNotEmpty property="kmh">and xtb.kmh like '%$kmh$%'</isNotEmpty>  
+      <isNotEmpty property="kmmc">and km.kmmc like '%$kmmc$%'</isNotEmpty> order by xtb.sjdh desc
+    </select>  
+    <select id="dn0.zfzjyjgCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select f_timetochar(xtb.sjsj,'yyyy-mm-dd hh24:mi:ss') sjsj, xtb.zzrq,xtb.jgdh,jg.jgmc,xtb.kmh,km.kmmc,bz.bzzwmc, case when xtb.jybz=1 then '接口与总账接口核对' when xtb.jybz=2 then '帐户明细与总账核对' when xtb.jybz=3 then '内部总账与总账核对' end as kdlx, xtb.zzye,xtb.fzye,xtb.cb,xtb.wcfw,jg.khdxdh from xtb_zfjyjg xtb inner join khdx_jg jg on jg.jgdh=xtb.jgdh left join csb_bz bz on bz.bz=xtb.bz left join csb_km km on km.kmh=xtb.kmh inner join table(fn_getsjjg_java_qx($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh=jg.khdxdh where 1=1 
+      <isNotEmpty property="tjrq">and xtb.zzrq=$tjrq$</isNotEmpty>  
+      <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>  
+      <isNotEmpty property="kdlx">and xtb.jybz=$kdlx$</isNotEmpty>  
+      <isNotEmpty property="kmh">and xtb.kmh like '%$kmh$%'</isNotEmpty>  
+      <isNotEmpty property="kmmc">and km.kmmc like '%$kmmc$%'</isNotEmpty> order by xtb.sjdh desc ) t
+    </select> 
+  </sqlMap>  
+  <rels> 
+    <items id="zfzjyjg_xsjy1jgj"/> 
+  </rels>  
   <javascript><![CDATA[jQuery(document).ready(function () {
 
 });
@@ -91,6 +88,5 @@ function openKmzzbb(obj){
   var paramsJasonString = "{"+"'tjrq':'"+obj['ZZRQ']+"','kmh':'"+obj['KMH']+"','jgdh':'"+obj['JGDH']+"','jgkhdxdh':'"+obj['KHDXDH']+"','jgkhdxdh_mc':'"+obj['JGMC']+"'}";
   //alert(paramsJasonString);
   querySubQuery(paramsJasonString,"kmzzbb",'80','40','tag');
-}]]></javascript>
+}]]></javascript> 
 </pageSetting>
-

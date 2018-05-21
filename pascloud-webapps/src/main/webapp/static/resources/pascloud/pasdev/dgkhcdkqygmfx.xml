@@ -1,78 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="dgkhcdkqygmfx" title="客户存贷款企业规模分析" type="query" version="2.0.0">
-  <conPart>
-    <tags>
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月">
-        <attribute key="dateFmt" value="yyyyMM" />
-        <attribute key="defValType" value="sysDate" />
-        <attribute key="editable" value="true" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="tjrq" />
-      </tag>
-      <tag row="0" col="1" colspan="1" rowspan="1" name="NewJg" label="机构">
-        <attribute key="cascadeCheck" value="true" />
-        <attribute key="editable" value="true" />
-        <attribute key="ckbz" value="jg_ckhy" />
-        <attribute key="isRequired" value="true" />
-        <attribute key="name" value="jgkhdxdh" />
-        <attribute key="multiple" value="true" />
-      </tag>
-      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="业务类型">
-        <attribute key="isMultiple" value="false" />
-        <attribute key="width" value="120px;" />
-        <attribute key="isSearch" value="false" />
-        <attribute key="sql" value="select dmz as key, dmms as value from CSB_DMMS where  DMMC= 'ZHLX'" />
-        <attribute key="isRequired" value="false" />
-        <attribute key="name" value="ywlx" />
-        <attribute key="isAll" value="false" />
-        <attribute key="isEditable" value="true" />
-      </tag>
-      <tag row="0" col="3" colspan="1" rowspan="1" name="Hidden" label="">
-        <attribute key="defVal" value="$sysdate$" />
-        <attribute key="name" value="sysdate" />
-      </tag>
-    </tags>
-  </conPart>
-  <table id="dgkhcdkqygmfx_xsjy1jgj" title="新数据源1结果集" page="false" isDym="true">
-    <col id="TJRQ" title="统计年月" align="left" type="string" width="75" frozen="true" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="true" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="true" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="HZYE" title="汇总余额" align="right" type="float" width="120" frozen="true" format="" exp="true" showDymCol="false" orderby="desc" mergeCells="false" footerCells="true" />
-    <col id="HZHYYEZB" title="汇总余额占比(%)" align="right" type="float" width="120" frozen="true" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="HZKHS" title="汇总客户数" align="right" type="float" width="120" frozen="true" format="" exp="true" showDymCol="false" orderby="desc" mergeCells="false" footerCells="true" />
-    <col id="HZHYKHSZB" title="汇总客户数占比(%)" align="right" type="float" width="120" frozen="true" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="$DMMS$" title="DMMS" align="left" type="string" width="480" frozen="false" format="" exp="true" showDymCol="false" refcolumn="DMZ" orderby="desc" mergeCells="false" footerCells="false" dym="true">
-      <col id="DD1" title="余额" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="DD" title="余额占比(%)" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="" mergeCells="false" footerCells="false" />
-      <col id="DD2" title="客户数" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="ZB" title="客户数占比(%)" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    </col>
-  </table>
-  <sqlMap namespace="studio.dgkhcdkqygmfx">
-    <select id="dn12.dgkhcdkqygmfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      SELECT $tjrq$ AS TJRQ,        JG.JGDH AS JGDH,        JG.JGMC AS JGMC,        B.KHYE AS HZYE,        (cast(B.KHYE as decimal(25,4))/cast( SUM(DGTJ.KHYE) OVER(PARTITION BY DGTJ.TJRQ,DGTJ.JXDXLX) as decimal(25,4)))*100 AS HZHYYEZB,        B.KHS AS HZKHS,        (cast(B.KHS as decimal(25,4))/cast( SUM(DGTJ.KHS) OVER(PARTITION BY DGTJ.TJRQ,DGTJ.JXDXLX) as decimal(25,4)))*100 AS HZHYKHSZB,        DMMS.DMMS AS DMMS,        DMMS.DMZ AS DMZ,        DGTJ.KHYE AS dd1,        case when b.khye =0 then 0 else (DGTJ.KHYE/B.KHYE)*100   end   as dd,        DGTJ.KHS AS dd2,         case when b.khs =0 then 0 else (cast(dgtj.khs as decimal(25,4))/cast(b.khs as decimal(25,4)))*100  end as zb FROM KHFX_DGKHQYGMTJ DGTJ INNER JOIN KHDX_JG JG ON JG.KHDXDH=DGTJ.JGKHDXDH INNER JOIN(    SELECT a.jgkhdxdh,cast(sum(a.khs)as decimal(25,4)) as khs,            cast(sum(a.khye)as decimal(25,4)) as khye     from(         SELECT DGTJ2.JGKHDXDH,dgtj2.khs ,dgtj2.khye         FROM KHFX_DGKHQYGMTJ DGTJ2         WHERE DGTJ2.TJRQ = (SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) )
-      <isNotEmpty property="jgkhdxdh">AND DGTJ2.JGKHDXDH IN ($jgkhdxdh$)</isNotEmpty>
-      <isNotEmpty property="ywlx">AND DGTJ2.JXDXLX= $ywlx$</isNotEmpty>
-      )A GROUP BY A.JGKHDXDH )B ON B.JGKHDXDH = DGTJ.JGKHDXDH inner join csb_dmms dmms on dmms.dmz = dgtj.qygm and dmms.DMMC= 'QYGM' WHERE DGTJ.TJRQ = (SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) )
-      <isNotEmpty property="jgkhdxdh">AND DGTJ.JGKHDXDH in ($jgkhdxdh$)</isNotEmpty>
-      <isNotEmpty property="ywlx">and DGTJ.JXDXLX= $ywlx$</isNotEmpty>
-    </select>
-    <select id="dn12.dgkhcdkqygmfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from ( SELECT $tjrq$ AS TJRQ,        JG.JGDH AS JGDH,        JG.JGMC AS JGMC,        B.KHYE AS HZYE,        (cast(B.KHYE as decimal(25,4))/cast( SUM(DGTJ.KHYE) OVER(PARTITION BY DGTJ.TJRQ,DGTJ.JXDXLX) as decimal(25,4)))*100 AS HZHYYEZB,        B.KHS AS HZKHS,        (cast(B.KHS as decimal(25,4))/cast( SUM(DGTJ.KHS) OVER(PARTITION BY DGTJ.TJRQ,DGTJ.JXDXLX) as decimal(25,4)))*100 AS HZHYKHSZB,        DMMS.DMMS AS DMMS,        DMMS.DMZ AS DMZ,        DGTJ.KHYE AS dd1,        case when b.khye =0 then 0 else (DGTJ.KHYE/B.KHYE)*100   end   as dd,        DGTJ.KHS AS dd2,         case when b.khs =0 then 0 else (cast(dgtj.khs as decimal(25,4))/cast(b.khs as decimal(25,4)))*100  end as zb FROM KHFX_DGKHQYGMTJ DGTJ INNER JOIN KHDX_JG JG ON JG.KHDXDH=DGTJ.JGKHDXDH INNER JOIN(    SELECT a.jgkhdxdh,cast(sum(a.khs)as decimal(25,4)) as khs,            cast(sum(a.khye)as decimal(25,4)) as khye     from(         SELECT DGTJ2.JGKHDXDH,dgtj2.khs ,dgtj2.khye         FROM KHFX_DGKHQYGMTJ DGTJ2         WHERE DGTJ2.TJRQ = (SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) )
-      <isNotEmpty property="jgkhdxdh">AND DGTJ2.JGKHDXDH IN ($jgkhdxdh$)</isNotEmpty>
-      <isNotEmpty property="ywlx">AND DGTJ2.JXDXLX= $ywlx$</isNotEmpty>
-      )A GROUP BY A.JGKHDXDH )B ON B.JGKHDXDH = DGTJ.JGKHDXDH inner join csb_dmms dmms on dmms.dmz = dgtj.qygm and dmms.DMMC= 'QYGM' WHERE DGTJ.TJRQ = (SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) )
-      <isNotEmpty property="jgkhdxdh">AND DGTJ.JGKHDXDH in ($jgkhdxdh$)</isNotEmpty>
-      <isNotEmpty property="ywlx">and DGTJ.JXDXLX= $ywlx$</isNotEmpty>
-      ) t
-    </select>
-    <select id="dn12.dgkhcdkqygmfx_MSQL4SELECT_ywlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where  DMMC= 'ZHLX'</select>
-  </sqlMap>
-  <rels>
-    <items id="dgkhcdkqygmfx_xsjy1jgj" />
-  </rels>
+
+<pageSetting id="dgkhcdkqygmfx" title="客户存贷款企业规模分析" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月"> 
+        <attribute key="dateFmt" value="yyyyMM"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="tjrq"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewJg" label="机构"> 
+        <attribute key="cascadeCheck" value="true"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="ckbz" value="jg_ckhy"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="jgkhdxdh"/>  
+        <attribute key="multiple" value="true"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="业务类型"> 
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="isSearch" value="false"/>  
+        <attribute key="sql" value="select dmz as key, dmms as value from CSB_DMMS where  DMMC= 'ZHLX'"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="ywlx"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="isEditable" value="true"/> 
+      </tag>  
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="defVal" value="$sysdate$"/>  
+        <attribute key="name" value="sysdate"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="dgkhcdkqygmfx_xsjy1jgj" title="新数据源1结果集" page="false" isDym="true"> 
+    <col id="TJRQ" title="统计年月" align="left" type="string" width="75" frozen="true" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="true" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="true" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HZYE" title="汇总余额" align="right" type="float" width="120" frozen="true" format="" exp="true" showDymCol="false" orderby="desc" mergeCells="false" footerCells="true"/>  
+    <col id="HZHYYEZB" title="汇总余额占比(%)" align="right" type="float" width="120" frozen="true" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HZKHS" title="汇总客户数" align="right" type="float" width="120" frozen="true" format="" exp="true" showDymCol="false" orderby="desc" mergeCells="false" footerCells="true"/>  
+    <col id="HZHYKHSZB" title="汇总客户数占比(%)" align="right" type="float" width="120" frozen="true" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="$DMMS$" title="DMMS" align="left" type="string" width="480" frozen="false" format="" exp="true" showDymCol="false" refcolumn="DMZ" orderby="desc" mergeCells="false" footerCells="false" dym="true"> 
+      <col id="DD1" title="余额" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="DD" title="余额占比(%)" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+      <col id="DD2" title="客户数" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="ZB" title="客户数占比(%)" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col> 
+  </table>  
+  <sqlMap namespace="studio.dgkhcdkqygmfx"> 
+    <select id="dn0.dgkhcdkqygmfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> SELECT $tjrq$ AS TJRQ, JG.JGDH AS JGDH, JG.JGMC AS JGMC, B.KHYE AS HZYE, (cast(B.KHYE as decimal(25,4))/cast( SUM(DGTJ.KHYE) OVER(PARTITION BY DGTJ.TJRQ,DGTJ.JXDXLX) as decimal(25,4)))*100 AS HZHYYEZB, B.KHS AS HZKHS, (cast(B.KHS as decimal(25,4))/cast( SUM(DGTJ.KHS) OVER(PARTITION BY DGTJ.TJRQ,DGTJ.JXDXLX) as decimal(25,4)))*100 AS HZHYKHSZB, DMMS.DMMS AS DMMS, DMMS.DMZ AS DMZ, DGTJ.KHYE AS dd1, case when b.khye =0 then 0 else (DGTJ.KHYE/B.KHYE)*100 end as dd, DGTJ.KHS AS dd2, case when b.khs =0 then 0 else (cast(dgtj.khs as decimal(25,4))/cast(b.khs as decimal(25,4)))*100 end as zb FROM KHFX_DGKHQYGMTJ DGTJ INNER JOIN KHDX_JG JG ON JG.KHDXDH=DGTJ.JGKHDXDH INNER JOIN( SELECT a.jgkhdxdh,cast(sum(a.khs)as decimal(25,4)) as khs, cast(sum(a.khye)as decimal(25,4)) as khye from( SELECT DGTJ2.JGKHDXDH,dgtj2.khs ,dgtj2.khye FROM KHFX_DGKHQYGMTJ DGTJ2 WHERE DGTJ2.TJRQ = (SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) ) 
+      <isNotEmpty property="jgkhdxdh">AND DGTJ2.JGKHDXDH IN ($jgkhdxdh$)</isNotEmpty>  
+      <isNotEmpty property="ywlx">AND DGTJ2.JXDXLX= $ywlx$</isNotEmpty> )A GROUP BY A.JGKHDXDH )B ON B.JGKHDXDH = DGTJ.JGKHDXDH inner join csb_dmms dmms on dmms.dmz = dgtj.qygm and dmms.DMMC= 'QYGM' WHERE DGTJ.TJRQ = (SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) ) 
+      <isNotEmpty property="jgkhdxdh">AND DGTJ.JGKHDXDH in ($jgkhdxdh$)</isNotEmpty>  
+      <isNotEmpty property="ywlx">and DGTJ.JXDXLX= $ywlx$</isNotEmpty> 
+    </select>  
+    <select id="dn0.dgkhcdkqygmfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( SELECT $tjrq$ AS TJRQ, JG.JGDH AS JGDH, JG.JGMC AS JGMC, B.KHYE AS HZYE, (cast(B.KHYE as decimal(25,4))/cast( SUM(DGTJ.KHYE) OVER(PARTITION BY DGTJ.TJRQ,DGTJ.JXDXLX) as decimal(25,4)))*100 AS HZHYYEZB, B.KHS AS HZKHS, (cast(B.KHS as decimal(25,4))/cast( SUM(DGTJ.KHS) OVER(PARTITION BY DGTJ.TJRQ,DGTJ.JXDXLX) as decimal(25,4)))*100 AS HZHYKHSZB, DMMS.DMMS AS DMMS, DMMS.DMZ AS DMZ, DGTJ.KHYE AS dd1, case when b.khye =0 then 0 else (DGTJ.KHYE/B.KHYE)*100 end as dd, DGTJ.KHS AS dd2, case when b.khs =0 then 0 else (cast(dgtj.khs as decimal(25,4))/cast(b.khs as decimal(25,4)))*100 end as zb FROM KHFX_DGKHQYGMTJ DGTJ INNER JOIN KHDX_JG JG ON JG.KHDXDH=DGTJ.JGKHDXDH INNER JOIN( SELECT a.jgkhdxdh,cast(sum(a.khs)as decimal(25,4)) as khs, cast(sum(a.khye)as decimal(25,4)) as khye from( SELECT DGTJ2.JGKHDXDH,dgtj2.khs ,dgtj2.khye FROM KHFX_DGKHQYGMTJ DGTJ2 WHERE DGTJ2.TJRQ = (SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) ) 
+      <isNotEmpty property="jgkhdxdh">AND DGTJ2.JGKHDXDH IN ($jgkhdxdh$)</isNotEmpty>  
+      <isNotEmpty property="ywlx">AND DGTJ2.JXDXLX= $ywlx$</isNotEmpty> )A GROUP BY A.JGKHDXDH )B ON B.JGKHDXDH = DGTJ.JGKHDXDH inner join csb_dmms dmms on dmms.dmz = dgtj.qygm and dmms.DMMC= 'QYGM' WHERE DGTJ.TJRQ = (SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) ) 
+      <isNotEmpty property="jgkhdxdh">AND DGTJ.JGKHDXDH in ($jgkhdxdh$)</isNotEmpty>  
+      <isNotEmpty property="ywlx">and DGTJ.JXDXLX= $ywlx$</isNotEmpty> ) t
+    </select>  
+    <select id="dn0.dgkhcdkqygmfx_MSQL4SELECT_ywlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where DMMC= 'ZHLX'</select> 
+  </sqlMap>  
+  <rels> 
+    <items id="dgkhcdkqygmfx_xsjy1jgj"/> 
+  </rels>  
   <javascript><![CDATA[jQuery(document).ready(function () {
     var obj=createTimeObj(jQuery("#sysdate").val());
     if(jQuery("#sysdate").val()!=obj.ym){
@@ -84,6 +80,5 @@
 //自定义验证，在提交时执行。通过返回true，否则返回false
 function customValidate(){
  return true;
-}]]></javascript>
+}]]></javascript> 
 </pageSetting>
-

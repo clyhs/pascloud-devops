@@ -28,6 +28,7 @@ function initMainDataGrid(){
             //{ field: 'suffix', title: '后缀名', width: 80, align: 'center' },
             { field: 'version', title: '版本号', width: 80, align: 'center' }
         ]],
+        toolbar:toolbar,
         onBeforeLoad: function (param) {
         },
         onLoadSuccess: function (data) {
@@ -50,5 +51,21 @@ function initMainDataGrid(){
             
         }
     });
+}
+
+function modifyPasFiles(){
+	//alert(driverClassVal + passwordVal);
+	EasyUILoad('mainCenter');
+	$.post('modifyPasfiles.json',{},function(data,status){
+		if(data.code == 10000){
+			dispalyEasyUILoad( 'mainCenter' );
+			$.messager.alert('提示','修改成功');
+			//alert(obj);
+		}else{
+			dispalyEasyUILoad( 'mainCenter' );
+			$.messager.alert('提示','修改失败');
+		}
+	});
+	
 }
 

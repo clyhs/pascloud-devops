@@ -1,280 +1,243 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="zxllgl" title="执行利率管理" type="manage">
-  <conPart>
-    <tags>
-      <tag row="0" col="0" rowspan="1" colspan="1" name="Dmms" label="对象类型" fieldName="">
-        <attribute key="name" value="jxdxlx" />
-        <attribute key="width" value="120px;" />
-        <attribute key="isAll" value="true" />
-        <attribute key="dmmc" value="zhlx" />
-        <attribute key="multiple" value="false" />
-        <attribute key="editable" value="true" />
-      </tag>
-      <tag row="0" col="1" rowspan="1" colspan="1" name="Dmms" label="业务类型" fieldName="">
-        <attribute key="name" value="ywlx" />
-        <attribute key="width" value="120px;" />
-        <attribute key="isAll" value="true" />
-        <attribute key="dmmc" value="ywlx" />
-        <attribute key="multiple" value="false" />
-        <attribute key="editable" value="true" />
-      </tag>
-      <tag row="0" col="2" rowspan="1" colspan="1" name="Text" label="产品名称" fieldName="">
-        <attribute key="name" value="cpmc" />
-        <attribute key="readonly" value="false" />
-        <attribute key="editable" value="true" />
-      </tag>
-    </tags>
-  </conPart>
-  <table page="true" id="zxllgltable">
-    <col id="JXDXLXMC" title="对象类型" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="YWLXMC" title="业务类型" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="CPMC" title="产品名称" align="left" type="string" width="180" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="QXMC" title="期限名称" align="left" type="string" width="140" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="ZXLL" title="执行利率" align="right" type="float" width="80" format="#0.000000" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="QSRQ" title="起始日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="JXDXLX" title="绩效对象类型" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" />
-    <col id="YWLX" title="业务类型ID" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" />
-    <col id="CPDH" title="产品代号ID" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" />
-    <col id="QXDH" title="期限代号ID" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" />
-  </table>
-  <rels>
-    <items id="zxllgltable" />
-  </rels>
-  <addPage title="编辑页面">
-    <tag row="0" col="0" rowspan="1" colspan="1" name="Dmms" label="对象类型" fieldName="JXDXLX">
-      <attribute key="name" value="jxdxlx" />
-      <attribute key="width" value="120px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="dmmc" value="zhlx" />
-      <attribute key="multiple" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="0" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ">
-      <attribute key="defVal" value="29991231" />
-      <attribute key="name" value="jsrq" />
-    </tag>
-    <tag row="1" col="0" rowspan="1" colspan="1" name="Dmms" label="业务类型" fieldName="YWLX">
-      <attribute key="name" value="ywlx" />
-      <attribute key="width" value="120px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="dmmc" value="ywlx" />
-      <attribute key="multiple" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="2" col="0" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ">
-      <attribute key="isRequired" value="true" />
-      <attribute key="name" value="qsrq" />
-      <attribute key="minDate" value="no" />
-      <attribute key="defValType" value="sysDate" />
-      <attribute key="dateFmt" value="yyyyMMdd" />
-      <attribute key="editable" value="true" />
-    </tag>
-    <tag row="3" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="产品名称" fieldName="CPDH">
-      <attribute key="parents" value="jxdxlx,ywlx,qsrq" />
-      <attribute key="sql" value="select cpdh as key, cpmc as value FROM CSB_CPXZ WHERE 1=1   and jxdxlx = $jxdxlx$  and  '$ywlx$'= ywlx" />
-      <attribute key="isSearch" value="false" />
-      <attribute key="isRequired" value="true" />
-      <attribute key="isMultiple" value="false" />
-      <attribute key="name" value="cpmc" />
-      <attribute key="width" value="120px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="isEditable" value="true" />
-    </tag>
-    <tag row="4" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="期限" fieldName="QXDH">
-      <attribute key="parents" value="jxdxlx" />
-      <attribute key="sql" value="select key , value from ( select qxdh as key, qxmc as value FROM CSB_QXSDB WHERE 1=1 AND JXDXLX = $jxdxlx$ union all select '-1' as key,'无' as value from xtb_xtcs  where lower(csmc) = 'sys_date'  ) t" />
-      <attribute key="isSearch" value="false" />
-      <attribute key="isRequired" value="false" />
-      <attribute key="isMultiple" value="false" />
-      <attribute key="name" value="qxmc" />
-      <attribute key="width" value="120px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="isEditable" value="true" />
-    </tag>
-    <tag row="5" col="0" rowspan="1" colspan="1" name="Number" label="执行利率" fieldName="ZXLL">
-      <attribute key="min" value="0" />
-      <attribute key="precision" value="6" />
-      <attribute key="name" value="zxll" />
-      <attribute key="intparts" value="10" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-  </addPage>
-  <updatePage title="编辑页面">
-    <tag row="0" col="0" rowspan="1" colspan="1" name="Dmms" label="对象类型" fieldName="JXDXLX">
-      <attribute key="name" value="jxdxlx" />
-      <attribute key="width" value="120px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="dmmc" value="zhlx" />
-      <attribute key="multiple" value="false" />
-      <attribute key="isEditable" value="false" />
-      <attribute key="editable" value="false" />
-    </tag>
-    <tag row="0" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ">
-      <attribute key="defVal" value="29991231" />
-      <attribute key="name" value="jsrq" />
-    </tag>
-    <tag row="1" col="0" rowspan="1" colspan="1" name="Dmms" label="业务类型" fieldName="YWLX">
-      <attribute key="name" value="ywlx" />
-      <attribute key="width" value="120px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="dmmc" value="ywlx" />
-      <attribute key="multiple" value="false" />
-      <attribute key="isEditable" value="false" />
-      <attribute key="editable" value="false" />
-    </tag>
-    <tag row="2" col="0" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ">
-      <attribute key="isRequired" value="true" />
-      <attribute key="name" value="qsrq" />
-      <attribute key="isAll" value="false" />
-      <attribute key="minDate" value="no" />
-      <attribute key="defValType" value="sysDate" />
-      <attribute key="dateFmt" value="yyyyMMdd" />
-      <attribute key="isEditable" value="false" />
-      <attribute key="editable" value="false" />
-    </tag>
-    <tag row="3" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="产品名称" fieldName="CPDH">
-      <attribute key="parents" value="jxdxlx,ywlx,qsrq" />
-      <attribute key="sql" value="select cpdh as key, cpmc as value FROM CSB_CPXZ WHERE 1=1   and jxdxlx = $jxdxlx$  and  '$ywlx$'= ywlx" />
-      <attribute key="isSearch" value="false" />
-      <attribute key="isRequired" value="true" />
-      <attribute key="isMultiple" value="false" />
-      <attribute key="name" value="cpmc" />
-      <attribute key="width" value="120px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="editable" value="false" />
-      <attribute key="isEditable" value="false" />
-    </tag>
-    <tag row="4" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="期限" fieldName="QXDH">
-      <attribute key="parents" value="jxdxlx" />
-      <attribute key="sql" value="select key , value from ( select qxdh as key, qxmc as value FROM CSB_QXSDB WHERE 1=1 AND JXDXLX = $jxdxlx$ union all select '-1' as key,'无' as value from xtb_xtcs  where lower(csmc) = 'sys_date'  ) t" />
-      <attribute key="isSearch" value="false" />
-      <attribute key="isRequired" value="false" />
-      <attribute key="isMultiple" value="false" />
-      <attribute key="name" value="qxmc" />
-      <attribute key="width" value="120px;" />
-      <attribute key="isAll" value="false" />
-      <attribute key="editable" value="false" />
-      <attribute key="isEditable" value="false" />
-    </tag>
-    <tag row="5" col="0" rowspan="1" colspan="1" name="Number" label="执行利率" fieldName="ZXLL">
-      <attribute key="min" value="0" />
-      <attribute key="precision" value="6" />
-      <attribute key="name" value="zxll" />
-      <attribute key="intparts" value="10" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
-    </tag>
-  </updatePage>
-  <buttons>
-    <button>add</button>
-    <button>edit</button>
-    <button>delete</button>
-    <button>import</button>
-  </buttons>
-  <flow>
-    <insertbefore>
-      <sql type="delete">zxllgl_check_itemAddDel</sql>
-      <sql type="update">zxllgl_check_itemUP</sql>
-    </insertbefore>
-    <insertafter />
-    <deletebefore>
-      <sql type="selectmaxqsrq">zxllgl_check_itemMAX_del</sql>
-      <sql type="update">zxllgl_check_itemDELUP</sql>
-    </deletebefore>
-    <deleteafter />
-    <updatebefore />
-    <updateafter />
-  </flow>
-  <sqlMap namespace="studio.zxllgl">
-    <select id="dn12.zxllglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      SELECT dmms1.DMMS AS jxdxlxmc ,csb.JXDXLX, dmms2.DMMS AS ywlxmc ,csb.YWLX,cpxz.CPMC,csb.CPDH,         coalesce(qx.QXMC,'无') as qxmc,csb.QXDH,csb.ZXLL,csb.QSRQ,csb.JSRQ FROM CSB_ZXLL csb INNER JOIN CSB_DMMS dmms1 ON CAST(dmms1.DMZ AS INTEGER) = csb.JXDXLX AND dmms1.DMMC='ZHLX'  INNER JOIN CSB_DMMS dmms2 ON dmms2.DMZ = csb.ywlx AND dmms2.DMMC='YWLX'  INNER JOIN CSB_CPXZ cpxz ON cpxz.CPDH = csb.CPDH  left JOIN CSB_QXSDB qx ON qx.QXDH = csb.QXDH AND csb.JXDXLX = qx.JXDXLX WHERE 1=1
-      <isNotEmpty property="jxdxlx">AND csb.JXDXLX = $jxdxlx$</isNotEmpty>
-      <isNotEmpty property="ywlx">AND csb.YWLX = '$ywlx$'</isNotEmpty>
-      <isNotEmpty property="cpmc">AND cpxz.CPMC LIKE '%$cpmc$%'</isNotEmpty>
-      order by csb.jxdxlx,csb.ywlx,cpxz.cpmc,qx.qxdh,csb.qsrq
-    </select>
-    <select id="dn12.zxllglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from ( SELECT dmms1.DMMS AS jxdxlxmc ,csb.JXDXLX, dmms2.DMMS AS ywlxmc ,csb.YWLX,cpxz.CPMC,csb.CPDH,         coalesce(qx.QXMC,'无') as qxmc,csb.QXDH,csb.ZXLL,csb.QSRQ,csb.JSRQ FROM CSB_ZXLL csb INNER JOIN CSB_DMMS dmms1 ON CAST(dmms1.DMZ AS INTEGER) = csb.JXDXLX AND dmms1.DMMC='ZHLX'  INNER JOIN CSB_DMMS dmms2 ON dmms2.DMZ = csb.ywlx AND dmms2.DMMC='YWLX'  INNER JOIN CSB_CPXZ cpxz ON cpxz.CPDH = csb.CPDH  left JOIN CSB_QXSDB qx ON qx.QXDH = csb.QXDH AND csb.JXDXLX = qx.JXDXLX WHERE 1=1
-      <isNotEmpty property="jxdxlx">AND csb.JXDXLX = $jxdxlx$</isNotEmpty>
-      <isNotEmpty property="ywlx">AND csb.YWLX = '$ywlx$'</isNotEmpty>
-      <isNotEmpty property="cpmc">AND cpxz.CPMC LIKE '%$cpmc$%'</isNotEmpty>
-      order by csb.jxdxlx,csb.ywlx,cpxz.cpmc,qx.qxdh,csb.qsrq ) t
-    </select>
-    <select id="dn12.zxllgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  YWLX, JXDXLX, ZXLL, QSRQ, JSRQ, CPDH, QXDH  from CSB_ZXLL where 1= 1  and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and QSRQ = $qsrq$ and CPDH = '$cpdh$' and QXDH = '$qxdh$'
-    </select>
-    <select id="dn12.zxllgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  YWLX, JXDXLX, ZXLL, QSRQ, JSRQ, CPDH, QXDH  from CSB_ZXLL where 1= 1  and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and QSRQ = $qsrq$ and CPDH = '$cpmc$' and QXDH = '$qxmc$'
-    </select>
-    <insert id="dn12.zxllgl_insert" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      insert into CSB_ZXLL( YWLX, CPDH, QSRQ, JXDXLX, QXDH, JSRQ, ZXLL ) values ( '$ywlx$','$cpmc$',$qsrq$,$jxdxlx$,'$qxmc$',$jsrq$,$zxll$)
-    </insert>
-    <update id="dn12.zxllgl_update" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update CSB_ZXLL set ZXLL = $zxll$ where 1=1  and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and QSRQ = $qsrq$ and CPDH = '$cpmc$' and QXDH = '$qxmc$'
-    </update>
-    <delete id="dn12.zxllgl_delete" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      delete from CSB_ZXLL where 1=1  and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and QSRQ = $qsrq$ and CPDH = '$cpdh$' and QXDH = '$qxdh$'
-    </delete>
-    <delete id="dn12.zxllgl_check_itemAddDel" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      <![CDATA[delete from CSB_ZXLL where qsrq >=$qsrq$  and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and CPDH = '$cpmc$' and QXDH = '$qxmc$']]>
-    </delete>
-    <update id="dn12.zxllgl_check_itemUP" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update CSB_ZXLL set jsrq=$qdate$
-      <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty>
-      and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and CPDH = '$cpmc$' and QXDH = '$qxmc$'
-    </update>
-    <select id="dn12.zxllgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select max(qsrq) from CSB_ZXLL where 1=1  and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and CPDH = '$cpdh$' and QXDH = '$qxdh$'
-    </select>
-    <select id="dn12.zxllgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      <![CDATA[select  YWLX, JXDXLX, ZXLL, QSRQ, JSRQ, CPDH, QXDH from CSB_ZXLL where 1=1  and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and CPDH = '$cpmc$' and QXDH = '$qxmc$' and $qsrq$ > $maxqsrq$]]>
-    </select>
-    <update id="dn12.zxllgl_check_itemDELUP" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update CSB_ZXLL set jsrq =29991231 where 1=1 and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and CPDH = '$cpdh$' and QXDH = '$qxdh$' and jsrq =$lastjsrq$
-    </update>
-    <select id="dn12.zxllgl_MSQL4SELECT_cpmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select cpdh as key, cpmc as value FROM CSB_CPXZ WHERE 1=1   and jxdxlx = $jxdxlx$  and  '$ywlx$'= ywlx</select>
-    <select id="dn12.zxllgl_MSQL4SELECT_qxmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select key , value from ( select qxdh as key, qxmc as value FROM CSB_QXSDB WHERE 1=1 AND JXDXLX = $jxdxlx$ union all select '-1' as key,'无' as value from xtb_xtcs  where lower(csmc) = 'sys_date'  ) t</select>
-  </sqlMap>
-  <javascript>
-    <import>parent.addTab('zxlldr','执行利率管理','/module/parser/import/visitHtml/zxlldr');</import>
-    <query>jQuery(document).ready(function () {
 
-});
-
-//自定义验证，在提交时执行。通过返回true，否则返回false
-function customValidate(){
- return true;
-}</query>
-    <edit>jQuery(document).ready(function () {
-//这里的js脚本，会在页面加载完成后执行
- 
-
-});
-//自定义验证，在提交时执行。通过返回true，否则返回false
-function customValidate(){
- return true;
-}
-
-window.onload=function (){
-
- BindParent('cpmc','qsrq','blur');
- BindParent('cpmc','ywlx','change');
- BindParent('cpmc','jxdxlx','change');
-}</edit>
-  </javascript>
+<pageSetting id="zxllgl" title="执行利率管理" type="manage"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Dmms" label="对象类型" fieldName=""> 
+        <attribute key="name" value="jxdxlx"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="dmmc" value="zhlx"/>  
+        <attribute key="multiple" value="false"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag row="0" col="1" rowspan="1" colspan="1" name="Dmms" label="业务类型" fieldName=""> 
+        <attribute key="name" value="ywlx"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="dmmc" value="ywlx"/>  
+        <attribute key="multiple" value="false"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag row="0" col="2" rowspan="1" colspan="1" name="Text" label="产品名称" fieldName=""> 
+        <attribute key="name" value="cpmc"/>  
+        <attribute key="readonly" value="false"/>  
+        <attribute key="editable" value="true"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table page="true" id="zxllgltable"> 
+    <col id="JXDXLXMC" title="对象类型" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="YWLXMC" title="业务类型" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="CPMC" title="产品名称" align="left" type="string" width="180" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="QXMC" title="期限名称" align="left" type="string" width="140" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="ZXLL" title="执行利率" align="right" type="float" width="80" format="#0.000000" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="QSRQ" title="起始日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="JXDXLX" title="绩效对象类型" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true"/>  
+    <col id="YWLX" title="业务类型ID" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true"/>  
+    <col id="CPDH" title="产品代号ID" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true"/>  
+    <col id="QXDH" title="期限代号ID" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true"/> 
+  </table>  
+  <rels> 
+    <items id="zxllgltable"/> 
+  </rels>  
+  <addPage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Dmms" label="对象类型" fieldName="JXDXLX"> 
+      <attribute key="name" value="jxdxlx"/>  
+      <attribute key="width" value="120px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="dmmc" value="zhlx"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="0" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ"> 
+      <attribute key="defVal" value="29991231"/>  
+      <attribute key="name" value="jsrq"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Dmms" label="业务类型" fieldName="YWLX"> 
+      <attribute key="name" value="ywlx"/>  
+      <attribute key="width" value="120px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="dmmc" value="ywlx"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ"> 
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="name" value="qsrq"/>  
+      <attribute key="minDate" value="no"/>  
+      <attribute key="defValType" value="sysDate"/>  
+      <attribute key="dateFmt" value="yyyyMMdd"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="3" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="产品名称" fieldName="CPDH"> 
+      <attribute key="parents" value="jxdxlx,ywlx,qsrq"/>  
+      <attribute key="sql" value="select cpdh as key, cpmc as value FROM CSB_CPXZ WHERE 1=1   and jxdxlx = $jxdxlx$  and  '$ywlx$'= ywlx"/>  
+      <attribute key="isSearch" value="false"/>  
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="isMultiple" value="false"/>  
+      <attribute key="name" value="cpmc"/>  
+      <attribute key="width" value="120px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="isEditable" value="true"/> 
+    </tag>  
+    <tag row="4" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="期限" fieldName="QXDH"> 
+      <attribute key="parents" value="jxdxlx"/>  
+      <attribute key="sql" value="select key , value from ( select qxdh as key, qxmc as value FROM CSB_QXSDB WHERE 1=1 AND JXDXLX = $jxdxlx$ union all select '-1' as key,'无' as value from xtb_xtcs  where lower(csmc) = 'sys_date'  ) t"/>  
+      <attribute key="isSearch" value="false"/>  
+      <attribute key="isRequired" value="false"/>  
+      <attribute key="isMultiple" value="false"/>  
+      <attribute key="name" value="qxmc"/>  
+      <attribute key="width" value="120px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="isEditable" value="true"/> 
+    </tag>  
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Number" label="执行利率" fieldName="ZXLL"> 
+      <attribute key="min" value="0"/>  
+      <attribute key="precision" value="6"/>  
+      <attribute key="name" value="zxll"/>  
+      <attribute key="intparts" value="10"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag> 
+  </addPage>  
+  <updatePage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Dmms" label="对象类型" fieldName="JXDXLX"> 
+      <attribute key="name" value="jxdxlx"/>  
+      <attribute key="width" value="120px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="dmmc" value="zhlx"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="isEditable" value="false"/>  
+      <attribute key="editable" value="false"/> 
+    </tag>  
+    <tag row="0" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ"> 
+      <attribute key="defVal" value="29991231"/>  
+      <attribute key="name" value="jsrq"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Dmms" label="业务类型" fieldName="YWLX"> 
+      <attribute key="name" value="ywlx"/>  
+      <attribute key="width" value="120px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="dmmc" value="ywlx"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="isEditable" value="false"/>  
+      <attribute key="editable" value="false"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ"> 
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="name" value="qsrq"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="minDate" value="no"/>  
+      <attribute key="defValType" value="sysDate"/>  
+      <attribute key="dateFmt" value="yyyyMMdd"/>  
+      <attribute key="isEditable" value="false"/>  
+      <attribute key="editable" value="false"/> 
+    </tag>  
+    <tag row="3" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="产品名称" fieldName="CPDH"> 
+      <attribute key="parents" value="jxdxlx,ywlx,qsrq"/>  
+      <attribute key="sql" value="select cpdh as key, cpmc as value FROM CSB_CPXZ WHERE 1=1   and jxdxlx = $jxdxlx$  and  '$ywlx$'= ywlx"/>  
+      <attribute key="isSearch" value="false"/>  
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="isMultiple" value="false"/>  
+      <attribute key="name" value="cpmc"/>  
+      <attribute key="width" value="120px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="editable" value="false"/>  
+      <attribute key="isEditable" value="false"/> 
+    </tag>  
+    <tag row="4" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="期限" fieldName="QXDH"> 
+      <attribute key="parents" value="jxdxlx"/>  
+      <attribute key="sql" value="select key , value from ( select qxdh as key, qxmc as value FROM CSB_QXSDB WHERE 1=1 AND JXDXLX = $jxdxlx$ union all select '-1' as key,'无' as value from xtb_xtcs  where lower(csmc) = 'sys_date'  ) t"/>  
+      <attribute key="isSearch" value="false"/>  
+      <attribute key="isRequired" value="false"/>  
+      <attribute key="isMultiple" value="false"/>  
+      <attribute key="name" value="qxmc"/>  
+      <attribute key="width" value="120px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="editable" value="false"/>  
+      <attribute key="isEditable" value="false"/> 
+    </tag>  
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Number" label="执行利率" fieldName="ZXLL"> 
+      <attribute key="min" value="0"/>  
+      <attribute key="precision" value="6"/>  
+      <attribute key="name" value="zxll"/>  
+      <attribute key="intparts" value="10"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag> 
+  </updatePage>  
+  <buttons> 
+    <button>add</button>  
+    <button>edit</button>  
+    <button>delete</button>  
+    <button>import</button> 
+  </buttons>  
+  <flow> 
+    <insertbefore> 
+      <sql type="delete">zxllgl_check_itemAddDel</sql>  
+      <sql type="update">zxllgl_check_itemUP</sql> 
+    </insertbefore>  
+    <insertafter/>  
+    <deletebefore> 
+      <sql type="selectmaxqsrq">zxllgl_check_itemMAX_del</sql>  
+      <sql type="update">zxllgl_check_itemDELUP</sql> 
+    </deletebefore>  
+    <deleteafter/>  
+    <updatebefore/>  
+    <updateafter/> 
+  </flow>  
+  <sqlMap namespace="studio.zxllgl"> 
+    <select id="dn0.zxllglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> SELECT dmms1.DMMS AS jxdxlxmc ,csb.JXDXLX, dmms2.DMMS AS ywlxmc ,csb.YWLX,cpxz.CPMC,csb.CPDH, coalesce(qx.QXMC,'无') as qxmc,csb.QXDH,csb.ZXLL,csb.QSRQ,csb.JSRQ FROM CSB_ZXLL csb INNER JOIN CSB_DMMS dmms1 ON CAST(dmms1.DMZ AS INTEGER) = csb.JXDXLX AND dmms1.DMMC='ZHLX' INNER JOIN CSB_DMMS dmms2 ON dmms2.DMZ = csb.ywlx AND dmms2.DMMC='YWLX' INNER JOIN CSB_CPXZ cpxz ON cpxz.CPDH = csb.CPDH left JOIN CSB_QXSDB qx ON qx.QXDH = csb.QXDH AND csb.JXDXLX = qx.JXDXLX WHERE 1=1 
+      <isNotEmpty property="jxdxlx">AND csb.JXDXLX = $jxdxlx$</isNotEmpty>  
+      <isNotEmpty property="ywlx">AND csb.YWLX = '$ywlx$'</isNotEmpty>  
+      <isNotEmpty property="cpmc">AND cpxz.CPMC LIKE '%$cpmc$%'</isNotEmpty> order by csb.jxdxlx,csb.ywlx,cpxz.cpmc,qx.qxdh,csb.qsrq
+    </select>  
+    <select id="dn0.zxllglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( SELECT dmms1.DMMS AS jxdxlxmc ,csb.JXDXLX, dmms2.DMMS AS ywlxmc ,csb.YWLX,cpxz.CPMC,csb.CPDH, coalesce(qx.QXMC,'无') as qxmc,csb.QXDH,csb.ZXLL,csb.QSRQ,csb.JSRQ FROM CSB_ZXLL csb INNER JOIN CSB_DMMS dmms1 ON CAST(dmms1.DMZ AS INTEGER) = csb.JXDXLX AND dmms1.DMMC='ZHLX' INNER JOIN CSB_DMMS dmms2 ON dmms2.DMZ = csb.ywlx AND dmms2.DMMC='YWLX' INNER JOIN CSB_CPXZ cpxz ON cpxz.CPDH = csb.CPDH left JOIN CSB_QXSDB qx ON qx.QXDH = csb.QXDH AND csb.JXDXLX = qx.JXDXLX WHERE 1=1 
+      <isNotEmpty property="jxdxlx">AND csb.JXDXLX = $jxdxlx$</isNotEmpty>  
+      <isNotEmpty property="ywlx">AND csb.YWLX = '$ywlx$'</isNotEmpty>  
+      <isNotEmpty property="cpmc">AND cpxz.CPMC LIKE '%$cpmc$%'</isNotEmpty> order by csb.jxdxlx,csb.ywlx,cpxz.cpmc,qx.qxdh,csb.qsrq ) t
+    </select>  
+    <select id="dn0.zxllgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select YWLX, JXDXLX, ZXLL, QSRQ, JSRQ, CPDH, QXDH from CSB_ZXLL where 1= 1 and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and QSRQ = $qsrq$ and CPDH = '$cpdh$' and QXDH = '$qxdh$'
+    </select>  
+    <select id="dn0.zxllgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select YWLX, JXDXLX, ZXLL, QSRQ, JSRQ, CPDH, QXDH from CSB_ZXLL where 1= 1 and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and QSRQ = $qsrq$ and CPDH = '$cpmc$' and QXDH = '$qxmc$'
+    </select>  
+    <insert id="dn0.zxllgl_insert" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into CSB_ZXLL( YWLX, CPDH, QSRQ, JXDXLX, QXDH, JSRQ, ZXLL ) values ( '$ywlx$','$cpmc$',$qsrq$,$jxdxlx$,'$qxmc$',$jsrq$,$zxll$)
+    </insert>  
+    <update id="dn0.zxllgl_update" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_ZXLL set ZXLL = $zxll$ where 1=1 and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and QSRQ = $qsrq$ and CPDH = '$cpmc$' and QXDH = '$qxmc$'
+    </update>  
+    <delete id="dn0.zxllgl_delete" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from CSB_ZXLL where 1=1 and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and QSRQ = $qsrq$ and CPDH = '$cpdh$' and QXDH = '$qxdh$'
+    </delete>  
+    <delete id="dn0.zxllgl_check_itemAddDel" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[delete from CSB_ZXLL where qsrq >=$qsrq$  and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and CPDH = '$cpmc$' and QXDH = '$qxmc$']]> 
+    </delete>  
+    <update id="dn0.zxllgl_check_itemUP" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_ZXLL set jsrq=$qdate$ 
+      <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty> and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and CPDH = '$cpmc$' and QXDH = '$qxmc$'
+    </update>  
+    <select id="dn0.zxllgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select max(qsrq) from CSB_ZXLL where 1=1 and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and CPDH = '$cpdh$' and QXDH = '$qxdh$'
+    </select>  
+    <select id="dn0.zxllgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select  YWLX, JXDXLX, ZXLL, QSRQ, JSRQ, CPDH, QXDH from CSB_ZXLL where 1=1  and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and CPDH = '$cpmc$' and QXDH = '$qxmc$' and $qsrq$ > $maxqsrq$]]> 
+    </select>  
+    <update id="dn0.zxllgl_check_itemDELUP" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_ZXLL set jsrq =29991231 where 1=1 and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and CPDH = '$cpdh$' and QXDH = '$qxdh$' and jsrq =$lastjsrq$
+    </update>  
+    <select id="dn0.zxllgl_MSQL4SELECT_cpmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select cpdh as key, cpmc as value FROM CSB_CPXZ WHERE 1=1 and jxdxlx = $jxdxlx$ and '$ywlx$'= ywlx</select>  
+    <select id="dn0.zxllgl_MSQL4SELECT_qxmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select key , value from ( select qxdh as key, qxmc as value FROM CSB_QXSDB WHERE 1=1 AND JXDXLX = $jxdxlx$ union all select '-1' as key,'无' as value from xtb_xtcs where lower(csmc) = 'sys_date' ) t</select> 
+  </sqlMap>  
+  <javascript> 
+    <import>parent.addTab('zxlldr','执行利率管理','/module/parser/import/visitHtml/zxlldr');</import>  
+    <query>jQuery(document).ready(function () { }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; }</query>  
+    <edit>jQuery(document).ready(function () { //这里的js脚本，会在页面加载完成后执行 }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; } window.onload=function (){ BindParent('cpmc','qsrq','blur'); BindParent('cpmc','ywlx','change'); BindParent('cpmc','jxdxlx','change'); }</edit> 
+  </javascript> 
 </pageSetting>
-
