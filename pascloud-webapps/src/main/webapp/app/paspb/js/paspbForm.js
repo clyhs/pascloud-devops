@@ -158,9 +158,9 @@ function addDB(){
 	var param = {name:nameVal,addr:addrVal,driverClass:driverClassVal,url:urlVal,username:usernameVal,password:passwordVal};
 	//alert(driverClassVal);
 	$.post("modifyContainerSpringXml.json",param,function(data,status){
-		if(data.code = 10000){
+		if(data.code == 10000){
 			//alert(data.desc);
-			alert("修改成功，请重新启动应用");
+			$.messager.alert('提示','修改成功，请重新启动应用');
 			$('#pasAddDb').dialog('close');
 		}
 		
@@ -172,11 +172,11 @@ function startContainer(){
 	var row = $('#mainDataGrid').datagrid('getSelected'); 
 	if(row.state != 'running'){
 		$.post("/module/container/startContainer.json",{containerId:row.id,ip:row.ip},function(data,status){
-			alert(data.code);
+			
 			$('#mainDataGrid').datagrid('reload');//刷新
 		});
 	}else{
-		alert('已经运行');
+		$.messager.alert('提示','服务已经运行中');
 	}
 }
 
@@ -185,11 +185,11 @@ function stopContainer(){
 	var row = $('#mainDataGrid').datagrid('getSelected'); 
 	if(row.state == 'running'){
 		$.post("/module/container/stopContainer.json",{containerId:row.id,ip:row.ip},function(data,status){
-			alert(data.code);
+			
 			$('#mainDataGrid').datagrid('reload');//刷新
 		});
 	}else{
-		alert('已经运行');
+		$.messager.alert('提示','只有运行的服务才能停止');
 	}
 }
 
@@ -198,11 +198,11 @@ function restartContainer(){
 	var row = $('#mainDataGrid').datagrid('getSelected'); 
 	if(row.state != 'running'){
 		$.post("/module/container/restartContainer.json",{containerId:row.id,ip:row.ip},function(data,status){
-			alert(data.code);
+			
 			$('#mainDataGrid').datagrid('reload');//刷新
 		});
 	}else{
-		alert('已经运行');
+		$.messager.alert('提示','只有运行的服务才能停止');
 	}
 }
 
@@ -212,11 +212,11 @@ function pauseContainer(){
 	var row = $('#mainDataGrid').datagrid('getSelected'); 
 	if(row.state != 'paused'){
 		$.post("/module/container/pauseContainer.json",{containerId:row.id,ip:row.ip},function(data,status){
-			alert(data.code);
+			
 			$('#mainDataGrid').datagrid('reload');//刷新
 		});
 	}else{
-		alert('已经暂停');
+		$.messager.alert('提示','服务已经暂停');
 	}
 }
 
@@ -225,11 +225,11 @@ function unpauseContainer(){
 	var row = $('#mainDataGrid').datagrid('getSelected'); 
 	if(row.state != 'running'){
 		$.post("/module/container/unpauseContainer.json",{containerId:row.id,ip:row.ip},function(data,status){
-			alert(data.code);
+			
 			$('#mainDataGrid').datagrid('reload');//刷新
 		});
 	}else{
-		alert('已经恢复');
+		$.messager.alert('提示','服务已经恢复');
 	}
 }
 
