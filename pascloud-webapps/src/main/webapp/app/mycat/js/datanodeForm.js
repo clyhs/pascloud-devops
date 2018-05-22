@@ -105,7 +105,7 @@ function addDB(){
 		$.messager.alert('提示','参数没有填写完整');
 	}else{
 		$.post("addDatanode.json",params,function(data,status){
-			if(data.code = 10000){
+			if(data.code == 10000){
 				//alert(data.desc);
 				//alert("修改成功，请重新启动应用");
 				$('#datanodeAddDb').dialog('close');
@@ -145,7 +145,7 @@ function delDatanode(){
 		$.messager.confirm('提示框','你确定要删除些节点，会影响到云平台的租户，请再确定？',function(r){
 		    if (r){
 		    	$.post("delDatanode.json",params,function(data,status){
-					if(data.code = 10000){
+					if(data.code == 10000){
 						//alert(data.desc);
 						//alert("修改成功，请重新启动应用");
 						$('#datanodeAddDb').dialog('close');

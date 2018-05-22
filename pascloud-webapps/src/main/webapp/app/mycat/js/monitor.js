@@ -13,8 +13,6 @@ var getGraphUrl = function() {
 		return url;
 	};
 	
-
-	
 function change(index){
 	var url = "";
 	if(index==1){

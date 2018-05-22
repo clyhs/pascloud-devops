@@ -198,5 +198,12 @@ public class MainController extends BaseController {
 		return result;
 		
 	}
-
+	
+	@RequestMapping("health.json")
+	@ResponseBody
+ 	public ResultCommon health(HttpServletRequest request){
+		ResultCommon result = result = new ResultCommon(10000,"成功");
+		return result;
+ 	}
+ 
 }

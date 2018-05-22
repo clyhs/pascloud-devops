@@ -122,7 +122,7 @@ function createDialogWithSize(dialogFrame, dialogId,dialogTitle, dialogUrl,width
 function createDialogDivWithSize(dialogFrame, dialogId,dialogTitle, dialogUrl,width,height,htmldiv)  
 {  
     var div = $('#'+dialogFrame);  
-    var html = '<div id="'+dialogId+'"><form id="'+dialogId+'Form" method="post" style="width:100%;height:100%;">'+htmldiv+'</form></div>';  
+    var html = '<div id="'+dialogId+'" style="overflow:hidden;"><form id="'+dialogId+'Form" method="post" style="width:100%;height:100%;">'+htmldiv+'</form></div>';  
     div.empty();  
     div.append(html);  
     $.parser.parse(div);  

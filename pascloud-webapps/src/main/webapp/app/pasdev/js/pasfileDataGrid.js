@@ -7,6 +7,7 @@ function initMainDataGrid(){
         method: 'get',
         fit:true ,
         idField: 'id',
+        queryParams:{'dirId':'pasdev'},
         border:false,
         striped: true,
         fitColumns: true,
@@ -48,7 +49,7 @@ function initMainDataGrid(){
             var name = row.name;
             var addr = row.ip;
             //alert(addr);
-            
+           
         }
     });
 }
@@ -66,6 +67,12 @@ function modifyPasFiles(){
 			$.messager.alert('提示','修改失败');
 		}
 	});
-	
 }
+
+function reloadTableWithID(dirId){
+	$('#mainDataGrid').datagrid('clearSelections'); 
+    $('#mainDataGrid').datagrid('load',{'dirId' : dirId});
+}
+
+
 

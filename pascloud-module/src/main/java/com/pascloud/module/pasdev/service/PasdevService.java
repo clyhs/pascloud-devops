@@ -13,6 +13,8 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,18 +22,27 @@ import com.pascloud.bean.pasdev.PasfileVo;
 import com.pascloud.constant.Constants;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.utils.FileUtils;
+import com.pascloud.utils.PasCloudCode;
 import com.pascloud.utils.xml.XmlParser;
+import com.pascloud.vo.result.ResultCommon;
 
+/**
+ * pas+版本管理服务
+ * @author chenly
+ *
+ */
 @Service
 public class PasdevService {
+	
+	private static Logger log = LoggerFactory.getLogger(PasdevService.class);
 	
 	@Autowired
 	private PasCloudConfig m_config;
 	
-	public List<PasfileVo> getPasdevFiles(){
+	public List<PasfileVo> getPasdevFiles(String dirId){
 		List<PasfileVo> result = new ArrayList<>();
 		List<File> files = new ArrayList<File>();
-		files = FileUtils.listFilesInDirWithFilter(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR(), ".xml", false);
+		files = FileUtils.listFilesInDirWithFilter(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()+"/"+dirId, ".xml", false);
 		//System.out.println(m_config.getPASCLOUD_DEV_DIR());
 		if(files.size()>0){
 			Iterator<File> it = files.iterator();
@@ -43,9 +54,8 @@ public class PasdevService {
 				vo.setFunId(funId);
 				vo.setSuffix(FileUtils.getFileExtension(f));
 				vo.setFilepara(funId+".para");
-				vo.setFilepath(f.getAbsolutePath());;
+				vo.setFilepath(f.getAbsolutePath());
 				parserPasfile(f.getAbsolutePath(),vo);
-				parserPasfileForID(f.getAbsolutePath());
 				result.add(vo);
 			}
 		}
@@ -66,37 +76,11 @@ public class PasdevService {
 		}
 	}
 	
-	private void parserPasfileForID(String filepath){
-		Document doc = XmlParser.getDocument(filepath);
-		Element root = doc.getRootElement();
-		
-		Element sqlmap = (Element) root.selectNodes("sqlMap").get(0);
-		
-		List<Element> selectNodes = sqlmap.selectNodes("select");
-		for(Element node:selectNodes){
-			//System.out.println(node.attributeValue("id"));
-		}
-		
-		List<Element> insertNodes = sqlmap.selectNodes("insert");
-		for(Element node:insertNodes){
-			//System.out.println(node.attributeValue("id"));
-		}
-		
-		List<Element> updateNodes = sqlmap.selectNodes("insert");
-		for(Element node:updateNodes){
-			//System.out.println(node.attributeValue("id"));
-		}
-		
-		List<Element> deleteNodes = sqlmap.selectNodes("insert");
-		for(Element node:deleteNodes){
-			//System.out.println(node.attributeValue("id"));
-		}
-	}
-	
-	public Integer modifyPasdevFilesWidthID(String dbSchema){
+	public synchronized Integer modifyPasdevFilesWidthID(String dbSchema){
         Integer totals = 0;
 		List<File> files = new ArrayList<File>();
-		files = FileUtils.listFilesInDirWithFilter(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR(), ".xml", false);
+		files = FileUtils.listFilesInDirWithFilter(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()
+		+"/"+Constants.PASCLOUD_DEV_DEFAULT, ".xml", false);
 		//System.out.println(m_config.getPASCLOUD_DEV_DIR());
 		if(files.size()>0){
 			Iterator<File> it = files.iterator();
@@ -106,12 +90,73 @@ public class PasdevService {
 				totals+=modifyPasfileForID(f.getAbsolutePath(),dbSchema);
 			}
 		}
-		
 		return totals;
 		
 	}
 	
-	private Integer modifyPasfileForID(String filepath,String dbSchema){
+	
+	
+	public synchronized Integer copyPasfileWidthID(String dbSchema){
+		Integer num = 0;
+		
+		String defaultpath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()
+		+"/"+Constants.PASCLOUD_DEV_DEFAULT;
+		String newpath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()
+		+"/"+dbSchema;
+		System.out.println(newpath);
+		if(FileUtils.isFileExists(newpath)){
+			
+		}else{
+			if(FileUtils.createOrExistsDir(newpath)){
+				if(FileUtils.copyDir(defaultpath, newpath)){
+					copyPasdevFilesWidthID(dbSchema);
+				}
+			}
+		}
+		
+		return num;
+	}
+	
+	public synchronized Integer delPasfileWidthID(String dbSchema){
+		Integer result = 0;
+		String path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()
+		+"/"+dbSchema;
+		if(dbSchema.equals(Constants.PASCLOUD_DEV_DEFAULT)){
+			result = -1;
+		}else{
+			if(FileUtils.isFileExists(path)){
+				if(FileUtils.deleteDir(path)){
+					result = 1;
+				}else{
+					result = -1;
+				}
+				
+			}else{
+				result =-1;
+			}
+		}
+		return result;
+	}
+	
+	private synchronized Integer copyPasdevFilesWidthID(String dbSchema){
+        Integer totals = 0;
+		List<File> files = new ArrayList<File>();
+		files = FileUtils.listFilesInDirWithFilter(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()
+		+"/"+dbSchema, ".xml", false);
+		//System.out.println(m_config.getPASCLOUD_DEV_DIR());
+		if(files.size()>0){
+			Iterator<File> it = files.iterator();
+			while(it.hasNext()){
+				File f = it.next();
+				//parserPasfileForID(f.getAbsolutePath());
+				totals+=modifyPasfileForID(f.getAbsolutePath(),dbSchema);
+			}
+		}
+		return totals;
+		
+	}
+	
+	private synchronized Integer modifyPasfileForID(String filepath,String dbSchema){
 		Integer num = 0;
 		Document doc = XmlParser.getDocument(filepath);
 		Element root = doc.getRootElement();
@@ -154,7 +199,7 @@ public class PasdevService {
 		
 	}
 	
-	private void saveDocument(String schemaPath,Document doc){
+	private synchronized void saveDocument(String schemaPath,Document doc){
 		OutputFormat format = OutputFormat.createPrettyPrint();
 		XMLWriter writer = null;
 		try {
@@ -180,6 +225,18 @@ public class PasdevService {
 		}
 	}
 	
+	
+	public List<String> getPasfileDir(){
+		List<String> lists = new ArrayList<>();
+		List<File> files = new ArrayList<File>();
+		files = FileUtils.listFilesInDir(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR(), false);
+		if(files.size()>0){
+			for(File f:files){
+				lists.add(f.getName());
+			}
+		}
+		return lists;
+	}
 	
 	
 	

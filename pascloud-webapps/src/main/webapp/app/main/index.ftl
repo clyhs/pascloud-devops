@@ -22,14 +22,13 @@
     <script type="text/javascript" src="/app/main/js/mainDataGridToolbar.js"></script>
     <script type="text/javascript" src="/app/main/js/mainDataGrid.js"></script>
     <script type="text/javascript" src="/app/main/js/mainLeft.js"></script>
+    <script type="text/javascript" src="/app/main/js/main.js"></script>
     
 	<script type="text/javascript">
 		$(function(){
 		    initTreeForLeftMenu();
 		    initMainDataGrid();
-		    
-		    
-		    
+
 		    $('#mainCenter').tabs({
                 onContextMenu:function(e, title,index){
                     e.preventDefault();
@@ -47,6 +46,7 @@
                     closeTab(this, item.name);
                 }
             });
+            //setInterval('NetPing()',2000);
             
             
 		 });
