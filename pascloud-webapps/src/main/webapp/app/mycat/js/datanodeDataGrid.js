@@ -36,7 +36,6 @@ function initMainDataGrid(){
         onLoadSuccess: function (data) {
         	for(var i=0;i<data.rows.length;i++)
             {
-        		
                 setInterval("checkSysc('"+data.rows[i].name+"','"+i+"')",1000*10);
                 //alert(data.rows[i].name);
             }

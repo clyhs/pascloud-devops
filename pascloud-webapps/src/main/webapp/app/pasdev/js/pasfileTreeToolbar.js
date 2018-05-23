@@ -12,5 +12,11 @@ var treetoolbar = function(){
         handler : function(){
         	delPasfile();
         }
+	},{
+		text : '上传',  
+        iconCls : 'icon-disk_upload',  
+        handler : function(){
+        	uploadPasfile();
+        }
 	}];
 }();

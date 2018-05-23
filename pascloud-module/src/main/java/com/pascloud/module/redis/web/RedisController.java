@@ -113,6 +113,8 @@ public class RedisController extends BaseController {
 			){
 		ModelAndView view = new ModelAndView("redis/table");
 		String url = "/module/redis/redisPageData.json?redisServerId="+redisServerId+"&index="+index;
+		view.addObject("redisServerId",redisServerId);
+		view.addObject("index",index);
 		view.addObject("url", url);
 		return view;
 	}

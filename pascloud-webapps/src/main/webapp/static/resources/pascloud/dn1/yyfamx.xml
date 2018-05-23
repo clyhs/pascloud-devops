@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="yyfamx" title="引用方案明细" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="name" value="khdx"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="yyfamx_xsjy1jgj" title="新数据源1结果集" page="true"> 
+    <col id="KHNF" title="方案年份" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="FAMC" title="方案名称" align="left" type="string" width="140" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="FAZL" title="方案种类" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHDX" title="考核对象" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHZQ" title="考核周期" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHQS" title="考核期数" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <table id="yyfamx_xyyyfamxjgj" title="行员引用方案明细结果集" page="true"> 
+    <col id="KHNF" title="方案年份" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="FAMC" title="方案名称" align="left" type="string" width="140" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="FAZL" title="方案种类" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHDX" title="考核对象" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHZQ" title="考核周期" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHQS" title="考核期数" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <sqlMap namespace="studio.yyfamx"> 
+    <select id="dn1.yyfamxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
+      <isEqual property="khdx" compareValue="1">select * from ( select fapz.khnf,fapz.famc,case when fapz.yyzlbh=1 then '产品营销计价' else '计分卡' end as fazl,'机构' khdx, case when fapz.khzq = 1 then '月' else case when fapz.khzq = 2 then '季' else '年' end end khzq, fapz.khqs from khfa_fapz fapz inner join khfa_khzbpz zbpz on fapz.fabh=zbpz.fabh where fapz.khdx='1' 
+        <isNotEmpty property="khzbdh">and zbpz.khzbdh =$khzbdh$</isNotEmpty> union all select znfapz.khnf,znfapz.famc,'职能部室' as fazl,'机构' khdx, case when znfapz.khzq = 1 then '月' else case when znfapz.khzq = 2 then '季' else '年' end end khzq, znfapz.khqs from znbs_fapz znfapz inner join znbs_khxmpz xmpz on znfapz.fabh=xmpz.fabh where znfapz.khdx='1' 
+        <isNotEmpty property="khzbdh">and xmpz.xmbh=$khzbdh$</isNotEmpty> ) t order by t.khnf,t.fazl,t.famc
+      </isEqual>  
+      <isEqual property="khdx" compareValue="2">select * from (select fapz.khnf,fapz.famc,case when fapz.yyzlbh=1 then '产品营销计价' else '计分卡' end as fazl,'机构' khdx, case when fapz.khzq = 1 then '月' else case when fapz.khzq = 2 then '季' else '年' end end khzq, fapz.khqs from khfa_fapz fapz inner join khfa_khzbpz zbpz on fapz.fabh=zbpz.fabh where fapz.khdx='2' 
+        <isNotEmpty property="khzbdh">and zbpz.khzbdh =$khzbdh$</isNotEmpty> union all select znfapz.khnf,znfapz.famc,'职能部室' as fazl,'行员' khdx, case when znfapz.khzq = 1 then '月' else case when znfapz.khzq = 2 then '季' else '年' end end khzq, znfapz.khqs from znbs_fapz znfapz inner join znbs_khxmpz xmpz on znfapz.fabh=xmpz.fabh where znfapz.khdx='2' 
+        <isNotEmpty property="khzbdh">and xmpz.xmbh=$khzbdh$</isNotEmpty> ) t order by t.khnf,t.fazl,t.famc
+      </isEqual> 
+    </select>  
+    <select id="dn1.yyfamxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
+      <isEqual property="khdx" compareValue="1">select * from ( select fapz.khnf,fapz.famc,case when fapz.yyzlbh=1 then '产品营销计价' else '计分卡' end as fazl,'机构' khdx, case when fapz.khzq = 1 then '月' else case when fapz.khzq = 2 then '季' else '年' end end khzq, fapz.khqs from khfa_fapz fapz inner join khfa_khzbpz zbpz on fapz.fabh=zbpz.fabh where fapz.khdx='1' 
+        <isNotEmpty property="khzbdh">and zbpz.khzbdh =$khzbdh$</isNotEmpty> union all select znfapz.khnf,znfapz.famc,'职能部室' as fazl,'机构' khdx, case when znfapz.khzq = 1 then '月' else case when znfapz.khzq = 2 then '季' else '年' end end khzq, znfapz.khqs from znbs_fapz znfapz inner join znbs_khxmpz xmpz on znfapz.fabh=xmpz.fabh where znfapz.khdx='1' 
+        <isNotEmpty property="khzbdh">and xmpz.xmbh=$khzbdh$</isNotEmpty> ) t order by t.khnf,t.fazl,t.famc
+      </isEqual>  
+      <isEqual property="khdx" compareValue="2">select * from (select fapz.khnf,fapz.famc,case when fapz.yyzlbh=1 then '产品营销计价' else '计分卡' end as fazl,'机构' khdx, case when fapz.khzq = 1 then '月' else case when fapz.khzq = 2 then '季' else '年' end end khzq, fapz.khqs from khfa_fapz fapz inner join khfa_khzbpz zbpz on fapz.fabh=zbpz.fabh where fapz.khdx='2' 
+        <isNotEmpty property="khzbdh">and zbpz.khzbdh =$khzbdh$</isNotEmpty> union all select znfapz.khnf,znfapz.famc,'职能部室' as fazl,'行员' khdx, case when znfapz.khzq = 1 then '月' else case when znfapz.khzq = 2 then '季' else '年' end end khzq, znfapz.khqs from znbs_fapz znfapz inner join znbs_khxmpz xmpz on znfapz.fabh=xmpz.fabh where znfapz.khdx='2' 
+        <isNotEmpty property="khzbdh">and xmpz.xmbh=$khzbdh$</isNotEmpty> ) t order by t.khnf,t.fazl,t.famc
+      </isEqual> ) t
+    </select> 
+  </sqlMap>  
+  <rels> 
+    <items id="yyfamx_xsjy1jgj"> 
+      <item name="khdx" compareValue="1" operate="isEqual"/> 
+    </items>  
+    <items id="yyfamx_xyyyfamxjgj"> 
+      <item name="khdx" compareValue="2" operate="isEqual"/> 
+    </items> 
+  </rels>  
+  <javascript><![CDATA[jQuery(document).ready(function () {
+ $('#query_conn_panel').hide();
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}]]></javascript> 
+</pageSetting>

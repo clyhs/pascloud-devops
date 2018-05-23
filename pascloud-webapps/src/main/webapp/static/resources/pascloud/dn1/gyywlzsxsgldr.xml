@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="gyywlzsxsgldr" title="业务量折算系数管理导入" type="import" version="2.0.0"> 
+  <template> 
+    <src>ONLINE</src>  
+    <column> 
+      <text>起始日期</text>  
+      <name>qsrq</name>  
+      <index>0</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>交易代码</text>  
+      <name>jydm</name>  
+      <index>1</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>交易名称</text>  
+      <name>jymc</name>  
+      <index>2</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>N</req> 
+    </column>  
+    <column> 
+      <text>折算系数</text>  
+      <name>zsxs</name>  
+      <index>3</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <data> 
+      <tags> 
+        <tag row="0" col="0" name="Date" label="起始日期" colspan="1" rowspan="1"> 
+          <attribute key="style" value=""/>  
+          <attribute key="isRequired" value="true"/>  
+          <attribute key="defVal" value=""/>  
+          <attribute key="name" value="qsrq"/>  
+          <attribute key="styleClass" value=""/>  
+          <attribute key="minDate" value="no"/>  
+          <attribute key="defValType" value="sysDate"/>  
+          <attribute key="dateFmt" value="yyyyMMdd"/>  
+          <attribute key="editable" value="true"/> 
+        </tag> 
+      </tags> 
+    </data> 
+  </template>  
+  <table id="gyywlzsxsgldr_table" page="true"> 
+    <col id="ZT" title="状态" align="center" type="string" width="50"/>  
+    <col id="ERROR" title="错误原因" align="center" type="string" width="250"/>  
+    <col id="QSRQ" title="起始日期" align="center" type="" width="120"/>  
+    <col id="JYDM" title="交易代码" align="center" type="" width="120"/>  
+    <col id="JYMC" title="交易名称" align="center" type="" width="120"/>  
+    <col id="ZSXS" title="折算系数" align="center" type="" width="120"/> 
+  </table>  
+  <flow> 
+    <rule> 
+      <sql type="update">gyywlzsxsgldr_check_qsrq_0</sql>  
+      <sql type="update">gyywlzsxsgldr_check_qsrq_1</sql>  
+      <sql type="update">gyywlzsxsgldr_check_jydm_2</sql>  
+      <sql type="update">gyywlzsxsgldr_check_zsxs_3</sql>  
+      <sql type="update">gyywlzsxsgldr_check_zsxs_4</sql>  
+      <sql type="update">gyywlzsxsgldr_checkupdate_qsrq_0</sql>  
+      <sql type="update">gyywlzsxsgldr_checkupdate_jydm_0</sql>  
+      <sql type="update">gyywlzsxsgldr_checkupdate_jydm_1</sql>  
+      <sql type="update">gyywlzsxsgldr_checkupdate_zsxs_0</sql>  
+      <sql type="update">gyywlzsxsgldr_exists_target</sql>  
+      <sql type="update">gyywlzsxsgldr_exists_same_temp</sql> 
+    </rule>  
+    <before> 
+      <sql type="delete">gyywlzsxsgldr_before_insert_delqsrqAndCover</sql>  
+      <sql type="update">gyywlzsxsgldr_before_insert_cutqsrq</sql> 
+    </before>  
+    <cover/>  
+    <insert> 
+      <sql type="insert">gyywlzsxsgldr_insert_into_target</sql> 
+    </insert>  
+    <after/> 
+  </flow>  
+  <sqlMap namespace="studio.gyywlzsxsgldr"> 
+    <update parameterClass="java.util.Map" id="dn1.gyywlzsxsgldr_check_qsrq_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update gyywlzsxsgldr_temp t set t.error=t.error||'起始日期输入错误，格式应该是:yyyyMMdd!' where f_java_rule_date(t.qsrq,'yyyyMMdd')=1 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.gyywlzsxsgldr_check_qsrq_1"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update gyywlzsxsgldr_temp t set t.error=t.error||'起始日期输入错误，不能为空!' where f_java_rule_length(t.qsrq)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.gyywlzsxsgldr_check_jydm_2"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update gyywlzsxsgldr_temp t set t.error=t.error||'交易代码输入错误，不能为空!' where f_java_rule_length(t.jydm)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.gyywlzsxsgldr_check_zsxs_3"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update gyywlzsxsgldr_temp t set t.error=t.error||'折算系数输入错误，只能输入:17位整数,2位小数!' where f_java_rule_length(t.zsxs)&gt;0 and f_java_rule_number(t.zsxs,17,2)=1 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.gyywlzsxsgldr_check_zsxs_4"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update gyywlzsxsgldr_temp t set t.error=t.error||'折算系数输入错误，不能为空!' where f_java_rule_length(t.zsxs)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.gyywlzsxsgldr_checkupdate_qsrq_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update gyywlzsxsgldr_temp t set error=error||'根据重算天数限制，起始日期必须大于'||(select f_numtochar(f_change_days(cast(s.csz as integer),-cast(c.csz as integer))) as maxqsrq from xtb_xtcs s,xtb_xtcs c where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS' ) where exists ( select 1 from (select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS' ) mt where mt.maxqsrq &gt; cast( t.qsrq as integer) ) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.gyywlzsxsgldr_checkupdate_jydm_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update gyywlzsxsgldr_temp t set error=error||'交易代码不存在！' where not exists ( select 1 from csb_hxjydm jydm where t.jydm=jydm.jydm) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.gyywlzsxsgldr_checkupdate_jydm_1"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update gyywlzsxsgldr_temp t set error=error||'交易代码和交易名称必须一致！' where not exists ( select 1 from csb_hxjydm jydm where t.jydm=jydm.jydm and t.jymc=jydm.jymc) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.gyywlzsxsgldr_checkupdate_zsxs_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update gyywlzsxsgldr_temp t set t.error=t.error||'同一交易代码不能分配!' where t.khdxdh=$login_khdxdh$ and exists( select dr.jydm,count(1) from gyywlzsxsgldr_temp dr where dr.khdxdh=$login_khdxdh$ and dr.jydm=t.jydm group by dr.jydm having count(1)&gt;1 )
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.gyywlzsxsgldr_exists_target"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update gyywlzsxsgldr_temp t set t.error=t.error||'数据已存在!' where exists(select 1 from CSB_GYYWLZSXS tar where 1=1 and t.jydm =tar.JYDM and tar.QSRQ <![CDATA[>]]>= cast(t.qsrq as DECIMAL(22,0)) and t.khdxdh=$login_khdxdh$ and (length(t.error)=0 or t.error is null ))
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.gyywlzsxsgldr_exists_same_temp"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update gyywlzsxsgldr_temp t set t.error=error||'存在重复数据!' where exists( select 1 from (select jydm from gyywlzsxsgldr_temp dr where khdxdh=$login_khdxdh$ group by jydm having count(1)<![CDATA[>]]>1 ) dr where 1=1 and t.jydm=dr.jydm) and khdxdh=$login_khdxdh$
+    </update>  
+    <insert parameterClass="java.util.Map" id="dn1.gyywlzsxsgldr_create_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> CREATE TABLE gyywlzsxsgldr_temp ( qsrq varchar(100) , jydm varchar(100) , jymc varchar(100) , zsxs varchar(100) , khdxdh integer,error varchar(1000) )
+    </insert>  
+    <delete parameterClass="java.util.Map" id="dn1.gyywlzsxsgldr_delete_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from gyywlzsxsgldr_temp where khdxdh=$login_khdxdh$
+    </delete>  
+    <insert parameterClass="java.util.Map" id="dn1.gyywlzsxsgldr_insert_into_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into GYYWLZSXSGLDR_TEMP (qsrq,jydm,jymc,zsxs,khdxdh,error) values(?,?,?,?,?,?)
+    </insert>  
+    <select parameterClass="java.util.Map" id="dn1.gyywlzsxsgldr_exists_error_msg" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from gyywlzsxsgldr_temp where length(error) <![CDATA[>]]> 0 and khdxdh = $login_khdxdh$
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn1.gyywlzsxsgldr_exists_same_data"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from gyywlzsxsgldr_temp where length(error) <![CDATA[>]]> 0 and error != '数据已存在!' and khdxdh = $login_khdxdh$
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn1.gyywlzsxsgldr_select_error_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/cancel.jpg" border="0"/<![CDATA[>]]>' as zt, qsrq,jydm,jymc,zsxs,khdxdh,error from gyywlzsxsgldr_temp where khdxdh=$login_khdxdh$ and length(error)<![CDATA[>]]>0
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn1.gyywlzsxsgldr_count_all_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, qsrq,jydm,jymc,zsxs,khdxdh,error from gyywlzsxsgldr_temp where khdxdh=$login_khdxdh$ )a
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn1.gyywlzsxsgldr_select_all_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, qsrq,jydm,jymc,zsxs,khdxdh,error from gyywlzsxsgldr_temp where khdxdh=$login_khdxdh$
+    </select>  
+    <delete id="dn1.gyywlzsxsgldr_before_insert_delqsrqAndCover" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from CSB_GYYWLZSXS tar where exists ( select 1 from $temp$ t where (length(t.error)=0 or t.error is null or t.error ='数据已存在!') and t.khdxdh=$login_khdxdh$ and cast(t.jydm as VARCHAR(8))=tar.JYDM and tar.qsrq<![CDATA[>]]>= cast(t.qsrq as integer) )
+    </delete>  
+    <update id="dn1.gyywlzsxsgldr_before_insert_cutqsrq" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_GYYWLZSXS tar set jsrq=(select F_Change_Days(cast(dr.qsrq as Integer),-1) from gyywlzsxsgldr_temp dr where 1=1 and cast(dr.jydm as VARCHAR(8))=tar.JYDM and (length(dr.error)=0 or dr.error is null or dr.error='数据已存在!') and dr.khdxdh=$login_khdxdh$) where exists( select 1 from gyywlzsxsgldr_temp t where 1=1 and cast(t.jydm as VARCHAR(8))=tar.JYDM and (length(t.error)=0 or t.error is null or t.error='数据已存在!') and t.khdxdh=$login_khdxdh$ and tar.jsrq&gt;=F_Change_Days(cast(t.qsrq as Integer),-1))
+    </update>  
+    <insert parameterClass="java.util.Map" id="dn1.gyywlzsxsgldr_insert_into_target"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into CSB_GYYWLZSXS(JYDM,QSRQ,JSRQ,ZSXS) select t.jydm ,cast (t.qsrq as DECIMAL(22,0)),29991231,cast (t.zsxs as DECIMAL(19,2)) from gyywlzsxsgldr_temp t where t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null)
+    </insert>  
+    <select id="dn1.gyywlzsxsgldr_select_template_data" parameterClass="java.util.Map" remapResults="true" resultClass="java.util.LinkedHashMap"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select $qsrq$ as qsrq,dm.jydm,coalesce(gy.zsxs,0)as zsxs , dm.jymc as jymc from csb_hxjydm dm left join csb_gyywlzsxs gy 
+      <isNotEmpty property="qsrq">on $qsrq$ between gy.qsrq and jsrq</isNotEmpty> and gy.jydm = dm.jydm
+    </select> 
+  </sqlMap> 
+</pageSetting>

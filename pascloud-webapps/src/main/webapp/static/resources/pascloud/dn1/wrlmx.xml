@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="wrlmx" title="未认领明细" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="1" col="0" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="name" value="dxlx"/> 
+      </tag>  
+      <tag row="1" col="0" colspan="1" rowspan="1" name="DataInterface" label="null"> 
+        <attribute key="dataType" value="select"/>  
+        <attribute key="sql" value="select csz from xtb_xtcs where csmc='CKYJGXMS'"/>  
+        <attribute key="name" value="wrlmxcsz"/> 
+      </tag>  
+      <tag row="1" col="1" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="name" value="dxlx2"/> 
+      </tag>  
+      <tag row="1" col="1" colspan="1" rowspan="1" name="DataInterface" label="null"> 
+        <attribute key="dataType" value="select"/>  
+        <attribute key="sql" value="select csz from xtb_xtcs where csmc='DKYJGXMS'"/>  
+        <attribute key="name" value="wrlmxcsz2"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="wrlmx_xsjy1jgj" title="新数据源1结果集" page="true"> 
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="QXMC" title="期限" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHBS" title="帐户标识" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHRQ" title="开户日期" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="DQRQ" title="到期日期" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHYE" title="客户余额" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="CLYE" title="存量余额" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <table id="wrlmx_dkjgj" title="贷款结果集" page="true"> 
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="QXMC" title="期限" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHBS" title="帐户标识" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHRQ" title="开户日期" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="DQRQ" title="到期日期" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHYE" title="客户余额" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="CLYE" title="存量余额" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <table id="wrlmx_ck_zzhjgj" title="存款_子账号结果集" page="true"> 
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="QXMC" title="期限名称" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHBS" title="帐户标识" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHRQ" title="开户日期" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="DQRQ" title="到期日期" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHYE" title="客户余额" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="CLYE" title="存量余额" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <table id="wrlmx_dk_zzhjgj" title="贷款_子账号结果集" page="true"> 
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="QXMC" title="期限名称" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHBS" title="帐户标识" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHRQ" title="开户日期" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="DQRQ" title="到期日期" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHYE" title="客户余额" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="CLYE" title="存量余额" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <sqlMap namespace="studio.wrlmx"> 
+    <select id="dn1.wrlmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
+      <isEqual property="dxlx2" compareValue="1">select jgdh,jgmc,khh,zhdh,zhhm,qxsd.qxmc,case when zhbs='1' then '对公' when zhbs='2' then '对私' end zhbs,khrq,dqrq,khye,clye from ( select jg.jgdh,jg.JGMC,zh.KHH,zh.ZHDH,zh.zhhm,zh.QX,zh.ZHBS,zh.KHRQ,zh.DQRQ,sum(zh.zhye) over (partition by zh.khh) as khye, zh.zhye clye from jxdx_ckzh zh inner join dxgx_hyyjgx_ck gx on zh.jxdxdh=gx.jxdxdh and gx.jsrq=29991231 inner join khdx_hy hy on hy.khdxdh=gx.khdxdh inner join khdx_jg jg on zh.jgdh=jg.jgdh where zh.gxhslx='1' and hy.hydh like 'XN%' and gx.zlbl=100 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> union all select jg.jgdh,jg.JGMC,zh.KHH,zh.ZHDH,zh.zhhm,zh.QX,zh.ZHBS,zh.KHRQ,zh.DQRQ,sum(zh.zhye) over (partition by zh.khh) as khye, zh.zhye clye from jxdx_ckzh zh inner join khdx_jg jg on zh.jgdh=jg.jgdh inner join khdx_hy hy on zh.khdxdh=hy.khdxdh where zh.gxhslx='0' and hy.hydh like 'XN%' 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> ) a inner join csb_qxsdb qxsd on a.qx=qxsd.qxdh order by khh, zhbs asc ,qx,clye desc
+      </isEqual>  
+      <isEqual property="dxlx2" compareValue="2">select jgdh,jgmc,khh,zhdh,zhhm,qxsd.qxmc,case when zhbs='1' then '对公' when zhbs='2' then '对私' end zhbs,khrq,dqrq,khye,clye from ( select jg.jgdh,jg.JGMC,zh.KHH,zh.ZHDH,zh.zhhm,zh.QX,zh.ZHBS,zh.KHRQ,zh.DQRQ,sum(zh.zhye) over (partition by zh.khh) as khye, zh.zhye clye from jxdx_dkzh zh inner join dxgx_hyyjgx_dk gx on zh.jxdxdh=gx.jxdxdh and gx.jsrq=29991231 inner join khdx_hy hy on hy.khdxdh=gx.khdxdh inner join khdx_jg jg on zh.jgdh=jg.jgdh where zh.gxhslx='1' and hy.hydh like 'XN%' and gx.zlbl=100 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> union all select jg.jgdh,jg.JGMC,zh.KHH,zh.ZHDH,zh.zhhm,zh.QX,zh.ZHBS,zh.KHRQ,zh.DQRQ,sum(zh.zhye) over (partition by zh.khh) as khye, zh.zhye clye from jxdx_dkzh zh inner join khdx_jg jg on zh.jgdh=jg.jgdh inner join khdx_hy hy on zh.khdxdh=hy.khdxdh where zh.gxhslx='0' and hy.hydh like 'XN%' 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> ) a inner join csb_qxsdb qxsd on a.qx=qxsd.qxdh order by khh, zhbs asc ,qx,clye desc
+      </isEqual>  
+      <isEqual property="dxlx2" compareValue="3">select jgdh,jgmc,khh,zhdh,zzh,zhhm,qxsd.qxmc,case when zhbs='1' then '对公' when zhbs='2' then '对私' end zhbs,khrq,dqrq,khye,clye from ( select jg.jgdh,jg.JGMC,zh.KHH,zh.ZHDH,zh.zzh,zh.zhhm,zh.QX,zh.ZHBS,zh.KHRQ,zh.DQRQ,sum(zh.zhye) over (partition by zh.khh) as khye, zh.zhye clye from jxdx_ckzh zh inner join dxgx_hyyjgx_ck gx on zh.jxdxdh=gx.jxdxdh and gx.jsrq=29991231 inner join khdx_hy hy on hy.khdxdh=gx.khdxdh inner join khdx_jg jg on zh.jgdh=jg.jgdh where zh.gxhslx='1' and hy.hydh like 'XN%' and gx.zlbl=100 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> union all select jg.jgdh,jg.JGMC,zh.KHH,zh.ZHDH,zh.zzh,zh.zhhm,zh.QX,zh.ZHBS,zh.KHRQ,zh.DQRQ,sum(zh.zhye) over (partition by zh.khh) as khye, zh.zhye clye from jxdx_ckzh zh inner join khdx_jg jg on zh.jgdh=jg.jgdh inner join khdx_hy hy on zh.khdxdh=hy.khdxdh where zh.gxhslx='0' and hy.hydh like 'XN%' 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> ) a inner join csb_qxsdb qxsd on a.qx=qxsd.qxdh order by khh, zhbs asc ,qx,clye desc
+      </isEqual>  
+      <isEqual property="dxlx2" compareValue="4">select jgdh,jgmc,khh,zhdh,zzh,zhhm,qxsd.qxmc,case when zhbs='1' then '对公' when zhbs='2' then '对私' end zhbs,khrq,dqrq,khye,clye from ( select jg.jgdh,jg.JGMC,zh.KHH,zh.ZHDH,zh.zzh,zh.zhhm,zh.QX,zh.ZHBS,zh.KHRQ,zh.DQRQ,sum(zh.zhye) over (partition by zh.khh) as khye, zh.zhye clye from jxdx_dkzh zh inner join dxgx_hyyjgx_dk gx on zh.jxdxdh=gx.jxdxdh and gx.jsrq=29991231 inner join khdx_hy hy on hy.khdxdh=gx.khdxdh inner join khdx_jg jg on zh.jgdh=jg.jgdh where zh.gxhslx='1' and hy.hydh like 'XN%' and gx.zlbl=100 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> union all select jg.jgdh,jg.JGMC,zh.KHH,zh.ZHDH,zh.zzh,zh.zhhm,zh.QX,zh.ZHBS,zh.KHRQ,zh.DQRQ,sum(zh.zhye) over (partition by zh.khh) as khye, zh.zhye clye from jxdx_dkzh zh inner join khdx_jg jg on zh.jgdh=jg.jgdh inner join khdx_hy hy on zh.khdxdh=hy.khdxdh where zh.gxhslx='0' and hy.hydh like 'XN%' 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> ) a inner join csb_qxsdb qxsd on a.qx=qxsd.qxdh order by khh, zhbs asc ,qx,clye desc
+      </isEqual> 
+    </select>  
+    <select id="dn1.wrlmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
+      <isEqual property="dxlx2" compareValue="1">select jgdh,jgmc,khh,zhdh,zhhm,qxsd.qxmc,case when zhbs='1' then '对公' when zhbs='2' then '对私' end zhbs,khrq,dqrq,khye,clye from ( select jg.jgdh,jg.JGMC,zh.KHH,zh.ZHDH,zh.zhhm,zh.QX,zh.ZHBS,zh.KHRQ,zh.DQRQ,sum(zh.zhye) over (partition by zh.khh) as khye, zh.zhye clye from jxdx_ckzh zh inner join dxgx_hyyjgx_ck gx on zh.jxdxdh=gx.jxdxdh and gx.jsrq=29991231 inner join khdx_hy hy on hy.khdxdh=gx.khdxdh inner join khdx_jg jg on zh.jgdh=jg.jgdh where zh.gxhslx='1' and hy.hydh like 'XN%' and gx.zlbl=100 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> union all select jg.jgdh,jg.JGMC,zh.KHH,zh.ZHDH,zh.zhhm,zh.QX,zh.ZHBS,zh.KHRQ,zh.DQRQ,sum(zh.zhye) over (partition by zh.khh) as khye, zh.zhye clye from jxdx_ckzh zh inner join khdx_jg jg on zh.jgdh=jg.jgdh inner join khdx_hy hy on zh.khdxdh=hy.khdxdh where zh.gxhslx='0' and hy.hydh like 'XN%' 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> ) a inner join csb_qxsdb qxsd on a.qx=qxsd.qxdh order by khh, zhbs asc ,qx,clye desc
+      </isEqual>  
+      <isEqual property="dxlx2" compareValue="2">select jgdh,jgmc,khh,zhdh,zhhm,qxsd.qxmc,case when zhbs='1' then '对公' when zhbs='2' then '对私' end zhbs,khrq,dqrq,khye,clye from ( select jg.jgdh,jg.JGMC,zh.KHH,zh.ZHDH,zh.zhhm,zh.QX,zh.ZHBS,zh.KHRQ,zh.DQRQ,sum(zh.zhye) over (partition by zh.khh) as khye, zh.zhye clye from jxdx_dkzh zh inner join dxgx_hyyjgx_dk gx on zh.jxdxdh=gx.jxdxdh and gx.jsrq=29991231 inner join khdx_hy hy on hy.khdxdh=gx.khdxdh inner join khdx_jg jg on zh.jgdh=jg.jgdh where zh.gxhslx='1' and hy.hydh like 'XN%' and gx.zlbl=100 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> union all select jg.jgdh,jg.JGMC,zh.KHH,zh.ZHDH,zh.zhhm,zh.QX,zh.ZHBS,zh.KHRQ,zh.DQRQ,sum(zh.zhye) over (partition by zh.khh) as khye, zh.zhye clye from jxdx_dkzh zh inner join khdx_jg jg on zh.jgdh=jg.jgdh inner join khdx_hy hy on zh.khdxdh=hy.khdxdh where zh.gxhslx='0' and hy.hydh like 'XN%' 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> ) a inner join csb_qxsdb qxsd on a.qx=qxsd.qxdh order by khh, zhbs asc ,qx,clye desc
+      </isEqual>  
+      <isEqual property="dxlx2" compareValue="3">select jgdh,jgmc,khh,zhdh,zzh,zhhm,qxsd.qxmc,case when zhbs='1' then '对公' when zhbs='2' then '对私' end zhbs,khrq,dqrq,khye,clye from ( select jg.jgdh,jg.JGMC,zh.KHH,zh.ZHDH,zh.zzh,zh.zhhm,zh.QX,zh.ZHBS,zh.KHRQ,zh.DQRQ,sum(zh.zhye) over (partition by zh.khh) as khye, zh.zhye clye from jxdx_ckzh zh inner join dxgx_hyyjgx_ck gx on zh.jxdxdh=gx.jxdxdh and gx.jsrq=29991231 inner join khdx_hy hy on hy.khdxdh=gx.khdxdh inner join khdx_jg jg on zh.jgdh=jg.jgdh where zh.gxhslx='1' and hy.hydh like 'XN%' and gx.zlbl=100 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> union all select jg.jgdh,jg.JGMC,zh.KHH,zh.ZHDH,zh.zzh,zh.zhhm,zh.QX,zh.ZHBS,zh.KHRQ,zh.DQRQ,sum(zh.zhye) over (partition by zh.khh) as khye, zh.zhye clye from jxdx_ckzh zh inner join khdx_jg jg on zh.jgdh=jg.jgdh inner join khdx_hy hy on zh.khdxdh=hy.khdxdh where zh.gxhslx='0' and hy.hydh like 'XN%' 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> ) a inner join csb_qxsdb qxsd on a.qx=qxsd.qxdh order by khh, zhbs asc ,qx,clye desc
+      </isEqual>  
+      <isEqual property="dxlx2" compareValue="4">select jgdh,jgmc,khh,zhdh,zzh,zhhm,qxsd.qxmc,case when zhbs='1' then '对公' when zhbs='2' then '对私' end zhbs,khrq,dqrq,khye,clye from ( select jg.jgdh,jg.JGMC,zh.KHH,zh.ZHDH,zh.zzh,zh.zhhm,zh.QX,zh.ZHBS,zh.KHRQ,zh.DQRQ,sum(zh.zhye) over (partition by zh.khh) as khye, zh.zhye clye from jxdx_dkzh zh inner join dxgx_hyyjgx_dk gx on zh.jxdxdh=gx.jxdxdh and gx.jsrq=29991231 inner join khdx_hy hy on hy.khdxdh=gx.khdxdh inner join khdx_jg jg on zh.jgdh=jg.jgdh where zh.gxhslx='1' and hy.hydh like 'XN%' and gx.zlbl=100 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> union all select jg.jgdh,jg.JGMC,zh.KHH,zh.ZHDH,zh.zzh,zh.zhhm,zh.QX,zh.ZHBS,zh.KHRQ,zh.DQRQ,sum(zh.zhye) over (partition by zh.khh) as khye, zh.zhye clye from jxdx_dkzh zh inner join khdx_jg jg on zh.jgdh=jg.jgdh inner join khdx_hy hy on zh.khdxdh=hy.khdxdh where zh.gxhslx='0' and hy.hydh like 'XN%' 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> ) a inner join csb_qxsdb qxsd on a.qx=qxsd.qxdh order by khh, zhbs asc ,qx,clye desc
+      </isEqual> ) t
+    </select>  
+    <select id="dn1.wrlmx_wrlmxcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='CKYJGXMS'</select>  
+    <select id="dn1.wrlmx_wrlmxcsz2" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='DKYJGXMS'</select> 
+  </sqlMap>  
+  <finger custPlotMth=""> 
+    <plotType/>  
+    <needPlot>false</needPlot>  
+    <plotTitle/> 
+  </finger>  
+  <rels> 
+    <items id="wrlmx_xsjy1jgj"> 
+      <item name="dxlx2" compareValue="1" operate="isEqual"/> 
+    </items>  
+    <items id="wrlmx_dkjgj"> 
+      <item name="dxlx2" compareValue="2" operate="isEqual"/> 
+    </items>  
+    <items id="wrlmx_ck_zzhjgj"> 
+      <item name="dxlx2" compareValue="3" operate="isEqual"/> 
+    </items>  
+    <items id="wrlmx_dk_zzhjgj"> 
+      <item name="dxlx2" compareValue="4" operate="isEqual"/> 
+    </items> 
+  </rels>  
+  <javascript><![CDATA[jQuery(document).ready(function () {
+$('#query_conn_panel').hide();
+ if($('#dxlx').val() == '1' ){
+     PAS.di.execute('wrlmx_wrlmxcsz',checkZzhBack);//判断有没有子账号
+  }
+  if($('#dxlx').val() == '2' ){
+     PAS.di.execute('wrlmx_wrlmxcsz2',checkZzhBack);//判断有没有子账号
+  }
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}
+
+function checkZzhBack(obj){
+
+  var dxlx = $('#dxlx').val();
+  if(obj.data.length>0){
+    if(obj.data[0].CSZ=='0' && dxlx == '1'){
+      $('#dxlx2').val('1');
+    }
+    if(obj.data[0].CSZ=='1' && dxlx == '1'){
+      $('#dxlx2').val('3');
+    }
+    if(obj.data[0].CSZ=='0' && dxlx == '2'){
+       $('#dxlx2').val('2');
+    }
+    if(obj.data[0].CSZ=='1' && dxlx == '2'){
+
+      $('#dxlx2').val('4');
+    }}
+}]]></javascript> 
+</pageSetting>

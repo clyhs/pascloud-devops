@@ -165,4 +165,24 @@ public class PasdevController extends BaseController {
 		}
 		return result;
 	}
+	
+	@RequestMapping("/uploadPasfile.json")
+	@ResponseBody
+	public ResultCommon  uploadPasfile(HttpServletRequest request,
+			@RequestParam(value="name",defaultValue="",required=true) String name){
+		ResultCommon result = null;
+		log.info("上传前进行压缩");
+		
+		if("".equals(name) || Constants.PASCLOUD_DEV_DEFAULT.equals(name)){
+			result = new ResultCommon(PasCloudCode.ERROR);
+			return result;
+		}
+		if(!"".equals(name) && m_pasdevService.uploadPasfileWithID(name)){
+			result = new ResultCommon(PasCloudCode.SUCCESS);
+		}else{
+			result = new ResultCommon(PasCloudCode.ERROR);
+		}
+		log.info("上传完成");
+		return result;
+	}
 }

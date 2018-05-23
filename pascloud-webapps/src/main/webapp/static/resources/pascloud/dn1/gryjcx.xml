@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="gryjcx" title="个人业绩查询" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期"> 
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="tjrq"/>  
+        <attribute key="minDate" value="no"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员"> 
+        <attribute key="isDisplayXN" value="true"/>  
+        <attribute key="hyckbz" value="hy_jg"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="jgckbz" value="jg_ckhy"/>  
+        <attribute key="name" value="khdxdh"/>  
+        <attribute key="multiple" value="true"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="业绩类型"> 
+        <attribute key="defVal" value="fxzb"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="dmmc" value="yjlx"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="yjlx"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="multiple" value="false"/> 
+      </tag>  
+      <tag row="1" col="0" colspan="1" rowspan="1" name="Qxyw" label="业务类别"> 
+        <attribute key="width" value="120px;"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="ywlb"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="multiple" value="false"/> 
+      </tag>  
+      <tag row="1" col="1" colspan="1" rowspan="1" name="ZbParam" label="时段标识"> 
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="sdbs"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="isEditable" value="true"/>  
+        <attribute key="paramType" value="sdbs"/> 
+      </tag>  
+      <tag row="1" col="2" colspan="1" rowspan="1" name="ZbParam" label="币种"> 
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="bz"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="isEditable" value="true"/>  
+        <attribute key="paramType" value="bz"/> 
+      </tag>  
+      <tag row="1" col="3" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="name" value="zbdh"/> 
+      </tag>  
+      <tag row="1" col="3" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="name" value="bm"/> 
+      </tag>  
+      <tag row="1" col="3" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="defVal" value="$sysDate$"/>  
+        <attribute key="name" value="sysDate"/> 
+      </tag>  
+      <tag row="1" col="3" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="name" value="jzsjy"/> 
+      </tag>  
+      <tag row="1" col="3" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="name" value="sjwtj"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="gryjcx_xsjy1jgj" title="新数据源1结果集" page="noCount"> 
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHZBMC" title="考核指标" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZBZ" title="指标值" align="right" type="float" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHJS" title="基数" align="right" type="float" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <table id="gryjcx_qbzbjgj" title="全部指标结果集" page="noCount"> 
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZBMC" title="指标名称" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="BZ" title="币种" align="left" type="hidden" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="BZZWMC" title="币种" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="SDBSMC" title="时段标识" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="SDBS" title="时段标识" align="left" type="hidden" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="ZBZ" title="指标值" align="right" type="float" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="ZBDW" title="指标单位" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="KHJS" title="考核基数" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <table id="gryjcx_khzbjgj" title="考核指标结果集" page="noCount"> 
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="KHZBMC" title="考核指标" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="ZBZ" title="指标值" align="right" type="float" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="KHJS" title="基数" align="right" type="float" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <table id="gryjcx_jczbjgj" title="基础指标结果集" page="noCount"> 
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZBMC" title="指标名称" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="BZ" title="币种" align="left" type="hidden" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="BZZWMC" title="币种" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="SDBSMC" title="时段标识" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="SDBS" title="时段标识" align="left" type="hidden" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="ZBZ" title="指标值" align="right" type="float" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="ZBDW" title="指标单位" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHJS" title="考核基数" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <sqlMap namespace="studio.gryjcx"> 
+    <select id="dn1.gryjcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
+      <isEqual property="jzsjy" compareValue="gjyjkhzb">select yj.tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,khzb.khzbmc,COALESCE(yj.zbz,0) zbz,coalesce(js.khjs,0) khjs from $bm$ yj inner join khfa_khzb_hy khzb on yj.zbdh=khzb.zbdh and yj.sdbs=khzb.sdbs and yj.bz=khzb.bz inner join khdx_hy hy on hy.khdxdh = yj.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join table(fn_getsjjg_java_qxhy($tjrq$,$login_khdxdh$,0)) qx on yj.khdxdh=qx.khdxdh left join yjzb_hykhjs js on js.zbdh = yj.zbdh and js.bz = yj.bz and js.sdbs = yj.sdbs and js.khdxdh = yj.khdxdh and js.tjrq = yj.tjrq where 1=1 
+        <isNotEmpty property="tjrq">and yj.tjrq = $tjrq$</isNotEmpty>  
+        <isNotEmpty property="khdxdh">and yj.khdxdh in ($khdxdh$)</isNotEmpty>  
+        <isNotEmpty property="sjwtj">and yj.sjwd = '$sjwtj$'</isNotEmpty> order by hy.hydh,khzb.zbpx
+      </isEqual>  
+      <isEqual property="jzsjy" compareValue="gjyjfxzb">select yjzb.khdxdh, yjzb.bz,yjzb.sdbs, yjzb.tjrq,F_GET_ZBMC(zb.zbdh) zbmc, yjzb.zbz, hy.hymc,jg.jgmc,jg.jgdh,zb.zbpx as ddsx,hy.hydh,bz.bzzwmc,sdbs.dmms sdbsmc,zbdw.dmms zbdw,coalesce(js.khjs,0) khjs from $bm$ yjzb inner join khdx_hy hy on hy.khdxdh = yjzb.khdxdh 
+        <isNotEmpty property="tjrq"><![CDATA[and hy.zxrq>=$tjrq$]]></isNotEmpty> inner join khdx_jgcy cy on cy.khdxdh=yjzb.khdxdh and yjzb.tjrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh=cy.jgkhdxdh 
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh=$jgkhdxdh$</isNotEmpty> inner join khdx_zb zb on zb.zbdh=yjzb.zbdh and zb.sfxs='0' inner join csb_dmms zbdw on upper(zbdw.dmmc)='ZBDW'and zbdw.dmz=zb.zbdw inner join csb_dmms sdbs on yjzb.sdbs=sdbs.dmz and lower(sdbs.dmmc)='zbsdbs' inner join csb_bz bz on bz.bz=yjzb.bz inner join khdx_zblb lb1 on zb.zbdh=lb1.zbdh and yjzb.tjrq between lb1.qsrq and lb1.jsrq inner join table(FN_GETSJJG_JAVA_YWLB ($tjrq$,$login_khdxdh$,0)) qxywlb on qxywlb.ywlb=lb1.ywlb 
+        <isNotEmpty property="ywlb">and qxywlb.ywlb='$ywlb$'</isNotEmpty> inner join table(fn_getsjjg_java_qxhy($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh=yjzb.KHDXDH left join yjzb_hykhjs js on js.zbdh = yjzb.zbdh and js.bz = yjzb.bz and js.sdbs = yjzb.sdbs and js.khdxdh = yjzb.khdxdh and js.tjrq = yjzb.tjrq where 1=1 
+        <isNotEmpty property="tjrq">and yjzb.tjrq=$tjrq$</isNotEmpty>  
+        <isNotEmpty property="zbdh">and yjzb.zbdh=$zbdh$</isNotEmpty>  
+        <isNotEmpty property="khdxdh">and yjzb.khdxdh in ($khdxdh$)</isNotEmpty>  
+        <isNotEmpty property="sdbs">and yjzb.sdbs='$sdbs$'</isNotEmpty>  
+        <isNotEmpty property="bz">and yjzb.bz='$bz$'</isNotEmpty>  
+        <isNotEmpty property="sjwtj">and yjzb.sjwd = '$sjwtj$'</isNotEmpty> order by jg.jgdh,hy.hydh,zb.zbpx
+      </isEqual>  
+      <isEqual property="jzsjy" compareValue="hykhzb">select yj.tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,khzb.khzbmc,COALESCE(yj.zbz,0) zbz,coalesce(js.khjs,0) khjs from $bm$ yj inner join khfa_khzb_hy khzb on yj.zbdh=khzb.zbdh and yj.sdbs=khzb.sdbs and yj.bz=khzb.bz inner join khdx_hy hy on hy.khdxdh = yj.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join table(fn_getsjjg_java_qxhy($tjrq$,$login_khdxdh$,0)) qx on yj.khdxdh=qx.khdxdh left join yjzb_hykhjs js on js.zbdh = yj.zbdh and js.bz = yj.bz and js.sdbs = yj.sdbs and js.khdxdh = yj.khdxdh and js.tjrq = yj.tjrq where 1=1 
+        <isNotEmpty property="tjrq">and yj.tjrq = $tjrq$</isNotEmpty>  
+        <isNotEmpty property="khdxdh">and yj.khdxdh in ($khdxdh$)</isNotEmpty> order by hy.hydh,khzb.zbpx
+      </isEqual>  
+      <isEqual property="jzsjy" compareValue="hyfxzb">select yjzb.khdxdh, yjzb.bz,yjzb.sdbs, yjzb.tjrq,F_GET_ZBMC(zb.zbdh) zbmc, yjzb.zbz, hy.hymc,jg.jgmc,jg.jgdh,zb.zbpx as ddsx,hy.hydh,bz.bzzwmc,sdbs.dmms sdbsmc,zbdw.dmms zbdw,coalesce(js.khjs,0) khjs from $bm$ yjzb inner join khdx_hy hy on hy.khdxdh = yjzb.khdxdh
+        <isNotEmpty property="tjrq"><![CDATA[and hy.zxrq>=$tjrq$]]></isNotEmpty> inner join khdx_jgcy cy on cy.khdxdh=yjzb.khdxdh and yjzb.tjrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh=cy.jgkhdxdh 
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh=$jgkhdxdh$</isNotEmpty> inner join khdx_zb zb on zb.zbdh=yjzb.zbdh and zb.sfxs='0' inner join csb_dmms zbdw on upper(zbdw.dmmc)='ZBDW'and zbdw.dmz=zb.zbdw inner join csb_dmms sdbs on yjzb.sdbs=sdbs.dmz and lower(sdbs.dmmc)='zbsdbs' inner join csb_bz bz on bz.bz=yjzb.bz inner join khdx_zblb lb1 on zb.zbdh=lb1.zbdh and yjzb.tjrq between lb1.qsrq and lb1.jsrq inner join table(FN_GETSJJG_JAVA_YWLB ($tjrq$,$login_khdxdh$,0)) qxywlb on qxywlb.ywlb=lb1.ywlb 
+        <isNotEmpty property="ywlb">and qxywlb.ywlb='$ywlb$'</isNotEmpty> inner join table(fn_getsjjg_java_qxhy($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh=yjzb.KHDXDH left join yjzb_hykhjs js on js.zbdh = yjzb.zbdh and js.bz = yjzb.bz and js.sdbs = yjzb.sdbs and js.khdxdh = yjzb.khdxdh and js.tjrq = yjzb.tjrq where 1=1 
+        <isNotEmpty property="tjrq">and yjzb.tjrq=$tjrq$</isNotEmpty>  
+        <isNotEmpty property="zbdh">and yjzb.zbdh=$zbdh$</isNotEmpty>  
+        <isNotEmpty property="khdxdh">and yjzb.khdxdh in ($khdxdh$)</isNotEmpty>  
+        <isNotEmpty property="sdbs">and yjzb.sdbs='$sdbs$'</isNotEmpty>  
+        <isNotEmpty property="bz">and yjzb.bz='$bz$'</isNotEmpty> order by jg.jgdh,hy.hydh,zb.zbpx
+      </isEqual> 
+    </select>  
+    <select id="dn1.gryjcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
+      <isEqual property="jzsjy" compareValue="gjyjkhzb">select yj.tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,khzb.khzbmc,COALESCE(yj.zbz,0) zbz,coalesce(js.khjs,0) khjs from $bm$ yj inner join khfa_khzb_hy khzb on yj.zbdh=khzb.zbdh and yj.sdbs=khzb.sdbs and yj.bz=khzb.bz inner join khdx_hy hy on hy.khdxdh = yj.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join table(fn_getsjjg_java_qxhy($tjrq$,$login_khdxdh$,0)) qx on yj.khdxdh=qx.khdxdh left join yjzb_hykhjs js on js.zbdh = yj.zbdh and js.bz = yj.bz and js.sdbs = yj.sdbs and js.khdxdh = yj.khdxdh and js.tjrq = yj.tjrq where 1=1 
+        <isNotEmpty property="tjrq">and yj.tjrq = $tjrq$</isNotEmpty>  
+        <isNotEmpty property="khdxdh">and yj.khdxdh in ($khdxdh$)</isNotEmpty>  
+        <isNotEmpty property="sjwtj">and yj.sjwd = '$sjwtj$'</isNotEmpty> order by hy.hydh,khzb.zbpx
+      </isEqual>  
+      <isEqual property="jzsjy" compareValue="gjyjfxzb">select yjzb.khdxdh, yjzb.bz,yjzb.sdbs, yjzb.tjrq,F_GET_ZBMC(zb.zbdh) zbmc, yjzb.zbz, hy.hymc,jg.jgmc,jg.jgdh,zb.zbpx as ddsx,hy.hydh,bz.bzzwmc,sdbs.dmms sdbsmc,zbdw.dmms zbdw,coalesce(js.khjs,0) khjs from $bm$ yjzb inner join khdx_hy hy on hy.khdxdh = yjzb.khdxdh 
+        <isNotEmpty property="tjrq"><![CDATA[and hy.zxrq>=$tjrq$]]></isNotEmpty> inner join khdx_jgcy cy on cy.khdxdh=yjzb.khdxdh and yjzb.tjrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh=cy.jgkhdxdh 
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh=$jgkhdxdh$</isNotEmpty> inner join khdx_zb zb on zb.zbdh=yjzb.zbdh and zb.sfxs='0' inner join csb_dmms zbdw on upper(zbdw.dmmc)='ZBDW'and zbdw.dmz=zb.zbdw inner join csb_dmms sdbs on yjzb.sdbs=sdbs.dmz and lower(sdbs.dmmc)='zbsdbs' inner join csb_bz bz on bz.bz=yjzb.bz inner join khdx_zblb lb1 on zb.zbdh=lb1.zbdh and yjzb.tjrq between lb1.qsrq and lb1.jsrq inner join table(FN_GETSJJG_JAVA_YWLB ($tjrq$,$login_khdxdh$,0)) qxywlb on qxywlb.ywlb=lb1.ywlb 
+        <isNotEmpty property="ywlb">and qxywlb.ywlb='$ywlb$'</isNotEmpty> inner join table(fn_getsjjg_java_qxhy($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh=yjzb.KHDXDH left join yjzb_hykhjs js on js.zbdh = yjzb.zbdh and js.bz = yjzb.bz and js.sdbs = yjzb.sdbs and js.khdxdh = yjzb.khdxdh and js.tjrq = yjzb.tjrq where 1=1 
+        <isNotEmpty property="tjrq">and yjzb.tjrq=$tjrq$</isNotEmpty>  
+        <isNotEmpty property="zbdh">and yjzb.zbdh=$zbdh$</isNotEmpty>  
+        <isNotEmpty property="khdxdh">and yjzb.khdxdh in ($khdxdh$)</isNotEmpty>  
+        <isNotEmpty property="sdbs">and yjzb.sdbs='$sdbs$'</isNotEmpty>  
+        <isNotEmpty property="bz">and yjzb.bz='$bz$'</isNotEmpty>  
+        <isNotEmpty property="sjwtj">and yjzb.sjwd = '$sjwtj$'</isNotEmpty> order by jg.jgdh,hy.hydh,zb.zbpx
+      </isEqual>  
+      <isEqual property="jzsjy" compareValue="hykhzb">select yj.tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,khzb.khzbmc,COALESCE(yj.zbz,0) zbz,coalesce(js.khjs,0) khjs from $bm$ yj inner join khfa_khzb_hy khzb on yj.zbdh=khzb.zbdh and yj.sdbs=khzb.sdbs and yj.bz=khzb.bz inner join khdx_hy hy on hy.khdxdh = yj.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join table(fn_getsjjg_java_qxhy($tjrq$,$login_khdxdh$,0)) qx on yj.khdxdh=qx.khdxdh left join yjzb_hykhjs js on js.zbdh = yj.zbdh and js.bz = yj.bz and js.sdbs = yj.sdbs and js.khdxdh = yj.khdxdh and js.tjrq = yj.tjrq where 1=1 
+        <isNotEmpty property="tjrq">and yj.tjrq = $tjrq$</isNotEmpty>  
+        <isNotEmpty property="khdxdh">and yj.khdxdh in ($khdxdh$)</isNotEmpty> order by hy.hydh,khzb.zbpx
+      </isEqual>  
+      <isEqual property="jzsjy" compareValue="hyfxzb">select yjzb.khdxdh, yjzb.bz,yjzb.sdbs, yjzb.tjrq,F_GET_ZBMC(zb.zbdh) zbmc, yjzb.zbz, hy.hymc,jg.jgmc,jg.jgdh,zb.zbpx as ddsx,hy.hydh,bz.bzzwmc,sdbs.dmms sdbsmc,zbdw.dmms zbdw,coalesce(js.khjs,0) khjs from $bm$ yjzb inner join khdx_hy hy on hy.khdxdh = yjzb.khdxdh 
+        <isNotEmpty property="tjrq"><![CDATA[and hy.zxrq>=$tjrq$]]></isNotEmpty> inner join khdx_jgcy cy on cy.khdxdh=yjzb.khdxdh and yjzb.tjrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh=cy.jgkhdxdh 
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh=$jgkhdxdh$</isNotEmpty> inner join khdx_zb zb on zb.zbdh=yjzb.zbdh and zb.sfxs='0' inner join csb_dmms zbdw on upper(zbdw.dmmc)='ZBDW'and zbdw.dmz=zb.zbdw inner join csb_dmms sdbs on yjzb.sdbs=sdbs.dmz and lower(sdbs.dmmc)='zbsdbs' inner join csb_bz bz on bz.bz=yjzb.bz inner join khdx_zblb lb1 on zb.zbdh=lb1.zbdh and yjzb.tjrq between lb1.qsrq and lb1.jsrq inner join table(FN_GETSJJG_JAVA_YWLB ($tjrq$,$login_khdxdh$,0)) qxywlb on qxywlb.ywlb=lb1.ywlb 
+        <isNotEmpty property="ywlb">and qxywlb.ywlb='$ywlb$'</isNotEmpty> inner join table(fn_getsjjg_java_qxhy($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh=yjzb.KHDXDH left join yjzb_hykhjs js on js.zbdh = yjzb.zbdh and js.bz = yjzb.bz and js.sdbs = yjzb.sdbs and js.khdxdh = yjzb.khdxdh and js.tjrq = yjzb.tjrq where 1=1 
+        <isNotEmpty property="tjrq">and yjzb.tjrq=$tjrq$</isNotEmpty>  
+        <isNotEmpty property="zbdh">and yjzb.zbdh=$zbdh$</isNotEmpty>  
+        <isNotEmpty property="khdxdh">and yjzb.khdxdh in ($khdxdh$)</isNotEmpty>  
+        <isNotEmpty property="sdbs">and yjzb.sdbs='$sdbs$'</isNotEmpty>  
+        <isNotEmpty property="bz">and yjzb.bz='$bz$'</isNotEmpty> order by jg.jgdh,hy.hydh,zb.zbpx
+      </isEqual> ) t
+    </select> 
+  </sqlMap>  
+  <rels> 
+    <items id="gryjcx_xsjy1jgj"> 
+      <item name="jzsjy" compareValue="gjyjkhzb" operate="isEqual"/> 
+    </items>  
+    <items id="gryjcx_qbzbjgj"> 
+      <item name="jzsjy" compareValue="gjyjfxzb" operate="isEqual"/> 
+    </items>  
+    <items id="gryjcx_khzbjgj"> 
+      <item name="jzsjy" compareValue="hykhzb" operate="isEqual"/> 
+    </items>  
+    <items id="gryjcx_jczbjgj"> 
+      <item name="jzsjy" compareValue="hyfxzb" operate="isEqual"/> 
+    </items> 
+  </rels>  
+  <javascript><![CDATA[var yjlx = jQuery('#yjlx'); 
+jQuery(document).ready(function () {
+  var tjrq = $('#tjrq');
+  BindParent('tjrq','bm','blur');
+  init_yjlx().pipe(function(){
+    yjlx.bind('change',yjlxChange);
+    yjlx.change();
+  
+  })
+  
+  
+  //将查询按钮 在 第二行隐藏时候添加到第一行
+  $("#query_table tr:eq(1) ").append($("#query_table tr:eq(2)").find("td:last"));
+  
+  $("#bm").val('YJZB_HY_'+$('#tjrq').val().substring(0,4));
+   
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+  tjrqChange();
+ return true;
+}
+
+function tjrqChange(){
+  //起始日期为当前日期的前1天
+  var sysdate = jQuery('#sysDate').val(); 
+  //月末
+  var o_yf = createTimeObj($("#tjrq").val());
+  var ym = o_yf.ym;
+  var yc = o_yf.yc;
+  var tjrqTmp=$('#tjrq').val();
+    
+  if(sysdate==tjrqTmp || tjrqTmp==yc || tjrqTmp==ym){
+    $('#bm').val('YJZB_GJYJ_HY');
+    if(yjlx.val()=='fxzb'){
+      $('#jzsjy').val('gjyjfxzb');
+    }else{
+      $('#jzsjy').val('gjyjkhzb');
+    }
+    
+    if(tjrqTmp==yc){
+        $('#sjwtj').val('3');
+    }else if(tjrqTmp == ym){
+      $('#sjwtj').val('2');
+    }else{
+      $('#sjwtj').val('1');
+    }
+   
+  }else{
+     $('#sjwtj').val('');
+    var tjrq = $('#tjrq').val().substring(0,4);
+    $('#bm').val('YJZB_HY_'+tjrq);
+    if(yjlx.val()=='fxzb'){
+      $('#jzsjy').val('hyfxzb');
+    }else{
+      $('#jzsjy').val('hykhzb');
+    }
+  }
+  
+}
+
+function yjlxChange(){
+  if(yjlx.val()=='fxzb'){
+   // $("#ywlb").show();
+  //  $("#sdbs").show();
+  //  $("#bz").show();
+  //  $("#ywlb").parent().prev().show();
+  //  $("#sdbs").parent().prev().show();
+ //   $("#bz").parent().prev().show();
+ $("#query_table tr:eq(2)").show();
+  }else{
+  //  $("#ywlb").hide();
+  //  $("#sdbs").hide();
+ //   $("#bz").hide();
+  //  $("#ywlb").parent().prev().hide();
+ //   $("#sdbs").parent().prev().hide();
+  //  $("#bz").parent().prev().hide();
+  $("#query_table tr:eq(2)").hide();
+  }
+}
+
+
+//日期加减函数
+function dayAdd(myTjrq,num){
+  var myDate=new Date(myTjrq.substring(0,4) + '-' + myTjrq.substring(4,6) + '-' + myTjrq.substring(6,8));
+  var reDate=new Date(Date.parse(myDate) + (86400000 * num))
+  var year  = reDate.getFullYear();
+  var month = reDate.getMonth()+1;
+  var day   = reDate.getDate();
+  if(month<10){month=0+""+month;}
+  if(day<10){day=0+""+day;}
+  return year+""+month+""+day;
+}]]></javascript> 
+</pageSetting>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="zhhylbrjrlmx" title="支行行员类别人均认领明细" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="name" value="dxlx"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="zhhylbrjrlmx_xsjy1jgj" title="新数据源1结果集" page="true"> 
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="LBMC" title="类别名称" align="left" type="string" width="120" frozen="false" format="" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="LBRJRLYE" title="类别人均认领余额" align="left" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <table id="zhhylbrjrlmx_dkjgj" title="贷款结果集" page="true"> 
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="LBMC" title="类别名称" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="LBRJRLYE" title="类别人均认领余额" align="left" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <sqlMap namespace="studio.zhhylbrjrlmx"> 
+    <select id="dn1.zhhylbrjrlmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
+      <isEqual property="dxlx" compareValue="1">select jgdh,jgmc,a.lbmc,round(rlclye/jgsthyrs,2) as lbrjrlye from ( select jg.jgdh,jg.jgmc,hylb.lbmc,sum(zh.zhye*gx.zlbl*0.01) rlclye,jg.khdxdh from jxdx_ckzh zh inner join dxgx_hyyjgx_ck gx on zh.jxdxdh=gx.jxdxdh and gx.jsrq=29991231 inner join khdx_hylb hylb on gx.khdxdh=hylb.khdxdh 
+        <isNotEmpty property="tjrq">and $tjrq$ between hylb.qsrq and hylb.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh=hylb.khdxdh inner join khdx_jg jg on zh.jgdh=jg.jgdh where zh.gxhslx='1' and hy.hydh not like 'XN%' 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> group by jg.jgdh,jg.jgmc,hylb.lbmc,jg.khdxdh union all select jg.jgdh,jg.jgmc,hylb.lbmc,sum(zh.zhye) rlclye,jg.khdxdh from jxdx_ckzh zh inner join khdx_jg jg on zh.jgdh=jg.jgdh inner join khdx_hylb hylb on zh.khdxdh=hylb.khdxdh 
+        <isNotEmpty property="tjrq">and $tjrq$ between hylb.qsrq and hylb.jsrq</isNotEmpty> inner join khdx_hy hy on zh.khdxdh=hy.khdxdh where zh.gxhslx='0' and hy.hydh not like 'XN%' 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> group by jg.jgdh,jg.jgmc,hylb.lbmc,jg.khdxdh ) a inner join ( select jgkhdxdh as khdxdh,count(1) as jgsthyrs,hylb.lbmc from khdx_jgcy cy inner join khdx_hy hy on cy.khdxdh=hy.khdxdh and cy.jsrq=29991231 and hy.hydh not like 'XN%' inner join khdx_hylb hylb on hylb.khdxdh=cy.khdxdh 
+        <isNotEmpty property="tjrq">and $tjrq$ between hylb.qsrq and hylb.jsrq</isNotEmpty> group by jgkhdxdh,lbmc ) b on a.khdxdh=b.khdxdh and a.lbmc=b.lbmc order by a.jgdh asc ,lbrjrlye desc
+      </isEqual>  
+      <isEqual property="dxlx" compareValue="2">select jgdh,jgmc,a.lbmc,round(rlclye/jgsthyrs,2) as lbrjrlye from ( select jg.jgdh,jg.jgmc,hylb.lbmc,sum(zh.zhye*gx.zlbl*0.01) rlclye,jg.khdxdh from jxdx_dkzh zh inner join dxgx_hyyjgx_dk gx on zh.jxdxdh=gx.jxdxdh and gx.jsrq=29991231 inner join khdx_hylb hylb on gx.khdxdh=hylb.khdxdh 
+        <isNotEmpty property="tjrq">and $tjrq$ between hylb.qsrq and hylb.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh=hylb.khdxdh inner join khdx_jg jg on zh.jgdh=jg.jgdh where zh.gxhslx='1' and hy.hydh not like 'XN%' 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> group by jg.jgdh,jg.jgmc,hylb.lbmc,jg.khdxdh union all select jg.jgdh,jg.jgmc,hylb.lbmc,sum(zh.zhye) rlclye,jg.khdxdh from jxdx_dkzh zh inner join khdx_jg jg on zh.jgdh=jg.jgdh inner join khdx_hylb hylb on zh.khdxdh=hylb.khdxdh 
+        <isNotEmpty property="tjrq">and $tjrq$ between hylb.qsrq and hylb.jsrq</isNotEmpty> inner join khdx_hy hy on zh.khdxdh=hy.khdxdh where zh.gxhslx='0' and hy.hydh not like 'XN%' 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> group by jg.jgdh,jg.jgmc,hylb.lbmc,jg.khdxdh ) a inner join ( select jgkhdxdh as khdxdh,count(1) as jgsthyrs,hylb.lbmc from khdx_jgcy cy inner join khdx_hy hy on cy.khdxdh=hy.khdxdh and cy.jsrq=29991231 and hy.hydh not like 'XN%' inner join khdx_hylb hylb on hylb.khdxdh=cy.khdxdh 
+        <isNotEmpty property="tjrq">and $tjrq$ between hylb.qsrq and hylb.jsrq</isNotEmpty> group by jgkhdxdh,lbmc ) b on a.khdxdh=b.khdxdh and a.lbmc=b.lbmc order by a.jgdh asc ,lbrjrlye desc
+      </isEqual> 
+    </select>  
+    <select id="dn1.zhhylbrjrlmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
+      <isEqual property="dxlx" compareValue="1">select jgdh,jgmc,a.lbmc,round(rlclye/jgsthyrs,2) as lbrjrlye from ( select jg.jgdh,jg.jgmc,hylb.lbmc,sum(zh.zhye*gx.zlbl*0.01) rlclye,jg.khdxdh from jxdx_ckzh zh inner join dxgx_hyyjgx_ck gx on zh.jxdxdh=gx.jxdxdh and gx.jsrq=29991231 inner join khdx_hylb hylb on gx.khdxdh=hylb.khdxdh 
+        <isNotEmpty property="tjrq">and $tjrq$ between hylb.qsrq and hylb.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh=hylb.khdxdh inner join khdx_jg jg on zh.jgdh=jg.jgdh where zh.gxhslx='1' and hy.hydh not like 'XN%' 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> group by jg.jgdh,jg.jgmc,hylb.lbmc,jg.khdxdh union all select jg.jgdh,jg.jgmc,hylb.lbmc,sum(zh.zhye) rlclye,jg.khdxdh from jxdx_ckzh zh inner join khdx_jg jg on zh.jgdh=jg.jgdh inner join khdx_hylb hylb on zh.khdxdh=hylb.khdxdh 
+        <isNotEmpty property="tjrq">and $tjrq$ between hylb.qsrq and hylb.jsrq</isNotEmpty> inner join khdx_hy hy on zh.khdxdh=hy.khdxdh where zh.gxhslx='0' and hy.hydh not like 'XN%' 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> group by jg.jgdh,jg.jgmc,hylb.lbmc,jg.khdxdh ) a inner join ( select jgkhdxdh as khdxdh,count(1) as jgsthyrs,hylb.lbmc from khdx_jgcy cy inner join khdx_hy hy on cy.khdxdh=hy.khdxdh and cy.jsrq=29991231 and hy.hydh not like 'XN%' inner join khdx_hylb hylb on hylb.khdxdh=cy.khdxdh 
+        <isNotEmpty property="tjrq">and $tjrq$ between hylb.qsrq and hylb.jsrq</isNotEmpty> group by jgkhdxdh,lbmc ) b on a.khdxdh=b.khdxdh and a.lbmc=b.lbmc order by a.jgdh asc ,lbrjrlye desc
+      </isEqual>  
+      <isEqual property="dxlx" compareValue="2">select jgdh,jgmc,a.lbmc,round(rlclye/jgsthyrs,2) as lbrjrlye from ( select jg.jgdh,jg.jgmc,hylb.lbmc,sum(zh.zhye*gx.zlbl*0.01) rlclye,jg.khdxdh from jxdx_dkzh zh inner join dxgx_hyyjgx_dk gx on zh.jxdxdh=gx.jxdxdh and gx.jsrq=29991231 inner join khdx_hylb hylb on gx.khdxdh=hylb.khdxdh 
+        <isNotEmpty property="tjrq">and $tjrq$ between hylb.qsrq and hylb.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh=hylb.khdxdh inner join khdx_jg jg on zh.jgdh=jg.jgdh where zh.gxhslx='1' and hy.hydh not like 'XN%' 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> group by jg.jgdh,jg.jgmc,hylb.lbmc,jg.khdxdh union all select jg.jgdh,jg.jgmc,hylb.lbmc,sum(zh.zhye) rlclye,jg.khdxdh from jxdx_dkzh zh inner join khdx_jg jg on zh.jgdh=jg.jgdh inner join khdx_hylb hylb on zh.khdxdh=hylb.khdxdh 
+        <isNotEmpty property="tjrq">and $tjrq$ between hylb.qsrq and hylb.jsrq</isNotEmpty> inner join khdx_hy hy on zh.khdxdh=hy.khdxdh where zh.gxhslx='0' and hy.hydh not like 'XN%' 
+        <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh =$jgkhdxdh$</isNotEmpty>  
+        <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> group by jg.jgdh,jg.jgmc,hylb.lbmc,jg.khdxdh ) a inner join ( select jgkhdxdh as khdxdh,count(1) as jgsthyrs,hylb.lbmc from khdx_jgcy cy inner join khdx_hy hy on cy.khdxdh=hy.khdxdh and cy.jsrq=29991231 and hy.hydh not like 'XN%' inner join khdx_hylb hylb on hylb.khdxdh=cy.khdxdh 
+        <isNotEmpty property="tjrq">and $tjrq$ between hylb.qsrq and hylb.jsrq</isNotEmpty> group by jgkhdxdh,lbmc ) b on a.khdxdh=b.khdxdh and a.lbmc=b.lbmc order by a.jgdh asc ,lbrjrlye desc
+      </isEqual> ) t
+    </select> 
+  </sqlMap>  
+  <rels> 
+    <items id="zhhylbrjrlmx_xsjy1jgj"> 
+      <item name="dxlx" compareValue="1" operate="isEqual"/> 
+    </items>  
+    <items id="zhhylbrjrlmx_dkjgj"> 
+      <item name="dxlx" compareValue="2" operate="isEqual"/> 
+    </items> 
+  </rels>  
+  <javascript><![CDATA[jQuery(document).ready(function () {
+$('#query_conn_panel').hide();
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}]]></javascript> 
+</pageSetting>

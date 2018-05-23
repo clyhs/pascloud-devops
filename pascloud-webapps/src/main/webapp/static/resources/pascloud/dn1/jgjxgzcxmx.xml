@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="jgjxgzcxmx" title="机构绩效工资明细查询" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期"> 
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="tjrq"/>  
+        <attribute key="minDate" value="no"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewJg" label="机构"> 
+        <attribute key="cascadeCheck" value="true"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="ckbz" value="jg"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="jgkhdxdh"/>  
+        <attribute key="multiple" value="true"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="方案名称"> 
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="isSearch" value="false"/>  
+        <attribute key="sql" value="select fabh as key,famc as value from khfa_fapz where khnf= cast(substr('$tjrq$',1,4) as integer) and yyzlbh=1 and khdx='1'"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="fabh"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="isEditable" value="true"/> 
+      </tag>  
+      <tag row="0" col="3" colspan="1" rowspan="1" name="MSQL4Select" label="维度名称"> 
+        <attribute key="parents" value="fabh"/>  
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="isSearch" value="false"/>  
+        <attribute key="sql" value="select distinct pz.wdmc as key, pz.wdmc as value from khfa_fapz fa inner join khfa_khzbpz pz on fa.fabh=pz.fabh where fa.khdx='1' and fa.yyzlbh=1 and pz.fabh = $fabh$"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="wdmc"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="isEditable" value="true"/> 
+      </tag>  
+      <tag row="1" col="0" colspan="2" rowspan="1" name="MSQL4Select" label="考核指标"> 
+        <attribute key="parents" value="wdmc"/>  
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="280px;"/>  
+        <attribute key="isSearch" value="true"/>  
+        <attribute key="sql" value="select distinct pz.khzbdh as key, case when zb.khzbdh is null then pz.xmmc else zb.khzbmc end as value  from khfa_fapz fa inner join khfa_khzbpz pz on fa.fabh=pz.fabh left join khfa_khzb_jg zb on zb.khzbdh=pz.khzbdh where fa.khdx='1' and fa.yyzlbh=1 and pz.fabh = $fabh$ and pz.wdmc = '$wdmc$'"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="khzbdh"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="isEditable" value="true"/> 
+      </tag>  
+      <tag row="1" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="机构类别"> 
+        <attribute key="parents" value="fabh"/>  
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="isSearch" value="false"/>  
+        <attribute key="sql" value="select distinct jglb.lbdh as key,jglb.lbmc as value from khfa_fapz fapz inner join khfa_yyjg_jg yyjg on fapz.fabh=yyjg.fabh  inner join khdx_jglb jglb on jglb.khdxdh=yyjg.khdxdh and $tjrq$ between jglb.qsrq and jglb.jsrq where fapz.khdx='1' and fapz.yyzlbh=1 and yyjg.tjrq=$tjrq$ and yyjg.khdxdh in ($jgkhdxdh$) and yyjg.fabh=$fabh$"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="jglb"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="isEditable" value="true"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="jgjxgzcxmx_xsjy1jgj" title="新数据源1结果集" page="true"> 
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false"/>  
+    <col id="LBMC" title="机构类别" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false"/>  
+    <col id="FAMC" title="方案名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false"/>  
+    <col id="WDMC" title="维度名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false"/>  
+    <col id="KHZBMC" title="考核指标名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="YYJG" title="绩效工资" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="ZBZ" title="指标值" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JHZ" title="计划值" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="YYSM" title="应用说明" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <sqlMap namespace="studio.jgjxgzcxmx"> 
+    <select id="dn1.jgjxgzcxmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select $tjrq$ tjrq,jg.jgdh,jg.jgmc, jglb.lbmc,khfa.famc,zbpz.wdmc, case when khzb.khzbmc is null then zbpz.XMMC else khzb.khzbmc end as khzbmc ,yyjg.yyjg,yyjg.zbz,yyjg.jhz ,yyjg.yysm from khfa_yyjg_jg yyjg inner join khfa_fapz khfa on khfa.FABH = yyjg.fabh inner join khdx_jg jg on jg.khdxdh = yyjg.khdxdh 
+      <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty> inner join table(FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,0)) qx on jg.khdxdh = qx.khdxdh inner join khdx_jglb jglb on jg.khdxdh=jglb.khdxdh 
+      <isNotEmpty property="tjrq">and $tjrq$ between jglb.qsrq and jglb.jsrq</isNotEmpty> left join khfa_khzb_jg khzb on khzb.khzbdh=yyjg.khzbdh inner join khfa_khzbpz zbpz on zbpz.fabh = yyjg.fabh and zbpz.khzbdh = yyjg.khzbdh where 1=1 
+      <isNotEmpty property="fabh">and khfa.fabh = $fabh$</isNotEmpty>  
+      <isNotEmpty property="tjrq">and yyjg.tjrq=$tjrq$</isNotEmpty>  
+      <isNotEmpty property="wdmc">and zbpz.wdmc = '$wdmc$'</isNotEmpty>  
+      <isNotEmpty property="khzbdh">and zbpz.khzbdh = $khzbdh$</isNotEmpty>  
+      <isNotEmpty property="jglb">and jglb.lbdh = '$jglb$'</isNotEmpty> and khfa.yyzlbh=1 and khfa.khdx='1' order by khfa.fabh desc,zbpz.wdmc,yyjg.yyjg desc,jg.khdxdh
+    </select>  
+    <select id="dn1.jgjxgzcxmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select $tjrq$ tjrq,jg.jgdh,jg.jgmc, jglb.lbmc,khfa.famc,zbpz.wdmc, case when khzb.khzbmc is null then zbpz.XMMC else khzb.khzbmc end as khzbmc ,yyjg.yyjg,yyjg.zbz,yyjg.jhz ,yyjg.yysm from khfa_yyjg_jg yyjg inner join khfa_fapz khfa on khfa.FABH = yyjg.fabh inner join khdx_jg jg on jg.khdxdh = yyjg.khdxdh
+      <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty> inner join table(FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,0)) qx on jg.khdxdh = qx.khdxdh inner join khdx_jglb jglb on jg.khdxdh=jglb.khdxdh 
+      <isNotEmpty property="tjrq">and $tjrq$ between jglb.qsrq and jglb.jsrq</isNotEmpty> left join khfa_khzb_jg khzb on khzb.khzbdh=yyjg.khzbdh inner join khfa_khzbpz zbpz on zbpz.fabh = yyjg.fabh and zbpz.khzbdh = yyjg.khzbdh where 1=1 
+      <isNotEmpty property="fabh">and khfa.fabh = $fabh$</isNotEmpty>  
+      <isNotEmpty property="tjrq">and yyjg.tjrq=$tjrq$</isNotEmpty>  
+      <isNotEmpty property="wdmc">and zbpz.wdmc = '$wdmc$'</isNotEmpty>  
+      <isNotEmpty property="khzbdh">and zbpz.khzbdh = $khzbdh$</isNotEmpty>  
+      <isNotEmpty property="jglb">and jglb.lbdh = '$jglb$'</isNotEmpty> and khfa.yyzlbh=1 and khfa.khdx='1' order by khfa.fabh desc,zbpz.wdmc,yyjg.yyjg desc,jg.khdxdh ) t
+    </select>  
+    <select id="dn1.jgjxgzcxmx_MSQL4SELECT_fabh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select fabh as key,famc as value from khfa_fapz where khnf= cast(substr('$tjrq$',1,4) as integer) and yyzlbh=1 and khdx='1'</select>  
+    <select id="dn1.jgjxgzcxmx_MSQL4SELECT_wdmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct pz.wdmc as key, pz.wdmc as value from khfa_fapz fa inner join khfa_khzbpz pz on fa.fabh=pz.fabh where fa.khdx='1' and fa.yyzlbh=1 
+      <isNotEmpty property="fabh">and pz.fabh = $fabh$</isNotEmpty> 
+    </select>  
+    <select id="dn1.jgjxgzcxmx_MSQL4SELECT_khzbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct pz.khzbdh as key, case when zb.khzbdh is null then pz.xmmc else zb.khzbmc end as value from khfa_fapz fa inner join khfa_khzbpz pz on fa.fabh=pz.fabh left join khfa_khzb_jg zb on zb.khzbdh=pz.khzbdh where fa.khdx='1' and fa.yyzlbh=1 
+      <isNotEmpty property="fabh">and pz.fabh = $fabh$</isNotEmpty>  
+      <isNotEmpty property="wdmc">and pz.wdmc = '$wdmc$'</isNotEmpty> 
+    </select>  
+    <select id="dn1.jgjxgzcxmx_MSQL4SELECT_jglb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct jglb.lbdh as key,jglb.lbmc as value from khfa_fapz fapz inner join khfa_yyjg_jg yyjg on fapz.fabh=yyjg.fabh inner join khdx_jglb jglb on jglb.khdxdh=yyjg.khdxdh 
+      <isNotEmpty property="tjrq">and $tjrq$ between jglb.qsrq and jglb.jsrq</isNotEmpty> where fapz.khdx='1' and fapz.yyzlbh=1 
+      <isNotEmpty property="tjrq">and yyjg.tjrq=$tjrq$</isNotEmpty>  
+      <isNotEmpty property="jgkhdxdh">and yyjg.khdxdh in ($jgkhdxdh$)</isNotEmpty>  
+      <isNotEmpty property="fabh">and yyjg.fabh=$fabh$</isNotEmpty> 
+    </select> 
+  </sqlMap>  
+  <rels> 
+    <items id="jgjxgzcxmx_xsjy1jgj"/> 
+  </rels>  
+  <javascript><![CDATA[jQuery(document).ready(function () {
+    init_fabh();
+    init_khzbdh();
+    init_jglb();
+    init_wdmc();
+    BindParent('fabh','tjrq','blur');
+    BindParent('khzbdh','fabh','change');
+    BindParent('jglb','tjrq','blur');
+    BindParent('jglb','jgkhdxdh','change');
+     //将查询按钮 在 第二行隐藏时候添加到第一行
+  $("#query_table tr:eq(1) ").append($("#query_table tr:eq(2)").find("td:last"));
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}]]></javascript> 
+</pageSetting>

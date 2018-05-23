@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="GRCDKHMX" title="个人存贷客户明细" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期"> 
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="tjrq"/>  
+        <attribute key="minDate" value="no"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="name" value="tjrq_year"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员"> 
+        <attribute key="isDisplayXN" value="false"/>  
+        <attribute key="hyckbz" value="hy_jg"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="jgckbz" value="jg_ckhy"/>  
+        <attribute key="name" value="khdxdh"/>  
+        <attribute key="multiple" value="false"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="业务类别"> 
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="evenName" value="change"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isSearch" value="false"/>  
+        <attribute key="sql" value="SELECT YWLB AS KEY,MS AS VALUE FROM CSB_YWLB WHERE MS IN('存款业务','贷款业务')"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="ywlb"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="multiple" value="false"/>  
+        <attribute key="isEditable" value="true"/> 
+      </tag>  
+      <tag row="0" col="3" colspan="1" rowspan="1" name="MSQL4Select" label="客户类型"> 
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="evenName" value="change"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isSearch" value="false"/>  
+        <attribute key="sql" value="select dmz as key,dmms as value from csb_dmms where dmmc = 'ZHBS'"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="khlx"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="multiple" value="false"/>  
+        <attribute key="isEditable" value="true"/> 
+      </tag>  
+      <tag row="1" col="0" colspan="1" rowspan="1" name="Text" label="客户名称"> 
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="khmc"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="1" col="1" colspan="1" rowspan="1" name="Text" label="余额从"> 
+        <attribute key="styleClass" value="number"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="sdyefrom"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="1" col="1" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="name" value="grcsz"/> 
+      </tag>  
+      <tag row="1" col="2" colspan="1" rowspan="1" name="Text" label="到"> 
+        <attribute key="styleClass" value="number"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="sdyeto"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="1" col="2" colspan="1" rowspan="1" name="DataInterface" label="null"> 
+        <attribute key="dataType" value="select"/>  
+        <attribute key="sql" value="select xtb.csz   from XTB_XTCS xtb  where xtb.CSMC = (case          when $ywlb$ = 1 then           'CKYJGXMS'          when $ywlb$ = 2 then           'DKYJGXMS'        end)"/>  
+        <attribute key="name" value="grmxcsz"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="GRCDKHMX_ckywjgj" title="存款业务结果集" page="noCount"> 
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH2" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH" title="行员代号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC" title="行员名称" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHH" title="客户号" align="left" type="string" width="140" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHLX" title="客户类型" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHDH" title="账号" align="left" type="string" width="178" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHHM" title="客户名称" align="left" type="string" width="180" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHRQ" title="开户日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="FPGX" title="分配关系" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="QSRQ" title="起始日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <table id="GRCDKHMX_dkywjgj" title="贷款业务结果集" page="noCount"> 
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH2" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH" title="行员代号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC" title="行员名称" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHH" title="客户号" align="left" type="string" width="140" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHLX" title="客户类型" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHDH" title="账号" align="left" type="string" width="178" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHHM" title="客户名称" align="left" type="string" width="180" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHRQ" title="开户日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="FPGX" title="分配关系" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="QSRQ" title="起始日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <table id="GRCDKHMX_ck_zzhjgj" title="存款_子账号结果集" page="noCount"> 
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH2" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH" title="行员代号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC" title="行员名称" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHH" title="客户号" align="left" type="string" width="140" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHLX" title="客户类型" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHDH" title="账号" align="left" type="string" width="178" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHHM" title="客户名称" align="left" type="string" width="180" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHRQ" title="开户日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="GXHSLX" title="关系函数类型" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="QSRQ" title="起始日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="FPGX" title="分配关系" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <table id="GRCDKHMX_dk_zzhjgj" title="贷款_子账号结果集" page="noCount"> 
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH2" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH" title="行员代号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC" title="行员名称" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHH" title="客户号" align="left" type="string" width="140" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHLX" title="客户类型" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHDH" title="账号" align="left" type="string" width="178" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHHM" title="客户名称" align="left" type="string" width="180" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHRQ" title="开户日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="GXHSLX" title="关系函数类型" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="QSRQ" title="起始日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="FPGX" title="分配关系" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <sqlMap namespace="studio.GRCDKHMX"> 
+    <select id="dn1.GRCDKHMXList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
+      <isEqual property="grcsz" compareValue="1">select * from ( SELECT $tjrq$ tjrq,JG.Khdxdh JGDH,JG.JGDH jgdh2,JG.JGMC,HY.KHDXDH,HY.HYDH, HY.HYMC,CKZH.KHH,DMMS.DMMS KHLX,CKZH.ZHDH, CKZH.ZHHM,CKZH.KHRQ,CKZHMX.ZHYE,CKZH.GXHSLX, CKZH.khrq QSRQ,CKZH.xhrq JSRQ,'百分比:100' as fpgx,CKZH.KMH FROM JXDX_CKZH CKZH INNER JOIN JXDX_CKZHMX_$tjrq_year$ CKZHMX ON CKZH.JXDXDH = CKZHMX.JXDXDH INNER JOIN KHDX_JGCY JGCY ON CKZH.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> INNER JOIN KHDX_JG JG ON JG.KHDXDH = JGCY.JGKHDXDH INNER JOIN KHDX_HY HY ON JGCY.KHDXDH = HY.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh left JOIN CSB_DMMS DMMS ON DMMS.DMMC = 'ZHBS' AND DMMS.DMZ=CKZH.zhbs 
+        <isNotEmpty property="tjrq">WHERE $tjrq$ BETWEEN CKZHMX.QSRQ AND CKZHMX.JSRQ</isNotEmpty>  
+        <isNotEmpty property="khmc">AND CKZH.ZHHM like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">AND CKZH.zhbs='$khlx$'</isNotEmpty> AND CKZH.gxhslx='0' 
+        <isNotEmpty property="khdxdh">AND HY.KHDXDH = $khdxdh$</isNotEmpty>  
+        <isNotEmpty property="tjrq">AND $tjrq$ between CKZH.khrq and CKZH.xhrq</isNotEmpty>  
+        <isNotEmpty property="sdyefrom">AND CKZHMX.ZHYE BETWEEN $sdyefrom$ and $sdyeto$</isNotEmpty> union all SELECT $tjrq$ tjrq,JG.Khdxdh JGDH,JG.JGDH jgdh2,JG.JGMC,HY.KHDXDH,HY.HYDH, HY.HYMC,CKZH.KHH,DMMS.DMMS KHLX,CKZH.ZHDH, CKZH.ZHHM,CKZH.KHRQ, CKZHMX.ZHYE* (case when ckgx.gxhslx='2' then ckgx.clbl else ckgx.zlbl end)*0.01 as zhye ,CKGX.GXHSLX, CKGX.QSRQ,CKGX.JSRQ, (CASE WHEN CKGX.GXHSLX = '0' THEN '百分比:100' WHEN CKGX.GXHSLX = '1' THEN '百分比:'||F_NumToChar(CKGX.zlbl) ELSE '阈值:'||F_NumToChar(CKGX.yz)||',阈值以下:'||F_NumToChar(CKGX.clbl)||',阈值以上'||F_NumToChar(CKGX.zlbl) END) FPGX,CKZH.KMH FROM JXDX_CKZH CKZH INNER JOIN JXDX_CKZHMX_$tjrq_year$ CKZHMX ON CKZH.JXDXDH = CKZHMX.JXDXDH INNER JOIN DXGX_HYYJGX_CK CKGX ON CKZH.JXDXDH = CKGX.JXDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between CKGX.qsrq and CKGX.jsrq</isNotEmpty> INNER JOIN KHDX_JGCY JGCY ON CKGX.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> INNER JOIN KHDX_JG JG ON JG.KHDXDH = JGCY.JGKHDXDH INNER JOIN KHDX_HY HY ON JGCY.KHDXDH = HY.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh left JOIN CSB_DMMS DMMS ON DMMS.DMMC = 'ZHBS' AND DMMS.DMZ=CKZH.zhbs 
+        <isNotEmpty property="tjrq">WHERE $tjrq$ BETWEEN CKZHMX.QSRQ AND CKZHMX.JSRQ</isNotEmpty>  
+        <isNotEmpty property="khmc">AND CKZH.ZHHM like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">AND CKZH.zhbs='$khlx$'</isNotEmpty> AND CKZH.gxhslx='1' 
+        <isNotEmpty property="khdxdh">AND HY.KHDXDH = $khdxdh$</isNotEmpty>  
+        <isNotEmpty property="sdyefrom">AND CKZHMX.ZHYE BETWEEN $sdyefrom$ and $sdyeto$</isNotEmpty> )a ORDER BY a.ZHYE DESC
+      </isEqual>  
+      <isEqual property="grcsz" compareValue="2">select * from ( SELECT $tjrq$ tjrq,JG.Khdxdh JGDH,JG.JGDH jgdh2,JG.JGMC,HY.KHDXDH,HY.HYDH, HY.HYMC,CKZH.KHH,DMMS.DMMS KHLX,CKZH.ZHDH, CKZH.ZHHM,CKZH.KHRQ,CKZHMX.ZHYE,CKZH.GXHSLX, CKZH.khrq QSRQ,CKZH.xhrq JSRQ,'百分比:100' as fpgx,CKZH.KMH FROM JXDX_DKZH CKZH INNER JOIN JXDX_DKZHMX_$tjrq_year$ CKZHMX ON CKZH.JXDXDH = CKZHMX.JXDXDH INNER JOIN KHDX_JGCY JGCY ON CKZH.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> INNER JOIN KHDX_JG JG ON JG.KHDXDH = JGCY.JGKHDXDH INNER JOIN KHDX_HY HY ON JGCY.KHDXDH = HY.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh left JOIN CSB_DMMS DMMS ON DMMS.DMMC = 'ZHBS' AND DMMS.DMZ=CKZH.zhbs 
+        <isNotEmpty property="tjrq">WHERE $tjrq$ BETWEEN CKZHMX.QSRQ AND CKZHMX.JSRQ</isNotEmpty>  
+        <isNotEmpty property="khmc">AND CKZH.ZHHM like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khdxdh">AND HY.KHDXDH = $khdxdh$</isNotEmpty>  
+        <isNotEmpty property="tjrq">AND $tjrq$ between CKZH.khrq and CKZH.xhrq</isNotEmpty>  
+        <isNotEmpty property="khlx">AND CKZH.zhbs='$khlx$'</isNotEmpty> AND CKZH.gxhslx='0' 
+        <isNotEmpty property="sdyefrom">AND CKZHMX.ZHYE BETWEEN $sdyefrom$ and $sdyeto$</isNotEmpty> union all SELECT $tjrq$ tjrq,JG.Khdxdh JGDH,JG.JGDH jgdh2,JG.JGMC,HY.KHDXDH,HY.HYDH, HY.HYMC,CKZH.KHH,DMMS.DMMS KHLX,CKZH.ZHDH, CKZH.ZHHM,CKZH.KHRQ,CKZHMX.ZHYE*CKGX.zlbl*0.01 as zhye,CKGX.GXHSLX, CKGX.QSRQ,CKGX.JSRQ, (CASE WHEN CKGX.GXHSLX = '0' THEN '百分比:100' WHEN CKGX.GXHSLX = '1' THEN '百分比:'||F_NumToChar(CKGX.zlbl) ELSE '阈值:'||F_NumToChar(CKGX.yz)||',阈值以下:'||F_NumToChar(CKGX.clbl)||',阈值以上'||F_NumToChar(CKGX.zlbl) END) FPGX,CKZH.KMH FROM JXDX_DKZH CKZH INNER JOIN JXDX_DKZHMX_$tjrq_year$ CKZHMX ON CKZH.JXDXDH = CKZHMX.JXDXDH INNER JOIN DXGX_HYYJGX_DK CKGX ON CKZH.JXDXDH = CKGX.JXDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between CKGX.qsrq and CKGX.jsrq</isNotEmpty> INNER JOIN KHDX_JGCY JGCY ON CKGX.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> INNER JOIN KHDX_JG JG ON JG.KHDXDH = JGCY.JGKHDXDH INNER JOIN KHDX_HY HY ON JGCY.KHDXDH = HY.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh left JOIN CSB_DMMS DMMS ON DMMS.DMMC = 'ZHBS' AND DMMS.DMZ=CKZH.zhbs 
+        <isNotEmpty property="tjrq">WHERE $tjrq$ BETWEEN CKZHMX.QSRQ AND CKZHMX.JSRQ</isNotEmpty>  
+        <isNotEmpty property="khmc">AND CKZH.ZHHM like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khdxdh">AND HY.KHDXDH = $khdxdh$</isNotEmpty>  
+        <isNotEmpty property="khlx">AND CKZH.zhbs='$khlx$'</isNotEmpty> AND CKZH.gxhslx='1' 
+        <isNotEmpty property="sdyefrom">AND CKZHMX.ZHYE BETWEEN $sdyefrom$ and $sdyeto$</isNotEmpty> )a ORDER BY a.ZHYE DESC
+      </isEqual>  
+      <isEqual property="grcsz" compareValue="3">select * from ( SELECT $tjrq$ tjrq,JG.Khdxdh JGDH,JG.JGDH jgdh2,JG.JGMC,HY.KHDXDH,HY.HYDH, HY.HYMC,CKZH.KHH,DMMS.DMMS KHLX,CKZH.ZHDH,ckzh.zzh, CKZH.ZHHM,CKZH.KHRQ,CKZHMX.ZHYE,CKZH.GXHSLX, CKZH.khrq QSRQ,CKZH.xhrq JSRQ,'百分比:100' as fpgx,CKZH.KMH FROM JXDX_CKZH CKZH INNER JOIN JXDX_CKZHMX_$tjrq_year$ CKZHMX ON CKZH.JXDXDH = CKZHMX.JXDXDH INNER JOIN KHDX_JGCY JGCY ON CKZH.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> INNER JOIN KHDX_JG JG ON JG.KHDXDH = JGCY.JGKHDXDH INNER JOIN KHDX_HY HY ON JGCY.KHDXDH = HY.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh left JOIN CSB_DMMS DMMS ON DMMS.DMMC = 'ZHBS' AND DMMS.DMZ=CKZH.zhbs 
+        <isNotEmpty property="tjrq">WHERE $tjrq$ BETWEEN CKZHMX.QSRQ AND CKZHMX.JSRQ</isNotEmpty>  
+        <isNotEmpty property="khmc">AND CKZH.ZHHM like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">AND CKZH.zhbs='$khlx$'</isNotEmpty> AND CKZH.gxhslx='0' 
+        <isNotEmpty property="khdxdh">AND HY.KHDXDH = $khdxdh$</isNotEmpty>  
+        <isNotEmpty property="tjrq">AND $tjrq$ between CKZH.khrq and CKZH.xhrq</isNotEmpty>  
+        <isNotEmpty property="sdyefrom">AND CKZHMX.ZHYE BETWEEN $sdyefrom$ and $sdyeto$</isNotEmpty> union all SELECT $tjrq$ tjrq,JG.Khdxdh JGDH,JG.JGDH jgdh2,JG.JGMC,HY.KHDXDH,HY.HYDH, HY.HYMC,CKZH.KHH,DMMS.DMMS KHLX,CKZH.ZHDH,ckzh.zzh, CKZH.ZHHM,CKZH.KHRQ, CKZHMX.ZHYE* (case when ckgx.gxhslx='2' then ckgx.clbl else ckgx.zlbl end)*0.01 as zhye ,CKGX.GXHSLX, CKGX.QSRQ,CKGX.JSRQ, (CASE WHEN CKGX.GXHSLX = '0' THEN '百分比:100' WHEN CKGX.GXHSLX = '1' THEN '百分比:'||F_NumToChar(CKGX.zlbl) ELSE '阈值:'||F_NumToChar(CKGX.yz)||',阈值以下:'||F_NumToChar(CKGX.clbl)||',阈值以上'||F_NumToChar(CKGX.zlbl) END) FPGX,CKZH.KMH FROM JXDX_CKZH CKZH INNER JOIN JXDX_CKZHMX_$tjrq_year$ CKZHMX ON CKZH.JXDXDH = CKZHMX.JXDXDH INNER JOIN DXGX_HYYJGX_CK CKGX ON CKZH.JXDXDH = CKGX.JXDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between CKGX.qsrq and CKGX.jsrq</isNotEmpty> INNER JOIN KHDX_JGCY JGCY ON CKGX.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> INNER JOIN KHDX_JG JG ON JG.KHDXDH = JGCY.JGKHDXDH INNER JOIN KHDX_HY HY ON JGCY.KHDXDH = HY.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh left JOIN CSB_DMMS DMMS ON DMMS.DMMC = 'ZHBS' AND DMMS.DMZ=CKZH.zhbs 
+        <isNotEmpty property="tjrq">WHERE $tjrq$ BETWEEN CKZHMX.QSRQ AND CKZHMX.JSRQ</isNotEmpty>  
+        <isNotEmpty property="khmc">AND CKZH.ZHHM like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">AND CKZH.zhbs='$khlx$'</isNotEmpty> AND CKZH.gxhslx='1' 
+        <isNotEmpty property="khdxdh">AND HY.KHDXDH = $khdxdh$</isNotEmpty>  
+        <isNotEmpty property="sdyefrom">AND CKZHMX.ZHYE BETWEEN $sdyefrom$ and $sdyeto$</isNotEmpty> )a ORDER BY a.ZHYE DESC
+      </isEqual>  
+      <isEqual property="grcsz" compareValue="4">select * from ( SELECT $tjrq$ tjrq,JG.Khdxdh JGDH,JG.JGDH jgdh2,JG.JGMC,HY.KHDXDH,HY.HYDH, HY.HYMC,CKZH.KHH,DMMS.DMMS KHLX,CKZH.ZHDH,ckzh.zzh, CKZH.ZHHM,CKZH.KHRQ,CKZHMX.ZHYE,CKZH.GXHSLX, CKZH.khrq QSRQ,CKZH.xhrq JSRQ,'百分比:100' as fpgx,CKZH.KMH FROM JXDX_DKZH CKZH INNER JOIN JXDX_DKZHMX_$tjrq_year$ CKZHMX ON CKZH.JXDXDH = CKZHMX.JXDXDH INNER JOIN KHDX_JGCY JGCY ON CKZH.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> INNER JOIN KHDX_JG JG ON JG.KHDXDH = JGCY.JGKHDXDH INNER JOIN KHDX_HY HY ON JGCY.KHDXDH = HY.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh left JOIN CSB_DMMS DMMS ON DMMS.DMMC = 'ZHBS' AND DMMS.DMZ=CKZH.zhbs 
+        <isNotEmpty property="tjrq">WHERE $tjrq$ BETWEEN CKZHMX.QSRQ AND CKZHMX.JSRQ</isNotEmpty>  
+        <isNotEmpty property="khmc">AND CKZH.ZHHM like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khdxdh">AND HY.KHDXDH = $khdxdh$</isNotEmpty>  
+        <isNotEmpty property="tjrq">AND $tjrq$ between CKZH.khrq and CKZH.xhrq</isNotEmpty>  
+        <isNotEmpty property="khlx">AND CKZH.zhbs='$khlx$'</isNotEmpty> AND CKZH.gxhslx='0' 
+        <isNotEmpty property="sdyefrom">AND CKZHMX.ZHYE BETWEEN $sdyefrom$ and $sdyeto$</isNotEmpty> union all SELECT $tjrq$ tjrq,JG.Khdxdh JGDH,JG.JGDH jgdh2,JG.JGMC,HY.KHDXDH,HY.HYDH, HY.HYMC,CKZH.KHH,DMMS.DMMS KHLX,CKZH.ZHDH,ckzh.zzh, CKZH.ZHHM,CKZH.KHRQ,CKZHMX.ZHYE*CKGX.zlbl*0.01 as zhye,CKGX.GXHSLX, CKGX.QSRQ,CKGX.JSRQ, (CASE WHEN CKGX.GXHSLX = '0' THEN '百分比:100' WHEN CKGX.GXHSLX = '1' THEN '百分比:'||F_NumToChar(CKGX.zlbl) ELSE '阈值:'||F_NumToChar(CKGX.yz)||',阈值以下:'||F_NumToChar(CKGX.clbl)||',阈值以上'||F_NumToChar(CKGX.zlbl) END) FPGX,CKZH.KMH FROM JXDX_DKZH CKZH INNER JOIN JXDX_DKZHMX_$tjrq_year$ CKZHMX ON CKZH.JXDXDH = CKZHMX.JXDXDH INNER JOIN DXGX_HYYJGX_DK CKGX ON CKZH.JXDXDH = CKGX.JXDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between CKGX.qsrq and CKGX.jsrq</isNotEmpty> INNER JOIN KHDX_JGCY JGCY ON CKGX.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> INNER JOIN KHDX_JG JG ON JG.KHDXDH = JGCY.JGKHDXDH INNER JOIN KHDX_HY HY ON JGCY.KHDXDH = HY.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh left JOIN CSB_DMMS DMMS ON DMMS.DMMC = 'ZHBS' AND DMMS.DMZ=CKZH.zhbs 
+        <isNotEmpty property="tjrq">WHERE $tjrq$ BETWEEN CKZHMX.QSRQ AND CKZHMX.JSRQ</isNotEmpty>  
+        <isNotEmpty property="khmc">AND CKZH.ZHHM like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khdxdh">AND HY.KHDXDH = $khdxdh$</isNotEmpty>  
+        <isNotEmpty property="khlx">AND CKZH.zhbs='$khlx$'</isNotEmpty> AND CKZH.gxhslx='1' 
+        <isNotEmpty property="sdyefrom">AND CKZHMX.ZHYE BETWEEN $sdyefrom$ and $sdyeto$</isNotEmpty> )a ORDER BY a.ZHYE DESC
+      </isEqual> 
+    </select>  
+    <select id="dn1.GRCDKHMXCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
+      <isEqual property="grcsz" compareValue="1">select * from ( SELECT $tjrq$ tjrq,JG.Khdxdh JGDH,JG.JGDH jgdh2,JG.JGMC,HY.KHDXDH,HY.HYDH, HY.HYMC,CKZH.KHH,DMMS.DMMS KHLX,CKZH.ZHDH, CKZH.ZHHM,CKZH.KHRQ,CKZHMX.ZHYE,CKZH.GXHSLX, CKZH.khrq QSRQ,CKZH.xhrq JSRQ,'百分比:100' as fpgx,CKZH.KMH FROM JXDX_CKZH CKZH INNER JOIN JXDX_CKZHMX_$tjrq_year$ CKZHMX ON CKZH.JXDXDH = CKZHMX.JXDXDH INNER JOIN KHDX_JGCY JGCY ON CKZH.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> INNER JOIN KHDX_JG JG ON JG.KHDXDH = JGCY.JGKHDXDH INNER JOIN KHDX_HY HY ON JGCY.KHDXDH = HY.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh left JOIN CSB_DMMS DMMS ON DMMS.DMMC = 'ZHBS' AND DMMS.DMZ=CKZH.zhbs 
+        <isNotEmpty property="tjrq">WHERE $tjrq$ BETWEEN CKZHMX.QSRQ AND CKZHMX.JSRQ</isNotEmpty>  
+        <isNotEmpty property="khmc">AND CKZH.ZHHM like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">AND CKZH.zhbs='$khlx$'</isNotEmpty> AND CKZH.gxhslx='0' 
+        <isNotEmpty property="khdxdh">AND HY.KHDXDH = $khdxdh$</isNotEmpty>  
+        <isNotEmpty property="tjrq">AND $tjrq$ between CKZH.khrq and CKZH.xhrq</isNotEmpty>  
+        <isNotEmpty property="sdyefrom">AND CKZHMX.ZHYE BETWEEN $sdyefrom$ and $sdyeto$</isNotEmpty> union all SELECT $tjrq$ tjrq,JG.Khdxdh JGDH,JG.JGDH jgdh2,JG.JGMC,HY.KHDXDH,HY.HYDH, HY.HYMC,CKZH.KHH,DMMS.DMMS KHLX,CKZH.ZHDH, CKZH.ZHHM,CKZH.KHRQ, CKZHMX.ZHYE* (case when ckgx.gxhslx='2' then ckgx.clbl else ckgx.zlbl end)*0.01 as zhye ,CKGX.GXHSLX, CKGX.QSRQ,CKGX.JSRQ, (CASE WHEN CKGX.GXHSLX = '0' THEN '百分比:100' WHEN CKGX.GXHSLX = '1' THEN '百分比:'||F_NumToChar(CKGX.zlbl) ELSE '阈值:'||F_NumToChar(CKGX.yz)||',阈值以下:'||F_NumToChar(CKGX.clbl)||',阈值以上'||F_NumToChar(CKGX.zlbl) END) FPGX,CKZH.KMH FROM JXDX_CKZH CKZH INNER JOIN JXDX_CKZHMX_$tjrq_year$ CKZHMX ON CKZH.JXDXDH = CKZHMX.JXDXDH INNER JOIN DXGX_HYYJGX_CK CKGX ON CKZH.JXDXDH = CKGX.JXDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between CKGX.qsrq and CKGX.jsrq</isNotEmpty> INNER JOIN KHDX_JGCY JGCY ON CKGX.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> INNER JOIN KHDX_JG JG ON JG.KHDXDH = JGCY.JGKHDXDH INNER JOIN KHDX_HY HY ON JGCY.KHDXDH = HY.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh left JOIN CSB_DMMS DMMS ON DMMS.DMMC = 'ZHBS' AND DMMS.DMZ=CKZH.zhbs 
+        <isNotEmpty property="tjrq">WHERE $tjrq$ BETWEEN CKZHMX.QSRQ AND CKZHMX.JSRQ</isNotEmpty>  
+        <isNotEmpty property="khmc">AND CKZH.ZHHM like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">AND CKZH.zhbs='$khlx$'</isNotEmpty> AND CKZH.gxhslx='1' 
+        <isNotEmpty property="khdxdh">AND HY.KHDXDH = $khdxdh$</isNotEmpty>  
+        <isNotEmpty property="sdyefrom">AND CKZHMX.ZHYE BETWEEN $sdyefrom$ and $sdyeto$</isNotEmpty> )a ORDER BY a.ZHYE DESC
+      </isEqual>  
+      <isEqual property="grcsz" compareValue="2">select * from ( SELECT $tjrq$ tjrq,JG.Khdxdh JGDH,JG.JGDH jgdh2,JG.JGMC,HY.KHDXDH,HY.HYDH, HY.HYMC,CKZH.KHH,DMMS.DMMS KHLX,CKZH.ZHDH, CKZH.ZHHM,CKZH.KHRQ,CKZHMX.ZHYE,CKZH.GXHSLX, CKZH.khrq QSRQ,CKZH.xhrq JSRQ,'百分比:100' as fpgx,CKZH.KMH FROM JXDX_DKZH CKZH INNER JOIN JXDX_DKZHMX_$tjrq_year$ CKZHMX ON CKZH.JXDXDH = CKZHMX.JXDXDH INNER JOIN KHDX_JGCY JGCY ON CKZH.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> INNER JOIN KHDX_JG JG ON JG.KHDXDH = JGCY.JGKHDXDH INNER JOIN KHDX_HY HY ON JGCY.KHDXDH = HY.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh left JOIN CSB_DMMS DMMS ON DMMS.DMMC = 'ZHBS' AND DMMS.DMZ=CKZH.zhbs 
+        <isNotEmpty property="tjrq">WHERE $tjrq$ BETWEEN CKZHMX.QSRQ AND CKZHMX.JSRQ</isNotEmpty>  
+        <isNotEmpty property="khmc">AND CKZH.ZHHM like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khdxdh">AND HY.KHDXDH = $khdxdh$</isNotEmpty>  
+        <isNotEmpty property="tjrq">AND $tjrq$ between CKZH.khrq and CKZH.xhrq</isNotEmpty>  
+        <isNotEmpty property="khlx">AND CKZH.zhbs='$khlx$'</isNotEmpty> AND CKZH.gxhslx='0' 
+        <isNotEmpty property="sdyefrom">AND CKZHMX.ZHYE BETWEEN $sdyefrom$ and $sdyeto$</isNotEmpty> union all SELECT $tjrq$ tjrq,JG.Khdxdh JGDH,JG.JGDH jgdh2,JG.JGMC,HY.KHDXDH,HY.HYDH, HY.HYMC,CKZH.KHH,DMMS.DMMS KHLX,CKZH.ZHDH, CKZH.ZHHM,CKZH.KHRQ,CKZHMX.ZHYE*CKGX.zlbl*0.01 as zhye,CKGX.GXHSLX, CKGX.QSRQ,CKGX.JSRQ, (CASE WHEN CKGX.GXHSLX = '0' THEN '百分比:100' WHEN CKGX.GXHSLX = '1' THEN '百分比:'||F_NumToChar(CKGX.zlbl) ELSE '阈值:'||F_NumToChar(CKGX.yz)||',阈值以下:'||F_NumToChar(CKGX.clbl)||',阈值以上'||F_NumToChar(CKGX.zlbl) END) FPGX,CKZH.KMH FROM JXDX_DKZH CKZH INNER JOIN JXDX_DKZHMX_$tjrq_year$ CKZHMX ON CKZH.JXDXDH = CKZHMX.JXDXDH INNER JOIN DXGX_HYYJGX_DK CKGX ON CKZH.JXDXDH = CKGX.JXDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between CKGX.qsrq and CKGX.jsrq</isNotEmpty> INNER JOIN KHDX_JGCY JGCY ON CKGX.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> INNER JOIN KHDX_JG JG ON JG.KHDXDH = JGCY.JGKHDXDH INNER JOIN KHDX_HY HY ON JGCY.KHDXDH = HY.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh left JOIN CSB_DMMS DMMS ON DMMS.DMMC = 'ZHBS' AND DMMS.DMZ=CKZH.zhbs 
+        <isNotEmpty property="tjrq">WHERE $tjrq$ BETWEEN CKZHMX.QSRQ AND CKZHMX.JSRQ</isNotEmpty>  
+        <isNotEmpty property="khmc">AND CKZH.ZHHM like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khdxdh">AND HY.KHDXDH = $khdxdh$</isNotEmpty>  
+        <isNotEmpty property="khlx">AND CKZH.zhbs='$khlx$'</isNotEmpty> AND CKZH.gxhslx='1' 
+        <isNotEmpty property="sdyefrom">AND CKZHMX.ZHYE BETWEEN $sdyefrom$ and $sdyeto$</isNotEmpty> )a ORDER BY a.ZHYE DESC
+      </isEqual>  
+      <isEqual property="grcsz" compareValue="3">select * from ( SELECT $tjrq$ tjrq,JG.Khdxdh JGDH,JG.JGDH jgdh2,JG.JGMC,HY.KHDXDH,HY.HYDH, HY.HYMC,CKZH.KHH,DMMS.DMMS KHLX,CKZH.ZHDH,ckzh.zzh, CKZH.ZHHM,CKZH.KHRQ,CKZHMX.ZHYE,CKZH.GXHSLX, CKZH.khrq QSRQ,CKZH.xhrq JSRQ,'百分比:100' as fpgx,CKZH.KMH FROM JXDX_CKZH CKZH INNER JOIN JXDX_CKZHMX_$tjrq_year$ CKZHMX ON CKZH.JXDXDH = CKZHMX.JXDXDH INNER JOIN KHDX_JGCY JGCY ON CKZH.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> INNER JOIN KHDX_JG JG ON JG.KHDXDH = JGCY.JGKHDXDH INNER JOIN KHDX_HY HY ON JGCY.KHDXDH = HY.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh left JOIN CSB_DMMS DMMS ON DMMS.DMMC = 'ZHBS' AND DMMS.DMZ=CKZH.zhbs 
+        <isNotEmpty property="tjrq">WHERE $tjrq$ BETWEEN CKZHMX.QSRQ AND CKZHMX.JSRQ</isNotEmpty>  
+        <isNotEmpty property="khmc">AND CKZH.ZHHM like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">AND CKZH.zhbs='$khlx$'</isNotEmpty> AND CKZH.gxhslx='0' 
+        <isNotEmpty property="khdxdh">AND HY.KHDXDH = $khdxdh$</isNotEmpty>  
+        <isNotEmpty property="tjrq">AND $tjrq$ between CKZH.khrq and CKZH.xhrq</isNotEmpty>  
+        <isNotEmpty property="sdyefrom">AND CKZHMX.ZHYE BETWEEN $sdyefrom$ and $sdyeto$</isNotEmpty> union all SELECT $tjrq$ tjrq,JG.Khdxdh JGDH,JG.JGDH jgdh2,JG.JGMC,HY.KHDXDH,HY.HYDH, HY.HYMC,CKZH.KHH,DMMS.DMMS KHLX,CKZH.ZHDH,ckzh.zzh, CKZH.ZHHM,CKZH.KHRQ, CKZHMX.ZHYE* (case when ckgx.gxhslx='2' then ckgx.clbl else ckgx.zlbl end)*0.01 as zhye ,CKGX.GXHSLX, CKGX.QSRQ,CKGX.JSRQ, (CASE WHEN CKGX.GXHSLX = '0' THEN '百分比:100' WHEN CKGX.GXHSLX = '1' THEN '百分比:'||F_NumToChar(CKGX.zlbl) ELSE '阈值:'||F_NumToChar(CKGX.yz)||',阈值以下:'||F_NumToChar(CKGX.clbl)||',阈值以上'||F_NumToChar(CKGX.zlbl) END) FPGX,CKZH.KMH FROM JXDX_CKZH CKZH INNER JOIN JXDX_CKZHMX_$tjrq_year$ CKZHMX ON CKZH.JXDXDH = CKZHMX.JXDXDH INNER JOIN DXGX_HYYJGX_CK CKGX ON CKZH.JXDXDH = CKGX.JXDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between CKGX.qsrq and CKGX.jsrq</isNotEmpty> INNER JOIN KHDX_JGCY JGCY ON CKGX.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> INNER JOIN KHDX_JG JG ON JG.KHDXDH = JGCY.JGKHDXDH INNER JOIN KHDX_HY HY ON JGCY.KHDXDH = HY.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh left JOIN CSB_DMMS DMMS ON DMMS.DMMC = 'ZHBS' AND DMMS.DMZ=CKZH.zhbs 
+        <isNotEmpty property="tjrq">WHERE $tjrq$ BETWEEN CKZHMX.QSRQ AND CKZHMX.JSRQ</isNotEmpty>  
+        <isNotEmpty property="khmc">AND CKZH.ZHHM like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khlx">AND CKZH.zhbs='$khlx$'</isNotEmpty> AND CKZH.gxhslx='1' 
+        <isNotEmpty property="khdxdh">AND HY.KHDXDH = $khdxdh$</isNotEmpty>  
+        <isNotEmpty property="sdyefrom">AND CKZHMX.ZHYE BETWEEN $sdyefrom$ and $sdyeto$</isNotEmpty> )a ORDER BY a.ZHYE DESC
+      </isEqual>  
+      <isEqual property="grcsz" compareValue="4">select * from ( SELECT $tjrq$ tjrq,JG.Khdxdh JGDH,JG.JGDH jgdh2,JG.JGMC,HY.KHDXDH,HY.HYDH, HY.HYMC,CKZH.KHH,DMMS.DMMS KHLX,CKZH.ZHDH,ckzh.zzh, CKZH.ZHHM,CKZH.KHRQ,CKZHMX.ZHYE,CKZH.GXHSLX, CKZH.khrq QSRQ,CKZH.xhrq JSRQ,'百分比:100' as fpgx,CKZH.KMH FROM JXDX_DKZH CKZH INNER JOIN JXDX_DKZHMX_$tjrq_year$ CKZHMX ON CKZH.JXDXDH = CKZHMX.JXDXDH INNER JOIN KHDX_JGCY JGCY ON CKZH.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> INNER JOIN KHDX_JG JG ON JG.KHDXDH = JGCY.JGKHDXDH INNER JOIN KHDX_HY HY ON JGCY.KHDXDH = HY.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh left JOIN CSB_DMMS DMMS ON DMMS.DMMC = 'ZHBS' AND DMMS.DMZ=CKZH.zhbs 
+        <isNotEmpty property="tjrq">WHERE $tjrq$ BETWEEN CKZHMX.QSRQ AND CKZHMX.JSRQ</isNotEmpty>  
+        <isNotEmpty property="khmc">AND CKZH.ZHHM like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khdxdh">AND HY.KHDXDH = $khdxdh$</isNotEmpty>  
+        <isNotEmpty property="tjrq">AND $tjrq$ between CKZH.khrq and CKZH.xhrq</isNotEmpty>  
+        <isNotEmpty property="khlx">AND CKZH.zhbs='$khlx$'</isNotEmpty> AND CKZH.gxhslx='0' 
+        <isNotEmpty property="sdyefrom">AND CKZHMX.ZHYE BETWEEN $sdyefrom$ and $sdyeto$</isNotEmpty> union all SELECT $tjrq$ tjrq,JG.Khdxdh JGDH,JG.JGDH jgdh2,JG.JGMC,HY.KHDXDH,HY.HYDH, HY.HYMC,CKZH.KHH,DMMS.DMMS KHLX,CKZH.ZHDH,ckzh.zzh, CKZH.ZHHM,CKZH.KHRQ,CKZHMX.ZHYE*CKGX.zlbl*0.01 as zhye,CKGX.GXHSLX, CKGX.QSRQ,CKGX.JSRQ, (CASE WHEN CKGX.GXHSLX = '0' THEN '百分比:100' WHEN CKGX.GXHSLX = '1' THEN '百分比:'||F_NumToChar(CKGX.zlbl) ELSE '阈值:'||F_NumToChar(CKGX.yz)||',阈值以下:'||F_NumToChar(CKGX.clbl)||',阈值以上'||F_NumToChar(CKGX.zlbl) END) FPGX,CKZH.KMH FROM JXDX_DKZH CKZH INNER JOIN JXDX_DKZHMX_$tjrq_year$ CKZHMX ON CKZH.JXDXDH = CKZHMX.JXDXDH INNER JOIN DXGX_HYYJGX_DK CKGX ON CKZH.JXDXDH = CKGX.JXDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between CKGX.qsrq and CKGX.jsrq</isNotEmpty> INNER JOIN KHDX_JGCY JGCY ON CKGX.KHDXDH = JGCY.KHDXDH 
+        <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> INNER JOIN KHDX_JG JG ON JG.KHDXDH = JGCY.JGKHDXDH INNER JOIN KHDX_HY HY ON JGCY.KHDXDH = HY.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh left JOIN CSB_DMMS DMMS ON DMMS.DMMC = 'ZHBS' AND DMMS.DMZ=CKZH.zhbs 
+        <isNotEmpty property="tjrq">WHERE $tjrq$ BETWEEN CKZHMX.QSRQ AND CKZHMX.JSRQ</isNotEmpty>  
+        <isNotEmpty property="khmc">AND CKZH.ZHHM like '%$khmc$%'</isNotEmpty>  
+        <isNotEmpty property="khdxdh">AND HY.KHDXDH = $khdxdh$</isNotEmpty>  
+        <isNotEmpty property="khlx">AND CKZH.zhbs='$khlx$'</isNotEmpty> AND CKZH.gxhslx='1' 
+        <isNotEmpty property="sdyefrom">AND CKZHMX.ZHYE BETWEEN $sdyefrom$ and $sdyeto$</isNotEmpty> )a ORDER BY a.ZHYE DESC
+      </isEqual> ) t
+    </select>  
+    <select id="dn1.GRCDKHMX_MSQL4SELECT_ywlb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT YWLB AS KEY,MS AS VALUE FROM CSB_YWLB WHERE MS IN('存款业务','贷款业务')</select>  
+    <select id="dn1.GRCDKHMX_MSQL4SELECT_khlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc = 'ZHBS'</select>  
+    <select id="dn1.GRCDKHMX_grmxcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select xtb.csz from XTB_XTCS xtb where xtb.CSMC = (case when $ywlb$ = 1 then 'CKYJGXMS' when $ywlb$ = 2 then 'DKYJGXMS' end)</select> 
+  </sqlMap>  
+  <rels> 
+    <items id="GRCDKHMX_ckywjgj"> 
+      <item name="grcsz" compareValue="1" operate="isEqual"/> 
+    </items>  
+    <items id="GRCDKHMX_dkywjgj"> 
+      <item name="grcsz" compareValue="2" operate="isEqual"/> 
+    </items>  
+    <items id="GRCDKHMX_ck_zzhjgj"> 
+      <item name="grcsz" compareValue="3" operate="isEqual"/> 
+    </items>  
+    <items id="GRCDKHMX_dk_zzhjgj"> 
+      <item name="grcsz" compareValue="4" operate="isEqual"/> 
+    </items> 
+  </rels>  
+  <javascript><![CDATA[jQuery(document).ready(function () {
+  init_khlx().pipe(init_ywlb).pipe(function(){
+    PAS.di.execute('GRCDKHMX_grmxcsz',checkZzhBack);//判断有没有子账号
+    jQuery('#ywlb').executeOnEvent('change','GRCDKHMX_grmxcsz',checkZzhBack);
+  });
+});
+
+function checkZzhBack(obj){
+  var dxlx = $('#ywlb').val();
+  if(obj.data.length>0){
+    if(dxlx=='01' && obj.data[0].CSZ=='0' )
+    { 
+      $('#grcsz').val('1');
+    }
+    if(dxlx=='01' && obj.data[0].CSZ=='1' )
+    { 
+      $('#grcsz').val('3');
+    }
+    if(dxlx=='02' && obj.data[0].CSZ=='0' )
+    { 
+      $('#grcsz').val('2');
+    }
+    if(dxlx=='02' && obj.data[0].CSZ=='1' )
+    { 
+      $('#grcsz').val('4');
+    }
+  }
+}
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+  if(!sdyevalidate()){
+      return false;
+  }
+  
+         var tjrq = jQuery('#tjrq').val();
+         var year = tjrq.substr(0,4);
+         
+         document.getElementById('tjrq_year').value=year;
+ return true;
+}
+
+
+function sdyevalidate(){
+         var sdyefrom = jQuery('#sdyefrom').val();
+         var sdyeto = jQuery('#sdyeto').val();
+         
+         if(sdyefrom==''&&sdyeto==''){
+          return true;
+         }else if(sdyefrom==''||sdyeto==''){
+          alert('余额变动范围输入错误！余额变动范围必须同时有值或者同时为空！');
+          return false;
+         }
+               
+       if(parseFloat(sdyeto)<parseFloat(sdyefrom)){
+               alert('余额变动范围输入错误！余额变动范围前区间必须小于后区间！');
+               return false
+         }
+        
+         return true;
+         
+}]]></javascript> 
+</pageSetting>

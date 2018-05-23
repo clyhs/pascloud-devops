@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="hyjstzgldr" title="行员基数调整管理导入" type="import" version="2.0.0"> 
+  <template> 
+    <src>ONLINE</src>  
+    <column> 
+      <text>调整起始日期</text>  
+      <name>qsrq</name>  
+      <index>0</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>行员代号</text>  
+      <name>hydh</name>  
+      <index>1</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>行员名称</text>  
+      <name>hymc</name>  
+      <index>2</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>N</req> 
+    </column>  
+    <column> 
+      <text>指标代号</text>  
+      <name>zbdh</name>  
+      <index>3</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>指标名称</text>  
+      <name>zbmc</name>  
+      <index>4</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>N</req> 
+    </column>  
+    <column> 
+      <text>时段标识</text>  
+      <name>sdbs</name>  
+      <index>5</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate>填写序号： 1 时点 2 月日均 3 季日均 4 年日均 5 月累计 6 季累计 7 年累计 8 月平</annotate>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>币种</text>  
+      <name>bz</name>  
+      <index>6</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate>填写序号： 01 人民币 0A 本外币折人民币 0B 外币折人民币 0C 外币折美元 FF 非币种</annotate>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>调整后基数</text>  
+      <name>tzz</name>  
+      <index>7</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>调整原因</text>  
+      <name>tzyy</name>  
+      <index>8</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>N</req> 
+    </column> 
+  </template>  
+  <table id="hyjstzgldr_table" page="true"> 
+    <col id="ZT" title="状态" align="center" type="string" width="50"/>  
+    <col id="ERROR" title="错误原因" align="center" type="string" width="250"/>  
+    <col id="QSRQ" title="调整起始日期" align="center" type="" width="120"/>  
+    <col id="HYDH" title="行员代号" align="center" type="" width="120"/>  
+    <col id="HYMC" title="行员名称" align="center" type="" width="120"/>  
+    <col id="ZBDH" title="指标代号" align="center" type="" width="120"/>  
+    <col id="ZBMC" title="指标名称" align="center" type="" width="120"/>  
+    <col id="SDBS" title="时段标识" align="center" type="" width="120"/>  
+    <col id="BZ" title="币种" align="center" type="" width="120"/>  
+    <col id="TZZ" title="调整后基数" align="center" type="" width="120"/>  
+    <col id="TZYY" title="调整原因" align="center" type="" width="120"/> 
+  </table>  
+  <flow> 
+    <rule> 
+      <sql type="update">hyjstzgldr_check_qsrq_0</sql>  
+      <sql type="update">hyjstzgldr_check_qsrq_1</sql>  
+      <sql type="update">hyjstzgldr_check_qsrq_2</sql>  
+      <sql type="update">hyjstzgldr_check_hydh_3</sql>  
+      <sql type="update">hyjstzgldr_check_zbdh_4</sql>  
+      <sql type="update">hyjstzgldr_check_sdbs_5</sql>  
+      <sql type="update">hyjstzgldr_check_bz_6</sql>  
+      <sql type="update">hyjstzgldr_check_tzz_7</sql>  
+      <sql type="update">hyjstzgldr_check_tzz_8</sql>  
+      <sql type="update">hyjstzgldr_check_tzyy_9</sql>  
+      <sql type="update">hyjstzgldr_checkupdate_qsrq_0</sql>  
+      <sql type="update">hyjstzgldr_checkupdate_hydh_0</sql>  
+      <sql type="update">hyjstzgldr_checkupdate_hymc_0</sql>  
+      <sql type="update">hyjstzgldr_checkupdate_zbdh_0</sql>  
+      <sql type="update">hyjstzgldr_checkupdate_zbmc_0</sql>  
+      <sql type="update">hyjstzgldr_checkupdate_sdbs_0</sql>  
+      <sql type="update">hyjstzgldr_checkupdate_bz_0</sql>  
+      <sql type="update">hyjstzgldr_exists_target</sql>  
+      <sql type="update">hyjstzgldr_exists_same_temp</sql> 
+    </rule>  
+    <before> 
+      <sql type="delete">hyjstzgldr_before_insert_delqsrqAndCover</sql>  
+      <sql type="update">hyjstzgldr_before_insert_cutqsrq</sql>  
+      <sql type="update">hyjstzgldr_before_insert_0</sql> 
+    </before>  
+    <cover/>  
+    <insert> 
+      <sql type="insert">hyjstzgldr_insert_into_target</sql> 
+    </insert>  
+    <after> 
+      <sql type="update">hyjstzgldr_after_insert_0</sql> 
+    </after> 
+  </flow>  
+  <sqlMap namespace="studio.hyjstzgldr"> 
+    <update parameterClass="java.util.Map" id="dn1.hyjstzgldr_check_qsrq_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyjstzgldr_temp t set t.error=t.error||'调整起始日期输入错误，格式应该是:yyyyMMdd!' where f_java_rule_date(t.qsrq,'yyyyMMdd')=1 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.hyjstzgldr_check_qsrq_1"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyjstzgldr_temp t set t.error=t.error||'调整起始日期输入错误，不能为空!' where f_java_rule_length(t.qsrq)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.hyjstzgldr_check_qsrq_2"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyjstzgldr_temp t set t.error=(select t.error||'起始日期不能小于(系统日期-重跑天数)'|| cast(f_change_days(cast(rq.csz as integer),-cast(cs.csz as integer )) as char(8))||'!' as error from xtb_xtcs rq ,xtb_xtcs cs where rq.csmc='SYS_DATE' and cs.csmc='SYS_CSTS') where cast(t.qsrq as integer)&lt;(select f_change_days(cast(rq.csz as integer ),-cast(cs.csz as integer )) from xtb_xtcs rq ,xtb_xtcs cs where rq.csmc='SYS_DATE' and cs.csmc='SYS_CSTS') and (error='' or error is null) and khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.hyjstzgldr_check_hydh_3"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyjstzgldr_temp t set t.error=t.error||'行员代号输入错误，不能为空!' where f_java_rule_length(t.hydh)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.hyjstzgldr_check_zbdh_4"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyjstzgldr_temp t set t.error=t.error||'指标代号输入错误，不能为空!' where f_java_rule_length(t.zbdh)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.hyjstzgldr_check_sdbs_5"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyjstzgldr_temp t set t.error=t.error||'时段标识输入错误，不能为空!' where f_java_rule_length(t.sdbs)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.hyjstzgldr_check_bz_6"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyjstzgldr_temp t set t.error=t.error||'币种输入错误，不能为空!' where f_java_rule_length(t.bz)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.hyjstzgldr_check_tzz_7"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyjstzgldr_temp t set t.error=t.error||'调整值输入错误，只能输入:21位整数,2位小数!' where f_java_rule_length(t.tzz)&gt;0 and f_java_rule_number(t.tzz,21,2)=1 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.hyjstzgldr_check_tzz_8"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyjstzgldr_temp t set t.error=t.error||'调整值输入错误，不能为空!' where f_java_rule_length(t.tzz)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.hyjstzgldr_check_tzyy_9"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyjstzgldr_temp t set t.error=t.error||'调整原因输入错误，长度不能超过:200!' where f_java_rule_length(t.tzyy)&gt;200 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.hyjstzgldr_checkupdate_qsrq_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyjstzgldr_temp t set error=error||'此调整日期下，不存在此指标代号、时段标识、币种指定的行员' where not exists ( select 1 from yjzb_hykhjs hykhjs inner join khdx_hy hy on hy.khdxdh = hykhjs.khdxdh where t.hydh=hy.hydh and hykhjs.tjrq =cast(t.qsrq as integer) and hykhjs.zbdh = cast(t.zbdh as integer) and hykhjs.bz = t.bz and hykhjs.sdbs=t.sdbs ) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.hyjstzgldr_checkupdate_hydh_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyjstzgldr_temp t set error=error||'此统计日期下不存在此行员代号' where not exists ( select 1 from yjzb_hykhjs hykhjs inner join khdx_hy hy on hy.khdxdh=hykhjs.khdxdh where t.hydh=hy.hydh ) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.hyjstzgldr_checkupdate_hymc_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyjstzgldr_temp t set error=error||'行员代号和名称必须一致' where not exists ( select 1 from khdx_hy hy where t.hydh=hy.hydh and hy.hymc=t.hymc) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.hyjstzgldr_checkupdate_zbdh_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyjstzgldr_temp t set error=error||'此调整日期不存在此指标代号' where not exists ( select 1 from yjzb_hykhjs hykhjs where cast(t.zbdh as integer) = hykhjs.zbdh AND cast(t.qsrq as integer) = hykhjs.tjrq ) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.hyjstzgldr_checkupdate_zbmc_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyjstzgldr_temp t set error=error||'指标代号和指标名称必须一致' where not exists ( select 1 from khdx_zb zb where cast(t.zbdh as integer)=zb.zbdh and t.zbmc=zb.zbmc) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.hyjstzgldr_checkupdate_sdbs_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyjstzgldr_temp t set error=error||'此调整日期不存在此时段标识' where not exists ( select 1 from yjzb_hykhjs hykhjs where t.sdbs=hykhjs.sdbs and cast(t.qsrq as integer) = hykhjs.tjrq ) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.hyjstzgldr_checkupdate_bz_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyjstzgldr_temp t set error=error||'此调整日期不存在此币种' where not exists ( select 1 from yjzb_hykhjs hykhjs where t.bz=hykhjs.bz and cast(t.qsrq as integer) = hykhjs.tjrq ) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.hyjstzgldr_exists_target"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyjstzgldr_temp t set t.error=t.error||'数据已存在!' where exists(select 1 from YJZB_HYJSTZ tar ,KHDX_HY KHDX_HY0 where 1=1 and cast(t.zbdh as INTEGER)=tar.ZBDH and t.bz =tar.BZ and t.sdbs =tar.SDBS and t.hydh=KHDX_HY0.HYDH and KHDX_HY0.KHDXDH=tar.KHDXDH and tar.QSRQ <![CDATA[>]]>= cast(t.qsrq as INTEGER) and t.khdxdh=$login_khdxdh$ and (length(t.error)=0 or t.error is null ))
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.hyjstzgldr_exists_same_temp"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyjstzgldr_temp t set t.error=error||'存在重复数据!' where exists( select 1 from (select zbdh,bz,sdbs,hydh from hyjstzgldr_temp dr where khdxdh=$login_khdxdh$ group by zbdh,bz,sdbs,hydh having count(1)<![CDATA[>]]>1 ) dr where 1=1 and t.zbdh=dr.zbdh and t.bz=dr.bz and t.sdbs=dr.sdbs and t.hydh=dr.hydh) and khdxdh=$login_khdxdh$
+    </update>  
+    <insert parameterClass="java.util.Map" id="dn1.hyjstzgldr_create_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> CREATE TABLE hyjstzgldr_temp ( qsrq varchar(100) , hydh varchar(100) , hymc varchar(100) , zbdh varchar(100) , zbmc varchar(100) , sdbs varchar(100) , bz varchar(100) , tzz varchar(100) , tzyy varchar(100) , khdxdh integer,error varchar(1000) )
+    </insert>  
+    <delete parameterClass="java.util.Map" id="dn1.hyjstzgldr_delete_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from hyjstzgldr_temp where khdxdh=$login_khdxdh$
+    </delete>  
+    <insert parameterClass="java.util.Map" id="dn1.hyjstzgldr_insert_into_lsb">insert into HYJSTZGLDR_TEMP (qsrq,hydh,hymc,zbdh,zbmc,sdbs,bz,tzz,tzyy,khdxdh,error) values(?,?,?,?,?,?,?,?,?,?,?)</insert>  
+    <select parameterClass="java.util.Map" id="dn1.hyjstzgldr_exists_error_msg" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from hyjstzgldr_temp where length(error) <![CDATA[>]]> 0 and khdxdh = $login_khdxdh$
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn1.hyjstzgldr_exists_same_data"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from hyjstzgldr_temp where length(error) <![CDATA[>]]> 0 and error != '数据已存在!' and khdxdh = $login_khdxdh$
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn1.hyjstzgldr_select_error_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/cancel.jpg" border="0"/<![CDATA[>]]>' as zt, qsrq,hydh,hymc,zbdh,zbmc,sdbs,bz,tzz,tzyy,khdxdh,error from hyjstzgldr_temp where khdxdh=$login_khdxdh$ and length(error)<![CDATA[>]]>0
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn1.hyjstzgldr_count_all_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, qsrq,hydh,hymc,zbdh,zbmc,sdbs,bz,tzz,tzyy,khdxdh,error from hyjstzgldr_temp where khdxdh=$login_khdxdh$ )a
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn1.hyjstzgldr_select_all_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, qsrq,hydh,hymc,zbdh,zbmc,sdbs,bz,tzz,tzyy,khdxdh,error from hyjstzgldr_temp where khdxdh=$login_khdxdh$
+    </select>  
+    <delete id="dn1.hyjstzgldr_before_insert_delqsrqAndCover" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from YJZB_HYJSTZ tar where exists ( select 1 from $temp$ t ,KHDX_HY KHDX_HY0 where (length(t.error)=0 or t.error is null or t.error ='数据已存在!') and t.khdxdh=$login_khdxdh$ and cast(t.zbdh as INTEGER)=tar.ZBDH and cast(t.bz as VARCHAR(3))=tar.BZ and cast(t.sdbs as VARCHAR(1))=tar.SDBS and cast(t.hydh as VARCHAR(12) )=KHDX_HY0.HYDH and KHDX_HY0.KHDXDH=tar.KHDXDH and tar.qsrq<![CDATA[>]]>= cast(t.qsrq as integer) )
+    </delete>  
+    <update id="dn1.hyjstzgldr_before_insert_cutqsrq" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update YJZB_HYJSTZ tar set jsrq=(select F_Change_Days(cast(dr.qsrq as Integer),-1) from hyjstzgldr_temp dr,KHDX_HY KHDX_HY0 where 1=1 and cast(dr.zbdh as INTEGER)=tar.ZBDH and cast(dr.bz as VARCHAR(3))=tar.BZ and cast(dr.sdbs as VARCHAR(1))=tar.SDBS and cast(dr.hydh as VARCHAR(12) )=KHDX_HY0.HYDH and KHDX_HY0.KHDXDH=tar.KHDXDH and (length(dr.error)=0 or dr.error is null or dr.error='数据已存在!') and dr.khdxdh=$login_khdxdh$) where exists( select 1 from hyjstzgldr_temp t ,KHDX_HY KHDX_HY0 where 1=1 and cast(t.zbdh as INTEGER)=tar.ZBDH and cast(t.bz as VARCHAR(3))=tar.BZ and cast(t.sdbs as VARCHAR(1))=tar.SDBS and cast(t.hydh as VARCHAR(12) )=KHDX_HY0.HYDH and KHDX_HY0.KHDXDH=tar.KHDXDH and (length(t.error)=0 or t.error is null or t.error='数据已存在!') and t.khdxdh=$login_khdxdh$ and tar.jsrq&gt;=F_Change_Days(cast(t.qsrq as Integer),-1))
+    </update>  
+    <update id="dn1.hyjstzgldr_before_insert_0" parameterClass="java.util.Map">update yjzb_hyjstz set jsrq = 29991231 where jsrq = (select distinct(nm) from csb_sjw sjw inner join hyjstzgldr_temp t on cast(t.qsrq as integer) = sjw.tjrq)</update>  
+    <insert parameterClass="java.util.Map" id="dn1.hyjstzgldr_insert_into_target"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into YJZB_HYJSTZ(ZBDH,BZ,SDBS,KHDXDH,QSRQ,JSRQ,TZZ,TZYY,CZR,CZSJ) select cast (t.zbdh as INTEGER), t.bz , t.sdbs ,KHDX_HY0.KHDXDH,cast (t.qsrq as INTEGER),CSB_SJW1.NM,cast (t.tzz as DECIMAL(25,4)), t.tzyy ,'$login_hydh$',F_GET_SYSTIME() from hyjstzgldr_temp t ,KHDX_HY KHDX_HY0,CSB_SJW CSB_SJW1 where t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null) and KHDX_HY0.HYDH=cast (t.hydh as VARCHAR(12)) and CSB_SJW1.TJRQ=cast (t.qsrq as INTEGER)
+    </insert>  
+    <update id="dn1.hyjstzgldr_after_insert_0" parameterClass="java.util.Map">update yjzb_hyjstz set jsrq = (select distinct(nm) from csb_sjw sjw inner join hyjstzgldr_temp t on cast(t.qsrq as integer) = sjw.tjrq) where jsrq = 29991231</update> 
+  </sqlMap> 
+</pageSetting>

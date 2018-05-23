@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="ckzhjstz" title="存款账户基数调整" type="manage"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName=""> 
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="tjrq"/>  
+        <attribute key="minDate" value="no"/>  
+        <attribute key="defValType" value="nc"/>  
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag row="0" col="1" rowspan="1" colspan="1" name="Dmms" label="状态" fieldName=""> 
+        <attribute key="name" value="zt"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="dmmc" value="jszt"/>  
+        <attribute key="multiple" value="false"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag row="0" col="2" rowspan="1" colspan="1" name="Text" label="账户名称" fieldName=""> 
+        <attribute key="name" value="zhhm"/>  
+        <attribute key="readonly" value="false"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag row="0" col="3" rowspan="1" colspan="1" name="Text" label="账号" fieldName=""> 
+        <attribute key="name" value="zhdh"/>  
+        <attribute key="readonly" value="false"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag row="0" col="4" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
+        <attribute key="name" value="allORjs"/> 
+      </tag>  
+      <tag row="0" col="4" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
+        <attribute key="name" value="ckcsz"/> 
+      </tag>  
+      <tag row="1" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+        <attribute key="dataType" value="select"/>  
+        <attribute key="sql" value="select csz from xtb_xtcs where csmc='CKYJGXMS'"/>  
+        <attribute key="name" value="csz"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table page="true" id="ckzhjstztable"> 
+    <col id="TJRQ" title="调整日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="ZHDH" title="账号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="ZZH" title="子账号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="KHH" title="客户号" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="ZHJS" title="账户基数" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="SDYE" title="时点余额" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="TZLJ" title="调整累计" align="right" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" xsType="href" onclick="openMx"/>  
+    <col id="TZJS" title="调整基数" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="TZYY" title="调整原因" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="JXDXDH" title="绩效对象代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="QSRQ" title="起始日期" align="left" type="hidden" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/> 
+  </table>  
+  <rels> 
+    <items id="ckzhjstztable"/> 
+  </rels>  
+  <addPage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="调整日期" fieldName="QSRQ"> 
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="name" value="tzrq"/>  
+      <attribute key="minDate" value="no"/>  
+      <attribute key="defValType" value="sysDate"/>  
+      <attribute key="dateFmt" value="yyyyMMdd"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="0" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JXDXDH"> 
+      <attribute key="name" value="jxdxdh"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Text" label="账号" fieldName="ZHDH"> 
+      <attribute key="name" value="zhdh"/>  
+      <attribute key="styleClass" value="required"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="1" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ"> 
+      <attribute key="name" value="jsrq"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Text" label="子账号" fieldName="ZZH"> 
+      <attribute key="name" value="zzh"/>  
+      <attribute key="styleClass" value="required"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="调整基数" fieldName="TZJS"> 
+      <attribute key="precision" value="2"/>  
+      <attribute key="name" value="tzjs"/>  
+      <attribute key="intparts" value="17"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="3" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="ZHHM"> 
+      <attribute key="name" value="zhhm"/> 
+    </tag>  
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Textarea" label="调整原因" fieldName="TZYY"> 
+      <attribute key="cols" value="14"/>  
+      <attribute key="name" value="tzyy"/>  
+      <attribute key="styleClass" value="maxlength：100"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/>  
+      <attribute key="rows" value="5"/> 
+    </tag>  
+    <tag row="4" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHH"> 
+      <attribute key="name" value="khh"/> 
+    </tag>  
+    <tag row="5" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="TZLJ"> 
+      <attribute key="defVal" value="0"/>  
+      <attribute key="name" value="tzlj"/> 
+    </tag>  
+    <tag row="6" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select csz from xtb_xtcs where csmc='CKYJGXMS'"/>  
+      <attribute key="name" value="csz2"/> 
+    </tag>  
+    <tag row="6" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select zh.jxdxdh,zh.zhdh,zh.zzh,zh.zhhm,zh.khh,coalesce(js.tzlj,0) tzlj from JXDX_CKJSZH_$nf$ zh left join SGDR_CKJSZH_TZJS js on zh.jxdxdh=js.jxdxdh and ($tzrq$-1) between js.qsrq and js.jsrq where zh.zhdh='$zhdh$'"/>  
+      <attribute key="name" value="getzh"/> 
+    </tag>  
+    <tag row="7" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
+      <attribute key="name" value="nf"/> 
+    </tag> 
+  </addPage>  
+  <updatePage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="调整日期" fieldName="QSRQ"> 
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="name" value="tzrq"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="minDate" value="no"/>  
+      <attribute key="defValType" value="sysDate"/>  
+      <attribute key="dateFmt" value="yyyyMMdd"/>  
+      <attribute key="isEditable" value="false"/>  
+      <attribute key="editable" value="false"/> 
+    </tag>  
+    <tag row="0" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JXDXDH"> 
+      <attribute key="name" value="jxdxdh"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Text" label="账号" fieldName="ZHDH"> 
+      <attribute key="name" value="zhdh"/>  
+      <attribute key="styleClass" value="required"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="isEditable" value="false"/>  
+      <attribute key="editable" value="false"/> 
+    </tag>  
+    <tag row="1" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ"> 
+      <attribute key="name" value="jsrq"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Text" label="子账号" fieldName="ZZH"> 
+      <attribute key="name" value="zzh"/>  
+      <attribute key="styleClass" value="required"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="isEditable" value="false"/>  
+      <attribute key="editable" value="false"/> 
+    </tag>  
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="调整基数" fieldName="TZJS"> 
+      <attribute key="precision" value="2"/>  
+      <attribute key="name" value="tzjs"/>  
+      <attribute key="intparts" value="17"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="3" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="ZHHM"> 
+      <attribute key="name" value="zhhm"/> 
+    </tag>  
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Textarea" label="调整原因" fieldName="TZYY"> 
+      <attribute key="cols" value="14"/>  
+      <attribute key="name" value="tzyy"/>  
+      <attribute key="styleClass" value="maxlength：100"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/>  
+      <attribute key="rows" value="5"/> 
+    </tag>  
+    <tag row="4" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHH"> 
+      <attribute key="name" value="khh"/> 
+    </tag>  
+    <tag row="5" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="TZLJ"> 
+      <attribute key="defVal" value="0"/>  
+      <attribute key="name" value="tzlj"/> 
+    </tag>  
+    <tag row="6" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select csz from xtb_xtcs where csmc='CKYJGXMS'"/>  
+      <attribute key="name" value="csz2"/> 
+    </tag>  
+    <tag row="6" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select zh.jxdxdh,zh.zhdh,zh.zzh,zh.zhhm,zh.khh,coalesce(js.tzlj,0) tzlj from JXDX_CKJSZH_$nf$ zh left join SGDR_CKJSZH_TZJS js on zh.jxdxdh=js.jxdxdh and ($tzrq$-1) between js.qsrq and js.jsrq where zh.zhdh='$zhdh$'"/>  
+      <attribute key="name" value="getzh"/> 
+    </tag>  
+    <tag row="7" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
+      <attribute key="name" value="nf"/> 
+    </tag> 
+  </updatePage>  
+  <buttons> 
+    <button>add</button>  
+    <button>edit</button>  
+    <button>delete</button>  
+    <button>import</button> 
+  </buttons>  
+  <flow> 
+    <insertbefore> 
+      <sql type="delete">ckzhjstz_check_itemAddDel</sql>  
+      <sql type="update">ckzhjstz_check_itemUP</sql> 
+    </insertbefore>  
+    <insertafter/>  
+    <deletebefore> 
+      <sql type="selectmaxqsrq">ckzhjstz_check_itemMAX_del</sql>  
+      <sql type="update">ckzhjstz_check_itemDELUP</sql> 
+    </deletebefore>  
+    <deleteafter/>  
+    <updatebefore/>  
+    <updateafter/> 
+  </flow>  
+  <sqlMap namespace="studio.ckzhjstz"> 
+    <select id="dn1.ckzhjstzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select coalesce(js.qsrq, zh.tjrq) tjrq, zh.zhdh,zh.zzh, zh.zhhm, zh.khh, zh.zhjs, zh.sdye, coalesce(js.tzlj, 0) tzlj, coalesce(js.tzjs, 0) tzjs, js.tzyy, coalesce(zh.jxdxdh, 0) jxdxdh, coalesce(js.qsrq, 0) qsrq , coalesce(js.jsrq, 29991231) jsrq from jxdx_ckjszh_$tjrq_yyyy$ zh left join sgdr_ckjszh_tzjs js on zh.jxdxdh=js.jxdxdh 
+      <isNotEmpty property="tjrq">and $tjrq$ between js.qsrq and js.jsrq</isNotEmpty> where 1=1 
+      <isNotEmpty property="tjrq_yyyy">and zh.tjrq=$tjrq_yyyy$0101</isNotEmpty>  
+      <isNotEmpty property="zhhm">and zh.zhhm like '%$zhhm$%'</isNotEmpty>  
+      <isNotEmpty property="zhdh">and zh.zhdh like '%$zhdh$%'</isNotEmpty> $allORjs$
+    </select>  
+    <select id="dn1.ckzhjstzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select coalesce(js.qsrq, zh.tjrq) tjrq, zh.zhdh,zh.zzh, zh.zhhm, zh.khh, zh.zhjs, zh.sdye, coalesce(js.tzlj, 0) tzlj, coalesce(js.tzjs, 0) tzjs, js.tzyy, coalesce(zh.jxdxdh, 0) jxdxdh, coalesce(js.qsrq, 0) qsrq , coalesce(js.jsrq, 29991231) jsrq from jxdx_ckjszh_$tjrq_yyyy$ zh left join sgdr_ckjszh_tzjs js on zh.jxdxdh=js.jxdxdh 
+      <isNotEmpty property="tjrq">and $tjrq$ between js.qsrq and js.jsrq</isNotEmpty> where 1=1 
+      <isNotEmpty property="tjrq_yyyy">and zh.tjrq=$tjrq_yyyy$0101</isNotEmpty>  
+      <isNotEmpty property="zhhm">and zh.zhhm like '%$zhhm$%'</isNotEmpty>  
+      <isNotEmpty property="zhdh">and zh.zhdh like '%$zhdh$%'</isNotEmpty> $allORjs$ ) t
+    </select>  
+    <select id="dn1.ckzhjstz_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select TZLJ, ZHHM, TZYY, KHH, TZJS, ZZH, QSRQ, JXDXDH, ZHDH, JSRQ from SGDR_CKJSZH_TZJS where 1= 1 and QSRQ = $qsrq$ and JXDXDH = $jxdxdh$
+    </select>  
+    <select id="dn1.ckzhjstz_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select TZLJ, ZHHM, TZYY, KHH, TZJS, ZZH, QSRQ, JXDXDH, ZHDH, JSRQ from SGDR_CKJSZH_TZJS where 1= 1 and QSRQ = $tzrq$ and JXDXDH = $jxdxdh$
+    </select>  
+    <insert id="dn1.ckzhjstz_insert" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into SGDR_CKJSZH_TZJS( TZLJ, JXDXDH, KHH, ZHHM, ZZH, TZJS, TZYY, JSRQ, ZHDH, QSRQ ) values ( $tzlj$,$jxdxdh$,'$khh$','$zhhm$','$zzh$',$tzjs$,'$tzyy$',$jsrq$,'$zhdh$',$tzrq$)
+    </insert>  
+    <update id="dn1.ckzhjstz_update" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update SGDR_CKJSZH_TZJS set TZJS = $tzjs$,TZYY = '$tzyy$' where 1=1 and QSRQ = $tzrq$ and JXDXDH = $jxdxdh$
+    </update>  
+    <delete id="dn1.ckzhjstz_delete" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from SGDR_CKJSZH_TZJS where 1=1 and QSRQ = $qsrq$ and JXDXDH = $jxdxdh$
+    </delete>  
+    <delete id="dn1.ckzhjstz_check_itemAddDel" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[delete from SGDR_CKJSZH_TZJS where qsrq >=$tzrq$  and JXDXDH = $jxdxdh$]]> 
+    </delete>  
+    <update id="dn1.ckzhjstz_check_itemUP" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update SGDR_CKJSZH_TZJS set jsrq=$qdate$ 
+      <isNotEmpty property="tzrq">where $tzrq$ between qsrq and jsrq</isNotEmpty> and JXDXDH = $jxdxdh$
+    </update>  
+    <select id="dn1.ckzhjstz_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select max(qsrq) from SGDR_CKJSZH_TZJS where 1=1 and JXDXDH = $jxdxdh$
+    </select>  
+    <select id="dn1.ckzhjstz_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select  TZLJ, ZHHM, TZYY, KHH, TZJS, ZZH, QSRQ, JXDXDH, ZHDH, JSRQ from SGDR_CKJSZH_TZJS where 1=1  and JXDXDH = $jxdxdh$ and $tzrq$ > $maxqsrq$]]> 
+    </select>  
+    <update id="dn1.ckzhjstz_check_itemDELUP" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update SGDR_CKJSZH_TZJS set jsrq =29991231 where 1=1 and JXDXDH = $jxdxdh$ and jsrq =$lastjsrq$
+    </update>  
+    <select id="dn1.ckzhjstz_csz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='CKYJGXMS'</select>  
+    <select id="dn1.ckzhjstz_csz2" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='CKYJGXMS'</select>  
+    <select id="dn1.ckzhjstz_getzh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select zh.jxdxdh,zh.zhdh,zh.zzh,zh.zhhm,zh.khh,coalesce(js.tzlj,0) tzlj from JXDX_CKJSZH_$nf$ zh left join SGDR_CKJSZH_TZJS js on zh.jxdxdh=js.jxdxdh and ($tzrq$-1) between js.qsrq and js.jsrq where zh.zhdh='$zhdh$'</select> 
+  </sqlMap>  
+  <javascript> 
+    <import>parent.addTab('zhjstzdr','存款账户基数调整','/module/parser/import/visitHtml/zhjstzdr');</import>  
+    <query>jQuery(document).ready(function () { editpage_width=550; editpage_height=350; var $ = jQuery; $('#zt').append('&lt;option value="all"&gt;所有账户&lt;/option&gt;'); $('#zt').append('&lt;option value="js"&gt;调整过账户&lt;/option&gt;'); PAS.di.execute('ckzhjstz_csz',checkZzhBack);//判断有没有子账号 $('#tool_bar input:eq(4)').click(function(){toImportPage2();}); }); function checkZzhBack(obj){ if(obj.data.length&gt;0){ if(obj.data[0].CSZ=='0'){ $('#ckcsz').val(0); //0表示没有子账号，所以需要隐藏 //alert(jQuery('#ckzhjstzList')); jQuery('#ckzhjstzList').datagrid('hideColumn','ZZH'); } } } //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ var str=jQuery('#zt option:selected').val(); if(str=='all'){ jQuery('#allORjs').val(''); }else{ jQuery('#allORjs').val('and js.zhdh is not null'); } return true; } function customFastLink($table,row){//this 对象绑定当前行的单元格 console.log(row['QSRQ']); if(row['QSRQ']!='0'){ var edit = $('&lt;a class="operation_edit LIST_BAR" title="编辑"&gt;编辑&lt;/a&gt;'); var del = $('&lt;a class="operation_del LIST_BAR" title="删除"&gt;删除&lt;/a&gt;'); this.append(edit);//.append(' ').append(del); this.append(del);//.append(' ').append(del); edit.click(function(){ showUpdateEdtiDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]); }); del.click(function(){ showDeleteDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]); }); return true; }else{ return false; } } function customOnLoadSuccess(data){ createGridDataListBar(data); var ckcsz = $('#ckcsz').val(); if(ckcsz == '0'){ jQuery('#ckzhjstzList').datagrid('hideColumn','ZZH'); } } function toImportPage2(){ var ckcsz = $('#ckcsz').val(); if(ckcsz == '0'){ parent.addTab('zhjstzdr','存款账户基数调整','../studio/impParser.do?method=visitHTML&amp;funId=zhjstzdr'); }else{ parent.addTab('zhjstzdr','存款账户基数调整','../studio/impParser.do?method=visitHTML&amp;funId=zhjstzdr2'); } } function showDeleteDialog(sel){ var jsrq=sel["JSRQ"]+''; if(jsrq.substring(4,8)!='1231') { alert("只能删除结束日期为年末的记录，请重新操作!"); return ; } custom_confirm('你确定要删除所选记录吗？','提示',function(){ var colIds="JXDXDH,QSRQ,TJRQ,ZHDH,ZHHM,KHH,ZHJS,TZLJ,TZJS,TZYY"; var colId=colIds.split(",");//所有的主键名 var params="&amp;"; //URL的参数 for(var i=0;i&lt;colId.length;i++){ params+=colId[i].toLowerCase()+"="+sel[colId[i]]+"&amp;"; } params=encodeURI(params.substring(0,params.length-1)); //alert(params); $.post('/module/parser/manage/deleteData/ckzhjstz/?operate=delete'+params,{},function(cb){ custom_alert(cb); loadData(); }).error(function(){ alert("发生内部错误，无法删除所选记录！"); }); }); } function showUpdateEdtiDialog(sel){ var colIds="JXDXDH,QSRQ,TJRQ,ZHDH,ZHHM,KHH,ZHJS,TZLJ,TZJS,JSRQ,TZYY"; var colId=colIds.split(",");//所有的主键名 var params="&amp;"; //URL的参数 for(var i=0;i&lt;colId.length;i++){ var data = selDataFilter(sel[colId[i]]); //alert("|"+data+"|"); if(data==undefined){data=''} params+=colId[i].toLowerCase()+"="+data+"&amp;"; } params=encodeURI(params.substring(0,params.length-1)); //alert(params); var width = editpage_width||700; var height = editpage_height||400; custom_window('/module/parser/manage/getById/ckzhjstz?operate=update'+params,width,height,'账户基数调整编辑'); } function openMx(obj){ var pars = "{jxdxdh:"+obj['JXDXDH']+",CDK:CK"+"}"; querySubQuery(pars,'zhjstzmx','','','tag'); }</query>  
+    <edit>jQuery(document).ready(function () { //这里的js脚本，会在页面加载完成后执行 $('#zhdh').executeOnEvent('blur', 'ckzhjstz_getzh', setzh) $('#tzyy').attr("maxlength","50"); $('#tzrq').blur(function(){ $('#nf').val($('#tzrq').val().substring(0,4)); }).trigger('blur'); PAS.di.execute('ckzhjstz_csz2',checkZzhBack2);//判断有没有子账号; }); function checkZzhBack2(obj){ if(obj.data.length&gt;0){ if(obj.data[0].CSZ=='0'){ $('#zzh').parent().parent().hide(); //为0时，隐藏子账号列 } } } //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ $('#jsrq').val(createTimeObj($('#tzrq').val()).nm); //if(parseFloat($('#tzlj').val(),10)+parseFloat($('#tzjs').val(),10)&lt;0){ // alert('基数调整值不能小于'+$('#tzlj').val()); // return false; //}else{ $('#tzlj').val(parseFloat($('#tzlj').val(),10)+parseFloat($('#tzjs').val(),10)); //} return true; //return PAS.di.isDone(); } function setzh(obj){ if(obj.status==0){ if(obj.data.length==0){ $('#zhdh').validationFiled('账号输入错误'); }else{ $('#zhdh').validationPass('ckzhjstz_getzh'); $('#jxdxdh').val(obj.data[0]['JXDXDH']); // $('#zzh').val(obj.data[0]['ZZH']); $('#zhhm').val(obj.data[0]['ZHHM']); $('#khh').val(obj.data[0]['KHH']); $('#tzlj').val(obj.data[0]['TZLJ']); // PAS.di.setDone(obj.sqlid); } }else{ $('#zhdh').validationFiled('服务器错误'); } }</edit> 
+  </javascript> 
+</pageSetting>

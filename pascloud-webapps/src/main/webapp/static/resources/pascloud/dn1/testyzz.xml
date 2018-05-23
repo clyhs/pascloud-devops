@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="testyzz" title="testyzz" type="import" version="2.0.0"> 
+  <template> 
+    <src>ONLINE</src> 
+  </template>  
+  <table id="testyzz_table" page="true"> 
+    <col id="ZT" title="状态" align="center" type="string" width="50"/>  
+    <col id="ERROR" title="错误原因" align="center" type="string" width="250"/> 
+  </table>  
+  <flow> 
+    <rule> 
+      <sql type="update">testyzz_exists_target</sql>  
+      <sql type="update">testyzz_exists_same_temp</sql> 
+    </rule>  
+    <before/>  
+    <cover> 
+      <sql type="delete">testyzz_delete_before_override</sql> 
+    </cover>  
+    <insert> 
+      <sql type="insert">testyzz_insert_into_target</sql> 
+    </insert>  
+    <after/> 
+  </flow>  
+  <sqlMap namespace="studio.testyzz"> 
+    <update parameterClass="java.util.Map" id="dn1.testyzz_exists_target"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update testyzz_temp t set t.error=t.error||'数据已存在!' where exists(select 1 from undefined tar where 1=1 and 1=2 and t.khdxdh=$login_khdxdh$ )
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.testyzz_exists_same_temp"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update testyzz_temp t set t.error=error||'存在重复数据!' where 1=2 and khdxdh=$login_khdxdh$
+    </update>  
+    <insert parameterClass="java.util.Map" id="dn1.testyzz_create_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> CREATE TABLE testyzz_temp ( khdxdh integer,error varchar(1000) )
+    </insert>  
+    <delete parameterClass="java.util.Map" id="dn1.testyzz_delete_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from testyzz_temp where khdxdh=$login_khdxdh$
+    </delete>  
+    <insert parameterClass="java.util.Map" id="dn1.testyzz_insert_into_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into TESTYZZ_TEMP (khdxdh,error) values(?,?)
+    </insert>  
+    <select parameterClass="java.util.Map" id="dn1.testyzz_exists_error_msg" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from testyzz_temp where length(error) <![CDATA[>]]> 0 and khdxdh = $login_khdxdh$
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn1.testyzz_exists_same_data"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from testyzz_temp where length(error) <![CDATA[>]]> 0 and error != '数据已存在!' and khdxdh = $login_khdxdh$
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn1.testyzz_select_error_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/cancel.jpg" border="0"/<![CDATA[>]]>' as zt, khdxdh,error from testyzz_temp where khdxdh=$login_khdxdh$ and length(error)<![CDATA[>]]>0
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn1.testyzz_count_all_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, khdxdh,error from testyzz_temp where khdxdh=$login_khdxdh$ )a
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn1.testyzz_select_all_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, khdxdh,error from testyzz_temp where khdxdh=$login_khdxdh$
+    </select>  
+    <insert parameterClass="java.util.Map" id="dn1.testyzz_insert_into_target"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into undefined() select from testyzz_temp t where t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null)
+    </insert>  
+    <delete parameterClass="java.util.Map" id="dn1.testyzz_delete_before_override"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from undefined tar where exists(select 1 from testyzz_temp t where 1=1 and t.khdxdh=$login_khdxdh$ )
+    </delete> 
+  </sqlMap> 
+</pageSetting>

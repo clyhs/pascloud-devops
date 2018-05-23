@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="khxjsglr" title="客户星级手工管理" type="manage"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName=""> 
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="tjrq"/>  
+        <attribute key="minDate" value="no"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag row="0" col="1" rowspan="1" colspan="1" name="Text" label="客户号" fieldName=""> 
+        <attribute key="name" value="khh"/>  
+        <attribute key="readonly" value="false"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag row="0" col="2" rowspan="1" colspan="1" name="Text" label="客户名称" fieldName=""> 
+        <attribute key="name" value="khmc"/>  
+        <attribute key="readonly" value="false"/>  
+        <attribute key="editable" value="true"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table page="true" id="khxjsglrtable"> 
+    <col id="KHH" title="客户号" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="KHMC" title="客户名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="DMMS" title="客户类别" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="PDMC" title="评定方案" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="XJMC" title="星级名称" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="QSRQ" title="起始日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="BZSM" title="备注说明" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="PDBH" title="PDBH" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true"/> 
+  </table>  
+  <rels> 
+    <items id="khxjsglrtable"/> 
+  </rels>  
+  <addPage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="客户号" fieldName="KHH"> 
+      <attribute key="style" value="width:150px;"/>  
+      <attribute key="name" value="khh"/>  
+      <attribute key="styleClass" value="required"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="0" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="SELECT KHFL.khh FROM KHDX_KHFL KHFL where khfl.khh='$khh$' and $tjrq$ between KHFL.QSRQ and KHFL.JSRQ"/>  
+      <attribute key="name" value="yzkhh"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName="QSRQ"> 
+      <attribute key="style" value="width:150px;"/>  
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="name" value="tjrq"/>  
+      <attribute key="minDate" value="no"/>  
+      <attribute key="defValType" value="sysDate"/>  
+      <attribute key="dateFmt" value="yyyyMMdd"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="1" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ"> 
+      <attribute key="defVal" value="29991231"/>  
+      <attribute key="name" value="jsrq"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="评定方案" fieldName="PDBH"> 
+      <attribute key="sql" value="SELECT  pdfa.pdbh as key, pdfa.pdmc as value  FROM KHXJ_PDFA PDFA left join  (     select  khfl.khlb from KHDX_KHFL KHFL      where $tjrq$ between KHFL.QSRQ and KHFL.JSRQ             AND KHFL.KHH='$khh$'              group by   khfl.khlb )b    on  cast(SUBSTR('$tjrq$',1,4)as INTEGER)=PDFA.PDNF where f_is_exists_str(pdfa.khlb,rtrim(b.khlb),',')&gt;0   group by pdfa.pdbh,pdfa.pdmc order by pdfa.pdbh"/>  
+      <attribute key="isSearch" value="false"/>  
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="isMultiple" value="false"/>  
+      <attribute key="name" value="pdfa"/>  
+      <attribute key="width" value="150px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="isEditable" value="true"/> 
+    </tag>  
+    <tag row="2" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
+      <attribute key="defVal" value="$csdate$"/>  
+      <attribute key="name" value="csrq"/> 
+    </tag>  
+    <tag row="2" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="XJMC"> 
+      <attribute key="name" value="ycxjmc"/> 
+    </tag>  
+    <tag row="3" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="星级名称" fieldName="XJBH"> 
+      <attribute key="parents" value="pdfa"/>  
+      <attribute key="sql" value="SELECT pdxj.XJBH AS KEY, pdxj.XJMC AS VALUE FROM KHXJ_PDXJ pdxj where   cast(pdxj.jsfs  as integer)=2 and pdxj.pdbh = $pdfa$"/>  
+      <attribute key="isSearch" value="false"/>  
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="isMultiple" value="false"/>  
+      <attribute key="name" value="xjmc"/>  
+      <attribute key="width" value="150px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="isEditable" value="true"/> 
+    </tag>  
+    <tag row="3" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select khfl.khmc from khdx_khfl khfl  where khfl.khh='$khh$' and $tjrq$ BETWEEN khfl.qsrq  and  khfl.jsrq"/>  
+      <attribute key="name" value="khmczj"/> 
+    </tag>  
+    <tag row="3" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHMC"> 
+      <attribute key="name" value="khmc"/> 
+    </tag>  
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Textarea" label="备注说明" fieldName="BZSM"> 
+      <attribute key="cols" value="14"/>  
+      <attribute key="style" value="width:150px;"/>  
+      <attribute key="name" value="bzsm"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/>  
+      <attribute key="rows" value="5"/> 
+    </tag>  
+    <tag row="4" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select khfl.khlb from khdx_khfl  khfl where khfl.khh='$khh$' and $tjrq$ BETWEEN khfl.qsrq  and  khfl.jsrq"/>  
+      <attribute key="name" value="khlbzj"/> 
+    </tag>  
+    <tag row="4" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHLB"> 
+      <attribute key="name" value="khlb"/> 
+    </tag> 
+  </addPage>  
+  <updatePage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="客户号" fieldName="KHH"> 
+      <attribute key="style" value="width:150px;"/>  
+      <attribute key="name" value="khh"/>  
+      <attribute key="styleClass" value="required"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="isEditable" value="false"/>  
+      <attribute key="editable" value="false"/> 
+    </tag>  
+    <tag row="0" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="SELECT KHFL.khh FROM KHDX_KHFL KHFL where khfl.khh='$khh$' and $tjrq$ between KHFL.QSRQ and KHFL.JSRQ"/>  
+      <attribute key="name" value="yzkhh"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName="QSRQ"> 
+      <attribute key="style" value="width:150px;"/>  
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="name" value="tjrq"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="minDate" value="no"/>  
+      <attribute key="defValType" value="sysDate"/>  
+      <attribute key="dateFmt" value="yyyyMMdd"/>  
+      <attribute key="isEditable" value="false"/>  
+      <attribute key="editable" value="false"/> 
+    </tag>  
+    <tag row="1" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ"> 
+      <attribute key="defVal" value="29991231"/>  
+      <attribute key="name" value="jsrq"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="评定方案" fieldName="PDBH"> 
+      <attribute key="sql" value="SELECT  pdfa.pdbh as key, pdfa.pdmc as value  FROM KHXJ_PDFA PDFA left join  (     select  khfl.khlb from KHDX_KHFL KHFL      where $tjrq$ between KHFL.QSRQ and KHFL.JSRQ             AND KHFL.KHH='$khh$'              group by   khfl.khlb )b    on  cast(SUBSTR('$tjrq$',1,4)as INTEGER)=PDFA.PDNF where f_is_exists_str(pdfa.khlb,rtrim(b.khlb),',')&gt;0   group by pdfa.pdbh,pdfa.pdmc order by pdfa.pdbh"/>  
+      <attribute key="isSearch" value="false"/>  
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="isMultiple" value="false"/>  
+      <attribute key="name" value="pdfa"/>  
+      <attribute key="width" value="150px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="editable" value="false"/>  
+      <attribute key="isEditable" value="false"/> 
+    </tag>  
+    <tag row="2" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
+      <attribute key="defVal" value="$csdate$"/>  
+      <attribute key="name" value="csrq"/> 
+    </tag>  
+    <tag row="2" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="XJMC"> 
+      <attribute key="name" value="ycxjmc"/> 
+    </tag>  
+    <tag row="3" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="星级名称" fieldName="XJBH"> 
+      <attribute key="parents" value="pdfa"/>  
+      <attribute key="sql" value="SELECT pdxj.XJBH AS KEY, pdxj.XJMC AS VALUE FROM KHXJ_PDXJ pdxj where   cast(pdxj.jsfs  as integer)=2 and pdxj.pdbh = $pdfa$"/>  
+      <attribute key="isSearch" value="false"/>  
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="isMultiple" value="false"/>  
+      <attribute key="name" value="xjmc"/>  
+      <attribute key="width" value="150px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="isEditable" value="true"/> 
+    </tag>  
+    <tag row="3" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select khfl.khmc from khdx_khfl khfl  where khfl.khh='$khh$' and $tjrq$ BETWEEN khfl.qsrq  and  khfl.jsrq"/>  
+      <attribute key="name" value="khmczj"/> 
+    </tag>  
+    <tag row="3" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHMC"> 
+      <attribute key="name" value="khmc"/> 
+    </tag>  
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Textarea" label="备注说明" fieldName="BZSM"> 
+      <attribute key="cols" value="14"/>  
+      <attribute key="style" value="width:150px;"/>  
+      <attribute key="name" value="bzsm"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/>  
+      <attribute key="rows" value="5"/> 
+    </tag>  
+    <tag row="4" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select khfl.khlb from khdx_khfl  khfl where khfl.khh='$khh$' and $tjrq$ BETWEEN khfl.qsrq  and  khfl.jsrq"/>  
+      <attribute key="name" value="khlbzj"/> 
+    </tag>  
+    <tag row="4" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHLB"> 
+      <attribute key="name" value="khlb"/> 
+    </tag> 
+  </updatePage>  
+  <buttons> 
+    <button>add</button>  
+    <button>edit</button>  
+    <button>delete</button>  
+    <button>import</button> 
+  </buttons>  
+  <flow> 
+    <insertbefore> 
+      <sql type="delete">khxjsglr_check_itemAddDel</sql>  
+      <sql type="update">khxjsglr_check_itemUP</sql> 
+    </insertbefore>  
+    <insertafter/>  
+    <deletebefore> 
+      <sql type="selectmaxqsrq">khxjsglr_check_itemMAX_del</sql>  
+      <sql type="update">khxjsglr_check_itemDELUP</sql> 
+    </deletebefore>  
+    <deleteafter/>  
+    <updatebefore/>  
+    <updateafter/> 
+  </flow>  
+  <sqlMap namespace="studio.khxjsglr"> 
+    <select id="dn1.khxjsglrList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> SELECT sglr.khh,sglr.khmc,csb.dmms,pdfa.pdmc,sglr.xjmc,sglr.qsrq,sglr.jsrq,sglr.bzsm,SGLR.PDBH FROM KHXJ_KHXJSGLR SGLR left JOIN CSB_DMMS CSB ON CSB.DMMC='DJPDKHLB' AND CSB.DMZ=SGLR.KHLB INNER JOIN KHXJ_PDFA PDFA ON PDFA.PDBH=SGLR.PDBH 
+      <isNotEmpty property="tjrq">where $tjrq$ between sglr.qsrq and sglr.jsrq</isNotEmpty>  
+      <isNotEmpty property="khh">and sglr.khh like '%$khh$%'</isNotEmpty>  
+      <isNotEmpty property="khmc">and sglr.khmc like '%$khmc$%'</isNotEmpty> order by sglr.khh
+    </select>  
+    <select id="dn1.khxjsglrCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( SELECT sglr.khh,sglr.khmc,csb.dmms,pdfa.pdmc,sglr.xjmc,sglr.qsrq,sglr.jsrq,sglr.bzsm,SGLR.PDBH FROM KHXJ_KHXJSGLR SGLR left JOIN CSB_DMMS CSB ON CSB.DMMC='DJPDKHLB' AND CSB.DMZ=SGLR.KHLB INNER JOIN KHXJ_PDFA PDFA ON PDFA.PDBH=SGLR.PDBH 
+      <isNotEmpty property="tjrq">where $tjrq$ between sglr.qsrq and sglr.jsrq</isNotEmpty>  
+      <isNotEmpty property="khh">and sglr.khh like '%$khh$%'</isNotEmpty>  
+      <isNotEmpty property="khmc">and sglr.khmc like '%$khmc$%'</isNotEmpty> order by sglr.khh ) t
+    </select>  
+    <select id="dn1.khxjsglr_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select KHMC, XJBH, KHLB, XJMC, KHH, PDBH, BZSM, QSRQ, JSRQ from KHXJ_KHXJSGLR where 1= 1 and KHH = '$khh$' and PDBH = $pdbh$ and QSRQ = $qsrq$
+    </select>  
+    <select id="dn1.khxjsglr_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select KHMC, XJBH, KHLB, XJMC, KHH, PDBH, BZSM, QSRQ, JSRQ from KHXJ_KHXJSGLR where 1= 1 and KHH = '$khh$' and PDBH = $pdfa$ and QSRQ = $tjrq$
+    </select>  
+    <insert id="dn1.khxjsglr_insert" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into KHXJ_KHXJSGLR( XJMC, KHLB, KHMC, KHH, XJBH, PDBH, JSRQ, QSRQ, BZSM ) values ( '$ycxjmc$','$khlb$','$khmc$','$khh$',$xjmc$,$pdfa$,$jsrq$,$tjrq$,'$bzsm$')
+    </insert>  
+    <update id="dn1.khxjsglr_update" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update KHXJ_KHXJSGLR set XJMC = '$ycxjmc$',XJBH = $xjmc$,BZSM = '$bzsm$' where 1=1 and KHH = '$khh$' and PDBH = $pdfa$ and QSRQ = $tjrq$
+    </update>  
+    <delete id="dn1.khxjsglr_delete" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from KHXJ_KHXJSGLR where 1=1 and KHH = '$khh$' and PDBH = $pdbh$ and QSRQ = $qsrq$
+    </delete>  
+    <delete id="dn1.khxjsglr_check_itemAddDel" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[delete from KHXJ_KHXJSGLR where qsrq >=$tjrq$  and KHH = '$khh$' and PDBH = $pdfa$]]> 
+    </delete>  
+    <update id="dn1.khxjsglr_check_itemUP" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update KHXJ_KHXJSGLR set jsrq=$qdate$ 
+      <isNotEmpty property="tjrq">where $tjrq$ between qsrq and jsrq</isNotEmpty> and KHH = '$khh$' and PDBH = $pdfa$
+    </update>  
+    <select id="dn1.khxjsglr_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select max(qsrq) from KHXJ_KHXJSGLR where 1=1 and KHH = '$khh$' and PDBH = $pdbh$
+    </select>  
+    <select id="dn1.khxjsglr_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select  KHMC, XJBH, KHLB, XJMC, KHH, PDBH, BZSM, QSRQ, JSRQ from KHXJ_KHXJSGLR where 1=1  and KHH = '$khh$' and PDBH = $pdfa$ and $tjrq$ > $maxqsrq$]]> 
+    </select>  
+    <update id="dn1.khxjsglr_check_itemDELUP" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update KHXJ_KHXJSGLR set jsrq =29991231 where 1=1 and KHH = '$khh$' and PDBH = $pdbh$ and jsrq =$lastjsrq$
+    </update>  
+    <select id="dn1.khxjsglr_yzkhh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT KHFL.khh FROM KHDX_KHFL KHFL where khfl.khh='$khh$' and $tjrq$ between KHFL.QSRQ and KHFL.JSRQ</select>  
+    <select id="dn1.khxjsglr_khmczj" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khfl.khmc from khdx_khfl khfl where khfl.khh='$khh$' and $tjrq$ BETWEEN khfl.qsrq and khfl.jsrq</select>  
+    <select id="dn1.khxjsglr_khlbzj" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khfl.khlb from khdx_khfl khfl where khfl.khh='$khh$' and $tjrq$ BETWEEN khfl.qsrq and khfl.jsrq</select>  
+    <select id="dn1.khxjsglr_MSQL4SELECT_pdfa" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT pdfa.pdbh as key, pdfa.pdmc as value FROM KHXJ_PDFA PDFA left join ( select khfl.khlb from KHDX_KHFL KHFL 
+      <isNotEmpty property="tjrq">where $tjrq$ between KHFL.QSRQ and KHFL.JSRQ</isNotEmpty>  
+      <isNotEmpty property="khh">AND KHFL.KHH='$khh$'</isNotEmpty>  <![CDATA[group by   khfl.khlb
+)b   
+on  cast(SUBSTR('$tjrq$',1,4)as INTEGER)=PDFA.PDNF
+where f_is_exists_str(pdfa.khlb,rtrim(b.khlb),',')>0  
+group by pdfa.pdbh,pdfa.pdmc
+order by pdfa.pdbh]]> 
+    </select>  
+    <select id="dn1.khxjsglr_MSQL4SELECT_xjmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT pdxj.XJBH AS KEY, pdxj.XJMC AS VALUE FROM KHXJ_PDXJ pdxj where cast(pdxj.jsfs as integer)=2 
+      <isNotEmpty property="pdfa">and pdxj.pdbh = $pdfa$</isNotEmpty> 
+    </select> 
+  </sqlMap>  
+  <javascript> 
+    <import>parent.addTab('khxjsglrdr','客户星级手工管理','/module/parser/import/visitHtml/khxjsglrdr');</import>  
+    <query>jQuery(document).ready(function () { }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; }</query>  
+    <edit>var flag = true; jQuery(document).ready(function () { //这里的js脚本，会在页面加载完成后执行 //验证客户号 $("#khh").executeOnEvent('blur','khxjsglr_yzkhh',getKhh); $("#tjrq").executeOnEvent('blur','khxjsglr_yzkhh',getKhh); //得到客户名称 $("#khh").executeOnEvent('change','khxjsglr_khmczj',getKhmc); $("#tjrq").executeOnEvent('blur','khxjsglr_khmczj',getKhmc); //得到客户类别 $("#khh").executeOnEvent('change','khxjsglr_khlbzj',getKhlb); $("#tjrq").executeOnEvent('blur','khxjsglr_khlbzj',getKhlb); //统计日期改变 评定方案 改变 BindParent('pdfa','tjrq','blur'); //客户号改变 评定方案 改变 BindParent('pdfa','khh','change'); //评定方案 改变 客户星级改变 //BindParent('xjmc','pdfa','change'); }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ if(!flag) { alert('客户号输入有误!'); return false; } //判断起始日期不能小于重算天数的日期 var csrq = $("#csrq").val; var tjrq = $("#tjrq").val; if(csrq&gt;tjrq) { alert('统计日期不能小于重算天数的日期'); return false; } $('#ycxjmc').val($('#xjmc').find("option:selected").text()); if($('#bzsm').val().length&gt;250) { alert('备注说明只能输入250个汉字'); } //PAS.di.isDone(); return true; } //判断客户号 是否存在 function getKhh(obj){ if(obj.data.length == 0){ flag = false; }else{ flag = true; PAS.di.setDone(obj.sqlid); } } function getKhmc(obj){ if(obj.data.length&gt;0) {//alert(obj.data[0].KHMC); $("#khmc").val(obj.data[0].KHMC); PAS.di.setDone(obj.sqlid); } } function getKhlb(obj){ if(obj.data.length&gt;0) {//alert(obj.data[0].KHLB); $("#khlb").val(obj.data[0].KHLB); PAS.di.setDone(obj.sqlid); } }</edit> 
+  </javascript> 
+</pageSetting>

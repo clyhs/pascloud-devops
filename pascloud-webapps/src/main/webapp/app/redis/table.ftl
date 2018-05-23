@@ -19,6 +19,16 @@
     
     
 	<script type="text/javascript">
+	
+	   var url ="/module/redis/redisPageData.json?redisServerId=${redisServerId}&index=${index}";
+	
+       function test(){
+           var key = $('#key').val();
+           
+           $('#tableDataGrid').datagrid('clearSelections'); 
+           $('#tableDataGrid').datagrid('options').url = url; 
+           $('#tableDataGrid').datagrid('load',{'selectKey' : key});
+       }
 	</script>
 	<style>
 	    .datagrid-btable .datagrid-cell{padding:6px 4px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}  
@@ -39,7 +49,7 @@
 		        <table id="tableDataGrid" class="easyui-datagrid" 
 				    data-options="url:'${url}',fitColumns:true,singleSelect:true,
 				    iconCls:'icon-table',pagination:true,fit:true,
-				    pageSize:50,pageList:[ 50, 100, 150, 200],border:0" >
+				    pageSize:50,pageList:[ 50, 100, 150, 200],border:0,toolbar:'#tb'" >
                     <thead>
 		                <tr>
 			            <th data-options="field:'key',width:100">属性</th>
@@ -48,6 +58,12 @@
 		                </tr>
                     </thead>
                 </table>
+                <div id="tb" style="padding:5px;height:auto">
+		            <div>
+			            关键字: <input id="key" name="key" class="easyui-textbox" style="width:150px">
+			            <a href="#" id="btn" class="easyui-linkbutton" onclick="javascript:test()">搜索</a>
+		            </div>
+	            </div>
 		    </div>
 		</div>
 		<!--内容  结束-->
@@ -55,3 +71,4 @@
 
 </body>
 </html>
+

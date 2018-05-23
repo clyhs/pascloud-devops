@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="dqcytjxsgl" title="地区差异调节系数管理" type="manage"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Qxyw" label="业务类别" fieldName=""> 
+        <attribute key="name" value="ywlb"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="multiple" value="false"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag row="0" col="1" rowspan="1" colspan="1" name="MSQL4Select" label="考核角色" fieldName=""> 
+        <attribute key="sql" value="select lbdh as key, lbmc as value from csb_jglb"/>  
+        <attribute key="isSearch" value="false"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="name" value="lbdh"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="multiple" value="false"/>  
+        <attribute key="isEditable" value="true"/>  
+        <attribute key="editable" value="true"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table page="true" id="dqcytjxsgltable"> 
+    <col id="YWLB" title="业务类别" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false"/>  
+    <col id="YWLBMC" title="业务类别" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false"/>  
+    <col id="LBMC" title="考核角色" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false"/>  
+    <col id="QSRQ" title="起始日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false"/>  
+    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false"/>  
+    <col id="CYXS" title="差异系数" align="right" type="float" width="120" format="###,###.0000" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false"/>  
+    <col id="JGLB" title="考核角色" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false"/> 
+  </table>  
+  <rels> 
+    <items id="dqcytjxsgltable"/> 
+  </rels>  
+  <addPage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="考核角色" fieldName="JGLB"> 
+      <attribute key="sql" value="select lbdh as key, lbmc as value from csb_jglb"/>  
+      <attribute key="isSearch" value="false"/>  
+      <attribute key="isRequired" value="false"/>  
+      <attribute key="isMultiple" value="false"/>  
+      <attribute key="name" value="lbdh"/>  
+      <attribute key="width" value="120px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="isEditable" value="true"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Qxyw" label="业务类别" fieldName="YWLB"> 
+      <attribute key="name" value="ywlb"/>  
+      <attribute key="width" value="120px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ"> 
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="name" value="qsrq"/>  
+      <attribute key="defValType" value="sysDate"/>  
+      <attribute key="dateFmt" value="yyyyMMdd"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ"> 
+      <attribute key="defVal" value="29991231"/>  
+      <attribute key="name" value="jsrq"/> 
+    </tag>  
+    <tag row="2" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c  where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'"/>  
+      <attribute key="name" value="getMaxqsrq"/> 
+    </tag>  
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="差异系数" fieldName="CYXS"> 
+      <attribute key="precision" value="4"/>  
+      <attribute key="name" value="cyxs"/>  
+      <attribute key="intparts" value="9"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag> 
+  </addPage>  
+  <updatePage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="考核角色" fieldName="JGLB"> 
+      <attribute key="sql" value="select lbdh as key, lbmc as value from csb_jglb"/>  
+      <attribute key="isSearch" value="false"/>  
+      <attribute key="isRequired" value="false"/>  
+      <attribute key="isMultiple" value="false"/>  
+      <attribute key="name" value="lbdh"/>  
+      <attribute key="width" value="120px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="isEditable" value="false"/>  
+      <attribute key="editable" value="false"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Qxyw" label="业务类别" fieldName="YWLB"> 
+      <attribute key="name" value="ywlb"/>  
+      <attribute key="width" value="120px;"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="multiple" value="false"/>  
+      <attribute key="isEditable" value="false"/>  
+      <attribute key="editable" value="false"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ"> 
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="name" value="qsrq"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="defValType" value="sysDate"/>  
+      <attribute key="dateFmt" value="yyyyMMdd"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="isEditable" value="false"/>  
+      <attribute key="editable" value="false"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ"> 
+      <attribute key="defVal" value="29991231"/>  
+      <attribute key="name" value="jsrq"/> 
+    </tag>  
+    <tag row="2" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
+      <attribute key="dataType" value="select"/>  
+      <attribute key="sql" value="select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c  where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'"/>  
+      <attribute key="name" value="getMaxqsrq"/> 
+    </tag>  
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="差异系数" fieldName="CYXS"> 
+      <attribute key="precision" value="4"/>  
+      <attribute key="name" value="cyxs"/>  
+      <attribute key="intparts" value="9"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag> 
+  </updatePage>  
+  <buttons> 
+    <button>add</button>  
+    <button>edit</button>  
+    <button>delete</button>  
+    <button>import</button> 
+  </buttons>  
+  <flow> 
+    <insertbefore> 
+      <sql type="delete">dqcytjxsgl_check_itemAddDel</sql>  
+      <sql type="update">dqcytjxsgl_check_itemUP</sql> 
+    </insertbefore>  
+    <insertafter/>  
+    <deletebefore> 
+      <sql type="selectmaxqsrq">dqcytjxsgl_check_itemMAX_del</sql>  
+      <sql type="update">dqcytjxsgl_check_itemDELUP</sql> 
+    </deletebefore>  
+    <deleteafter/>  
+    <updatebefore/>  
+    <updateafter/> 
+  </flow>  
+  <sqlMap namespace="studio.dqcytjxsgl"> 
+    <select id="dn1.dqcytjxsglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select ywlb.ywlb,ywlb.ms as ywlbmc,jglb.lbdh jglb,jglb.lbmc ,xs.qsrq,xs.jsrq,xs.cyxs from csb_dqywcyxs xs inner join csb_jglb jglb on rtrim(jglb.lbdh) = rtrim(xs.jglb) 
+      <isNotEmpty property="lbdh">and xs.jglb = '$lbdh$'</isNotEmpty> inner join csb_ywlb ywlb on rtrim(ywlb.ywlb) = rtrim(xs.ywlb) 
+      <isNotEmpty property="ywlb">and ywlb.ywlb='$ywlb$'</isNotEmpty> order by ywlb.ywlb,jglb.lbdh,xs.qsrq asc
+    </select>  
+    <select id="dn1.dqcytjxsglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select ywlb.ywlb,ywlb.ms as ywlbmc,jglb.lbdh jglb,jglb.lbmc ,xs.qsrq,xs.jsrq,xs.cyxs from csb_dqywcyxs xs inner join csb_jglb jglb on rtrim(jglb.lbdh) = rtrim(xs.jglb) 
+      <isNotEmpty property="lbdh">and xs.jglb = '$lbdh$'</isNotEmpty> inner join csb_ywlb ywlb on rtrim(ywlb.ywlb) = rtrim(xs.ywlb) 
+      <isNotEmpty property="ywlb">and ywlb.ywlb='$ywlb$'</isNotEmpty> order by ywlb.ywlb,jglb.lbdh,xs.qsrq asc ) t
+    </select>  
+    <select id="dn1.dqcytjxsgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select CYXS, JGLB, QSRQ, JSRQ, YWLB from CSB_DQYWCYXS where 1= 1 and JGLB = '$jglb$' and QSRQ = $qsrq$ and YWLB = '$ywlb$'
+    </select>  
+    <select id="dn1.dqcytjxsgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select CYXS, JGLB, QSRQ, JSRQ, YWLB from CSB_DQYWCYXS where 1= 1 and JGLB = '$lbdh$' and QSRQ = $qsrq$ and YWLB = '$ywlb$'
+    </select>  
+    <insert id="dn1.dqcytjxsgl_insert" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into CSB_DQYWCYXS( CYXS, QSRQ, JGLB, JSRQ, YWLB ) values ( $cyxs$,$qsrq$,'$lbdh$',$jsrq$,'$ywlb$')
+    </insert>  
+    <update id="dn1.dqcytjxsgl_update" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_DQYWCYXS set CYXS = $cyxs$ where 1=1 and JGLB = '$lbdh$' and QSRQ = $qsrq$ and YWLB = '$ywlb$'
+    </update>  
+    <delete id="dn1.dqcytjxsgl_delete" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from CSB_DQYWCYXS where 1=1 and JGLB = '$jglb$' and QSRQ = $qsrq$ and YWLB = '$ywlb$'
+    </delete>  
+    <delete id="dn1.dqcytjxsgl_check_itemAddDel" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[delete from CSB_DQYWCYXS where qsrq >=$qsrq$  and JGLB = '$lbdh$' and YWLB = '$ywlb$']]> 
+    </delete>  
+    <update id="dn1.dqcytjxsgl_check_itemUP" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_DQYWCYXS set jsrq=$qdate$ 
+      <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty> and JGLB = '$lbdh$' and YWLB = '$ywlb$'
+    </update>  
+    <select id="dn1.dqcytjxsgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select max(qsrq) from CSB_DQYWCYXS where 1=1 and JGLB = '$jglb$' and YWLB = '$ywlb$'
+    </select>  
+    <select id="dn1.dqcytjxsgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select  CYXS, JGLB, QSRQ, JSRQ, YWLB from CSB_DQYWCYXS where 1=1  and JGLB = '$lbdh$' and YWLB = '$ywlb$' and $qsrq$ > $maxqsrq$]]> 
+    </select>  
+    <update id="dn1.dqcytjxsgl_check_itemDELUP" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_DQYWCYXS set jsrq =29991231 where 1=1 and JGLB = '$jglb$' and YWLB = '$ywlb$' and jsrq =$lastjsrq$
+    </update>  
+    <select id="dn1.dqcytjxsgl_getMaxqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'</select>  
+    <select id="dn1.dqcytjxsgl_MSQL4SELECT_lbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_jglb</select> 
+  </sqlMap>  
+  <javascript> 
+    <import>parent.addTab('dqcytjxsgldr','地区差异调节系数管理','../studio/impParser.do?method=visitHTML&amp;funId=dqcytjxsgldr');</import>  
+    <query>jQuery(document).ready(function () { }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; }</query>  
+    <edit>jQuery(document).ready(function () { //这里的js脚本，会在页面加载完成后执行 PAS.di.execute('dqcytjxsgl_getMaxqsrq',getMaxqsrqBack);//加载最大的起始日期 }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ if(maxqsrq&gt;parseInt($('#qsrq').val())){ parent.custom_alert('由于重算天数的限制，起始日期最大只能是：'+maxqsrq); return false; } return true; } function getMaxqsrqBack(obj){ if(obj.data.length&gt;0){ maxqsrq = obj.data[0].MAXQSRQ; PAS.di.setDone(obj.sqlid); } }</edit> 
+  </javascript> 
+</pageSetting>

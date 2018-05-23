@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="clql" title="存量清理" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="NewJg" label="机构"> 
+        <attribute key="cascadeCheck" value="false"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="ckbz" value="jg"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="jgkhdxdh"/>  
+        <attribute key="multiple" value="true"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="开户日期"> 
+        <attribute key="defVal" value="19000101"/>  
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="khrq"/>  
+        <attribute key="minDate" value="no"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Date" label="至"> 
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="tjrq"/>  
+        <attribute key="minDate" value="no"/> 
+      </tag>  
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Dmms" label="对象类型"> 
+        <attribute key="defVal" value="1"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="dmmc" value="zhlx"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="dxlx"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="multiple" value="false"/> 
+      </tag>  
+      <tag row="0" col="4" colspan="1" rowspan="1" name="DataInterface" label="null"> 
+        <attribute key="dataType" value="select"/>  
+        <attribute key="sql" value="select xtb.csz from XTB_XTCS xtb where xtb.CSMC= (case when $dxlx$=1 then 'CKYJGXMS' when $dxlx$=2 then 'DKYJGXMS' end)"/>  
+        <attribute key="name" value="cxzzh"/> 
+      </tag>  
+      <tag row="1" col="0" colspan="1" rowspan="1" name="MSQL4Select" label="分配"> 
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="isSearch" value="false"/>  
+        <attribute key="sql" value="select '0' as key,'未分配' as value from pas_vt  union all select '1' as key,'已分配' as value from pas_vt"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="fp"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="isEditable" value="true"/> 
+      </tag>  
+      <tag row="1" col="0" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="name" value="clqlzzh"/> 
+      </tag>  
+      <tag row="1" col="1" colspan="1" rowspan="1" name="Text" label="客户余额"> 
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="zhyeqjxx"/>  
+        <attribute key="value" value="0"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="1" col="2" colspan="1" rowspan="1" name="Text" label="至"> 
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="zhyeqjsx"/>  
+        <attribute key="value" value="99999999999"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="1" col="3" colspan="1" rowspan="1" name="Dmms" label="帐户标识"> 
+        <attribute key="width" value="120px;"/>  
+        <attribute key="dmmc" value="zhbs"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="zhbs"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="multiple" value="false"/> 
+      </tag>  
+      <tag row="1" col="4" colspan="1" rowspan="1" name="DataInterface" label="null"> 
+        <attribute key="dataType" value="select"/>  
+        <attribute key="sql" value="select khdxdh from khdx_jg where zxzt='N'"/>  
+        <attribute key="name" value="jg"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="clql_xsjy1jgj" title="新数据源1结果集" page="true"> 
+    <col id="KHH" title="客户号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHDH" title="账号" align="left" type="string" width="140" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="130" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHBS" title="帐户标识" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHYE" title="客户余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="开户机构" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHRQ" title="开户日期" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH1" title="分配行员1(行员工号)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC1" title="分配行员1(行员名称)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL1" title="分配比例1" align="right" type="float" width="60" frozen="false" format="###" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH2" title="分配行员2(行员工号)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC2" title="分配行员2(行员名称)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL2" title="分配比例2" align="right" type="float" width="60" frozen="false" format="###" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH3" title="分配行员3(行员工号)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC3" title="分配行员3(行员名称)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL3" title="分配比例3" align="right" type="float" width="60" frozen="false" format="###" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH4" title="分配行员4(行员工号)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC4" title="分配行员4(行员名称)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL4" title="分配比例4" align="right" type="float" width="60" frozen="false" format="###" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <table id="clql_xsjy2jgj" title="新数据源2结果集" page="true"> 
+    <col id="KHH" title="客户号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHDH" title="账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="130" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHBS" title="帐户标识" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHYE" title="客户余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="开户机构" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="FFRQ" title="发放日期" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH1" title="分配行员1(行员工号)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC1" title="分配行员1(行员名称)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL1" title="分配比例1" align="right" type="float" width="60" frozen="false" format="###" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH2" title="分配行员2(行员工号)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC2" title="分配行员2(行员名称)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL2" title="分配比例2" align="right" type="float" width="60" frozen="false" format="###" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH3" title="分配行员3(行员工号)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC3" title="分配行员3(行员名称)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL3" title="分配比例3" align="right" type="float" width="60" frozen="false" format="###" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH4" title="分配行员4(行员工号)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC4" title="分配行员4(行员名称)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL4" title="分配比例4" align="right" type="float" width="60" frozen="false" format="###" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <table id="clql_xsjy3jgj" title="新数据源3结果集" page="true"> 
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHBS" title="帐户标识" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHYE" title="客户余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="开户机构" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHRQ" title="开户日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH1" title="分配行员1(行员工号)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC1" title="分配行员1(行员名称)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL1" title="分配比例1" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH2" title="分配行员2(行员工号)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC2" title="分配行员2(行员名称)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL2" title="分配比例2" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH3" title="分配行员3(行员工号)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC3" title="分配行员3(行员名称)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL3" title="分配比例3" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH4" title="分配行员4(行员工号)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC4" title="分配行员4(行员名称)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL4" title="分配比例4" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <table id="clql_xsjy4jgj" title="新数据源4结果集" page="true"> 
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHBS" title="帐户标识" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHYE" title="客户余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="开户机构" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="FFRQ" title="发放日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH1" title="分配行员1(行员工号)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC1" title="分配行员1(行员名称)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL1" title="分配比例1" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH2" title="分配行员2(行员工号)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC2" title="分配行员2(行员名称)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL2" title="分配比例2" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH3" title="分配行员3(行员工号)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC3" title="分配行员3(行员名称)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL3" title="分配比例3" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH4" title="分配行员4(行员工号)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC4" title="分配行员4(行员名称)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL4" title="分配比例4" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <sqlMap namespace="studio.clql"> 
+    <select id="dn1.clqlList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
+      <isEqual property="clqlzzh" compareValue="1"> <![CDATA[select zhdh,zhhm,case when zhbs='1' then '对公' when zhbs='2' then '对私' end zhbs,zhye,khye,jgmc,khh,khrq,hydh1,hymc1,zlbl1,hydh2,hymc2,zlbl2,hydh3,hymc3,zlbl3,hydh4,hymc4,zlbl4
+from (select zh.zhdh,zh.zzh,zh.zhhm,zh.zhbs,zh.zhye,sum(zh.zhye) over (partition by zh.khh) as khye,jg.jgmc,zh.khh,zh.khrq
+ ,case when zh.gxhslx='1' then '1' when hy.hydh like 'XN%' then '0' else '1' end as fpfs,
+   COALESCE(gx.hydh1,hy.hydh) as hydh1,COALESCE(gx.hymc1,hy.hymc) as hymc1,COALESCE(gx.zlbl1,100) zlbl1,
+   gx.hydh2 as hydh2,gx.hymc2 as hymc2,COALESCE(gx.zlbl2,0) as zlbl2,
+   gx.hydh3 as hydh3,gx.hymc3 as hymc3,COALESCE(gx.zlbl3,0) as zlbl3,
+   gx.hydh4 as hydh4,gx.hymc4 as hymc4,COALESCE(gx.zlbl4,0) as zlbl4
+from jxdx_ckzh zh 
+left outer join 
+  (SELECT A.jxdxdh,
+  MAX(CASE WHEN a.px=1 THEN a.hydh ELSE '' END) AS hydh1,MAX(CASE WHEN a.px=1 THEN a.hymc  ELSE '' END) AS hymc1,MAX(CASE WHEN a.px=1 THEN a.zlbl ELSE 0 END) AS zlbl1,
+  MAX(CASE WHEN a.px=2 THEN a.hydh ELSE '' END) AS hydh2,MAX(CASE WHEN a.px=2 THEN a.hymc  ELSE '' END) AS hymc2,MAX(CASE WHEN a.px=2 THEN a.zlbl ELSE 0 END) AS zlbl2,
+  MAX(CASE WHEN a.px=3 THEN a.hydh ELSE '' END) AS hydh3,MAX(CASE WHEN a.px=3 THEN a.hymc  ELSE '' END) AS hymc3,MAX(CASE WHEN a.px=3 THEN a.zlbl ELSE 0 END) AS zlbl3,
+  MAX(CASE WHEN a.px=4 THEN a.hydh ELSE '' END) AS hydh4,MAX(CASE WHEN a.px=4 THEN a.hymc  ELSE '' END) AS hymc4,MAX(CASE WHEN a.px=4 THEN a.zlbl ELSE 0 END) AS zlbl4
+  FROM(
+  SELECT gx.jxdxdh,hy.hydh,hy.hymc,gx.zlbl, row_number() over(partition BY gx.jxdxdh order by hy.hydh,gx.zlbl ASC )  px
+  FROM dxgx_hyyjgx_ck gx    
+  INNER JOIN khdx_hy hy ON hy.khdxdh=gx.khdxdh
+  WHERE gx.jsrq=29991231 and gx.zlbl<100
+  ) A GROUP BY A.jxdxdh
+  UNION ALL
+  SELECT gx.jxdxdh,hy.hydh AS HYDH1,hy.hymc AS HYMC1,gx.zlbl AS ZLBL1,'' AS hydh2,'' AS hymc2,0 AS zlbl2,'' AS hydh3,'' AS hymc3,0 AS zlbl3,'' AS hydh4,'' AS hymc4,0 AS zlbl4
+  FROM dxgx_hyyjgx_ck gx    
+  INNER JOIN khdx_hy hy ON hy.khdxdh=gx.khdxdh
+  WHERE gx.jsrq=29991231 and gx.zlbl=100
+  )gx on zh.jxdxdh=gx.jxdxdh 
+INNER JOIN khdx_hy hy ON hy.khdxdh=zh.khdxdh
+INNER JOIN khdx_jg jg ON jg.jgdh=zh.jgdh]]>  
+        <isNotEmpty property="khrq">where zh.khrq BETWEEN $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">AND jg.khdxdh IN ($jgkhdxdh$)</isNotEmpty> )a 
+        <isNotEmpty property="zhyeqjxx">where a.khye BETWEEN $zhyeqjxx$ and $zhyeqjsx$</isNotEmpty>  
+        <isNotEmpty property="fp">and a.fpfs='$fp$'</isNotEmpty>  
+        <isNotEmpty property="zhbs">and a.zhbs='$zhbs$'</isNotEmpty> order by khye desc,zhye desc
+      </isEqual>  
+      <isEqual property="clqlzzh" compareValue="2"> <![CDATA[select zhdh,zhhm,case when zhbs='1' then '对公' when zhbs='2' then '对私' end zhbs,zhye,khye,jgmc,khh,ffrq,hydh1,hymc1,zlbl1,hydh2,hymc2,zlbl2,hydh3,hymc3,zlbl3,hydh4,hymc4,zlbl4
+from (select zh.zhdh,zh.zzh,zh.zhhm,zh.zhbs,zh.zhye,sum(zh.zhye) over (partition by zh.khh) as khye,jg.jgmc,zh.khh,zh.ffrq
+ ,case when zh.gxhslx='1' then '1' when hy.hydh like 'XN%' then '0' else '1' end as fpfs,
+   COALESCE(gx.hydh1,hy.hydh) as hydh1,COALESCE(gx.hymc1,hy.hymc) as hymc1,COALESCE(gx.zlbl1,100) zlbl1,
+   gx.hydh2 as hydh2,gx.hymc2 as hymc2,COALESCE(gx.zlbl2,0) as zlbl2,
+   gx.hydh3 as hydh3,gx.hymc3 as hymc3,COALESCE(gx.zlbl3,0) as zlbl3,
+   gx.hydh4 as hydh4,gx.hymc4 as hymc4,COALESCE(gx.zlbl4,0) as zlbl4
+from jxdx_dkzh zh 
+left outer join 
+  (SELECT A.jxdxdh,
+  MAX(CASE WHEN a.px=1 THEN a.hydh ELSE '' END) AS hydh1,MAX(CASE WHEN a.px=1 THEN a.hymc  ELSE '' END) AS hymc1,MAX(CASE WHEN a.px=1 THEN a.zlbl ELSE 0 END) AS zlbl1,
+  MAX(CASE WHEN a.px=2 THEN a.hydh ELSE '' END) AS hydh2,MAX(CASE WHEN a.px=2 THEN a.hymc  ELSE '' END) AS hymc2,MAX(CASE WHEN a.px=2 THEN a.zlbl ELSE 0 END) AS zlbl2,
+  MAX(CASE WHEN a.px=3 THEN a.hydh ELSE '' END) AS hydh3,MAX(CASE WHEN a.px=3 THEN a.hymc  ELSE '' END) AS hymc3,MAX(CASE WHEN a.px=3 THEN a.zlbl ELSE 0 END) AS zlbl3,
+  MAX(CASE WHEN a.px=4 THEN a.hydh ELSE '' END) AS hydh4,MAX(CASE WHEN a.px=4 THEN a.hymc  ELSE '' END) AS hymc4,MAX(CASE WHEN a.px=4 THEN a.zlbl ELSE 0 END) AS zlbl4
+  FROM(
+  SELECT gx.jxdxdh,hy.hydh,hy.hymc,gx.zlbl, row_number() over(partition BY gx.jxdxdh order by hy.hydh,gx.zlbl ASC )  px
+  FROM dxgx_hyyjgx_dk gx    
+  INNER JOIN khdx_hy hy ON hy.khdxdh=gx.khdxdh
+  WHERE gx.jsrq=29991231 and gx.zlbl<100
+  ) A GROUP BY A.jxdxdh
+  UNION ALL
+  SELECT gx.jxdxdh,hy.hydh AS HYDH1,hy.hymc AS HYMC1,gx.zlbl AS ZLBL1,'' AS hydh2,'' AS hymc2,0 AS zlbl2,'' AS hydh3,'' AS hymc3,0 AS zlbl3,'' AS hydh4,'' AS hymc4,0 AS zlbl4
+  FROM dxgx_hyyjgx_dk gx    
+  INNER JOIN khdx_hy hy ON hy.khdxdh=gx.khdxdh
+  WHERE gx.jsrq=29991231 and gx.zlbl=100
+  )gx on zh.jxdxdh=gx.jxdxdh 
+INNER JOIN khdx_hy hy ON hy.khdxdh=zh.khdxdh
+INNER JOIN khdx_jg jg ON jg.jgdh=zh.jgdh]]>  
+        <isNotEmpty property="khrq">where zh.khrq BETWEEN $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">AND jg.khdxdh IN ($jgkhdxdh$)</isNotEmpty> )a 
+        <isNotEmpty property="zhyeqjxx">where a.khye BETWEEN $zhyeqjxx$ and $zhyeqjsx$</isNotEmpty>  
+        <isNotEmpty property="fp">and a.fpfs='$fp$'</isNotEmpty>  
+        <isNotEmpty property="zhbs">and a.zhbs='$zhbs$'</isNotEmpty> order by khye desc,zhye desc
+      </isEqual>  
+      <isEqual property="clqlzzh" compareValue="3"> <![CDATA[select zhdh,zzh,zhhm,case when zhbs='1' then '对公' when zhbs='2' then '对私' end zhbs,zhye,khye,jgmc,khh,khrq,hydh1,hymc1,zlbl1,hydh2,hymc2,zlbl2,hydh3,hymc3,zlbl3,hydh4,hymc4,zlbl4
+from (select zh.zhdh,zh.zzh,zh.zhhm,zh.zhbs,zh.zhye,sum(zh.zhye) over (partition by zh.khh) as khye,jg.jgmc,zh.khh,zh.khrq
+ ,case when zh.gxhslx='1' then '1' when hy.hydh like 'XN%' then '0' else '1' end as fpfs,
+   COALESCE(gx.hydh1,hy.hydh) as hydh1,COALESCE(gx.hymc1,hy.hymc) as hymc1,COALESCE(gx.zlbl1,100) zlbl1,
+   gx.hydh2 as hydh2,gx.hymc2 as hymc2,COALESCE(gx.zlbl2,0) as zlbl2,
+   gx.hydh3 as hydh3,gx.hymc3 as hymc3,COALESCE(gx.zlbl3,0) as zlbl3,
+   gx.hydh4 as hydh4,gx.hymc4 as hymc4,COALESCE(gx.zlbl4,0) as zlbl4
+from jxdx_ckzh zh 
+left outer join 
+  (SELECT A.jxdxdh,
+  MAX(CASE WHEN a.px=1 THEN a.hydh ELSE '' END) AS hydh1,MAX(CASE WHEN a.px=1 THEN a.hymc  ELSE '' END) AS hymc1,MAX(CASE WHEN a.px=1 THEN a.zlbl ELSE 0 END) AS zlbl1,
+  MAX(CASE WHEN a.px=2 THEN a.hydh ELSE '' END) AS hydh2,MAX(CASE WHEN a.px=2 THEN a.hymc  ELSE '' END) AS hymc2,MAX(CASE WHEN a.px=2 THEN a.zlbl ELSE 0 END) AS zlbl2,
+  MAX(CASE WHEN a.px=3 THEN a.hydh ELSE '' END) AS hydh3,MAX(CASE WHEN a.px=3 THEN a.hymc  ELSE '' END) AS hymc3,MAX(CASE WHEN a.px=3 THEN a.zlbl ELSE 0 END) AS zlbl3,
+  MAX(CASE WHEN a.px=4 THEN a.hydh ELSE '' END) AS hydh4,MAX(CASE WHEN a.px=4 THEN a.hymc  ELSE '' END) AS hymc4,MAX(CASE WHEN a.px=4 THEN a.zlbl ELSE 0 END) AS zlbl4
+  FROM(
+  SELECT gx.jxdxdh,hy.hydh,hy.hymc,gx.zlbl, row_number() over(partition BY gx.jxdxdh order by hy.hydh,gx.zlbl ASC )  px
+  FROM dxgx_hyyjgx_ck gx    
+  INNER JOIN khdx_hy hy ON hy.khdxdh=gx.khdxdh
+  WHERE gx.jsrq=29991231 and gx.zlbl<100
+  ) A GROUP BY A.jxdxdh
+  UNION ALL
+  SELECT gx.jxdxdh,hy.hydh AS HYDH1,hy.hymc AS HYMC1,gx.zlbl AS ZLBL1,'' AS hydh2,'' AS hymc2,0 AS zlbl2,'' AS hydh3,'' AS hymc3,0 AS zlbl3,'' AS hydh4,'' AS hymc4,0 AS zlbl4
+  FROM dxgx_hyyjgx_ck gx    
+  INNER JOIN khdx_hy hy ON hy.khdxdh=gx.khdxdh
+  WHERE gx.jsrq=29991231 and gx.zlbl=100
+  )gx on zh.jxdxdh=gx.jxdxdh 
+INNER JOIN khdx_hy hy ON hy.khdxdh=zh.khdxdh
+INNER JOIN khdx_jg jg ON jg.jgdh=zh.jgdh]]>  
+        <isNotEmpty property="khrq">where zh.khrq BETWEEN $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">AND jg.khdxdh IN ($jgkhdxdh$)</isNotEmpty> )a 
+        <isNotEmpty property="zhyeqjxx">where a.khye BETWEEN $zhyeqjxx$ and $zhyeqjsx$</isNotEmpty>  
+        <isNotEmpty property="fp">and a.fpfs='$fp$'</isNotEmpty>  
+        <isNotEmpty property="zhbs">and a.zhbs='$zhbs$'</isNotEmpty> order by khye desc,zhye desc
+      </isEqual>  
+      <isEqual property="clqlzzh" compareValue="4"> <![CDATA[select zhdh,zzh,zhhm,case when zhbs='1' then '对公' when zhbs='2' then '对私' end zhbs,zhye,khye,jgmc,khh,ffrq,hydh1,hymc1,zlbl1,hydh2,hymc2,zlbl2,hydh3,hymc3,zlbl3,hydh4,hymc4,zlbl4
+from (select zh.zhdh,zh.zzh,zh.zhhm,zh.zhbs,zh.zhye,sum(zh.zhye) over (partition by zh.khh) as khye,jg.jgmc,zh.khh,zh.ffrq
+ ,case when zh.gxhslx='1' then '1' when hy.hydh like 'XN%' then '0' else '1' end as fpfs,
+   COALESCE(gx.hydh1,hy.hydh) as hydh1,COALESCE(gx.hymc1,hy.hymc) as hymc1,COALESCE(gx.zlbl1,100) zlbl1,
+   gx.hydh2 as hydh2,gx.hymc2 as hymc2,COALESCE(gx.zlbl2,0) as zlbl2,
+   gx.hydh3 as hydh3,gx.hymc3 as hymc3,COALESCE(gx.zlbl3,0) as zlbl3,
+   gx.hydh4 as hydh4,gx.hymc4 as hymc4,COALESCE(gx.zlbl4,0) as zlbl4
+from jxdx_dkzh zh 
+left outer join 
+  (SELECT A.jxdxdh,
+  MAX(CASE WHEN a.px=1 THEN a.hydh ELSE '' END) AS hydh1,MAX(CASE WHEN a.px=1 THEN a.hymc  ELSE '' END) AS hymc1,MAX(CASE WHEN a.px=1 THEN a.zlbl ELSE 0 END) AS zlbl1,
+  MAX(CASE WHEN a.px=2 THEN a.hydh ELSE '' END) AS hydh2,MAX(CASE WHEN a.px=2 THEN a.hymc  ELSE '' END) AS hymc2,MAX(CASE WHEN a.px=2 THEN a.zlbl ELSE 0 END) AS zlbl2,
+  MAX(CASE WHEN a.px=3 THEN a.hydh ELSE '' END) AS hydh3,MAX(CASE WHEN a.px=3 THEN a.hymc  ELSE '' END) AS hymc3,MAX(CASE WHEN a.px=3 THEN a.zlbl ELSE 0 END) AS zlbl3,
+  MAX(CASE WHEN a.px=4 THEN a.hydh ELSE '' END) AS hydh4,MAX(CASE WHEN a.px=4 THEN a.hymc  ELSE '' END) AS hymc4,MAX(CASE WHEN a.px=4 THEN a.zlbl ELSE 0 END) AS zlbl4
+  FROM(
+  SELECT gx.jxdxdh,hy.hydh,hy.hymc,gx.zlbl, row_number() over(partition BY gx.jxdxdh order by hy.hydh,gx.zlbl ASC )  px
+  FROM dxgx_hyyjgx_dk gx    
+  INNER JOIN khdx_hy hy ON hy.khdxdh=gx.khdxdh
+  WHERE gx.jsrq=29991231 and gx.zlbl<100
+  ) A GROUP BY A.jxdxdh
+  UNION ALL
+  SELECT gx.jxdxdh,hy.hydh AS HYDH1,hy.hymc AS HYMC1,gx.zlbl AS ZLBL1,'' AS hydh2,'' AS hymc2,0 AS zlbl2,'' AS hydh3,'' AS hymc3,0 AS zlbl3,'' AS hydh4,'' AS hymc4,0 AS zlbl4
+  FROM dxgx_hyyjgx_dk gx    
+  INNER JOIN khdx_hy hy ON hy.khdxdh=gx.khdxdh
+  WHERE gx.jsrq=29991231 and gx.zlbl=100
+  )gx on zh.jxdxdh=gx.jxdxdh 
+INNER JOIN khdx_hy hy ON hy.khdxdh=zh.khdxdh
+INNER JOIN khdx_jg jg ON jg.jgdh=zh.jgdh]]>  
+        <isNotEmpty property="khrq">where zh.khrq BETWEEN $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">AND jg.khdxdh IN ($jgkhdxdh$)</isNotEmpty> )a 
+        <isNotEmpty property="zhyeqjxx">where a.khye BETWEEN $zhyeqjxx$ and $zhyeqjsx$</isNotEmpty>  
+        <isNotEmpty property="fp">and a.fpfs='$fp$'</isNotEmpty>  
+        <isNotEmpty property="zhbs">and a.zhbs='$zhbs$'</isNotEmpty> order by khye desc,zhye desc
+      </isEqual> 
+    </select>  
+    <select id="dn1.clqlCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
+      <isEqual property="clqlzzh" compareValue="1"> <![CDATA[select zhdh,zhhm,case when zhbs='1' then '对公' when zhbs='2' then '对私' end zhbs,zhye,khye,jgmc,khh,khrq,hydh1,hymc1,zlbl1,hydh2,hymc2,zlbl2,hydh3,hymc3,zlbl3,hydh4,hymc4,zlbl4
+from (select zh.zhdh,zh.zzh,zh.zhhm,zh.zhbs,zh.zhye,sum(zh.zhye) over (partition by zh.khh) as khye,jg.jgmc,zh.khh,zh.khrq
+ ,case when zh.gxhslx='1' then '1' when hy.hydh like 'XN%' then '0' else '1' end as fpfs,
+   COALESCE(gx.hydh1,hy.hydh) as hydh1,COALESCE(gx.hymc1,hy.hymc) as hymc1,COALESCE(gx.zlbl1,100) zlbl1,
+   gx.hydh2 as hydh2,gx.hymc2 as hymc2,COALESCE(gx.zlbl2,0) as zlbl2,
+   gx.hydh3 as hydh3,gx.hymc3 as hymc3,COALESCE(gx.zlbl3,0) as zlbl3,
+   gx.hydh4 as hydh4,gx.hymc4 as hymc4,COALESCE(gx.zlbl4,0) as zlbl4
+from jxdx_ckzh zh 
+left outer join 
+  (SELECT A.jxdxdh,
+  MAX(CASE WHEN a.px=1 THEN a.hydh ELSE '' END) AS hydh1,MAX(CASE WHEN a.px=1 THEN a.hymc  ELSE '' END) AS hymc1,MAX(CASE WHEN a.px=1 THEN a.zlbl ELSE 0 END) AS zlbl1,
+  MAX(CASE WHEN a.px=2 THEN a.hydh ELSE '' END) AS hydh2,MAX(CASE WHEN a.px=2 THEN a.hymc  ELSE '' END) AS hymc2,MAX(CASE WHEN a.px=2 THEN a.zlbl ELSE 0 END) AS zlbl2,
+  MAX(CASE WHEN a.px=3 THEN a.hydh ELSE '' END) AS hydh3,MAX(CASE WHEN a.px=3 THEN a.hymc  ELSE '' END) AS hymc3,MAX(CASE WHEN a.px=3 THEN a.zlbl ELSE 0 END) AS zlbl3,
+  MAX(CASE WHEN a.px=4 THEN a.hydh ELSE '' END) AS hydh4,MAX(CASE WHEN a.px=4 THEN a.hymc  ELSE '' END) AS hymc4,MAX(CASE WHEN a.px=4 THEN a.zlbl ELSE 0 END) AS zlbl4
+  FROM(
+  SELECT gx.jxdxdh,hy.hydh,hy.hymc,gx.zlbl, row_number() over(partition BY gx.jxdxdh order by hy.hydh,gx.zlbl ASC )  px
+  FROM dxgx_hyyjgx_ck gx    
+  INNER JOIN khdx_hy hy ON hy.khdxdh=gx.khdxdh
+  WHERE gx.jsrq=29991231 and gx.zlbl<100
+  ) A GROUP BY A.jxdxdh
+  UNION ALL
+  SELECT gx.jxdxdh,hy.hydh AS HYDH1,hy.hymc AS HYMC1,gx.zlbl AS ZLBL1,'' AS hydh2,'' AS hymc2,0 AS zlbl2,'' AS hydh3,'' AS hymc3,0 AS zlbl3,'' AS hydh4,'' AS hymc4,0 AS zlbl4
+  FROM dxgx_hyyjgx_ck gx    
+  INNER JOIN khdx_hy hy ON hy.khdxdh=gx.khdxdh
+  WHERE gx.jsrq=29991231 and gx.zlbl=100
+  )gx on zh.jxdxdh=gx.jxdxdh 
+INNER JOIN khdx_hy hy ON hy.khdxdh=zh.khdxdh
+INNER JOIN khdx_jg jg ON jg.jgdh=zh.jgdh]]>  
+        <isNotEmpty property="khrq">where zh.khrq BETWEEN $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">AND jg.khdxdh IN ($jgkhdxdh$)</isNotEmpty> )a 
+        <isNotEmpty property="zhyeqjxx">where a.khye BETWEEN $zhyeqjxx$ and $zhyeqjsx$</isNotEmpty>  
+        <isNotEmpty property="fp">and a.fpfs='$fp$'</isNotEmpty>  
+        <isNotEmpty property="zhbs">and a.zhbs='$zhbs$'</isNotEmpty> order by khye desc,zhye desc
+      </isEqual>  
+      <isEqual property="clqlzzh" compareValue="2"> <![CDATA[select zhdh,zhhm,case when zhbs='1' then '对公' when zhbs='2' then '对私' end zhbs,zhye,khye,jgmc,khh,ffrq,hydh1,hymc1,zlbl1,hydh2,hymc2,zlbl2,hydh3,hymc3,zlbl3,hydh4,hymc4,zlbl4
+from (select zh.zhdh,zh.zzh,zh.zhhm,zh.zhbs,zh.zhye,sum(zh.zhye) over (partition by zh.khh) as khye,jg.jgmc,zh.khh,zh.ffrq
+ ,case when zh.gxhslx='1' then '1' when hy.hydh like 'XN%' then '0' else '1' end as fpfs,
+   COALESCE(gx.hydh1,hy.hydh) as hydh1,COALESCE(gx.hymc1,hy.hymc) as hymc1,COALESCE(gx.zlbl1,100) zlbl1,
+   gx.hydh2 as hydh2,gx.hymc2 as hymc2,COALESCE(gx.zlbl2,0) as zlbl2,
+   gx.hydh3 as hydh3,gx.hymc3 as hymc3,COALESCE(gx.zlbl3,0) as zlbl3,
+   gx.hydh4 as hydh4,gx.hymc4 as hymc4,COALESCE(gx.zlbl4,0) as zlbl4
+from jxdx_dkzh zh 
+left outer join 
+  (SELECT A.jxdxdh,
+  MAX(CASE WHEN a.px=1 THEN a.hydh ELSE '' END) AS hydh1,MAX(CASE WHEN a.px=1 THEN a.hymc  ELSE '' END) AS hymc1,MAX(CASE WHEN a.px=1 THEN a.zlbl ELSE 0 END) AS zlbl1,
+  MAX(CASE WHEN a.px=2 THEN a.hydh ELSE '' END) AS hydh2,MAX(CASE WHEN a.px=2 THEN a.hymc  ELSE '' END) AS hymc2,MAX(CASE WHEN a.px=2 THEN a.zlbl ELSE 0 END) AS zlbl2,
+  MAX(CASE WHEN a.px=3 THEN a.hydh ELSE '' END) AS hydh3,MAX(CASE WHEN a.px=3 THEN a.hymc  ELSE '' END) AS hymc3,MAX(CASE WHEN a.px=3 THEN a.zlbl ELSE 0 END) AS zlbl3,
+  MAX(CASE WHEN a.px=4 THEN a.hydh ELSE '' END) AS hydh4,MAX(CASE WHEN a.px=4 THEN a.hymc  ELSE '' END) AS hymc4,MAX(CASE WHEN a.px=4 THEN a.zlbl ELSE 0 END) AS zlbl4
+  FROM(
+  SELECT gx.jxdxdh,hy.hydh,hy.hymc,gx.zlbl, row_number() over(partition BY gx.jxdxdh order by hy.hydh,gx.zlbl ASC )  px
+  FROM dxgx_hyyjgx_dk gx    
+  INNER JOIN khdx_hy hy ON hy.khdxdh=gx.khdxdh
+  WHERE gx.jsrq=29991231 and gx.zlbl<100
+  ) A GROUP BY A.jxdxdh
+  UNION ALL
+  SELECT gx.jxdxdh,hy.hydh AS HYDH1,hy.hymc AS HYMC1,gx.zlbl AS ZLBL1,'' AS hydh2,'' AS hymc2,0 AS zlbl2,'' AS hydh3,'' AS hymc3,0 AS zlbl3,'' AS hydh4,'' AS hymc4,0 AS zlbl4
+  FROM dxgx_hyyjgx_dk gx    
+  INNER JOIN khdx_hy hy ON hy.khdxdh=gx.khdxdh
+  WHERE gx.jsrq=29991231 and gx.zlbl=100
+  )gx on zh.jxdxdh=gx.jxdxdh 
+INNER JOIN khdx_hy hy ON hy.khdxdh=zh.khdxdh
+INNER JOIN khdx_jg jg ON jg.jgdh=zh.jgdh]]>  
+        <isNotEmpty property="khrq">where zh.khrq BETWEEN $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">AND jg.khdxdh IN ($jgkhdxdh$)</isNotEmpty> )a 
+        <isNotEmpty property="zhyeqjxx">where a.khye BETWEEN $zhyeqjxx$ and $zhyeqjsx$</isNotEmpty>  
+        <isNotEmpty property="fp">and a.fpfs='$fp$'</isNotEmpty>  
+        <isNotEmpty property="zhbs">and a.zhbs='$zhbs$'</isNotEmpty> order by khye desc,zhye desc
+      </isEqual>  
+      <isEqual property="clqlzzh" compareValue="3"> <![CDATA[select zhdh,zzh,zhhm,case when zhbs='1' then '对公' when zhbs='2' then '对私' end zhbs,zhye,khye,jgmc,khh,khrq,hydh1,hymc1,zlbl1,hydh2,hymc2,zlbl2,hydh3,hymc3,zlbl3,hydh4,hymc4,zlbl4
+from (select zh.zhdh,zh.zzh,zh.zhhm,zh.zhbs,zh.zhye,sum(zh.zhye) over (partition by zh.khh) as khye,jg.jgmc,zh.khh,zh.khrq
+ ,case when zh.gxhslx='1' then '1' when hy.hydh like 'XN%' then '0' else '1' end as fpfs,
+   COALESCE(gx.hydh1,hy.hydh) as hydh1,COALESCE(gx.hymc1,hy.hymc) as hymc1,COALESCE(gx.zlbl1,100) zlbl1,
+   gx.hydh2 as hydh2,gx.hymc2 as hymc2,COALESCE(gx.zlbl2,0) as zlbl2,
+   gx.hydh3 as hydh3,gx.hymc3 as hymc3,COALESCE(gx.zlbl3,0) as zlbl3,
+   gx.hydh4 as hydh4,gx.hymc4 as hymc4,COALESCE(gx.zlbl4,0) as zlbl4
+from jxdx_ckzh zh 
+left outer join 
+  (SELECT A.jxdxdh,
+  MAX(CASE WHEN a.px=1 THEN a.hydh ELSE '' END) AS hydh1,MAX(CASE WHEN a.px=1 THEN a.hymc  ELSE '' END) AS hymc1,MAX(CASE WHEN a.px=1 THEN a.zlbl ELSE 0 END) AS zlbl1,
+  MAX(CASE WHEN a.px=2 THEN a.hydh ELSE '' END) AS hydh2,MAX(CASE WHEN a.px=2 THEN a.hymc  ELSE '' END) AS hymc2,MAX(CASE WHEN a.px=2 THEN a.zlbl ELSE 0 END) AS zlbl2,
+  MAX(CASE WHEN a.px=3 THEN a.hydh ELSE '' END) AS hydh3,MAX(CASE WHEN a.px=3 THEN a.hymc  ELSE '' END) AS hymc3,MAX(CASE WHEN a.px=3 THEN a.zlbl ELSE 0 END) AS zlbl3,
+  MAX(CASE WHEN a.px=4 THEN a.hydh ELSE '' END) AS hydh4,MAX(CASE WHEN a.px=4 THEN a.hymc  ELSE '' END) AS hymc4,MAX(CASE WHEN a.px=4 THEN a.zlbl ELSE 0 END) AS zlbl4
+  FROM(
+  SELECT gx.jxdxdh,hy.hydh,hy.hymc,gx.zlbl, row_number() over(partition BY gx.jxdxdh order by hy.hydh,gx.zlbl ASC )  px
+  FROM dxgx_hyyjgx_ck gx    
+  INNER JOIN khdx_hy hy ON hy.khdxdh=gx.khdxdh
+  WHERE gx.jsrq=29991231 and gx.zlbl<100
+  ) A GROUP BY A.jxdxdh
+  UNION ALL
+  SELECT gx.jxdxdh,hy.hydh AS HYDH1,hy.hymc AS HYMC1,gx.zlbl AS ZLBL1,'' AS hydh2,'' AS hymc2,0 AS zlbl2,'' AS hydh3,'' AS hymc3,0 AS zlbl3,'' AS hydh4,'' AS hymc4,0 AS zlbl4
+  FROM dxgx_hyyjgx_ck gx    
+  INNER JOIN khdx_hy hy ON hy.khdxdh=gx.khdxdh
+  WHERE gx.jsrq=29991231 and gx.zlbl=100
+  )gx on zh.jxdxdh=gx.jxdxdh 
+INNER JOIN khdx_hy hy ON hy.khdxdh=zh.khdxdh
+INNER JOIN khdx_jg jg ON jg.jgdh=zh.jgdh]]>  
+        <isNotEmpty property="khrq">where zh.khrq BETWEEN $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">AND jg.khdxdh IN ($jgkhdxdh$)</isNotEmpty> )a 
+        <isNotEmpty property="zhyeqjxx">where a.khye BETWEEN $zhyeqjxx$ and $zhyeqjsx$</isNotEmpty>  
+        <isNotEmpty property="fp">and a.fpfs='$fp$'</isNotEmpty>  
+        <isNotEmpty property="zhbs">and a.zhbs='$zhbs$'</isNotEmpty> order by khye desc,zhye desc
+      </isEqual>  
+      <isEqual property="clqlzzh" compareValue="4"> <![CDATA[select zhdh,zzh,zhhm,case when zhbs='1' then '对公' when zhbs='2' then '对私' end zhbs,zhye,khye,jgmc,khh,ffrq,hydh1,hymc1,zlbl1,hydh2,hymc2,zlbl2,hydh3,hymc3,zlbl3,hydh4,hymc4,zlbl4
+from (select zh.zhdh,zh.zzh,zh.zhhm,zh.zhbs,zh.zhye,sum(zh.zhye) over (partition by zh.khh) as khye,jg.jgmc,zh.khh,zh.ffrq
+ ,case when zh.gxhslx='1' then '1' when hy.hydh like 'XN%' then '0' else '1' end as fpfs,
+   COALESCE(gx.hydh1,hy.hydh) as hydh1,COALESCE(gx.hymc1,hy.hymc) as hymc1,COALESCE(gx.zlbl1,100) zlbl1,
+   gx.hydh2 as hydh2,gx.hymc2 as hymc2,COALESCE(gx.zlbl2,0) as zlbl2,
+   gx.hydh3 as hydh3,gx.hymc3 as hymc3,COALESCE(gx.zlbl3,0) as zlbl3,
+   gx.hydh4 as hydh4,gx.hymc4 as hymc4,COALESCE(gx.zlbl4,0) as zlbl4
+from jxdx_dkzh zh 
+left outer join 
+  (SELECT A.jxdxdh,
+  MAX(CASE WHEN a.px=1 THEN a.hydh ELSE '' END) AS hydh1,MAX(CASE WHEN a.px=1 THEN a.hymc  ELSE '' END) AS hymc1,MAX(CASE WHEN a.px=1 THEN a.zlbl ELSE 0 END) AS zlbl1,
+  MAX(CASE WHEN a.px=2 THEN a.hydh ELSE '' END) AS hydh2,MAX(CASE WHEN a.px=2 THEN a.hymc  ELSE '' END) AS hymc2,MAX(CASE WHEN a.px=2 THEN a.zlbl ELSE 0 END) AS zlbl2,
+  MAX(CASE WHEN a.px=3 THEN a.hydh ELSE '' END) AS hydh3,MAX(CASE WHEN a.px=3 THEN a.hymc  ELSE '' END) AS hymc3,MAX(CASE WHEN a.px=3 THEN a.zlbl ELSE 0 END) AS zlbl3,
+  MAX(CASE WHEN a.px=4 THEN a.hydh ELSE '' END) AS hydh4,MAX(CASE WHEN a.px=4 THEN a.hymc  ELSE '' END) AS hymc4,MAX(CASE WHEN a.px=4 THEN a.zlbl ELSE 0 END) AS zlbl4
+  FROM(
+  SELECT gx.jxdxdh,hy.hydh,hy.hymc,gx.zlbl, row_number() over(partition BY gx.jxdxdh order by hy.hydh,gx.zlbl ASC )  px
+  FROM dxgx_hyyjgx_dk gx    
+  INNER JOIN khdx_hy hy ON hy.khdxdh=gx.khdxdh
+  WHERE gx.jsrq=29991231 and gx.zlbl<100
+  ) A GROUP BY A.jxdxdh
+  UNION ALL
+  SELECT gx.jxdxdh,hy.hydh AS HYDH1,hy.hymc AS HYMC1,gx.zlbl AS ZLBL1,'' AS hydh2,'' AS hymc2,0 AS zlbl2,'' AS hydh3,'' AS hymc3,0 AS zlbl3,'' AS hydh4,'' AS hymc4,0 AS zlbl4
+  FROM dxgx_hyyjgx_dk gx    
+  INNER JOIN khdx_hy hy ON hy.khdxdh=gx.khdxdh
+  WHERE gx.jsrq=29991231 and gx.zlbl=100
+  )gx on zh.jxdxdh=gx.jxdxdh 
+INNER JOIN khdx_hy hy ON hy.khdxdh=zh.khdxdh
+INNER JOIN khdx_jg jg ON jg.jgdh=zh.jgdh]]>  
+        <isNotEmpty property="khrq">where zh.khrq BETWEEN $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">AND jg.khdxdh IN ($jgkhdxdh$)</isNotEmpty> )a 
+        <isNotEmpty property="zhyeqjxx">where a.khye BETWEEN $zhyeqjxx$ and $zhyeqjsx$</isNotEmpty>  
+        <isNotEmpty property="fp">and a.fpfs='$fp$'</isNotEmpty>  
+        <isNotEmpty property="zhbs">and a.zhbs='$zhbs$'</isNotEmpty> order by khye desc,zhye desc
+      </isEqual> ) t
+    </select>  
+    <select id="dn1.clql_MSQL4SELECT_fp" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select '0' as key,'未分配' as value from pas_vt union all select '1' as key,'已分配' as value from pas_vt</select>  
+    <select id="dn1.clql_cxzzh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select xtb.csz from XTB_XTCS xtb where xtb.CSMC= (case when $dxlx$=1 then 'CKYJGXMS' when $dxlx$=2 then 'DKYJGXMS' end)</select>  
+    <select id="dn1.clql_jg" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khdxdh from khdx_jg where zxzt='N'</select> 
+  </sqlMap>  
+  <rels> 
+    <items id="clql_xsjy1jgj"> 
+      <item name="clqlzzh" compareValue="1" operate="isEqual"/> 
+    </items>  
+    <items id="clql_xsjy2jgj"> 
+      <item name="clqlzzh" compareValue="2" operate="isEqual"/> 
+    </items>  
+    <items id="clql_xsjy3jgj"> 
+      <item name="clqlzzh" compareValue="3" operate="isEqual"/> 
+    </items>  
+    <items id="clql_xsjy4jgj"> 
+      <item name="clqlzzh" compareValue="4" operate="isEqual"/> 
+    </items> 
+  </rels>  
+  <javascript><![CDATA[jQuery(document).ready(function () {
+  document.getElementById("tool_bar").innerHTML ="<input type='button' value='导 出' class='operation cbutton cbutton_bg_70' onclick='exportResults()'> <input type='button' value='导 入' class='operation cbutton cbutton_bg_70' onclick='toImportPage()'> <input type='button' value='一键导出' class='operation cbutton cbutton_bg_70' onclick='exportListData1()'>"
+  $("#zhyeqjxx").attr("class","{required:false,decimal:[12,4]}");
+  $("#zhyeqjsx").attr("class","{required:false,decimal:[12,4]}");
+  PAS.di.execute('clql_jg',a);
+  PAS.di.execute('clql_cxzzh',checkZzhBack);//判断有没有子账号
+  jQuery('#dxlx').executeOnEvent('change','clql_cxzzh',checkZzhBack);
+});
+
+function checkZzhBack(obj){
+  var dxlx = $('#dxlx').val();
+  if(obj.data.length>0){
+    if(dxlx=='1' && obj.data[0].CSZ=='0' )
+    {
+      $('#clqlzzh').val('1');
+    }
+    if(dxlx=='1' && obj.data[0].CSZ=='1' )
+    {
+      $('#clqlzzh').val('3');
+    }
+    if(dxlx=='2' && obj.data[0].CSZ=='0' )
+    {
+      $('#clqlzzh').val('2');
+    }
+    if(dxlx=='2' && obj.data[0].CSZ=='1' )
+    {
+      $('#clqlzzh').val('4');
+    }
+    alert($('#clqlzzh').val());
+  }
+}
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+
+ var zhyeqjxx = parseFloat($("#zhyeqjxx").val());
+ var zhyeqjsx = parseFloat($("#zhyeqjsx").val());
+ if(isNaN(zhyeqjxx)&&!isNaN(zhyeqjsx)){
+   parent.custom_alert("客户余额区间范围错误");
+   return false;
+ }
+ if(!isNaN(zhyeqjxx)&&isNaN(zhyeqjsx)){
+   parent.custom_alert("客户余额区间范围错误");
+   return false;
+ }
+ if(zhyeqjxx > zhyeqjsx){
+   parent.custom_alert("客户余额区间范围错误");
+   return false;
+ }
+ return true;
+}
+
+function exportListData1(){
+  //var sfqx = $("#jgkhdxdh").val();
+  parent.custom_alert("一键导出是导出所有机构的数据，需耐心等待!");
+  //if(sfqx==0 || sfqx=="" || sfqx==null){
+    myForm.action="/devcenter/parser/query/clql/exportData2?jg_khdxdh="+jg_khdxdh;
+  //}else{
+  //  myForm.action="../studio/pasStudio.do?method=exportDataForCommonGrid1&funId=clql&jg_khdxdh="+$("#jgkhdxdh").val();
+  //}
+  myForm.submit();
+}
+
+var jg_khdxdh;
+function a(obj){
+  for(var i=0;i<obj.data.length;i++){
+  if(i==0){
+    jg_khdxdh=obj.data[0].KHDXDH+',';
+  }else{
+    jg_khdxdh+=obj.data[i].KHDXDH+','
+   }
+  }
+}
+
+function toImportPage(){ 
+     parent.addTab('clqlDr','存量清理导入','/module/clqlgxdr/index/1.html');
+  }]]></javascript> 
+</pageSetting>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="gyywlmxcx" title="柜员业务量明细查询" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="起始日期"> 
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="yc"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="qsrq"/>  
+        <attribute key="minDate" value="no"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="结束日期"> 
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="jsrq"/>  
+        <attribute key="minDate" value="no"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="NewMultipleHy" label="行员"> 
+        <attribute key="isDisplayXN" value="true"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="jgckbz" value="jg_ckhy"/>  
+        <attribute key="name" value="khdxdh"/>  
+        <attribute key="multiple" value="false"/> 
+      </tag>  
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Text" label="交易代码"> 
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="jydm"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="0" col="4" colspan="1" rowspan="1" name="Text" label="交易名称"> 
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="jymc"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="0" col="4" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="defVal" value="0"/>  
+        <attribute key="name" value="tag"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="gyywlmxcx_xsjy1jgj" title="新数据源1结果集" page="noCount"> 
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="70" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH" title="行员代号" align="left" type="string" width="70" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC" title="行员名称" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JYDM" title="交易代码" align="left" type="string" width="70" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="JYMC" title="交易名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JYJE" title="交易金额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHYWLHJ" title="业务量合计" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="1370665781144" title="系统业务量" align="left" type="string" width="240" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
+      <col id="XTZQYWL" title="折算前" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="XTZHYWL" title="折算后" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col>  
+    <col id="1370665783881" title="手工业务量" align="left" type="string" width="240" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
+      <col id="SGZQYWL" title="折算前" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="SGZHYWL" title="折算后" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col>  
+    <col id="1370665784617" title="现金收付量" align="left" type="string" width="240" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
+      <col id="ZQXJSF" title="折算前（万元）" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="ZHXJSF" title="折算后（笔）" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col>  
+    <col id="BCYWL" title="补偿业务量" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="DQCYXS" title="地区差异系数" align="right" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZSXS" title="折算系数" align="right" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <sqlMap namespace="studio.gyywlmxcx"> 
+    <select id="dn1.gyywlmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select * from ( select f_numtochar(ywl.tjrq) as tjrq,jg.jgmc,hy.hymc,hy.hydh,ywl.jydm ,coalesce(jydm.jymc,jydm.jydm) as jymc ,round(sum(ywl.jyje),2) as jyje,round(sum(ywl.zhywlhj),2) as zhywlhj, round(sum(ywl.xtzqywl),2) as xtzqywl,round(sum(ywl.xtzhywl),2) xtzhywl,round(sum(ywl.sgzqywl),2) as sgzqywl, round(sum(ywl.sgzhywl),2) as sgzhywl,round(sum(ywl.zqxjsrl+ywl.zqxjfcl)/10000,2) as zqxjsf, round(sum(ywl.zhxjsrl+ywl.zhxjfcl),2) as zhxjsf, f_numtochar(ywl.dqcyxs) as dqcyxs, f_numtochar(ywl.zsxs) as zsxs, round(sum(ywl.bcywl),2) bcywl from khdx_jg jg inner join khdx_jgcy cy on cy.jgkhdxdh = jg.khdxdh 
+      <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join table(FN_GETSJJG_JAVA_QXHY($sysdate$,$login_khdxdh$,0)) hy on hy.khdxdh = cy.khdxdh inner join nbzz_hykh_ywl ywl on ywl.khdxdh = hy.khdxdh 
+      <isNotEmpty property="qsrq">and ywl.tjrq between $qsrq$ and $jsrq$</isNotEmpty> left join csb_hxjydm jydm on jydm.jydm = ywl.jydm where 1=1 
+      <isNotEmpty property="jydm">and ywl.jydm = '$jydm$'</isNotEmpty>  
+      <isNotEmpty property="jymc">and jydm.jymc like '%$jymc$%'</isNotEmpty>  
+      <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
+      <isNotEmpty property="jgkhdxdh">and jg.khdxdh=$jgkhdxdh$</isNotEmpty> group by f_numtochar(ywl.tjrq),jg.jgmc,hy.hymc,hy.hydh,ywl.jydm,coalesce(jydm.jymc,jydm.jydm),f_numtochar(ywl.dqcyxs),f_numtochar(ywl.zsxs) union all select '合计' as tjrq,' -' jgmc,' -' hymc,' -' hydh,' -' jydm,' -' jymc, round(sum(ywl.jyje),2) as jyje,round(sum(ywl.zhywlhj),2) as zhywlhj, round(sum(ywl.xtzqywl),2) as xtzqywl,round(sum(ywl.xtzhywl),2) as xtzhywl, round(sum(ywl.sgzqywl),2) as sgzqywl,round(sum(ywl.sgzhywl),2) as sgzhywl, round(sum(ywl.zqxjsrl+ywl.zqxjfcl)/10000,2) as zqxjsf, round(sum(ywl.zhxjsrl+ywl.zhxjfcl),2) as zhxjsf, '-' dqcyxs,'-' zsxs, round(sum(ywl.bcywl),2) as bcywl from khdx_jg jg inner join khdx_jgcy cy on cy.jgkhdxdh = jg.khdxdh
+      <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join table(FN_GETSJJG_JAVA_QXHY($sysdate$,$login_khdxdh$,0)) hy on hy.khdxdh = cy.khdxdh inner join nbzz_hykh_ywl ywl on ywl.khdxdh = hy.khdxdh 
+      <isNotEmpty property="qsrq">and ywl.tjrq between $qsrq$ and $jsrq$</isNotEmpty> left join csb_hxjydm jydm on jydm.jydm = ywl.jydm where 1=1 
+      <isNotEmpty property="jydm">and ywl.jydm = '$jydm$'</isNotEmpty>  
+      <isNotEmpty property="jymc">and jydm.jymc like '%$jymc$%'</isNotEmpty>  
+      <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
+      <isNotEmpty property="jgkhdxdh">and jg.khdxdh=$jgkhdxdh$</isNotEmpty> ) t order by jgmc desc
+    </select>  
+    <select id="dn1.gyywlmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select * from ( select f_numtochar(ywl.tjrq) as tjrq,jg.jgmc,hy.hymc,hy.hydh,ywl.jydm ,coalesce(jydm.jymc,jydm.jydm) as jymc ,round(sum(ywl.jyje),2) as jyje,round(sum(ywl.zhywlhj),2) as zhywlhj, round(sum(ywl.xtzqywl),2) as xtzqywl,round(sum(ywl.xtzhywl),2) xtzhywl,round(sum(ywl.sgzqywl),2) as sgzqywl, round(sum(ywl.sgzhywl),2) as sgzhywl,round(sum(ywl.zqxjsrl+ywl.zqxjfcl)/10000,2) as zqxjsf, round(sum(ywl.zhxjsrl+ywl.zhxjfcl),2) as zhxjsf, f_numtochar(ywl.dqcyxs) as dqcyxs, f_numtochar(ywl.zsxs) as zsxs, round(sum(ywl.bcywl),2) bcywl from khdx_jg jg inner join khdx_jgcy cy on cy.jgkhdxdh = jg.khdxdh 
+      <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join table(FN_GETSJJG_JAVA_QXHY($sysdate$,$login_khdxdh$,0)) hy on hy.khdxdh = cy.khdxdh inner join nbzz_hykh_ywl ywl on ywl.khdxdh = hy.khdxdh 
+      <isNotEmpty property="qsrq">and ywl.tjrq between $qsrq$ and $jsrq$</isNotEmpty> left join csb_hxjydm jydm on jydm.jydm = ywl.jydm where 1=1 
+      <isNotEmpty property="jydm">and ywl.jydm = '$jydm$'</isNotEmpty>  
+      <isNotEmpty property="jymc">and jydm.jymc like '%$jymc$%'</isNotEmpty>  
+      <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
+      <isNotEmpty property="jgkhdxdh">and jg.khdxdh=$jgkhdxdh$</isNotEmpty> group by f_numtochar(ywl.tjrq),jg.jgmc,hy.hymc,hy.hydh,ywl.jydm,coalesce(jydm.jymc,jydm.jydm),f_numtochar(ywl.dqcyxs),f_numtochar(ywl.zsxs) union all select '合计' as tjrq,' -' jgmc,' -' hymc,' -' hydh,' -' jydm,' -' jymc, round(sum(ywl.jyje),2) as jyje,round(sum(ywl.zhywlhj),2) as zhywlhj, round(sum(ywl.xtzqywl),2) as xtzqywl,round(sum(ywl.xtzhywl),2) as xtzhywl, round(sum(ywl.sgzqywl),2) as sgzqywl,round(sum(ywl.sgzhywl),2) as sgzhywl, round(sum(ywl.zqxjsrl+ywl.zqxjfcl)/10000,2) as zqxjsf, round(sum(ywl.zhxjsrl+ywl.zhxjfcl),2) as zhxjsf, '-' dqcyxs,'-' zsxs, round(sum(ywl.bcywl),2) as bcywl from khdx_jg jg inner join khdx_jgcy cy on cy.jgkhdxdh = jg.khdxdh 
+      <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join table(FN_GETSJJG_JAVA_QXHY($sysdate$,$login_khdxdh$,0)) hy on hy.khdxdh = cy.khdxdh inner join nbzz_hykh_ywl ywl on ywl.khdxdh = hy.khdxdh 
+      <isNotEmpty property="qsrq">and ywl.tjrq between $qsrq$ and $jsrq$</isNotEmpty> left join csb_hxjydm jydm on jydm.jydm = ywl.jydm where 1=1 
+      <isNotEmpty property="jydm">and ywl.jydm = '$jydm$'</isNotEmpty>  
+      <isNotEmpty property="jymc">and jydm.jymc like '%$jymc$%'</isNotEmpty>  
+      <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
+      <isNotEmpty property="jgkhdxdh">and jg.khdxdh=$jgkhdxdh$</isNotEmpty> ) t order by jgmc desc ) t
+    </select> 
+  </sqlMap>  
+  <rels> 
+    <items id="gyywlmxcx_xsjy1jgj"/> 
+  </rels>  
+  <javascript><![CDATA[jQuery(document).ready(function () {
+  //汇总跳转过来的不去除
+  if($('#tag').val() == 0){
+    $("#khdxdh_mc").val("");
+    $("#khdxdh").val("");
+  }
+});
+
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}]]></javascript> 
+</pageSetting>

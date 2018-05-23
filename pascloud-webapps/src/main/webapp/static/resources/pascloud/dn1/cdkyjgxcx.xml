@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="cdkyjgxcx" title="存贷款业绩关系查询" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="开户日期"> 
+        <attribute key="defVal" value="19000101"/>  
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="khrq"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="至"> 
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="tjrq"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Text" label="账户余额"> 
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="zhyeqjxx"/>  
+        <attribute key="value" value="20000"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Text" label="至"> 
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="zhyeqjsx"/>  
+        <attribute key="value" value="99999999999"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="1" col="0" colspan="1" rowspan="1" name="Dmms" label="对象类型"> 
+        <attribute key="width" value="120px;"/>  
+        <attribute key="dmmc" value="zhlx"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="dxlx"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="multiple" value="false"/> 
+      </tag>  
+      <tag row="1" col="1" colspan="1" rowspan="1" name="NewJg" label="机构"> 
+        <attribute key="cascadeCheck" value="false"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="ckbz" value="jg_ckhy"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="jgkhdxdh"/>  
+        <attribute key="multiple" value="true"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="cdkyjgxcx_xsjy1jgj" title="新数据源1结果集" page="true"> 
+    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHRQ" title="开户日期" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH1" title="分配行员1(行员工号)" align="left" type="string" width="120" frozen="false" format="" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL1" title="分配比例1" align="left" type="float" width="120" frozen="false" format="###" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH2" title="分配行员2(行员工号)" align="left" type="string" width="120" frozen="false" format="" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL2" title="分配比例2" align="left" type="float" width="120" frozen="false" format="###" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH3" title="分配行员3(行员工号)" align="left" type="string" width="120" frozen="false" format="" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL3" title="分配比例3" align="left" type="float" width="120" frozen="false" format="###" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH4" title="分配行员4(行员工号)" align="left" type="string" width="120" frozen="false" format="" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL4" title="分配比例4" align="left" type="float" width="120" frozen="false" format="###" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <table id="cdkyjgxcx_xsjy2jgj" title="新数据源2结果集" page="true"> 
+    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="FFRQ" title="发放日期" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH1" title="分配行员1(行员工号)" align="left" type="string" width="120" frozen="false" format="" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL1" title="分配比例1" align="right" type="float" width="120" frozen="false" format="###" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH2" title="分配行员2(行员工号)" align="left" type="string" width="120" frozen="false" format="" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL2" title="分配比例2" align="right" type="float" width="120" frozen="false" format="###" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH3" title="分配行员3(行员工号)" align="left" type="string" width="120" frozen="false" format="" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL3" title="分配比例3" align="right" type="float" width="120" frozen="false" format="###" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH4" title="分配行员4(行员工号)" align="left" type="string" width="120" frozen="false" format="" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="ZLBL4" title="分配比例4" align="right" type="float" width="120" frozen="false" format="###" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <sqlMap namespace="studio.cdkyjgxcx"> 
+    <select id="dn1.cdkyjgxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
+      <isEqual property="dxlx" compareValue="1">select a.zhdh,a.zhhm,a.zhye,a.khrq ,max(hydh1) as hydh1, sum(zlbl1) as zlbl1 ,max(hydh2) as hydh2, sum(zlbl2) as zlbl2 ,max(hydh3) as hydh3, sum(zlbl3) as zlbl3 ,max(hydh4) as hydh4, sum(zlbl4) as zlbl4 from ( select a.zhdh,a.zhhm,a.zhye,a.khrq ,case when a.px=1 then a.hydh else ' ' end as hydh1 ,case when a.px=1 then a.zlbl else 0 end as zlbl1 ,case when a.px=2 then a.hydh else ' ' end as hydh2 ,case when a.px=2 then a.zlbl else 0 end as zlbl2 ,case when a.px=3 then a.hydh else ' ' end as hydh3 ,case when a.px=3 then a.zlbl else 0 end as zlbl3 ,case when a.px=4 then a.hydh else ' ' end as hydh4 ,case when a.px=4 then a.zlbl else 0 end as zlbl4 from ( select ckzh.zhdh, ckzh.zhhm, ckzh.zhye, ckzh.khrq, hy.hydh,ck.zlbl ,row_number() over(partition by ckzh.zhdh, ckzh.zhhm, ckzh.zhye, ckzh.khrq order by hy.hydh,ck.zlbl asc ) px from jxdx_ckzh ckzh inner join dxgx_hyyjgx_ck ck on ck.jxdxdh=ckzh.jxdxdh inner join khdx_hy hy on hy.khdxdh=ck.khdxdh inner join khdx_jg jg on jg.jgdh=ckzh.jgdh 
+        <isNotEmpty property="zhyeqjxx">where ckzh.zhye between $zhyeqjxx$ and $zhyeqjsx$</isNotEmpty>  
+        <isNotEmpty property="khrq">and ckzh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty> ) a )a group by a.zhdh, a.zhhm, a.zhye, a.khrq
+      </isEqual>  
+      <isEqual property="dxlx" compareValue="2">select a.zhdh,a.zhhm,a.zhye,a.ffrq ,max(hydh1) as hydh1, sum(zlbl1) as zlbl1 ,max(hydh2) as hydh2, sum(zlbl2) as zlbl2 ,max(hydh3) as hydh3, sum(zlbl3) as zlbl3 ,max(hydh4) as hydh4, sum(zlbl4) as zlbl4 from ( select a.zhdh,a.zhhm,a.zhye,a.ffrq ,case when a.px=1 then a.hydh else ' ' end as hydh1 ,case when a.px=1 then a.zlbl else 0 end as zlbl1 ,case when a.px=2 then a.hydh else ' ' end as hydh2 ,case when a.px=2 then a.zlbl else 0 end as zlbl2 ,case when a.px=3 then a.hydh else ' ' end as hydh3 ,case when a.px=3 then a.zlbl else 0 end as zlbl3 ,case when a.px=4 then a.hydh else ' ' end as hydh4 ,case when a.px=4 then a.zlbl else 0 end as zlbl4 from ( select dkzh.zhdh, dkzh.zhhm, dkzh.zhye, dkzh.ffrq, hy.hydh,dk.zlbl ,row_number() over(partition by dkzh.zhdh, dkzh.zhhm, dkzh.zhye, dkzh.ffrq order by hy.hydh,dk.zlbl asc ) px from jxdx_dkzh dkzh inner join dxgx_hyyjgx_dk dk on dk.jxdxdh=dkzh.jxdxdh inner join khdx_hy hy on hy.khdxdh=dk.khdxdh inner join khdx_jg jg on jg.jgdh=dkzh.jgdh 
+        <isNotEmpty property="zhyeqjxx">where dkzh.zhye between $zhyeqjxx$ and $zhyeqjsx$</isNotEmpty>  
+        <isNotEmpty property="khrq">and dkzh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty> ) a )a group by a.zhdh, a.zhhm, a.zhye, a.ffrq
+      </isEqual> 
+    </select>  
+    <select id="dn1.cdkyjgxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
+      <isEqual property="dxlx" compareValue="1">select a.zhdh,a.zhhm,a.zhye,a.khrq ,max(hydh1) as hydh1, sum(zlbl1) as zlbl1 ,max(hydh2) as hydh2, sum(zlbl2) as zlbl2 ,max(hydh3) as hydh3, sum(zlbl3) as zlbl3 ,max(hydh4) as hydh4, sum(zlbl4) as zlbl4 from ( select a.zhdh,a.zhhm,a.zhye,a.khrq ,case when a.px=1 then a.hydh else ' ' end as hydh1 ,case when a.px=1 then a.zlbl else 0 end as zlbl1 ,case when a.px=2 then a.hydh else ' ' end as hydh2 ,case when a.px=2 then a.zlbl else 0 end as zlbl2 ,case when a.px=3 then a.hydh else ' ' end as hydh3 ,case when a.px=3 then a.zlbl else 0 end as zlbl3 ,case when a.px=4 then a.hydh else ' ' end as hydh4 ,case when a.px=4 then a.zlbl else 0 end as zlbl4 from ( select ckzh.zhdh, ckzh.zhhm, ckzh.zhye, ckzh.khrq, hy.hydh,ck.zlbl ,row_number() over(partition by ckzh.zhdh, ckzh.zhhm, ckzh.zhye, ckzh.khrq order by hy.hydh,ck.zlbl asc ) px from jxdx_ckzh ckzh inner join dxgx_hyyjgx_ck ck on ck.jxdxdh=ckzh.jxdxdh inner join khdx_hy hy on hy.khdxdh=ck.khdxdh inner join khdx_jg jg on jg.jgdh=ckzh.jgdh 
+        <isNotEmpty property="zhyeqjxx">where ckzh.zhye between $zhyeqjxx$ and $zhyeqjsx$</isNotEmpty>  
+        <isNotEmpty property="khrq">and ckzh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty> ) a )a group by a.zhdh, a.zhhm, a.zhye, a.khrq
+      </isEqual>  
+      <isEqual property="dxlx" compareValue="2">select a.zhdh,a.zhhm,a.zhye,a.ffrq ,max(hydh1) as hydh1, sum(zlbl1) as zlbl1 ,max(hydh2) as hydh2, sum(zlbl2) as zlbl2 ,max(hydh3) as hydh3, sum(zlbl3) as zlbl3 ,max(hydh4) as hydh4, sum(zlbl4) as zlbl4 from ( select a.zhdh,a.zhhm,a.zhye,a.ffrq ,case when a.px=1 then a.hydh else ' ' end as hydh1 ,case when a.px=1 then a.zlbl else 0 end as zlbl1 ,case when a.px=2 then a.hydh else ' ' end as hydh2 ,case when a.px=2 then a.zlbl else 0 end as zlbl2 ,case when a.px=3 then a.hydh else ' ' end as hydh3 ,case when a.px=3 then a.zlbl else 0 end as zlbl3 ,case when a.px=4 then a.hydh else ' ' end as hydh4 ,case when a.px=4 then a.zlbl else 0 end as zlbl4 from ( select dkzh.zhdh, dkzh.zhhm, dkzh.zhye, dkzh.ffrq, hy.hydh,dk.zlbl ,row_number() over(partition by dkzh.zhdh, dkzh.zhhm, dkzh.zhye, dkzh.ffrq order by hy.hydh,dk.zlbl asc ) px from jxdx_dkzh dkzh inner join dxgx_hyyjgx_dk dk on dk.jxdxdh=dkzh.jxdxdh inner join khdx_hy hy on hy.khdxdh=dk.khdxdh inner join khdx_jg jg on jg.jgdh=dkzh.jgdh 
+        <isNotEmpty property="zhyeqjxx">where dkzh.zhye between $zhyeqjxx$ and $zhyeqjsx$</isNotEmpty>  
+        <isNotEmpty property="khrq">and dkzh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
+        <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty> ) a )a group by a.zhdh, a.zhhm, a.zhye, a.ffrq
+      </isEqual> ) t
+    </select> 
+  </sqlMap>  
+  <rels> 
+    <items id="cdkyjgxcx_xsjy1jgj"> 
+      <item name="dxlx" compareValue="1" operate="isEqual"/> 
+    </items>  
+    <items id="cdkyjgxcx_xsjy2jgj"> 
+      <item name="dxlx" compareValue="2" operate="isEqual"/> 
+    </items> 
+  </rels>  
+  <javascript><![CDATA[jQuery(document).ready(function () {
+$("#zhyeqjxx").attr("class","{required:false,decimal:[12,4]}");
+$("#zhyeqjsx").attr("class","{required:false,decimal:[12,4]}");
+$('#dxlx').change(function(){
+    var dxlx = $(this).val();
+    if(dxlx=='1'){//存款
+      label.text('存款');
+    }else if(dxlx=='2'){//贷款
+      label.text('贷款');
+    }
+  }).trigger('change');
+
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ var zhyeqjxx = parseFloat($("#zhyeqjxx").val());
+ var zhyeqjsx = parseFloat($("#zhyeqjsx").val());
+ if(isNaN(zhyeqjxx)&&!isNaN(zhyeqjsx)){
+   parent.custom_alert("账户余额区间范围错误");
+   return false;
+ }
+ if(!isNaN(zhyeqjxx)&&isNaN(zhyeqjsx)){
+   parent.custom_alert("账户余额区间范围错误");
+   return false;
+ }
+ if(zhyeqjxx > zhyeqjsx){
+   parent.custom_alert("账户余额区间范围错误");
+   return false;
+ }
+ return true;
+}]]></javascript> 
+</pageSetting>

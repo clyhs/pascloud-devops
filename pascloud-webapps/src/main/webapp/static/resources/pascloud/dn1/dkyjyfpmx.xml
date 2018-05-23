@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="dkyjyfpmx" title="贷款业绩已分配明细" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="DataInterface" label="null"> 
+        <attribute key="dataType" value="select"/>  
+        <attribute key="sql" value="select csz from xtb_xtcs where csmc='DKYJGXMS'"/>  
+        <attribute key="name" value="dkyjyfpmxcsz"/> 
+      </tag>  
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="name" value="dkyjyfpcsz"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="dkyjyfpmx_xsjy1jgj" title="新数据源1结果集" page="true"> 
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHDH" title="账号" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="FFRQ" title="发放日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="FPGX" title="分配关系" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="BZZWMC" title="币种" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="QX" title="期限" align="left" type="hidden" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <table id="dkyjyfpmx_zzhjgj" title="子账号结果集" page="true"> 
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="FFRQ" title="发放日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="FPGX" title="分配关系" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="BZZWMC" title="币种" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="QX" title="期限" align="left" type="hidden" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <sqlMap namespace="studio.dkyjyfpmx"> 
+    <select id="dn1.dkyjyfpmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
+      <isEqual property="dkyjyfpcsz" compareValue="1">select * from ( select zh.jgdh, jg.jgmc, zh.zhdh, zh.zhhm, zh.zhye, zh.ffrq, f_get_dqfp($jsrq$, zh.jxdxdh, zh.gxhslx, zh.khdxdh, 'dk') as fpgx, zh.kmh, bz.bzzwmc, coalesce(qx.qxmc, zh.qx) as qx from jxdx_dkzh zh inner join khdx_jg jg on zh.jgdh = jg.jgdh inner join csb_bz bz on bz.bz = zh.bz left outer join csb_qxsdb qx on zh.qx between qx.qsqx and qx.jsqx and qx.jxdxlx=1 
+        <isNotEmpty property="qsrq">where zh.ffrq between $qsrq$ and $jsrq$</isNotEmpty>  
+        <isNotEmpty property="zhye"><![CDATA[and zh.zhye > $zhye$]]></isNotEmpty>  
+        <isNotEmpty property="jgdh">and zh.jgdh = '$jgdh$'</isNotEmpty> and zh.gxhslx='1' union all select zh.jgdh, jg.jgmc, zh.zhdh, zh.zhhm, zh.zhye, zh.ffrq, f_get_dqfp($jsrq$, zh.jxdxdh, zh.gxhslx, zh.khdxdh, 'dk') as fpgx, zh.kmh, bz.bzzwmc, coalesce(qx.qxmc, zh.qx) as qx from jxdx_dkzh zh inner join khdx_jg jg on zh.jgdh = jg.jgdh inner join csb_bz bz on bz.bz = zh.bz inner join khdx_hy hy on hy.khdxdh=zh.khdxdh left outer join csb_qxsdb qx on zh.qx between qx.qsqx and qx.jsqx and qx.jxdxlx=1 
+        <isNotEmpty property="qsrq">where zh.ffrq between $qsrq$ and $jsrq$</isNotEmpty>  
+        <isNotEmpty property="zhye"><![CDATA[and zh.zhye > $zhye$]]></isNotEmpty>  
+        <isNotEmpty property="jgdh">and zh.jgdh = '$jgdh$'</isNotEmpty> and zh.gxhslx='0' and hy.hydh not like 'XN%' ) a order by a.ffrq desc
+      </isEqual>  
+      <isEqual property="dkyjyfpcsz" compareValue="2">select * from ( select zh.jgdh, jg.jgmc, zh.zhdh, zh.zhhm,zh.zzh, zh.zhye, zh.ffrq, f_get_dqfp($jsrq$, zh.jxdxdh, zh.gxhslx, zh.khdxdh, 'dk') as fpgx, zh.kmh, bz.bzzwmc, coalesce(qx.qxmc, zh.qx) as qx from jxdx_dkzh zh inner join khdx_jg jg on zh.jgdh = jg.jgdh inner join csb_bz bz on bz.bz = zh.bz left outer join csb_qxsdb qx on zh.qx between qx.qsqx and qx.jsqx and qx.jxdxlx=1 
+        <isNotEmpty property="qsrq">where zh.ffrq between $qsrq$ and $jsrq$</isNotEmpty>  
+        <isNotEmpty property="zhye"><![CDATA[and zh.zhye > $zhye$]]></isNotEmpty>  
+        <isNotEmpty property="jgdh">and zh.jgdh = '$jgdh$'</isNotEmpty> and zh.gxhslx='1' union all select zh.jgdh, jg.jgmc, zh.zhdh, zh.zhhm,zh.zzh, zh.zhye, zh.ffrq, f_get_dqfp($jsrq$, zh.jxdxdh, zh.gxhslx, zh.khdxdh, 'dk') as fpgx, zh.kmh, bz.bzzwmc, coalesce(qx.qxmc, zh.qx) as qx from jxdx_dkzh zh inner join khdx_jg jg on zh.jgdh = jg.jgdh inner join csb_bz bz on bz.bz = zh.bz inner join khdx_hy hy on hy.khdxdh=zh.khdxdh left outer join csb_qxsdb qx on zh.qx between qx.qsqx and qx.jsqx and qx.jxdxlx=1 
+        <isNotEmpty property="qsrq">where zh.ffrq between $qsrq$ and $jsrq$</isNotEmpty>  
+        <isNotEmpty property="zhye"><![CDATA[and zh.zhye > $zhye$]]></isNotEmpty>  
+        <isNotEmpty property="jgdh">and zh.jgdh = '$jgdh$'</isNotEmpty> and zh.gxhslx='0' and hy.hydh not like 'XN%' ) a order by a.ffrq desc
+      </isEqual> 
+    </select>  
+    <select id="dn1.dkyjyfpmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
+      <isEqual property="dkyjyfpcsz" compareValue="1">select * from ( select zh.jgdh, jg.jgmc, zh.zhdh, zh.zhhm, zh.zhye, zh.ffrq, f_get_dqfp($jsrq$, zh.jxdxdh, zh.gxhslx, zh.khdxdh, 'dk') as fpgx, zh.kmh, bz.bzzwmc, coalesce(qx.qxmc, zh.qx) as qx from jxdx_dkzh zh inner join khdx_jg jg on zh.jgdh = jg.jgdh inner join csb_bz bz on bz.bz = zh.bz left outer join csb_qxsdb qx on zh.qx between qx.qsqx and qx.jsqx and qx.jxdxlx=1 
+        <isNotEmpty property="qsrq">where zh.ffrq between $qsrq$ and $jsrq$</isNotEmpty>  
+        <isNotEmpty property="zhye"><![CDATA[and zh.zhye > $zhye$]]></isNotEmpty>  
+        <isNotEmpty property="jgdh">and zh.jgdh = '$jgdh$'</isNotEmpty> and zh.gxhslx='1' union all select zh.jgdh, jg.jgmc, zh.zhdh, zh.zhhm, zh.zhye, zh.ffrq, f_get_dqfp($jsrq$, zh.jxdxdh, zh.gxhslx, zh.khdxdh, 'dk') as fpgx, zh.kmh, bz.bzzwmc, coalesce(qx.qxmc, zh.qx) as qx from jxdx_dkzh zh inner join khdx_jg jg on zh.jgdh = jg.jgdh inner join csb_bz bz on bz.bz = zh.bz inner join khdx_hy hy on hy.khdxdh=zh.khdxdh left outer join csb_qxsdb qx on zh.qx between qx.qsqx and qx.jsqx and qx.jxdxlx=1 
+        <isNotEmpty property="qsrq">where zh.ffrq between $qsrq$ and $jsrq$</isNotEmpty>  
+        <isNotEmpty property="zhye"><![CDATA[and zh.zhye > $zhye$]]></isNotEmpty>  
+        <isNotEmpty property="jgdh">and zh.jgdh = '$jgdh$'</isNotEmpty> and zh.gxhslx='0' and hy.hydh not like 'XN%' ) a order by a.ffrq desc
+      </isEqual>  
+      <isEqual property="dkyjyfpcsz" compareValue="2">select * from ( select zh.jgdh, jg.jgmc, zh.zhdh, zh.zhhm,zh.zzh, zh.zhye, zh.ffrq, f_get_dqfp($jsrq$, zh.jxdxdh, zh.gxhslx, zh.khdxdh, 'dk') as fpgx, zh.kmh, bz.bzzwmc, coalesce(qx.qxmc, zh.qx) as qx from jxdx_dkzh zh inner join khdx_jg jg on zh.jgdh = jg.jgdh inner join csb_bz bz on bz.bz = zh.bz left outer join csb_qxsdb qx on zh.qx between qx.qsqx and qx.jsqx and qx.jxdxlx=1 
+        <isNotEmpty property="qsrq">where zh.ffrq between $qsrq$ and $jsrq$</isNotEmpty>  
+        <isNotEmpty property="zhye"><![CDATA[and zh.zhye > $zhye$]]></isNotEmpty>  
+        <isNotEmpty property="jgdh">and zh.jgdh = '$jgdh$'</isNotEmpty> and zh.gxhslx='1' union all select zh.jgdh, jg.jgmc, zh.zhdh, zh.zhhm,zh.zzh, zh.zhye, zh.ffrq, f_get_dqfp($jsrq$, zh.jxdxdh, zh.gxhslx, zh.khdxdh, 'dk') as fpgx, zh.kmh, bz.bzzwmc, coalesce(qx.qxmc, zh.qx) as qx from jxdx_dkzh zh inner join khdx_jg jg on zh.jgdh = jg.jgdh inner join csb_bz bz on bz.bz = zh.bz inner join khdx_hy hy on hy.khdxdh=zh.khdxdh left outer join csb_qxsdb qx on zh.qx between qx.qsqx and qx.jsqx and qx.jxdxlx=1 
+        <isNotEmpty property="qsrq">where zh.ffrq between $qsrq$ and $jsrq$</isNotEmpty>  
+        <isNotEmpty property="zhye"><![CDATA[and zh.zhye > $zhye$]]></isNotEmpty>  
+        <isNotEmpty property="jgdh">and zh.jgdh = '$jgdh$'</isNotEmpty> and zh.gxhslx='0' and hy.hydh not like 'XN%' ) a order by a.ffrq desc
+      </isEqual> ) t
+    </select>  
+    <select id="dn1.dkyjyfpmx_dkyjyfpmxcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='DKYJGXMS'</select> 
+  </sqlMap>  
+  <rels> 
+    <items id="dkyjyfpmx_xsjy1jgj"> 
+      <item name="dkyjyfpcsz" compareValue="1" operate="isEqual"/> 
+    </items>  
+    <items id="dkyjyfpmx_zzhjgj"> 
+      <item name="dkyjyfpcsz" compareValue="2" operate="isEqual"/> 
+    </items> 
+  </rels>  
+  <javascript><![CDATA[jQuery(document).ready(function () {
+ $('#query_conn_panel').hide();
+ 
+  PAS.di.execute('dkyjyfpmx_dkyjyfpmxcsz',dkyjyfpmxDk);//判断有没有子账号
+});
+function customResize(){
+  var bd = $('body');  
+  $('#dkyjyfpmxList').datagrid('resize', {
+     width:bd.width(),
+      height:bd.height()-30-$('#tool_bar').height()-10
+   });
+}
+
+
+function dkyjyfpmxDk(obj){
+
+  if(obj.data.length>0){
+     if(obj.data[0].CSZ=='0'){
+        $('#dkyjyfpcsz').val(1); //1表示没有子账号，所以需要隐藏
+     }
+     if(obj.data[0].CSZ=='1'){
+        $('#dkyjyfpcsz').val(2); //2表示没有账号
+     }
+     }
+}
+
+
+//function customOnLoadSuccess(data){
+//   var dkyjyfpcsz = $('#dkyjyfpcsz').val();
+//  if(dkyjyfpcsz == '0'){
+//   jQuery('#dkyjyfpmxList').datagrid('hideColumn','ZZH');
+//  }
+
+//}
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}]]></javascript> 
+</pageSetting>

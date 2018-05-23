@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="jgwgjfcx" title="机构违规积分查询" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期"> 
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="yc"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="qsrq"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="至"> 
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="jsrq"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="NewJg" label="机构"> 
+        <attribute key="editable" value="true"/>  
+        <attribute key="ckbz" value="jg_ckhy"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="jgkhdxdh"/>  
+        <attribute key="multiple" value="false"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="jgwgjfcx_xsjy1jgj" title="新数据源1结果集" page="true"> 
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="1403063321718" title="事后监督" align="center" type="string" width="490" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"> 
+      <col id="SHCCBS" title="差错笔数" align="right" type="string" width="100" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"/>  
+      <col id="YWLBS" title="业务量笔数" align="right" type="string" width="150" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"/>  
+      <col id="CCL" title="差错率(%)" align="right" type="float" width="120" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"/>  
+      <col id="SHWGKF" title="扣分" align="right" type="float" width="120" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"/> 
+    </col>  
+    <col id="1403063351791" title="风险预警" align="center" type="string" width="460" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"> 
+      <col id="FXYJX" title="预警项" align="right" type="string" width="100" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"/>  
+      <col id="FXZCX" title="处理正常项" align="right" type="string" width="120" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"/>  
+      <col id="FXZCL" title="处理正常率(%)" align="right" type="float" width="120" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"/>  
+      <col id="FXYJKF" title="扣分" align="right" type="float" width="120" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"/> 
+    </col>  
+    <col id="1403063373567" title="其他违规" align="center" type="string" width="720" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"> 
+      <col id="QTWGX" title="违规项" align="right" type="string" width="120" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"/>  
+      <col id="QTZGX" title="整改项" align="right" type="string" width="120" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"/>  
+      <col id="QTZGL" title="整改率(%)" align="right" type="float" width="120" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"/>  
+      <col id="QTTGX" title="处置通过项" align="right" type="string" width="120" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"/>  
+      <col id="QTTGL" title="处置通过率(%)" align="right" type="float" width="120" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"/>  
+      <col id="QTZGKF" title="扣分" align="right" type="float" width="120" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"/> 
+    </col>  
+    <col id="KFHJ" title="扣分合计" align="right" type="float" width="120" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <sqlMap namespace="studio.jgwgjfcx"> 
+    <select id="dn1.jgwgjfcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select wg.tjrq,jg.jgdh,jg.jgmc,shccbs,coalesce(xtzqywl,0)+coalesce(sgzhywl,0) as ywlbs, (case when coalesce(xtzqywl,0)+coalesce(sgzhywl,0)=0 then 0 else shccbs/(coalesce(xtzqywl,0)+coalesce(sgzhywl,0))*100 end) as ccl, shwgkf,fxyjx,fxzcx, (case when fxyjx=0 then 0 else fxzcx/fxyjx*100 end) as fxzcl, fxyjkf,qtwgx,qtzgx, (case when qtwgx=0 then 0 else qtzgx/qtwgx*100 end) as qtzgl, qttgx, (case when qtzgx=0 then 0 else qttgx/qtzgx*100 end) as qttgl, qtzgkf, shwgkf+fxyjkf+qtzgkf as kfhj, jg.khdxdh from ( select sjw.tjrq,cy.jgkhdxdh,sum(coalesce(shccbs,0)) shccbs,sum(coalesce(shwgkf,0)) shwgkf, sum(coalesce(fxyjx,0)) fxyjx,sum(coalesce(qtwgx,0)) qtwgx,sum(coalesce(fxzcx,0)) fxzcx, sum(coalesce(fxyjkf,0)) fxyjkf,sum(coalesce(qtzgx,0)) qtzgx,sum(coalesce(qttgx,0)) qttgx, sum(coalesce(qtzgkf,0)) qtzgkf from khdx_hy hy inner join csb_sjw sjw 
+      <isNotEmpty property="qsrq">on sjw.tjrq between $qsrq$ and $jsrq$</isNotEmpty> inner join khdx_jgcy cy on hy.khdxdh=cy.khdxdh 
+      <isNotEmpty property="sysdate">and $sysdate$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,$jgkhdxdh$)) qx on qx.khdxdh = cy.jgkhdxdh left join ( select sj.wgrq,sj.wghy,sum(1) as shccbs,sum(coalesce(sj.kf,0)) as shwgkf from wgjf_wgsjdj sj inner join wgjf_wgxm xm on sj.wgxmdh=xm.wgxmdh and sj.wgrq between xm.qsrq and xm.jsrq where xm.wgxlb='001' 
+      <isNotEmpty property="qsrq">and sj.wgrq between $qsrq$ and $jsrq$</isNotEmpty> group by sj.wgrq,sj.wghy ) sh on cy.khdxdh=sh.wghy and sjw.tjrq=sh.wgrq left join ( select yj.yjrq,yj.yjzrr,sum(1) as fxyjx, sum(case when yj.cljg='1' then 1 else 0 end) as fxzcx, sum(coalesce(yj.kf,0)) as fxyjkf from wgjf_yjsjdj yj 
+      <isNotEmpty property="qsrq">where yj.yjrq between $qsrq$ and $jsrq$</isNotEmpty> group by yj.yjrq,yj.yjzrr ) fx on cy.khdxdh=fx.yjzrr and sjw.tjrq=fx.yjrq left join ( select sj.wgrq,sj.wghy,sum(1) as qtwgx, sum(case when sj.czqk='1' then 1 else 0 end) as qtzgx, sum(case when sj.czjg='1' then 1 else 0 end) as qttgx, sum(coalesce(sj.kf,0)) as qtzgkf from wgjf_wgsjdj sj inner join wgjf_wgxm xm on sj.wgxmdh=xm.wgxmdh and sj.wgrq between xm.qsrq and xm.jsrq where xm.wgxlb='003' 
+      <isNotEmpty property="qsrq">and sj.wgrq between $qsrq$ and $jsrq$</isNotEmpty> group by sj.wgrq,sj.wghy ) qt on cy.khdxdh=qt.wghy and qt.wgrq=sjw.tjrq group by sjw.tjrq,cy.jgkhdxdh) wg inner join khdx_jg jg on wg.jgkhdxdh=jg.khdxdh left join ( select tjrq,khdxdh,sum(xtzqywl) xtzqywl,sum(sgzhywl) sgzhywl from nbzz_jgkh_ywl 
+      <isNotEmpty property="qsrq">where tjrq between $qsrq$ and $jsrq$</isNotEmpty>  <![CDATA[group by tjrq,khdxdh) ywl on ywl.tjrq=wg.tjrq and wg.jgkhdxdh=ywl.khdxdh
+where shccbs+fxyjx+qtwgx<>0]]> 
+    </select>  
+    <select id="dn1.jgwgjfcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select wg.tjrq,jg.jgdh,jg.jgmc,shccbs,coalesce(xtzqywl,0)+coalesce(sgzhywl,0) as ywlbs, (case when coalesce(xtzqywl,0)+coalesce(sgzhywl,0)=0 then 0 else shccbs/(coalesce(xtzqywl,0)+coalesce(sgzhywl,0))*100 end) as ccl, shwgkf,fxyjx,fxzcx, (case when fxyjx=0 then 0 else fxzcx/fxyjx*100 end) as fxzcl, fxyjkf,qtwgx,qtzgx, (case when qtwgx=0 then 0 else qtzgx/qtwgx*100 end) as qtzgl, qttgx, (case when qtzgx=0 then 0 else qttgx/qtzgx*100 end) as qttgl, qtzgkf, shwgkf+fxyjkf+qtzgkf as kfhj, jg.khdxdh from ( select sjw.tjrq,cy.jgkhdxdh,sum(coalesce(shccbs,0)) shccbs,sum(coalesce(shwgkf,0)) shwgkf, sum(coalesce(fxyjx,0)) fxyjx,sum(coalesce(qtwgx,0)) qtwgx,sum(coalesce(fxzcx,0)) fxzcx, sum(coalesce(fxyjkf,0)) fxyjkf,sum(coalesce(qtzgx,0)) qtzgx,sum(coalesce(qttgx,0)) qttgx, sum(coalesce(qtzgkf,0)) qtzgkf from khdx_hy hy inner join csb_sjw sjw 
+      <isNotEmpty property="qsrq">on sjw.tjrq between $qsrq$ and $jsrq$</isNotEmpty> inner join khdx_jgcy cy on hy.khdxdh=cy.khdxdh 
+      <isNotEmpty property="sysdate">and $sysdate$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,$jgkhdxdh$)) qx on qx.khdxdh = cy.jgkhdxdh left join ( select sj.wgrq,sj.wghy,sum(1) as shccbs,sum(coalesce(sj.kf,0)) as shwgkf from wgjf_wgsjdj sj inner join wgjf_wgxm xm on sj.wgxmdh=xm.wgxmdh and sj.wgrq between xm.qsrq and xm.jsrq where xm.wgxlb='001' 
+      <isNotEmpty property="qsrq">and sj.wgrq between $qsrq$ and $jsrq$</isNotEmpty> group by sj.wgrq,sj.wghy ) sh on cy.khdxdh=sh.wghy and sjw.tjrq=sh.wgrq left join ( select yj.yjrq,yj.yjzrr,sum(1) as fxyjx, sum(case when yj.cljg='1' then 1 else 0 end) as fxzcx, sum(coalesce(yj.kf,0)) as fxyjkf from wgjf_yjsjdj yj 
+      <isNotEmpty property="qsrq">where yj.yjrq between $qsrq$ and $jsrq$</isNotEmpty> group by yj.yjrq,yj.yjzrr ) fx on cy.khdxdh=fx.yjzrr and sjw.tjrq=fx.yjrq left join ( select sj.wgrq,sj.wghy,sum(1) as qtwgx, sum(case when sj.czqk='1' then 1 else 0 end) as qtzgx, sum(case when sj.czjg='1' then 1 else 0 end) as qttgx, sum(coalesce(sj.kf,0)) as qtzgkf from wgjf_wgsjdj sj inner join wgjf_wgxm xm on sj.wgxmdh=xm.wgxmdh and sj.wgrq between xm.qsrq and xm.jsrq where xm.wgxlb='003' 
+      <isNotEmpty property="qsrq">and sj.wgrq between $qsrq$ and $jsrq$</isNotEmpty> group by sj.wgrq,sj.wghy ) qt on cy.khdxdh=qt.wghy and qt.wgrq=sjw.tjrq group by sjw.tjrq,cy.jgkhdxdh) wg inner join khdx_jg jg on wg.jgkhdxdh=jg.khdxdh left join ( select tjrq,khdxdh,sum(xtzqywl) xtzqywl,sum(sgzhywl) sgzhywl from nbzz_jgkh_ywl 
+      <isNotEmpty property="qsrq">where tjrq between $qsrq$ and $jsrq$</isNotEmpty>  <![CDATA[group by tjrq,khdxdh) ywl on ywl.tjrq=wg.tjrq and wg.jgkhdxdh=ywl.khdxdh
+where shccbs+fxyjx+qtwgx<>0]]> ) t
+    </select> 
+  </sqlMap>  
+  <rels> 
+    <items id="jgwgjfcx_xsjy1jgj"/> 
+  </rels>  
+  <javascript><![CDATA[jQuery(document).ready(function () {
+
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ var qsrq = $('#qsrq').val();
+ var jsrq = $('#jsrq').val();
+ if(qsrq>jsrq){
+   custom_alert("统计日期的起始值不能大于结束值！");
+   return false;
+ }
+ return true;
+}]]></javascript> 
+</pageSetting>

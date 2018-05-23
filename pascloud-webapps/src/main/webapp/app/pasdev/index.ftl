@@ -28,6 +28,7 @@
 		    initMainDataGrid();
 		    
 		    initPasfileTree();
+		    
 		});
 		
 	</script>
@@ -41,7 +42,7 @@
 	
 	
 </head>
-<body id="main" class="easyui-layout" data-options="fit:true,border:false" > 
+<body id="main" class="easyui-layout" data-options="fit:true,border:false"  > 
     <div id="mainLeft" data-options="region:'west',split:true,title:'PAS+目录',iconCls:'icon-databases'" style="width:200px">
 		<table id="pasfileTree" class="easyui-treegrid" >
 		</table>
@@ -49,7 +50,7 @@
 
 	<div id="mainCenter" data-options="region:'center'" style="padding:0px;">
 		<!--内容  开始-->
-		<table id="mainDataGrid" >	
+		<table id="mainDataGrid" style="padding:0px;">	
 		        
 	    </table>
 		    <!--内容  结束-->

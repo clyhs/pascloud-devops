@@ -23,6 +23,8 @@ import com.pascloud.constant.Constants;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.utils.FileUtils;
 import com.pascloud.utils.PasCloudCode;
+import com.pascloud.utils.gzip.GZipUtils;
+import com.pascloud.utils.gzip.TarUtils;
 import com.pascloud.utils.xml.XmlParser;
 import com.pascloud.vo.result.ResultCommon;
 
@@ -161,7 +163,7 @@ public class PasdevService {
 		Document doc = XmlParser.getDocument(filepath);
 		Element root = doc.getRootElement();
 		Element sqlmap = (Element) root.selectNodes("sqlMap").get(0);
-		
+		//替换SELECT的ID
 		List<Element> selectNodes = sqlmap.selectNodes("select");
 		for(Element node:selectNodes){
 			//System.out.println(node.attributeValue("id"));
@@ -198,14 +200,13 @@ public class PasdevService {
 		return num;
 		
 	}
-	
+	//保存文件
 	private synchronized void saveDocument(String schemaPath,Document doc){
 		OutputFormat format = OutputFormat.createPrettyPrint();
 		XMLWriter writer = null;
 		try {
 			writer = new XMLWriter(new FileOutputStream(schemaPath),format);
 			writer.write(doc);
-			
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
@@ -232,12 +233,59 @@ public class PasdevService {
 		files = FileUtils.listFilesInDir(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR(), false);
 		if(files.size()>0){
 			for(File f:files){
-				lists.add(f.getName());
+				if(!f.getName().endsWith(".tar.gz")){
+					lists.add(f.getName());
+				}
+				
 			}
 		}
 		return lists;
 	}
 	
+	
+	public Boolean uploadPasfileWithID(String dbSchema){
+		Boolean flag = false;
+		
+		String path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()
+		+"/"+dbSchema;
+		
+		System.out.println(path);
+		
+		String tarpath = path+".tar";
+		String gzpath = path+".tar.gz";
+		try{
+			log.info("判断目录下文件是否不为空");
+			List<File> files = new ArrayList<File>();
+			
+			if(!FileUtils.isDir(path)){
+				return flag;
+			}
+			
+			files = FileUtils.listFilesInDir(path);
+			if(files.size()>0 && !FileUtils.isFileExists(gzpath)){
+				
+				
+				if(!FileUtils.isFileExists(tarpath)){
+					log.info("对目录进行tar压缩");
+					TarUtils.archive(path,tarpath);
+				}
+				if(FileUtils.isFileExists(tarpath)){
+					log.info("对目录进行gz压缩");
+					GZipUtils.compress(tarpath);
+				}
+				
+			}
+			if(FileUtils.isFileExists(gzpath)){
+				flag = true;
+			}
+			log.info("完成压缩");
+		}catch(Exception e){
+		    log.error(e.getMessage());
+		    //e.printStackTrace();
+		}
+		
+		return flag;
+	}
 	
 	
 

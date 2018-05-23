@@ -19,7 +19,15 @@ function initPasfileTree(){
         toolbar:treetoolbar,
 		//onContextMenu: onContextMenu,
 		//onClick: onDBClick,
-		onLoadSuccess:function(){
+		onLoadSuccess:function(node, data){
+			if (data.length > 0) {
+		         //找到第一个元素
+				for(var i=0;i<data.length;i++){
+					if(data[i].text == 'pasdev'){
+						$('#pasfileTree').treegrid('select', data[i].id);
+					}
+				}          
+		    }
 		},
 		onDblClickCell:function(rowIndex, field, value){
 			var node = $('#pasfileTree').treegrid('getSelected');

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="khcdkfctj" title="客户存贷款分层分析" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月"> 
+        <attribute key="dateFmt" value="yyyyMM"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="tjrq"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewJg" label="机构"> 
+        <attribute key="cascadeCheck" value="true"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="ckbz" value="jg_ckhy"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="jgkhdxdh"/>  
+        <attribute key="multiple" value="true"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="业务类型"> 
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="isSearch" value="false"/>  
+        <attribute key="sql" value="select dmz as key, dmms as value from CSB_DMMS where  DMMC= 'ZHLX'"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="ywlx"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="isEditable" value="true"/> 
+      </tag>  
+      <tag row="0" col="3" colspan="1" rowspan="1" name="MSQL4Select" label="客户类型"> 
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="isSearch" value="false"/>  
+        <attribute key="sql" value="select dmz as key, dmms as value from CSB_DMMS where  DMMC= 'KHLX'"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="khlx"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="isEditable" value="true"/> 
+      </tag>  
+      <tag row="0" col="4" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="defVal" value="$sysdate$"/>  
+        <attribute key="name" value="sysdate"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="khcdkfctj_xsjy1jgj" title="新数据源1结果集" page="false" isDym="true"> 
+    <col id="TJRQ" title="统计年月" align="left" type="string" width="75" frozen="true" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="true" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="true" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HZKHS" title="汇总客户数" align="right" type="float" width="80" frozen="true" format="" exp="true" showDymCol="false" orderby="desc" mergeCells="false" footerCells="true"/>  
+    <col id="HZHYZB" title="汇总占比(%)" align="right" type="float" width="80" frozen="true" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="$QJMS$" title="QJMS" align="left" type="string" width="280" frozen="false" format="" exp="true" showDymCol="false" refcolumn="QJZ" orderby="desc" mergeCells="false" footerCells="false" dym="true"> 
+      <col id="QJKHS" title="客户数" align="right" type="float" width="140" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="true"/>  
+      <col id="QJZB" title="占比(%)" align="right" type="float" width="140" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col> 
+  </table>  
+  <sqlMap namespace="studio.khcdkfctj"> 
+    <select id="dn1.khcdkfctjList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> SELECT d.TJRQ ,d.JGDH,d.JGMC,d.HZKHS,d.HZHYZB,d.QJMS,d.QJZ,d.QJKHS,d.qjzb from ( SELECT $tjrq$ AS TJRQ, JG.JGDH AS JGDH, JG.JGMC AS JGMC, B.KHS AS HZKHS, (cast(B.KHS as decimal(25,4))/cast(b.hzkhs as decimal(25,4)))*100 AS HZHYZB, c.QJMS AS QJMS, C.QJZ AS QJZ, C.KHS AS QJKHS, case when b.khs = 0 then 0 else (cast(c.khs as decimal(25,4))/ cast(b.khs as decimal(25,4)))*100 end as qjzb FROM KHFX_KHYEQJDTJ KHYE INNER JOIN KHDX_JG JG ON JG.KHDXDH = KHYE.JGKHDXDH INNER JOIN( select cast(sum(a.khs)as decimal(25,4)) as khs, a.hzkhs, a.jgkhdxdh from ( SELECT KHYE1.KHS, CAST(SUM(KHYE1.KHS) OVER(PARTITION BY KHYE1.TJRQ,KHYE1.JXDXLX,KHYE1.KHLX)as decimal(25,4)) as hzkhs, KHYE1.JGKHDXDH FROM KHFX_KHYEQJDTJ KHYE1 INNER JOIN KHDX_JG JG ON JG.KHDXDH = KHYE1.JGKHDXDH WHERE KHYE1.TJRQ = (SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) ) 
+      <isNotEmpty property="ywlx">AND KHYE1.JXDXLX = $ywlx$</isNotEmpty>  
+      <isNotEmpty property="khlx">AND KHYE1.KHLX='$khlx$'</isNotEmpty> AND JG.KHDXDH IN($jgkhdxdh$) ) A GROUP BY A.JGKHDXDH ,a.hzkhs )B ON B.JGKHDXDH = KHYE.JGKHDXDH inner join ( SELECT cast(sum(khye.khs)as decimal(25,4)) as khs , qjpz.qjz, qjpz.qjms, KHYE.JGKHDXDH FROM KHFX_KHYEQJDTJ KHYE INNER JOIN CSB_QJPZ QJPZ ON KHYE.KHYEQJ = QJPZ.QJZ INNER JOIN KHDX_JG JG ON JG.KHDXDH = KHYE.JGKHDXDH AND KHYE.TJRQ BETWEEN QJPZ.QSRQ AND QJPZ.JSRQ AND QJPZ.QJMC = (CASE WHEN $ywlx$=1 AND '$khlx$'='1' THEN 'CKDGKHYEQJ' WHEN $ywlx$=1 AND '$khlx$'='2' THEN 'CKDSKHYEQJ' WHEN $ywlx$=2 AND '$khlx$'='1' THEN 'DKDGKHYEQJ' WHEN $ywlx$=2 AND '$khlx$'='2' THEN 'DKDSKHYEQJ' END) where KHYE.TJRQ = (SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) ) 
+      <isNotEmpty property="ywlx">AND KHYE.JXDXLX =$ywlx$</isNotEmpty>  
+      <isNotEmpty property="khlx">AND KHYE.KHLX='$khlx$'</isNotEmpty> and JG.KHDXDH in($jgkhdxdh$) GROUP BY qjpz.qjz, qjpz.qjms, KHYE.JGKHDXDH )c on c.JGKHDXDH = KHYE.JGKHDXDH WHERE KHYE.TJRQ = (SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) ) 
+      <isNotEmpty property="ywlx">AND KHYE.JXDXLX =$ywlx$</isNotEmpty>  
+      <isNotEmpty property="khlx">AND KHYE.KHLX='$khlx$'</isNotEmpty> and JG.KHDXDH in($jgkhdxdh$) )d group by d.TJRQ ,d.JGDH,d.JGMC,d.HZKHS,d.HZHYZB,d.QJMS,d.QJZ,d.QJKHS,d.qjzb
+    </select>  
+    <select id="dn1.khcdkfctjCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( SELECT d.TJRQ ,d.JGDH,d.JGMC,d.HZKHS,d.HZHYZB,d.QJMS,d.QJZ,d.QJKHS,d.qjzb from ( SELECT $tjrq$ AS TJRQ, JG.JGDH AS JGDH, JG.JGMC AS JGMC, B.KHS AS HZKHS, (cast(B.KHS as decimal(25,4))/cast(b.hzkhs as decimal(25,4)))*100 AS HZHYZB, c.QJMS AS QJMS, C.QJZ AS QJZ, C.KHS AS QJKHS, case when b.khs = 0 then 0 else (cast(c.khs as decimal(25,4))/ cast(b.khs as decimal(25,4)))*100 end as qjzb FROM KHFX_KHYEQJDTJ KHYE INNER JOIN KHDX_JG JG ON JG.KHDXDH = KHYE.JGKHDXDH INNER JOIN( select cast(sum(a.khs)as decimal(25,4)) as khs, a.hzkhs, a.jgkhdxdh from ( SELECT KHYE1.KHS, CAST(SUM(KHYE1.KHS) OVER(PARTITION BY KHYE1.TJRQ,KHYE1.JXDXLX,KHYE1.KHLX)as decimal(25,4)) as hzkhs, KHYE1.JGKHDXDH FROM KHFX_KHYEQJDTJ KHYE1 INNER JOIN KHDX_JG JG ON JG.KHDXDH = KHYE1.JGKHDXDH WHERE KHYE1.TJRQ = (SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) ) 
+      <isNotEmpty property="ywlx">AND KHYE1.JXDXLX = $ywlx$</isNotEmpty>  
+      <isNotEmpty property="khlx">AND KHYE1.KHLX='$khlx$'</isNotEmpty> AND JG.KHDXDH IN($jgkhdxdh$) ) A GROUP BY A.JGKHDXDH ,a.hzkhs )B ON B.JGKHDXDH = KHYE.JGKHDXDH inner join ( SELECT cast(sum(khye.khs)as decimal(25,4)) as khs , qjpz.qjz, qjpz.qjms, KHYE.JGKHDXDH FROM KHFX_KHYEQJDTJ KHYE INNER JOIN CSB_QJPZ QJPZ ON KHYE.KHYEQJ = QJPZ.QJZ INNER JOIN KHDX_JG JG ON JG.KHDXDH = KHYE.JGKHDXDH AND KHYE.TJRQ BETWEEN QJPZ.QSRQ AND QJPZ.JSRQ AND QJPZ.QJMC = (CASE WHEN $ywlx$=1 AND '$khlx$'='1' THEN 'CKDGKHYEQJ' WHEN $ywlx$=1 AND '$khlx$'='2' THEN 'CKDSKHYEQJ' WHEN $ywlx$=2 AND '$khlx$'='1' THEN 'DKDGKHYEQJ' WHEN $ywlx$=2 AND '$khlx$'='2' THEN 'DKDSKHYEQJ' END) where KHYE.TJRQ = (SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) )
+      <isNotEmpty property="ywlx">AND KHYE.JXDXLX =$ywlx$</isNotEmpty>  
+      <isNotEmpty property="khlx">AND KHYE.KHLX='$khlx$'</isNotEmpty> and JG.KHDXDH in($jgkhdxdh$) GROUP BY qjpz.qjz, qjpz.qjms, KHYE.JGKHDXDH )c on c.JGKHDXDH = KHYE.JGKHDXDH WHERE KHYE.TJRQ = (SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) ) 
+      <isNotEmpty property="ywlx">AND KHYE.JXDXLX =$ywlx$</isNotEmpty>  
+      <isNotEmpty property="khlx">AND KHYE.KHLX='$khlx$'</isNotEmpty> and JG.KHDXDH in($jgkhdxdh$) )d group by d.TJRQ ,d.JGDH,d.JGMC,d.HZKHS,d.HZHYZB,d.QJMS,d.QJZ,d.QJKHS,d.qjzb ) t
+    </select>  
+    <select id="dn1.khcdkfctj_MSQL4SELECT_ywlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where DMMC= 'ZHLX'</select>  
+    <select id="dn1.khcdkfctj_MSQL4SELECT_khlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where DMMC= 'KHLX'</select> 
+  </sqlMap>  
+  <finger custPlotMth=""> 
+    <plotType/>  
+    <needPlot>false</needPlot>  
+    <plotTitle/> 
+  </finger>  
+  <rels> 
+    <items id="khcdkfctj_xsjy1jgj"/> 
+  </rels>  
+  <javascript><![CDATA[jQuery(document).ready(function () {
+   var obj=createTimeObj(jQuery("#sysdate").val());
+    if(jQuery("#sysdate").val()!=obj.ym){
+        var sym=obj.sym;
+        jQuery("#tjrq").val(sym.substr(0,6));
+    }
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}]]></javascript> 
+</pageSetting>

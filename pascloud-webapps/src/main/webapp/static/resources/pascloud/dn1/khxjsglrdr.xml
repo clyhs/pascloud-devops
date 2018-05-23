@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="khxjsglrdr" title="客户星级手工管理导入" type="import" version="2.0.0"> 
+  <template> 
+    <src>ONLINE</src>  
+    <column> 
+      <text>客户号</text>  
+      <name>khh</name>  
+      <index>0</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>评定方案</text>  
+      <name>pdmc</name>  
+      <index>1</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>起始日期</text>  
+      <name>qsrq</name>  
+      <index>2</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>星级名称</text>  
+      <name>xjmc</name>  
+      <index>3</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>备注说明</text>  
+      <name>bzsm</name>  
+      <index>4</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>N</req> 
+    </column> 
+  </template>  
+  <table id="khxjsglrdr_table" page="true"> 
+    <col id="ZT" title="状态" align="center" type="string" width="50"/>  
+    <col id="ERROR" title="错误原因" align="center" type="string" width="250"/>  
+    <col id="KHH" title="客户号" align="center" type="" width="120"/>  
+    <col id="PDMC" title="评定方案" align="center" type="" width="120"/>  
+    <col id="QSRQ" title="起始日期" align="center" type="" width="120"/>  
+    <col id="XJMC" title="星级名称" align="center" type="" width="120"/>  
+    <col id="BZSM" title="备注说明" align="center" type="" width="120"/> 
+  </table>  
+  <flow> 
+    <rule> 
+      <sql type="update">khxjsglrdr_check_khh_0</sql>  
+      <sql type="update">khxjsglrdr_check_pdmc_1</sql>  
+      <sql type="update">khxjsglrdr_check_qsrq_2</sql>  
+      <sql type="update">khxjsglrdr_check_qsrq_3</sql>  
+      <sql type="update">khxjsglrdr_check_qsrq_4</sql>  
+      <sql type="update">khxjsglrdr_check_xjmc_5</sql>  
+      <sql type="update">khxjsglrdr_checkupdate_khh_0</sql>  
+      <sql type="update">khxjsglrdr_checkupdate_pdmc_0</sql>  
+      <sql type="update">khxjsglrdr_checkupdate_xjmc_0</sql>  
+      <sql type="update">khxjsglrdr_checkupdate_bzsm_0</sql>  
+      <sql type="update">khxjsglrdr_exists_target</sql>  
+      <sql type="update">khxjsglrdr_exists_same_temp</sql> 
+    </rule>  
+    <before> 
+      <sql type="delete">khxjsglrdr_before_insert_delqsrqAndCover</sql>  
+      <sql type="update">khxjsglrdr_before_insert_cutqsrq</sql> 
+    </before>  
+    <cover/>  
+    <insert> 
+      <sql type="insert">khxjsglrdr_insert_into_target</sql> 
+    </insert>  
+    <after> 
+      <sql type="update">khxjsglrdr_after_insert_0</sql>  
+      <sql type="update">khxjsglrdr_after_insert_1</sql>  
+      <sql type="update">khxjsglrdr_after_insert_2</sql> 
+    </after> 
+  </flow>  
+  <sqlMap namespace="studio.khxjsglrdr"> 
+    <update parameterClass="java.util.Map" id="dn1.khxjsglrdr_check_khh_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update khxjsglrdr_temp t set t.error=t.error||'客户号输入错误，不能为空!' where f_java_rule_length(t.khh)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.khxjsglrdr_check_pdmc_1"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update khxjsglrdr_temp t set t.error=t.error||'评定方案输入错误，不能为空!' where f_java_rule_length(t.pdmc)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.khxjsglrdr_check_qsrq_2"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update khxjsglrdr_temp t set t.error=t.error||'起始日期输入错误，格式应该是:yyyyMMdd!' where f_java_rule_date(t.qsrq,'yyyyMMdd')=1 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.khxjsglrdr_check_qsrq_3"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update khxjsglrdr_temp t set t.error=t.error||'起始日期输入错误，不能为空!' where f_java_rule_length(t.qsrq)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.khxjsglrdr_check_qsrq_4"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update khxjsglrdr_temp t set t.error=(select t.error||'起始日期不能小于(系统日期-重跑天数)'|| cast(f_change_days(cast(rq.csz as integer),-cast(cs.csz as integer )) as char(8))||'!' as error from xtb_xtcs rq ,xtb_xtcs cs where rq.csmc='SYS_DATE' and cs.csmc='SYS_CSTS') where cast(t.qsrq as integer)&lt;(select f_change_days(cast(rq.csz as integer ),-cast(cs.csz as integer )) from xtb_xtcs rq ,xtb_xtcs cs where rq.csmc='SYS_DATE' and cs.csmc='SYS_CSTS') and (error='' or error is null) and khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.khxjsglrdr_check_xjmc_5"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update khxjsglrdr_temp t set t.error=t.error||'星级名称输入错误，不能为空!' where f_java_rule_length(t.xjmc)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.khxjsglrdr_checkupdate_khh_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update khxjsglrdr_temp t set error=error||'客户号不存在！' where not exists ( SELECT KHFL.khh FROM KHDX_KHFL KHFL where khfl.khh=t.khh and cast(t.qsrq as integer)between KHFL.QSRQ and KHFL.JSRQ ) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.khxjsglrdr_checkupdate_pdmc_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update khxjsglrdr_temp t set error=error||'评定方案不存在！' where not exists ( SELECT 1 FROM KHDX_KHFL KHFL, KHXJ_PDFA PDFA WHERE KHFL.KHH=t.khh AND cast(t.qsrq as integer) BETWEEN KHFL.QSRQ AND KHFL.JSRQ and pdfa.pdmc=RTRIM(t.pdmc) AND F_IS_EXISTS_STR(PDFA.KHLB,RTRIM(KHFL.KHLB),',')&gt;0 and cast(SUBSTR(t.qsrq,1,4) as integer)=PDFA.PDNF ) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.khxjsglrdr_checkupdate_xjmc_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update khxjsglrdr_temp t set error=error||'星级名称不存在评定方案中！' where not exists ( SELECT 1 FROM KHXJ_PDXJ PDXJ inner join khxj_pdfa pdfa on pdfa.pdbh=PDXJ.PDBH where pdxj.xjmc=RTRIM(t.xjmc) and rtrim(t.pdbh)=pdfa.pdmc and cast(PDXJ.JSFS as integer)=2 ) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.khxjsglrdr_checkupdate_bzsm_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update khxjsglrdr_temp t set error=error||'备注说明不能超过250个汉字！' where length(t.bzsm)&gt;250 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.khxjsglrdr_exists_target"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update khxjsglrdr_temp t set t.error=t.error||'数据已存在!' where exists(select 1 from KHXJ_KHXJSGLR tar ,KHXJ_PDFA KHXJ_PDFA0 where 1=1 and t.khh =tar.KHH and t.pdmc=KHXJ_PDFA0.PDMC and KHXJ_PDFA0.PDBH=tar.PDBH and tar.QSRQ <![CDATA[>]]>= cast(t.qsrq as INTEGER) and t.khdxdh=$login_khdxdh$ and (length(t.error)=0 or t.error is null ))
+    </update>  
+    <update parameterClass="java.util.Map" id="dn1.khxjsglrdr_exists_same_temp"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update khxjsglrdr_temp t set t.error=error||'存在重复数据!' where exists( select 1 from (select khh,pdmc from khxjsglrdr_temp dr where khdxdh=$login_khdxdh$ group by khh,pdmc having count(1)<![CDATA[>]]>1 ) dr where 1=1 and t.khh=dr.khh and t.pdmc=dr.pdmc) and khdxdh=$login_khdxdh$
+    </update>  
+    <insert parameterClass="java.util.Map" id="dn1.khxjsglrdr_create_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> CREATE TABLE khxjsglrdr_temp ( khh varchar(100) , pdmc varchar(100) , qsrq varchar(100) , xjmc varchar(100) , bzsm varchar(100) , khdxdh integer,error varchar(1000) )
+    </insert>  
+    <delete parameterClass="java.util.Map" id="dn1.khxjsglrdr_delete_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from khxjsglrdr_temp where khdxdh=$login_khdxdh$
+    </delete>  
+    <insert parameterClass="java.util.Map" id="dn1.khxjsglrdr_insert_into_lsb">insert into KHXJSGLRDR_TEMP (khh,pdmc,qsrq,xjmc,bzsm,khdxdh,error) values(?,?,?,?,?,?,?)</insert>  
+    <select parameterClass="java.util.Map" id="dn1.khxjsglrdr_exists_error_msg" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from khxjsglrdr_temp where length(error) <![CDATA[>]]> 0 and khdxdh = $login_khdxdh$
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn1.khxjsglrdr_exists_same_data"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from khxjsglrdr_temp where length(error) <![CDATA[>]]> 0 and error != '数据已存在!' and khdxdh = $login_khdxdh$
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn1.khxjsglrdr_select_error_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/cancel.jpg" border="0"/<![CDATA[>]]>' as zt, khh,pdmc,qsrq,xjmc,bzsm,khdxdh,error from khxjsglrdr_temp where khdxdh=$login_khdxdh$ and length(error)<![CDATA[>]]>0
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn1.khxjsglrdr_count_all_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, khh,pdmc,qsrq,xjmc,bzsm,khdxdh,error from khxjsglrdr_temp where khdxdh=$login_khdxdh$ )a
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn1.khxjsglrdr_select_all_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, khh,pdmc,qsrq,xjmc,bzsm,khdxdh,error from khxjsglrdr_temp where khdxdh=$login_khdxdh$
+    </select>  
+    <delete id="dn1.khxjsglrdr_before_insert_delqsrqAndCover" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from KHXJ_KHXJSGLR tar where exists ( select 1 from $temp$ t ,KHXJ_PDFA KHXJ_PDFA0 where (length(t.error)=0 or t.error is null or t.error ='数据已存在!') and t.khdxdh=$login_khdxdh$ and cast(t.khh as VARCHAR(30))=tar.KHH and cast(t.pdmc as VARCHAR(200) )=KHXJ_PDFA0.PDMC and KHXJ_PDFA0.PDBH=tar.PDBH and tar.qsrq<![CDATA[>]]>= cast(t.qsrq as integer) )
+    </delete>  
+    <update id="dn1.khxjsglrdr_before_insert_cutqsrq" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update KHXJ_KHXJSGLR tar set jsrq=(select F_Change_Days(cast(dr.qsrq as Integer),-1) from khxjsglrdr_temp dr,KHXJ_PDFA KHXJ_PDFA0 where 1=1 and cast(dr.khh as VARCHAR(30))=tar.KHH and cast(dr.pdmc as VARCHAR(200) )=KHXJ_PDFA0.PDMC and KHXJ_PDFA0.PDBH=tar.PDBH and (length(dr.error)=0 or dr.error is null or dr.error='数据已存在!') and dr.khdxdh=$login_khdxdh$) where exists( select 1 from khxjsglrdr_temp t ,KHXJ_PDFA KHXJ_PDFA0 where 1=1 and cast(t.khh as VARCHAR(30))=tar.KHH and cast(t.pdmc as VARCHAR(200) )=KHXJ_PDFA0.PDMC and KHXJ_PDFA0.PDBH=tar.PDBH and (length(t.error)=0 or t.error is null or t.error='数据已存在!') and t.khdxdh=$login_khdxdh$ and tar.jsrq&gt;=F_Change_Days(cast(t.qsrq as Integer),-1))
+    </update>  
+    <insert parameterClass="java.util.Map" id="dn1.khxjsglrdr_insert_into_target"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into KHXJ_KHXJSGLR(KHH,PDBH,QSRQ,JSRQ,KHMC,KHLB,XJBH,XJMC,BZSM) select t.khh ,KHXJ_PDFA0.PDBH,cast (t.qsrq as INTEGER),29991231,'','',1, t.xjmc , t.bzsm from khxjsglrdr_temp t ,KHXJ_PDFA KHXJ_PDFA0 where t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null) and KHXJ_PDFA0.PDMC=cast (t.pdmc as VARCHAR(200))
+    </insert>  
+    <update id="dn1.khxjsglrdr_after_insert_0" parameterClass="java.util.Map">update KHXJ_KHXJSGLR SGLR SET SGLR.KHMC=( SELECT KHFL.KHMC FROM KHDX_KHFL KHFL WHERE KHFL.KHH=SGLR.KHH AND SGLR.QSRQ BETWEEN KHFL.QSRQ AND KHFL.JSRQ )</update>  
+    <update id="dn1.khxjsglrdr_after_insert_1" parameterClass="java.util.Map">update KHXJ_KHXJSGLR SGLR SET SGLR.khlb=( SELECT KHFL.khlb FROM KHDX_KHFL KHFL WHERE KHFL.KHH=SGLR.KHH AND SGLR.QSRQ BETWEEN KHFL.QSRQ AND KHFL.JSRQ )</update>  
+    <update id="dn1.khxjsglrdr_after_insert_2" parameterClass="java.util.Map">update KHXJ_KHXJSGLR SGLR SET SGLR.XJBH=( SELECT pdxj.XJBH FROM KHXJ_PDXJ pdxj WHERE pdxj.xjmc=sglr.xjmc AND sglr.pdbh = pdxj.pdbh )</update> 
+  </sqlMap> 
+</pageSetting>

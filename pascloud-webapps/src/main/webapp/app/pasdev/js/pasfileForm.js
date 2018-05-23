@@ -99,10 +99,33 @@ function delPasfile(){
 		$.messager.alert('提示','请选择要删除的目录');	
 	}
 	
-	
-	
-	
-	
+}
+
+function uploadPasfile(){
+	var node = $('#pasfileTree').treegrid('getSelected');
+	//alert(node);
+	if(node!=null){
+        var name = node.text;
+		var param = {name:name};
+		if(name == 'pasdev'){
+			$.messager.alert('提示','pasdev目录不能好传');	
+		}else{
+			EasyUILoad('mainCenter');
+			$.post("uploadPasfile.json",param,function(data,status){
+	    		if(data.code == 10000){
+	    		    //alert(data.desc);
+	    			dispalyEasyUILoad('mainCenter');
+	    			$.messager.alert('提示','上传成功');	
+	    		}else{
+	    			dispalyEasyUILoad('mainCenter');
+	    			$.messager.alert('提示','上传失败');	
+	    		}
+	    	});
+		}
+		
+	}else{
+		$.messager.alert('提示','请选择要上传的目录');
+	}
 }
 
 

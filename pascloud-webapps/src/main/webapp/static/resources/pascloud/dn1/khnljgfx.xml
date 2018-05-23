@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="khnljgfx" title="客户年龄结构分析" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月"> 
+        <attribute key="dateFmt" value="yyyyMM"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="tjrq"/>  
+        <attribute key="minDate" value="no"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewJg" label="机构"> 
+        <attribute key="cascadeCheck" value="true"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="ckbz" value="jg_ckhy"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="jgkhdxdh"/>  
+        <attribute key="multiple" value="true"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="defVal" value="$sysdate$"/>  
+        <attribute key="name" value="sysdate"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="khnljgfx_xsjy1jgj" title="新数据源1结果集" page="false"> 
+    <col id="TJRQ" title="统计年月" align="left" type="string" width="75" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="NL1" title="&lt;=20岁" align="right" type="float" width="85" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="true"/>  
+    <col id="NL2" title="21-30岁" align="right" type="float" width="85" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="true"/>  
+    <col id="NL3" title="31-40岁" align="right" type="float" width="85" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="true"/>  
+    <col id="NL4" title="41-50岁" align="right" type="float" width="85" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="true"/>  
+    <col id="NL5" title="51-60岁" align="right" type="float" width="85" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="true"/>  
+    <col id="NL6" title="61-70岁" align="right" type="float" width="85" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="true"/>  
+    <col id="NL7" title="71-80岁" align="right" type="float" width="85" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="true"/>  
+    <col id="NL8" title="&gt;=81岁" align="right" type="float" width="85" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="true"/>  
+    <col id="HJRQ" title="合计人数" align="right" type="float" width="100" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="true"/> 
+  </table>  
+  <sqlMap namespace="studio.khnljgfx"> 
+    <select id="dn1.khnljgfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select $tjrq$ tjrq,jg.jgdh,jg.jgmc, sum(case when fx.nlqj='1' then fx.khs else 0 end) nl1, sum(case when fx.nlqj='2' then fx.khs else 0 end) nl2, sum(case when fx.nlqj='3' then fx.khs else 0 end) nl3, sum(case when fx.nlqj='4' then fx.khs else 0 end) nl4, sum(case when fx.nlqj='5' then fx.khs else 0 end) nl5, sum(case when fx.nlqj='6' then fx.khs else 0 end) nl6, sum(case when fx.nlqj='7' then fx.khs else 0 end) nl7, sum(case when fx.nlqj='8' then fx.khs else 0 end) nl8, sum(fx.khs) hjrq from KHFX_LSKHNJJGTJ fx inner join khdx_jg jg on jg.khdxdh=fx.jgkhdxdh inner join csb_sjw sjw on sjw.tjrq=cast((cast($tjrq$ as char(6))||'01') as integer) and sjw.ym=fx.tjrq inner join TABLE(FN_GETSJJG_JAVA_QX(fx.tjrq,$login_khdxdh$, 0)) QX on qx.khdxdh = fx.jgkhdxdh 
+      <isNotEmpty property="jgkhdxdh">where jg.khdxdh in ($jgkhdxdh$)</isNotEmpty> group by fx.tjrq,jg.jgdh,jg.jgmc
+    </select>  
+    <select id="dn1.khnljgfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select $tjrq$ tjrq,jg.jgdh,jg.jgmc, sum(case when fx.nlqj='1' then fx.khs else 0 end) nl1, sum(case when fx.nlqj='2' then fx.khs else 0 end) nl2, sum(case when fx.nlqj='3' then fx.khs else 0 end) nl3, sum(case when fx.nlqj='4' then fx.khs else 0 end) nl4, sum(case when fx.nlqj='5' then fx.khs else 0 end) nl5, sum(case when fx.nlqj='6' then fx.khs else 0 end) nl6, sum(case when fx.nlqj='7' then fx.khs else 0 end) nl7, sum(case when fx.nlqj='8' then fx.khs else 0 end) nl8, sum(fx.khs) hjrq from KHFX_LSKHNJJGTJ fx inner join khdx_jg jg on jg.khdxdh=fx.jgkhdxdh inner join csb_sjw sjw on sjw.tjrq=cast((cast($tjrq$ as char(6))||'01') as integer) and sjw.ym=fx.tjrq inner join TABLE(FN_GETSJJG_JAVA_QX(fx.tjrq,$login_khdxdh$, 0)) QX on qx.khdxdh = fx.jgkhdxdh 
+      <isNotEmpty property="jgkhdxdh">where jg.khdxdh in ($jgkhdxdh$)</isNotEmpty> group by fx.tjrq,jg.jgdh,jg.jgmc ) t
+    </select> 
+  </sqlMap>  
+  <finger custPlotMth="" id="khnljgfx_xsjy1jgj"> 
+    <plotType>bar</plotType>  
+    <needPlot>true</needPlot>  
+    <plotTitle>客户年龄结构图</plotTitle>  
+    <xLabel>机构名称</xLabel>  
+    <xSeries>JGMC</xSeries>  
+    <yLabel>合计人数</yLabel>  
+    <ySeries>NL1,NL2,NL3,NL4,NL5,NL6,NL7,NL8</ySeries>  
+    <ySeriesDesc>&lt;=20岁,21-30岁,31-40岁,41-50岁,51-60岁,61-70岁,71-80岁,&gt;=81岁</ySeriesDesc> 
+  </finger>  
+  <rels> 
+    <items id="khnljgfx_xsjy1jgj"/> 
+  </rels>  
+  <javascript><![CDATA[jQuery(document).ready(function () {
+    var obj=createTimeObj(jQuery("#sysdate").val());
+    if(jQuery("#sysdate").val()!=obj.ym){
+        var sym=obj.sym;
+        jQuery("#tjrq").val(sym.substr(0,6));
+    }
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}]]></javascript> 
+</pageSetting>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="hyywljxgzcx" title="行员业务量绩效工资查询" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月"> 
+        <attribute key="dateFmt" value="yyyyMM"/>  
+        <attribute key="defValType" value="xtrzympd"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="tjrq"/>  
+        <attribute key="minDate" value="no"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员"> 
+        <attribute key="isDisplayXN" value="true"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="style" value="width:100px;"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="jgckbz" value="jg_ckhy"/>  
+        <attribute key="name" value="khdxdh"/>  
+        <attribute key="multiple" value="true"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="行员类别"> 
+        <attribute key="selectedList" value="1"/>  
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="mulShowType" value="null"/>  
+        <attribute key="key_SELECTTYPE" value="Integer"/>  
+        <attribute key="isSearch" value="false"/>  
+        <attribute key="sql" value="select lbdh as key, lbmc as value  from csb_hylb"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="lbdh"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="isEditable" value="true"/> 
+      </tag>  
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="name" value="tjrq_ym"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="hyywljxgzcx_xsjy1jgj" title="新数据源1结果集" page="true"> 
+    <col id="TJRQ" title="统计年月" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHYWLHJ" title="折后业务量合计" align="right" type="float" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZZSBYWL" title="自助设备业务量" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="BCYWL" title="补偿业务量" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HJYWL" title="合计业务量" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="YWLJCDJ" title="业务量计酬单价" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="YWLJXGZ" title="业务量绩效工资" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="SQQE" title="上期欠额" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="YFYWLJXGZ" title="应发业务量绩效工资" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="SFYWLJXGZ" title="实发业务量绩效工资" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGLB" title="机构类别" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="HYLB" title="行员类别" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
+    <col id="HYGW" title="行员岗位" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <sqlMap namespace="studio.hyywljxgzcx"> 
+    <select id="dn1.hyywljxgzcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select $tjrq$ as tjrq,jglb.lbmc as jglb,jg.jgmc,hy.hydh,hy.hymc,hylb.lbmc as hylb,coalesce(hygw.gwmc,'') as hygw, ywl.zhywlhj,ywl.zzsbywl,ywl.bcywl,ywl.hjywl,ywl.ywljcdj,ywl.ywljxgz,ywl.sqqe,ywl.yfywljxgz,ywl.sfywljxgz from jxgz_ywljxgz ywl inner join khdx_hy hy on hy.khdxdh=ywl.khdxdh inner join khdx_hylb hylb on hylb.khdxdh=hy.khdxdh 
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between hylb.qsrq and hylb.jsrq</isNotEmpty> left join KHDX_HYGW hygw on hy.khdxdh=hygw.khdxdh 
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between hygw.qsrq and hygw.jsrq</isNotEmpty> inner join khdx_jgcy cy on cy.khdxdh=hy.khdxdh 
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh inner join KHDX_JGLB jglb on jglb.khdxdh=jg.khdxdh 
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between jglb.qsrq and jglb.jsrq</isNotEmpty> inner join table(FN_GETSJJG_JAVA_QXHY($tjrq_ym$,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh where 1=1 
+      <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
+      <isNotEmpty property="tjrq_ym">and ywl.tjrq=$tjrq_ym$</isNotEmpty>  
+      <isNotEmpty property="lbdh">and hylb.lbdh='$lbdh$'</isNotEmpty> order by jg.jgdh,hy.hydh
+    </select>  
+    <select id="dn1.hyywljxgzcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select $tjrq$ as tjrq,jglb.lbmc as jglb,jg.jgmc,hy.hydh,hy.hymc,hylb.lbmc as hylb,coalesce(hygw.gwmc,'') as hygw, ywl.zhywlhj,ywl.zzsbywl,ywl.bcywl,ywl.hjywl,ywl.ywljcdj,ywl.ywljxgz,ywl.sqqe,ywl.yfywljxgz,ywl.sfywljxgz from jxgz_ywljxgz ywl inner join khdx_hy hy on hy.khdxdh=ywl.khdxdh inner join khdx_hylb hylb on hylb.khdxdh=hy.khdxdh 
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between hylb.qsrq and hylb.jsrq</isNotEmpty> left join KHDX_HYGW hygw on hy.khdxdh=hygw.khdxdh 
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between hygw.qsrq and hygw.jsrq</isNotEmpty> inner join khdx_jgcy cy on cy.khdxdh=hy.khdxdh 
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh inner join KHDX_JGLB jglb on jglb.khdxdh=jg.khdxdh 
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between jglb.qsrq and jglb.jsrq</isNotEmpty> inner join table(FN_GETSJJG_JAVA_QXHY($tjrq_ym$,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh where 1=1 
+      <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
+      <isNotEmpty property="tjrq_ym">and ywl.tjrq=$tjrq_ym$</isNotEmpty>  
+      <isNotEmpty property="lbdh">and hylb.lbdh='$lbdh$'</isNotEmpty> order by jg.jgdh,hy.hydh ) t
+    </select>  
+    <select id="dn1.hyywljxgzcx_MSQL4SELECT_lbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_hylb</select> 
+  </sqlMap>  
+  <rels> 
+    <items id="hyywljxgzcx_xsjy1jgj"/> 
+  </rels>  
+  <javascript><![CDATA[jQuery(document).ready(function () {
+init_lbdh();
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+var o_tjrq = createTimeObj($("#tjrq").val());
+ $("#tjrq_ym").val(o_tjrq.ym);
+ return true;
+}]]></javascript> 
+</pageSetting>

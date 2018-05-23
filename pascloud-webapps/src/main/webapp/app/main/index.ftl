@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>云平台运维管理中心</title>
-	<link rel="stylesheet" type="text/css" href="/static/easyui/themes/bootstrap/easyui.css">
+	<link rel="stylesheet" type="text/css" href="/static/easyui/themes/metro/easyui.css">
 	
     <link rel="stylesheet" type="text/css" href="/static/easyui/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="/static/easyui/themes/IconExtension.css">
@@ -83,7 +83,7 @@
 		<!--树形菜单  结束-->
     </div>
     <div id="center" data-options="region:'center',border:false" >
-        <div id="mainCenter" class="easyui-tabs" data-options="region:'center',fit:true" >
+        <div id="mainCenter" class="easyui-tabs" data-options="region:'center',fit:true"  >
             <div id="mainGridLayout" class="easyui-layout" data-options="title:'首页',fit:true,iconCls:'icon-house'">
                 
 		        <div data-options="region:'center',fit:true">

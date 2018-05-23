@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="cdkhylrfx" title="存贷款行员利润分析" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月"> 
+        <attribute key="dateFmt" value="yyyyMM"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="tjny"/>  
+        <attribute key="minDate" value="no"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Dmms" label="对象类型"> 
+        <attribute key="defVal" value="1"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="dmmc" value="zhlx"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="dxlx"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="multiple" value="false"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="时段"> 
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="defVal" value="7"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="isSearch" value="false"/>  
+        <attribute key="sql" value="select dmz as key,dmms as value from csb_dmms where dmmc='ZBSDBS' and dmz in('5','6','7') order by dmz"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="sdbs"/>  
+        <attribute key="isAll" value="false"/>  
+        <attribute key="isEditable" value="true"/> 
+      </tag>  
+      <tag row="0" col="3" colspan="1" rowspan="1" name="NewMultipleHy" label="行员"> 
+        <attribute key="isDisplayXN" value="true"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="jgckbz" value="jg_ckhy"/>  
+        <attribute key="name" value="khdxdh"/>  
+        <attribute key="multiple" value="true"/> 
+      </tag>  
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Hidden" label=""> 
+        <attribute key="name" value="tjnf"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="cdkhylrfx_xsjy1jgj" title="新数据源1结果集" page="noCount"> 
+    <col id="TJNY" title="统计年月" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH" title="行员代号" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC" title="行员名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="DQYE" title="当前余额(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="RJYE" title="日均余额(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="FTPLXSR" title="FTP利息收入(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZBJSR" title="准备金收入(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="TQLXZCKH" title="提前利息支出扣回(万元)" align="right" type="float" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="LXZC" title="利息支出(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="MNLR" title="模拟利润(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="PM" title="排名" align="right" type="string" width="50" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <table id="cdkhylrfx_xsjy2jgj" title="新数据源2结果集" page="noCount"> 
+    <col id="TJNY" title="统计年月" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH" title="行员代号" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC" title="行员名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="DQYE" title="当前余额(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="RJYE" title="日均余额(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="LXSR" title="利息收入(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="FTPLXZC" title="FTP利息支出(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZCJZZB" title="资产减值准备(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="YSWSLXXZ" title="应收未收利息新增(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="MNLR" title="模拟利润(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="PM" title="排名" align="right" type="string" width="50" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <sqlMap namespace="studio.cdkhylrfx"> 
+    <select id="dn1.cdkhylrfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
+      <isEqual property="dxlx" compareValue="1">select tjny,jgdh,jgmc,hydh,hymc,dqye,rjye,ftplxsr,zbjsr,tqlxzckh,lxzc,mnlr, rank() over(order by mnlr desc) as pm from( select $tjny$ as tjny, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, sum(case when gl.pxxh=1 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as dqye, sum(case when gl.pxxh=2 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as rjye, sum(case when gl.pxxh=3 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as ftplxsr, sum(case when gl.pxxh=4 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as zbjsr, sum(case when gl.pxxh=5 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as tqlxzckh, sum(case when gl.pxxh=6 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as lxzc, sum(case when gl.pxxh=7 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as mnlr from khdx_zbbbgl gl inner join yjzb_gjyj_hy yj on yj.zbdh= gl.zbdh and yj.bz=gl.bz inner join khdx_hy hy on yj.khdxdh=hy.khdxdh inner join khdx_jgcy cy on yj.khdxdh=cy.khdxdh and yj.tjrq between cy.qsrq and cy.jsrq <![CDATA[inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh                     
+            inner join csb_sjw sj on sj.ym = yj.tjrq and sj.tjrq =cast(cast($tjny$ as char(6))||'01' as integer)
+            inner join table (FN_GETSJJG_JAVA_QXHY(sj.ym,$login_khdxdh$,0)) qxhy on qxhy.khdxdh=hy.khdxdh 
+        where 1=1               
+           and hy.khdxdh in($khdxdh$) 
+           and yj.sdbs=(case when gl.pxxh>=3 then '$sdbs$' 
+                                       when gl.pxxh = 2 then f_numtochar(cast('$sdbs$' as integer)-3) 
+                                         else '1' end ) 
+           and gl.bbdh=1001 
+        group by jg.jgdh,jg.jgmc,hy.hydh,hy.hymc) z]]></isEqual>  
+      <isEqual property="dxlx" compareValue="2">select tjny,jgdh,jgmc,hydh,hymc,dqye,rjye,lxsr,ftplxzc,zcjzzb,yswslxxz,mnlr, rank() over(order by mnlr desc) as pm from( select $tjny$ as tjny, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, sum(case when gl.pxxh=1 then yj.zbz else 0 end)/cast(10000 as float) as dqye, sum(case when gl.pxxh=2 then yj.zbz else 0 end)/cast(10000 as float) as rjye, sum(case when gl.pxxh=3 then yj.zbz else 0 end)/cast(10000 as float) as lxsr, sum(case when gl.pxxh=4 then yj.zbz else 0 end)/cast(10000 as float) as ftplxzc, sum(case when gl.pxxh=5 then yj.zbz else 0 end)/cast(10000 as float) as zcjzzb, sum(case when gl.pxxh=6 then yj.zbz else 0 end)/cast(10000 as float) as yswslxxz, sum(case when gl.pxxh=7 then yj.zbz else 0 end)/cast(10000 as float) as mnlr from khdx_zbbbgl gl inner join yjzb_gjyj_hy yj on yj.zbdh= gl.zbdh and yj.bz=gl.bz inner join khdx_hy hy on yj.khdxdh=hy.khdxdh inner join khdx_jgcy cy on yj.khdxdh=cy.khdxdh and yj.tjrq between cy.qsrq and cy.jsrq <![CDATA[inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh                  
+            inner join csb_sjw sj on sj.ym = yj.tjrq and sj.tjrq =cast(cast($tjny$ as char(6))||'01' as integer)
+            inner join table (FN_GETSJJG_JAVA_QXHY(sj.ym,$login_khdxdh$,0)) qxhy on qxhy.khdxdh=hy.khdxdh
+        where 1=1               
+           and hy.khdxdh in($khdxdh$) 
+           and yj.sdbs=(case when gl.pxxh>=3 then '$sdbs$' 
+                                       when gl.pxxh = 2 then f_numtochar(cast('$sdbs$' as integer)-3) 
+                                         else '1' end ) 
+           and gl.bbdh=1002 
+        group by jg.jgdh,jg.jgmc,hy.hydh,hy.hymc) z]]></isEqual> 
+    </select>  
+    <select id="dn1.cdkhylrfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
+      <isEqual property="dxlx" compareValue="1">select tjny,jgdh,jgmc,hydh,hymc,dqye,rjye,ftplxsr,zbjsr,tqlxzckh,lxzc,mnlr, rank() over(order by mnlr desc) as pm from( select $tjny$ as tjny, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, sum(case when gl.pxxh=1 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as dqye, sum(case when gl.pxxh=2 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as rjye, sum(case when gl.pxxh=3 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as ftplxsr, sum(case when gl.pxxh=4 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as zbjsr, sum(case when gl.pxxh=5 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as tqlxzckh, sum(case when gl.pxxh=6 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as lxzc, sum(case when gl.pxxh=7 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as mnlr from khdx_zbbbgl gl inner join yjzb_gjyj_hy yj on yj.zbdh= gl.zbdh and yj.bz=gl.bz inner join khdx_hy hy on yj.khdxdh=hy.khdxdh inner join khdx_jgcy cy on yj.khdxdh=cy.khdxdh and yj.tjrq between cy.qsrq and cy.jsrq <![CDATA[inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh                     
+            inner join csb_sjw sj on sj.ym = yj.tjrq and sj.tjrq =cast(cast($tjny$ as char(6))||'01' as integer)
+            inner join table (FN_GETSJJG_JAVA_QXHY(sj.ym,$login_khdxdh$,0)) qxhy on qxhy.khdxdh=hy.khdxdh 
+        where 1=1               
+           and hy.khdxdh in($khdxdh$) 
+           and yj.sdbs=(case when gl.pxxh>=3 then '$sdbs$' 
+                                       when gl.pxxh = 2 then f_numtochar(cast('$sdbs$' as integer)-3) 
+                                         else '1' end ) 
+           and gl.bbdh=1001 
+        group by jg.jgdh,jg.jgmc,hy.hydh,hy.hymc) z]]></isEqual>  
+      <isEqual property="dxlx" compareValue="2">select tjny,jgdh,jgmc,hydh,hymc,dqye,rjye,lxsr,ftplxzc,zcjzzb,yswslxxz,mnlr, rank() over(order by mnlr desc) as pm from( select $tjny$ as tjny, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, sum(case when gl.pxxh=1 then yj.zbz else 0 end)/cast(10000 as float) as dqye, sum(case when gl.pxxh=2 then yj.zbz else 0 end)/cast(10000 as float) as rjye, sum(case when gl.pxxh=3 then yj.zbz else 0 end)/cast(10000 as float) as lxsr, sum(case when gl.pxxh=4 then yj.zbz else 0 end)/cast(10000 as float) as ftplxzc, sum(case when gl.pxxh=5 then yj.zbz else 0 end)/cast(10000 as float) as zcjzzb, sum(case when gl.pxxh=6 then yj.zbz else 0 end)/cast(10000 as float) as yswslxxz, sum(case when gl.pxxh=7 then yj.zbz else 0 end)/cast(10000 as float) as mnlr from khdx_zbbbgl gl inner join yjzb_gjyj_hy yj on yj.zbdh= gl.zbdh and yj.bz=gl.bz inner join khdx_hy hy on yj.khdxdh=hy.khdxdh inner join khdx_jgcy cy on yj.khdxdh=cy.khdxdh and yj.tjrq between cy.qsrq and cy.jsrq <![CDATA[inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh                  
+            inner join csb_sjw sj on sj.ym = yj.tjrq and sj.tjrq =cast(cast($tjny$ as char(6))||'01' as integer)
+            inner join table (FN_GETSJJG_JAVA_QXHY(sj.ym,$login_khdxdh$,0)) qxhy on qxhy.khdxdh=hy.khdxdh
+        where 1=1               
+           and hy.khdxdh in($khdxdh$) 
+           and yj.sdbs=(case when gl.pxxh>=3 then '$sdbs$' 
+                                       when gl.pxxh = 2 then f_numtochar(cast('$sdbs$' as integer)-3) 
+                                         else '1' end ) 
+           and gl.bbdh=1002 
+        group by jg.jgdh,jg.jgmc,hy.hydh,hy.hymc) z]]></isEqual> ) t
+    </select>  
+    <select id="dn1.cdkhylrfx_MSQL4SELECT_sdbs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc='ZBSDBS' and dmz in('5','6','7') order by dmz</select> 
+  </sqlMap>  
+  <finger custPlotMth="" id="cdkhylrfx_xsjy2jgj"> 
+    <plotType>bar</plotType>  
+    <needPlot>true</needPlot>  
+    <plotTitle>行员模拟利润(万元)</plotTitle>  
+    <xLabel>行员</xLabel>  
+    <xSeries>HYMC</xSeries>  
+    <yLabel/>  
+    <ySeries>MNLR</ySeries>  
+    <ySeriesDesc>模拟利润(万元)</ySeriesDesc> 
+  </finger>  
+  <finger custPlotMth="" id="cdkhylrfx_xsjy1jgj"> 
+    <plotType>bar</plotType>  
+    <needPlot>true</needPlot>  
+    <plotTitle>行员模拟利润(万元)</plotTitle>  
+    <xLabel>行员</xLabel>  
+    <xSeries>HYMC</xSeries>  
+    <yLabel/>  
+    <ySeries>MNLR</ySeries>  
+    <ySeriesDesc>模拟利润(万元)</ySeriesDesc> 
+  </finger>  
+  <rels> 
+    <items id="cdkhylrfx_xsjy1jgj"> 
+      <item name="dxlx" compareValue="1" operate="isEqual"/> 
+    </items>  
+    <items id="cdkhylrfx_xsjy2jgj"> 
+      <item name="dxlx" compareValue="2" operate="isEqual"/> 
+    </items> 
+  </rels>  
+  <javascript><![CDATA[jQuery(document).ready(function () {
+
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+  $('#tjnf').val($('#tjny').val().substring(0,4));
+ return true;
+}]]></javascript> 
+</pageSetting>

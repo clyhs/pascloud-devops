@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="hydjpdcx" title="行员等级评定查询" type="query" version="2.0.0"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="评定日期"> 
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="pdrq"/>  
+        <attribute key="minDate" value="no"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员"> 
+        <attribute key="isDisplayXN" value="true"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="jgckbz" value="jg_ckhy"/>  
+        <attribute key="name" value="khdxdh"/>  
+        <attribute key="multiple" value="true"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="等级评定名称"> 
+        <attribute key="parents" value="pdrq"/>  
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="auto;"/>  
+        <attribute key="isSearch" value="false"/>  
+        <attribute key="sql" value="select djpdmc as key,djpdmc as value from djpd_djbz where f_numtochar(pdnf) = substr(f_numtochar($pdrq$),1,4)  and khdx='2'"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="djpdmc"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="isEditable" value="true"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="hydjpdcx_xsjy1jgj" title="新数据源1结果集" page="true"> 
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="PDRQ" title="评定日期" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH" title="行员代号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC" title="行员名称" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="KHZQ" title="考核周期" align="left" type="string" width="65" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="DJ" title="等级" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="DJPX" title="DJPX" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" orderby="asc" mergeCells="false" footerCells="false"/>  
+    <col id="JLBZ" title="等级工资" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="MS" title="评定标准" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="PM" title="PM" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" orderby="asc" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <sqlMap namespace="studio.hydjpdcx"> 
+    <select id="dn1.hydjpdcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select khdx_hy.khdxdh, djpd_yyjg_hy.tjrq pdrq, khdx_jg.jgdh, khdx_jg.jgmc, khdx_hy.hydh, khdx_hy.hymc, dmms.dmms khzq, djpd_yyjg_hy.pm, djpd_yyjg_hy.jbmc dj, djpd_yyjg_hy.dj djpx, djpd_yyjg_hy.jlbz, djpd_yyjg_hy.ms from djpd_yyjg_hy djpd_yyjg_hy inner join khdx_hy khdx_hy on khdx_hy.khdxdh=djpd_yyjg_hy.khdxdh inner join khdx_jgcy khdx_jgcy on khdx_hy.khdxdh=khdx_jgcy.khdxdh and djpd_yyjg_hy.tjrq between khdx_jgcy.qsrq and khdx_jgcy.jsrq inner join khdx_jg khdx_jg on khdx_jgcy.jgkhdxdh = khdx_jg.khdxdh inner join khdx_hylb hylb on djpd_yyjg_hy.khdxdh=hylb.khdxdh and djpd_yyjg_hy.tjrq between hylb.qsrq and hylb.jsrq inner join csb_dmms dmms on upper(dmms.dmmc) = 'DJPDZQ' and dmms.dmz = djpd_yyjg_hy.pdzq inner join table(fn_getsjjg_java_qxhy($pdrq$, $login_khdxdh$, 0)) qx on qx.khdxdh = khdx_hy.khdxdh where 1=1 
+      <isNotEmpty property="pdrq">and djpd_yyjg_hy.tjrq= $pdrq$</isNotEmpty>  
+      <isNotEmpty property="khdxdh">and khdx_hy.khdxdh in ($khdxdh$)</isNotEmpty>  
+      <isNotEmpty property="djpdmc">and djpd_yyjg_hy.djpdmc = '$djpdmc$'</isNotEmpty> 
+    </select>  
+    <select id="dn1.hydjpdcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select khdx_hy.khdxdh, djpd_yyjg_hy.tjrq pdrq, khdx_jg.jgdh, khdx_jg.jgmc, khdx_hy.hydh, khdx_hy.hymc, dmms.dmms khzq, djpd_yyjg_hy.pm, djpd_yyjg_hy.jbmc dj, djpd_yyjg_hy.dj djpx, djpd_yyjg_hy.jlbz, djpd_yyjg_hy.ms from djpd_yyjg_hy djpd_yyjg_hy inner join khdx_hy khdx_hy on khdx_hy.khdxdh=djpd_yyjg_hy.khdxdh inner join khdx_jgcy khdx_jgcy on khdx_hy.khdxdh=khdx_jgcy.khdxdh and djpd_yyjg_hy.tjrq between khdx_jgcy.qsrq and khdx_jgcy.jsrq inner join khdx_jg khdx_jg on khdx_jgcy.jgkhdxdh = khdx_jg.khdxdh inner join khdx_hylb hylb on djpd_yyjg_hy.khdxdh=hylb.khdxdh and djpd_yyjg_hy.tjrq between hylb.qsrq and hylb.jsrq inner join csb_dmms dmms on upper(dmms.dmmc) = 'DJPDZQ' and dmms.dmz = djpd_yyjg_hy.pdzq inner join table(fn_getsjjg_java_qxhy($pdrq$, $login_khdxdh$, 0)) qx on qx.khdxdh = khdx_hy.khdxdh where 1=1 
+      <isNotEmpty property="pdrq">and djpd_yyjg_hy.tjrq= $pdrq$</isNotEmpty>  
+      <isNotEmpty property="khdxdh">and khdx_hy.khdxdh in ($khdxdh$)</isNotEmpty>  
+      <isNotEmpty property="djpdmc">and djpd_yyjg_hy.djpdmc = '$djpdmc$'</isNotEmpty> ) t
+    </select>  
+    <select id="dn1.hydjpdcx_MSQL4SELECT_djpdmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select djpdmc as key,djpdmc as value from djpd_djbz where f_numtochar(pdnf) = substr(f_numtochar($pdrq$),1,4) and khdx='2'</select> 
+  </sqlMap>  
+  <rels> 
+    <items id="hydjpdcx_xsjy1jgj"/> 
+  </rels>  
+  <javascript><![CDATA[jQuery(document).ready(function () {
+  $('#hydjpdcxList').datagrid({ 
+    onClickCell:clickCell
+  });
+  BindParent('djpdmc','pdrq','blur');
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}
+
+var clickFieldValue = "";
+
+
+function clickCell(rowIndex, field, value){
+  var a = jQuery(this).parent().find(".datagrid-body td[field="+field+"] a");  
+  if(a.length){  
+      if(a.length > 1){
+        a = $(a[rowIndex]);
+      }
+      if(a.data("events") && a.data("events")["click"]){
+         //alert("有事件");
+         // 什么也不做，因为:
+         // 1. 如果点击了的是a，因为有事件了，a的click事件自然会触发。
+         /** 2. 如果点击的不是a，是cell，a的click事件也自然不会触发，而
+                 cell的事件被防止冒泡了。**/      
+      }else{
+         // alert("无事件");
+         a.bind("click",function(event){
+            event.stopPropagation();
+            var rowData = jQuery("#hydjpdcxList").datagrid("getRows")[rowIndex];
+            var text = $(value).text(); // 链接的内容
+            var khfa = /^[存款日均余额]/;
+            var khzb = /^[排名占比]/;
+            if(khfa.test(field)){
+              showHyjx(rowData,field,text); 
+            }else if(khzb.test(field)){
+              showGryj(obj,field,text)
+            }else{
+            }                                       
+         });
+         a.trigger("click");
+      }      
+      
+  }
+}
+// 显示行员绩效工资查询
+function showHyjx(obj,field,text){
+  var params = "{"+"'TJRQ':'"+obj['PDRQ']+"','KHDXDH':'"+obj['KHDXDH']+"'}";  
+  querySubQuery(params,"hyjxgzcx",'80','40','tag');
+}
+function showGryj(obj,field,text){
+  var params = "{"+"'TJRQ':'"+obj['PDRQ']+"','KHDXDH':'"+obj['KHDXDH']+"','JXLX':'KHZB'}";  
+  querySubQuery(params,"gryjcx",'80','40','tag');
+}]]></javascript> 
+</pageSetting>
