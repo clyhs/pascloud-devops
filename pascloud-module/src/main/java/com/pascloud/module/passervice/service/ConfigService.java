@@ -169,7 +169,8 @@ public class ConfigService {
 	public void delDBConfig(String dnName){
 		PropertiesUtil p =new PropertiesUtil();
 		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
-		Map map = p.getByFuzzyKey(dnName);
+		String dbName = dnName+".";
+		Map map = p.getByFuzzyKey(dbName);
 		Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
 		while (it.hasNext()) {
 			Map.Entry<String, String> obj = it.next();

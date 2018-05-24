@@ -21,16 +21,23 @@ import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.redis.service.RedisService;
 import com.pascloud.utils.FileUtils;
+import com.pascloud.utils.PasCloudCode;
 import com.pascloud.utils.redis.JedisPoolUtils;
 import com.pascloud.vo.common.TreeVo;
 import com.pascloud.vo.database.DBColumnVo;
 import com.pascloud.vo.redis.RedisInfo;
 import com.pascloud.vo.redis.RedisServerDetailInfo;
+import com.pascloud.vo.result.ResultCommon;
 import com.thoughtworks.xstream.XStream;
 
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
+/**
+ * 缓存管理
+ * @author chenly
+ *
+ */
 @Controller
 @RequestMapping("module/redis")
 public class RedisController extends BaseController {
@@ -143,6 +150,19 @@ public class RedisController extends BaseController {
 		
 		result = m_redisService.getDBPageData(redisServerId, index, startRow, pageSize, selectKey);
 		
+		return result;
+	}
+	
+	@RequestMapping("deleteRedisBykey.json")
+	@ResponseBody
+	public ResultCommon deleteRedisBykey(HttpServletRequest request,
+			@RequestParam(value="redisServerId",defaultValue="",required=true) String redisServerId,
+			@RequestParam(value="index",defaultValue="0",required=true) Integer index,
+			@RequestParam(value="selectKey",defaultValue="nokey",required=true) String selectKey){
+		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
+		log.info("删除reids key="+selectKey);
+	    m_redisService.delRedisByKey(redisServerId, index, selectKey);
+	    log.info("删除reids key="+selectKey+"成功");
 		return result;
 	}
 	

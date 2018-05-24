@@ -1,10 +1,19 @@
 package com.pascloud.module.pasdev.web;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +27,7 @@ import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.pasdev.service.PasdevService;
 import com.pascloud.utils.FileUtils;
+import com.pascloud.utils.HttpUtils;
 import com.pascloud.utils.PasCloudCode;
 import com.pascloud.vo.common.TreeVo;
 import com.pascloud.vo.result.ResultCommon;
@@ -183,6 +193,45 @@ public class PasdevController extends BaseController {
 			result = new ResultCommon(PasCloudCode.ERROR);
 		}
 		log.info("上传完成");
+		return result;
+	}
+	
+	@RequestMapping("/putPasfileToRedis.json")
+	@ResponseBody
+	public ResultCommon putPasfileToRedis(HttpServletRequest request,
+			@RequestParam(value="name",defaultValue="",required=true) String name){
+		ResultCommon result = null;
+		
+		String url = "http://192.168.0.7:8311/module/system/admin/v100/reloadConfig.json";
+		
+		
+        try {
+        	List<NameValuePair> header = new ArrayList<NameValuePair>();
+        	Map<String,NameValuePair> params = new HashMap<>();
+        	params.put("db", new BasicNameValuePair("db",name));
+            String r= HttpUtils.httpGetTool(url,params,header);
+            
+            if(null!=r){
+            	result = new ObjectMapper().readValue(r, new TypeReference<ResultCommon>() {});
+            }else{
+            	result = new ResultCommon(PasCloudCode.ERROR);
+            }
+            
+			
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			result = new ResultCommon(PasCloudCode.ERROR);
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			result = new ResultCommon(PasCloudCode.ERROR);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			result = new ResultCommon(PasCloudCode.ERROR);
+		}
+        
 		return result;
 	}
 }

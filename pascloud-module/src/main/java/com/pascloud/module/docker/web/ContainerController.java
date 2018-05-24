@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.pascloud.bean.docker.ContainerVo;
 import com.pascloud.bean.docker.NodeVo;
 import com.pascloud.module.common.web.BaseController;
+import com.pascloud.module.docker.service.ContainerService;
 import com.pascloud.module.docker.service.DockerService;
 import com.pascloud.vo.result.ResultCommon;
 import com.spotify.docker.client.DefaultDockerClient;
@@ -27,25 +28,16 @@ public class ContainerController extends BaseController {
 	@Autowired
 	private DockerService m_dockerService;
 	
+	@Autowired
+	private ContainerService m_containerService;
+	
 	@RequestMapping("containers.json")
 	@ResponseBody
 	public List<ContainerVo> getContainers(HttpServletRequest request,
 			@RequestParam(value="str",defaultValue="",required=true) String str){
 		List<ContainerVo> containers = new ArrayList<>();
 		//containers = m_dockerService.getContainer(dockerClient);
-		List<NodeVo> nodes = new ArrayList<>();
-		
-		nodes = m_dockerService.getNodes(getDockerClient());
-		
-		for(NodeVo vo: nodes){
-			DefaultDockerClient client = DefaultDockerClient.builder()
-					.uri("http://"+vo.getAddr()+":"+defaultPort).build();
-			List<ContainerVo> subContainers = m_dockerService.getContainer(client,str);
-			if(null != subContainers && subContainers.size()>0){
-				containers.addAll(subContainers);
-			}
-		}
-		
+		containers = m_containerService.getContainers(str);
 		return containers;
 	}
 	

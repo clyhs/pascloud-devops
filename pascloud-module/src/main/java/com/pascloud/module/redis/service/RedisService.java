@@ -20,6 +20,11 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.Tuple;
 
+/**
+ * 缓存服务
+ * @author chenly
+ *
+ */
 @Service
 public class RedisService extends AbstractRedisService {
 	
@@ -66,13 +71,51 @@ public class RedisService extends AbstractRedisService {
 		return result;
 	}
 	
+	public Boolean delRedisByKey(String id,Integer index ,String selectkey){
+		Boolean flag = false;
+		JedisPool jedisPool = null;
+		Jedis jedis = null;
+		try{
+			log.info("删除reids开始");
+			jedisPool= JedisPoolUtils.getJedisPool(id);
+			jedis= getJedis(jedisPool);
+			jedis.select(index);
+			//Long t = jedis.del(key);
+			Set nodekeys = new HashSet();
+			if (selectkey.equals("nokey")) {
+				
+			}else{
+				nodekeys = jedis.keys("*" + selectkey + "*");
+			}
+			Iterator it = nodekeys.iterator();
+			int i=0;
+			while (it.hasNext()) {
+				Map<String, Object> map = new HashMap();
+				String key = (String) it.next();
+				jedis.del(key);
+				i++;
+			}
+			
+			log.info("删除reids结束" + i);
+		}catch(Exception e){
+			log.error(e.getMessage());
+			e.printStackTrace();
+		}finally{
+			returnResource(jedis,jedisPool);
+		}
+		return flag;
+	}
+	
 	public Map<String, Object> getDBPageData(String id,Integer index,Integer startRow,Integer pageSize,
 			String selectKey){
 		Map<String, Object> tempMap = new HashMap();
 		List<Map<String, Object>> list = new ArrayList();
+		JedisPool jedisPool = null;
+		Jedis jedis = null;
+		
 		try{
-			JedisPool jedisPool= JedisPoolUtils.getJedisPool(id);
-			Jedis jedis= getJedis(jedisPool);
+			jedisPool= JedisPoolUtils.getJedisPool(id);
+			jedis= getJedis(jedisPool);
 			jedis.select(index);
 			//total
 			Long total = jedis.dbSize();
@@ -149,11 +192,11 @@ public class RedisService extends AbstractRedisService {
 				tempMap.put("total", Integer.valueOf(i));
 			}
 			tempMap.put("rows", list);
-			returnResource(jedis,jedisPool);
+			
 		}catch (Exception e){
 			log.error(e.getMessage());
 		}finally{
-			
+			returnResource(jedis,jedisPool);
 		}
 		
 		return tempMap;

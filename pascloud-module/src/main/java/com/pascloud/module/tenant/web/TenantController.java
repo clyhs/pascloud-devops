@@ -17,13 +17,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.pascloud.bean.docker.ContainerVo;
 import com.pascloud.bean.docker.NodeVo;
+import com.pascloud.bean.server.ServerVo;
 import com.pascloud.bean.tenant.KhdxHyVo;
 import com.pascloud.constant.Constants;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.database.service.DataBaseService;
+import com.pascloud.module.docker.service.ContainerService;
 import com.pascloud.module.docker.service.DockerService;
 import com.pascloud.module.passervice.service.ConfigService;
+import com.pascloud.module.passervice.service.PasService;
+import com.pascloud.module.server.service.ServerService;
 import com.pascloud.module.tenant.service.TenantService;
 import com.pascloud.utils.DBUtils;
 import com.pascloud.utils.PasCloudCode;
@@ -38,15 +42,21 @@ import com.spotify.docker.client.DefaultDockerClient;
 public class TenantController extends BaseController {
 	
 	@Autowired
-	private DataBaseService m_dbService;
+	private DataBaseService  m_dbService;
 	@Autowired
-	private ConfigService  m_configService;
+	private ConfigService    m_configService;
 	@Autowired
-	private DockerService  m_dockerService;
+	private DockerService    m_dockerService;
 	@Autowired
-	private TenantService  m_tenantService;
+	private TenantService    m_tenantService;
 	@Autowired
-	private PasCloudConfig m_config;
+	private ContainerService m_containerService;
+	@Autowired
+	private ServerService    m_serverService;
+	@Autowired
+	private PasService       m_pasService;
+	@Autowired
+	private PasCloudConfig   m_config;
 	
 	@RequestMapping("index.html")
 	public String index(HttpServletRequest request){
@@ -105,43 +115,27 @@ public class TenantController extends BaseController {
 		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
 		List<ContainerVo> containers = new ArrayList<>();
 		//containers = m_dockerService.getContainer(dockerClient);
+		containers = m_containerService.getContainers("pascloud_service");
 		List<NodeVo> nodes = new ArrayList<>();
 		
-		nodes = m_dockerService.getNodes(getDockerClient());
-		/****查询运行的服务***/
-		for(NodeVo vo: nodes){
-			DefaultDockerClient client = DefaultDockerClient.builder()
-					.uri("http://"+vo.getAddr()+":"+defaultPort).build();
-			List<ContainerVo> subContainers = m_dockerService.getContainer(client,"pascloud_service");
-			if(null != subContainers && subContainers.size()>0){
-				containers.addAll(subContainers);
-			}
-		}
 		/****上传到复制的项目***/
 		if(containers.size()>0){
 			for(ContainerVo vo : containers){
-				ScpClientUtils scpClient = new ScpClientUtils(vo.getIp(), "root", "tccp@2012");
+				ServerVo server = m_serverService.getByIP(vo.getIp());
+				ScpClientUtils scpClient = new ScpClientUtils(vo.getIp(), server.getUsername(), server.getPassword());
 				//scpClient.close();
 				String dbfilepath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"db.properties";
-				System.out.println(dbfilepath);
-				
-				String name = vo.getName().replaceAll("_", "-");
-				name = name.replaceAll("pascloud", "pas-cloud");
-				String path = Constants.PASCLOUD_HOME+name+"/conf/";
+				String path = m_pasService.getServiceConfPathWithContainerName(vo.getName());
 				scpClient.putFileToServer(dbfilepath, path);
+				
+				String demopath = Constants.PASCLOUD_HOME+Constants.PASCLOUD_SERVICE_DEMO+"/conf/";
+				scpClient.putFileToServer(dbfilepath, demopath);
+				String paspmpath =Constants.PASCLOUD_HOME+Constants.PASCLOUD_SERVICE_PASPM+"/conf/";
+				scpClient.putFileToServer(dbfilepath, paspmpath);
+				
 				scpClient.close();
 			}
 		}
-		/****上传到源码***/
-		ScpClientUtils scpClient = new ScpClientUtils("192.168.0.7", "root", "tccp@2012");
-		//scpClient.close();
-		String dbfilepath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"db.properties";
-		System.out.println(dbfilepath);
-		String demopath = Constants.PASCLOUD_HOME+Constants.PASCLOUD_SERVICE_DEMO+"/conf/";
-		scpClient.putFileToServer(dbfilepath, demopath);
-		String paspmpath =Constants.PASCLOUD_HOME+Constants.PASCLOUD_SERVICE_PASPM+"/conf/";
-		scpClient.putFileToServer(dbfilepath, paspmpath);
-		scpClient.close();
 		
 		return result;
 		

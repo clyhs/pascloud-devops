@@ -1,1 +1,2 @@
 var redisServerId = "";
+var index = "";

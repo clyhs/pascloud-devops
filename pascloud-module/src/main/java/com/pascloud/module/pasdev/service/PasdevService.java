@@ -18,11 +18,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.pascloud.bean.docker.ContainerVo;
 import com.pascloud.bean.pasdev.PasfileVo;
+import com.pascloud.bean.server.ServerVo;
 import com.pascloud.constant.Constants;
 import com.pascloud.module.config.PasCloudConfig;
+import com.pascloud.module.passervice.service.PasService;
+import com.pascloud.module.passervice.service.ScpClientService;
+import com.pascloud.module.server.service.ServerService;
 import com.pascloud.utils.FileUtils;
 import com.pascloud.utils.PasCloudCode;
+import com.pascloud.utils.ScpClientUtils;
 import com.pascloud.utils.gzip.GZipUtils;
 import com.pascloud.utils.gzip.TarUtils;
 import com.pascloud.utils.xml.XmlParser;
@@ -39,8 +45,22 @@ public class PasdevService {
 	private static Logger log = LoggerFactory.getLogger(PasdevService.class);
 	
 	@Autowired
-	private PasCloudConfig m_config;
+	private PasCloudConfig     m_config;
 	
+	@Autowired
+	private PasService         m_pasService;
+	
+	@Autowired
+	private ScpClientService   m_scpClientService;
+	
+	@Autowired
+	private ServerService      m_serverService;
+	
+	/**
+	 * 根据目录ID(分行代号)进行遍历目录
+	 * @param dirId
+	 * @return
+	 */
 	public List<PasfileVo> getPasdevFiles(String dirId){
 		List<PasfileVo> result = new ArrayList<>();
 		List<File> files = new ArrayList<File>();
@@ -118,7 +138,11 @@ public class PasdevService {
 		
 		return num;
 	}
-	
+	/**
+	 * 根据目录进行删除
+	 * @param dbSchema
+	 * @return
+	 */
 	public synchronized Integer delPasfileWidthID(String dbSchema){
 		Integer result = 0;
 		String path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()
@@ -242,29 +266,26 @@ public class PasdevService {
 		return lists;
 	}
 	
-	
+	/**
+	 * 根据分行代号进行压缩打包，并上传到服务，再进行解压
+	 * @param dbSchema
+	 * @return
+	 */
 	public Boolean uploadPasfileWithID(String dbSchema){
 		Boolean flag = false;
-		
 		String path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()
 		+"/"+dbSchema;
-		
-		System.out.println(path);
-		
 		String tarpath = path+".tar";
 		String gzpath = path+".tar.gz";
+		String gzname = dbSchema+".tar.gz";
 		try{
 			log.info("判断目录下文件是否不为空");
 			List<File> files = new ArrayList<File>();
-			
 			if(!FileUtils.isDir(path)){
 				return flag;
 			}
-			
 			files = FileUtils.listFilesInDir(path);
 			if(files.size()>0 && !FileUtils.isFileExists(gzpath)){
-				
-				
 				if(!FileUtils.isFileExists(tarpath)){
 					log.info("对目录进行tar压缩");
 					TarUtils.archive(path,tarpath);
@@ -273,9 +294,9 @@ public class PasdevService {
 					log.info("对目录进行gz压缩");
 					GZipUtils.compress(tarpath);
 				}
-				
 			}
 			if(FileUtils.isFileExists(gzpath)){
+				uploadGZIPToServer(gzpath,gzname,dbSchema);
 				flag = true;
 			}
 			log.info("完成压缩");
@@ -283,10 +304,53 @@ public class PasdevService {
 		    log.error(e.getMessage());
 		    //e.printStackTrace();
 		}
-		
 		return flag;
 	}
 	
+	/**
+	 * 上传到服务器并解压
+	 * @param gzpath
+	 * @param gzname
+	 */
+	private void uploadGZIPToServer(String gzpath,String gzname,String dbSchema){
+		String path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR();
+		ScpClientUtils scpClient = null;
+		//String serverPath = Constants.PASCLOUD_HOME;
+		List<ContainerVo> containers = m_pasService.getContainerWithMainService();
+		log.info("获取服务的容器");
+		if(null!=containers && containers.size()>0){
+			for(ContainerVo vo:containers){
+				log.info("获取容器的在的服务器");
+				ServerVo server = m_serverService.getByIP(vo.getIp());
+				log.info("获取容器所在服务器的PAS+目录");
+				String serverPath = m_pasService.getServicePasdevPathWithContainerName(vo.getName());
+				
+				String serverGZpath = serverPath+gzname;
+				if(null!=server){
+					scpClient = m_scpClientService.buildScpClient(server.getIp(), server.getUsername(), server.getPassword());
+					log.info("创建SSH连接工具类");
+					if(null !=scpClient){
+						log.info("上传");
+						m_scpClientService.putFileToServer(scpClient, gzpath, serverPath);
+						//String cmd="tar -zvxf "+serverGZpath+" -C "+serverPath;这种方式太慢
+						String cmd="tar -zvxf "+serverGZpath;
+						scpClient.execCommand(cmd);
+						String cpcmd = "cp -R ~/"+dbSchema+" "+serverPath;
+						scpClient.execCommand(cpcmd);
+						scpClient.close();
+					}
+					log.info("创建SSH连接工具类完成");
+				}
+				log.info("获取容器所在服务器的PAS+目录完成");
+				log.info("获取容器的在的服务器完成");
+			}
+		}
+		log.info("获取服务的容器完成");
+		
+	}
+	
+	
+	 
 	
 
 }

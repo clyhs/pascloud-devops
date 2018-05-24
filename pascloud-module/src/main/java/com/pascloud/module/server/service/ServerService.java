@@ -15,6 +15,11 @@ import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.passervice.service.ConfigService;
 import com.thoughtworks.xstream.XStream;
 
+/**
+ * 服务器接口
+ * @author chenly
+ *
+ */
 @Service
 public class ServerService {
 	
@@ -25,17 +30,17 @@ public class ServerService {
 	@Autowired
 	private PasCloudConfig m_config;
 	
+	/**
+	 * 获得全部服务器
+	 * @return
+	 */
 	public List<ServerVo> getServers(){
-		
 		List<ServerVo> servers = new ArrayList<ServerVo>();
-		
 		String serverPath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_SERVER_DIR()+this.m_server_file;
-		
 		File file = new File(serverPath);
         XStream xstream = new XStream(); 
         xstream.alias("server", ServerVo.class);
         servers =  (List<ServerVo>) xstream.fromXML(file);
-		
 		return servers;
 	}
 	
@@ -44,7 +49,6 @@ public class ServerService {
     	String url="";
 		List<ServerVo> servers = new ArrayList<ServerVo>();
 		String serverPath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_SERVER_DIR()+this.m_server_file;
-		
 		File file = new File(serverPath);
         XStream xstream = new XStream(); 
         xstream.alias("server", ServerVo.class);
@@ -57,10 +61,28 @@ public class ServerService {
         		}
         	}
         }
-        
         url ="http://"+ master.getIp()+":"+"2375";
 		
 		return url;
 	}
+    
+    public ServerVo getByIP(String ip){
+    	ServerVo vo = null;
+    	List<ServerVo> servers = new ArrayList<ServerVo>();
+		String serverPath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_SERVER_DIR()+this.m_server_file;
+		File file = new File(serverPath);
+        XStream xstream = new XStream(); 
+        xstream.alias("server", ServerVo.class);
+        servers =  (List<ServerVo>) xstream.fromXML(file);
+        if(servers.size()>0){
+        	for(ServerVo v:servers){
+        		if(v.getIp().equals(ip)){
+        			vo = v;
+        		}
+        	}
+        }
+        return vo;
+        
+    }
 
 }

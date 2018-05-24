@@ -16,20 +16,13 @@
     <script type="text/javascript" src="/static/js/lib/jquery.format.js"></script>
     
     <script type="text/javascript" src="/static/js/common/pascloudfunctions.js"></script>
-    
+
     
 	<script type="text/javascript">
-	
-	   var url ="/module/redis/redisPageData.json?redisServerId=${redisServerId}&index=${index}";
-	
-       function test(){
-           var key = $('#key').val();
-           
-           $('#tableDataGrid').datagrid('clearSelections'); 
-           $('#tableDataGrid').datagrid('options').url = url; 
-           $('#tableDataGrid').datagrid('load',{'selectKey' : key});
-       }
+	   redisServerId = "${redisServerId}"
+	   index = "${index}"
 	</script>
+	<script type="text/javascript" src="/app/redis/js/redisTable.js"></script>
 	<style>
 	    .datagrid-btable .datagrid-cell{padding:6px 4px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}  
 	    .formlabel{width:30%;text-align:right;float:left;}
@@ -61,7 +54,9 @@
                 <div id="tb" style="padding:5px;height:auto">
 		            <div>
 			            关键字: <input id="key" name="key" class="easyui-textbox" style="width:150px">
-			            <a href="#" id="btn" class="easyui-linkbutton" onclick="javascript:test()">搜索</a>
+			            <a href="#" id="search" class="easyui-linkbutton" onclick="javascript:searchForkey()">搜索</a>
+			            
+			            <a href="#" id="delete" class="easyui-linkbutton" onclick="javascript:deleteForkey()">删除</a>
 		            </div>
 	            </div>
 		    </div>

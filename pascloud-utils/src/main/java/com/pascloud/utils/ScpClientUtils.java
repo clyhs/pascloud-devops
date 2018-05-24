@@ -120,6 +120,36 @@ public class ScpClientUtils {
 		conn.close();
 	}
 	
+	public void execCommand(String cmd){
+		StringBuffer sb = new StringBuffer();
+		if(isAuth()){
+			Session session = null;
+			InputStream stdout = null;
+			BufferedReader br = null;
+			try {
+				SCPClient scpClient = conn.createSCPClient();
+				session = conn.openSession();
+				session.execCommand(cmd);
+				stdout = new StreamGobbler(session.getStdout());
+				br = new BufferedReader(new InputStreamReader(stdout));
+				while (true) {
+					String line = br.readLine();
+					if (line == null)
+						break;
+					sb.append(line);
+				}
+				//System.out.println(sb.toString());
+			}catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				log.error(e.getMessage());
+			} finally{
+				session.close();
+				conn.close();
+				
+			}
+		}
+	}
 	
 	public String catFileToString(String path){
 		StringBuffer sb = new StringBuffer();
@@ -169,10 +199,14 @@ public class ScpClientUtils {
 	}
 	
 	public void putFileToServer(String local,String server){
+		Session session = null;
+		InputStream stdout = null;
+		BufferedReader br = null;
 		if(isAuth()){
 			
 			try {
 				SCPClient scpClient = conn.createSCPClient();
+				
 				scpClient.put(local, server);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

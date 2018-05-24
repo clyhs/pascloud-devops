@@ -35,9 +35,3 @@ function initRSDetailDataGrid(redisServerId){
 }
 
 
-
-function search(){
-    var key = $('#key');
-    alert(key);
-
-}

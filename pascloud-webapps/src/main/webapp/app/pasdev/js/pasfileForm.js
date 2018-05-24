@@ -114,11 +114,21 @@ function uploadPasfile(){
 			$.post("uploadPasfile.json",param,function(data,status){
 	    		if(data.code == 10000){
 	    		    //alert(data.desc);
-	    			dispalyEasyUILoad('mainCenter');
-	    			$.messager.alert('提示','上传成功');	
+	    			//putPasfileToRedis.json
+	    			EasyUILoadForMsg('mainCenter','上传完成，正在初始化到缓存中，请耐心等待！');
+	    			$.post("putPasfileToRedis.json",param,function(data,status){
+	    	    		if(data.code == 10000){
+	    	    		    //alert(data.desc);
+	    	    			dispalyEasyUILoad('mainCenter');
+	    	    			$.messager.alert('提示',data.desc);	
+	    	    		}else{
+	    	    			dispalyEasyUILoad('mainCenter');
+	    	    			$.messager.alert('提示',data.desc);	
+	    	    		}
+	    	    	});
 	    		}else{
 	    			dispalyEasyUILoad('mainCenter');
-	    			$.messager.alert('提示','上传失败');	
+	    			$.messager.alert('提示',data.desc);	
 	    		}
 	    	});
 		}
