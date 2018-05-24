@@ -58,7 +58,7 @@
 				            <div style="width:100%;line-height:30px;height:auto;border:#ccc 0px solid;
 				                background-color:#99FFFF;">&nbsp;&nbsp;${node.hostname}</div>
 				            <table class="easyui-datagrid" style="height:250px;" 
-				                data-options="url:'/module/docker/getServerInfo.json?index='+${node_index},
+				                data-options="url:'/module/server/getServerInfo.json?index='+${node_index},
 				                fitColumns:true,singleSelect:true">
                                 <thead>
 		                            <tr>
