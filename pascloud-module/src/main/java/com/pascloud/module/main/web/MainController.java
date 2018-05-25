@@ -104,7 +104,7 @@ public class MainController extends BaseController {
 		
 		TreeVo t24 = new TreeVo();
 		t24.setId("2400");
-		t24.setText("版本管理");
+		t24.setText("资源管理");
 		t24.setLeaf(true);
 		t24.setIconCls("icon-application");
 		t24.setUrl("/module/pasdev/index.html");

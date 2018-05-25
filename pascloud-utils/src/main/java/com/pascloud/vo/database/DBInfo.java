@@ -31,8 +31,16 @@ public class DBInfo implements Serializable {
 	
 	private Integer userCount;
 	
+	private String alianame;
 	
-	
+
+	public String getAlianame() {
+		return alianame;
+	}
+
+	public void setAlianame(String alianame) {
+		this.alianame = alianame;
+	}
 
 	public Integer getUserCount() {
 		return userCount;

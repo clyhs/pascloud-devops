@@ -30,6 +30,7 @@ import com.pascloud.bean.mycat.DataNodeVo;
 import com.pascloud.bean.mycat.DataSourceVo;
 import com.pascloud.constant.Constants;
 import com.pascloud.module.config.PasCloudConfig;
+import com.pascloud.module.docker.service.ContainerService;
 import com.pascloud.module.docker.service.DockerService;
 import com.pascloud.utils.PasCloudCode;
 import com.pascloud.utils.xml.MycatXmlUtils;
@@ -49,6 +50,9 @@ public class MycatService {
 	
 	@Autowired
 	private DockerService m_dockerService;
+	
+	@Autowired
+	private ContainerService m_containerService;
 	
 	
 	public List<DataHostVo> getDataHosts(){
@@ -268,17 +272,7 @@ public class MycatService {
 		List<DataSourceVo> ds = new ArrayList<>();
 		
 		try {
-			List<NodeVo> nodes = new ArrayList<>();
-			nodes = m_dockerService.getNodes(dockerClient);
-			/****查询运行的服务***/
-			for(NodeVo vo: nodes){
-				DefaultDockerClient client = DefaultDockerClient.builder()
-						.uri("http://"+vo.getAddr()+":"+defaultPort).build();
-				List<ContainerVo> subContainers = m_dockerService.getContainer(client,"pascloud_mycat");
-				if(null != subContainers && subContainers.size()>0){
-					containers.addAll(subContainers);
-				}
-			}
+			containers = m_containerService.getContainers("pascloud_mycat");
 			if(null != containers.get(0)){
 				ContainerVo vo = containers.get(0);
 				dataSource.setUsername("root");

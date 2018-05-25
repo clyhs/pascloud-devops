@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.pascloud.bean.docker.ContainerVo;
 import com.pascloud.bean.docker.NodeVo;
+import com.pascloud.bean.mycat.DataNodeVo;
 import com.pascloud.bean.server.ServerVo;
 import com.pascloud.bean.tenant.KhdxHyVo;
 import com.pascloud.constant.Constants;
@@ -25,6 +26,7 @@ import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.database.service.DataBaseService;
 import com.pascloud.module.docker.service.ContainerService;
 import com.pascloud.module.docker.service.DockerService;
+import com.pascloud.module.mycat.service.MycatService;
 import com.pascloud.module.passervice.service.ConfigService;
 import com.pascloud.module.passervice.service.PasService;
 import com.pascloud.module.server.service.ServerService;
@@ -46,7 +48,7 @@ public class TenantController extends BaseController {
 	@Autowired
 	private ConfigService    m_configService;
 	@Autowired
-	private DockerService    m_dockerService;
+	private MycatService     m_mycatService;
 	@Autowired
 	private TenantService    m_tenantService;
 	@Autowired
@@ -69,8 +71,47 @@ public class TenantController extends BaseController {
 		
 		List<DBInfo> result = new ArrayList<>();
 		
-		result = m_configService.getDBFromConfig();
-		
+		try {
+			result = m_configService.getDBFromConfig();
+			for(DBInfo dbf:result){
+				
+				if(dbf.getName().equals("dn1")){
+					dbf.setAlianame("广州");
+				}else if(dbf.getName().equals("dn14")){
+					dbf.setAlianame("中山");
+				}else if(dbf.getName().equals("dn15")){
+					dbf.setAlianame("深圳");
+				}else if(dbf.getName().equals("dn19")){
+					dbf.setAlianame("珠海");
+				}else if(dbf.getName().equals("dn20")){
+					dbf.setAlianame("茂名");
+				}else if(dbf.getName().equals("dn16")){
+					dbf.setAlianame("佛山");
+				}else if(dbf.getName().equals("dn0")){
+					dbf.setAlianame("东莞");
+				}
+				
+				
+				Connection conn = null;
+				String driverClass = DBUtils.getDirverClassName(dbf.getDbType());
+				DBUtils db = new DBUtils(driverClass, dbf.getUrl(), dbf.getUsername(), dbf.getPassword());
+				conn = db.getConnection();
+				Integer total = -1;
+				String tableName = "khdx_hy";
+				
+				if(null!=conn){
+					total = m_dbService.getDataCountsByConn(conn, tableName,true);
+					dbf.setUserCount(total);
+					String xmmc = m_dbService.getSimleColumnValueByConn(conn, "select csz from xtb_xtcs where csmc = 'SYS_XMMC' ", "");
+				    if(null!=xmmc){
+				    	dbf.setDesc(xmmc);
+				    }
+				}
+			}
+			
+		} catch (Exception e) {
+			//e.printStackTrace();
+		}
 		return result;
 		
 	}
@@ -89,6 +130,39 @@ public class TenantController extends BaseController {
 		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
 		
 		m_configService.addDBConfig(ip, port, user, password, dbType, name, database);
+		
+		return result;
+		
+	}
+	
+	@RequestMapping("addTenantDBByName.json")
+	@ResponseBody
+	public ResultCommon addTenantDBByName(HttpServletRequest request,
+			@RequestParam(value="name",defaultValue="",required=true) String name){
+		
+		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
+		
+		List<DataNodeVo> datanodes = new ArrayList<>();
+		DataNodeVo datanode = null;
+		datanodes = m_mycatService.getDataNodes();
+		if(datanodes.size()>0){
+			for(DataNodeVo d:datanodes){
+				if(name.equals(d.getName())){
+					datanode = d;
+				}
+			}
+		}else{
+			result = new ResultCommon(PasCloudCode.ERROR);
+			return result;
+		}
+		
+		if(null!=datanode){
+			m_configService.addDBConfig(datanode.getIp(),Integer.valueOf(datanode.getPort()), datanode.getUser(),
+					datanode.getPassword(), datanode.getDbType(), name, datanode.getDatabase());
+		}else{
+			result = new ResultCommon(PasCloudCode.ERROR);
+			return result;
+		}
 		
 		return result;
 		
@@ -164,19 +238,25 @@ public class TenantController extends BaseController {
 		String driverClass = DBUtils.getDirverClassName(dbType);
 		DBUtils db = new DBUtils(driverClass, url, username, password);
 		Connection conn = null;
+		String xmmc = "";
 		try {
-			conn = db.getConnection();
-			if (null!=conn) {
+			//conn = db.getConnection();
+			if (db.canConnect()) {
+				/*
 				Integer total = -1;
 				String tableName = "khdx_hy";
-				total = m_dbService.getDataCountsByConn(conn, tableName);
+				total = m_dbService.getDataCountsByConn(conn, tableName,true);
+				
 				result = new ResultBean<Integer>(10000, "成功");
 				result.setBean(total);
+				result.setDesc("");*/
+				result = new ResultBean<Integer>(10000, "成功");
 			} else {
 				result = new ResultBean<Integer>(20000, "失败");
 			}
 		} catch (Exception e) {
 			result = new ResultBean<Integer>(20000, "失败");
+			e.printStackTrace();
 		}
 
 		return result;
@@ -229,6 +309,93 @@ public class TenantController extends BaseController {
 		}
 
 		return result;
+	}
+	
+	@RequestMapping(value = "syscHyByName.json", method = RequestMethod.GET)
+	@ResponseBody
+	public ResultCommon syscHy(HttpServletRequest request,
+			@RequestParam(value = "name", defaultValue = "", required = true) String name) {
+
+		ResultCommon result = null;
+		
+		if(name.equals(Constants.PASCLOUD_PUBLIC_DB)){
+			result = new ResultCommon(20000, "不能选择公共库进行同步，请重新选择");
+			return result;
+		}
+		
+		List<DataNodeVo> datanodes = new ArrayList<>();
+		DataNodeVo datanode = null;
+		datanodes = m_mycatService.getDataNodes();
+		if(datanodes.size()>0){
+			for(DataNodeVo d:datanodes){
+				if(name.equals(d.getName())){
+					datanode = d;
+				}
+			}
+		}else{
+			result = new ResultCommon(PasCloudCode.ERROR);
+			return result;
+		}
+		
+		if(null!=datanode){
+		}else{
+			result = new ResultCommon(PasCloudCode.ERROR);
+			return result;
+		}
+
+		String driverClass = DBUtils.getDirverClassName(datanode.getDbType());
+		DBUtils db = new DBUtils(driverClass, datanode.getUrl(), datanode.getUser(), datanode.getPassword());
+		Connection sourceConn = null;
+		Connection dn0Conn = null;
+		try {
+			sourceConn = db.getConnection();
+			if (null!=sourceConn) {
+				log.info("获取租户的全部行员数据");
+				List<KhdxHyVo> lists = m_tenantService.getAllHy(sourceConn);
+				dn0Conn = getPublicDB();
+				if(null!=dn0Conn && lists.size()>0){
+					log.info("清除租户在公共库的全部行员数据");
+					m_tenantService.deleteHyWithPublicDB(dn0Conn, name);
+					log.info("导入租户全部行员数据到公共库");
+					m_tenantService.addHyWithPublicDB(dn0Conn, name, lists);
+					log.info("导入租户全部行员数据到公共库完成");
+					result = new ResultCommon(10000, "同步成功");
+				}else{
+
+					result = new ResultCommon(20000, "公共库连接失败或者租户的行员数为空");
+				}
+			} else {
+				result = new ResultCommon(20000, "数据库连接失败");
+			}
+		} catch (Exception e) {
+			//e.printStackTrace();
+			log.error(e.getMessage());
+			result = new ResultBean<Integer>(20000, "同步异步，请联系管理员");
+		}
+
+		return result;
+	}
+	
+	@RequestMapping(value = "checkDBConfigByName.json", method = RequestMethod.GET)
+	@ResponseBody
+	public ResultCommon checkDBConfigByName(HttpServletRequest request,
+			@RequestParam(value = "name", defaultValue = "", required = true) String name){
+		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
+		List<DBInfo> dbs = new ArrayList<>();
+		try {
+			dbs = m_configService.getDBFromConfig();
+			if(dbs.size()>0){
+				for(DBInfo d:dbs){
+					if(d.getId().equals(name)){
+						result = new ResultCommon(PasCloudCode.ERROR);
+					}
+				}
+			}
+		}catch(Exception e){
+			result = new ResultCommon(PasCloudCode.ERROR);
+		}
+		return result;
+		
 	}
 	
 	private Connection getPublicDB(){

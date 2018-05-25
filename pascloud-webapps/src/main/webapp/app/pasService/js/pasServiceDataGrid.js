@@ -20,7 +20,8 @@ function initMainDataGrid(){
         showFooter: true,
         columns: [[
             //{ field: 'ck', checkbox: true },
-            { field: 'id', title: '编号', width: 150, align: 'left'  },
+            { field: 'id', title: '编号', width: 50, align: 'left'  },
+            { field: 'cnname',title: '中文名称', width:60, align: 'left' },
             { field: 'name', title: '名称', width: 120, align: 'left' },
             { field: 'state', title: '状态', width: 40, align: 'left' },
             { field: 'publicPort', title: '映射端口', width: 100, align: 'left' },
@@ -51,10 +52,6 @@ function initMainDataGrid(){
     });
 }
 
-function formatOper(val,row,index){ 
-	
-    return ' <a href="#" onclick="onSetting('+index+')">设置</a>';  
-} 
 
 
 function onSetting(index){

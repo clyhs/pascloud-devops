@@ -38,6 +38,21 @@ public class ContainerController extends BaseController {
 		List<ContainerVo> containers = new ArrayList<>();
 		//containers = m_dockerService.getContainer(dockerClient);
 		containers = m_containerService.getContainers(str);
+		for(ContainerVo vo :containers){
+			if(vo.getName().equals("pascloud_redis")){
+				vo.setCnname("缓存服务");
+			}else if(vo.getName().equals("pascloud_mycat")){
+				vo.setCnname("数据库中间件");
+			}else if(vo.getName().equals("pascloud_zookeeper_admin")){
+				vo.setCnname("注册中心");
+			}else if(vo.getName().equals("pascloud_tomcat")){
+				vo.setCnname("前端服务");
+			}else if(vo.getName().equals("pascloud_activemq")){
+				vo.setCnname("消息服务");
+			}else{
+				vo.setCnname("云平台共公服务");
+			}
+		}
 		return containers;
 	}
 	

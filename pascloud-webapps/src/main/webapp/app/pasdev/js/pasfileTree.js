@@ -31,7 +31,7 @@ function initPasfileTree(){
 		},
 		onDblClickCell:function(rowIndex, field, value){
 			var node = $('#pasfileTree').treegrid('getSelected');
-			var title = node.text;
+			var title = node.id;
 			var index= node.id;
 			var icon = "";
 			//alert(title);

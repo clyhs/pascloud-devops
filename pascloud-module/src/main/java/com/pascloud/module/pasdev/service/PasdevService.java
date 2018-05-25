@@ -296,13 +296,13 @@ public class PasdevService {
 				}
 			}
 			if(FileUtils.isFileExists(gzpath)){
-				uploadGZIPToServer(gzpath,gzname,dbSchema);
-				flag = true;
+				flag = uploadGZIPToServer(gzpath,gzname,dbSchema);
+				
 			}
 			log.info("完成压缩");
 		}catch(Exception e){
 		    log.error(e.getMessage());
-		    //e.printStackTrace();
+		    e.printStackTrace();
 		}
 		return flag;
 	}
@@ -312,9 +312,10 @@ public class PasdevService {
 	 * @param gzpath
 	 * @param gzname
 	 */
-	private void uploadGZIPToServer(String gzpath,String gzname,String dbSchema){
+	private Boolean uploadGZIPToServer(String gzpath,String gzname,String dbSchema){
 		String path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR();
 		ScpClientUtils scpClient = null;
+		Boolean flag = true;
 		//String serverPath = Constants.PASCLOUD_HOME;
 		List<ContainerVo> containers = m_pasService.getContainerWithMainService();
 		log.info("获取服务的容器");
@@ -331,12 +332,17 @@ public class PasdevService {
 					log.info("创建SSH连接工具类");
 					if(null !=scpClient){
 						log.info("上传");
-						m_scpClientService.putFileToServer(scpClient, gzpath, serverPath);
+						if(scpClient.putFileToServer( gzpath, serverPath)){
+							String cmd="tar -zvxf "+serverGZpath;
+							if(scpClient.execCommand(cmd)){
+								String cpcmd = "cp -R ~/"+dbSchema+" "+serverPath;
+								if(scpClient.execCommand(cpcmd)){
+									flag = true;
+								}
+							}
+						}
 						//String cmd="tar -zvxf "+serverGZpath+" -C "+serverPath;这种方式太慢
-						String cmd="tar -zvxf "+serverGZpath;
-						scpClient.execCommand(cmd);
-						String cpcmd = "cp -R ~/"+dbSchema+" "+serverPath;
-						scpClient.execCommand(cpcmd);
+						
 						scpClient.close();
 					}
 					log.info("创建SSH连接工具类完成");
@@ -346,7 +352,7 @@ public class PasdevService {
 			}
 		}
 		log.info("获取服务的容器完成");
-		
+		return flag;
 	}
 	
 	

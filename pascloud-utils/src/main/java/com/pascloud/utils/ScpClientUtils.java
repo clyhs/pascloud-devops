@@ -120,7 +120,8 @@ public class ScpClientUtils {
 		conn.close();
 	}
 	
-	public void execCommand(String cmd){
+	public Boolean execCommand(String cmd){
+		Boolean flag = false;
 		StringBuffer sb = new StringBuffer();
 		if(isAuth()){
 			Session session = null;
@@ -129,26 +130,29 @@ public class ScpClientUtils {
 			try {
 				SCPClient scpClient = conn.createSCPClient();
 				session = conn.openSession();
+				log.info("执行命令"+cmd);
 				session.execCommand(cmd);
 				stdout = new StreamGobbler(session.getStdout());
 				br = new BufferedReader(new InputStreamReader(stdout));
-				while (true) {
-					String line = br.readLine();
-					if (line == null)
-						break;
+				String line;
+				while ((line = br.readLine()) != null) {
+					
 					sb.append(line);
 				}
+				log.info("执行命令完毕");
+				flag = true;
 				//System.out.println(sb.toString());
 			}catch (IOException e) {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
+				log.info("执行命令异常");
 				log.error(e.getMessage());
 			} finally{
 				session.close();
 				conn.close();
-				
 			}
 		}
+		return flag;
 	}
 	
 	public String catFileToString(String path){
@@ -198,7 +202,8 @@ public class ScpClientUtils {
 		return sb.toString();
 	}
 	
-	public void putFileToServer(String local,String server){
+	public Boolean putFileToServer(String local,String server){
+		Boolean flag = false;
 		Session session = null;
 		InputStream stdout = null;
 		BufferedReader br = null;
@@ -206,13 +211,16 @@ public class ScpClientUtils {
 			
 			try {
 				SCPClient scpClient = conn.createSCPClient();
-				
+				log.info("文件正在上传");
 				scpClient.put(local, server);
+				flag = true;
+				log.info("文件上传完毕");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+		return flag;
 	}
 	
 	public SysServerInfo getServerInfo(){

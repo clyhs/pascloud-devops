@@ -13,6 +13,8 @@ public class ContainerVo implements Serializable{
 	
 	private String name;
 	
+	private String cnname;
+	
 	private String state;
 	
 	private String status;
@@ -20,6 +22,16 @@ public class ContainerVo implements Serializable{
 	private String publicPort;
 	
 	private String ip;
+	
+	
+
+	public String getCnname() {
+		return cnname;
+	}
+
+	public void setCnname(String cnname) {
+		this.cnname = cnname;
+	}
 
 	public String getId() {
 		return id;

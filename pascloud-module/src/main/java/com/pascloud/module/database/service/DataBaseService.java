@@ -194,7 +194,7 @@ public class DataBaseService extends AbstractDBService{
 		return total;
 	}
 	
-    public Integer getDataCountsByConn(Connection conn,String tableName){
+    public Integer getDataCountsByConn(Connection conn,String tableName ,Boolean...flag){
 		
 		Integer total = -1;
 		String sql = "select count(1)  from "+tableName;
@@ -212,6 +212,36 @@ public class DataBaseService extends AbstractDBService{
 			log.error(e.getMessage());
 			//e.printStackTrace();
 		}finally{
+			if(flag == null){
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+				}
+			}
+		}
+		return total;
+	}
+    
+    public String getSimleColumnValueByConn(Connection conn,String sql,String columnName){
+		
+		String value = "";
+		
+		try {
+			//log.info("统计表总条数--开始--");
+			QueryRunner qRunner = new QueryRunner();  
+			Object v =  (String)qRunner.query(conn,sql, new ScalarHandler());
+			//Gson g = new Gson();
+			value = v.toString();
+			//System.out.println(g.toJson(total));
+			//log.info("统计表总条数--完成--");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			//log.info("统计表总条数--失败--");
+			log.error(e.getMessage());
+			e.printStackTrace();
+		}finally{
 			try {
 				conn.close();
 			} catch (SQLException e) {
@@ -219,7 +249,7 @@ public class DataBaseService extends AbstractDBService{
 				e.printStackTrace();
 			}
 		}
-		return total;
+		return value;
 	}
 	
 	

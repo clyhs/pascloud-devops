@@ -105,8 +105,29 @@ public class PasdevController extends BaseController {
 		
 		for(int i=0;i<dirs.size();i++){
 			TreeVo vo = new TreeVo();
-			vo.setId(String.valueOf(i+1));
-			vo.setText(dirs.get(i));
+			vo.setId(dirs.get(i));
+			//vo.setText(dirs.get(i));
+			
+			if(dirs.get(i).equals("dn1")){
+				vo.setText("广州");
+			}else if(dirs.get(i).equals("dn14")){
+				vo.setText("中山");
+			}else if(dirs.get(i).equals("dn15")){
+				vo.setText("深圳");
+			}else if(dirs.get(i).equals("dn19")){
+				vo.setText("珠海");
+			}else if(dirs.get(i).equals("dn20")){
+				vo.setText("茂名");
+			}else if(dirs.get(i).equals("dn16")){
+				vo.setText("佛山");
+			}else if(dirs.get(i).equals("dn0")){
+				vo.setText("东莞");
+			}else if(dirs.get(i).equals("pasdev")){
+				vo.setText("惠州");
+			}
+			
+			
+			
 			vo.setLeaf(true);
 			vo.setUrl("#");
 			vo.setIconCls("icon-folder");
@@ -143,15 +164,10 @@ public class PasdevController extends BaseController {
 				}
 			}
 		}
-		
-		
-		
 		if(!flag){
 			m_pasdevService.copyPasfileWidthID(name);
-			result = new ResultCommon(PasCloudCode.SUCCESS);
-		}else{
-			result = new ResultCommon(PasCloudCode.ERROR);
 		}
+		result = new ResultCommon(PasCloudCode.SUCCESS);
 		return result;
 	}
 	

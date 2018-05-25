@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 import com.pascloud.bean.mycat.DataSourceVo;
 import com.pascloud.bean.tenant.KhdxHyVo;
-import com.pascloud.module.database.service.JdbcService;
 import com.pascloud.module.mycat.service.MycatService;
 
 @Service
@@ -24,17 +23,15 @@ public class TenantService {
 	
 	private static Logger log = LoggerFactory.getLogger(TenantService.class);
 	
-	@Autowired
-	private JdbcService<KhdxHyVo> m_jdbcService;
 	
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public List<KhdxHyVo> getAllHy(Connection conn){
 		List<KhdxHyVo> hys = new ArrayList<>();
 		try {
 			String sql = "select * from khdx_hy";
 			QueryRunner qRunner = new QueryRunner();  
-			hys =  qRunner.query(conn,sql, new BeanListHandler(KhdxHyVo.class));
-			Gson g = new Gson();
+			hys =  qRunner.query(conn,sql, new BeanListHandler<KhdxHyVo>(KhdxHyVo.class));
+			//Gson g = new Gson();
 			//System.out.println(g.toJson(hys));
 			//System.out.println(hys.size());
 		} catch (SQLException e) {
@@ -61,11 +58,10 @@ public class TenantService {
 			result =  qRunner.update(conn,sql,id);
 			//Gson g = new Gson();
 			//System.out.println(g.toJson(hys));
-			System.out.println(result);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			log.error(e.getMessage());
-			e.printStackTrace();
+			//e.printStackTrace();
 		}finally{
 			
 		}
@@ -94,14 +90,14 @@ public class TenantService {
 			qRunner.batch(conn, sql, params);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			log.error(e.getMessage());
 		}finally{
 			try {
 				conn.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		}
 		

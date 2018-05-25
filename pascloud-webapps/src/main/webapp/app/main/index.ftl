@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>云平台运维管理中心</title>
+	<title>绩效运维管理中心</title>
 	<link rel="stylesheet" type="text/css" href="/static/easyui/themes/metro/easyui.css">
 	
     <link rel="stylesheet" type="text/css" href="/static/easyui/themes/icon.css">
@@ -66,7 +66,7 @@
     <div data-options="region:'north'" style="height:50px;background-color:#99FFFF;border:0;" class="top">
         <!--
         <div class="logo" style="float:left;width:50px;"></div>-->
-        <div class="" style="float:left;width:300px;text-align:left;color:#ffffff;margin-left:20px;"><h2>云平台运维管理中心</h2></div>
+        <div class="" style="float:left;width:300px;text-align:left;color:#ffffff;margin-left:20px;"><h2>绩效运维管理中心</h2></div>
         <div class="" style="clear:both;"></div>
     </div>
     <div id="mainLeft" data-options="region:'west',split:true,title:'菜单管理',iconCls:'icon-folder'" style="width:180px">

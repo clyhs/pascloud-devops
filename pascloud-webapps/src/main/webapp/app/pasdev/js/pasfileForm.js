@@ -72,7 +72,7 @@ function delPasfile(){
 	var node = $('#pasfileTree').treegrid('getSelected');
 	//alert(node);
 	if(node!=null){
-		var name = node.text;
+		var name = node.id;
 		
 		var param = {name:name};
 		
@@ -105,7 +105,7 @@ function uploadPasfile(){
 	var node = $('#pasfileTree').treegrid('getSelected');
 	//alert(node);
 	if(node!=null){
-        var name = node.text;
+        var name = node.id;
 		var param = {name:name};
 		if(name == 'pasdev'){
 			$.messager.alert('提示','pasdev目录不能好传');	

@@ -1,13 +1,19 @@
 
 var toolbar = function(){
 	return [{
+		text : '一键开户',
+		iconCls : 'icon-script_start',
+		handler : function(){
+        	openOneTenant();
+        }
+	}/*,{
 		text : '添加数据库',  
         iconCls : 'icon-add',  
         handler : function(){
         	addDbDialog();
         }
-	},{
-		text : '删除数据库',  
+	}*/,{
+		text : '删除租户',  
         iconCls : 'icon-delete',  
         handler : function(){
         	delDB();
@@ -23,6 +29,12 @@ var toolbar = function(){
         iconCls : 'icon-20130406125647919_easyicon_net_16',  
         handler : function(){
         	sysHy();
+        }
+	},'-',{
+		text : '关闭检查',  
+        iconCls : 'icon-bin_closed',  
+        handler : function(){
+        	closeConnCheck();
         }
 	}];
 }();

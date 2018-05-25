@@ -21,12 +21,15 @@ import com.pascloud.bean.docker.ContainerVo;
 import com.pascloud.bean.docker.NodeVo;
 import com.pascloud.bean.mycat.DataNodeVo;
 import com.pascloud.bean.mycat.DataSourceVo;
+import com.pascloud.bean.server.ServerVo;
 import com.pascloud.constant.Constants;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.database.service.DataBaseService;
+import com.pascloud.module.docker.service.ContainerService;
 import com.pascloud.module.docker.service.DockerService;
 import com.pascloud.module.mycat.service.MycatService;
+import com.pascloud.module.server.service.ServerService;
 import com.pascloud.utils.PasCloudCode;
 import com.pascloud.utils.ScpClientUtils;
 import com.pascloud.vo.database.DBInfo;
@@ -46,7 +49,10 @@ public class MycatController extends BaseController {
 	private PasCloudConfig m_config;
 	
 	@Autowired
-	private DockerService m_dockerService;
+	private ContainerService m_containerService;
+	
+	@Autowired
+	private ServerService m_serverService;
 	
 	
 	@RequestMapping("/index.html")
@@ -138,24 +144,15 @@ public class MycatController extends BaseController {
 		//containers = m_dockerService.getContainer(dockerClient);
 		String mycat_schema_path =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SCHEMA;
 		String mycat_server_path =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SERVER;
-		List<NodeVo> nodes = new ArrayList<>();
-		
-		nodes = m_dockerService.getNodes(getDockerClient());
-		/****查询运行的服务***/
-		for(NodeVo vo: nodes){
-			DefaultDockerClient client = DefaultDockerClient.builder()
-					.uri("http://"+vo.getAddr()+":"+defaultPort).build();
-			List<ContainerVo> subContainers = m_dockerService.getContainer(client,"pascloud_mycat");
-			if(null != subContainers && subContainers.size()>0){
-				containers.addAll(subContainers);
-			}
-		}
+	
+		containers = m_containerService.getContainers("pascloud_mycat");
 		/****上传到复制的项目***/
 		if(containers.size()>0){
 			for(ContainerVo vo : containers){
-				ScpClientUtils scpClient = new ScpClientUtils(vo.getIp(), "root", "tccp@2012");
 				
+				ServerVo server = m_serverService.getByIP(vo.getIp());
 				
+				ScpClientUtils scpClient = new ScpClientUtils(vo.getIp(), server.getUsername(), server.getPassword());
 				String path = "/home/pascloud/mycat/conf/";
 				scpClient.putFileToServer(mycat_schema_path, path);
 				scpClient.putFileToServer(mycat_server_path, path);
