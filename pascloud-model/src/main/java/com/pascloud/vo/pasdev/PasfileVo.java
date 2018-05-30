@@ -1,4 +1,4 @@
-package com.pascloud.bean.pasdev;
+package com.pascloud.vo.pasdev;
 
 import java.io.Serializable;
 

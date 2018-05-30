@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.pascloud.bean.docker.NodeVo;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.docker.service.DockerService;
 import com.pascloud.utils.ScpClientUtils;
 import com.pascloud.vo.common.TreeVo;
+import com.pascloud.vo.docker.NodeVo;
 import com.pascloud.vo.result.ResultCommon;
 import com.pascloud.vo.server.SysServerInfo;
 import com.spotify.docker.client.DefaultDockerClient;
@@ -155,8 +155,16 @@ public class MainController extends BaseController {
 		t33.setIconCls("icon-application");
 		t33.setUrl("/module/mycat/monitor.html");
 		
+		TreeVo t34 = new TreeVo();
+		t34.setId("3400");
+		t34.setText("数据库管理");
+		t34.setLeaf(true);
+		t34.setIconCls("icon-application");
+		t34.setUrl("/module/dbserver/index.html");
+		
 		
 		List<TreeVo> t3children = new ArrayList<>();
+		t3children.add(t34);
 		t3children.add(t32);
 		t3children.add(t31);
 		t3children.add(t33);

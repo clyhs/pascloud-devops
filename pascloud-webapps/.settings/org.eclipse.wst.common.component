@@ -10,10 +10,10 @@
         <dependent-module archiveName="pascloud-dao-mybatis-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/pascloud-dao-mybatis/pascloud-dao-mybatis">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="pascloud-model-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/pascloud-model/pascloud-model">
+        <dependent-module archiveName="pascloud-utils-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/pascloud-utils/pascloud-utils">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="pascloud-utils-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/pascloud-utils/pascloud-utils">
+        <dependent-module archiveName="pascloud-model-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/pascloud-model/pascloud-model">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="context-root" value="pascloud-webapps"/>

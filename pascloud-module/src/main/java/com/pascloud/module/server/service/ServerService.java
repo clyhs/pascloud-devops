@@ -9,10 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pascloud.bean.server.ServerVo;
 import com.pascloud.constant.Constants;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.passervice.service.ConfigService;
+import com.pascloud.vo.server.ServerVo;
 import com.thoughtworks.xstream.XStream;
 
 /**
@@ -83,6 +83,26 @@ public class ServerService {
         }
         return vo;
         
+    }
+    
+    public List<ServerVo> getDataBaseServers(){
+    	List<ServerVo> servers = new ArrayList<>();
+    	List<ServerVo> result = new ArrayList<>();
+    	String serverPath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_SERVER_DIR()+this.m_server_file;
+		File file = new File(serverPath);
+        XStream xstream = new XStream(); 
+        xstream.alias("server", ServerVo.class);
+        servers =  (List<ServerVo>) xstream.fromXML(file);
+        
+        if(servers.size()>0){
+        	for(ServerVo vo:servers){
+        		if(vo.getDesc().equals("数据库服务器")){
+        			result.add(vo);
+        		}
+        	}
+        }
+        
+    	return result;
     }
 
 }

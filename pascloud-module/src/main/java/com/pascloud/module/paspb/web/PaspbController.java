@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.pascloud.bean.docker.ContainerVo;
-import com.pascloud.bean.docker.NodeVo;
 import com.pascloud.constant.Constants;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.config.PasCloudConfig;
@@ -33,6 +31,8 @@ import com.pascloud.utils.ScpClientUtils;
 import com.pascloud.utils.xml.SpringXmlUtils;
 import com.pascloud.utils.xml.XmlParser;
 import com.pascloud.vo.common.DbInfoVo;
+import com.pascloud.vo.docker.ContainerVo;
+import com.pascloud.vo.docker.NodeVo;
 import com.pascloud.vo.result.ResultCommon;
 import com.spotify.docker.client.DefaultDockerClient;
 

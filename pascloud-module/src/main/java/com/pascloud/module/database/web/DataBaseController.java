@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import com.pascloud.bean.mycat.DataNodeVo;
 import com.pascloud.constant.Constants;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.config.PasCloudConfig;
@@ -33,6 +32,7 @@ import com.pascloud.vo.common.TreeVo;
 import com.pascloud.vo.database.DBColumnVo;
 import com.pascloud.vo.database.DBInfo;
 import com.pascloud.vo.database.DBTableVo;
+import com.pascloud.vo.mycat.DataNodeVo;
 import com.pascloud.vo.result.ResultCommon;
 import com.pascloud.vo.result.ResultPageVo;
 import com.thoughtworks.xstream.XStream;

@@ -15,11 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import com.pascloud.bean.docker.ContainerVo;
-import com.pascloud.bean.docker.NodeVo;
-import com.pascloud.bean.mycat.DataNodeVo;
-import com.pascloud.bean.server.ServerVo;
-import com.pascloud.bean.tenant.KhdxHyVo;
 import com.pascloud.constant.Constants;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.config.PasCloudConfig;
@@ -35,8 +30,13 @@ import com.pascloud.utils.DBUtils;
 import com.pascloud.utils.PasCloudCode;
 import com.pascloud.utils.ScpClientUtils;
 import com.pascloud.vo.database.DBInfo;
+import com.pascloud.vo.docker.ContainerVo;
+import com.pascloud.vo.docker.NodeVo;
+import com.pascloud.vo.mycat.DataNodeVo;
 import com.pascloud.vo.result.ResultBean;
 import com.pascloud.vo.result.ResultCommon;
+import com.pascloud.vo.server.ServerVo;
+import com.pascloud.vo.tenant.KhdxHyVo;
 import com.spotify.docker.client.DefaultDockerClient;
 
 @Controller
@@ -74,7 +74,7 @@ public class TenantController extends BaseController {
 		try {
 			result = m_configService.getDBFromConfig();
 			for(DBInfo dbf:result){
-				
+				/*
 				if(dbf.getName().equals("dn1")){
 					dbf.setAlianame("广州");
 				}else if(dbf.getName().equals("dn14")){
@@ -89,8 +89,8 @@ public class TenantController extends BaseController {
 					dbf.setAlianame("佛山");
 				}else if(dbf.getName().equals("dn0")){
 					dbf.setAlianame("东莞");
-				}
-				
+				}*/
+				dbf.setAlianame(dbf.getName());
 				
 				Connection conn = null;
 				String driverClass = DBUtils.getDirverClassName(dbf.getDbType());

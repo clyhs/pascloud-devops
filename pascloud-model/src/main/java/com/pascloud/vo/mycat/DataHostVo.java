@@ -1,8 +1,8 @@
-package com.pascloud.bean.mycat;
+package com.pascloud.vo.mycat;
 
 import java.io.Serializable;
 
-public class DataNodeVo implements Serializable {
+public class DataHostVo implements Serializable {
 
 	/**
 	 * 
@@ -11,13 +11,7 @@ public class DataNodeVo implements Serializable {
 	
 	private String name;
 	
-	private String dataHost;
-	
-	private String ip;
-	
-	private String database;
-	
-    private String dbType;
+	private String dbType;
 	
 	private String url;
 	
@@ -28,16 +22,9 @@ public class DataNodeVo implements Serializable {
 	private String dbDriver;
 	
 	private String port;
-
 	
 	
-	public String getIp() {
-		return ip;
-	}
-
-	public void setIp(String ip) {
-		this.ip = ip;
-	}
+	
 
 	public String getPort() {
 		return port;
@@ -45,6 +32,22 @@ public class DataNodeVo implements Serializable {
 
 	public void setPort(String port) {
 		this.port = port;
+	}
+
+	public String getDbDriver() {
+		return dbDriver;
+	}
+
+	public void setDbDriver(String dbDriver) {
+		this.dbDriver = dbDriver;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getDbType() {
@@ -77,38 +80,6 @@ public class DataNodeVo implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getDbDriver() {
-		return dbDriver;
-	}
-
-	public void setDbDriver(String dbDriver) {
-		this.dbDriver = dbDriver;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDataHost() {
-		return dataHost;
-	}
-
-	public void setDataHost(String dataHost) {
-		this.dataHost = dataHost;
-	}
-
-	public String getDatabase() {
-		return database;
-	}
-
-	public void setDatabase(String database) {
-		this.database = database;
 	}
 	
 	

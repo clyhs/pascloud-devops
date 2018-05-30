@@ -19,7 +19,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.pascloud.devops</groupId>
-			<artifactId>pascloud-model</artifactId>
+			<artifactId>pascloud-utils</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.mybatis</groupId>

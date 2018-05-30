@@ -1,4 +1,4 @@
-package com.pascloud.bean.tenant;
+package com.pascloud.vo.tenant;
 
 import java.io.Serializable;
 

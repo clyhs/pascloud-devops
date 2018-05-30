@@ -1,4 +1,4 @@
-package com.pascloud.bean.docker;
+package com.pascloud.vo.docker;
 
 import java.io.Serializable;
 

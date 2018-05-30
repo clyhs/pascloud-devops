@@ -8,10 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pascloud.bean.docker.ContainerVo;
-import com.pascloud.bean.server.ServerVo;
 import com.pascloud.constant.Constants;
 import com.pascloud.module.docker.service.ContainerService;
+import com.pascloud.vo.docker.ContainerVo;
+import com.pascloud.vo.server.ServerVo;
 
 @Service
 public class PasService {

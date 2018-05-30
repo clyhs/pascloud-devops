@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.pascloud.bean.pasdev.PasfileVo;
 import com.pascloud.constant.Constants;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.config.PasCloudConfig;
@@ -30,6 +29,7 @@ import com.pascloud.utils.FileUtils;
 import com.pascloud.utils.HttpUtils;
 import com.pascloud.utils.PasCloudCode;
 import com.pascloud.vo.common.TreeVo;
+import com.pascloud.vo.pasdev.PasfileVo;
 import com.pascloud.vo.result.ResultCommon;
 
 /**
@@ -106,8 +106,8 @@ public class PasdevController extends BaseController {
 		for(int i=0;i<dirs.size();i++){
 			TreeVo vo = new TreeVo();
 			vo.setId(dirs.get(i));
-			//vo.setText(dirs.get(i));
-			
+			vo.setText(dirs.get(i));
+			/*
 			if(dirs.get(i).equals("dn1")){
 				vo.setText("广州");
 			}else if(dirs.get(i).equals("dn14")){
@@ -124,7 +124,7 @@ public class PasdevController extends BaseController {
 				vo.setText("东莞");
 			}else if(dirs.get(i).equals("pasdev")){
 				vo.setText("惠州");
-			}
+			}*/
 			
 			
 			

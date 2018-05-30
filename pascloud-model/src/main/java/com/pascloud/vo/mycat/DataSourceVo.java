@@ -1,4 +1,4 @@
-package com.pascloud.bean.mycat;
+package com.pascloud.vo.mycat;
 
 import java.io.Serializable;
 

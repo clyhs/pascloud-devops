@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.pascloud.bean.docker.NodeVo;
-import com.pascloud.bean.server.ServerVo;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.docker.service.DockerService;
 import com.pascloud.module.server.service.ServerService;
 import com.pascloud.utils.ScpClientUtils;
 import com.pascloud.vo.common.MapVo;
 import com.pascloud.vo.database.DBInfo;
+import com.pascloud.vo.docker.NodeVo;
+import com.pascloud.vo.server.ServerVo;
 import com.pascloud.vo.server.SysServerInfo;
 
 @Controller

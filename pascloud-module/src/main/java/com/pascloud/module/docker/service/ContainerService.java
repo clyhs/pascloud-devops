@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.pascloud.bean.docker.ContainerVo;
-import com.pascloud.bean.docker.NodeVo;
 import com.pascloud.module.server.service.ServerService;
+import com.pascloud.vo.docker.ContainerVo;
+import com.pascloud.vo.docker.NodeVo;
 import com.spotify.docker.client.DefaultDockerClient;
 
 /**

@@ -18,9 +18,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pascloud.bean.docker.ContainerVo;
-import com.pascloud.bean.pasdev.PasfileVo;
-import com.pascloud.bean.server.ServerVo;
 import com.pascloud.constant.Constants;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.passervice.service.PasService;
@@ -32,7 +29,10 @@ import com.pascloud.utils.ScpClientUtils;
 import com.pascloud.utils.gzip.GZipUtils;
 import com.pascloud.utils.gzip.TarUtils;
 import com.pascloud.utils.xml.XmlParser;
+import com.pascloud.vo.docker.ContainerVo;
+import com.pascloud.vo.pasdev.PasfileVo;
 import com.pascloud.vo.result.ResultCommon;
+import com.pascloud.vo.server.ServerVo;
 
 /**
  * pas+版本管理服务

@@ -22,9 +22,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.pascloud.bean.docker.ContainerVo;
-import com.pascloud.bean.docker.ImageVo;
-import com.pascloud.bean.docker.NodeVo;
+import com.pascloud.vo.docker.ContainerVo;
+import com.pascloud.vo.docker.ImageVo;
+import com.pascloud.vo.docker.NodeVo;
 import com.spotify.docker.client.DefaultDockerClient;
 import com.spotify.docker.client.LogStream;
 import com.spotify.docker.client.exceptions.DockerException;

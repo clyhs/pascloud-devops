@@ -23,4 +23,12 @@
     <desc>数据库服务器</desc>
     <type>slave</type>
   </server>
+  <server>
+    <ip>192.168.1.234</ip>
+    <username>root</username>
+    <password>tccp@2012</password>
+    <port>22</port>
+    <desc>数据库服务器</desc>
+    <type>slave</type>
+  </server>
 </list>

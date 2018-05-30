@@ -18,7 +18,10 @@
 	</properties>
 	<dependencies>
 
-
+        <dependency>
+			<groupId>com.pascloud.devops</groupId>
+			<artifactId>pascloud-model</artifactId>
+		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
 		<dependency>
@@ -126,26 +129,26 @@
 
 
 		<!-- httpclient -->
-		
+
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.5.2</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpcore</artifactId>
 			<version>4.4.4</version>
 			<type>jar</type>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient-cache</artifactId>
 			<version>4.4.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpmime</artifactId>

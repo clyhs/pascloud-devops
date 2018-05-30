@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.pascloud.bean.docker.ContainerVo;
-import com.pascloud.bean.docker.ImageVo;
-import com.pascloud.bean.docker.NodeVo;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.docker.service.DockerService;
+import com.pascloud.vo.docker.ContainerVo;
+import com.pascloud.vo.docker.ImageVo;
+import com.pascloud.vo.docker.NodeVo;
 import com.spotify.docker.client.DefaultDockerClient;
 
 @Controller

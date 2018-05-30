@@ -14,9 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
-import com.pascloud.bean.mycat.DataSourceVo;
-import com.pascloud.bean.tenant.KhdxHyVo;
 import com.pascloud.module.mycat.service.MycatService;
+import com.pascloud.vo.mycat.DataSourceVo;
+import com.pascloud.vo.tenant.KhdxHyVo;
 
 @Service
 public class TenantService {

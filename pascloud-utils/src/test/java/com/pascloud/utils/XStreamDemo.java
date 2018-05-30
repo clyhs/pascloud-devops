@@ -1,18 +1,21 @@
 package com.pascloud.utils;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.dom4j.Document;
 
 import com.pascloud.utils.xml.XmlParser;
 import com.pascloud.vo.database.DBInfo;
 import com.pascloud.vo.redis.RedisInfo;
+import com.pascloud.vo.server.ServerVo;
 import com.thoughtworks.xstream.XStream;
 
 public class XStreamDemo {
 	
 	public static void main(String[] args) {
-		
+		List<ServerVo> list = new ArrayList<>();
 		String header =  "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
 		/*
 		DBInfo info = new DBInfo();
@@ -57,6 +60,14 @@ public class XStreamDemo {
 		
 		
 		
+		String path = "d:/server.xml";
+		
+        File file = new File(path);
+        XStream xstream = new XStream(); 
+		//FileUtils.writeFileFromString(file, xml, false);
+        xstream.alias("server", ServerVo.class);
+        list =  (List<ServerVo>) xstream.fromXML(file);
+        System.out.println(list.size());
 		
 	 
 		
