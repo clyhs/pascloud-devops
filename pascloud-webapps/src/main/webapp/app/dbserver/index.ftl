@@ -17,16 +17,20 @@
     
     <script type="text/javascript" src="/static/js/common/pascloudfunctions.js"></script>
     
+    <script>
+        var defaultIp='${defaultIp}';
+    </script>
     
     
+    <script type="text/javascript" src="/app/dbserver/js/dbserverForm.js"></script>
     <script type="text/javascript" src="/app/dbserver/js/dbserverTree.js"></script>
+    <script type="text/javascript" src="/app/dbserver/js/dbserverDataGridToolbar.js"></script>
+    <script type="text/javascript" src="/app/dbserver/js/dbserverDataGrid.js"></script>
     
 	<script type="text/javascript">
 		$(function(){
-		    //initMainDataGrid();
-		   
+		    initMainDataGrid();
 		    initDbserverTree();
-		    
 		});
 		
 	</script>

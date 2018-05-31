@@ -43,3 +43,22 @@ tps分析
   |--|--数据库客户端
   |--|--pb应用管理（去掉）
   
+  步骤一：关闭数据库
+1.export ORACLE_SID=cpas12
+2.sqlplus / as sysdba
+3.shutdown immediate
+  
+  oracle删除
+  find $ORACLE_BASE/ -name cpas12
+  用命令删除查询后文件（注意：如果上一步骤查出来的文件有非实例相关文件，则不能直接通过 "-exec rm -rf {} \;"命令进行删除，建议一条一条删除，以免误删除文件）
+  find $ORACLE_BASE/ -name cpas12 -exec rm -rf {} \;
+  
+  
+  find $ORACLE_BASE/* -name '*[Cc][Pp][Aa][Ss]12*' | grep -v admin| grep -v  oradata
+  find $ORACLE_BASE/* -name '*[Cc][Pp][Aa][Ss]12*' | grep -v admin | grep -v oradata | xargs rm -rf
+  
+  删除实例配置文件中的信息
+1.vi /etc/oratab
+2.找到 bgsp:/Oracle_11g/oracle:N
+3.将该行信息删除，并保存文件
+  

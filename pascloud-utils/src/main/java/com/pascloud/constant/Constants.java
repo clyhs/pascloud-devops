@@ -25,4 +25,10 @@ public class Constants {
 	
 	public static String PASCLOUD_DEV_DEFAULT = "pasdev";
 	
+	public static String LINUX_ORACLE_HOME = "/home/oracle";
+	
+	public static String ORACLE_SID_PREEFIX="cpas";
+	
+	public static String ORACLE_SID_EX_PREEFIX="*[Cc][Pp][Aa][Ss]";
+	
 }

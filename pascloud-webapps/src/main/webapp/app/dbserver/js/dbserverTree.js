@@ -1,5 +1,4 @@
 function initDbserverTree(){
-    EasyUILoad('dbserverTree');
     $('#dbserverTree').treegrid({
 	    url:'dbserverTree.json',
 		method:'get',
@@ -20,13 +19,23 @@ function initDbserverTree(){
 		//onContextMenu: onContextMenu,
 		//onClick: onDBClick,
 		onLoadSuccess:function(node, data){
-			
+			if (data.length > 0) {
+		         //找到第一个元素
+				for(var i=0;i<data.length;i++){
+					if(data[i].text == defaultIp){
+						$('#dbserverTree').treegrid('select', data[i].id);
+					}
+				}          
+		    }
 		},
 		onDblClickCell:function(rowIndex, field, value){
 			var node = $('#dbserverTree').treegrid('getSelected');
-			var title = node.id;
+			var ip = node.text;
 			var index= node.id;
 			var icon = "";
+			defaultIp= ip;
+			reloadTableWithID(ip);
+			//alert(title);
 		}
 	});
 }
