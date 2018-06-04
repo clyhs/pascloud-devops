@@ -38,7 +38,7 @@ public class DataBaseService extends AbstractDBService{
 		Connection conn = null;
 		try {
 			log.info("查询数据库所有表--开始--");
-			dataSource = DataSourceUtils.getDataSource(dsId);
+			dataSource = (ComboPooledDataSource) DataSourceUtils.getDataSource(dsId);
 			conn = dataSource.getConnection();
 			String dsName = dataSource.getDataSourceName();
 			Gson g = new Gson();
@@ -73,7 +73,7 @@ public class DataBaseService extends AbstractDBService{
 		Connection conn = null;
 		try {
 			log.info("查询所有字段");
-			dataSource = DataSourceUtils.getDataSource(dsId);
+			dataSource = (ComboPooledDataSource) DataSourceUtils.getDataSource(dsId);
 			conn = dataSource.getConnection();
 			QueryRunner qRunner = new QueryRunner();  
 			String dsName = dataSource.getDataSourceName();
@@ -111,7 +111,7 @@ public class DataBaseService extends AbstractDBService{
 		try {
 			log.info("查询表所有数据--开始--");
 			
-			dataSource = DataSourceUtils.getDataSource(dsId);
+			dataSource = (ComboPooledDataSource) DataSourceUtils.getDataSource(dsId);
 			conn = dataSource.getConnection();
 			QueryRunner qRunner = new QueryRunner();  
 			sql = buildPageSql(sql,dataSource,startRow,pageSize);
@@ -170,7 +170,7 @@ public class DataBaseService extends AbstractDBService{
 		String sql = "select count(1)  from "+tableName;
 		try {
 			log.info("统计表总条数--开始--");
-			dataSource = DataSourceUtils.getDataSource(dsId);
+			dataSource = (ComboPooledDataSource) DataSourceUtils.getDataSource(dsId);
 			conn = dataSource.getConnection();
 			QueryRunner qRunner = new QueryRunner();  
 			Number num =  (Number)qRunner.query(conn,sql, new ScalarHandler());
@@ -266,7 +266,7 @@ public class DataBaseService extends AbstractDBService{
 		try {
 			pageData = new ResultPageVo(10000,"成功");
 			log.info("根据SQL查询数据--开始---");
-			dataSource = DataSourceUtils.getDataSource(dsId);
+			dataSource = (ComboPooledDataSource) DataSourceUtils.getDataSource(dsId);
 			sb.append(buildPageSql(sql,dataSource,startRow,pageSize));
 			conn = dataSource.getConnection();
 			QueryRunner qRunner = new QueryRunner();  
@@ -311,7 +311,7 @@ public class DataBaseService extends AbstractDBService{
 		  .append(" ) a ");
 		try {
 			log.info("根据SQL查询总条数--开始--");
-			dataSource = DataSourceUtils.getDataSource(dsId);
+			dataSource = (ComboPooledDataSource) DataSourceUtils.getDataSource(dsId);
 			conn = dataSource.getConnection();
 			QueryRunner qRunner = new QueryRunner();  
 			Number num =  (Number)qRunner.query(conn,sb.toString(), new ScalarHandler());
@@ -343,7 +343,7 @@ public class DataBaseService extends AbstractDBService{
 		ResultSet rs = null;
 		try {
 			log.info("根据SQL查询表头--开始--");
-			dataSource = DataSourceUtils.getDataSource(dsId);
+			dataSource = (ComboPooledDataSource) DataSourceUtils.getDataSource(dsId);
 			conn = dataSource.getConnection();
 			//stmt = conn.prepareStatement(sql);
 			stmt = conn.createStatement();
@@ -392,7 +392,7 @@ public class DataBaseService extends AbstractDBService{
 		
 		try {
 			log.info("执行非查询SQL语句--开始--");
-			dataSource = DataSourceUtils.getDataSource(dsId);
+			dataSource = (ComboPooledDataSource) DataSourceUtils.getDataSource(dsId);
 			conn = dataSource.getConnection();
 			conn.setAutoCommit(false);
 			QueryRunner qRunner = new QueryRunner();  

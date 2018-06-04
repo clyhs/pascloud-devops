@@ -76,7 +76,7 @@ function delDB(){
 		    //alert(data.desc);
 			reloadTableWithID(defaultIp);
 			dispalyEasyUILoad('mainCenter');
-			$.messager.alert('提示','创建成功');	
+			$.messager.alert('提示','删除成功');	
 		}else{
 			dispalyEasyUILoad('mainCenter');
 			$.messager.alert('提示',data.desc);	

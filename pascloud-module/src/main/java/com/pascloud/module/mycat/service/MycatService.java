@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +29,7 @@ import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.docker.service.ContainerService;
 import com.pascloud.module.docker.service.DockerService;
 import com.pascloud.utils.PasCloudCode;
+import com.pascloud.utils.db.DataSourceUtils;
 import com.pascloud.utils.xml.MycatXmlUtils;
 import com.pascloud.utils.xml.XmlParser;
 import com.pascloud.vo.database.DBColumnVo;
@@ -238,15 +240,15 @@ public class MycatService {
 	@SuppressWarnings("unchecked")
 	public List<DataSourceVo> getDataSourceList(DataSource dataSource){
 		List<DataSourceVo> result = new ArrayList<>();
-		
+		log.info("查询中间件MYCAT的datasource");
 		Connection conn = null;
 		String sql = "show @@datasource";
 		try {
 			conn = dataSource.getConnection();
 			QueryRunner qRunner = new QueryRunner();  
 			result =  (List<DataSourceVo>)qRunner.query(conn,sql, new BeanListHandler(DataSourceVo.class));
-			Gson g = new Gson();
-			System.out.println(g.toJson(result));
+			//Gson g = new Gson();
+			//System.out.println(g.toJson(result));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
@@ -273,17 +275,25 @@ public class MycatService {
 		
 		try {
 			containers = m_containerService.getContainers("pascloud_mycat");
-			if(null != containers.get(0)){
-				ContainerVo vo = containers.get(0);
-				dataSource.setUsername("root");
-				//dataSource.setDataSourceName("alldb");
-				//dataSource.setName("alldb");
-				dataSource.setUrl("jdbc:mysql://"+vo.getIp()+":9066/alldb");
-				dataSource.setPassword("root");
-				dataSource.setDriverClassName(Constants.DB_MYSQL_DIRVERCLASS);
+			
+			if(null != DataSourceUtils.getDataSource("mycat")){
+				dataSource = (DruidDataSource) DataSourceUtils.getDataSource("mycat");
 				ds = getDataSourceList(dataSource);
-				
+			}else{
+				if(null != containers.get(0)){
+					ContainerVo vo = containers.get(0);
+					Locale.setDefault( Locale.US );
+					dataSource.setUsername("root");
+					//dataSource.setDataSourceName("alldb");
+					//dataSource.setName("alldb");
+					dataSource.setUrl("jdbc:mysql://"+vo.getIp()+":9066/alldb");
+					dataSource.setPassword("root");
+					dataSource.setDriverClassName(Constants.DB_MYSQL_DIRVERCLASS);
+					DataSourceUtils.addDataSource("mycat", dataSource);
+				}
 			}
+			
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			log.error(e.getMessage());

@@ -1,9 +1,12 @@
 package com.pascloud.module.pasdev.service;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -19,13 +22,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pascloud.constant.Constants;
+import com.pascloud.module.common.service.AbstractBaseService;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.passervice.service.PasService;
 import com.pascloud.module.passervice.service.ScpClientService;
 import com.pascloud.module.server.service.ServerService;
 import com.pascloud.utils.FileUtils;
 import com.pascloud.utils.PasCloudCode;
-import com.pascloud.utils.ScpClientUtils;
 import com.pascloud.utils.gzip.GZipUtils;
 import com.pascloud.utils.gzip.TarUtils;
 import com.pascloud.utils.xml.XmlParser;
@@ -34,13 +37,18 @@ import com.pascloud.vo.pasdev.PasfileVo;
 import com.pascloud.vo.result.ResultCommon;
 import com.pascloud.vo.server.ServerVo;
 
+import ch.ethz.ssh2.Connection;
+import ch.ethz.ssh2.SCPClient;
+import ch.ethz.ssh2.Session;
+import ch.ethz.ssh2.StreamGobbler;
+
 /**
  * pas+版本管理服务
  * @author chenly
  *
  */
 @Service
-public class PasdevService {
+public class PasdevService extends AbstractBaseService {
 	
 	private static Logger log = LoggerFactory.getLogger(PasdevService.class);
 	
@@ -314,7 +322,8 @@ public class PasdevService {
 	 */
 	private Boolean uploadGZIPToServer(String gzpath,String gzname,String dbSchema){
 		String path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR();
-		ScpClientUtils scpClient = null;
+		
+		Connection conn = null;
 		Boolean flag = true;
 		//String serverPath = Constants.PASCLOUD_HOME;
 		List<ContainerVo> containers = m_pasService.getContainerWithMainService();
@@ -328,22 +337,22 @@ public class PasdevService {
 				
 				String serverGZpath = serverPath+gzname;
 				if(null!=server){
-					scpClient = m_scpClientService.buildScpClient(server.getIp(), server.getUsername(), server.getPassword());
+					conn = getScpClientConn(server.getIp(), server.getUsername(), server.getPassword());
+					//scpClient = m_scpClientService.buildScpClient(server.getIp(), server.getUsername(), server.getPassword());
 					log.info("创建SSH连接工具类");
-					if(null !=scpClient){
+					if(null !=conn){
 						log.info("上传");
-						if(scpClient.putFileToServer( gzpath, serverPath)){
+						if(uploadGZToServer(conn,gzpath,serverPath)){
 							String cmd="tar -zvxf "+serverGZpath;
-							if(scpClient.execCommand(cmd)){
+							if(execCommand(conn,cmd)){
 								String cpcmd = "cp -R ~/"+dbSchema+" "+serverPath;
-								if(scpClient.execCommand(cpcmd)){
+								if(execCommand(conn,cpcmd)){
 									flag = true;
 								}
 							}
 						}
 						//String cmd="tar -zvxf "+serverGZpath+" -C "+serverPath;这种方式太慢
-						
-						scpClient.close();
+						conn.close();
 					}
 					log.info("创建SSH连接工具类完成");
 				}
@@ -352,6 +361,59 @@ public class PasdevService {
 			}
 		}
 		log.info("获取服务的容器完成");
+		return flag;
+	}
+	
+	private Boolean uploadGZToServer(Connection conn,String gzpath,String serverPath){
+		Boolean flag = false; 
+		if (null!=conn) {
+
+			try {
+				SCPClient scpClient = conn.createSCPClient();
+				log.info("文件正在上传");
+				scpClient.put(gzpath, serverPath);
+				flag = true;
+				log.info("文件上传完毕");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return flag;
+	}
+	
+	public Boolean execCommand(Connection conn,String cmd) {
+		Boolean flag = false;
+		StringBuffer sb = new StringBuffer();
+		if (null!=conn) {
+			Session session = null;
+			InputStream stdout = null;
+			BufferedReader br = null;
+			try {
+				session = conn.openSession();
+				log.info("执行命令" + cmd);
+				session.execCommand(cmd);
+				stdout = new StreamGobbler(session.getStdout());
+				br = new BufferedReader(new InputStreamReader(stdout));
+				
+				while (true) {
+					String line = br.readLine();
+					if (line == null)
+						break;
+					sb.append(line);
+				}
+				log.info("执行命令完毕");
+				flag = true;
+				// System.out.println(sb.toString());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				// e.printStackTrace();
+				log.info("执行命令异常");
+				log.error(e.getMessage());
+			} finally {
+				session.close();
+			}
+		}
 		return flag;
 	}
 	

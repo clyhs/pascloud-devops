@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
@@ -59,27 +60,32 @@ public class DataBaseController extends BaseController {
 		for (DataNodeVo vo : nodes) {
 			try {
 				ComboPooledDataSource dataSource = new ComboPooledDataSource();
-
-				log.info(vo.getUrl().trim() + vo.getDbType());
-				dataSource = new ComboPooledDataSource();
-				dataSource.setUser(vo.getUser().trim());
-				dataSource.setDataSourceName(vo.getDatabase());
-				dataSource.setPassword(vo.getPassword().trim());
-				
-				if("mysql".equals(vo.getDbType())){
-					String url = DBUtils.getUrlByParams(vo.getDbType(), vo.getIp(), vo.getDatabase(), Integer.valueOf(vo.getPort()));
-					dataSource.setJdbcUrl(url);
+				if(null!=DataSourceUtils.getDataSource(vo.getName())){
+					dataSource = (ComboPooledDataSource) DataSourceUtils.getDataSource(vo.getName());
 				}else{
-					dataSource.setJdbcUrl(vo.getUrl().trim());
+					Locale.setDefault( Locale.US );
+					log.info(vo.getUrl().trim() + vo.getDbType());
+					dataSource = new ComboPooledDataSource();
+					dataSource.setUser(vo.getUser().trim());
+					dataSource.setDataSourceName(vo.getDatabase());
+					dataSource.setPassword(vo.getPassword().trim());
+					
+					if("mysql".equals(vo.getDbType())){
+						String url = DBUtils.getUrlByParams(vo.getDbType(), vo.getIp(), vo.getDatabase(), Integer.valueOf(vo.getPort()));
+						dataSource.setJdbcUrl(url);
+					}else{
+						dataSource.setJdbcUrl(vo.getUrl().trim());
+					}
+					dataSource.setDriverClass(DBUtils.getDirverClassName(vo.getDbType()));
+					dataSource.setInitialPoolSize(5);
+					dataSource.setMinPoolSize(5);
+					dataSource.setMaxPoolSize(10);
+					dataSource.setMaxStatements(0);
+					dataSource.setMaxIdleTime(60);
+					// dataSource.getConnection();
+					DataSourceUtils.addDataSource(vo.getName(), dataSource);
 				}
-				dataSource.setDriverClass(DBUtils.getDirverClassName(vo.getDbType()));
-				dataSource.setInitialPoolSize(5);
-				dataSource.setMinPoolSize(5);
-				dataSource.setMaxPoolSize(10);
-				dataSource.setMaxStatements(0);
-				dataSource.setMaxIdleTime(60);
-				// dataSource.getConnection();
-				DataSourceUtils.addDataSource(vo.getName(), dataSource);
+				
 			} catch (Exception e) {
 				// e.printStackTrace();
 				log.error("初始化失败");
