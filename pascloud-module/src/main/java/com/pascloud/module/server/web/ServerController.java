@@ -43,7 +43,15 @@ public class ServerController extends BaseController {
 		List<ServerVo> result = new ArrayList<>();
 		result = m_serverService.getServers();
 		return result;
+	}
+	
+	@RequestMapping("appservers.json")
+	@ResponseBody
+	public List<ServerVo> getAppServers(){
 		
+		List<ServerVo> result = new ArrayList<>();
+		result = m_serverService.getAppServers();
+		return result;
 	}
 	
 	@RequestMapping("getServerInfo")

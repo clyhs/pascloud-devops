@@ -39,6 +39,11 @@ import com.pascloud.vo.server.ServerVo;
 import com.pascloud.vo.tenant.KhdxHyVo;
 import com.spotify.docker.client.DefaultDockerClient;
 
+/**
+ * 租户管理
+ * @author chenly
+ *
+ */
 @Controller
 @RequestMapping("module/tenant")
 public class TenantController extends BaseController {
@@ -134,7 +139,12 @@ public class TenantController extends BaseController {
 		return result;
 		
 	}
-	
+	/**
+	 * 增加租户
+	 * @param request
+	 * @param name
+	 * @return
+	 */
 	@RequestMapping("addTenantDBByName.json")
 	@ResponseBody
 	public ResultCommon addTenantDBByName(HttpServletRequest request,
@@ -167,7 +177,12 @@ public class TenantController extends BaseController {
 		return result;
 		
 	}
-	
+	/**
+	 * 删除租户
+	 * @param request
+	 * @param name
+	 * @return
+	 */
 	@RequestMapping("delTenantDB.json")
 	@ResponseBody
 	public ResultCommon delTenantDB(HttpServletRequest 
@@ -181,7 +196,11 @@ public class TenantController extends BaseController {
 		m_configService.delDBConfig(name);
 		return result;
 	}
-	
+	/**
+	 * 上传服务的config.properties文件
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("uploadConfig.json")
 	@ResponseBody
 	public ResultCommon uploadConfig(HttpServletRequest 
@@ -262,6 +281,16 @@ public class TenantController extends BaseController {
 		return result;
 	}
 	
+	/**
+	 * 同步行员数据
+	 * @param request
+	 * @param id
+	 * @param dbType
+	 * @param url
+	 * @param username
+	 * @param password
+	 * @return
+	 */
 	@RequestMapping(value = "syscHy.json", method = RequestMethod.GET)
 	@ResponseBody
 	public ResultCommon syscHy(HttpServletRequest request,
@@ -311,6 +340,12 @@ public class TenantController extends BaseController {
 		return result;
 	}
 	
+	/**
+	 * 根据名称同步行员数据到公共库
+	 * @param request
+	 * @param name
+	 * @return
+	 */
 	@RequestMapping(value = "syscHyByName.json", method = RequestMethod.GET)
 	@ResponseBody
 	public ResultCommon syscHy(HttpServletRequest request,

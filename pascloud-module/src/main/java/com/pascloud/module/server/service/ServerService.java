@@ -104,5 +104,25 @@ public class ServerService {
         
     	return result;
     }
+    
+    public List<ServerVo> getAppServers(){
+    	List<ServerVo> servers = new ArrayList<>();
+    	List<ServerVo> result = new ArrayList<>();
+    	String serverPath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_SERVER_DIR()+this.m_server_file;
+		File file = new File(serverPath);
+        XStream xstream = new XStream(); 
+        xstream.alias("server", ServerVo.class);
+        servers =  (List<ServerVo>) xstream.fromXML(file);
+        
+        if(servers.size()>0){
+        	for(ServerVo vo:servers){
+        		if(vo.getDesc().equals("应用服务器")){
+        			result.add(vo);
+        		}
+        	}
+        }
+        
+    	return result;
+    }
 
 }

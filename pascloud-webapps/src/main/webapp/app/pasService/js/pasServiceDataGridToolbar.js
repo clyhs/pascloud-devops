@@ -7,6 +7,12 @@ var toolbar = function(){
         	addBaseContainer();
         }
 	},{
+		text : '添加服务',  
+        iconCls : 'icon-add',  
+        handler : function(){
+        	addPasService();
+        }
+	},{
 		text : '公共服务',  
         iconCls : 'icon-add',  
         handler : function(){
