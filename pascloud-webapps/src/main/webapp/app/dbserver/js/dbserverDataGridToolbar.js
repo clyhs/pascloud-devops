@@ -11,5 +11,11 @@ var toolbar = function(){
         handler : function(){
         	delDB();
         }
+	},{
+		text : '导入数据',  
+        iconCls : 'icon-add',  
+        handler : function(){
+        	impDmpWithSid();
+        }
 	}];
 }();

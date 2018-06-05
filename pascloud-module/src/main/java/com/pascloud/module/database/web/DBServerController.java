@@ -95,11 +95,32 @@ public class DBServerController extends BaseController {
 			@RequestParam(value="ip",defaultValue="",required=true) String ip,
 			@RequestParam(value="sid",defaultValue="",required=true) String sid){
 		ResultCommon result = null;
+		String tnsnamePath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SCRIPT_ORACLE_DIR()+
+				"/conf/tnsnames.ora";
+		if("".equals(ip) || ip.length() == 0 || "".equals(sid) || sid.length()==0){
+			return result = new ResultCommon(PasCloudCode.ERROR);
+		}else{
+			if(m_dbServerService.createOracleWithSid(ip, sid,tnsnamePath)){
+				result = new ResultCommon(PasCloudCode.SUCCESS);
+			}else{
+				return result = new ResultCommon(PasCloudCode.ERROR);
+			}
+		}
+		return result;
+		
+	}
+	
+	@RequestMapping("/impDmpWithSid.json")
+	@ResponseBody
+	public ResultCommon impDmpWithSid(HttpServletRequest request,
+			@RequestParam(value="ip",defaultValue="",required=true) String ip,
+			@RequestParam(value="sid",defaultValue="",required=true) String sid){
+		ResultCommon result = null;
 		
 		if("".equals(ip) || ip.length() == 0 || "".equals(sid) || sid.length()==0){
 			return result = new ResultCommon(PasCloudCode.ERROR);
 		}else{
-			if(m_dbServerService.createOracleWithSid(ip, sid)){
+			if(m_dbServerService.importDmpfileWithSid(ip, sid)){
 				result = new ResultCommon(PasCloudCode.SUCCESS);
 			}else{
 				return result = new ResultCommon(PasCloudCode.ERROR);
@@ -117,11 +138,15 @@ public class DBServerController extends BaseController {
 		ResultCommon result = null;
 		String oratabfilePath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SCRIPT_ORACLE_DIR()+
 				"/conf/oratab";
+		
+		String tnsnamePath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SCRIPT_ORACLE_DIR()+
+				"/conf/tnsnames.ora";
+		
 		log.info(oratabfilePath);
 		if("".equals(ip) || ip.length() == 0 || "".equals(sid) || sid.length()==0){
 			return result = new ResultCommon(PasCloudCode.ERROR);
 		}else{
-			if(m_dbServerService.deleteOracleWithSid(ip, sid, oratabfilePath)){
+			if(m_dbServerService.deleteOracleWithSid(ip, sid, oratabfilePath,tnsnamePath)){
 				result = new ResultCommon(PasCloudCode.SUCCESS);
 			}else{
 				return result = new ResultCommon(PasCloudCode.ERROR);

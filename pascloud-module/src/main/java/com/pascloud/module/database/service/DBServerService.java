@@ -110,15 +110,18 @@ public class DBServerService extends AbstractBaseService {
 		return lists;
 	}
 
-	public Boolean createOracleWithSid(String ip, String sid) {
+	public Boolean createOracleWithSid(String ip, String sid,String tnsnamePath) {
 		Boolean flag = false;
 		ServerVo vo = m_serverService.getByIP(ip);
 		log.info("ip:" + ip + ",sid:" + sid);
-		flag = createOracleBySID(sid,ip);
+		flag = createOracleBySID(sid,ip,tnsnamePath);
+		
 		return flag;
 	}
+	
+	
 
-	private Boolean createOracleBySID(String sid, String ip) {
+	private Boolean createOracleBySID(String sid, String ip,String tnsnamePath) {
 		Boolean flag = false;
 		StringBuffer sb = new StringBuffer();
 		InputStream stdout = null;
@@ -126,11 +129,13 @@ public class DBServerService extends AbstractBaseService {
 		BufferedReader br = null;
 		int i = 0;
 		Connection conn = null;
-
+		Connection conn2 = null;
 		try {
 			if (null!= ip) {
-				conn = getScpClientConn(ip, "oracle", "oracle");
-				session = conn.openSession();
+				ServerVo vo = m_serverService.getByIP(ip);
+				conn2 = getScpClientConn(ip, "oracle", "oracle");
+				conn =  getScpClientConn(ip, vo.getUsername(), vo.getPassword());
+				session = conn2.openSession();
 				session.execCommand("~/script/create_database.sh" + " " + sid);
 				stdout = new StreamGobbler(session.getStdout());
 				br = new BufferedReader(new InputStreamReader(stdout));
@@ -145,6 +150,17 @@ public class DBServerService extends AbstractBaseService {
 					sb.append(line);
 				}
 				System.out.println(flag);
+				
+				if(flag){
+					if(addSidWithTnsname(sid,conn,ip,tnsnamePath)){
+						//flag = impDmpFileWithSid(conn2,sid);createTableSpaceWithSid
+						if(createTableSpaceWithSid(conn,sid)){
+							if(grantWithSid(conn,sid)){
+								flag=restartListenerWithSid(conn,sid);
+							}
+						}
+					};
+				}
 			}else{
 				return flag;
 			}
@@ -167,13 +183,149 @@ public class DBServerService extends AbstractBaseService {
 				log.error(e.getMessage());
 			}
 			session.close();
+			conn2.close();
 			conn.close();
 		}
 
 		return flag;
 	}
+	
+	private Boolean createTableSpaceWithSid(Connection conn ,String sid){
+		Boolean flag = false;
+		Session session = null;
+		InputStream stdout = null;
+		BufferedReader br = null;
+		try {
+			log.info("新建表空间");
+			session = conn.openSession();
+			session.execCommand("/home/oracle/script/create_tablespace.sh" + " " + sid);
+			stdout = new StreamGobbler(session.getStdout());
+			br = new BufferedReader(new InputStreamReader(stdout));
+			while (true) {
+				String line = br.readLine();
+				if (line == null) {
+					log.info("新建表空间成功");
+					flag = true;
+					break;
+				} else {
+					log.info(line);
+				}
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+			log.error("新建表空间异常");
+		} finally {
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			try {
+				stdout.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			session.close();
+		}
+		return flag;
+	}
+	
+	private Boolean grantWithSid(Connection conn ,String sid){
+		Boolean flag = false;
+		Session session = null;
+		InputStream stdout = null;
+		BufferedReader br = null;
+		try {
+			log.info("新建用户pas");
+			session = conn.openSession();
+			session.execCommand("/home/oracle/script/grant_sid.sh" + " " + sid);
+			stdout = new StreamGobbler(session.getStdout());
+			br = new BufferedReader(new InputStreamReader(stdout));
+			while (true) {
+				String line = br.readLine();
+				if (line == null) {
+					log.info("新建用户pas成功");
+					flag = true;
+					break;
+				} else {
+					log.info(line);
+				}
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+			log.error("新建用户pas异常");
+		} finally {
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			try {
+				stdout.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			session.close();
+		}
+		return flag;
+	}
+	
+	private Boolean restartListenerWithSid(Connection conn ,String sid){
+		Boolean flag = false;
+		Session session = null;
+		InputStream stdout = null;
+		BufferedReader br = null;
+		try {
+			log.info("新建用户pas");
+			session = conn.openSession();
+			session.execCommand("/home/oracle/script/restart_listener.sh" + " " + sid);
+			stdout = new StreamGobbler(session.getStdout());
+			br = new BufferedReader(new InputStreamReader(stdout));
+			while (true) {
+				String line = br.readLine();
+				if (line == null) {
+					log.info("新建用户pas成功");
+					flag = true;
+					break;
+				} else {
+					log.info(line);
+				}
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+			log.error("新建用户pas异常");
+		} finally {
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			try {
+				stdout.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			session.close();
+		}
+		return flag;
+	}
 
-	public Boolean deleteOracleWithSid(String ip, String sid, String oratabfilePath) {
+	public Boolean deleteOracleWithSid(String ip, String sid, String oratabfilePath,String tnsnamePath) {
 
 		Boolean flag = false;
 		Connection conn = null;
@@ -185,7 +337,7 @@ public class DBServerService extends AbstractBaseService {
 				if (shutDownOracleWithSid(conn, sid)) {
 					if (deleteOracleWithSid(conn, sid)) {
 						if (delSIDWithOratab(conn, sid, oratabfilePath)) {
-							flag = true;
+							flag = delSidWithTnsname(sid,conn,ip,tnsnamePath);
 						}
 					}
 				}
@@ -206,6 +358,65 @@ public class DBServerService extends AbstractBaseService {
 
 		}
 
+		return flag;
+	}
+	
+	public Boolean importDmpfileWithSid(String ip,String sid){
+		Boolean flag = false;
+		ServerVo vo = m_serverService.getByIP(ip);
+		log.info("ip:" + ip + ",sid:" + sid);
+		Connection conn = null;
+		if(null!=vo){
+			conn = getScpClientConn(vo.getIp(), vo.getUsername(), vo.getPassword());
+			flag = impDmpFileWithSid(conn,sid);
+		}
+		
+		return flag;
+	}
+	
+	private Boolean impDmpFileWithSid(Connection conn, String sid) {
+		Boolean flag = false;
+		Session session = null;
+		InputStream stdout = null;
+		BufferedReader br = null;
+		try {
+			log.info("导入DMP文件");
+			session = conn.openSession();
+			session.execCommand("/home/oracle/script/imp_dmp.sh" + " " + sid);
+			stdout = new StreamGobbler(session.getStdout());
+			br = new BufferedReader(new InputStreamReader(stdout));
+			while (true) {
+				String line = br.readLine();
+				if (line == null) {
+					log.info("导入DMP文件成功");
+					flag = true;
+					break;
+				} else {
+					log.info(line);
+				}
+				System.out.println(line);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+			log.error("导入DMP文件异常");
+		} finally {
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			try {
+				stdout.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			session.close();
+		}
 		return flag;
 	}
 
@@ -382,49 +593,218 @@ public class DBServerService extends AbstractBaseService {
 		} finally {
 
 		}
-
 		return flag;
 	}
+	
+	private Boolean uploadTnsnameToServer(Connection conn, String tnsnamePath) {
+		Boolean flag = false;
+		SCPClient scpClient = null;
+		try {
+			log.info("上传" + tnsnamePath + "文件");
+			scpClient = conn.createSCPClient();
+			scpClient.put(tnsnamePath, "/u01/app/oracle/product/11.2.0/dbhome_1/network/admin/");
+			flag = true;
+			log.info("上传" + tnsnamePath + "文件成功");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+			log.info("上传" + tnsnamePath + "文件异常");
+		} finally {
+
+		}
+		return flag;
+	}
+	
+	
+	
+	private Boolean addSidWithTnsname(String sid,Connection conn,String ip,String tnsnamePath){
+		Boolean flag = false;
+		InputStream    stdout  = null;
+		BufferedReader br      = null;
+		Session        session = null;
+		StringBuffer sb=new StringBuffer();
+		StringBuffer sidSb=new StringBuffer();
+		Boolean isExist = false;
+		try{
+			log.info("读取tnsnames.ora文件");
+			session = conn.openSession(); 
+			session.execCommand("cat " + "/u01/app/oracle/product/11.2.0/dbhome_1/network/admin/tnsnames.ora");
+			stdout = new StreamGobbler(session.getStdout());
+			br = new BufferedReader(new InputStreamReader(stdout));
+			int i=0;
+			while (true) {
+				String line = br.readLine(); 
+				if (line == null){ 
+					break; 
+				}
+				if(line.startsWith(sid.toUpperCase())){
+					isExist = true;
+				}
+				sb.append(line).append("\n");
+				i++;
+			}
+			
+			if(!isExist){
+				log.info("编写"+sid+"内容");
+				sidSb.append(sid.toUpperCase()+" =").append("\n")
+				     .append("  (DESCRIPTION =").append("\n")
+				     .append("    (ADDRESS = (PROTOCOL = TCP)(HOST = "+ip+")(PORT = 1521))").append("\n")
+				     .append("    (CONNECT_DATA =").append("\n")
+				     .append("      (SERVER = DEDICATED)").append("\n")
+				     .append("      (SERVICE_NAME = "+sid.toLowerCase()+")").append("\n")
+				     .append("    )").append("\n")
+				     .append("  )").append("\n")
+				     .append("").append("\n");
+				if(!FileUtils.isFileExists(tnsnamePath)){
+					FileUtils.createOrExistsFile(tnsnamePath);
+				}
+				sb.append("").append("\n")
+				  .append(sidSb.toString());
+				log.info("向tnsnames.ora写入"+sid+"的配置内容");
+				log.info(sb.toString());
+				if(FileUtils.writeFileFromString(new File(tnsnamePath), sb.toString(), false)){
+					flag = uploadTnsnameToServer(conn,tnsnamePath);
+				}
+				
+			}else{
+				flag = true;
+				log.info("tnsnames.ora文件已经配置了"+sid);
+			}
+		}catch(Exception e){
+			log.error(e.getMessage());
+			log.info("发生异常");
+		}finally{
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+			try {
+				stdout.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+			session.close();
+		}
+		
+		return flag;
+	}
+	
+	private Boolean delSidWithTnsname(String sid,Connection conn,String ip,String tnsnamePath){
+		Boolean flag = false;
+		InputStream    stdout  = null;
+		BufferedReader br      = null;
+		Session        session = null;
+		StringBuffer sb=new StringBuffer();
+		Boolean isExist = false;
+		try{
+			log.info("读取tnsnames.ora文件");
+			session = conn.openSession(); 
+			session.execCommand("cat " + "/u01/app/oracle/product/11.2.0/dbhome_1/network/admin/tnsnames.ora");
+			stdout = new StreamGobbler(session.getStdout());
+			br = new BufferedReader(new InputStreamReader(stdout));
+			int i=0;
+			int index = 0;
+			while (true) {
+				String line = br.readLine(); 
+				if (line == null){ 
+					break; 
+				}
+				if(line.startsWith(sid.toUpperCase())){
+					index = i;
+					isExist = true;
+				}
+				if(index > 0 && i <=index+7){
+					
+				}else{
+					sb.append(line).append("\n");
+				}
+				i++;
+			}
+			
+			if(isExist){
+				
+				if(!FileUtils.isFileExists(tnsnamePath)){
+					FileUtils.createOrExistsFile(tnsnamePath);
+				}
+				log.info("向tnsnames.ora写入"+sid+"的配置内容");
+				FileUtils.writeFileFromString(new File(tnsnamePath), sb.toString(), false);
+				flag = uploadTnsnameToServer(conn,tnsnamePath);
+			}else{
+				flag = true;
+				log.info("tnsnames.ora文件没有配置"+sid);
+			}
+		}catch(Exception e){
+			log.error(e.getMessage());
+			log.info("发生异常");
+		}finally{
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+			try {
+				stdout.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+			session.close();
+		}
+		
+		return flag;
+	}
+	
+	
 
 	public static void main(String[] args) throws Exception {
-		/*
-		 * StringBuffer sb=new StringBuffer(); String oratabfilepath =
-		 * "d:/oratab";
-		 * 
-		 * String sid = "cpas04"; String newline =
-		 * sid+":/u01/app/oracle/product/11.2.0/dbhome_1:N"; Boolean existSID =
-		 * false; DBServerService s = new DBServerService(); InputStream stdout
-		 * = null; BufferedReader br = null; Session session = null; Connection
-		 * conn = s.getScpClientConn("192.168.1.234", "root", "tccp@2012");
-		 * //SCPClient scpClient = conn.createSCPClient(); session =
-		 * conn.openSession(); session.execCommand("cat " + "/etc/oratab");
-		 * stdout = new StreamGobbler(session.getStdout()); br = new
-		 * BufferedReader(new InputStreamReader(stdout)); while (true) { String
-		 * line = br.readLine(); if (line == null){ break; }
-		 * 
-		 * if(!line.startsWith("#")){ if(!line.contains(sid)){
-		 * 
-		 * }else{ existSID = true; } }
-		 * 
-		 * if(line.startsWith("#")){ if(!line.contains(sid)){
-		 * 
-		 * }else{ existSID = true; line = line.replaceAll("#", ""); } }
-		 * 
-		 * sb.append(line).append("\n");
-		 * 
-		 * }
-		 * 
-		 * if(!existSID){ sb.append(newline).append("\n"); }
-		 * 
-		 * File file = new File(oratabfilepath); if(!file.exists()){
-		 * FileUtils.createOrExistsFile(file); }
-		 * 
-		 * FileUtils.writeFileFromString(file, sb.toString(), false);
-		 * 
-		 * br.close(); stdout.close(); session.close(); conn.close();
-		 */
-
-		String sid = "cpas01";
+		StringBuffer sb=new StringBuffer();
+		String sid = "cpas02";
+		StringBuffer sidsb = new StringBuffer();
+		String oratabfilepath = "d:/tnsnames.ora";
+		DBServerService s = new DBServerService();
+		InputStream    stdout  = null;
+		BufferedReader br      = null;
+		Session        session = null;
+		Boolean isExist = false;
+		Connection conn = s.getScpClientConn("192.168.1.234", "root", "tccp@2012");
+		session = conn.openSession(); session.execCommand("cat " + "/u01/app/oracle/product/11.2.0/dbhome_1/network/admin/tnsnames.ora");
+		stdout = new StreamGobbler(session.getStdout());
+		br = new BufferedReader(new InputStreamReader(stdout));
+		int i=0;
+		int index = 0;
+		while (true) {
+			String line = br.readLine(); 
+			if (line == null){ 
+				break; 
+				}
+			sb.append(line).append("\n");
+			
+			if(line.startsWith(sid.toUpperCase())){
+				isExist = true;
+				index = i;
+			}
+			if(index > 0 && i <=index+7){
+				sidsb.append(line).append("\n");
+			}
+			i++;
+		}
+		
+		if(!isExist){
+			System.out.println("in");
+		}else{
+			System.out.println("no");
+		}
+		
+		System.out.println(sidsb.toString());
+		br.close();
+		stdout.close();
+		session.close();
+		conn.close();
+		
 
 	}
 

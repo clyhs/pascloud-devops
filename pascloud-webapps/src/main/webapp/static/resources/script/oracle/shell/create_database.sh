@@ -6,6 +6,7 @@ if [  $# -ne 1 ]; then
 
 fi
 
+export ORACLE_HOME
 export ORACLE_SID=$1
 #---------------------------------------------------
 
@@ -28,10 +29,10 @@ sh $basepath/create_dir_std.sh $1
 
 #-----------------------------------------------------------
 #3\create the database
-$ORACLE_HOME/bin/dbca -silent -responseFile $rspfile
+/u01/app/oracle/product/11.2.0/dbhome_1/bin/dbca -silent -responseFile $rspfile
 #-----------------------------------------------------------
 #4 create the tablespace
-sqlplus / as sysdba @$basepath/oraCreateTableSpaces.sql $1
+#sqlplus / as sysdba @/home/oracle/script/oraCreateTableSpaces.sql $1
 #-----------------------------------------------------------
 #5 create pas user and grant priv
-sqlplus / as sysdba @$basepath/oraCreateUser.sql
+#sqlplus / as sysdba @/home/oracle/script/oraCreateUser.sql

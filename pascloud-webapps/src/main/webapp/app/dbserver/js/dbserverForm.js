@@ -84,3 +84,20 @@ function delDB(){
 	});
 	
 }
+
+function impDmpWithSid(){
+	var row = $('#mainDataGrid').datagrid('getSelected'); 
+	var sid = row.id;
+	var params = {sid:sid,ip:defaultIp};
+	EasyUILoad('mainCenter');
+	$.post("impDmpWithSid.json",params,function(data,status){
+		if(data.code == 10000){
+		    //alert(data.desc);
+			dispalyEasyUILoad('mainCenter');
+			$.messager.alert('提示','导入成功');	
+		}else{
+			dispalyEasyUILoad('mainCenter');
+			$.messager.alert('提示',data.desc);	
+		}
+	});
+}
