@@ -5,26 +5,36 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.StringTokenizer;
+import java.util.Vector;
 
+import org.apache.commons.dbutils.QueryRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jcraft.jsch.Channel;
+import com.jcraft.jsch.ChannelExec;
+import com.jcraft.jsch.JSch;
 import com.pascloud.constant.Constants;
 import com.pascloud.module.common.service.AbstractBaseService;
 import com.pascloud.module.server.service.ServerService;
+import com.pascloud.utils.DBUtils;
 import com.pascloud.utils.FileUtils;
 import com.pascloud.vo.database.DBInfo;
 import com.pascloud.vo.server.ServerVo;
+import com.pascloud.vo.tenant.KhdxHyVo;
 
 import ch.ethz.ssh2.Connection;
 import ch.ethz.ssh2.SCPClient;
 import ch.ethz.ssh2.Session;
 import ch.ethz.ssh2.StreamGobbler;
+
 
 @Service
 public class DBServerService extends AbstractBaseService {
@@ -44,6 +54,7 @@ public class DBServerService extends AbstractBaseService {
 					s = s.replaceAll("ora_pmon_", "");
 					db.setId(s);
 					db.setName(s);
+					db.setUrl(DBUtils.getUrlByParams("oracle", server.getIp(), s, 1521));
 					result.add(db);
 				}
 			}
@@ -136,7 +147,7 @@ public class DBServerService extends AbstractBaseService {
 				conn2 = getScpClientConn(ip, "oracle", "oracle");
 				conn =  getScpClientConn(ip, vo.getUsername(), vo.getPassword());
 				session = conn2.openSession();
-				session.execCommand("~/script/create_database.sh" + " " + sid);
+				session.execCommand("/home/oracle/script/create_database.sh" + " " + sid);
 				stdout = new StreamGobbler(session.getStdout());
 				br = new BufferedReader(new InputStreamReader(stdout));
 				while (true) {
@@ -152,14 +163,23 @@ public class DBServerService extends AbstractBaseService {
 				System.out.println(flag);
 				
 				if(flag){
-					if(addSidWithTnsname(sid,conn,ip,tnsnamePath)){
-						//flag = impDmpFileWithSid(conn2,sid);createTableSpaceWithSid
-						if(createTableSpaceWithSid(conn,sid)){
-							if(grantWithSid(conn,sid)){
-								flag=restartListenerWithSid(conn,sid);
+					
+					if(changeScriptOwn(conn)){
+						flag = changeScriptMod(conn);
+					}else{
+						flag = false;
+					}
+					
+					if(flag){
+						if(addSidWithTnsname(sid,conn,ip,tnsnamePath)){
+							//flag = impDmpFileWithSid(conn2,sid);createTableSpaceWithSid
+							if(createTableSpaceWithSid(conn,sid)){
+								if(grantWithSid(conn,sid)){
+									flag=restartListenerWithSid(conn,sid);
+								}
 							}
-						}
-					};
+						};
+					}
 				}
 			}else{
 				return flag;
@@ -758,54 +778,223 @@ public class DBServerService extends AbstractBaseService {
 		return flag;
 	}
 	
+	public Boolean checkLsnrctlStatus(String ip,String sid){
+		Boolean flag = false;
+		ServerVo vo = m_serverService.getByIP(ip);
+		log.info("ip:" + ip + ",sid:" + sid);
+		Connection conn = null;
+		if(null!=vo){
+			conn = getScpClientConn(vo.getIp(), vo.getUsername(), vo.getPassword());
+			flag = checkLsnrctlStatus(conn,sid);
+		}
+		log.info("lsnrctl status:"+flag);
+		return flag;
+	}
+	
+	
+	private Boolean checkLsnrctlStatus(Connection conn,String sid){
+		Boolean flag = false;
+		Session session = null;
+		InputStream stdout = null;
+		BufferedReader br = null;
+		try {
+			log.info("检查"+sid+"监听是否启动");
+			session = conn.openSession();
+			session.execCommand("/home/oracle/script/lsnrctl_status.sh" + " " + sid);
+			stdout = new StreamGobbler(session.getStdout());
+			br = new BufferedReader(new InputStreamReader(stdout));
+			while (true) {
+				String line = br.readLine();
+				if (line == null) {
+					break;
+				}
+				if(line.contains("Service \""+sid+"\" has 1 instance(s)")){
+					flag = true;
+				}
+				log.info(line);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+			log.info("检查"+sid+"监听异常");
+		} finally {
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			try {
+				stdout.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			session.close();
+			conn.close();
+		}
+		return flag;
+	}
+	
+    public Integer updateKhdxHy(String dbType,String url,String username,String password,String hyprefix){
+		
+    	String driverClass = DBUtils.getDirverClassName(dbType);
+		DBUtils db = new DBUtils(driverClass, url, username, password);
+		java.sql.Connection sourceConn = null;
+		Integer result = 0;
+		QueryRunner qRunner = new QueryRunner();  
+		log.info("driverClass="+driverClass+",url="+url+",username="+username+",password="+password);
+		//qRunner.insertBatch(conn, sql, ArrayHandle<KhdxHyVo>, params);
+		try {
+			sourceConn = db.getConnection();
+			if(null!=sourceConn){
+				String sql = "update khdx_hy set dlmc=replace(dlmc,substr(dlmc, 0, 2),?);";
+				Object [] params = new Object[]{hyprefix};
+				result = qRunner.update(sourceConn, sql, params);
+			}else{
+				
+			}
+			log.info("影响了"+result+"行");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			log.error(e.getMessage());
+		}finally{
+			try {
+				sourceConn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+		
+	}
+	
+    
+    private Boolean changeScriptOwn(Connection conn){
+    	Boolean flag = false;
+		Session session = null;
+		InputStream stdout = null;
+		BufferedReader br = null;
+		try {
+			log.info("更改/home/oracle/script目录的用户权限");
+			session = conn.openSession();
+			session.execCommand("chown -R oracle:oinstall /home/oracle/script");
+			stdout = new StreamGobbler(session.getStdout());
+			br = new BufferedReader(new InputStreamReader(stdout));
+			while (true) {
+				String line = br.readLine();
+				if (line == null) {
+					break;
+				}
+			}
+			flag = true;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			log.info("更改/home/oracle/script目录的用户权限异常");
+		} finally {
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+			    e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			try {
+				stdout.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+			    e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			session.close();
+		}
+		return flag;
+    }
+    
+    private Boolean changeScriptMod(Connection conn){
+    	Boolean flag = false;
+		Session session = null;
+		InputStream stdout = null;
+		BufferedReader br = null;
+		try {
+			log.info("更改/home/oracle/script目录的读写权限");
+			session = conn.openSession();
+			session.execCommand("chown -R 755 /home/oracle/script");
+			stdout = new StreamGobbler(session.getStdout());
+			br = new BufferedReader(new InputStreamReader(stdout));
+			while (true) {
+				String line = br.readLine();
+				if (line == null) {
+					break;
+				}
+			}
+			flag = true;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			log.info("更改/home/oracle/script目录的读写权限异常");
+		} finally {
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			try {
+				stdout.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			session.close();
+		}
+		return flag;
+    }
 	
 
 	public static void main(String[] args) throws Exception {
+		
 		StringBuffer sb=new StringBuffer();
-		String sid = "cpas02";
-		StringBuffer sidsb = new StringBuffer();
-		String oratabfilepath = "d:/tnsnames.ora";
+		
 		DBServerService s = new DBServerService();
 		InputStream    stdout  = null;
 		BufferedReader br      = null;
 		Session        session = null;
 		Boolean isExist = false;
 		Connection conn = s.getScpClientConn("192.168.1.234", "root", "tccp@2012");
-		session = conn.openSession(); session.execCommand("cat " + "/u01/app/oracle/product/11.2.0/dbhome_1/network/admin/tnsnames.ora");
+		session = conn.openSession(); 
+		session.execCommand("/home/oracle/script/lsnrctl_status.sh cpas01");
+		
 		stdout = new StreamGobbler(session.getStdout());
 		br = new BufferedReader(new InputStreamReader(stdout));
-		int i=0;
-		int index = 0;
+		
 		while (true) {
 			String line = br.readLine(); 
-			if (line == null){ 
-				break; 
-				}
-			sb.append(line).append("\n");
 			
-			if(line.startsWith(sid.toUpperCase())){
-				isExist = true;
-				index = i;
+			if(line == null){
+				break;
 			}
-			if(index > 0 && i <=index+7){
-				sidsb.append(line).append("\n");
+			if(line.contains("Service \"cpas01\" has 1 instance(s)")){
+				System.out.println(line);
 			}
-			i++;
+			System.out.println(line);
+			sb.append(line).append("\n");
 		}
-		
-		if(!isExist){
-			System.out.println("in");
-		}else{
-			System.out.println("no");
-		}
-		
-		System.out.println(sidsb.toString());
+	
 		br.close();
 		stdout.close();
 		session.close();
 		conn.close();
+        
 		
-
 	}
 
 }

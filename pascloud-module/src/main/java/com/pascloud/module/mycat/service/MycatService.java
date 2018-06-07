@@ -124,6 +124,8 @@ public class MycatService {
 		
 		MycatXmlUtils.addServer(mycat_server_path, name);
 		
+		
+		
 		//MycatXmlUtils.addSchemaAndNodeAndHost(mycat_schema_path,"dn22", "oracle", "192.168.0.16", "pas", "pas", "cpas", 1521);
 	}
 	
@@ -244,9 +246,15 @@ public class MycatService {
 		Connection conn = null;
 		String sql = "show @@datasource";
 		try {
+			
+			
 			conn = dataSource.getConnection();
-			QueryRunner qRunner = new QueryRunner();  
-			result =  (List<DataSourceVo>)qRunner.query(conn,sql, new BeanListHandler(DataSourceVo.class));
+			
+			if(null!=conn){
+				QueryRunner qRunner = new QueryRunner();  
+				result =  (List<DataSourceVo>)qRunner.query(conn,sql, new BeanListHandler(DataSourceVo.class));
+			}
+			
 			//Gson g = new Gson();
 			//System.out.println(g.toJson(result));
 		} catch (SQLException e) {
@@ -289,6 +297,7 @@ public class MycatService {
 					dataSource.setUrl("jdbc:mysql://"+vo.getIp()+":9066/alldb");
 					dataSource.setPassword("root");
 					dataSource.setDriverClassName(Constants.DB_MYSQL_DIRVERCLASS);
+					ds = getDataSourceList(dataSource);
 					DataSourceUtils.addDataSource("mycat", dataSource);
 				}
 			}

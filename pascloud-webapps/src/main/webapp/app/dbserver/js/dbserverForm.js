@@ -15,6 +15,23 @@ function addDB(){
 	createDialogDivWithSize('mainDataGrid', 'addDB','添加数据库实例', '',500,180,div);
 }
 
+function updateHyDialog(){
+	var div = '';
+	
+	div +='<div style="margin:10px 0;width:100%;">&nbsp;';  
+	div +='</div>';
+	
+	div +='<div style="margin:5px 0;width:100%;">';  
+	div +=    '<label for="preffix" class="formlabel">设置行员前缀:</label>';
+	div +=    '<input class="easyui-validatebox formInput" id="preffix" name="preffix" data-options="required:true" >';
+	div +=    '<div style="clear:both;"></div>';
+	div +='</div>';
+	
+	
+	div += createHYFooter(); 
+	createDialogDivWithSize('mainDataGrid', 'updateHyDialog','设置行员前缀', '',500,180,div);
+}
+
 function createFormFooter(){
 
 	var html ="";
@@ -25,6 +42,26 @@ function createFormFooter(){
 	html +=   '</div>';
 	html +=   '<div style="float:left;width:20%;">';
 	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-database_save\'" onclick="addDBSubmit()" >确定</a>'; 
+	html +=   '</div>';
+	html +=   '<div style="border:#ccc 0px solid;float:left;width:30%;">';
+	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-2013040601125064_easyicon_net_16\'">重置</a>'; 
+	html +=   '</div>';
+	html +=   '<div style="clear:both;"></div>';
+	html += '</div>';
+	
+	return html;
+}
+
+function createHYFooter(){
+
+	var html ="";
+    html += '<div style="border:#ccc 0px solid;margin-bottom:25px;width:95%;line-height:24px;margin-top:10px;">';
+	
+    html +=   '<div style="float:left;width:25%;">';
+	html +=   '&nbsp;'; 
+	html +=   '</div>';
+	html +=   '<div style="float:left;width:20%;">';
+	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-database_save\'" onclick="updateHySubmit()" >确定</a>'; 
 	html +=   '</div>';
 	html +=   '<div style="border:#ccc 0px solid;float:left;width:30%;">';
 	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-2013040601125064_easyicon_net_16\'">重置</a>'; 
@@ -59,6 +96,36 @@ function addDBSubmit(){
 			reloadTableWithID(defaultIp);
 			dispalyEasyUILoad('mainCenter');
 			$.messager.alert('提示','创建成功');	
+		}else{
+			dispalyEasyUILoad('mainCenter');
+			$.messager.alert('提示',data.desc);	
+		}
+	});
+}
+
+function updateHySubmit(){
+	
+	var preffix = $('#preffix').val();
+	var row = $('#mainDataGrid').datagrid('getSelected'); 
+   
+	if(null==row){
+		$.messager.alert('提示','请选择一个IP地址');
+		return ;
+	}
+	if(''==preffix || preffix.length<=0){
+		$.messager.alert('提示','前缀不能为空');
+		return ;
+	}
+	var url = row.url;
+	var param = {preffix:preffix,url:url};
+	$('#updateHyDialog').dialog('close');
+	//alert(addrVal+''+nameVal );
+	EasyUILoad('mainCenter');
+	$.post("updateKhdxHy.json",param,function(data,status){
+		if(data.code == 10000){
+		    //alert(data.desc);
+			dispalyEasyUILoad('mainCenter');
+			$.messager.alert('提示','设置成功');	
 		}else{
 			dispalyEasyUILoad('mainCenter');
 			$.messager.alert('提示',data.desc);	

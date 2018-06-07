@@ -17,6 +17,9 @@ function initDatabaseTree(){
 		onSelect: function (node) {
         },
         onLoadSuccess: function (node, data) {   
+        },
+        onLoadError:function(arguments){
+        	dispalyEasyUILoad( 'databaseTree' );
         }
 	});
 }

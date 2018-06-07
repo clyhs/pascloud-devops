@@ -34,6 +34,14 @@ function initDbserverTree(){
 			var index= node.id;
 			var icon = "";
 			defaultIp= ip;
+			
+			if(checkLsnrArr.length > 0){
+				for(var i=0;i<checkLsnrArr.length;i++){
+					clearInterval(checkLsnrArr[i]);
+				}
+			}
+			
+			
 			reloadTableWithID(ip);
 			//alert(title);
 		}

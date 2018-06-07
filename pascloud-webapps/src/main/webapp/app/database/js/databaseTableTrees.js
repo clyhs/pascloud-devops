@@ -18,6 +18,9 @@ function initDatabaseTableTrees(){
 		onSelect: function (node) {
         },
         onLoadSuccess: function (node, data) {   
+        },
+        onLoadError:function(arguments){
+        	dispalyEasyUILoad( 'databaseTableDiv' );
         }
 	});
 }
@@ -38,6 +41,7 @@ function tableTreeReload(id){
 	EasyUILoadSimple('databaseTableDiv');
     $('#databaseTableTrees').tree("options").url="tableTrees.json?dsId="+id;
     $('#databaseTableTrees').tree("reload");
+    
     	
 }
 

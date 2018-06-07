@@ -84,13 +84,25 @@ function addSelectDbDialog(){
 	div +='</div>';
 	
 	div +='<div style="margin:5px 0;width:100%;">';  
-	div +=    '<label for="dbname" class="formlabel">选择代号:</label>';
+	div +=    '<label for="dbname" class="formlabel">选择代号: </label>';
 	div +=    '<input class="easyui-combobox" id="dbname" name="dbname" data-options="valueField:\'name\',textField:\'name\',url:\'/module/mycat/datanodes.json\'" >';
 	div +=    '<div style="clear:both;"></div>';
 	div +='</div>';
 	
+	div +='<div style="margin:5px 0;width:100%;">';  
+	div +=    '<label for="en" class="formlabel">英文名称: </label>';
+	div +=    '<input class="easyui-validatebox" id="en" name="en" data-options="required:true" value="" >';
+	div +=    '<div style="clear:both;"></div>';
+	div +='</div>';
+	
+	div +='<div style="margin:5px 0;width:100%;">';  
+	div +=    '<label for="cn" class="formlabel">中文名称: </label>';
+	div +=    '<input class="easyui-validatebox" id="cn" name="cn" data-options="required:true" value="" >';
+	div +=    '<div style="clear:both;"></div>';
+	div +='</div>';
+	
 	div += createSelectDBFormFooter(); 
-	createDialogDivWithSize('mainDataGrid', 'tenantAddSelectDb','添加数据库节点', '',450,180,div);
+	createDialogDivWithSize('mainDataGrid', 'tenantAddSelectDb','添加数据库节点', '',450,250,div);
 }
 
 function createSelectDBFormFooter(){
@@ -179,12 +191,20 @@ function addDB(){
 
 function addSelectDB(){
 	var name =  $('#dbname').combobox('getValue');
+	var en = $("#en").val();
+	var cn = $("#cn").val();
 	
 	if(''==name || 'dn0'==name){
 		$.messager.alert('提示','请选择非dn0的节点');
 		return ;
 	}
-	var params = {name:name};
+	
+	if(''==cn || ''==en){
+		$.messager.alert('提示','中英文名都不能为空');
+		return ;
+	}
+	
+	var params = {name:name,en:en,cn:cn};
 	EasyUILoad('mainCenter');
 	$.get('checkDBConfigByName.json',params,function(data,status){
 		if(data.code == 10000){
@@ -196,7 +216,7 @@ function addSelectDB(){
 					$('#tenantAddSelectDb').dialog('close');
 					$('#mainDataGrid').datagrid('reload');//刷新
 					dispalyEasyUILoad('mainCenter');
-					sysHyByDBName(name);
+					sysHyByDBName(name,en);
 					uploadCofingBySelectDB();
 					addPasfile(name);
 				}else{
@@ -213,17 +233,22 @@ function addSelectDB(){
 	});
 }
 
-function sysHyByDBName(name){
+function sysHyByDBName(name,en){
 
 	if(null == name || '' == name){
 		$.messager.alert('提示','名字不能为空');
 		return ;
 	}
 	
+	if(''==en){
+		$.messager.alert('提示','英文名都不能为空');
+		return ;
+	}
+	
 	if(name == 'dn0'){
 		$.messager.alert('提示','不能选择公共库，请重新选择');
 	}else{
-		var params = {name:name};
+		var params = {name:name,en:en};
 		//alert(driverClassVal + passwordVal);
 		EasyUILoadForMsg('mainCenter','行员同步中，请耐心等待！');
 		//alert(EasyUILoad('mainDataGrid'));

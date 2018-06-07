@@ -82,9 +82,13 @@ public class MycatController extends BaseController {
 		ResultBean<DataNodeVo> result = new ResultBean<>(PasCloudCode.SUCCESS);
 		DataNodeVo dn = new DataNodeVo();
 		
+		log.info(name);
+		
 		if(null!=name && !"".equals(name)){
 			dn = getDataNodeByName(name);
 			result.setBean(dn);
+		}else{
+			return new ResultBean<>(PasCloudCode.NULLDATA);
 		}
 		return result;
 	}

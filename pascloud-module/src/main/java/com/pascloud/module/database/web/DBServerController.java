@@ -1,5 +1,6 @@
 package com.pascloud.module.database.web;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,11 +19,14 @@ import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.database.service.DBServerService;
 import com.pascloud.module.server.service.ServerService;
+import com.pascloud.utils.DBUtils;
 import com.pascloud.utils.PasCloudCode;
 import com.pascloud.vo.common.TreeVo;
 import com.pascloud.vo.database.DBInfo;
+import com.pascloud.vo.result.ResultBean;
 import com.pascloud.vo.result.ResultCommon;
 import com.pascloud.vo.server.ServerVo;
+import com.pascloud.vo.tenant.KhdxHyVo;
 
 @Controller
 @RequestMapping("module/dbserver")
@@ -41,7 +46,6 @@ public class DBServerController extends BaseController {
 		List<ServerVo> servers = new ArrayList<>();
 		servers = m_serverService.getDataBaseServers();
 		ModelAndView view = new ModelAndView("dbserver/index");
-		
 		if(servers.size()>0){
 			ServerVo vo = servers.get(0);
 			view.addObject("defaultIp", vo.getIp());
@@ -120,7 +124,31 @@ public class DBServerController extends BaseController {
 		if("".equals(ip) || ip.length() == 0 || "".equals(sid) || sid.length()==0){
 			return result = new ResultCommon(PasCloudCode.ERROR);
 		}else{
-			if(m_dbServerService.importDmpfileWithSid(ip, sid)){
+			if(m_dbServerService.checkLsnrctlStatus(ip, sid)){
+				if(m_dbServerService.importDmpfileWithSid(ip, sid)){
+					result = new ResultCommon(PasCloudCode.SUCCESS);
+				}else{
+					result = new ResultCommon(PasCloudCode.ERROR);
+				}
+			}else{
+				result = new ResultCommon(PasCloudCode.ERROR.getCode(),"监听服务还没有启动");
+			}	
+		}
+		return result;
+		
+	}
+	
+	@RequestMapping("/checkLsnrctlStatus.json")
+	@ResponseBody
+	public ResultCommon checkLsnrctlStatus(HttpServletRequest request,
+			@RequestParam(value="ip",defaultValue="",required=true) String ip,
+			@RequestParam(value="sid",defaultValue="",required=true) String sid){
+		ResultCommon result = null;
+		//log.info("ip:" + ip + ",sid:" + sid);
+		if("".equals(ip) || ip.length() == 0 || "".equals(sid) || sid.length()==0){
+			return result = new ResultCommon(PasCloudCode.ERROR);
+		}else{
+			if(m_dbServerService.checkLsnrctlStatus(ip, sid)){
 				result = new ResultCommon(PasCloudCode.SUCCESS);
 			}else{
 				return result = new ResultCommon(PasCloudCode.ERROR);
@@ -154,6 +182,30 @@ public class DBServerController extends BaseController {
 		}
 		return result;
 		
+	}
+	
+	@RequestMapping(value = "updateKhdxHy.json", method = RequestMethod.POST)
+	@ResponseBody
+	public ResultCommon updateKhdxHy(HttpServletRequest request,
+			@RequestParam(value = "url", defaultValue = "", required = true) String url,
+			@RequestParam(value = "preffix", defaultValue = "", required = true) String preffix) {
+
+		ResultCommon result = null;
+		int total = 0;
+		try {
+			total = m_dbServerService.updateKhdxHy("oracle", url, "pas", "pas",preffix );
+			if(total>0){
+				result = new ResultCommon(PasCloudCode.SUCCESS);
+			}else{
+				result = new ResultCommon(PasCloudCode.ERROR);
+			}
+		} catch (Exception e) {
+			//e.printStackTrace();
+			log.error(e.getMessage());
+			result = new ResultCommon(PasCloudCode.ERROR);
+		}
+
+		return result;
 	}
 
 }

@@ -53,7 +53,7 @@ public class ConfigService {
 	 * @param database
 	 */
 	public void addDBConfig(String ip,Integer port,String user,String password,
-			String dbType,String dnName,String database){
+			String dbType,String dnName,String database,String en,String cn){
 		PropertiesUtil p =new PropertiesUtil();
 		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
 		String url = DBUtils.getUrlByParams(dbType, ip, database, port);
@@ -69,9 +69,47 @@ public class ConfigService {
 			p.setValueByKey(dnName+".type", dbType, "");
 		}
 		addMycatKey(dnName,p);
+		setEnAndCn(dnName,p,en,cn);
 		
 	}
 	
+    public void setEnAndCn(String dnName,PropertiesUtil p,String en,String cn){
+		p.setValueByKey(dnName+".en", en, "");
+		p.setValueByKey(dnName+".cn", cn, "");
+	}
+    
+    public String getEnByDnname(String dnName){
+    	PropertiesUtil p =new PropertiesUtil();
+		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
+		
+		return p.getValueByKey(dnName+".en");
+    }
+    
+    public String getCnByDnname(String dnName){
+    	PropertiesUtil p =new PropertiesUtil();
+		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
+		
+		return p.getValueByKey(dnName+".cn");
+    }
+	
+    public Boolean checkEnAndCn(String dnName,String en,String cn){
+    	PropertiesUtil p =new PropertiesUtil();
+		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
+    	Boolean flag = false;
+    	Map map = p.getByFuzzyKey("dn");
+    	List<DBInfo> list = getDBFromConfig();
+    	if(null!=list){
+    		for(DBInfo d:list){
+    			if(!d.getId().equals(dnName)){
+    				if(d.getCn().equals(cn) || d.getEn().equals(en)){
+    					flag = true;
+    				}
+    			}
+    		}
+    	}
+    	return flag;
+    }
+    
 	public List<DBInfo> getDBFromConfig(){
 		log.info("从本地的db.properties查询的所有的数据库");
 		List<DBInfo> dbs = new ArrayList<DBInfo>();
@@ -94,6 +132,8 @@ public class ConfigService {
 				vo.setUrl(p.getValueByKey(id+".url"));
 				vo.setPassword(p.getValueByKey(id+".username"));
 				vo.setUsername(p.getValueByKey(id+".password"));
+				vo.setEn(p.getValueByKey(id+".en"));
+				vo.setCn(p.getValueByKey(id+".cn"));
 				if(p.getValueByKey(id+".type").equals("ora")){
 					vo.setDbType("oracle");
 				}else{
@@ -126,8 +166,6 @@ public class ConfigService {
 		DBInfo vo = null;
 		PropertiesUtil p =new PropertiesUtil();
 		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
-		
-		System.out.println(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
 		
 		Map map = p.getByFuzzyKey("dn");
 		Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
@@ -211,6 +249,8 @@ public class ConfigService {
 		p.setValueByKey("db.mcat.username", user, "");
 		p.setValueByKey("db.mcat.password", password, "");
 	}
+	
+	
 	
 	/**
 	 * mq.brokerUrl=tcp\://192.168.0.7\:61616

@@ -25,6 +25,7 @@ import com.pascloud.constant.Constants;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.pasdev.service.PasdevService;
+import com.pascloud.module.passervice.service.ConfigService;
 import com.pascloud.utils.FileUtils;
 import com.pascloud.utils.HttpUtils;
 import com.pascloud.utils.PasCloudCode;
@@ -43,6 +44,8 @@ public class PasdevController extends BaseController {
 	
 	@Autowired
 	private PasdevService m_pasdevService;
+	@Autowired
+	private ConfigService m_configService;
 	
 	@Autowired
 	private PasCloudConfig m_config;
@@ -106,28 +109,17 @@ public class PasdevController extends BaseController {
 		for(int i=0;i<dirs.size();i++){
 			TreeVo vo = new TreeVo();
 			vo.setId(dirs.get(i));
-			vo.setText(dirs.get(i));
-			/*
-			if(dirs.get(i).equals("dn1")){
-				vo.setText("广州");
-			}else if(dirs.get(i).equals("dn14")){
-				vo.setText("中山");
-			}else if(dirs.get(i).equals("dn15")){
-				vo.setText("深圳");
-			}else if(dirs.get(i).equals("dn19")){
-				vo.setText("珠海");
-			}else if(dirs.get(i).equals("dn20")){
-				vo.setText("茂名");
-			}else if(dirs.get(i).equals("dn16")){
-				vo.setText("佛山");
-			}else if(dirs.get(i).equals("dn0")){
-				vo.setText("东莞");
-			}else if(dirs.get(i).equals("pasdev")){
-				vo.setText("惠州");
-			}*/
 			
-			
-			
+			if(dirs.get(i).equals("pasdev")){
+				vo.setText("标准版");
+			}else{
+				String cn =m_configService.getCnByDnname(dirs.get(i));
+				if(null!=cn){
+					vo.setText(cn);
+				}else{
+					vo.setText(dirs.get(i));
+				}
+			}
 			vo.setLeaf(true);
 			vo.setUrl("#");
 			vo.setIconCls("icon-folder");
@@ -183,6 +175,15 @@ public class PasdevController extends BaseController {
 			@RequestParam(value="name",defaultValue="",required=true) String name){
 		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
 		Integer t = 0;
+		
+		if(name.length()==0){
+			return new ResultCommon(PasCloudCode.NULLDATA);
+		} 
+		
+		if(name.equals(Constants.PASCLOUD_DEV_DEFAULT)){
+			return new ResultCommon(PasCloudCode.PARAMEXCEPTION);
+		} 
+		
 		t = m_pasdevService.delPasfileWidthID(name);
 		if(t>0){
 			

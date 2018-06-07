@@ -79,22 +79,7 @@ public class TenantController extends BaseController {
 		try {
 			result = m_configService.getDBFromConfig();
 			for(DBInfo dbf:result){
-				/*
-				if(dbf.getName().equals("dn1")){
-					dbf.setAlianame("广州");
-				}else if(dbf.getName().equals("dn14")){
-					dbf.setAlianame("中山");
-				}else if(dbf.getName().equals("dn15")){
-					dbf.setAlianame("深圳");
-				}else if(dbf.getName().equals("dn19")){
-					dbf.setAlianame("珠海");
-				}else if(dbf.getName().equals("dn20")){
-					dbf.setAlianame("茂名");
-				}else if(dbf.getName().equals("dn16")){
-					dbf.setAlianame("佛山");
-				}else if(dbf.getName().equals("dn0")){
-					dbf.setAlianame("东莞");
-				}*/
+				
 				dbf.setAlianame(dbf.getName());
 				
 				Connection conn = null;
@@ -130,11 +115,19 @@ public class TenantController extends BaseController {
 			@RequestParam(value="dbType",defaultValue="",required=true) String dbType,
 			@RequestParam(value="database",defaultValue="",required=true) String database,
 			@RequestParam(value="username",defaultValue="",required=true) String user,
-			@RequestParam(value="password",defaultValue="",required=true) String password){
+			@RequestParam(value="password",defaultValue="",required=true) String password,
+			@RequestParam(value="cn",defaultValue="",required=true) String cn,
+			@RequestParam(value="en",defaultValue="",required=true) String en){
 		
-		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
+		ResultCommon result = null;
 		
-		m_configService.addDBConfig(ip, port, user, password, dbType, name, database);
+		
+		
+		m_configService.addDBConfig(ip, port, user, password, dbType, name, database,en,cn);
+		result = new ResultCommon(PasCloudCode.SUCCESS);
+		
+		
+		
 		
 		return result;
 		
@@ -148,9 +141,15 @@ public class TenantController extends BaseController {
 	@RequestMapping("addTenantDBByName.json")
 	@ResponseBody
 	public ResultCommon addTenantDBByName(HttpServletRequest request,
-			@RequestParam(value="name",defaultValue="",required=true) String name){
+			@RequestParam(value="name",defaultValue="",required=true) String name,
+			@RequestParam(value="cn",defaultValue="",required=true) String cn,
+			@RequestParam(value="en",defaultValue="",required=true) String en){
 		
 		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
+		
+		if(name.length()==0 || cn.length()==0 || en.length()==0){
+			return  new ResultCommon(PasCloudCode.NULLDATA);
+		}
 		
 		List<DataNodeVo> datanodes = new ArrayList<>();
 		DataNodeVo datanode = null;
@@ -167,8 +166,10 @@ public class TenantController extends BaseController {
 		}
 		
 		if(null!=datanode){
+			
 			m_configService.addDBConfig(datanode.getIp(),Integer.valueOf(datanode.getPort()), datanode.getUser(),
-					datanode.getPassword(), datanode.getDbType(), name, datanode.getDatabase());
+						datanode.getPassword(), datanode.getDbType(), name, datanode.getDatabase(),
+						en,cn);
 		}else{
 			result = new ResultCommon(PasCloudCode.ERROR);
 			return result;
@@ -348,15 +349,22 @@ public class TenantController extends BaseController {
 	 */
 	@RequestMapping(value = "syscHyByName.json", method = RequestMethod.GET)
 	@ResponseBody
-	public ResultCommon syscHy(HttpServletRequest request,
-			@RequestParam(value = "name", defaultValue = "", required = true) String name) {
+	public ResultCommon syscHyByName(HttpServletRequest request,
+			@RequestParam(value = "name", defaultValue = "", required = true) String name,
+			@RequestParam(value = "en", defaultValue = "", required = true) String en) {
 
 		ResultCommon result = null;
 		
+		if(name.length() == 0 || en.length()==0){
+			return new ResultCommon(20000, "不能选择公共库进行同步，请重新选择");
+		}
+		
 		if(name.equals(Constants.PASCLOUD_PUBLIC_DB)){
-			result = new ResultCommon(20000, "不能选择公共库进行同步，请重新选择");
+			result = new ResultCommon(PasCloudCode.NULLDATA);
 			return result;
 		}
+		
+		
 		
 		List<DataNodeVo> datanodes = new ArrayList<>();
 		DataNodeVo datanode = null;
@@ -382,9 +390,13 @@ public class TenantController extends BaseController {
 		DBUtils db = new DBUtils(driverClass, datanode.getUrl(), datanode.getUser(), datanode.getPassword());
 		Connection sourceConn = null;
 		Connection dn0Conn = null;
+		int hynum = 0;
 		try {
 			sourceConn = db.getConnection();
 			if (null!=sourceConn) {
+				log.info("更新行员的前缀");
+				hynum = m_tenantService.updateKhdxHy(sourceConn, en);
+				log.info("更新行员的前缀完成");
 				log.info("获取租户的全部行员数据");
 				List<KhdxHyVo> lists = m_tenantService.getAllHy(sourceConn);
 				dn0Conn = getPublicDB();
@@ -414,18 +426,33 @@ public class TenantController extends BaseController {
 	@RequestMapping(value = "checkDBConfigByName.json", method = RequestMethod.GET)
 	@ResponseBody
 	public ResultCommon checkDBConfigByName(HttpServletRequest request,
-			@RequestParam(value = "name", defaultValue = "", required = true) String name){
+			@RequestParam(value = "name", defaultValue = "", required = true) String name,
+			@RequestParam(value="cn",defaultValue="",required=true) String cn,
+			@RequestParam(value="en",defaultValue="",required=true) String en){
 		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
 		List<DBInfo> dbs = new ArrayList<>();
+		
+		if(name.length()==0 || cn.length()==0 || en.length()==0){
+			return  new ResultCommon(PasCloudCode.NULLDATA);
+		}
 		try {
-			dbs = m_configService.getDBFromConfig();
-			if(dbs.size()>0){
-				for(DBInfo d:dbs){
-					if(d.getId().equals(name)){
-						result = new ResultCommon(PasCloudCode.ERROR);
+			
+			Boolean flag = false;
+			flag = m_configService.checkEnAndCn(name, en, cn);
+			if(flag){
+				return new ResultCommon(PasCloudCode.ERROR.getCode(),"中英文名已经存在");
+			}else{
+				dbs = m_configService.getDBFromConfig();
+				if(dbs.size()>0){
+					for(DBInfo d:dbs){
+						if(d.getId().equals(name)){
+							result = new ResultCommon(PasCloudCode.ERROR.getCode(),"数据库已经被使用，请选择其它数据节点");
+						}
 					}
 				}
 			}
+			
+			
 		}catch(Exception e){
 			result = new ResultCommon(PasCloudCode.ERROR);
 		}

@@ -23,7 +23,7 @@ function initPasfileTree(){
 			if (data.length > 0) {
 		         //找到第一个元素
 				for(var i=0;i<data.length;i++){
-					if(data[i].text == 'pasdev'){
+					if(data[i].id == 'pasdev'){
 						$('#pasfileTree').treegrid('select', data[i].id);
 					}
 				}          

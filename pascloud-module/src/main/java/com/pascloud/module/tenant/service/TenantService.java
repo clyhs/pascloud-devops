@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 import com.pascloud.module.mycat.service.MycatService;
+import com.pascloud.utils.DBUtils;
 import com.pascloud.vo.mycat.DataSourceVo;
 import com.pascloud.vo.tenant.KhdxHyVo;
 
@@ -24,6 +25,36 @@ public class TenantService {
 	private static Logger log = LoggerFactory.getLogger(TenantService.class);
 	
 	
+	 public Integer updateKhdxHy(Connection conn,String en){
+			
+			Integer result = 0;
+			QueryRunner qRunner = new QueryRunner();  
+			try {
+				if(null!=conn){
+					String sql = "update khdx_hy set dlmc=replace(dlmc,substr(dlmc, 0, 2),?);";
+					Object [] params = new Object[]{en};
+					result = qRunner.update(conn, sql, params);
+				}else{
+					
+				}
+				log.info("影响了"+result+"行");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				log.error(e.getMessage());
+			}finally{
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			return result;
+			
+		}
+	
 	@SuppressWarnings("unchecked")
 	public List<KhdxHyVo> getAllHy(Connection conn){
 		List<KhdxHyVo> hys = new ArrayList<>();
@@ -31,9 +62,7 @@ public class TenantService {
 			String sql = "select * from khdx_hy";
 			QueryRunner qRunner = new QueryRunner();  
 			hys =  qRunner.query(conn,sql, new BeanListHandler<KhdxHyVo>(KhdxHyVo.class));
-			//Gson g = new Gson();
-			//System.out.println(g.toJson(hys));
-			//System.out.println(hys.size());
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			log.info("查询表所有数据--失败--");

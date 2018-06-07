@@ -12,13 +12,13 @@ function addPasService(){
 	
 	div +='<div style="margin:5px 0;width:100%;">';  
 	div +=    '<label for="type" class="formlabel">选择服务类别:</label>';
-	div +=    '<input class="easyui-combobox" id="type" name="type" data-options="valueField:\'ip\',textField:\'ip\',url:\'/module/server/appservers.json\'" >';
+	div +=    '<input class="easyui-combobox" id="type" name="type" data-options="valueField:\'key\',textField:\'value\',url:\'/module/pasService/getPasCloudServiceType.json\'" >';
 	div +=    '<div style="clear:both;"></div>';
 	div +='</div>';
 	
 	
 	div += createFormFooter(); 
-	createDialogDivWithSize('mainDataGrid', 'addPasService','添加云服务', '',500,180,div);
+	createDialogDivWithSize('mainDataGrid', 'addPasService','添加云服务', '',500,200,div);
 }
 
 function createFormFooter(){
@@ -27,7 +27,7 @@ function createFormFooter(){
     html +=   '<div style="float:left;width:25%;">';
 	html +=   '&nbsp;'; 
 	html +=   '</div>';
-	html +=   '<div style="float:left;width:20%;">';
+	html +=   '<div style="float:left;width:30%;">';
 	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-database_save\'" onclick="submit()" >确定</a>'; 
 	html +=   '</div>';
 	html +=   '<div style="border:#ccc 0px solid;float:left;width:30%;">';
@@ -41,7 +41,14 @@ function createFormFooter(){
 
 
 function submit(){
-	alert('hello pas service');
+	var ip = $("#ip").combobox('getValue');
+	var type = $("#type").combobox('getValue');
+	if("" == ip || ip.length == 0 || "" == type || type.length == 0){
+		$.messager.alert('提示','IP和类型不能为空');
+		return ;
+	}else{
+		alert('submit do');
+	}
 }
 
 function addContainer(){
@@ -140,12 +147,14 @@ function startContainer(){
 	
 	var row = $('#mainDataGrid').datagrid('getSelected'); 
 	if(row.state != 'running'){
+		EasyUILoad('mainCenter');
 		$.post("/module/container/startContainer.json",{containerId:row.id,ip:row.ip},function(data,status){
 			alert(data.code);
 			$('#mainDataGrid').datagrid('reload');//刷新
+			dispalyEasyUILoad( 'mainCenter' );
 		});
 	}else{
-		alert('已经运行');
+		$.messager.alert('提示','已经运行');
 	}
 }
 
@@ -153,18 +162,20 @@ function stopContainer(){
 	
 	var row = $('#mainDataGrid').datagrid('getSelected'); 
 	if(row.state == 'running'){
+		EasyUILoad('mainCenter');
 		$.post("/module/container/stopContainer.json",{containerId:row.id,ip:row.ip},function(data,status){
 			if(data.code == 10000){
 				
 				$.messager.alert('提示','成功');
 				$('#mainDataGrid').datagrid('reload');//刷新
+				dispalyEasyUILoad( 'mainCenter' );
 			}else{
 				$.messager.alert('提示','失败');
 			}
 			
 		});
 	}else{
-		alert('已经运行');
+		$.messager.alert('提示','已经运行');
 	}
 }
 
@@ -172,16 +183,18 @@ function restartContainer(){
 	
 	var row = $('#mainDataGrid').datagrid('getSelected'); 
 	if(row.state != 'running'){
+		EasyUILoad('mainCenter');
 		$.post("/module/container/restartContainer.json",{containerId:row.id,ip:row.ip},function(data,status){
             if(data.code == 10000){
 				$.messager.alert('提示','成功');
 				$('#mainDataGrid').datagrid('reload');//刷新
+				dispalyEasyUILoad( 'mainCenter' );
 			}else{
 				$.messager.alert('提示','失败');
 			}
 		});
 	}else{
-		alert('已经运行');
+		$.messager.alert('提示','已经运行');
 	}
 }
 
@@ -190,12 +203,14 @@ function pauseContainer(){
 	
 	var row = $('#mainDataGrid').datagrid('getSelected'); 
 	if(row.state != 'paused'){
+		EasyUILoad('mainCenter');
 		$.post("/module/container/pauseContainer.json",{containerId:row.id,ip:row.ip},function(data,status){
 			alert(data.code);
 			$('#mainDataGrid').datagrid('reload');//刷新
+			dispalyEasyUILoad( 'mainCenter' );
 		});
 	}else{
-		alert('已经暂停');
+		$.messager.alert('提示','已经暂停');
 	}
 }
 
@@ -203,12 +218,14 @@ function unpauseContainer(){
 	
 	var row = $('#mainDataGrid').datagrid('getSelected'); 
 	if(row.state != 'running'){
+		EasyUILoad('mainCenter');
 		$.post("/module/container/unpauseContainer.json",{containerId:row.id,ip:row.ip},function(data,status){
 			alert(data.code);
 			$('#mainDataGrid').datagrid('reload');//刷新
+			dispalyEasyUILoad( 'mainCenter' );
 		});
 	}else{
-		alert('已经恢复');
+		$.messager.alert('提示','已经恢复');
 	}
 }
 

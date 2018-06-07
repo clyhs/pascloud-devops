@@ -25,6 +25,7 @@ import com.pascloud.module.passervice.service.PasService;
 import com.pascloud.utils.PasCloudCode;
 import com.pascloud.utils.RandomUtils;
 import com.pascloud.utils.ScpClientUtils;
+import com.pascloud.vo.pass.PasTypeEnum;
 import com.pascloud.vo.pass.PasTypeVo;
 import com.pascloud.vo.result.ResultCommon;
 import com.spotify.docker.client.DefaultDockerClient;
@@ -63,31 +64,14 @@ public class PasServiceController extends BaseController {
 	@ResponseBody
 	public List<PasTypeVo> getPasCloudServiceType(){
 		 List<PasTypeVo> list = new ArrayList<>();
-		 PasTypeVo p1 = new PasTypeVo();
-		 p1.setKey("pascloud_redis");
-		 p1.setValue("pascloud_redis");
 		 
-		 PasTypeVo p2 = new PasTypeVo();
-		 p2.setKey("pascloud_zookeeper_admin");
-		 p2.setValue("pascloud_zookeeper_admin");
-		 
-		 PasTypeVo p3 = new PasTypeVo();
-		 p3.setKey("pascloud_mycat");
-		 p3.setValue("pascloud_mycat");
-		 
-		 PasTypeVo p4 = new PasTypeVo();
-		 p4.setKey("pascloud_activemq");
-		 p4.setValue("pascloud_activemq");
-		 
-		 PasTypeVo p5 = new PasTypeVo();
-		 p5.setKey("pascloud_tomcat");
-		 p5.setValue("pascloud_tomcat");
-		 
-		 list.add(p1);
-		 list.add(p2);
-		 list.add(p3);
-		 list.add(p4);
-		 list.add(p5);
+		 PasTypeEnum[] pasTypes = PasTypeEnum.values();
+		 for(PasTypeEnum p : pasTypes){
+			 PasTypeVo vo = new PasTypeVo();
+			 vo.setKey(p.getIndex()+"");
+			 vo.setValue(p.getValue());
+			 list.add(vo);
+		 }
 		 
 		 return list;
 	}
