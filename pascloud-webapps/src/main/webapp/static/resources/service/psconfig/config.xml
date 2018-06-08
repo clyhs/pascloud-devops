@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+  <zookeeper>
+    <ip>192.168.0.7</ip>
+    <port>2181</port>
+  </zookeeper>
+  <mycat>
+    <ip>192.168.0.7</ip>
+    <port>8066</port>
+  </mycat>
+  <redis>
+    <ip>192.168.0.7</ip>
+    <port>6379</port>
+  </redis>
+  <mq>
+    <ip>192.168.0.7</ip>
+    <port>61616</port>
+  </mq>
+</config>

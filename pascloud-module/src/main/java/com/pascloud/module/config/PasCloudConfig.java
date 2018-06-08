@@ -33,8 +33,19 @@ public class PasCloudConfig {
 	@Value("${project.scriptoracledir}")
 	private String PASCLOUD_SCRIPT_ORACLE_DIR;
 	
+	@Value("${project.psconfig}")
+	private String PASCLOUD_PSCONFIG;
 	
 	
+	
+	public String getPASCLOUD_PSCONFIG() {
+		return PASCLOUD_PSCONFIG;
+	}
+
+	public void setPASCLOUD_PSCONFIG(String pASCLOUD_PSCONFIG) {
+		PASCLOUD_PSCONFIG = pASCLOUD_PSCONFIG;
+	}
+
 	public String getPASCLOUD_SCRIPT_ORACLE_DIR() {
 		return PASCLOUD_SCRIPT_ORACLE_DIR;
 	}

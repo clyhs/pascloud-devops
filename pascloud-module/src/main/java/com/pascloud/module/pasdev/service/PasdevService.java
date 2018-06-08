@@ -25,7 +25,6 @@ import com.pascloud.constant.Constants;
 import com.pascloud.module.common.service.AbstractBaseService;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.passervice.service.PasService;
-import com.pascloud.module.passervice.service.ScpClientService;
 import com.pascloud.module.server.service.ServerService;
 import com.pascloud.utils.FileUtils;
 import com.pascloud.utils.PasCloudCode;
@@ -57,9 +56,6 @@ public class PasdevService extends AbstractBaseService {
 	
 	@Autowired
 	private PasService         m_pasService;
-	
-	@Autowired
-	private ScpClientService   m_scpClientService;
 	
 	@Autowired
 	private ServerService      m_serverService;

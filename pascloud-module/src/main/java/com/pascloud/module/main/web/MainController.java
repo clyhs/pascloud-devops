@@ -119,7 +119,15 @@ public class MainController extends BaseController {
 		t25.setIconCls("icon-application");
 		t25.setUrl("/module/tenant/index.html");
 		
+		TreeVo t26 = new TreeVo();
+		t26.setId("2600");
+		t26.setText("配置管理");
+		t26.setLeaf(true);
+		t26.setIconCls("icon-application");
+		t26.setUrl("/module/config/index.html");
+		
 		List<TreeVo> t2children = new ArrayList<>();
+		t2children.add(t26);
 		t2children.add(t25);
 		t2children.add(t21);
 		t2children.add(t22);

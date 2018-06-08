@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.dom4j.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,18 @@ import com.pascloud.module.docker.service.DockerService;
 import com.pascloud.module.server.service.ServerService;
 import com.pascloud.utils.RandomUtils;
 import com.pascloud.utils.ScpClientUtils;
+import com.pascloud.utils.xml.XmlParser;
+import com.pascloud.vo.common.MapVo;
 import com.pascloud.vo.docker.ContainerVo;
 import com.pascloud.vo.docker.ImageVo;
+import com.pascloud.vo.pass.MqVo;
+import com.pascloud.vo.pass.MycatVo;
+import com.pascloud.vo.pass.PasConfigVo;
+import com.pascloud.vo.pass.RedisVo;
+import com.pascloud.vo.pass.ZookeeperVo;
 import com.pascloud.vo.server.ServerVo;
 import com.spotify.docker.client.DefaultDockerClient;
+import com.thoughtworks.xstream.XStream;
 
 import ch.ethz.ssh2.Connection;
 import ch.ethz.ssh2.SCPClient;
@@ -77,7 +86,13 @@ public class PasService extends AbstractBaseService {
 		String path = Constants.PASCLOUD_HOME+name+"/conf/";
 		return path;
 	}
-	
+	/**
+	 * 添加服务
+	 * @param ip
+	 * @param type
+	 * @param service
+	 * @return
+	 */
 	public Boolean addPasService(String ip,Integer type,String service){
 		Boolean flag = false;
 		
@@ -489,6 +504,86 @@ public class PasService extends AbstractBaseService {
 		}
 		return flag;
 		
+	}
+	
+	
+	public PasConfigVo getPasConfig(){
+		String pasconfigpath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)
+				+m_config.getPASCLOUD_PSCONFIG()+"/config.xml";
+		PasConfigVo vo = null;
+		try{
+			log.info("读取"+pasconfigpath);
+			File file = new File(pasconfigpath);
+			XStream xstream = new XStream(); 
+			xstream.alias("config", PasConfigVo.class);
+			vo = (PasConfigVo) xstream.fromXML(file);
+			
+		}catch(Exception e){
+			log.info("读取"+pasconfigpath+"异常");
+			log.error("读取"+pasconfigpath+"异常");
+		}
+		return vo;
+	}
+	
+	public List<MapVo> convertPasConfigToList(PasConfigVo config){
+		List<MapVo> map = new ArrayList<>();
+		if(null!=config){
+			ZookeeperVo zk = config.getZookeeper();
+			MapVo m1 = new MapVo();
+			m1.setKey("zookeeper.ip");
+			m1.setValue(zk.getIp());
+			m1.setDesc("注册中心的IP地址");
+			
+			MapVo m2 = new MapVo();
+			m2.setKey("zookeeper.port");
+			m2.setValue(zk.getPort()+"");
+			m2.setDesc("注册中心的端口");
+			
+			MycatVo mycat  = config.getMycat();
+			
+			MapVo m3 = new MapVo();
+			m3.setKey("mycat.ip");
+			m3.setValue(mycat.getIp());
+			m3.setDesc("mycat的IP地址");
+			
+			MapVo m4 = new MapVo();
+			m4.setKey("mycat.port");
+			m4.setValue(mycat.getPort()+"");
+			m4.setDesc("mycat的端口");
+			
+			RedisVo redis  = config.getRedis();
+			
+			MapVo m5 = new MapVo();
+			m5.setKey("redis.ip");
+			m5.setValue(redis.getIp());
+			m5.setDesc("redis的IP地址");
+			
+			MapVo m6 = new MapVo();
+			m6.setKey("redis.port");
+			m6.setValue(redis.getPort()+"");
+			m6.setDesc("redis的端口");
+			
+			MqVo mq        = config.getMq();
+			MapVo m7 = new MapVo();
+			m7.setKey("mq.ip");
+			m7.setValue(mq.getIp());
+			m7.setDesc("mq的IP地址");
+			
+			MapVo m8 = new MapVo();
+			m8.setKey("mq.port");
+			m8.setValue(mq.getPort()+"");
+			m8.setDesc("mq的端口");
+			map.add(m1);
+			map.add(m2);
+			map.add(m3);
+			map.add(m4);
+			map.add(m5);
+			map.add(m6);
+			map.add(m7);
+			map.add(m8);
+		}
+		
+		return map;
 	}
 	
 	

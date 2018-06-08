@@ -12,6 +12,16 @@ public class MapVo implements Serializable {
     private String key;
 	
 	private String value;
+	
+	private String desc;
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
 
 	public String getKey() {
 		return key;
