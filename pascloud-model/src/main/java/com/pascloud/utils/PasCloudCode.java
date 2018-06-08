@@ -20,13 +20,17 @@ public enum PasCloudCode {
     
     EXCEPTION(40001,"服务异常"),
     
-    PARAMEXCEPTION(2002,"参数异常"),
+    PARAMEXCEPTION(20002,"参数异常"),
     
-    NULLDATA(2003,"数据为空"),
+    NULLDATA(20003,"数据为空"),
     
-    NONEAUTH(50001,"该用户未授权或授权过期"),
+    NONEAUTH(50001,"没有权限"),
 	
-	NOLOGINSTATUS(60001,"用户未登录");
+	NOLOGINSTATUS(60001,"用户未登录"),
+	
+	ISEXIST(20004,"已经存在"),
+	
+	LOGINFAILURE(20005,"登录失败");
 	
 	private Integer code;
 	

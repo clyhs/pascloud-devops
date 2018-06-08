@@ -8,7 +8,8 @@ public enum PasTypeEnum {
 	MYCAT(4,"pascloud_mycat"),
 	MQ(5,"pascloud_activemq"),
 	TOMCAT(6, "pascloud_tomcat"), 
-	ZK(7, "pascloud_zookeeper_admin");
+	ZK(7, "pascloud_zookeeper_admin"),
+	MYSQL(8,"pascloud_mysql");
 
 	private String value;
 

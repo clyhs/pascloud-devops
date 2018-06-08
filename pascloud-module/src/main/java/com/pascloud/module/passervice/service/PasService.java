@@ -24,6 +24,7 @@ import com.pascloud.module.server.service.ServerService;
 import com.pascloud.utils.RandomUtils;
 import com.pascloud.utils.ScpClientUtils;
 import com.pascloud.vo.docker.ContainerVo;
+import com.pascloud.vo.docker.ImageVo;
 import com.pascloud.vo.server.ServerVo;
 import com.spotify.docker.client.DefaultDockerClient;
 
@@ -77,7 +78,69 @@ public class PasService extends AbstractBaseService {
 		return path;
 	}
 	
+	public Boolean addPasService(String ip,Integer type,String service){
+		Boolean flag = false;
+		
+		switch(type){
+		case 1:
+			log.info("添加paspm");
+			flag = copyPaspmServiceContainer(ip,"8202","8212");
+			break;
+		case 2:
+			log.info("添加demo");
+			flag = copyMainServiceContainer(ip,"8201","8211");
+			break;
+		case 3:
+			log.info("添加redis");
+			flag = addRedisContainer(ip,service);
+			break;
+		case 4:
+			log.info("添加mycat");
+			flag = addMycatContainer(ip,service);
+			break;
+		case 5:
+			log.info("添加mq");
+			flag = addMQContainer(ip,service);
+			break;
+		case 6:
+			log.info("添加tomcat");
+			flag = addtomcatContainer(ip,service);
+			break;
+		case 7:
+			log.info("添加zk");
+			flag = addZookeeperContainer(ip,service);
+			break;
+		case 8:
+			log.info("添加mysql");
+			flag = addMysqlContainer(ip,service);
+			break;
+		default:
+			log.info("没有服务可以创建");
+			break;
+		}
+		return flag;
+	}
 	
+	public Boolean checkImageExist(String ip,String name){
+		log.info("检查镜像");
+		Boolean flag = false;
+		List<ImageVo> images = new ArrayList<ImageVo>();
+		DefaultDockerClient client = DefaultDockerClient.builder()
+				.uri("http://"+ip+":"+defaultPort).build();
+		
+		if(null!=client){
+			images = m_dockerService.getImageByName(client, name);
+			if(images.size()>0){
+				for(ImageVo vo:images){
+					log.info(vo.getRepoTags());
+				}
+				flag = true;
+				log.info(name+"已经存在");
+			}
+		}
+		
+		return flag;
+	}
 	
 	public Boolean copyMainServiceContainer(String ip,String servicePort,String restPort){
         //String ip = "192.168.0.7";
@@ -91,6 +154,11 @@ public class PasService extends AbstractBaseService {
 		String id = "";
 		String[] cmd = {bindVolumeFrom+"/bin/start.sh"};
 		String imageName = "pascloud/jdk7:v1.0";
+		
+		if(!checkImageExist(ip,imageName)){
+			return flag;
+		}
+		
 		Map<String,String> port = new HashMap<String,String>();
 		port.put("8201", servicePort);
 		port.put("8211", restPort);
@@ -148,6 +216,11 @@ public class PasService extends AbstractBaseService {
 		String id = "";
 		String[] cmd = {bindVolumeFrom+"/bin/start.sh"};
 		String imageName = "pascloud/jdk7:v1.0";
+		
+		if(!checkImageExist(ip,imageName)){
+			return flag;
+		}
+		
 		Map<String,String> port = new HashMap<String,String>();
 		port.put("8202", servicePort);
 		port.put("8212", restPort);
@@ -189,6 +262,188 @@ public class PasService extends AbstractBaseService {
 		}finally{
 			conn.close();
 		}
+		return flag;
+	}
+	
+	public Boolean addRedisContainer(String ip,String service){
+		Boolean flag = false;
+		//String containerName = "pascloud_redis";
+		String containerName = service;
+		String bindVolumeFrom = "";
+		String bindVolumeTo = bindVolumeFrom;
+		String id = "";
+		String[] cmd = {};
+		String imageName = "redis:latest";
+		
+		if(!checkImageExist(ip,imageName)){
+			return flag;
+		}
+		
+		Map<String,String> port = new HashMap<String,String>();
+		port.put("6379", "6379");
+		List<String> envs = new ArrayList<>();
+        log.info("开始新建reids容器");
+		
+		DefaultDockerClient client = DefaultDockerClient.builder()
+				.uri("http://"+ip+":"+defaultPort).build();
+		id = m_dockerService.addContainer(client, port, bindVolumeFrom, bindVolumeTo, imageName, containerName,cmd,envs);
+		//System.out.println(id);
+		if(!id.equals("")){
+			flag = true;
+		}
+		log.info("结束新建reids容器");
+		return flag;
+	}
+	
+	public Boolean addMysqlContainer(String ip,String service){
+		Boolean flag = false;
+		//String containerName = "pascloud_redis";
+		String containerName = service;
+		String bindVolumeFrom = "";
+		String bindVolumeTo = bindVolumeFrom;
+		String id = "";
+		String[] cmd = {};
+		String imageName = "mysql:5.7";
+		
+		if(!checkImageExist(ip,imageName)){
+			return flag;
+		}
+		Map<String,String> port = new HashMap<String,String>();
+		port.put("3306", "3306");
+		List<String> envs = new ArrayList<>();
+		envs.add("MYSQL_ROOT_PASSWORD=root");
+        log.info("开始新建mysql容器");
+		DefaultDockerClient client = DefaultDockerClient.builder()
+				.uri("http://"+ip+":"+defaultPort).build();
+		id = m_dockerService.addContainer(client, port, bindVolumeFrom, bindVolumeTo, imageName, containerName,cmd,envs);
+		//System.out.println(id);
+		if(!id.equals("")){
+			flag = true;
+		}
+		log.info("结束新建mysql容器");
+		return flag;
+	}
+	
+	public Boolean addZookeeperContainer(String ip,String service){
+		Boolean flag = false;
+		//String containerName = "pascloud_zookeeper_admin";
+		String containerName = service;
+		String bindVolumeFrom = "";
+		String bindVolumeTo = bindVolumeFrom;
+		String id = "";
+		String[] cmd = {};
+		String imageName = "pascloud/zk_dubbo:v1.1";
+		
+		if(!checkImageExist(ip,imageName)){
+			return flag;
+		}
+		
+		Map<String,String> port = new HashMap<String,String>();
+		port.put("8686", "8686");
+		port.put("2181", "2181");
+		List<String> envs = new ArrayList<>();
+        log.info("开始新建zk容器");
+		
+		DefaultDockerClient client = DefaultDockerClient.builder()
+				.uri("http://"+ip+":"+defaultPort).build();
+		id = m_dockerService.addContainer(client, port, bindVolumeFrom, bindVolumeTo, imageName, containerName,cmd,envs);
+		if(!id.equals("")){
+			flag = true;
+		}
+		log.info("结束新建zk容器");
+		return flag;
+	}
+	
+	public Boolean addMQContainer(String ip,String service){
+		//String containerName = "pascloud_activemq";
+		Boolean flag = false;
+		//String containerName = "pascloud_zookeeper_admin";
+		String containerName = service;
+		String bindVolumeFrom = "";
+		String bindVolumeTo = bindVolumeFrom;
+		String id = "";
+		String[] cmd = {};
+		String imageName = "webcenter/activemq:latest";
+		
+		if(!checkImageExist(ip,imageName)){
+			return flag;
+		}
+		
+		Map<String,String> port = new HashMap<String,String>();
+		port.put("61616", "61616");
+		List<String> envs = new ArrayList<>();
+		envs.add("ACTIVEMQ_ADMIN_LOGIN=admin");
+		envs.add("ACTIVEMQ_ADMIN_PASSWORD=admin");
+        log.info("开始新建mq容器");
+		
+		DefaultDockerClient client = DefaultDockerClient.builder()
+				.uri("http://"+"192.168.0.7"+":"+defaultPort).build();
+		id = m_dockerService.addContainer(client, port, bindVolumeFrom, bindVolumeTo, imageName, containerName,cmd,envs);
+		if(!id.equals("")){
+			flag = true;
+		}
+		log.info("结束新建mq容器");
+		return flag;
+	}
+	
+	public Boolean addMycatContainer(String ip,String service){
+		//String containerName = "pascloud_mycat";
+		Boolean flag = false;
+		//String containerName = "pascloud_zookeeper_admin";
+		String containerName = service;
+		String bindVolumeFrom = "/home/pascloud/mycat";
+		String bindVolumeTo = bindVolumeFrom;
+		String id = "";
+		String[] cmd = {"/home/pascloud/mycat/bin/mycat","console","&"};
+		String imageName = "pascloud/jdk7:v1.0";
+		
+		if(!checkImageExist(ip,imageName)){
+			return flag;
+		}
+		
+		Map<String,String> port = new HashMap<String,String>();
+		port.put("8066", "8066");
+		port.put("9066", "9066");
+		List<String> envs = new ArrayList<>();
+        log.info("开始新建mycat容器");
+		
+		DefaultDockerClient client = DefaultDockerClient.builder()
+				.uri("http://"+"192.168.0.7"+":"+defaultPort).build();
+		id = m_dockerService.addContainer(client, port, bindVolumeFrom, bindVolumeTo, imageName, containerName,cmd,envs);
+		if(!id.equals("")){
+			flag = true;
+		}
+		log.info("结束新建mycat容器");
+		return flag;
+	}
+	
+	public Boolean addtomcatContainer(String ip,String service){
+    	//String containerName = "pascloud_tomcat";
+		Boolean flag = false;
+		//String containerName = "pascloud_zookeeper_admin";
+		String containerName = service;
+		String bindVolumeFrom = "/home/pascloud/tomcat";
+		String bindVolumeTo = bindVolumeFrom;
+		String id = "";
+		String[] cmd = {"/home/pascloud/tomcat/bin/catalina.sh", "run"};
+		String imageName = "pascloud/jdk7:v1.0";
+		
+		if(!checkImageExist(ip,imageName)){
+			return flag;
+		}
+		
+		Map<String,String> port = new HashMap<String,String>();
+		port.put("8170", "8170");
+		List<String> envs = new ArrayList<>();
+        log.info("开始新建tomcat容器");
+		
+		DefaultDockerClient client = DefaultDockerClient.builder()
+				.uri("http://"+"192.168.0.7"+":"+defaultPort).build();
+		id = m_dockerService.addContainer(client, port, bindVolumeFrom, bindVolumeTo, imageName, containerName,cmd,envs);
+		if(!id.equals("")){
+			flag = true;
+		}
+		log.info("结束新建tomcat容器");
 		return flag;
 	}
 	

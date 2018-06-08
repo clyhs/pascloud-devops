@@ -19,12 +19,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.pascloud.constant.Constants;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.config.PasCloudConfig;
+import com.pascloud.module.docker.service.ContainerService;
 import com.pascloud.module.docker.service.DockerService;
 import com.pascloud.module.passervice.service.ConfigService;
 import com.pascloud.module.passervice.service.PasService;
 import com.pascloud.utils.PasCloudCode;
 import com.pascloud.utils.RandomUtils;
 import com.pascloud.utils.ScpClientUtils;
+import com.pascloud.vo.docker.ContainerVo;
 import com.pascloud.vo.pass.PasTypeEnum;
 import com.pascloud.vo.pass.PasTypeVo;
 import com.pascloud.vo.result.ResultCommon;
@@ -35,19 +37,26 @@ import com.spotify.docker.client.DefaultDockerClient;
 public class PasServiceController extends BaseController {
 	
 	@Autowired
-	private DockerService  m_dockerService;
+	private DockerService    m_dockerService;
 	@Autowired
-	private ConfigService  m_configService;
+	private ContainerService m_containerService;
 	@Autowired
-	private PasCloudConfig m_config;
+	private ConfigService    m_configService;
 	@Autowired
-	private PasService     m_pasService;
+	private PasCloudConfig   m_config;
+	@Autowired
+	private PasService       m_pasService;
 
 	@RequestMapping("index.html")
 	public String index(HttpServletRequest request){
 		return "pasService/index";
 	}
 	
+	/**
+	 * 添加基础环境服务
+	 * @param request
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="addBaseContainer.json",method=RequestMethod.POST)
 	@ResponseBody
@@ -60,9 +69,14 @@ public class PasServiceController extends BaseController {
 		return result;
 	}
 	
+	/**
+	 * 获取服务的全部类型
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value="getPasCloudServiceType.json",method=RequestMethod.POST)
 	@ResponseBody
-	public List<PasTypeVo> getPasCloudServiceType(){
+	public List<PasTypeVo> getPasCloudServiceType(HttpServletRequest request){
 		 List<PasTypeVo> list = new ArrayList<>();
 		 
 		 PasTypeEnum[] pasTypes = PasTypeEnum.values();
@@ -74,6 +88,53 @@ public class PasServiceController extends BaseController {
 		 }
 		 
 		 return list;
+	}
+	/**
+	 * 按类型和IP新建新的服务
+	 * @param request
+	 * @param ip
+	 * @param type
+	 * @return
+	 */
+	@RequestMapping(value="addPasService.json",method=RequestMethod.POST)
+	@ResponseBody
+	public ResultCommon addPasService(HttpServletRequest request,
+			@RequestParam(value="ip",defaultValue="",required=true) String ip,
+			@RequestParam(value="type",defaultValue="0",required=true) Integer type
+			){
+		ResultCommon result = null;
+		Boolean isExist = false;
+		log.info("添加服务");
+		if(ip.length() == 0 || type == 0){
+			return new ResultCommon(PasCloudCode.PARAMEXCEPTION);
+		}
+		String service = PasTypeEnum.getValue(type);
+		if(null == service || "".equals(service)){
+			return new ResultCommon(PasCloudCode.PARAMEXCEPTION);
+		}
+		
+		//m_pasService.checkImageExist(ip, "redis:latest");
+		
+		List<ContainerVo> containers = m_containerService.getContainers(service);
+		if(containers.size()>0){
+			for(ContainerVo vo:containers){
+				if(ip.equals(vo.getIp())){
+					log.info("服务已经存在");
+					isExist = true;
+				}
+			}
+		}
+		if(isExist){
+			return new ResultCommon(PasCloudCode.ISEXIST);
+		}else{
+			log.info("ip="+ip+",service="+service);
+			if(m_pasService.addPasService(ip, type,service)){
+				return new ResultCommon(PasCloudCode.SUCCESS);
+			}else{
+				result= new ResultCommon(PasCloudCode.ERROR);
+			}
+		}
+		return result;
 	}
 	
 //	@SuppressWarnings("unchecked")

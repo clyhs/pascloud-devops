@@ -39,6 +39,15 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<filter>
+		<filter-name>pascloudfilter</filter-name>
+		<filter-class>com.pascloud.filter.PasCloudFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>pascloudfilter</filter-name>
+		<url-pattern>/module/*</url-pattern>
+	</filter-mapping>
 
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>

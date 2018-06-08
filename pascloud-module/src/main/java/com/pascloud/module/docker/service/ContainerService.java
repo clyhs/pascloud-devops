@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,11 +24,13 @@ import com.spotify.docker.client.DefaultDockerClient;
 @Service
 public class ContainerService {
 	
+	private static Logger log = LoggerFactory.getLogger(ContainerService.class);
+	
 	@Autowired
 	private DockerService m_dockerService;
 	
 	@Autowired
-	protected ServerService m_serverService;
+	private ServerService m_serverService;
 	
 	/**
 	 * 查询所有运行节点运行的容器

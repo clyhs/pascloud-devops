@@ -14,13 +14,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.pascloud.constant.Constants;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.docker.service.ContainerService;
 import com.pascloud.module.docker.service.DockerService;
+import com.pascloud.utils.PasCloudCode;
 import com.pascloud.vo.docker.ContainerVo;
 import com.pascloud.vo.docker.NodeVo;
 import com.pascloud.vo.result.ResultCommon;
 import com.spotify.docker.client.DefaultDockerClient;
+import com.spotify.docker.client.messages.ContainerInfo;
 @Controller
 @RequestMapping("module/container")
 public class ContainerController extends BaseController {
@@ -39,18 +42,22 @@ public class ContainerController extends BaseController {
 		//containers = m_dockerService.getContainer(dockerClient);
 		containers = m_containerService.getContainers(str);
 		for(ContainerVo vo :containers){
-			if(vo.getName().equals("pascloud_redis")){
+			if(vo.getName().startsWith("pascloud_redis")){
 				vo.setCnname("缓存服务");
-			}else if(vo.getName().equals("pascloud_mycat")){
+			}else if(vo.getName().startsWith("pascloud_mycat")){
 				vo.setCnname("数据库中间件");
-			}else if(vo.getName().equals("pascloud_zookeeper_admin")){
+			}else if(vo.getName().startsWith("pascloud_zookeeper_admin")){
 				vo.setCnname("注册中心");
-			}else if(vo.getName().equals("pascloud_tomcat")){
+			}else if(vo.getName().startsWith("pascloud_tomcat")){
 				vo.setCnname("前端服务");
-			}else if(vo.getName().equals("pascloud_activemq")){
+			}else if(vo.getName().startsWith("pascloud_activemq")){
 				vo.setCnname("消息服务");
+			}else if(vo.getName().startsWith("pascloud_service_demo")){
+				vo.setCnname("公共服务");
+			}else if(vo.getName().startsWith("pascloud_service_paspm")){
+				vo.setCnname("管家服务");
 			}else{
-				vo.setCnname("云平台共公服务");
+				vo.setCnname("基础服务");
 			}
 		}
 		return containers;
@@ -194,12 +201,25 @@ public class ContainerController extends BaseController {
 	public ResultCommon stopContainer(HttpServletRequest request,
 			@RequestParam(value="ip",defaultValue="",required=true) String ip){
 		
-		ResultCommon result = new ResultCommon(10000,"成功");
+		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
 		String containerId = request.getParameter("containerId");
 		String status = "";
 		DefaultDockerClient client = DefaultDockerClient.builder()
 				.uri("http://"+ip+":"+defaultPort).build();
+		ContainerInfo info =m_dockerService.getContainerInfoById(client, containerId);
+		if(null!=info){
+			String name = info.name();
+			if(null != name){
+				if(name.startsWith("/")){
+					name = name.substring(1, name.length());
+				}
+				if(name.contains(Constants.SHIPYARD_PROXY)){
+					return new ResultCommon(PasCloudCode.NONEAUTH);
+				}
+			}
+		}
 		status = m_dockerService.stopContainer(client, containerId);
+		
 		System.out.println(status);
 		return result;
 	}
@@ -215,6 +235,33 @@ public class ContainerController extends BaseController {
 		DefaultDockerClient client = DefaultDockerClient.builder()
 				.uri("http://"+ip+":"+defaultPort).build();
 		status = m_dockerService.restartContainer(client, containerId);
+		System.out.println(status);
+		return result;
+	}
+	
+	@RequestMapping(value="removeContainer.json",method=RequestMethod.POST)
+	@ResponseBody
+	public ResultCommon removeContainer(HttpServletRequest request,
+			@RequestParam(value="ip",defaultValue="",required=true) String ip){
+		
+		ResultCommon result = new ResultCommon(10000,"成功");
+		String containerId = request.getParameter("containerId");
+		String status = "";
+		DefaultDockerClient client = DefaultDockerClient.builder()
+				.uri("http://"+ip+":"+defaultPort).build();
+		ContainerInfo info =m_dockerService.getContainerInfoById(client, containerId);
+		if(null!=info){
+			String name = info.name();
+			if(null != name){
+				if(name.startsWith("/")){
+					name = name.substring(1, name.length());
+				}
+				if(name.contains(Constants.SHIPYARD_PROXY)){
+					return new ResultCommon(PasCloudCode.NONEAUTH);
+				}
+			}
+		}
+		status = m_dockerService.removeContainer(client, containerId);
 		System.out.println(status);
 		return result;
 	}

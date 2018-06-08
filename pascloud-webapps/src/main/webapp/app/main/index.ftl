@@ -66,7 +66,30 @@
     <div data-options="region:'north'" style="height:50px;background-color:#99FFFF;border:0;" class="top">
         <!--
         <div class="logo" style="float:left;width:50px;"></div>-->
-        <div class="" style="float:left;width:300px;text-align:left;color:#ffffff;margin-left:20px;"><h2>绩效运维管理中心</h2></div>
+        <div class="" style="float:left;width:160px;text-align:left;color:#ffffff;margin-left:20px;"><h2>绩效运维管理中心</h2></div>
+        <!--
+        <div class="" style="float:left;width:1px;text-align:left;height:40px;background-color:#cccccc;margin-top:5px;">&nbsp;</div>
+        -->
+        <div class="" style="float:right;width:200px;text-align:left;">
+            <div style="float:left;width:149px;">
+                <div style="color:#fff;line-height:49px;width:149px;text-align:right;">欢迎你：admin 
+                    | <a href="#" onClick="exitAction()" style="color:#fff;" >退出</a> &nbsp;
+                </div>
+                <!--
+                <div style="color:#fff;line-height:25px;width:88px;text-align:right;">
+                    <a href="#" onClick="exitAction()" >退出</a>
+                </div>-->
+            </div>
+            <div style="float:right;width:50px;">
+                <img src="/static/images/profile.png" width="40px" height="40px" style="margin-top:5px;">
+            </div>
+            <div class="" style="clear:both;"></div>
+        </div>
+        
+        
+            
+        
+        
         <div class="" style="clear:both;"></div>
     </div>
     <div id="mainLeft" data-options="region:'west',split:true,title:'菜单管理',iconCls:'icon-folder'" style="width:180px">

@@ -31,4 +31,6 @@ public class Constants {
 	
 	public static String ORACLE_SID_EX_PREEFIX="*[Cc][Pp][Aa][Ss]";
 	
+	public static String SHIPYARD_PROXY = "shipyard-proxy";
+	
 }

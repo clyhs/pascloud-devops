@@ -2,17 +2,17 @@
 var toolbar = function(){
 	return [{
 		text : '环境',  
-        iconCls : 'icon-control_add_blue',  
+        iconCls : 'icon-application_start',  
         handler : function(){
         	addBaseContainer();
         }
 	},{
 		text : '添加服务',  
-        iconCls : 'icon-add',  
+        iconCls : 'icon-application_add',  
         handler : function(){
         	addPasService();
         }
-	},{
+	}/*,{
 		text : '公共服务',  
         iconCls : 'icon-add',  
         handler : function(){
@@ -30,7 +30,7 @@ var toolbar = function(){
         handler : function(){
         	addTomcatContainer();
         }
-	},{
+	}*/,{
 		text : '运行',  
         iconCls : 'icon-application_start',  
         handler : function(){
@@ -64,7 +64,7 @@ var toolbar = function(){
 		text : '销毁',  
         iconCls : 'icon-control_remove_blue',  
         handler : function(){
-            alert('销毁')
+        	removeContainer();
         }
 	},{
 		text : '查看日志',  

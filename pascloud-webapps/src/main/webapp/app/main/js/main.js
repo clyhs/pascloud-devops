@@ -8,8 +8,12 @@ checkHealthId =setInterval( function () {
         cache: false,
         url: "health.json",
         data: "",
-        success: function() {
+        success: function(data) {
+        	console.log(data);
         	healthflag = true;
+        	if(data.code!=10000){
+        		window.location.href="/module/login/index.html";
+        	}
         },
         error: function() {
         	if(healthflag){
@@ -19,3 +23,11 @@ checkHealthId =setInterval( function () {
         }
     });
 },2000);
+
+function exitAction(){
+	$.post("/module/login/exit.json",{},function(data,status){
+		if(data.code == 10000){
+			window.location.href="/module/login/index.html";
+		}
+	});
+}

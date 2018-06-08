@@ -32,6 +32,4 @@ public class DockerController extends BaseController {
 		nodes = m_dockerService.getNodes(getDockerClient());
 		return nodes;
 	}
-	
-
 }

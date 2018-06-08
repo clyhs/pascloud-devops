@@ -61,4 +61,8 @@ tps分析
 1.vi /etc/oratab
 2.找到 bgsp:/Oracle_11g/oracle:N
 3.将该行信息删除，并保存文件
+
+
+docker pull mysql:5.7
+docker run --name pascloud_mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7
   
