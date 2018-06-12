@@ -106,8 +106,18 @@ public class MycatController extends BaseController {
 		
 		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
 		
-		m_mycatService.addDatanode(name, dbType, ip, user, password, database, port);
 		
+		List<DataNodeVo> nodes = new ArrayList<>();
+		nodes = m_mycatService.getDataNodes();
+		if(nodes.size()>0){
+			for(DataNodeVo n:nodes){
+				if(n.getName().equals(name)){
+					return new ResultCommon(PasCloudCode.ERROR.getCode(),"节点已经存在，不能添加重复节点");
+				}
+			}
+		}
+		
+		m_mycatService.addDatanode(name, dbType, ip, user, password, database, port);
 		return result;
 		
 	}
@@ -118,7 +128,14 @@ public class MycatController extends BaseController {
 			@RequestParam(value="name",defaultValue="",required=true) String name){
 		
 		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
-		m_mycatService.delDatanode(name);
+		
+		if(name.equals("dn0")){
+			return new ResultCommon(PasCloudCode.ERROR);
+		}else{
+			m_mycatService.delDatanode(name);
+		}
+		
+		
 		return result;
 		
 	}

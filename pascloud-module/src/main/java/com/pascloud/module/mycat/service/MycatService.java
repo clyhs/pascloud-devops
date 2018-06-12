@@ -28,6 +28,7 @@ import com.pascloud.constant.Constants;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.docker.service.ContainerService;
 import com.pascloud.module.docker.service.DockerService;
+import com.pascloud.module.passervice.service.PasService;
 import com.pascloud.utils.PasCloudCode;
 import com.pascloud.utils.db.DataSourceUtils;
 import com.pascloud.utils.xml.MycatXmlUtils;
@@ -38,6 +39,7 @@ import com.pascloud.vo.docker.NodeVo;
 import com.pascloud.vo.mycat.DataHostVo;
 import com.pascloud.vo.mycat.DataNodeVo;
 import com.pascloud.vo.mycat.DataSourceVo;
+import com.pascloud.vo.pass.MycatVo;
 import com.pascloud.vo.result.ResultListData;
 import com.spotify.docker.client.DefaultDockerClient;
 
@@ -48,13 +50,14 @@ public class MycatService {
 	private static Logger log = LoggerFactory.getLogger(MycatService.class);
 	
 	@Autowired
-	private PasCloudConfig m_config;
-	
+	private PasCloudConfig   m_config;
 	@Autowired
-	private DockerService m_dockerService;
-	
+	private DockerService    m_dockerService;
 	@Autowired
 	private ContainerService m_containerService;
+	
+	@Autowired
+	private PasService       m_pasService;
 	
 	
 	public List<DataHostVo> getDataHosts(){
@@ -121,11 +124,7 @@ public class MycatService {
 		String mycat_server_path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SERVER;
 		
 		MycatXmlUtils.addSchemaAndNodeAndHost(mycat_schema_path, name, dbType, ip, user, password, database, port);
-		
 		MycatXmlUtils.addServer(mycat_server_path, name);
-		
-		
-		
 		//MycatXmlUtils.addSchemaAndNodeAndHost(mycat_schema_path,"dn22", "oracle", "192.168.0.16", "pas", "pas", "cpas", 1521);
 	}
 	
@@ -137,6 +136,15 @@ public class MycatService {
 		MycatXmlUtils.delServer(mycat_server_path, name);
 	}
 	
+	public Boolean setDataHostWithDn0(String ip,String database,
+			Integer port,String user,String password){
+		Boolean flag = false;
+		String mycat_server_path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SERVER;
+		String mycat_schema_path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SCHEMA;
+		flag = MycatXmlUtils.setDataHostWithDn0(mycat_schema_path, ip, database, port, user, password,mycat_server_path);
+		return flag;
+	}
+	
     private List<DataHostVo> getDataHosts(Element root){
 		List<DataHostVo> result = new ArrayList<>();
 		
@@ -144,7 +152,6 @@ public class MycatService {
 		//Document doc = XmlParser.getDocument(mycat_schema_path);
 		//Element root = doc.getRootElement();
 		List<Element> nodes = root.elements("dataHost");
-		
 		if(nodes.size()>0){
 			Iterator<Element> it = nodes.iterator();
 			while(it.hasNext()){
@@ -245,18 +252,24 @@ public class MycatService {
 		log.info("查询中间件MYCAT的datasource");
 		Connection conn = null;
 		String sql = "show @@datasource";
+		List<MycatVo> mycats = new ArrayList<MycatVo>();
 		try {
-			
-			
-			conn = dataSource.getConnection();
-			
-			if(null!=conn){
-				QueryRunner qRunner = new QueryRunner();  
-				result =  (List<DataSourceVo>)qRunner.query(conn,sql, new BeanListHandler(DataSourceVo.class));
+			mycats = m_pasService.getMycatServer();
+			if(mycats.size()>0){
+				MycatVo vo = mycats.get(0);
+				if(null!=vo && vo.getStatus().equals("running")){
+					conn = dataSource.getConnection();
+					if(null!=conn){
+						QueryRunner qRunner = new QueryRunner();  
+						result =  (List<DataSourceVo>)qRunner.query(conn,sql, new BeanListHandler(DataSourceVo.class));
+					}
+				}else{
+					log.info("mycat服务没有启动");
+				}
+			}else{
+				log.info("mycat服务没有创建");
 			}
 			
-			//Gson g = new Gson();
-			//System.out.println(g.toJson(result));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
@@ -283,7 +296,6 @@ public class MycatService {
 		
 		try {
 			containers = m_containerService.getContainers("pascloud_mycat");
-			
 			if(null != DataSourceUtils.getDataSource("mycat")){
 				dataSource = (DruidDataSource) DataSourceUtils.getDataSource("mycat");
 				ds = getDataSourceList(dataSource);
@@ -301,8 +313,6 @@ public class MycatService {
 					DataSourceUtils.addDataSource("mycat", dataSource);
 				}
 			}
-			
-			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			log.error(e.getMessage());

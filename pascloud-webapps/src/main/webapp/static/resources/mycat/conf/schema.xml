@@ -27,7 +27,12 @@
   <schema name="dn20_schema" checkSQLschema="false" sqlMaxLimit="100">
     <table name="khdx_jg" primaryKey="KHDXDH" autoIncrement="true" dataNode="dn20"/>
   </schema>
-  <dataNode name="dn0" dataHost="dataHost_dn0" database="pascloud"/>
+  <schema name="dn0_schema" checkSQLschema="false" sqlMaxLimit="100">
+    <table name="khdx_jg" primaryKey="KHDXDH" autoIncrement="true" dataNode="dn0"/>
+  </schema>
+  <schema name="dn0_schema" checkSQLschema="false" sqlMaxLimit="100">
+    <table name="khdx_jg" primaryKey="KHDXDH" autoIncrement="true" dataNode="dn0"/>
+  </schema>
   <dataNode name="dn1" dataHost="dataHost_dn1" database="cloudpas"/>
   <dataNode name="dn14" dataHost="dataHost_dn14" database="cpas12"/>
   <dataNode name="dn19" dataHost="dataHost_dn19" database="cpas19"/>
@@ -36,10 +41,7 @@
   <dataNode name="dn15" dataHost="dataHost_dn15" database="cpas13"/>
   <dataNode name="dn3" dataHost="dataHost_dn3" database="cpas02"/>
   <dataNode name="dn20" dataHost="dataHost_dn20" database="cpas20"/>
-  <dataHost name="dataHost_dn0" maxCon="1000" minCon="10" balance="0" writeType="0" dbType="mysql" dbDriver="native">
-    <heartbeat>select user()</heartbeat>
-    <writeHost host="hostM1" url="192.168.0.7:3306" user="root" password="root"/>
-  </dataHost>
+  <dataNode name="dn0" dataHost="dataHost_dn0" database="pascloud"/>
   <dataHost name="dataHost_dn1" maxCon="1000" minCon="10" balance="0" writeType="0" dbType="oracle" dbDriver="jdbc">
     <heartbeat>select 1 from dual</heartbeat>
     <connectionInitSql>alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss'</connectionInitSql>
@@ -78,5 +80,9 @@
     <heartbeat>select 1 from dual</heartbeat>
     <connectionInitSql>alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss'</connectionInitSql>
     <writeHost host="hostM1" url="jdbc:oracle:thin:@192.168.0.17:1521:cpas20" user="pas" password="pas"/>
+  </dataHost>
+  <dataHost name="dataHost_dn0" maxCon="1000" minCon="10" balance="0" writeType="0" dbType="mysql" dbDriver="native">
+    <heartbeat>select user()</heartbeat>
+    <writeHost host="hostM1" url="192.168.0.16:3306" user="root" password="root"/>
   </dataHost>
 </mycat:schema>

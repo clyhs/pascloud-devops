@@ -38,6 +38,7 @@ public class MycatXmlUtils {
 	public static Document addSchemaAndNodeAndHost(String schemaPath,String name,
 			String dbType,String ip,String user,String password,
 			String database,Integer port){
+		System.out.println("addSchemaAndNodeAndHost");
 		Document doc = XmlParser.getDocument(schemaPath);
 		Element root = doc.getRootElement();
 		addSchema(root,name);
@@ -48,6 +49,8 @@ public class MycatXmlUtils {
 		saveDocument(schemaPath,doc);
 		return doc;
 	}
+	
+	
 	
 	/**
 	 * 删除mycat配置文件schema.xml的数据库节
@@ -88,6 +91,41 @@ public class MycatXmlUtils {
 		addDataHostOthers(e,dbType);
 		addWriteHost(e,url,user,password);
 		//saveDocument(schemaPath,doc);
+	}
+	
+	public static Boolean setDataHostWithDn0(String schemaPath,String ip,String database,
+			Integer port,String user,String password,
+			String serverPath){
+		log.info("修改公共库地址");
+		Boolean flag = false;
+		Document doc = XmlParser.getDocument(schemaPath);
+		Element root = doc.getRootElement();
+		List<Element> nodes = root.elements("dataHost");
+		Element dn0 = null;
+		if(nodes.size()>0){
+			//dataHost_dn0
+			for(Element e:nodes){
+				if(e.attributeValue("name").equals("dataHost_dn0")){
+					dn0 = e;
+				}
+			}
+		}
+		if(null!=dn0){
+			System.out.println("修改公共库地址:dn0");
+			Element e =dn0.element("writeHost");
+			String url = ip+":"+port;
+			e.addAttribute("url", url);
+			e.addAttribute("user", user);
+			e.addAttribute("password", password);
+			saveDocument(schemaPath,doc);
+		}else{
+			System.out.println("add dn0");
+			MycatXmlUtils.addSchemaAndNodeAndHost(schemaPath, "dn0", "mysql", ip, user, password, database, port);
+			MycatXmlUtils.addServer(serverPath, "dn0");
+		}
+		
+		flag = true;
+		return flag;
 	}
 	
 	
@@ -223,6 +261,7 @@ public class MycatXmlUtils {
      *</schema>
 	 */
 	private static void addSchema(Element root,String name){
+		System.out.println(name);
 		Element e = root.addElement("schema");
 		e.addAttribute("name", name+"_schema");
 		e.addAttribute("checkSQLschema", "false");
@@ -361,12 +400,14 @@ public class MycatXmlUtils {
 	
 	public static void main(String[] args) {
 		String filepath = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/mycat/conf/schema.xml";
+		String serverpath = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/mycat/conf/server.xml";
+		
 		//MycatXmlUtils.addDataNode(filepath);
 		
 		//MycatXmlUtils.addSchemaAndNodeAndHost(filepath,"dn22", "oracle", "192.168.0.16", "pas", "pas", "cpas", 1521);
 		//MycatXmlUtils.delSchemaAndNodeAndHost(filepath, "dn22");
-		
-		String serverpath = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/mycat/conf/server.xml";
+		MycatXmlUtils.setDataHostWithDn0(filepath, "192.168.0.16", "pascloud", 3306, "root", "root",serverpath);
+		//String serverpath = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/mycat/conf/server.xml";
 		
 		//MycatXmlUtils.addServer(serverpath, "dn22");
 		//MycatXmlUtils.delServer(serverpath, "dn22");

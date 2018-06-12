@@ -125,6 +125,12 @@ public class PasServiceController extends BaseController {
 			}
 		}
 		
+		if(service.contains(PasTypeEnum.MYCAT.getValue())){
+			result = m_pasService.checkMysqlService();
+			if(!result.getCode().equals(PasCloudCode.SUCCESS.getCode())){
+				return result;
+			}
+		}
 		
 		
 		//m_pasService.checkImageExist(ip, "redis:latest");

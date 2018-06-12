@@ -119,6 +119,9 @@ public class ContainerController extends BaseController {
 		}else if(name.contains(PasTypeEnum.TOMCAT.getValue())){
 			log.info("重新上传"+name+"配置");
 			m_pasService.uploadTomcatfile(ip);
+		}else if(name.contains(PasTypeEnum.MYCAT.getValue())){
+			log.info("重新上传"+name+"配置");
+			m_pasService.uploadMycatfile(ip);
 		}else{
 			log.info("不用重新上传配置");
 		}
@@ -212,6 +215,9 @@ public class ContainerController extends BaseController {
 		}else if(name.contains(PasTypeEnum.TOMCAT.getValue())){
 			log.info("重新上传"+name+"配置");
 			m_pasService.uploadTomcatfile(ip);
+		}else if(name.contains(PasTypeEnum.MYCAT.getValue())){
+			log.info("重新上传"+name+"配置");
+			m_pasService.uploadMycatfile(ip);
 		}else{
 			log.info("不用重新上传配置");
 		}

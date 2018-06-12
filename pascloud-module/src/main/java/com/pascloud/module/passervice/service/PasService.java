@@ -21,6 +21,7 @@ import com.pascloud.module.common.service.AbstractBaseService;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.docker.service.ContainerService;
 import com.pascloud.module.docker.service.DockerService;
+import com.pascloud.module.mycat.service.MycatService;
 import com.pascloud.module.pasdev.service.PasdevService;
 import com.pascloud.module.server.service.ServerService;
 import com.pascloud.utils.PasCloudCode;
@@ -57,7 +58,6 @@ public class PasService extends AbstractBaseService {
 	private ContainerService m_containerService;
 	@Autowired
 	private ConfigService    m_configService;
-	
 	@Autowired
 	private PasCloudConfig   m_config;
 	@Autowired
@@ -66,6 +66,8 @@ public class PasService extends AbstractBaseService {
 	private ServerService    m_serverService;
 	@Autowired
 	private PasdevService    m_pasdevService;
+	@Autowired
+	private MycatService     m_mycatService;
 	
 	
 	public List<ContainerVo> getContainerWithMainService(){
@@ -97,6 +99,11 @@ public class PasService extends AbstractBaseService {
 	
 	public String getTomcatHomePath(){
 		String path = Constants.PASCLOUD_HOME+"tomcat";
+		return path;
+	}
+	
+	public String getMycatHomePath(){
+		String path = Constants.PASCLOUD_HOME+"mycat";
 		return path;
 	}
 	/**
@@ -522,6 +529,48 @@ public class PasService extends AbstractBaseService {
 		return flag;
 	}
 	
+	public Boolean uploadMycatfile(String ip){
+		Boolean flag = false;
+		Connection conn = null;
+		try{
+			ServerVo vo = m_serverService.getByIP(ip);
+			if(null!=vo){
+				conn = getScpClientConn(vo.getIp(),vo.getUsername(),vo.getPassword());
+				flag = uploadMycatConfig(conn);
+			}
+		}catch(Exception e){
+			log.error(e.getMessage());
+		}finally{
+			conn.close();
+		}
+		return flag;
+	}
+	
+	private Boolean uploadMycatConfig(Connection conn){
+		Boolean flag = false;
+		List<MysqlVo> mysqls = new ArrayList<MysqlVo>();
+		if(null!=conn){
+			log.info("上传mycat schema.xml文件");
+			String configfilepath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+
+					m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SCHEMA;
+			String serverfilepath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SCHEMA;
+			
+			log.info(configfilepath);
+			String mycatConfigPath = getTomcatHomePath()+"/conf/";
+			log.info(mycatConfigPath);
+			mysqls = getMysqlServer();
+			if(mysqls.size()>0){
+				MysqlVo vo = mysqls.get(0);
+				if(null!=vo){
+					m_mycatService.setDataHostWithDn0(vo.getIp(), "pascloud", vo.getPort(), "root", "root");
+				}
+			}
+			flag = putFileToServer(conn,configfilepath, mycatConfigPath);
+			flag = putFileToServer(conn,serverfilepath, mycatConfigPath);
+		}
+		return flag;
+	}
+	
 	
 	
 	
@@ -665,15 +714,32 @@ public class PasService extends AbstractBaseService {
 		port.put("8066", "8066");
 		port.put("9066", "9066");
 		List<String> envs = new ArrayList<>();
-        log.info("开始新建mycat容器");
 		
-		DefaultDockerClient client = DefaultDockerClient.builder()
-				.uri("http://"+ip+":"+defaultPort).build();
-		id = m_dockerService.addContainer(client, port, bindVolumeFrom, bindVolumeTo, imageName, containerName,cmd,envs);
-		if(!id.equals("")){
-			flag = true;
+		Connection conn = null;
+		try{
+			ServerVo vo = m_serverService.getByIP(ip);
+			if(null!=vo){
+				conn = getScpClientConn(vo.getIp(),vo.getUsername(),vo.getPassword());
+				uploadMycatConfig(conn);
+			}
+			log.info("开始新建mycat容器");
+			
+			DefaultDockerClient client = DefaultDockerClient.builder()
+					.uri("http://"+ip+":"+defaultPort).build();
+			id = m_dockerService.addContainer(client, port, bindVolumeFrom, bindVolumeTo, imageName, containerName,cmd,envs);
+			if(!id.equals("")){
+				flag = true;
+			}
+			log.info("结束新建mycat容器");
+			
+			
+		}catch(Exception e){
+			log.error(e.getMessage());
+		}finally{
+			conn.close();
 		}
-		log.info("结束新建mycat容器");
+		
+        
 		return flag;
 	}
 	
@@ -1110,6 +1176,24 @@ public class PasService extends AbstractBaseService {
 				return new ResultCommon(PasCloudCode.ERROR.getCode(),"请先开起redis的服务");
 			}
 		}
+		
+		List<MysqlVo> mysqls = getMysqlServer();
+		if(mysqls.size() == 0){
+			return new ResultCommon(PasCloudCode.ERROR.getCode(),"请先开起mysql的服务");
+		}else{
+			MysqlVo vo = mysqls.get(0);
+			if(!vo.getStatus().equals("running")){
+				return new ResultCommon(PasCloudCode.ERROR.getCode(),"请先开起mysql的服务");
+			}
+		}
+		
+		return result;
+		
+	}
+	
+	public ResultCommon checkMysqlService(){
+		//ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
+		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
 		
 		List<MysqlVo> mysqls = getMysqlServer();
 		if(mysqls.size() == 0){
