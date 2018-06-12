@@ -311,6 +311,42 @@ public class PasdevService extends AbstractBaseService {
 		return flag;
 	}
 	
+	public Boolean uploadPasfileWithID(String dbSchema,String ip){
+		Boolean flag = false;
+		String path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()
+		+"/"+dbSchema;
+		String tarpath = path+".tar";
+		String gzpath = path+".tar.gz";
+		String gzname = dbSchema+".tar.gz";
+		try{
+			log.info("判断目录下文件是否不为空");
+			List<File> files = new ArrayList<File>();
+			if(!FileUtils.isDir(path)){
+				return flag;
+			}
+			files = FileUtils.listFilesInDir(path);
+			if(files.size()>=0 && !FileUtils.isFileExists(gzpath)){
+				if(!FileUtils.isFileExists(tarpath)){
+					log.info("对目录进行tar压缩");
+					TarUtils.archive(path,tarpath);
+				}
+				if(FileUtils.isFileExists(tarpath)){
+					log.info("对目录进行gz压缩");
+					GZipUtils.compress(tarpath);
+				}
+			}
+			if(FileUtils.isFileExists(gzpath)){
+				flag = uploadGZIPToServer(gzpath,gzname,dbSchema,ip);
+				
+			}
+			log.info("完成压缩");
+		}catch(Exception e){
+		    log.error(e.getMessage());
+		    e.printStackTrace();
+		}
+		return flag;
+	}
+	
 	/**
 	 * 上传到服务器并解压
 	 * @param gzpath
@@ -355,6 +391,52 @@ public class PasdevService extends AbstractBaseService {
 				log.info("获取容器所在服务器的PAS+目录完成");
 				log.info("获取容器的在的服务器完成");
 			}
+		}
+		log.info("获取服务的容器完成");
+		return flag;
+	}
+	
+	private Boolean uploadGZIPToServer(String gzpath,String gzname,String dbSchema,
+			String ip){
+		String path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR();
+		
+		Connection conn = null;
+		Boolean flag = true;
+		//String serverPath = Constants.PASCLOUD_HOME;
+		//List<ContainerVo> containers = m_pasService.getContainerWithMainService();
+		log.info("获取服务的容器");
+		if(null!=ip){
+			ServerVo server = m_serverService.getByIP(ip);
+			//for(ContainerVo vo:containers){
+				log.info("获取容器的在的服务器");
+				//ServerVo server = m_serverService.getByIP(vo.getIp());
+				log.info("获取容器所在服务器的PAS+目录");
+				//String serverPath = m_pasService.getServicePasdevPathWithContainerName(vo.getName());
+				String serverPath = Constants.PASCLOUD_HOME+Constants.PASCLOUD_SERVICE_DEMO+"/data/pasplus/config/";
+				String serverGZpath = serverPath+gzname;
+				if(null!=server){
+					conn = getScpClientConn(server.getIp(), server.getUsername(), server.getPassword());
+					//scpClient = m_scpClientService.buildScpClient(server.getIp(), server.getUsername(), server.getPassword());
+					log.info("创建SSH连接工具类");
+					if(null !=conn){
+						log.info("上传");
+						if(uploadGZToServer(conn,gzpath,serverPath)){
+							String cmd="tar -zvxf "+serverGZpath;
+							if(execCommand(conn,cmd)){
+								String cpcmd = "cp -R ~/"+dbSchema+" "+serverPath;
+								if(execCommand(conn,cpcmd)){
+									flag = true;
+								}
+							}
+						}
+						//String cmd="tar -zvxf "+serverGZpath+" -C "+serverPath;这种方式太慢
+						conn.close();
+					}
+					log.info("创建SSH连接工具类完成");
+				}
+				log.info("获取容器所在服务器的PAS+目录完成");
+				log.info("获取容器的在的服务器完成");
+			//}
 		}
 		log.info("获取服务的容器完成");
 		return flag;

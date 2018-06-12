@@ -21,18 +21,24 @@ import com.pascloud.module.common.service.AbstractBaseService;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.docker.service.ContainerService;
 import com.pascloud.module.docker.service.DockerService;
+import com.pascloud.module.pasdev.service.PasdevService;
 import com.pascloud.module.server.service.ServerService;
+import com.pascloud.utils.PasCloudCode;
 import com.pascloud.utils.RandomUtils;
 import com.pascloud.utils.ScpClientUtils;
 import com.pascloud.utils.xml.XmlParser;
 import com.pascloud.vo.common.MapVo;
+import com.pascloud.vo.database.DBInfo;
 import com.pascloud.vo.docker.ContainerVo;
 import com.pascloud.vo.docker.ImageVo;
 import com.pascloud.vo.pass.MqVo;
 import com.pascloud.vo.pass.MycatVo;
+import com.pascloud.vo.pass.MysqlVo;
 import com.pascloud.vo.pass.PasConfigVo;
+import com.pascloud.vo.pass.PasTypeEnum;
 import com.pascloud.vo.pass.RedisVo;
 import com.pascloud.vo.pass.ZookeeperVo;
+import com.pascloud.vo.result.ResultCommon;
 import com.pascloud.vo.server.ServerVo;
 import com.spotify.docker.client.DefaultDockerClient;
 import com.thoughtworks.xstream.XStream;
@@ -58,6 +64,8 @@ public class PasService extends AbstractBaseService {
 	private DockerService    m_dockerService;
 	@Autowired
 	private ServerService    m_serverService;
+	@Autowired
+	private PasdevService    m_pasdevService;
 	
 	
 	public List<ContainerVo> getContainerWithMainService(){
@@ -84,6 +92,11 @@ public class PasService extends AbstractBaseService {
 		name = name.replaceAll("_", "-");
 		name = name.replaceAll("pascloud", "pas-cloud");
 		String path = Constants.PASCLOUD_HOME+name+"/conf/";
+		return path;
+	}
+	
+	public String getTomcatHomePath(){
+		String path = Constants.PASCLOUD_HOME+"tomcat";
 		return path;
 	}
 	/**
@@ -119,7 +132,7 @@ public class PasService extends AbstractBaseService {
 			break;
 		case 6:
 			log.info("添加tomcat");
-			flag = addtomcatContainer(ip,service);
+			flag = addTomcatContainer(ip,service);
 			break;
 		case 7:
 			log.info("添加zk");
@@ -182,24 +195,20 @@ public class PasService extends AbstractBaseService {
 		try{
 			ServerVo vo = m_serverService.getByIP(ip);
 			if(null!=vo){
+				//*******复制PAS+文件
 				
 				conn = getScpClientConn(vo.getIp(),vo.getUsername(),vo.getPassword());
+				log.info("上传pas+文件");
+				uploadPasdev(conn,ip);
 				log.info("开始拷贝服务源码目录");
 				copyFolder(conn,basePath,bindVolumeFrom);
 				log.info("结束拷贝源码目录");
-				//dubbo.properties
-				log.info("上传dubbo.properties文件");
-				String dubbofilepath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+
-						m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"dubbo.properties";
-				m_configService.setApplicationName(containerName);
-				putFileToServer(conn,dubbofilepath, bindVolumeFrom+"/conf/");
-				log.info("上传config.properties文件");
-				String configfilepath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ 
-						m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"config.properties";
-				//这个目录暂时不能设置为TRUE，因为DOCKER无法访问外面宿主的目录 
-				m_configService.setHomePath(bindVolumeFrom);
-				m_configService.setDev("false");
-				putFileToServer(conn,configfilepath, bindVolumeFrom+"/conf/");
+				
+				uploadDubbofile(conn,bindVolumeFrom,containerName);
+				uploadConfigfile(conn,bindVolumeFrom,false,containerName);
+				uploadZkfile(conn,bindVolumeFrom,containerName);
+				uploadRedisfile(conn,bindVolumeFrom,containerName);
+				uploadDbfile(conn,bindVolumeFrom,containerName);
 				
 				log.info("开始新建main容器");
 				DefaultDockerClient client = DefaultDockerClient.builder()
@@ -217,7 +226,6 @@ public class PasService extends AbstractBaseService {
 		}
 		return flag;
 	}
-	
 	
 	public Boolean copyPaspmServiceContainer(String ip,String servicePort,String restPort){
 
@@ -250,19 +258,12 @@ public class PasService extends AbstractBaseService {
 				log.info("开始拷贝服务源码目录");
 				copyFolder(conn,basePath,bindVolumeFrom);
 				log.info("结束拷贝源码目录");
-				//dubbo.properties
-				log.info("上传dubbo.properties文件");
-				String dubbofilepath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+
-						m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"dubbo.properties";
-				m_configService.setApplicationName(containerName);
-				putFileToServer(conn,dubbofilepath, bindVolumeFrom+"/conf/");
-				log.info("上传config.properties文件");
-				String configfilepath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ 
-						m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"config.properties";
-
-				m_configService.setHomePath(Constants.PASCLOUD_HOME+Constants.PASCLOUD_SERVICE_DEMO);
-				m_configService.setDev("true");
-				putFileToServer(conn,configfilepath, bindVolumeFrom+"/conf/");
+				uploadDubbofile(conn,bindVolumeFrom,containerName);
+				uploadConfigfile(conn,bindVolumeFrom,true,containerName);
+				uploadZkfile(conn,bindVolumeFrom,containerName);
+				uploadRedisfile(conn,bindVolumeFrom,containerName);
+				uploadDbfile(conn,bindVolumeFrom,containerName);
+				
 				log.info("开始新建main容器");
 				DefaultDockerClient client = DefaultDockerClient.builder()
 						.uri("http://"+ip+":"+defaultPort).build();
@@ -279,6 +280,250 @@ public class PasService extends AbstractBaseService {
 		}
 		return flag;
 	}
+	
+	public Boolean uploadConfigForStart(String ip,PasTypeEnum type,String containerName){
+		Boolean flag = false;
+		Connection conn = null;
+		try{
+			String serverPath = getServicePathWithContainerName(containerName);
+			ServerVo vo = m_serverService.getByIP(ip);
+			if(null!=vo){
+				conn = getScpClientConn(vo.getIp(),vo.getUsername(),vo.getPassword());
+				if(type.equals(PasTypeEnum.DEMO)){
+					uploadDubbofile(conn,serverPath,containerName);
+					uploadConfigfile(conn,serverPath,false,containerName);
+					uploadZkfile(conn,serverPath,containerName);
+					uploadRedisfile(conn,serverPath,containerName);
+					uploadDbfile(conn,serverPath,containerName);
+					flag = true;
+				}else if(type.equals(PasTypeEnum.PASPM)){
+					uploadDubbofile(conn,serverPath,containerName);
+					uploadConfigfile(conn,serverPath,true,containerName);
+					uploadZkfile(conn,serverPath,containerName);
+					uploadRedisfile(conn,serverPath,containerName);
+					uploadDbfile(conn,serverPath,containerName);
+					flag = true;
+				}
+			}
+		}catch(Exception e){
+			log.error(e.getMessage());
+		}finally{
+			conn.close();
+		}
+		return flag;
+	}
+	
+	/**
+	 * 设置并上传dubbo.properties
+	 * @param conn
+	 * @param serverPath
+	 * @param containerName
+	 * @return
+	 */
+	private Boolean uploadDubbofile(Connection conn,String serverPath,String containerName){
+		Boolean flag = false;
+		if(null!=conn){
+			log.info("上传dubbo.properties文件");
+			String dubbofilepath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+
+					m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"dubbo.properties";
+			m_configService.setApplicationName(containerName);
+			flag = putFileToServer(conn,dubbofilepath, serverPath+"/conf/");
+			log.info("上传dubbo.properties文件完成");
+		}
+		return flag;
+	}
+	
+	/**
+	 * 设置并上传config.properties 的主目录和MQ的地址
+	 * @param conn
+	 * @param serverPath
+	 * @param dev
+	 * @param containerName
+	 * @return
+	 */
+	private Boolean uploadConfigfile(Connection conn,String serverPath,Boolean dev,String containerName){
+		Boolean flag = false;
+		List<MqVo> mqs = new ArrayList<MqVo>();
+		if(null!=conn){
+			log.info("上传config.properties文件");
+			String configfilepath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ 
+					m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"config.properties";
+			//这个目录暂时不能设置为TRUE，因为DOCKER无法访问外面宿主的目录 
+			if(dev){
+				m_configService.setHomePath(Constants.PASCLOUD_HOME+Constants.PASCLOUD_SERVICE_DEMO);
+				m_configService.setDev("true");
+			}else{
+				m_configService.setHomePath(serverPath);
+				m_configService.setDev("false");
+			}
+			
+			mqs = getMqServer();
+			if(mqs.size()>0){
+				MqVo vo = mqs.get(0);
+				if(null!=vo){
+					m_configService.setMQConfig(vo.getIp(), vo.getPort());
+				}
+			}
+			log.info(configfilepath);
+			log.info(serverPath+"/conf/");
+			putFileToServer(conn,configfilepath, serverPath+"/conf/");
+			log.info("上传config.properties文件完成");
+		}
+		return flag;
+	}
+	
+	/**
+	 * 设置并上传zk.properties的zookeeper的地址
+	 * @param conn
+	 * @param serverPath
+	 * @param containerName
+	 * @return
+	 */
+	private Boolean uploadZkfile(Connection conn,String serverPath,String containerName){
+		Boolean flag = false;
+		List<ZookeeperVo> zks = new ArrayList<ZookeeperVo>();
+		if(null!=conn){
+			log.info("上传zk.properties文件");
+			String configfilepath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ 
+					m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"zk.properties";
+			zks = getZkServer();
+			if(zks.size()>0){
+				ZookeeperVo vo = zks.get(0);
+				if(null!=vo){
+					log.info(vo.getIp());
+					m_configService.setZookeeperConfig(vo.getIp(), vo.getPort());
+				}
+			}
+			flag = putFileToServer(conn,configfilepath, serverPath+"/conf/");
+			log.info("上传zk.properties文件完成");
+		}
+		return flag;
+	}
+	
+	/**
+	 * 设置并上传redis.properties的地址
+	 * @param conn
+	 * @param serverPath
+	 * @param containerName
+	 * @return
+	 */
+	private Boolean uploadRedisfile(Connection conn,String serverPath,String containerName){
+		Boolean flag = false;
+		List<RedisVo> rediss = new ArrayList<RedisVo>();
+		if(null!=conn){
+			log.info("上传redis.properties文件");
+			String configfilepath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ 
+					m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"redis.properties";
+			rediss = getRedisServer();
+			if(rediss.size()>0){
+				RedisVo vo = rediss.get(0);
+				if(null!=vo){
+					m_configService.setRedisConfig(vo.getIp(), vo.getPort(), "", "");
+				}
+			}
+			flag = putFileToServer(conn,configfilepath, serverPath+"/conf/");
+			log.info("上传redis.properties文件完成");
+		}
+		return flag;
+	}
+	
+	/**
+	 * 设置并上传db.properties dn0的MYSQL地址，和MYCAT的地址
+	 * @param conn
+	 * @param serverPath
+	 * @param containerName
+	 * @return
+	 */
+	private Boolean uploadDbfile(Connection conn,String serverPath,String containerName){
+		Boolean flag = false;
+		List<MysqlVo> mysql = new ArrayList<MysqlVo>();
+		List<MycatVo> mycat = new ArrayList<MycatVo>();
+		if(null!=conn){
+			log.info("上传db.properties文件");
+			String configfilepath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ 
+					m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"db.properties";
+			
+			mysql = getMysqlServer();
+			mycat = getMycatServer();
+			
+			if(mysql.size()>0){
+				MysqlVo myvo = mysql.get(0);
+				if(null!=myvo){
+					m_configService.setMysqlConfig(myvo.getIp(), myvo.getPort());
+				}
+			}
+			if(mycat.size()>0){
+				MycatVo mcvo = mycat.get(0);
+				if(null!=mcvo){
+					m_configService.setMycatConfig(mcvo.getIp(), "root", "root");
+				}
+			}
+			flag = putFileToServer(conn,configfilepath, serverPath+"/conf/");
+			log.info("上传db.properties文件完成");
+		}
+		return flag;
+	}
+	
+	private Boolean uploadPasdev(Connection conn,String ip){
+		Boolean flag = false;
+		List<DBInfo> dbs = m_configService.getDBFromConfig();
+		if(dbs.size()>0){
+			for(DBInfo db:dbs){
+				log.info("uploadPasdev="+db.getId());
+				m_pasdevService.uploadPasfileWithID(db.getId(),ip);
+			}
+			flag = true;
+		}
+		return flag;
+	}
+	
+	public Boolean uploadTomcatfile(String ip){
+		Boolean flag = false;
+		Connection conn = null;
+		try{
+			ServerVo vo = m_serverService.getByIP(ip);
+			if(null!=vo){
+				conn = getScpClientConn(vo.getIp(),vo.getUsername(),vo.getPassword());
+				flag = uploadTomcatfile(conn);
+			}
+			
+		}catch(Exception e){
+			log.error(e.getMessage());
+		}finally{
+			conn.close();
+		}
+		return flag;
+	}
+	
+	private Boolean uploadTomcatfile(Connection conn){
+		Boolean flag = false;
+		List<ZookeeperVo> zks = new ArrayList<ZookeeperVo>();
+		List<RedisVo> rediss = new ArrayList<RedisVo>();
+		if(null!=conn){
+			log.info("上传tomcat config.properties文件");
+			String configfilepath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+
+					m_config.getPASCLOUD_TOMCAT()+File.separator+"config.properties";
+			log.info(configfilepath);
+			
+			String tomcatConfigPath = getTomcatHomePath()+"/webapps/ROOT/WEB-INF/classes/";
+			log.info(tomcatConfigPath);
+			zks = getZkServer();
+			rediss = getRedisServer();
+			if(zks.size()>0 && rediss.size()>0){
+				ZookeeperVo vo = zks.get(0);
+				RedisVo redis = rediss.get(0);
+				if(null!=vo && null!=redis){
+					m_configService.setTomcatConfig(redis, vo);
+				}
+			}
+			flag = putFileToServer(conn,configfilepath, tomcatConfigPath);
+			log.info("上传tomcat config.properties文件完成");
+		}
+		return flag;
+	}
+	
+	
+	
 	
 	public Boolean addRedisContainer(String ip,String service){
 		Boolean flag = false;
@@ -392,7 +637,7 @@ public class PasService extends AbstractBaseService {
         log.info("开始新建mq容器");
 		
 		DefaultDockerClient client = DefaultDockerClient.builder()
-				.uri("http://"+"192.168.0.7"+":"+defaultPort).build();
+				.uri("http://"+ip+":"+defaultPort).build();
 		id = m_dockerService.addContainer(client, port, bindVolumeFrom, bindVolumeTo, imageName, containerName,cmd,envs);
 		if(!id.equals("")){
 			flag = true;
@@ -423,7 +668,7 @@ public class PasService extends AbstractBaseService {
         log.info("开始新建mycat容器");
 		
 		DefaultDockerClient client = DefaultDockerClient.builder()
-				.uri("http://"+"192.168.0.7"+":"+defaultPort).build();
+				.uri("http://"+ip+":"+defaultPort).build();
 		id = m_dockerService.addContainer(client, port, bindVolumeFrom, bindVolumeTo, imageName, containerName,cmd,envs);
 		if(!id.equals("")){
 			flag = true;
@@ -432,7 +677,7 @@ public class PasService extends AbstractBaseService {
 		return flag;
 	}
 	
-	public Boolean addtomcatContainer(String ip,String service){
+	public Boolean addTomcatContainer(String ip,String service){
     	//String containerName = "pascloud_tomcat";
 		Boolean flag = false;
 		//String containerName = "pascloud_zookeeper_admin";
@@ -446,19 +691,31 @@ public class PasService extends AbstractBaseService {
 		if(!checkImageExist(ip,imageName)){
 			return flag;
 		}
-		
 		Map<String,String> port = new HashMap<String,String>();
 		port.put("8170", "8170");
 		List<String> envs = new ArrayList<>();
-        log.info("开始新建tomcat容器");
 		
-		DefaultDockerClient client = DefaultDockerClient.builder()
-				.uri("http://"+"192.168.0.7"+":"+defaultPort).build();
-		id = m_dockerService.addContainer(client, port, bindVolumeFrom, bindVolumeTo, imageName, containerName,cmd,envs);
-		if(!id.equals("")){
-			flag = true;
+		Connection conn = null;
+		try{
+			ServerVo vo = m_serverService.getByIP(ip);
+			if(null!=vo){
+				conn = getScpClientConn(vo.getIp(),vo.getUsername(),vo.getPassword());
+				uploadTomcatfile(conn);
+			}
+			log.info("开始新建tomcat容器");
+			
+			DefaultDockerClient client = DefaultDockerClient.builder()
+					.uri("http://"+"192.168.0.7"+":"+defaultPort).build();
+			id = m_dockerService.addContainer(client, port, bindVolumeFrom, bindVolumeTo, imageName, containerName,cmd,envs);
+			if(!id.equals("")){
+				flag = true;
+			}
+			log.info("结束新建tomcat容器");
+		}catch(Exception e){
+			log.error(e.getMessage());
+		}finally{
+			conn.close();
 		}
-		log.info("结束新建tomcat容器");
 		return flag;
 	}
 	
@@ -585,6 +842,289 @@ public class PasService extends AbstractBaseService {
 		
 		return map;
 	}
+	
+	public List<ZookeeperVo> getZkServer(){
+		List<ZookeeperVo> zks = new ArrayList<ZookeeperVo>();
+		List<ContainerVo> containers =m_containerService.getContainers(PasTypeEnum.ZK.getValue());
+		if(null!=containers && containers.size()>0){
+			for(ContainerVo vo:containers){
+				ZookeeperVo v = new ZookeeperVo();
+				v.setIp(vo.getIp());
+				v.setPort(Integer.valueOf(Constants.PS_ZOOKEEPER_PORT));
+				v.setStatus(vo.getState());
+				zks.add(v);
+			}
+		}
+		return zks;
+	}
+	
+	public List<RedisVo> getRedisServer(){
+		List<RedisVo> rediss = new ArrayList<RedisVo>();
+		List<ContainerVo> containers =m_containerService.getContainers(PasTypeEnum.REDIS.getValue());
+		if(null!=containers && containers.size()>0){
+			for(ContainerVo vo:containers){
+				RedisVo v = new RedisVo();
+				v.setIp(vo.getIp());
+				v.setPort(Integer.valueOf(Constants.PS_REDIS_PORT));
+				v.setStatus(vo.getState());
+				rediss.add(v);
+			}
+		}
+		return rediss;
+	}
+	
+	public List<MqVo> getMqServer(){
+		List<MqVo> mqs = new ArrayList<MqVo>();
+		List<ContainerVo> containers =m_containerService.getContainers(PasTypeEnum.MQ.getValue());
+		if(null!=containers && containers.size()>0){
+			for(ContainerVo vo:containers){
+				MqVo v = new MqVo();
+				v.setIp(vo.getIp());
+				v.setPort(Integer.valueOf(Constants.PS_MQ_PORT));
+				v.setStatus(vo.getState());
+				mqs.add(v);
+			}
+		}
+		return mqs;
+	}
+	
+	public List<MycatVo> getMycatServer(){
+		List<MycatVo> mycats = new ArrayList<MycatVo>();
+		List<ContainerVo> containers =m_containerService.getContainers(PasTypeEnum.MYCAT.getValue());
+		if(null!=containers && containers.size()>0){
+			for(ContainerVo vo:containers){
+				MycatVo v = new MycatVo();
+				v.setIp(vo.getIp());
+				v.setPort(Integer.valueOf(Constants.PS_MYCAT_PORT));
+				v.setStatus(vo.getState());
+				mycats.add(v);
+			}
+		}
+		return mycats;
+	}
+	
+	public List<MysqlVo> getMysqlServer(){
+		List<MysqlVo> mysqls = new ArrayList<MysqlVo>();
+		List<ContainerVo> containers =m_containerService.getContainers(PasTypeEnum.MYSQL.getValue());
+		if(null!=containers && containers.size()>0){
+			for(ContainerVo vo:containers){
+				MysqlVo v = new MysqlVo();
+				v.setIp(vo.getIp());
+				v.setPort(Integer.valueOf(Constants.PS_MYSQL_PORT));
+				v.setStatus(vo.getState());
+				mysqls.add(v);
+			}
+		}
+		return mysqls;
+	}
+	
+	private List<MapVo> convertZKsToList(){
+		List<MapVo> map = new ArrayList<>();
+		List<ZookeeperVo> zks = getZkServer();
+		MapVo m1 = new MapVo();
+		MapVo m2 = new MapVo();
+		if(zks.size()>0){
+			ZookeeperVo zk = zks.get(0);
+			m1.setKey("zookeeper.ip");
+			m1.setValue(zk.getIp());
+			m1.setDesc("注册中心的IP地址");
+			m2.setKey("zookeeper.port");
+			m2.setValue(zk.getPort()+"");
+			m2.setDesc("注册中心的端口");
+		}else{
+			m1.setKey("zookeeper.ip");
+			m1.setValue("");
+			m1.setDesc("注册中心的IP地址");
+			m2.setKey("zookeeper.port");
+			m2.setValue("");
+			m2.setDesc("注册中心的端口");
+			
+		}
+		map.add(m1);
+		map.add(m2);
+		return map;
+		
+	}
+	
+	private List<MapVo> convertRedisToList(){
+		List<MapVo> map = new ArrayList<>();
+		List<RedisVo> rediss = getRedisServer();
+		MapVo m1 = new MapVo();
+		MapVo m2 = new MapVo();
+		if(rediss.size()>0){
+			RedisVo redis = rediss.get(0);
+			m1.setKey("redis.ip");
+			m1.setValue(redis.getIp());
+			m1.setDesc("redis的IP地址");
+			m2.setKey("redis.port");
+			m2.setValue(redis.getPort()+"");
+			m2.setDesc("redis的端口");
+		}else{
+			m1.setKey("redis.ip");
+			m1.setValue("");
+			m1.setDesc("redis的IP地址");
+			m2.setKey("redis.port");
+			m2.setValue("");
+			m2.setDesc("redis的端口");
+		}
+		map.add(m1);
+		map.add(m2);
+		return map;
+		
+	}
+	
+	private List<MapVo> convertMQToList(){
+		List<MapVo> map = new ArrayList<>();
+		List<MqVo> mqs = getMqServer();
+		MapVo m1 = new MapVo();
+		MapVo m2 = new MapVo();
+		if(mqs.size()>0){
+			MqVo mq = mqs.get(0);
+			m1.setKey("mq.ip");
+			m1.setValue(mq.getIp());
+			m1.setDesc("mq的IP地址");
+			m2.setKey("mq.port");
+			m2.setValue(mq.getPort()+"");
+			m2.setDesc("mq的端口");
+		}else{
+			m1.setKey("mq.ip");
+			m1.setValue("");
+			m1.setDesc("mq的IP地址");
+			m2.setKey("mq.port");
+			m2.setValue("");
+			m2.setDesc("mq的端口");
+		}
+		map.add(m1);
+		map.add(m2);
+		return map;
+		
+	}
+	
+	private List<MapVo> convertMycatToList(){
+		List<MapVo> map = new ArrayList<>();
+		List<MycatVo> mycats = getMycatServer();
+		MapVo m1 = new MapVo();
+		MapVo m2 = new MapVo();
+		if(mycats.size()>0){
+			MycatVo mycat = mycats.get(0);
+			m1.setKey("mycat.ip");
+			m1.setValue(mycat.getIp());
+			m1.setDesc("mycat的IP地址");
+			m2.setKey("mycat.port");
+			m2.setValue(mycat.getPort()+"");
+			m2.setDesc("mycat的端口");
+		}else{
+			m1.setKey("mycat.ip");
+			m1.setValue("");
+			m1.setDesc("mycat的IP地址");
+			m2.setKey("mycat.port");
+			m2.setValue("");
+			m2.setDesc("mycat的端口");
+		}
+		map.add(m1);
+		map.add(m2);
+		return map;
+		
+	}
+	
+	private List<MapVo> convertMysqlToList(){
+		List<MapVo> map = new ArrayList<>();
+		List<MysqlVo> mysqls = getMysqlServer();
+		MapVo m1 = new MapVo();
+		MapVo m2 = new MapVo();
+		if(mysqls.size()>0){
+			MysqlVo mysql = mysqls.get(0);
+			m1.setKey("mysql.ip");
+			m1.setValue(mysql.getIp());
+			m1.setDesc("mysql的IP地址");
+			m2.setKey("mysql.port");
+			m2.setValue(mysql.getPort()+"");
+			m2.setDesc("mysql的端口");
+		}else{
+			m1.setKey("mysql.ip");
+			m1.setValue("");
+			m1.setDesc("mysql的IP地址");
+			m2.setKey("mysql.port");
+			m2.setValue("");
+			m2.setDesc("mysql的端口");
+		}
+		map.add(m1);
+		map.add(m2);
+		return map;
+		
+	}
+	
+	public List<MapVo> convertPasConfigToList(){
+		List<MapVo> map = new ArrayList<>();
+		map.addAll(convertZKsToList());
+		map.addAll(convertRedisToList());
+		map.addAll(convertMycatToList());
+		map.addAll(convertMQToList());
+		map.addAll(convertMysqlToList());
+		return map;
+	}
+	
+	public ResultCommon checkBaseService(){
+		//ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
+		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
+		
+		List<ZookeeperVo> zks = getZkServer();
+		if(zks.size() == 0){
+			return new ResultCommon(PasCloudCode.ERROR.getCode(),"请先开起zookeeper的服务");
+		}else{
+			ZookeeperVo vo = zks.get(0);
+			log.info(vo.getStatus());
+			if(!vo.getStatus().equals("running")){
+				return new ResultCommon(PasCloudCode.ERROR.getCode(),"请先开起zookeeper的服务");
+			}
+		}
+		List<MycatVo> mycats = getMycatServer();
+		if(mycats.size() == 0){
+			return new ResultCommon(PasCloudCode.ERROR.getCode(),"请先开起mycat的服务");
+		}else{
+			MycatVo vo = mycats.get(0);
+			log.info(vo.getStatus());
+			if(!vo.getStatus().equals("running")){
+				return new ResultCommon(PasCloudCode.ERROR.getCode(),"请先开起mycat的服务");
+			}
+		}
+		List<MqVo> mqs = getMqServer();
+		if(mqs.size() == 0){
+			return new ResultCommon(PasCloudCode.ERROR.getCode(),"请先开起mq的服务");
+		}
+		else{
+			MqVo vo = mqs.get(0);
+			log.info(vo.getStatus());
+			if(!vo.getStatus().equals("running")){
+				return new ResultCommon(PasCloudCode.ERROR.getCode(),"请先开起mq的服务");
+			}
+		}
+		List<RedisVo> rediss = getRedisServer();
+		if(rediss.size() == 0){
+			return new ResultCommon(PasCloudCode.ERROR.getCode(),"请先开起redis的服务");
+		}
+		else{
+			RedisVo vo = rediss.get(0);
+			log.info(vo.getStatus());
+			if(!vo.getStatus().equals("running")){
+				return new ResultCommon(PasCloudCode.ERROR.getCode(),"请先开起redis的服务");
+			}
+		}
+		
+		List<MysqlVo> mysqls = getMysqlServer();
+		if(mysqls.size() == 0){
+			return new ResultCommon(PasCloudCode.ERROR.getCode(),"请先开起mysql的服务");
+		}else{
+			MysqlVo vo = mysqls.get(0);
+			if(!vo.getStatus().equals("running")){
+				return new ResultCommon(PasCloudCode.ERROR.getCode(),"请先开起mysql的服务");
+			}
+		}
+		
+		return result;
+		
+	}
+	
 	
 	
 	

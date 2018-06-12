@@ -2,18 +2,15 @@ package com.pascloud.vo.pass;
 
 import java.io.Serializable;
 
-public class MqVo implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class MysqlVo implements Serializable {
+	
+    private static final long serialVersionUID = 1L;
 	
 	private String  ip;
 	
 	private Integer port;
-
-private String  username;
+	
+    private String  username;
 	
 	private String  password;
 	
@@ -45,6 +42,7 @@ private String  username;
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 	public String getIp() {
 		return ip;
 	}

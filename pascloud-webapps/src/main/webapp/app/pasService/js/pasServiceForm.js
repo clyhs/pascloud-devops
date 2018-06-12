@@ -48,9 +48,10 @@ function submit(){
 		$.messager.alert('提示','IP和类型不能为空');
 		return ;
 	}else{
+		$('#addPasService').dialog('close');
 		EasyUILoad('mainCenter');
 		$.post("addPasService.json",param,function(data,status){
-			$('#addPasService').dialog('close');
+			
 			if(data.code == 10000){
 				
 				$('#mainDataGrid').datagrid('reload');//刷新
@@ -161,9 +162,18 @@ function copyPaspmServiceContainer(){
 function startContainer(){
 	
 	var row = $('#mainDataGrid').datagrid('getSelected'); 
+	if(null==row){
+		$.messager.alert('提示','请选择要重启的服务');
+		return ;
+	}
+	
+	var containerId = row.id;
+	var ip = row.ip;
+	var name = row.name;
+	var params = {containerId:containerId,ip:ip,name:name}
 	if(row.state != 'running'){
 		EasyUILoad('mainCenter');
-		$.post("/module/container/startContainer.json",{containerId:row.id,ip:row.ip},function(data,status){
+		$.post("/module/container/startContainer.json",params,function(data,status){
 
 			$('#mainDataGrid').datagrid('reload');//刷新
 			dispalyEasyUILoad( 'mainCenter' );
@@ -209,9 +219,19 @@ function stopContainer(){
 function restartContainer(){
 	
 	var row = $('#mainDataGrid').datagrid('getSelected'); 
+	if(null==row){
+		$.messager.alert('提示','请选择要重启的服务');
+		return ;
+	}
+	
+	var containerId = row.id;
+	var ip = row.ip;
+	var name = row.name;
+	var params = {containerId:containerId,ip:ip,name:name}
+	
 	if(row.state == 'exited'){
 		EasyUILoad('mainCenter');
-		$.post("/module/container/restartContainer.json",{containerId:row.id,ip:row.ip},function(data,status){
+		$.post("/module/container/restartContainer.json",params,function(data,status){
             if(data.code == 10000){
 				
 				$('#mainDataGrid').datagrid('reload');//刷新
@@ -272,7 +292,7 @@ function removeContainer(){
 	var row = $('#mainDataGrid').datagrid('getSelected'); 
 	
 	if(null!=row){
-		if(row.name.indexOf("shipyard")){
+		if(row.name!="" && row.name=='shipyard-proxy'){
 			$.messager.alert('提示','基础服务不能销毁');
 			return ;
 		}

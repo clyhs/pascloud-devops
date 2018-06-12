@@ -10,6 +10,7 @@ public class Constants {
 	
 	public static String PASCLOUD_HOME = "/home/pascloud/";
 	
+	
 	public static String PASCLOUD_SERVICE_DEMO = "pas-cloud-service-demo";
 	public static String PASCLOUD_SERVICE_PASPM= "pas-cloud-service-paspm";
 	
@@ -32,6 +33,12 @@ public class Constants {
 	
 	public static String ORACLE_SID_PREEFIX="cpas";
 	public static String ORACLE_SID_EX_PREEFIX="*[Cc][Pp][Aa][Ss]";
+	
+	public static String PS_REDIS_PORT="6379";
+	public static String PS_MQ_PORT="61616";
+	public static String PS_ZOOKEEPER_PORT="2181";
+	public static String PS_MYSQL_PORT="3306";
+	public static String PS_MYCAT_PORT="8066";
 	
 	
 	

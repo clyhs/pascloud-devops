@@ -18,9 +18,11 @@ import com.pascloud.constant.Constants;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.docker.service.ContainerService;
 import com.pascloud.module.docker.service.DockerService;
+import com.pascloud.module.passervice.service.PasService;
 import com.pascloud.utils.PasCloudCode;
 import com.pascloud.vo.docker.ContainerVo;
 import com.pascloud.vo.docker.NodeVo;
+import com.pascloud.vo.pass.PasTypeEnum;
 import com.pascloud.vo.result.ResultCommon;
 import com.spotify.docker.client.DefaultDockerClient;
 import com.spotify.docker.client.messages.ContainerInfo;
@@ -29,8 +31,9 @@ import com.spotify.docker.client.messages.ContainerInfo;
 public class ContainerController extends BaseController {
 	
 	@Autowired
-	private DockerService m_dockerService;
-	
+	private DockerService    m_dockerService;
+	@Autowired
+	private PasService       m_pasService;
 	@Autowired
 	private ContainerService m_containerService;
 	
@@ -80,63 +83,6 @@ public class ContainerController extends BaseController {
 		port.put("6379", "6379");
 		List<String> envs = new ArrayList<>();
 		
-		//$ docker run --name pas_activemq -p 61616:61616 -e ACTIVEMQ_ADMIN_LOGIN=admin -e ACTIVEMQ_ADMIN_PASSWORD=admin --restart=always -d webcenter/activemq:latest
-		/*
-		String containerName = "pascloud_activemq";
-		String bindVolumeFrom = "";
-		String bindVolumeTo = bindVolumeFrom;
-		String id = "";
-		String[] cmd = {};
-		String imageName = "webcenter/activemq:latest";
-		Map<String,String> port = new HashMap<String,String>();
-		port.put("61616", "61616");
-		List<String> envs = new ArrayList<>();
-		envs.add("ACTIVEMQ_ADMIN_LOGIN=admin");
-		envs.add("ACTIVEMQ_ADMIN_PASSWORD=admin");*/
-		
-		//docker run --name pas_zk_dubbo_admin  --restart=always  -d -p 8686:8686 -p 2181:2181 pascloud/zk_dubbo:v1.1
-		/*		
-		String containerName = "pascloud_zookeeper_admin";
-		String bindVolumeFrom = "";
-		String bindVolumeTo = bindVolumeFrom;
-		String id = "";
-		String[] cmd = {};
-		String imageName = "pascloud/zk_dubbo:v1.1";
-		Map<String,String> port = new HashMap<String,String>();
-		port.put("8686", "8686");
-		port.put("2181", "2181");*/
-		/*
-		String containerName = "pascloud_mycat";
-		String bindVolumeFrom = "/home/pascloud/mycat";
-		String bindVolumeTo = bindVolumeFrom;
-		String id = "";
-		String[] cmd = {"/home/pascloud/mycat/bin/mycat","console","&"};
-		String imageName = "pascloud/jdk7:v1.0";
-		Map<String,String> port = new HashMap<String,String>();
-		port.put("8066", "8066");
-		port.put("9066", "9066");*/
-		
-	    
-		/*
-		String containerName = "pascloud_service_main";
-		String bindVolumeFrom = "/home/pascloud/pas-cloud-service-demo";
-		String bindVolumeTo = bindVolumeFrom;
-		String id = "";
-		String[] cmd = {"/home/pascloud/pas-cloud-service-demo/bin/start.sh"};
-		String imageName = "pascloud/jdk7:v1.0";
-		Map<String,String> port = new HashMap<String,String>();
-		port.put("8201", "8201");
-		port.put("8211", "8211");*/
-		/*
-		String containerName = "pascloud_service_paspm";
-		String bindVolumeFrom = "/home/pascloud/pas-cloud-service-paspm";
-		String bindVolumeTo = bindVolumeFrom;
-		String id = "";
-		String[] cmd = {"/home/pascloud/pas-cloud-service-paspm/bin/start.sh"};
-		String imageName = "pascloud/jdk7:v1.0";
-		Map<String,String> port = new HashMap<String,String>();
-		port.put("8202", "8202");
-		port.put("8212", "8212");*/
 		
 		log.info("开始新建容器");
 		
@@ -154,10 +100,30 @@ public class ContainerController extends BaseController {
 	@RequestMapping(value="startContainer.json",method=RequestMethod.POST)
 	@ResponseBody
 	public ResultCommon startContainer(HttpServletRequest request,
-			@RequestParam(value="ip",defaultValue="",required=true) String ip){
+			@RequestParam(value="ip",defaultValue="",required=true) String ip,
+			@RequestParam(value="name",defaultValue="",required=true) String name,
+			@RequestParam(value="containerId",defaultValue="",required=true) String containerId){
 		
-		ResultCommon result = new ResultCommon(10000,"成功");
-		String containerId = request.getParameter("containerId");
+        ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
+		
+		if(ip.length()==0 || name.length()==0 || containerId.length()==0){
+			return new ResultCommon(PasCloudCode.ERROR);
+		}
+		
+		if(name.contains(PasTypeEnum.DEMO.getValue())){
+			log.info("重新上传"+name+"配置");
+			m_pasService.uploadConfigForStart(ip, PasTypeEnum.DEMO, name);
+		}else if(name.contains(PasTypeEnum.PASPM.getValue())){
+			log.info("重新上传"+name+"配置");
+			m_pasService.uploadConfigForStart(ip, PasTypeEnum.PASPM, name);
+		}else if(name.contains(PasTypeEnum.TOMCAT.getValue())){
+			log.info("重新上传"+name+"配置");
+			m_pasService.uploadTomcatfile(ip);
+		}else{
+			log.info("不用重新上传配置");
+		}
+		
+		
 		String status = "";
 		DefaultDockerClient client = DefaultDockerClient.builder()
 				.uri("http://"+ip+":"+defaultPort).build();
@@ -227,10 +193,30 @@ public class ContainerController extends BaseController {
 	@RequestMapping(value="restartContainer.json",method=RequestMethod.POST)
 	@ResponseBody
 	public ResultCommon restartContainer(HttpServletRequest request,
-			@RequestParam(value="ip",defaultValue="",required=true) String ip){
+			@RequestParam(value="ip",defaultValue="",required=true) String ip,
+			@RequestParam(value="name",defaultValue="",required=true) String name,
+			@RequestParam(value="containerId",defaultValue="",required=true) String containerId){
 		
-		ResultCommon result = new ResultCommon(10000,"成功");
-		String containerId = request.getParameter("containerId");
+		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
+		
+		if(ip.length()==0 || name.length()==0 || containerId.length()==0){
+			return new ResultCommon(PasCloudCode.ERROR);
+		}
+		
+		if(name.contains(PasTypeEnum.DEMO.getValue())){
+			log.info("重新上传"+name+"配置");
+			m_pasService.uploadConfigForStart(ip, PasTypeEnum.DEMO, name);
+		}else if(name.contains(PasTypeEnum.PASPM.getValue())){
+			log.info("重新上传"+name+"配置");
+			m_pasService.uploadConfigForStart(ip, PasTypeEnum.PASPM, name);
+		}else if(name.contains(PasTypeEnum.TOMCAT.getValue())){
+			log.info("重新上传"+name+"配置");
+			m_pasService.uploadTomcatfile(ip);
+		}else{
+			log.info("不用重新上传配置");
+		}
+		
+		//String containerId = request.getParameter("containerId");
 		String status = "";
 		DefaultDockerClient client = DefaultDockerClient.builder()
 				.uri("http://"+ip+":"+defaultPort).build();

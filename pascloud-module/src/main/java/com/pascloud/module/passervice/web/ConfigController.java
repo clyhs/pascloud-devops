@@ -44,8 +44,10 @@ public class ConfigController extends BaseController {
 	public List<MapVo> getPasConfig(HttpServletRequest request){
 		List<MapVo> map = new ArrayList<>();
 		log.info("查询配置信息");
-		PasConfigVo config = m_pasService.getPasConfig();
-		map = m_pasService.convertPasConfigToList(config);
+		//PasConfigVo config = m_pasService.getPasConfig();
+		//map = m_pasService.convertPasConfigToList(config);
+		
+		map = m_pasService.convertPasConfigToList();
 		return map;
 	}
 

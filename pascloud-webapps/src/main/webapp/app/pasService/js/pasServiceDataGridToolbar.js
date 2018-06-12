@@ -1,36 +1,18 @@
 
 var toolbar = function(){
-	return [{
+	return [/*{
 		text : '环境',  
         iconCls : 'icon-application_start',  
         handler : function(){
         	addBaseContainer();
         }
-	},{
+	},*/{
 		text : '添加服务',  
         iconCls : 'icon-application_add',  
         handler : function(){
         	addPasService();
         }
-	}/*,{
-		text : '公共服务',  
-        iconCls : 'icon-add',  
-        handler : function(){
-        	copyMainServiceContainer();
-        }
 	},{
-		text : '管家',  
-        iconCls : 'icon-add',  
-        handler : function(){
-        	copyPaspmServiceContainer();
-        }
-	},{
-		text : '前端',  
-        iconCls : 'icon-web',  
-        handler : function(){
-        	addTomcatContainer();
-        }
-	}*/,{
 		text : '运行',  
         iconCls : 'icon-application_start',  
         handler : function(){

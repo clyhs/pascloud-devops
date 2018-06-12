@@ -17,6 +17,8 @@ import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.utils.DBUtils;
 import com.pascloud.utils.PropertiesUtil;
 import com.pascloud.vo.database.DBInfo;
+import com.pascloud.vo.pass.RedisVo;
+import com.pascloud.vo.pass.ZookeeperVo;
 
 @Service
 public class ConfigService {
@@ -34,7 +36,9 @@ public class ConfigService {
 	
 	private String m_redis_file = "/redis.properties";
 	
-	private String m_zk_file = "/redis.properties";
+	private String m_zk_file = "/zk.properties";
+	
+	private String m_tomcat_config_file="/config.properties";
 	
 	/**
 	 *添加DB配置（static/resources/service/conf/config.properties) 
@@ -219,7 +223,24 @@ public class ConfigService {
 		delMycatKey(dnName,p);
 	}
 	
-	public void updateRedisConfig(String ip,Integer port,String user,String password){
+	/**
+	 * dn0.driverClass=com.mysql.jdbc.Driver
+     * dn0.url=jdbc\:mysql\://192.168.0.7\:3306/pascloud
+     * dn0.username=root
+     * dn0.password=root
+	 * @param ip
+	 * @param port
+	 * @param user
+	 * @param password
+	 */
+	public void setMysqlConfig(String ip,Integer port){
+		PropertiesUtil p =new PropertiesUtil();
+		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
+		String url = "jdbc:mysql://"+ip+":"+port+"/pascloud";
+		p.setValueByKey("dn0.url", url, "");
+	}
+	
+	public void setRedisConfig(String ip,Integer port,String user,String password){
 		PropertiesUtil p =new PropertiesUtil();
 		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_redis_file);
 		p.setValueByKey("redis.host", ip, "");
@@ -272,7 +293,9 @@ public class ConfigService {
 	 * @param port
 	 */
 	public void setZookeeperConfig(String ip,Integer port){
+		log.info("set zk addr ");
 		PropertiesUtil p =new PropertiesUtil();
+		log.info(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_zk_file);
 		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_zk_file);
 		StringBuffer sb = new StringBuffer();
 		sb.append("zookeeper://").append(ip);
@@ -329,6 +352,18 @@ public class ConfigService {
 		PropertiesUtil p =new PropertiesUtil();
 		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
 		p.setValueByKey("pascloud.dev", flag, "");
+	}
+	
+	public void setTomcatConfig(RedisVo redis,ZookeeperVo vo){
+		PropertiesUtil p =new PropertiesUtil();
+		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_TOMCAT()+this.m_tomcat_config_file);
+		p.setValueByKey("redis.host", redis.getIp(), "");
+		p.setValueByKey("redis.port", redis.getPort()+"", "");
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("zookeeper://").append(vo.getIp());
+		p.setValueByKey("zookeeper.host", sb.toString(), "");
+		p.setValueByKey("zookeeper.port", vo.getPort()+"", "");
 	}
 	
 	

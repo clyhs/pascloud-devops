@@ -36,8 +36,17 @@ public class PasCloudConfig {
 	@Value("${project.psconfig}")
 	private String PASCLOUD_PSCONFIG;
 	
+	@Value("${project.tomcat}")
+	private String PASCLOUD_TOMCAT;
 	
-	
+	public String getPASCLOUD_TOMCAT() {
+		return PASCLOUD_TOMCAT;
+	}
+
+	public void setPASCLOUD_TOMCAT(String pASCLOUD_TOMCAT) {
+		PASCLOUD_TOMCAT = pASCLOUD_TOMCAT;
+	}
+
 	public String getPASCLOUD_PSCONFIG() {
 		return PASCLOUD_PSCONFIG;
 	}
