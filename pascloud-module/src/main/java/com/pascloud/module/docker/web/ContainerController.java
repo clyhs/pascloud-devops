@@ -132,6 +132,12 @@ public class ContainerController extends BaseController {
 				.uri("http://"+ip+":"+defaultPort).build();
 		status = m_dockerService.startContainer(client, containerId);
 		System.out.println(status);
+		if(status.equals("running")){
+			if(name.contains(PasTypeEnum.MYSQL.getValue())){
+				log.info("重新上传"+name+"配置");
+				m_pasService.createDataAndImp(ip);
+			}
+		}
 		return result;
 	}
 	
@@ -228,6 +234,12 @@ public class ContainerController extends BaseController {
 				.uri("http://"+ip+":"+defaultPort).build();
 		status = m_dockerService.restartContainer(client, containerId);
 		System.out.println(status);
+		if(status.equals("running")){
+			if(name.contains(PasTypeEnum.MYSQL.getValue())){
+				log.info("重新上传"+name+"配置");
+				m_pasService.createDataAndImp(ip);
+			}
+		}
 		return result;
 	}
 	

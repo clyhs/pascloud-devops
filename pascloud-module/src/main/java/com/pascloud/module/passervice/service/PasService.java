@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import com.pascloud.constant.Constants;
 import com.pascloud.module.common.service.AbstractBaseService;
 import com.pascloud.module.config.PasCloudConfig;
+import com.pascloud.module.database.service.MysqlService;
 import com.pascloud.module.docker.service.ContainerService;
 import com.pascloud.module.docker.service.DockerService;
 import com.pascloud.module.mycat.service.MycatService;
@@ -68,6 +69,8 @@ public class PasService extends AbstractBaseService {
 	private PasdevService    m_pasdevService;
 	@Autowired
 	private MycatService     m_mycatService;
+	@Autowired
+	private MysqlService     m_mysqlService;
 	
 	
 	public List<ContainerVo> getContainerWithMainService(){
@@ -498,6 +501,23 @@ public class PasService extends AbstractBaseService {
 			log.error(e.getMessage());
 		}finally{
 			conn.close();
+		}
+		return flag;
+	}
+	
+	public Boolean createDataAndImp(String ip){
+		Boolean flag = false;
+		String sqlPath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYSQL()+"/pascloud.sql";
+		String funPath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYSQL()+"/functions.sql";
+		log.info(sqlPath);
+		List<MysqlVo> mysqls = new ArrayList<MysqlVo>();
+		mysqls = getMysqlServer();
+		if(mysqls.size()>0){
+			MysqlVo vo = mysqls.get(0);
+			if(null!=vo){
+				log.info(vo.getIp());
+				flag =m_mysqlService.createDatabaseAndImport("mysql", vo, sqlPath, funPath);
+			}
 		}
 		return flag;
 	}
@@ -978,6 +998,9 @@ public class PasService extends AbstractBaseService {
 				v.setIp(vo.getIp());
 				v.setPort(Integer.valueOf(Constants.PS_MYSQL_PORT));
 				v.setStatus(vo.getState());
+				v.setUsername("root");
+				v.setPassword("root");
+				
 				mysqls.add(v);
 			}
 		}

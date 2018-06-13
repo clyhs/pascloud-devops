@@ -24,7 +24,7 @@
     <type>slave</type>
   </server>
   <server>
-    <ip>192.168.1.234</ip>
+    <ip>192.168.0.101</ip>
     <username>root</username>
     <password>tccp@2012</password>
     <port>22</port>

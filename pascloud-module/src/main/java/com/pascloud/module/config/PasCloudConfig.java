@@ -39,6 +39,19 @@ public class PasCloudConfig {
 	@Value("${project.tomcat}")
 	private String PASCLOUD_TOMCAT;
 	
+	@Value("${project.mysql}")
+	private String PASCLOUD_MYSQL;
+	
+	
+	
+	public String getPASCLOUD_MYSQL() {
+		return PASCLOUD_MYSQL;
+	}
+
+	public void setPASCLOUD_MYSQL(String pASCLOUD_MYSQL) {
+		PASCLOUD_MYSQL = pASCLOUD_MYSQL;
+	}
+
 	public String getPASCLOUD_TOMCAT() {
 		return PASCLOUD_TOMCAT;
 	}
