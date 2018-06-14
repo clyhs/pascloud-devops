@@ -104,9 +104,7 @@ public class MycatController extends BaseController {
 			@RequestParam(value="username",defaultValue="",required=true) String user,
 			@RequestParam(value="password",defaultValue="",required=true) String password){
 		
-		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
-		
-		
+		ResultCommon result = null;
 		List<DataNodeVo> nodes = new ArrayList<>();
 		nodes = m_mycatService.getDataNodes();
 		if(nodes.size()>0){
@@ -116,8 +114,11 @@ public class MycatController extends BaseController {
 				}
 			}
 		}
-		
-		m_mycatService.addDatanode(name, dbType, ip, user, password, database, port);
+		if(m_mycatService.addDatanode(name, dbType, ip, user, password, database, port)){
+			result = new ResultCommon(PasCloudCode.SUCCESS);
+		}else{
+			result = new ResultCommon(PasCloudCode.ERROR);
+		}
 		return result;
 		
 	}
@@ -127,12 +128,16 @@ public class MycatController extends BaseController {
 	public ResultCommon delDatanode(HttpServletRequest request,
 			@RequestParam(value="name",defaultValue="",required=true) String name){
 		
-		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
+		ResultCommon result = null;
 		
 		if(name.equals("dn0")){
 			return new ResultCommon(PasCloudCode.ERROR);
 		}else{
-			m_mycatService.delDatanode(name);
+			if(m_mycatService.delDatanode(name)){
+				result = new ResultCommon(PasCloudCode.SUCCESS);
+			}else{
+				result = new ResultCommon(PasCloudCode.ERROR);
+			}
 		}
 		
 		
@@ -160,28 +165,16 @@ public class MycatController extends BaseController {
 	@RequestMapping("uploadConfig.json")
 	@ResponseBody
 	public ResultCommon uploadConfig(HttpServletRequest request){
-		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
-		List<ContainerVo> containers = new ArrayList<>();
+		ResultCommon result = null;
 		//containers = m_dockerService.getContainer(dockerClient);
 		String mycat_schema_path =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SCHEMA;
 		String mycat_server_path =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SERVER;
 	
-		containers = m_containerService.getContainers("pascloud_mycat");
-		/****上传到复制的项目***/
-		if(containers.size()>0){
-			for(ContainerVo vo : containers){
-				
-				ServerVo server = m_serverService.getByIP(vo.getIp());
-				
-				ScpClientUtils scpClient = new ScpClientUtils(vo.getIp(), server.getUsername(), server.getPassword());
-				String path = "/home/pascloud/mycat/conf/";
-				scpClient.putFileToServer(mycat_schema_path, path);
-				scpClient.putFileToServer(mycat_server_path, path);
-				scpClient.close();
-			}
+		if( m_mycatService.uploadConfigAndRestart(mycat_schema_path,mycat_server_path)){
+			result = new ResultCommon(PasCloudCode.SUCCESS);
+		}else{
+			result = new ResultCommon(PasCloudCode.ERROR);
 		}
-		
-		
 		return result;
 		
 	}

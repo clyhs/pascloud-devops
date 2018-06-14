@@ -4,12 +4,21 @@ import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.pascloud.module.server.service.ServerService;
+import com.spotify.docker.client.DefaultDockerClient;
 
 import ch.ethz.ssh2.Connection;
 import ch.ethz.ssh2.ConnectionInfo;
 import ch.ethz.ssh2.SCPClient;
 
 public abstract class AbstractBaseService {
+	
+	@Autowired
+	protected ServerService    m_serverService;
+	
+	protected DefaultDockerClient dockerClient;
 	
 	protected String defaultPort = "2375";
 	
@@ -61,6 +70,11 @@ public abstract class AbstractBaseService {
 			}
 		}
 		return flag;
+	}
+	
+	public DefaultDockerClient getDockerClient(){
+		this.dockerClient = DefaultDockerClient.builder().uri(m_serverService.getMasterDockerUrl()).build();
+		return dockerClient;
 	}
 
 }

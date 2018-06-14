@@ -30,8 +30,8 @@ function initMainDataGrid(){
             { field: 'url', title: '地址', width: 180, align: 'left' },
             { field: 'username', title: '用户', width: 40, align: 'center' },
             { field: 'password', title: '密码', width: 40, align: 'center' },
-            { field: 'userCount', title: '行员数', width: 40, align: 'center' },
-            { field: '_operate',title: '状态', width: 80, align: 'center',formatter:formatOper }
+            { field: 'userCount', title: '行员数', width: 40, align: 'center' }
+            //{ field: '_operate',title: '状态', width: 80, align: 'center',formatter:formatOper }
         ]],
         toolbar:toolbar,
         onBeforeLoad: function (param) {
@@ -41,7 +41,7 @@ function initMainDataGrid(){
         	for(var i=0;i<data.rows.length;i++)
             {
         		
-        		checkConnArr[i]=setInterval("checkConnStatus('"+data.rows[i].id+"','"+data.rows[i].dbType+"','"+data.rows[i].url+"','"+data.rows[i].username+"','"+data.rows[i].password+"','"+i+"')",1000*20);
+        		//checkConnArr[i]=setInterval("checkConnStatus('"+data.rows[i].id+"','"+data.rows[i].dbType+"','"+data.rows[i].url+"','"+data.rows[i].username+"','"+data.rows[i].password+"','"+i+"')",1000*20);
                 //alert(data.rows[i].name);
             }
         	//data = data;

@@ -206,21 +206,23 @@ function addSelectDB(){
 	
 	var params = {name:name,en:en,cn:cn};
 	EasyUILoad('mainCenter');
+	$('#tenantAddSelectDb').dialog('close');
 	$.get('checkDBConfigByName.json',params,function(data,status){
 		if(data.code == 10000){
 			//$.messager.alert('提示','节点还没被使用');
+			//这一步先把信息填到db.properties
+			
 			$.post("addTenantDBByName.json",params,function(data,status){
 				if(data.code = 10000){
 					//alert(data.desc);
 					//alert("修改成功，请重新启动应用");
-					$('#tenantAddSelectDb').dialog('close');
 					$('#mainDataGrid').datagrid('reload');//刷新
-					dispalyEasyUILoad('mainCenter');
-					sysHyByDBName(name,en);
-					uploadCofingBySelectDB();
+					//dispalyEasyUILoad('mainCenter');
+					sysHyByDBName(name,en,cn);
+					
 					addPasfile(name);
+					
 				}else{
-					$('#tenantAddSelectDb').dialog('close');
 					$('#mainDataGrid').datagrid('reload');//刷新
 					dispalyEasyUILoad('mainCenter');
 					$.messager.alert('提示','addTenantDBByName'+data.desc);
@@ -233,7 +235,7 @@ function addSelectDB(){
 	});
 }
 
-function sysHyByDBName(name,en){
+function sysHyByDBName(name,en,cn){
 
 	if(null == name || '' == name){
 		$.messager.alert('提示','名字不能为空');
@@ -248,7 +250,7 @@ function sysHyByDBName(name,en){
 	if(name == 'dn0'){
 		$.messager.alert('提示','不能选择公共库，请重新选择');
 	}else{
-		var params = {name:name,en:en};
+		var params = {name:name,en:en,cn:cn};
 		//alert(driverClassVal + passwordVal);
 		EasyUILoadForMsg('mainCenter','行员同步中，请耐心等待！');
 		//alert(EasyUILoad('mainDataGrid'));
@@ -256,7 +258,6 @@ function sysHyByDBName(name,en){
 			if(data.code == 10000){
 				
 				$('#mainDataGrid').datagrid('reload');//刷新
-				dispalyEasyUILoad( 'mainCenter' );
 			}else{
 				dispalyEasyUILoad( 'mainCenter' );
 				$.messager.alert('提示','sysHyByDBName'+data.desc);
@@ -284,11 +285,10 @@ function delDB(){
 							//alert("修改成功，请重新启动应用");
 							uploadCofingBySelectDB();
 							$('#mainDataGrid').datagrid('reload');//刷新
-							dispalyEasyUILoad( 'mainCenter' );
-			    			$.messager.alert('提示','上传完毕，请重启服务');
-							
+			    			//$.messager.alert('提示','上传完毕，请重启服务');
 						}else{
 							$.messager.alert('提示','delTenantDB'+data.desc);
+							dispalyEasyUILoad( 'mainCenter' );
 						}
 					});
 			    }
@@ -312,10 +312,13 @@ function uploadConfig(){
 }
 
 function uploadCofingBySelectDB(){
+	EasyUILoadForMsg('mainCenter','上传配置文件！');
 	$.post("uploadConfig.json",{},function(data,status){
 		if(data.code = 10000){
-			
+			dispalyEasyUILoad( 'mainCenter' );
+			$.messager.alert('提示','成功');
 		}else{
+			dispalyEasyUILoad( 'mainCenter' );
 			$.messager.alert('提示','上传配置文件失败');
 		}
 	});
@@ -335,7 +338,6 @@ function addPasfile(name){
 		EasyUILoadForMsg('mainCenter','上传完成，正在复制开发文件！');
 		$.post("/module/pasdev/copyPasfileWithName.json",param,function(data,status){
 			if(data.code == 10000){
-				dispalyEasyUILoad('mainCenter');
 				uploadPasfile(name);
 			}else{
 				dispalyEasyUILoad('mainCenter');
@@ -357,8 +359,7 @@ function uploadPasfile(name){
 			EasyUILoadForMsg('mainCenter','正在上传开发文件，请耐心等待！');
 			$.post("/module/pasdev/uploadPasfile.json",param,function(data,status){
 	    		if(data.code == 10000){
-	    			dispalyEasyUILoad( 'mainCenter' );
-	    			$.messager.alert('提示','上传完毕，请重启服务');
+	    			uploadCofingBySelectDB();
 	    		}else{
 	    			dispalyEasyUILoad('mainCenter');
 	    			$.messager.alert('提示',data.desc);	

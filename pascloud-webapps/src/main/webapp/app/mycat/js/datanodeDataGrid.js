@@ -28,7 +28,7 @@ function initMainDataGrid(){
             { field: 'database', title: '数据库实例', width: 40, align: 'left' },
             { field: 'user', title: '用户', width: 40, align: 'left' },
             { field: 'password', title: '密码', width: 40, align: 'left' },
-            { field: 'sysc', title: '是否配置到服务器', width: 60, align: 'left' }
+            //{ field: 'sysc', title: '是否配置到服务器', width: 60, align: 'left' }
         ]],
         toolbar:toolbar,
         onBeforeLoad: function (param) {
@@ -36,7 +36,7 @@ function initMainDataGrid(){
         onLoadSuccess: function (data) {
         	for(var i=0;i<data.rows.length;i++)
             {
-                setInterval("checkSysc('"+data.rows[i].name+"','"+i+"')",1000*10);
+                //setInterval("checkSysc('"+data.rows[i].name+"','"+i+"')",1000*10);
                 //alert(data.rows[i].name);
             }
         },

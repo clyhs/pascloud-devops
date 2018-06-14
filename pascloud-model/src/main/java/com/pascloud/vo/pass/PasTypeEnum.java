@@ -10,6 +10,7 @@ public enum PasTypeEnum {
 	TOMCAT(6, "pascloud_tomcat"), 
 	ZK(7, "pascloud_zookeeper_admin"),
 	MYSQL(8,"pascloud_mysql");
+	
 
 	private String value;
 

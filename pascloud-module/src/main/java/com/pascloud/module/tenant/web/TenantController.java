@@ -33,6 +33,7 @@ import com.pascloud.vo.database.DBInfo;
 import com.pascloud.vo.docker.ContainerVo;
 import com.pascloud.vo.docker.NodeVo;
 import com.pascloud.vo.mycat.DataNodeVo;
+import com.pascloud.vo.pass.PasTypeEnum;
 import com.pascloud.vo.result.ResultBean;
 import com.pascloud.vo.result.ResultCommon;
 import com.pascloud.vo.server.ServerVo;
@@ -59,11 +60,11 @@ public class TenantController extends BaseController {
 	@Autowired
 	private ContainerService m_containerService;
 	@Autowired
-	private ServerService    m_serverService;
-	@Autowired
 	private PasService       m_pasService;
 	@Autowired
 	private PasCloudConfig   m_config;
+	@Autowired
+	private DockerService    m_dockerService;
 	
 	@RequestMapping("index.html")
 	public String index(HttpServletRequest request){
@@ -150,7 +151,7 @@ public class TenantController extends BaseController {
 		if(name.length()==0 || cn.length()==0 || en.length()==0){
 			return  new ResultCommon(PasCloudCode.NULLDATA);
 		}
-		
+		//从MYCAT人DATANODE获取节点，如果不存在，显示错误
 		List<DataNodeVo> datanodes = new ArrayList<>();
 		DataNodeVo datanode = null;
 		datanodes = m_mycatService.getDataNodes();
@@ -166,7 +167,7 @@ public class TenantController extends BaseController {
 		}
 		
 		if(null!=datanode){
-			
+			//添加到MYCAT的schema.xml server.xml
 			m_configService.addDBConfig(datanode.getIp(),Integer.valueOf(datanode.getPort()), datanode.getUser(),
 						datanode.getPassword(), datanode.getDbType(), name, datanode.getDatabase(),
 						en,cn);
@@ -188,13 +189,18 @@ public class TenantController extends BaseController {
 	@ResponseBody
 	public ResultCommon delTenantDB(HttpServletRequest 
 			request,@RequestParam(value="name",defaultValue="",required=true) String name){
-		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
+		ResultCommon result = null;
 
 		if(name.equals(Constants.PASCLOUD_PUBLIC_DB)){
 			result = new ResultCommon(20000, "不能删除公共库，请重新选择");
 			return result;
 		}
-		m_configService.delDBConfig(name);
+		if(m_configService.delDBConfig(name)){
+			result = new ResultCommon(PasCloudCode.SUCCESS);
+			
+		}else{
+			result = new ResultCommon(PasCloudCode.ERROR);
+		}
 		return result;
 	}
 	/**
@@ -213,21 +219,19 @@ public class TenantController extends BaseController {
 		List<NodeVo> nodes = new ArrayList<>();
 		
 		/****上传到复制的项目***/
+		String status = "";
 		if(containers.size()>0){
 			for(ContainerVo vo : containers){
-				ServerVo server = m_serverService.getByIP(vo.getIp());
-				ScpClientUtils scpClient = new ScpClientUtils(vo.getIp(), server.getUsername(), server.getPassword());
-				//scpClient.close();
-				String dbfilepath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_SERVICE_DIR()+File.separator+"db.properties";
-				String path = m_pasService.getServiceConfPathWithContainerName(vo.getName());
-				scpClient.putFileToServer(dbfilepath, path);
 				
-				String demopath = Constants.PASCLOUD_HOME+Constants.PASCLOUD_SERVICE_DEMO+"/conf/";
-				scpClient.putFileToServer(dbfilepath, demopath);
-				String paspmpath =Constants.PASCLOUD_HOME+Constants.PASCLOUD_SERVICE_PASPM+"/conf/";
-				scpClient.putFileToServer(dbfilepath, paspmpath);
-				
-				scpClient.close();
+				if(vo.getName().contains(PasTypeEnum.DEMO.getValue())){
+					m_pasService.uploadConfigForStart(vo.getIp(), PasTypeEnum.DEMO, vo.getName());
+				}else if(vo.getName().contains(PasTypeEnum.PASPM.getValue())){
+					m_pasService.uploadConfigForStart(vo.getIp(), PasTypeEnum.PASPM, vo.getName());
+				}
+				DefaultDockerClient client = DefaultDockerClient.builder()
+						.uri("http://"+vo.getIp()+":"+defaultPort).build();
+				log.info("重启服务"+vo.getName());
+				status = m_dockerService.restartContainer(client, vo.getId());
 			}
 		}
 		
@@ -351,11 +355,12 @@ public class TenantController extends BaseController {
 	@ResponseBody
 	public ResultCommon syscHyByName(HttpServletRequest request,
 			@RequestParam(value = "name", defaultValue = "", required = true) String name,
-			@RequestParam(value = "en", defaultValue = "", required = true) String en) {
+			@RequestParam(value = "en", defaultValue = "", required = true) String en,
+			@RequestParam(value = "cn", defaultValue = "", required = true) String cn) {
 
 		ResultCommon result = null;
 		
-		if(name.length() == 0 || en.length()==0){
+		if(name.length() == 0 || en.length()==0 || cn.length() == 0){
 			return new ResultCommon(20000, "不能选择公共库进行同步，请重新选择");
 		}
 		
@@ -381,6 +386,7 @@ public class TenantController extends BaseController {
 		}
 		
 		if(null!=datanode){
+			
 		}else{
 			result = new ResultCommon(PasCloudCode.ERROR);
 			return result;
@@ -395,10 +401,13 @@ public class TenantController extends BaseController {
 			sourceConn = db.getConnection();
 			if (null!=sourceConn) {
 				log.info("更新行员的前缀");
-				hynum = m_tenantService.updateKhdxHy(sourceConn, en);
+				hynum = m_tenantService.updateKhdxHy(sourceConn, en,cn);
 				log.info("更新行员的前缀完成");
 				log.info("获取租户的全部行员数据");
 				List<KhdxHyVo> lists = m_tenantService.getAllHy(sourceConn);
+				
+				log.info("行员数="+lists.size());
+				
 				dn0Conn = getPublicDB();
 				if(null!=dn0Conn && lists.size()>0){
 					log.info("清除租户在公共库的全部行员数据");

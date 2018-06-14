@@ -22,14 +22,10 @@
 		class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
 	<bean
 		class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
-	<!--  
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/" />
-		<property name="suffix" value=".jsp" />
-	</bean>-->
+	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" 
+		/> <property name="prefix" value="/" /> <property name="suffix" value=".jsp" 
+		/> </bean> -->
 
 	<!-- Freemarker -->
 
@@ -68,7 +64,33 @@
 	<bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape" />
 
 
+	<!-- 配置HandlerAdapter -->
+	<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+                
+				<bean
+					class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter" />
+				<bean
+					class="org.springframework.http.converter.xml.SourceHttpMessageConverter" />
+				<bean
+					class="org.springframework.http.converter.xml.XmlAwareFormHttpMessageConverter" />
+				<bean
+					class="org.springframework.http.converter.ResourceHttpMessageConverter" />
+				<bean
+					class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+				<bean
+					class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+				<bean
+					class="org.springframework.http.converter.StringHttpMessageConverter" />
 
+			</list>
+		</property>
+	</bean>
+
+	
+	
 	<mvc:default-servlet-handler />
 
 	<mvc:resources location="/app/" mapping="/module/app/**" />

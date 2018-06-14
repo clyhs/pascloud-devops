@@ -25,11 +25,14 @@ import org.springframework.stereotype.Service;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.google.gson.Gson;
 import com.pascloud.constant.Constants;
+import com.pascloud.module.common.service.AbstractBaseService;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.docker.service.ContainerService;
 import com.pascloud.module.docker.service.DockerService;
 import com.pascloud.module.passervice.service.PasService;
+import com.pascloud.module.server.service.ServerService;
 import com.pascloud.utils.PasCloudCode;
+import com.pascloud.utils.ScpClientUtils;
 import com.pascloud.utils.db.DataSourceUtils;
 import com.pascloud.utils.xml.MycatXmlUtils;
 import com.pascloud.utils.xml.XmlParser;
@@ -41,11 +44,12 @@ import com.pascloud.vo.mycat.DataNodeVo;
 import com.pascloud.vo.mycat.DataSourceVo;
 import com.pascloud.vo.pass.MycatVo;
 import com.pascloud.vo.result.ResultListData;
+import com.pascloud.vo.server.ServerVo;
 import com.spotify.docker.client.DefaultDockerClient;
 
 
 @Service
-public class MycatService {
+public class MycatService extends AbstractBaseService {
 	
 	private static Logger log = LoggerFactory.getLogger(MycatService.class);
 	
@@ -55,7 +59,8 @@ public class MycatService {
 	private DockerService    m_dockerService;
 	@Autowired
 	private ContainerService m_containerService;
-	
+	@Autowired
+	private ServerService    m_serverService;
 	@Autowired
 	private PasService       m_pasService;
 	
@@ -119,21 +124,64 @@ public class MycatService {
 		return result;
 	}
 	
-	public void addDatanode(String name,String dbType,String ip,String user,String password,String database,Integer port){
+	public Boolean addDatanode(String name,String dbType,String ip,String user,String password,String database,Integer port){
+		Boolean flag = false;
 		String mycat_schema_path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SCHEMA;
 		String mycat_server_path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SERVER;
-		
+		log.info("添加节点");
 		MycatXmlUtils.addSchemaAndNodeAndHost(mycat_schema_path, name, dbType, ip, user, password, database, port);
 		MycatXmlUtils.addServer(mycat_server_path, name);
 		//MycatXmlUtils.addSchemaAndNodeAndHost(mycat_schema_path,"dn22", "oracle", "192.168.0.16", "pas", "pas", "cpas", 1521);
+		flag = uploadConfigAndRestart(mycat_schema_path,mycat_server_path);
+		log.info("添加节点完成");
+		return flag;
+	 
 	}
 	
-	public void delDatanode(String name){
+	public Boolean uploadConfigAndRestart(String schemePath,String serverPath){
+		Boolean flag = false;
+		List<ContainerVo> containers = new ArrayList<>();
+		//containers = m_dockerService.getContainer(dockerClient);
+		//String mycat_schema_path =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SCHEMA;
+		//String mycat_server_path =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SERVER;
+	
+		containers = m_containerService.getContainers("pascloud_mycat");
+		/****上传到复制的项目***/
+		String status = "";
+		if(containers.size()>0){
+			for(ContainerVo vo : containers){
+				ServerVo server = m_serverService.getByIP(vo.getIp());
+				ch.ethz.ssh2.Connection conn = getScpClientConn(vo.getIp(), server.getUsername(), server.getPassword());
+				String mycatConfigPath = m_pasService.getMycatHomePath()+"/conf/";
+				log.info("上传mycat schema.xml");
+				flag = putFileToServer(conn,schemePath, mycatConfigPath);
+				flag = putFileToServer(conn,serverPath, mycatConfigPath);
+				log.info("上传mycat schema.xml完成");
+				if(flag){
+					log.info("重启MYCAT容器");
+					String containerId= vo.getId();
+					DefaultDockerClient client = DefaultDockerClient.builder()
+							.uri("http://"+vo.getIp()+":"+defaultPort).build();
+					status = m_dockerService.restartContainer(client, containerId);
+					System.out.println(status);
+					log.info("重启MYCAT容器完成");
+				}else{
+					log.info("上传mycat schema.xml失败");
+				}
+			}
+		} 
+		return flag;
+	}
+	
+	public Boolean delDatanode(String name){
+		Boolean flag = false;
 		String mycat_schema_path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SCHEMA;
 		String mycat_server_path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SERVER;
 		MycatXmlUtils.delSchemaAndNodeAndHost(mycat_schema_path, name);
-		
 		MycatXmlUtils.delServer(mycat_server_path, name);
+		
+		flag = uploadConfigAndRestart(mycat_schema_path,mycat_server_path);
+		return flag;
 	}
 	
 	public Boolean setDataHostWithDn0(String ip,String database,

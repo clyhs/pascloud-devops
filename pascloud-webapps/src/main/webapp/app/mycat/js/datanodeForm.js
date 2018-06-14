@@ -104,13 +104,16 @@ function addDB(){
 	if(name.length<=0 || dbType.length<=0 || port.length<=0 || database.length<=0 || ip.length<=0 || user.length<=0 || password.length<=0){
 		$.messager.alert('提示','参数没有填写完整');
 	}else{
+		EasyUILoad('mainCenter');
 		$('#datanodeAddDb').dialog('close');
 		$.post("addDatanode.json",params,function(data,status){
 			if(data.code == 10000){
 				//alert(data.desc);
 				//alert("修改成功，请重新启动应用");
 				$('#mainDataGrid').datagrid('reload');//刷新
+				dispalyEasyUILoad('mainCenter');
 			}else{
+				dispalyEasyUILoad('mainCenter');
 				$.messager.alert('提示',data.desc);
 			}
 		});
@@ -152,14 +155,18 @@ function delDatanode(){
 			$.messager.alert('提示','dn0不能删除，请重新选择');
 			return ;
 		}else{
+			EasyUILoad('mainCenter');
 			$.messager.confirm('提示框','你确定要删除些节点，会影响到云平台的租户，请再确定？',function(r){
 			    if (r){
 			    	$.post("delDatanode.json",params,function(data,status){
 						if(data.code == 10000){
 							//alert(data.desc);
 							//alert("修改成功，请重新启动应用");
-							$('#datanodeAddDb').dialog('close');
 							$('#mainDataGrid').datagrid('reload');//刷新
+							dispalyEasyUILoad('mainCenter');
+						}else{
+							dispalyEasyUILoad('mainCenter');
+							$.messager.alert('提示','删除失败');
 						}
 					});
 			    }
@@ -174,10 +181,17 @@ function delDatanode(){
 }
 
 function uploadConfig(){
+	EasyUILoad('mainCenter');
 	$.post("uploadConfig.json",{},function(data,status){
 		if(data.code = 10000){
 			//alert(data.desc);
+			dispalyEasyUILoad('mainCenter');
 			$.messager.alert('提示','成功');
+			
+		}else{
+			dispalyEasyUILoad('mainCenter');
+			$.messager.alert('提示','失败');
+			
 		}
 	});
 }

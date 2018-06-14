@@ -64,5 +64,7 @@ tps分析
 
 
 docker pull mysql:5.7
-docker run --name pascloud_mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7
+docker run --name pascloud_mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7 --lower_case_table_names=1
+
+#chmod -R 777 /var/tmp/.oracle
   

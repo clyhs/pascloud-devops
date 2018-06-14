@@ -1,7 +1,10 @@
 package com.pascloud.module.database.web;
 
 import java.io.File;
+import java.lang.reflect.Method;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -236,17 +239,47 @@ public class DataBaseController extends BaseController {
 			@RequestParam(value = "dsId", defaultValue = "", required = true) String dsId) {
 		ResultPageVo result = new ResultPageVo(10000, "success");
 		List<Map<String, Object>> list = new ArrayList<>();
+		List<Map<String, Object>> list2= new ArrayList<>(); 
 		Integer page = (null == request.getParameter("page")) ? 1 : Integer.parseInt(request.getParameter("page"));
 		Integer pageSize = (null == request.getParameter("rows")) ? 20 : Integer.parseInt(request.getParameter("rows"));
 		Integer startRow = (page - 1) * pageSize;
 		list = m_dbService.getDataList(tablename, dsId, startRow, pageSize);
+		if(list.size()>0){
+			for(Map map:list){
+				Iterator it =map.entrySet().iterator();
+				Map<String, Object> map2 = new HashMap<String, Object>();
+				while(it.hasNext()){
+					Map.Entry entry = (Map.Entry) it.next();  
+					Object key = entry.getKey();  
+					Object value = entry.getValue();  
+					if(value instanceof oracle.sql.TIMESTAMP){
+						value = getOracleTimestamp(value);
+					}
+					map2.put(key.toString(), value);
+				}
+				list2.add(map2);
+			}
+		}
 		Integer total = -1;
 		total = m_dbService.getDataCounts(tablename, dsId);
-		result.setRows(list);
+		result.setRows(list2);
 		result.setTotal(total);
 		Gson g = new Gson();
 		log.info(g.toJson(result));
 		return result;
+	}
+	
+	private Timestamp getOracleTimestamp(Object value) {
+	    try {
+	        Class clz = value.getClass();
+	        Method m = clz.getMethod("timestampValue");
+	        //m = clz.getMethod("timeValue", null); 时间类型
+	        //m = clz.getMethod("dateValue", null); 日期类型
+	        return (Timestamp) m.invoke(value);
+	 
+	    } catch (Exception e) {
+	        return null;
+	    }
 	}
 
 	@RequestMapping("execSql.json")

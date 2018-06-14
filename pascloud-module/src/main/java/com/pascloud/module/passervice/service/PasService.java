@@ -64,8 +64,6 @@ public class PasService extends AbstractBaseService {
 	@Autowired
 	private DockerService    m_dockerService;
 	@Autowired
-	private ServerService    m_serverService;
-	@Autowired
 	private PasdevService    m_pasdevService;
 	@Autowired
 	private MycatService     m_mycatService;
@@ -576,7 +574,7 @@ public class PasService extends AbstractBaseService {
 			String serverfilepath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SCHEMA;
 			
 			log.info(configfilepath);
-			String mycatConfigPath = getTomcatHomePath()+"/conf/";
+			String mycatConfigPath = getMycatHomePath()+"/conf/";
 			log.info(mycatConfigPath);
 			mysqls = getMysqlServer();
 			if(mysqls.size()>0){
@@ -631,7 +629,7 @@ public class PasService extends AbstractBaseService {
 		String bindVolumeFrom = "";
 		String bindVolumeTo = bindVolumeFrom;
 		String id = "";
-		String[] cmd = {};
+		String[] cmd = {"--lower_case_table_names=1"};
 		String imageName = "mysql:5.7";
 		
 		if(!checkImageExist(ip,imageName)){
@@ -641,6 +639,7 @@ public class PasService extends AbstractBaseService {
 		port.put("3306", "3306");
 		List<String> envs = new ArrayList<>();
 		envs.add("MYSQL_ROOT_PASSWORD=root");
+		//envs.add("lower_case_table_names=1");
         log.info("开始新建mysql容器");
 		DefaultDockerClient client = DefaultDockerClient.builder()
 				.uri("http://"+ip+":"+defaultPort).build();
@@ -1005,6 +1004,24 @@ public class PasService extends AbstractBaseService {
 			}
 		}
 		return mysqls;
+	}
+	
+	public Boolean restartPasService(){
+		log.info("重启服务");
+		Boolean flag = false;
+		List<ContainerVo> containers =m_containerService.getContainers("pascloud_service");
+		String status="";
+		if(null!=containers && containers.size()>0){
+			for(ContainerVo vo:containers){
+				DefaultDockerClient client = DefaultDockerClient.builder()
+						.uri("http://"+vo.getIp()+":"+defaultPort).build();
+				log.info("重启服务"+vo.getName());
+				status = m_dockerService.restartContainer(client, vo.getId());
+			}
+			flag = true;
+		}
+		log.info("重启服务完成");
+		return flag;
 	}
 	
 	private List<MapVo> convertZKsToList(){

@@ -25,30 +25,38 @@ public class TenantService {
 	private static Logger log = LoggerFactory.getLogger(TenantService.class);
 	
 	
-	 public Integer updateKhdxHy(Connection conn,String en){
+	 public Integer updateKhdxHy(Connection conn,String en,String cn){
 			
 			Integer result = 0;
+			Integer result2 = 0;
+			Integer result3 = 0;
 			QueryRunner qRunner = new QueryRunner();  
 			try {
 				if(null!=conn){
-					String sql = "update khdx_hy set dlmc=replace(dlmc,substr(dlmc, 0, 2),?);";
+					String sql = "update khdx_hy set dlmc=replace(dlmc,substr(dlmc, 0, 2),?)";
 					Object [] params = new Object[]{en};
 					result = qRunner.update(conn, sql, params);
+					String xmmc = cn+"农商行绩效系统";
+					String sql2 = "update xtb_xtcs set CSZ=? where csmc='SYS_XMMC'";
+					Object [] params2 = new Object[]{xmmc};
+					result2 = qRunner.update(conn, sql2, params2);
+					String dlmc = en+"admin";
+					String old_dlmc=en+"as11";
+					String sql3 = "update khdx_hy set dlmc=?,hymc=? where dlmc=? ";
+					Object [] params3 = new Object[]{dlmc,dlmc,old_dlmc};
+					result3 = qRunner.update(conn, sql3, params3);
+					
 				}else{
 					
 				}
 				log.info("影响了"+result+"行");
+				log.info("影响了"+result2+"行");
+				log.info("影响了"+result3+"行");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
 				log.error(e.getMessage());
 			}finally{
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 			}
 			
 			return result;
@@ -69,12 +77,6 @@ public class TenantService {
 			log.error(e.getMessage());
 			e.printStackTrace();
 		}finally{
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 		return hys;
 	}

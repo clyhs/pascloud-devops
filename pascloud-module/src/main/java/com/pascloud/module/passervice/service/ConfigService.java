@@ -60,6 +60,7 @@ public class ConfigService {
 			String dbType,String dnName,String database,String en,String cn){
 		PropertiesUtil p =new PropertiesUtil();
 		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
+		log.info("添加到服务的config.properties");
 		String url = DBUtils.getUrlByParams(dbType, ip, database, port);
 		String driverClass = DBUtils.getDirverClassName(dbType);
 		p.setValueByKey(dnName+".driverClass", driverClass, "");
@@ -209,7 +210,9 @@ public class ConfigService {
 	 * 删除DB配置
 	 * @param dnName
 	 */
-	public void delDBConfig(String dnName){
+	public Boolean delDBConfig(String dnName){
+		Boolean flag =false;
+		log.info("删除租户的数据节点");
 		PropertiesUtil p =new PropertiesUtil();
 		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
 		String dbName = dnName+".";
@@ -221,6 +224,9 @@ public class ConfigService {
 			p.removeByKey(obj.getKey());
 		}
 		delMycatKey(dnName,p);
+		log.info("删除租户的数据节点成功");
+		flag = true;
+		return flag;
 	}
 	
 	/**
