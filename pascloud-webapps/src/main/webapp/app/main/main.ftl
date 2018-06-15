@@ -40,7 +40,7 @@
 </head>
 <body id="main" class="easyui-layout" data-options="fit:true,border:false"  > 
 	
-    <div id="mainCenter" data-options="region:'center',border:false"  style="padding:0px;background-color:#dbe8ea">
+    <div id="mainCenter" data-options="region:'center',border:false"  style="padding:0px;background-color:#eee">
 		<!--内容  开始-->
 		<table id="mainDataGrid" >
 		<div style="width:99.5%;heigth:auto;border:0px solid red;margin-top:10px;">
@@ -87,7 +87,7 @@
 		<div id="mainInfoLayout" style="height:auto;width:98%;margin-top:15px;margin-left:0.8%;
 		    background-color:#fff;margin-bottom:10px;box-shadow: 2px 2px 2px #888888;
 		    border-radius:8px;">
-		    <h1>hello world!</h1>
+		    
 		
 		</div>
 		</table>

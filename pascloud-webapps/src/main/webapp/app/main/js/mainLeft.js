@@ -77,14 +77,14 @@ function initAccordion(){
                         selected: true,
                         
                         //可在这加HTML代码，改变布局
-                        content: '<div style="padding:0px;"><ul class="easyui-tree" id="tree' + id + '" ></ul></div>',
+                        content: '<div style="padding:0px;background-color:#eee"><ul class="easyui-tree" id="tree' + id + '" ></ul></div>',
                     });
                 } else {
                     $('#leftMenu_accor').accordion('add', {
                         title: n.text,
                         iconCls: n.iconCls,
                         selected: false,
-                        content: '<div style="padding:0px;"><ul class="easyui-tree" id="tree' + id + '" ></ul></div>',
+                        content: '<div style="padding:0px;background-color:#eee"><ul class="easyui-tree" id="tree' + id + '" ></ul></div>',
                     });
                 }
                 /*

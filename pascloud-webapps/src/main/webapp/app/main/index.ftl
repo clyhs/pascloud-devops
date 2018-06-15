@@ -26,6 +26,13 @@
     <script type="text/javascript" src="/app/main/js/tenantForm.js"></script>
     <script type="text/javascript" src="/app/main/js/main.js"></script>
     
+    <style>
+    .accordion .accordion-body{
+        background:#eee;
+        overflow:hidden;
+    }
+    </style>
+    
 	<script type="text/javascript">
 		$(function(){
 		    initTreeForLeftMenu();
@@ -106,7 +113,8 @@
 		        <div onclick="expand()">Expand</div>
 	        </div>
 		</ul>
-		<ul id="leftMenu_accor" class="easyui-accordion" data-options="fit:true" style="width:100%;border:red 0px solid;padding:0;margin:0;height:auto;">
+		<ul id="leftMenu_accor" class="easyui-accordion" data-options="fit:true" 
+		    style="width:100%;border:red 0px solid;padding:0;margin:0;height:auto;background-color:#eee">
         </ul>
         
         
