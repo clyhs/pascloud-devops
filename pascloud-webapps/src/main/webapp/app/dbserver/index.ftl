@@ -45,7 +45,7 @@
 	
 </head>
 <body id="main" class="easyui-layout" data-options="fit:true,border:false"  > 
-    <div id="mainLeft" data-options="region:'west',split:true,title:'数据库服务器',iconCls:'icon-databases'" style="width:200px">
+    <div id="mainLeft" data-options="region:'west',split:true,title:'数据库服务器',iconCls:'icon-databases'" style="width:180px">
 		<table id="dbserverTree" class="easyui-treegrid" >
 		</table>
 	</div>

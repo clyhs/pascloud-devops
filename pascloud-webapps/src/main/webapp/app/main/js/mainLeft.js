@@ -45,7 +45,7 @@ function addTab(title, url,icon){
 	if ($('#mainCenter').tabs('exists', title)){
 		$('#mainCenter').tabs('select', title);
 	} else {
-		var content = '<iframe scrolling="auto" frameborder="0"  src="'+url+'" style="width:100%;height:100%;"></iframe>';
+		var content = '<iframe scrolling="no" frameborder="0"  src="'+url+'" style="width:100%;height:99.2%;"></iframe>';
 		$('#mainCenter').tabs('add',{
 			title:title,
 			content:content,
@@ -54,3 +54,131 @@ function addTab(title, url,icon){
 		});
 	}
 }
+
+
+function initAccordion(){
+	$.ajax({
+        type: "GET",
+        async: false,
+        cache: false,
+        url: "parentTrees.json",
+        data: "",
+        success: function(data) {
+        	treeRow = data;
+        	$.each(data, function(i, n) {
+        		var id = n.id;
+                var text = n.text;
+                var childUrl = '/module/main/childTrees.json?pid='+id;
+                
+                if(i == 0) { //显示第一个一级菜单下的二级菜单  
+                    $('#leftMenu_accor').accordion('add', {
+                        title: n.text,
+                        iconCls: n.iconCls,
+                        selected: true,
+                        
+                        //可在这加HTML代码，改变布局
+                        content: '<div style="padding:0px;"><ul class="easyui-tree" id="tree' + id + '" ></ul></div>',
+                    });
+                } else {
+                    $('#leftMenu_accor').accordion('add', {
+                        title: n.text,
+                        iconCls: n.iconCls,
+                        selected: false,
+                        content: '<div style="padding:0px;"><ul class="easyui-tree" id="tree' + id + '" ></ul></div>',
+                    });
+                }
+                /*
+                $.ajax({
+                    type: 'GET',
+                    async: false,
+                    cache: false,
+                    data: "",
+                    url: 'childTrees.json?pid='+id,
+                    success: function(data) {
+                    	//alert($('#tree' + id))
+                    	
+                    	var treev = $('#tree' + id);
+                    	treev.tree({
+                            data: data,
+                            animate: true,
+                            formatter:function(node){
+                        		return node.text;
+                        	},
+                            lines: true
+
+                        });
+                    },
+                    error:function(){
+                    	
+                    }
+                });*/
+                /*
+                $.parser.onComplete = function () { 
+                	$.ajax({
+                        type: 'GET',
+                        async: false,
+                        cache: false,
+                        data: "",
+                        url: 'childTrees.json?pid='+id,
+                        success: function(data) {
+                        	//alert($('#tree' + id))
+                        	alert(data)
+                        	var treev = $('#tree' + id);
+                        	treev.tree({
+                                data: data,
+                                animate: true,
+                                formatter:function(node){
+                            		return node.text;
+                            	},
+                                lines: true,
+                                onContextMenu: onContextMenu,
+                        		onClick: onClick
+
+                            });
+                        },
+                        error:function(){
+                        	
+                        }
+                    });
+                }*/
+        	});
+        	
+        	
+        },
+        error: function() {
+        }
+    });
+}
+
+
+
+$.parser.onComplete = function () { 
+	if(treeRow.length>0){
+		$.each(treeRow, function(i, n) {
+			var id = n.id;
+			$.ajax({
+                type: 'GET',
+                async: false,
+                data: "",
+                url: 'childTrees.json?pid='+id,
+                success: function(data) {
+                	var treev = $('#tree' + id);
+                	treev.tree({
+                        data: data,
+                        animate: true,
+                        formatter:function(node){
+                    		return node.text;
+                    	},
+                        lines: true,
+                		onClick: onClick
+
+                    });
+                },
+                error:function(){
+                	
+                }
+            });
+		});
+	}
+}
+

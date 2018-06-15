@@ -22,8 +22,6 @@
     <script type="text/javascript" src="/app/main/js/mainDataGridToolbar.js"></script>
     <script type="text/javascript" src="/app/main/js/mainDataGrid.js"></script>
     <script type="text/javascript" src="/app/main/js/mainLeft.js"></script>
-    <script type="text/javascript" src="/app/main/js/databaseForm.js"></script>
-    <script type="text/javascript" src="/app/main/js/tenantForm.js"></script>
     <script type="text/javascript" src="/app/main/js/main.js"></script>
     
 	<script type="text/javascript">
@@ -60,6 +58,8 @@
                 }
             });
             
+            accordionSelect();
+            
 		 });
 		 
 		 
@@ -75,7 +75,8 @@
 </head>
 <body id="main" class="easyui-layout">
     <div data-options="region:'north'" style="height:50px;background-color:#99FFFF;border:0;" class="top">
-        
+        <!--
+        <div class="logo" style="float:left;width:50px;"></div>-->
         <div class="" style="float:left;width:160px;text-align:left;color:#ffffff;margin-left:20px;"><h2>绩效运维管理中心</h2></div>
         <!--
         <div class="" style="float:left;width:1px;text-align:left;height:40px;background-color:#cccccc;margin-top:5px;">&nbsp;</div>
@@ -85,6 +86,10 @@
                 <div style="color:#fff;line-height:49px;width:149px;text-align:right;">欢迎你：admin 
                     | <a href="#" onClick="exitAction()" style="color:#fff;" >退出</a> &nbsp;
                 </div>
+                <!--
+                <div style="color:#fff;line-height:25px;width:88px;text-align:right;">
+                    <a href="#" onClick="exitAction()" >退出</a>
+                </div>-->
             </div>
             <div style="float:right;width:50px;">
                 <img src="/static/images/profile.png" width="40px" height="40px" style="margin-top:5px;">
@@ -117,13 +122,24 @@
     <div id="center" data-options="region:'center',border:false,resizable:false" >
         <div id="mainCenter" class="easyui-tabs" data-options="region:'center',fit:true"  >
             <div id="mainGridLayout" class="easyui-layout" data-options="title:'首页',fit:true,iconCls:'icon-house'">
-                <div data-options="region:'center',fit:true" style="padding:0.5px;">
-		            <iframe scrolling="no" frameborder="0"  src="/module/main/main.html" style="width:100%;height:99.4%;"></iframe>
+                
+		        <div data-options="region:'center',fit:true">
+		            <iframe scrolling="auto" frameborder="0"  src="/module/main/server.html" style="width:100%;height:100%;"></iframe>
 		        </div>
+		        
+		        
             </div>
         </div>
         
-        
+        <div id="mm-tab" class="easyui-menu" style="width: 120px;display:none;">
+            <div id="mm-tabrefresh" name="6">刷新</div>
+            <div id="mm-tabclose" name="1">关闭</div>
+            <div id="mm-tabcloseall" name="2">全部关闭</div>
+            <div id="mm-tabcloseother" name="3">除此之外全部关闭</div>
+            <div class="menu-sep"></div>
+            <div id="mm-tabcloseright" name="4">当前页右侧全部关闭</div>
+            <div id="mm-tabcloseleft" name="5">当前页左侧全部关闭</div>
+        </div>
     </div>
 	
 </body>

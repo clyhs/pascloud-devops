@@ -183,7 +183,7 @@ public class DataBaseController extends BaseController {
 			ComboPooledDataSource ds = (ComboPooledDataSource) entry.getValue();
 			TreeVo tree = new TreeVo();
 			tree.setText(key);
-			tree.setId(key);
+			tree.setId(key+"");
 			tree.setLeaf(true);
 			tree.setIconCls("icon-database");
 			trees.add(tree);

@@ -205,7 +205,10 @@ function addSelectDB(){
 	}
 	
 	var params = {name:name,en:en,cn:cn};
-	EasyUILoad('mainCenter');
+	//EasyUILoad('mainCenter');
+	//EasyUILoadForMsgWithId('mainCenter','添加租户节点','maskId');
+	MaskUtil.mask();
+	MaskUtil.mask('添加租户节点...');
 	$('#tenantAddSelectDb').dialog('close');
 	$.get('checkDBConfigByName.json',params,function(data,status){
 		if(data.code == 10000){
@@ -224,7 +227,8 @@ function addSelectDB(){
 					
 				}else{
 					$('#mainDataGrid').datagrid('reload');//刷新
-					dispalyEasyUILoad('mainCenter');
+					//dispalyEasyUILoad('mainCenter');
+					MaskUtil.unmask(); 
 					$.messager.alert('提示','addTenantDBByName'+data.desc);
 				}
 			});
@@ -252,14 +256,17 @@ function sysHyByDBName(name,en,cn){
 	}else{
 		var params = {name:name,en:en,cn:cn};
 		//alert(driverClassVal + passwordVal);
-		EasyUILoadForMsg('mainCenter','行员同步中，请耐心等待！');
+		//EasyUILoadForMsg('mainCenter','行员同步中，请耐心等待！');
+		//EasyUILoadForMsgUpdate('行员同步中，请耐心等待！','maskId');
+		MaskUtil.mask('行员同步中，请耐心等待...');
 		//alert(EasyUILoad('mainDataGrid'));
 		$.get('syscHyByName.json',params,function(data,status){
 			if(data.code == 10000){
 				
 				$('#mainDataGrid').datagrid('reload');//刷新
 			}else{
-				dispalyEasyUILoad( 'mainCenter' );
+				//dispalyEasyUILoad( 'mainCenter' );
+				MaskUtil.unmask(); 
 				$.messager.alert('提示','sysHyByDBName'+data.desc);
 			}
 		});
@@ -278,7 +285,10 @@ function delDB(){
 		}else{
 			$.messager.confirm('提示框','你确定要删除些节点，会影响到云平台的租户，请再确定？',function(r){
 			    if (r){
-			    	EasyUILoad('mainCenter');
+			    	//EasyUILoad('mainCenter');
+			    	//EasyUILoadForMsgWithId('mainCenter','删除租户节点','maskId');
+			    	MaskUtil.mask();
+			    	MaskUtil.mask('删除租户节点...'); 
 			    	$.post("delTenantDB.json",params,function(data,status){
 						if(data.code = 10000){
 							//alert(data.desc);
@@ -288,7 +298,8 @@ function delDB(){
 			    			//$.messager.alert('提示','上传完毕，请重启服务');
 						}else{
 							$.messager.alert('提示','delTenantDB'+data.desc);
-							dispalyEasyUILoad( 'mainCenter' );
+							//dispalyEasyUILoad( 'mainCenter' );
+							MaskUtil.unmask(); 
 						}
 					});
 			    }
@@ -312,13 +323,17 @@ function uploadConfig(){
 }
 
 function uploadCofingBySelectDB(){
-	EasyUILoadForMsg('mainCenter','上传配置文件！');
+	//EasyUILoadForMsg('mainCenter','上传配置文件！');
+	//EasyUILoadForMsgUpdate('上传配置文件,并重启服务！','maskId');
+	MaskUtil.mask('上传配置文件,并重启服务...'); 
 	$.post("uploadConfig.json",{},function(data,status){
 		if(data.code = 10000){
-			dispalyEasyUILoad( 'mainCenter' );
+			//dispalyEasyUILoad( 'mainCenter' );
+			MaskUtil.unmask(); 
 			$.messager.alert('提示','成功');
 		}else{
-			dispalyEasyUILoad( 'mainCenter' );
+			MaskUtil.unmask(); 
+			//dispalyEasyUILoad( 'mainCenter' );
 			$.messager.alert('提示','上传配置文件失败');
 		}
 	});
@@ -335,12 +350,15 @@ function addPasfile(name){
 	if(name == 'pasdev'){
 		$.messager.alert('提示','不能填写');	
 	}else{
-		EasyUILoadForMsg('mainCenter','上传完成，正在复制开发文件！');
+		//EasyUILoadForMsg('mainCenter','上传完成，正在复制开发文件！');
+		//EasyUILoadForMsgUpdate('正在复制开发文件！，请耐心等待！','maskId');
+		MaskUtil.mask('正在复制开发文件，请耐心等待...');
 		$.post("/module/pasdev/copyPasfileWithName.json",param,function(data,status){
 			if(data.code == 10000){
 				uploadPasfile(name);
 			}else{
-				dispalyEasyUILoad('mainCenter');
+				//dispalyEasyUILoad('mainCenter');
+				MaskUtil.unmask(); 
 				$.messager.alert('提示','复制文件'+data.desc);	
 			}
 		});
@@ -356,12 +374,15 @@ function uploadPasfile(name){
 		if(name == 'pasdev'){
 			$.messager.alert('提示','pasdev目录不能好传');	
 		}else{
-			EasyUILoadForMsg('mainCenter','正在上传开发文件，请耐心等待！');
+			//EasyUILoadForMsg('mainCenter','正在上传开发文件，请耐心等待！');
+			//EasyUILoadForMsgUpdate('正在上传开发文件，请耐心等待！','maskId');
+			MaskUtil.mask('正在上传开发文件，请耐心等待...');
 			$.post("/module/pasdev/uploadPasfile.json",param,function(data,status){
 	    		if(data.code == 10000){
 	    			uploadCofingBySelectDB();
 	    		}else{
-	    			dispalyEasyUILoad('mainCenter');
+	    			//dispalyEasyUILoad('mainCenter');
+	    			MaskUtil.unmask(); 
 	    			$.messager.alert('提示',data.desc);	
 	    		}
 	    	});

@@ -24,7 +24,9 @@ import com.pascloud.module.database.service.DataBaseService;
 import com.pascloud.module.docker.service.ContainerService;
 import com.pascloud.module.docker.service.DockerService;
 import com.pascloud.module.mycat.service.MycatService;
+import com.pascloud.module.passervice.service.ConfigService;
 import com.pascloud.module.server.service.ServerService;
+import com.pascloud.utils.DBUtils;
 import com.pascloud.utils.PasCloudCode;
 import com.pascloud.utils.ScpClientUtils;
 import com.pascloud.vo.database.DBInfo;
@@ -43,16 +45,16 @@ import com.spotify.docker.client.DefaultDockerClient;
 @RequestMapping("module/mycat")
 public class MycatController extends BaseController {
 	@Autowired
-	private MycatService m_mycatService;
+	private MycatService     m_mycatService;
 	
 	@Autowired
-	private PasCloudConfig m_config;
+	private PasCloudConfig   m_config;
 	
 	@Autowired
 	private ContainerService m_containerService;
-	
 	@Autowired
-	private ServerService m_serverService;
+	private ConfigService    m_configService;
+	
 	
 	
 	@RequestMapping("/index.html")
@@ -97,7 +99,7 @@ public class MycatController extends BaseController {
 	@ResponseBody
 	public ResultCommon addDatanode(HttpServletRequest request,
 			@RequestParam(value="ip",defaultValue="",required=true) String ip,
-			@RequestParam(value="port",defaultValue="",required=true) Integer port,
+			@RequestParam(value="port",defaultValue="0",required=true) Integer port,
 			@RequestParam(value="name",defaultValue="",required=true) String name,
 			@RequestParam(value="dbType",defaultValue="",required=true) String dbType,
 			@RequestParam(value="database",defaultValue="",required=true) String database,
@@ -105,15 +107,34 @@ public class MycatController extends BaseController {
 			@RequestParam(value="password",defaultValue="",required=true) String password){
 		
 		ResultCommon result = null;
+		log.info("添加节点");
+		if(ip.length() == 0 || port == 0 || name.length() ==0 
+				|| dbType.length()==0 || database.length() ==0 
+				|| user.length() == 0 || password.length() ==0){
+			result = new ResultCommon(PasCloudCode.PARAMEXCEPTION);
+			return result;
+		}
+		
 		List<DataNodeVo> nodes = new ArrayList<>();
 		nodes = m_mycatService.getDataNodes();
+		
+		String url = DBUtils.getUrlByParams(dbType, ip, database, port);
+		
 		if(nodes.size()>0){
 			for(DataNodeVo n:nodes){
 				if(n.getName().equals(name)){
 					return new ResultCommon(PasCloudCode.ERROR.getCode(),"节点已经存在，不能添加重复节点");
 				}
+				if(null!=url){
+					if(n.getUrl().equals(url)){
+						return new ResultCommon(PasCloudCode.ERROR.getCode(),"数据库地址已经被使用，请选其他数据库");
+					}
+				}
+				
 			}
 		}
+		
+		
 		if(m_mycatService.addDatanode(name, dbType, ip, user, password, database, port)){
 			result = new ResultCommon(PasCloudCode.SUCCESS);
 		}else{
@@ -127,8 +148,22 @@ public class MycatController extends BaseController {
 	@ResponseBody
 	public ResultCommon delDatanode(HttpServletRequest request,
 			@RequestParam(value="name",defaultValue="",required=true) String name){
-		
+		log.info("删除节点");
 		ResultCommon result = null;
+		
+		if(name.length() == 0){
+			return new ResultCommon(PasCloudCode.PARAMEXCEPTION); 
+		}
+
+		List<DBInfo> dbs = new ArrayList<>();
+		dbs = m_configService.getDBFromConfig();
+		if(dbs.size()>0){
+			for(DBInfo db:dbs){
+				if(db.getId().equals(name)){
+					return new ResultCommon(PasCloudCode.ERROR.getCode(),"该节点已经被租户使用，不能删除。"); 
+				}
+			}
+		}
 		
 		if(name.equals("dn0")){
 			return new ResultCommon(PasCloudCode.ERROR);

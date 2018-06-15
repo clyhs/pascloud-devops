@@ -166,7 +166,7 @@ function delDatanode(){
 							dispalyEasyUILoad('mainCenter');
 						}else{
 							dispalyEasyUILoad('mainCenter');
-							$.messager.alert('提示','删除失败');
+							$.messager.alert('提示',data.desc);
 						}
 					});
 			    }

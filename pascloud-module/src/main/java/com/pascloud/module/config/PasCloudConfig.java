@@ -42,8 +42,19 @@ public class PasCloudConfig {
 	@Value("${project.mysql}")
 	private String PASCLOUD_MYSQL;
 	
+	@Value("${project.tree}")
+	private String PASCLOUD_TREE;
 	
 	
+	
+	public String getPASCLOUD_TREE() {
+		return PASCLOUD_TREE;
+	}
+
+	public void setPASCLOUD_TREE(String pASCLOUD_TREE) {
+		PASCLOUD_TREE = pASCLOUD_TREE;
+	}
+
 	public String getPASCLOUD_MYSQL() {
 		return PASCLOUD_MYSQL;
 	}

@@ -15,7 +15,7 @@ var toolbar = function(){
         	delDatanode();
         }
 	},{
-		text : '同步上传',  
+		text : '同步重启',  
         iconCls : 'icon-disk_upload',  
         handler : function(){
         	uploadConfig();

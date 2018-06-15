@@ -31,3 +31,15 @@ function exitAction(){
 		}
 	});
 }
+
+
+
+
+function init(){
+	$('#database_add').click(function(){
+		addDB();
+	});
+	$('#tenant_add').click(function(){
+		addSelectDbDialog();
+	});
+}

@@ -107,32 +107,25 @@ public class TenantController extends BaseController {
 		
 	}
 	
-	@RequestMapping("addTenantDB.json")
-	@ResponseBody
-	public ResultCommon addTenantDB(HttpServletRequest request,
-			@RequestParam(value="ip",defaultValue="",required=true) String ip,
-			@RequestParam(value="port",defaultValue="",required=true) Integer port,
-			@RequestParam(value="name",defaultValue="",required=true) String name,
-			@RequestParam(value="dbType",defaultValue="",required=true) String dbType,
-			@RequestParam(value="database",defaultValue="",required=true) String database,
-			@RequestParam(value="username",defaultValue="",required=true) String user,
-			@RequestParam(value="password",defaultValue="",required=true) String password,
-			@RequestParam(value="cn",defaultValue="",required=true) String cn,
-			@RequestParam(value="en",defaultValue="",required=true) String en){
-		
-		ResultCommon result = null;
-		
-		
-		
-		m_configService.addDBConfig(ip, port, user, password, dbType, name, database,en,cn);
-		result = new ResultCommon(PasCloudCode.SUCCESS);
-		
-		
-		
-		
-		return result;
-		
-	}
+//	@RequestMapping("addTenantDB.json")
+//	@ResponseBody
+//	public ResultCommon addTenantDB(HttpServletRequest request,
+//			@RequestParam(value="ip",defaultValue="",required=true) String ip,
+//			@RequestParam(value="port",defaultValue="",required=true) Integer port,
+//			@RequestParam(value="name",defaultValue="",required=true) String name,
+//			@RequestParam(value="dbType",defaultValue="",required=true) String dbType,
+//			@RequestParam(value="database",defaultValue="",required=true) String database,
+//			@RequestParam(value="username",defaultValue="",required=true) String user,
+//			@RequestParam(value="password",defaultValue="",required=true) String password,
+//			@RequestParam(value="cn",defaultValue="",required=true) String cn,
+//			@RequestParam(value="en",defaultValue="",required=true) String en){
+//		
+//		ResultCommon result = null;
+//		m_configService.addDBConfig(ip, port, user, password, dbType, name, database,en,cn);
+//		result = new ResultCommon(PasCloudCode.SUCCESS);
+//		return result;
+//		
+//	}
 	/**
 	 * 增加租户
 	 * @param request
