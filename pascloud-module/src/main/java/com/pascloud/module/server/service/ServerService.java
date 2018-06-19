@@ -143,7 +143,7 @@ public class ServerService  {
     	return result;
     }
     
-    public Boolean addServer(ServerVo vo){
+    public synchronized Boolean addServer(ServerVo vo){
     	Boolean flag = false;
     	String serverPath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_SERVER_DIR()+this.m_server_file;
 		
@@ -167,7 +167,7 @@ public class ServerService  {
     	
     }
     
-    public Boolean delServer(String ip){
+    public synchronized Boolean delServer(String ip){
     	Boolean flag = false;
     	String serverPath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_SERVER_DIR()+this.m_server_file;
 		

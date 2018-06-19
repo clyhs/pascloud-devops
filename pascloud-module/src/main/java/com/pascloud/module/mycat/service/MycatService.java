@@ -124,7 +124,7 @@ public class MycatService extends AbstractBaseService {
 		return result;
 	}
 	
-	public Boolean addDatanode(String name,String dbType,String ip,String user,String password,String database,Integer port){
+	public synchronized Boolean addDatanode(String name,String dbType,String ip,String user,String password,String database,Integer port){
 		Boolean flag = false;
 		String mycat_schema_path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SCHEMA;
 		String mycat_server_path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SERVER;
@@ -173,7 +173,7 @@ public class MycatService extends AbstractBaseService {
 		return flag;
 	}
 	
-	public Boolean delDatanode(String name){
+	public synchronized Boolean delDatanode(String name){
 		Boolean flag = false;
 		String mycat_schema_path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SCHEMA;
 		String mycat_server_path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SERVER;
@@ -184,7 +184,7 @@ public class MycatService extends AbstractBaseService {
 		return flag;
 	}
 	
-	public Boolean setDataHostWithDn0(String ip,String database,
+	public synchronized Boolean setDataHostWithDn0(String ip,String database,
 			Integer port,String user,String password){
 		Boolean flag = false;
 		String mycat_server_path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SERVER;
