@@ -80,7 +80,7 @@
 	    .border_bottom{border-bottom:#ccc 1px solid;}
 	</style>
 </head>
-<body id="main" class="easyui-layout">
+<body id="main" class="easyui-layout" >
     <div data-options="region:'north'" style="height:50px;background-color:#99FFFF;border:0;" class="top">
         
         <div class="" style="float:left;width:160px;text-align:left;color:#ffffff;margin-left:20px;"><h2>绩效运维管理中心</h2></div>
@@ -114,7 +114,7 @@
 	        </div>
 		</ul>
 		<ul id="leftMenu_accor" class="easyui-accordion" data-options="fit:true" 
-		    style="width:100%;border:red 0px solid;padding:0;margin:0;height:auto;background-color:#eee">
+		    style="width:100%;padding:0;margin:0;height:auto;background-color:#eee">
         </ul>
         
         
@@ -130,9 +130,19 @@
 		        </div>
             </div>
         </div>
+        <div id="mm-tab" class="easyui-menu" style="width: 120px;display:none;">
+            <div id="mm-tabrefresh" name="6">刷新</div>
+            <div id="mm-tabclose" name="1">关闭</div>
+            <div id="mm-tabcloseall" name="2">全部关闭</div>
+            <div id="mm-tabcloseother" name="3">除此之外全部关闭</div>
+            <div class="menu-sep"></div>
+            <div id="mm-tabcloseright" name="4">当前页右侧全部关闭</div>
+            <div id="mm-tabcloseleft" name="5">当前页左侧全部关闭</div>
+        </div>
         
         
     </div>
+    
 	
 </body>
 </html>

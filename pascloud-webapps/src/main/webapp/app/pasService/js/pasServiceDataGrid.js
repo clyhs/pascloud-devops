@@ -21,6 +21,7 @@ function initMainDataGrid(){
         columns: [[
             //{ field: 'ck', checkbox: true },
             { field: 'id', title: '编号', width: 50, align: 'left'  },
+            { field: 'type', title: '类型', width: 160, align: 'left' ,hidden:'true'},
             { field: 'cnname',title: '中文名称', width:60, align: 'left' },
             { field: 'name', title: '名称', width: 80, align: 'left' },
             { field: 'state', title: '状态', width: 30, align: 'left' },

@@ -18,6 +18,7 @@ import com.pascloud.constant.Constants;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.database.service.DBServerService;
+import com.pascloud.module.passervice.service.ConfigService;
 import com.pascloud.module.server.service.ServerService;
 import com.pascloud.utils.DBUtils;
 import com.pascloud.utils.PasCloudCode;
@@ -32,13 +33,16 @@ import com.pascloud.vo.tenant.KhdxHyVo;
 @RequestMapping("module/dbserver")
 public class DBServerController extends BaseController {
 	@Autowired
-	private ServerService m_serverService;
+	private ServerService   m_serverService;
 	
 	@Autowired
-	private PasCloudConfig m_config;
+	private PasCloudConfig  m_config;
 	
 	@Autowired
 	private DBServerService m_dbServerService;
+	
+	@Autowired
+	private ConfigService   m_configService;
 	
 	@RequestMapping("index.html")
 	public ModelAndView index(HttpServletRequest request) {
@@ -166,14 +170,26 @@ public class DBServerController extends BaseController {
 		ResultCommon result = null;
 		String oratabfilePath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SCRIPT_ORACLE_DIR()+
 				"/conf/oratab";
-		
 		String tnsnamePath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SCRIPT_ORACLE_DIR()+
 				"/conf/tnsnames.ora";
-		
+		List<DBInfo> dbs = new ArrayList<>();
 		log.info(oratabfilePath);
 		if("".equals(ip) || ip.length() == 0 || "".equals(sid) || sid.length()==0){
 			return result = new ResultCommon(PasCloudCode.ERROR);
 		}else{
+			
+			String url = DBUtils.getUrlByParams("oracle", ip, sid, 1521);
+			if(null!=url){
+				dbs = m_configService.getDBFromConfig();
+				if(dbs.size()>0){
+					for(DBInfo db:dbs){
+						if(db.getUrl().equals(url)){
+							return new ResultCommon(PasCloudCode.ERROR.getCode(),"该节点已经被租户使用，不能删除。"); 
+						}
+					}
+				}
+			}
+			
 			if(m_dbServerService.deleteOracleWithSid(ip, sid, oratabfilePath,tnsnamePath)){
 				result = new ResultCommon(PasCloudCode.SUCCESS);
 			}else{

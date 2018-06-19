@@ -20,10 +20,11 @@ function initMainDataGrid(){
         columns: [[
             //{ field: 'ck', checkbox: true },
         	{ field: 'ip', title: '名称', width: 40, align: 'left' },
-            { field: 'username', title: '用户', width: 80, align: 'center' },
-            { field: 'password', title: '密码', width: 80, align: 'center' },
-            { field: 'port', title: '端口', width: 40, align: 'left'  },
-            { field: 'desc', title: '描述', width: 120, align: 'left' }
+            { field: 'username', title: '用户', width: 40, align: 'center' },
+            { field: 'password', title: '密码', width: 40, align: 'center' },
+            { field: 'port', title: '端口', width: 40, align: 'center'  },
+            { field: 'dockerVersion', title: 'docker版本号', width: 80, align: 'center'  },
+            { field: 'desc', title: '描述', width: 120, align: 'center' }
         ]],
         onBeforeLoad: function (param) {
         },

@@ -1,29 +1,22 @@
-package com.pascloud.vo.pass;
+package com.pascloud.vo.server;
 
-public enum PasTypeEnum {
 
-	OTHER(0,"pascloud_base"),
-	PASPM(1, "pascloud_service_paspm"),
-	DEMO(2, "pascloud_service_demo"),
-	REDIS(3, "pascloud_redis"),
-	MYCAT(4,"pascloud_mycat"),
-	MQ(5,"pascloud_activemq"),
-	TOMCAT(6, "pascloud_tomcat"), 
-	ZK(7, "pascloud_zookeeper_admin"),
-	MYSQL(8,"pascloud_mysql");
+public enum ServerTypeEnum {
 	
-
+	APP(1, "app_server"),
+	DB(2, "db_server");
+	
 	private String value;
 
 	private Integer index;
 
-	private PasTypeEnum(Integer index, String value) {
+	private ServerTypeEnum(Integer index, String value) {
 		this.value = value;
 		this.index = index;
 	}
 
 	public static String getValue(Integer index) {
-		for (PasTypeEnum p : PasTypeEnum.values()) {
+		for (ServerTypeEnum p : ServerTypeEnum.values()) {
 			if (p.getIndex() == index) {
 				return p.value;
 			}

@@ -25,6 +25,7 @@ import com.pascloud.module.docker.service.ContainerService;
 import com.pascloud.module.docker.service.DockerService;
 import com.pascloud.module.mycat.service.MycatService;
 import com.pascloud.module.passervice.service.ConfigService;
+import com.pascloud.module.passervice.service.PasService;
 import com.pascloud.module.server.service.ServerService;
 import com.pascloud.utils.DBUtils;
 import com.pascloud.utils.PasCloudCode;
@@ -34,6 +35,7 @@ import com.pascloud.vo.docker.ContainerVo;
 import com.pascloud.vo.docker.NodeVo;
 import com.pascloud.vo.mycat.DataNodeVo;
 import com.pascloud.vo.mycat.DataSourceVo;
+import com.pascloud.vo.pass.MycatVo;
 import com.pascloud.vo.result.ResultBean;
 import com.pascloud.vo.result.ResultCommon;
 import com.pascloud.vo.result.ResultListData;
@@ -55,6 +57,8 @@ public class MycatController extends BaseController {
 	@Autowired
 	private ConfigService    m_configService;
 	
+	@Autowired
+	private PasService       m_pasService;
 	
 	
 	@RequestMapping("/index.html")
@@ -66,6 +70,13 @@ public class MycatController extends BaseController {
 	@RequestMapping("/monitor.html")
 	public ModelAndView monitor(HttpServletRequest request){
 		ModelAndView view = new ModelAndView("mycat/monitor");
+		MycatVo vo = new MycatVo();
+		List<MycatVo> mycats = m_pasService.getMycatServer();
+		if(null!=mycats && mycats.size()>0){
+			vo = mycats.get(0);
+			view.addObject("ip", vo.getIp());
+		}
+		
 		return view;
 	}
 	

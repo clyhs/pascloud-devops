@@ -41,7 +41,7 @@ function onClick(node){
 
 
 
-function addTab(title, url,icon){
+function addTab(title, url, icon){
 	if ($('#mainCenter').tabs('exists', title)){
 		$('#mainCenter').tabs('select', title);
 	} else {

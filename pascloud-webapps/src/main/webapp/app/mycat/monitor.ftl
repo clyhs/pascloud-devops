@@ -57,7 +57,7 @@
 		        <a href="#" class="easyui-linkbutton" iconCls="" onClick="change('6')">连接分析</a>
             </div>
 		    <div style="width:100%;">	
-		        <img id="contentGraph" src="/graph/D_192.168.0.7_9066/MycatActiveThreadGraph?probe=MycatThreadPool" height="380" width="100%">
+		        <img id="contentGraph" src="/graph/D_${ip}_9066/MycatActiveThreadGraph?probe=MycatThreadPool" height="380" width="100%">
 	        </div>
 		    <!--内容  结束-->
 		</div>

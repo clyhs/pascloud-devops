@@ -204,6 +204,19 @@ function addSelectDB(){
 		return ;
 	}
 	
+	
+	var regEn=/^[a-z]{2,4}$/;
+	if(!regEn.test(en)){
+		$.messager.alert('提示','英文名称只能2位到4位的英文小写字母');
+		return ;
+	}
+	
+	var regCn=/^[\u4E00-\u9FA5]{2,4}$/;
+	if(!regCn.test(cn)){
+		$.messager.alert('提示','中文名称只能2位到4位的汉字组成');
+		return ;
+	}
+	
 	var params = {name:name,en:en,cn:cn};
 	//EasyUILoad('mainCenter');
 	//EasyUILoadForMsgWithId('mainCenter','添加租户节点','maskId');

@@ -22,7 +22,7 @@
        http://www.dangdang.com/schema/ddframe/rdb 
        http://www.dangdang.com/schema/ddframe/rdb/rdb.xsd">
        
-       
+    <!--    
     <bean name="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${db.driverClass}"></property>
 		<property name="url" value="${db.url}" />
@@ -53,7 +53,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations"
 			value="classpath*:com/pascloud/mapping/**/*Mapper.xml" />
-		<!--  -->
+		
 		<property name="plugins">
             <array>
                 <bean class="com.github.pagehelper.PageHelper">
@@ -113,6 +113,8 @@
 			advice-ref="transactionAdvice"  /> 
 
 	</aop:config>
+	
+	--> 
 	
 </beans>
 

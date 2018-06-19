@@ -15,7 +15,7 @@ import tk.mybatis.mapper.common.Mapper;
  *
  * @version createtime:2016-8-8 下午4:04:56 
  */
-public interface UserMapper extends Mapper<User> {
+public interface UserMapper /* extends Mapper<User>*/ {
 	
 
 	public List<User> select_test(Map map);

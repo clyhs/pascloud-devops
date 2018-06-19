@@ -103,21 +103,50 @@ function addDB(){
 	//alert(name.length);
 	if(name.length<=0 || dbType.length<=0 || port.length<=0 || database.length<=0 || ip.length<=0 || user.length<=0 || password.length<=0){
 		$.messager.alert('提示','参数没有填写完整');
-	}else{
-		EasyUILoad('mainCenter');
-		$('#datanodeAddDb').dialog('close');
-		$.post("addDatanode.json",params,function(data,status){
-			if(data.code == 10000){
-				//alert(data.desc);
-				//alert("修改成功，请重新启动应用");
-				$('#mainDataGrid').datagrid('reload');//刷新
-				dispalyEasyUILoad('mainCenter');
-			}else{
-				dispalyEasyUILoad('mainCenter');
-				$.messager.alert('提示',data.desc);
-			}
-		});
+		return ;
 	}
+	
+	var regName=/^dn[1-9]{1}[0-9]{0,2}$/;
+	if(!regName.test(name)){
+		$.messager.alert('提示','节点代号的格式必须为dn1,dn2,dn10,dn99...等');
+		return ;
+	}
+	
+	var regPort=/^[0-9]{4,6}$/;
+	if(!regPort.test(port)){
+		$.messager.alert('提示','端口的格式必须为4-6位数字');
+		return ;
+	}
+	
+	var regDatabase=/^[a-zA-Z0-9]+$/;
+	if(!regDatabase.test(database)){
+		$.messager.alert('提示','端口的格式必须为4-6位数字');
+		return ;
+	}
+	
+	var regIP= /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+	if(!regIP.test(ip)){
+		$.messager.alert('提示','ip格式必须为x.x.x.x x为数字');
+		return ;
+	}
+	
+	
+	
+	
+	EasyUILoad('mainCenter');
+	$('#datanodeAddDb').dialog('close');
+	$.post("addDatanode.json",params,function(data,status){
+		if(data.code == 10000){
+			//alert(data.desc);
+			//alert("修改成功，请重新启动应用");
+			$('#mainDataGrid').datagrid('reload');//刷新
+			dispalyEasyUILoad('mainCenter');
+		}else{
+			dispalyEasyUILoad('mainCenter');
+			$.messager.alert('提示',data.desc);
+		}
+	});	
+	
 }
 
 

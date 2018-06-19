@@ -170,14 +170,22 @@ function startContainer(){
 	var containerId = row.id;
 	var ip = row.ip;
 	var name = row.name;
-	var params = {containerId:containerId,ip:ip,name:name}
+	var type = row.type;
+	var params = {containerId:containerId,ip:ip,name:name,type:type}
+
 	if(row.state != 'running'){
 		EasyUILoad('mainCenter');
 		$.post("/module/container/startContainer.json",params,function(data,status){
 
-			$('#mainDataGrid').datagrid('reload');//刷新
-			dispalyEasyUILoad( 'mainCenter' );
-			$.messager.alert('提示','成功');
+			if(data.code == 10000){
+				$('#mainDataGrid').datagrid('reload');//刷新
+				dispalyEasyUILoad( 'mainCenter' );
+				$.messager.alert('提示','成功');
+			}else{
+				dispalyEasyUILoad( 'mainCenter' );
+				$.messager.alert('提示',data.desc);
+			}
+			
 		});
 	}else{
 		$.messager.alert('提示','已经运行');
@@ -227,7 +235,8 @@ function restartContainer(){
 	var containerId = row.id;
 	var ip = row.ip;
 	var name = row.name;
-	var params = {containerId:containerId,ip:ip,name:name}
+	var type = row.type;
+	var params = {containerId:containerId,ip:ip,name:name,type:type}
 	
 	if(row.state == 'exited'){
 		EasyUILoad('mainCenter');
@@ -238,6 +247,7 @@ function restartContainer(){
 				dispalyEasyUILoad( 'mainCenter' );
 				$.messager.alert('提示','成功');
 			}else{
+				dispalyEasyUILoad( 'mainCenter' );
 				$.messager.alert('提示','失败');
 			}
 		});

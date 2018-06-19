@@ -9,18 +9,39 @@ public class ServerVo implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private String ip;
+	private String  ip;
 	
-	private String username;
+	private String  username;
 	
-	private String password;
+	private String  password;
 	
-	private String port;
+	private String  port;
 	
-	private String desc;
+	private String  desc;
 	
-	private String type;
+	private String  type;
 	
+	private Integer typeEnum;
+	
+	private String  dockerVersion;
+	
+	
+	
+	public String getDockerVersion() {
+		return dockerVersion;
+	}
+
+	public void setDockerVersion(String dockerVersion) {
+		this.dockerVersion = dockerVersion;
+	}
+
+	public Integer getTypeEnum() {
+		return typeEnum;
+	}
+
+	public void setTypeEnum(Integer typeEnum) {
+		this.typeEnum = typeEnum;
+	}
 
 	public String getType() {
 		return type;

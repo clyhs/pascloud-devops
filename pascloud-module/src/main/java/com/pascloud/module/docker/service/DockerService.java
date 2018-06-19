@@ -356,11 +356,13 @@ public class DockerService {
 		} catch (DockerException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
+			status = e.getMessage();
 			log.error(e.getMessage());
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			log.error(e.getMessage());
+			status = e.getMessage();
 		}
     	
     	return status;

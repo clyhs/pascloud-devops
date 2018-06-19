@@ -84,7 +84,9 @@ public class PasServiceController extends BaseController {
 			 PasTypeVo vo = new PasTypeVo();
 			 vo.setKey(p.getIndex()+"");
 			 vo.setValue(p.getValue());
-			 list.add(vo);
+			 if(p.getIndex()>0){
+				 list.add(vo);
+			 }
 		 }
 		 
 		 return list;

@@ -1,5 +1,6 @@
 package com.pascloud.module.system.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,9 @@ public class UserController extends BaseController {
 	@RequestMapping("getusers")
 	@ResponseBody
 	public List<User> getusers(){
-		
-		return userDao.selectall();
+		List<User> users = new ArrayList<User>();
+		//return userDao.selectall();
+		return users;
 	}
 
 }

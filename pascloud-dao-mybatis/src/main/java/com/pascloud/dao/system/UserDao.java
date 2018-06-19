@@ -26,19 +26,22 @@ public class UserDao {
 	
 	private static final Logger log = Logger.getLogger(UserDao.class);
 
-	@Autowired
-	private UserMapper userMapper;
+	//@Autowired
+	//private UserMapper userMapper;
 	
 	public int insert(User t) {
 		// TODO Auto-generated method stub	
-		return userMapper.insert_test(t);
+		//return userMapper.insert_test(t);
+		return 1;
 	}
 	
+	/*
 	public List<User> selectall(){
 		return userMapper.selectAll();
-	}
+	}*/
 	
 	public List<User> selecttest(Map map){
-		return userMapper.select_test(map);
+		//return userMapper.select_test(map);
+		return null;
 	}
 }

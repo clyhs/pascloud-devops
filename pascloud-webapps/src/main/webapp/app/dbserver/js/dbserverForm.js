@@ -76,6 +76,9 @@ function addDBSubmit(){
 	
 	var sid = $('#sid').val();
 	var node = $('#dbserverTree').treegrid('getSelected');
+	
+	
+	
 	var ip = node.text;
 	
 	if(null==node){
@@ -86,9 +89,16 @@ function addDBSubmit(){
 		$.messager.alert('提示','sid不能为空');
 		return ;
 	}
+	var reg=/^cpas[0-9]{2}$/;
+	if(!reg.test(sid)){
+		$.messager.alert('提示','数据库实例名称的格式必须为cpas01,cpas02...等');
+		return ;
+	}
+	
 	var param = {sid:sid,ip:ip};
 	$('#addDB').dialog('close');
 	//alert(addrVal+''+nameVal );
+	
 	EasyUILoad('mainCenter');
 	$.post("createOracle.json",param,function(data,status){
 		if(data.code == 10000){

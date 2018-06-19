@@ -47,19 +47,27 @@ public class ContainerController extends BaseController {
 		for(ContainerVo vo :containers){
 			if(vo.getName().startsWith("pascloud_redis")){
 				vo.setCnname("缓存服务");
+				vo.setType(PasTypeEnum.REDIS.getIndex());
 			}else if(vo.getName().startsWith("pascloud_mycat")){
 				vo.setCnname("数据库中间件");
+				vo.setType(PasTypeEnum.MYCAT.getIndex());
 			}else if(vo.getName().startsWith("pascloud_zookeeper_admin")){
 				vo.setCnname("注册中心");
+				vo.setType(PasTypeEnum.ZK.getIndex());
 			}else if(vo.getName().startsWith("pascloud_tomcat")){
 				vo.setCnname("前端服务");
+				vo.setType(PasTypeEnum.TOMCAT.getIndex());
 			}else if(vo.getName().startsWith("pascloud_activemq")){
 				vo.setCnname("消息服务");
+				vo.setType(PasTypeEnum.MQ.getIndex());
 			}else if(vo.getName().startsWith("pascloud_service_demo")){
+				vo.setType(PasTypeEnum.DEMO.getIndex());
 				vo.setCnname("公共服务");
 			}else if(vo.getName().startsWith("pascloud_service_paspm")){
 				vo.setCnname("管家服务");
+				vo.setType(PasTypeEnum.PASPM.getIndex());
 			}else{
+				vo.setType(0);
 				vo.setCnname("基础服务");
 			}
 		}
@@ -102,12 +110,35 @@ public class ContainerController extends BaseController {
 	public ResultCommon startContainer(HttpServletRequest request,
 			@RequestParam(value="ip",defaultValue="",required=true) String ip,
 			@RequestParam(value="name",defaultValue="",required=true) String name,
-			@RequestParam(value="containerId",defaultValue="",required=true) String containerId){
+			@RequestParam(value="containerId",defaultValue="",required=true) String containerId,
+			@RequestParam(value="type",defaultValue="0",required=true) Integer type){
 		
         ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
 		
 		if(ip.length()==0 || name.length()==0 || containerId.length()==0){
 			return new ResultCommon(PasCloudCode.ERROR);
+		}
+		
+		String service = PasTypeEnum.getValue(type);
+		
+		if(null!=service){
+			
+		}
+		
+		if(service.contains(PasTypeEnum.DEMO.getValue()) 
+				|| service.contains(PasTypeEnum.PASPM.getValue())
+				|| service.contains(PasTypeEnum.TOMCAT.getValue())){
+			result = m_pasService.checkBaseService();
+			if(!result.getCode().equals(PasCloudCode.SUCCESS.getCode())){
+				return result;
+			}
+		}
+		
+		if(service.contains(PasTypeEnum.MYCAT.getValue())){
+			result = m_pasService.checkMysqlService();
+			if(!result.getCode().equals(PasCloudCode.SUCCESS.getCode())){
+				return result;
+			}
 		}
 		
 		if(name.contains(PasTypeEnum.DEMO.getValue())){
@@ -137,6 +168,8 @@ public class ContainerController extends BaseController {
 				log.info("重新上传"+name+"配置");
 				m_pasService.createDataAndImp(ip);
 			}
+		}else{
+			 result = new ResultCommon(PasCloudCode.ERROR.getCode(),status);
 		}
 		return result;
 	}
@@ -204,12 +237,31 @@ public class ContainerController extends BaseController {
 	public ResultCommon restartContainer(HttpServletRequest request,
 			@RequestParam(value="ip",defaultValue="",required=true) String ip,
 			@RequestParam(value="name",defaultValue="",required=true) String name,
-			@RequestParam(value="containerId",defaultValue="",required=true) String containerId){
+			@RequestParam(value="containerId",defaultValue="",required=true) String containerId,
+			@RequestParam(value="type",defaultValue="0",required=true) Integer type){
 		
 		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
 		
 		if(ip.length()==0 || name.length()==0 || containerId.length()==0){
 			return new ResultCommon(PasCloudCode.ERROR);
+		}
+		
+        String service = PasTypeEnum.getValue(type);
+		
+		if(service.contains(PasTypeEnum.DEMO.getValue()) 
+				|| service.contains(PasTypeEnum.PASPM.getValue())
+				|| service.contains(PasTypeEnum.TOMCAT.getValue())){
+			result = m_pasService.checkBaseService();
+			if(!result.getCode().equals(PasCloudCode.SUCCESS.getCode())){
+				return result;
+			}
+		}
+		
+		if(service.contains(PasTypeEnum.MYCAT.getValue())){
+			result = m_pasService.checkMysqlService();
+			if(!result.getCode().equals(PasCloudCode.SUCCESS.getCode())){
+				return result;
+			}
 		}
 		
 		if(name.contains(PasTypeEnum.DEMO.getValue())){
