@@ -17,8 +17,11 @@
     
     <script type="text/javascript" src="/static/js/common/pascloudfunctions.js"></script>
     
-    
+    <script type="text/javascript" src="/app/server/js/serverDataGridToolbar.js"></script>
+    <script type="text/javascript" src="/app/server/js/serverForm.js"></script>
     <script type="text/javascript" src="/app/server/js/serverDataGrid.js"></script>
+    
+    
      
 	<script type="text/javascript">
 		$(function(){

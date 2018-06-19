@@ -8,16 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.docker.service.DockerService;
 import com.pascloud.module.server.service.ServerService;
+import com.pascloud.utils.PasCloudCode;
 import com.pascloud.utils.ScpClientUtils;
 import com.pascloud.vo.common.MapVo;
 import com.pascloud.vo.database.DBInfo;
 import com.pascloud.vo.docker.NodeVo;
+import com.pascloud.vo.result.ResultCommon;
 import com.pascloud.vo.server.ServerVo;
 import com.pascloud.vo.server.SysServerInfo;
 
@@ -107,6 +110,75 @@ public class ServerController extends BaseController {
 		
 		
 		return maps;
+	}
+	
+	@RequestMapping(value="addServer",method=RequestMethod.POST)
+	@ResponseBody
+	public ResultCommon addServer(HttpServletRequest request,
+			@RequestParam(value="ip",defaultValue="",required=true) String ip,
+			@RequestParam(value="user",defaultValue="",required=true) String user,
+			@RequestParam(value="password",defaultValue="",required=true) String password,
+			@RequestParam(value="port",defaultValue="0",required=true) Integer port,
+			@RequestParam(value="typeEnum",defaultValue="0",required=true) Integer typeEnum){
+		
+		
+		ResultCommon result = null;
+		
+		if(ip.length() == 0 || user.length() == 0 || password.length() == 0 || port == 0 || typeEnum == 0){
+			result = new ResultCommon(PasCloudCode.PARAMEXCEPTION);
+			return result;
+		}
+		log.info("验IP是否重复");
+		if(m_serverService.checkServerIsExist(ip)){
+			result = new ResultCommon(PasCloudCode.ERROR.getCode(),"该服务器已经存在。");
+		}else{
+			ServerVo vo = new ServerVo();
+	    	vo.setIp(ip);
+	    	vo.setUsername(user);
+	    	vo.setPassword(password);
+	    	vo.setPort(port+"");
+	    	vo.setTypeEnum(typeEnum);
+	    	vo.setType("");
+	    	if(typeEnum == 1){
+	    		vo.setDesc("应用服务器");
+	    	}else if(typeEnum == 2){
+	    		vo.setDesc("数据库服务器");
+	    	}
+	    	log.info("添加服务器");
+	    	if(m_serverService.addServer(vo)){
+	    		result = new ResultCommon(PasCloudCode.SUCCESS);
+	    	}else{
+	    		result = new ResultCommon(PasCloudCode.ERROR);
+	    	}
+		}
+		
+		return result;
+	}
+	
+	@RequestMapping(value="delServer",method=RequestMethod.POST)
+	@ResponseBody
+	public ResultCommon delServer(HttpServletRequest request,
+			@RequestParam(value="ip",defaultValue="",required=true) String ip){
+		
+		
+		ResultCommon result = null;
+		
+		if(ip.length() == 0 ){
+			result = new ResultCommon(PasCloudCode.PARAMEXCEPTION);
+			return result;
+		}
+		log.info("检查IP是否存在");
+		if(m_serverService.checkServerIsExist(ip)){
+			if(m_serverService.delServer(ip)){
+	    		result = new ResultCommon(PasCloudCode.SUCCESS);
+	    	}else{
+	    		result = new ResultCommon(PasCloudCode.ERROR);
+	    	}
+		}else{
+			result = new ResultCommon(PasCloudCode.ERROR.getCode(),"该服务器不存在。");
+		}
+		
+		return result;
 	}
 
 }

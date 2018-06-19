@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <list>
   <server>
     <ip>192.168.0.16</ip>
@@ -7,6 +8,7 @@
     <desc>应用服务器</desc>
     <type>master</type>
     <typeEnum>1</typeEnum>
+    <dockerVersion>Docker version 17.05.0-ce, build 89658be</dockerVersion>
   </server>
   <server>
     <ip>192.168.0.7</ip>
@@ -16,6 +18,7 @@
     <desc>应用服务器</desc>
     <type>slave</type>
     <typeEnum>1</typeEnum>
+    <dockerVersion>Docker version 1.13.1, build 092cba3</dockerVersion>
   </server>
   <server>
     <ip>192.168.0.17</ip>
@@ -25,6 +28,7 @@
     <desc>数据库服务器</desc>
     <type>slave</type>
     <typeEnum>2</typeEnum>
+    <dockerVersion>Docker version 1.13.1, build 092cba3</dockerVersion>
   </server>
   <server>
     <ip>192.168.0.101</ip>
@@ -34,5 +38,6 @@
     <desc>数据库服务器</desc>
     <type>slave</type>
     <typeEnum>2</typeEnum>
+    <dockerVersion></dockerVersion>
   </server>
 </list>

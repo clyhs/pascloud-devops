@@ -26,6 +26,7 @@ function initMainDataGrid(){
             { field: 'dockerVersion', title: 'docker版本号', width: 80, align: 'center'  },
             { field: 'desc', title: '描述', width: 120, align: 'center' }
         ]],
+        toolbar:toolbar,
         onBeforeLoad: function (param) {
         },
         onLoadSuccess: function (data) {

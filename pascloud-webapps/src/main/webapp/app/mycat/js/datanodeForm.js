@@ -20,13 +20,7 @@ function addDbDialog(){
 	div +=    '</select>';
 	div +=    '<div style="clear:both;"></div>';
 	div +='</div>';
-	/*
-	div +='<div style="margin:5px 0;width:100%;">';  
-	div +=    '<label for="driverClass" class="formlabel">driverClass:</label>';
-	div +=    '<input class="easyui-validatebox formInput" id="driverClass" name="driverClass" data-options="required:true" value="com.ibm.db2.jcc.DB2Driver" size=30 >';
-	div +=    '<div style="clear:both;"></div>';
-	div +='</div>';
-	*/
+
 	div +='<div style="margin:5px 0;width:100%;">';  
 	div +=    '<label for="database" class="formlabel">数据库:</label>';
 	div +=    '<input class="easyui-validatebox formInput" id="database" name="database" data-options="required:true" size=30 >';
