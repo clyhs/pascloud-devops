@@ -31,6 +31,20 @@
         background:#eee;
         overflow:hidden;
     }
+    .tabs li.tabs-selected a.tabs-inner {
+        font-weight: bold;
+        outline: none;
+        color:#3399FF;
+    }
+    .layout-split-west {
+        border-right: 5px solid #eee;
+    }
+    .layout-split-north {
+        border-bottom: 5px solid #3399FF;
+    }
+    .layout-split-south {
+        border-top: 5px solid #3399FF;
+    }
     </style>
     
 	<script type="text/javascript">

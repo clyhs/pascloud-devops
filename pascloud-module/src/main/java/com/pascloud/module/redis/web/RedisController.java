@@ -19,12 +19,14 @@ import com.google.gson.Gson;
 import com.pascloud.constant.Constants;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.config.PasCloudConfig;
+import com.pascloud.module.passervice.service.PasService;
 import com.pascloud.module.redis.service.RedisService;
 import com.pascloud.utils.FileUtils;
 import com.pascloud.utils.PasCloudCode;
 import com.pascloud.utils.redis.JedisPoolUtils;
 import com.pascloud.vo.common.TreeVo;
 import com.pascloud.vo.database.DBColumnVo;
+import com.pascloud.vo.pass.RedisVo;
 import com.pascloud.vo.redis.RedisInfo;
 import com.pascloud.vo.redis.RedisServerDetailInfo;
 import com.pascloud.vo.result.ResultCommon;
@@ -44,6 +46,8 @@ public class RedisController extends BaseController {
 	
 	@Autowired
 	private RedisService m_redisService; 
+	@Autowired
+	private PasService   m_pasService;
 	
 	@Autowired
 	private PasCloudConfig  m_config;
@@ -51,11 +55,29 @@ public class RedisController extends BaseController {
 	@RequestMapping("index.html")
 	public ModelAndView index(HttpServletRequest request){
 		ModelAndView view = new ModelAndView("redis/index");
-		initRedisPool();
+		initRedisPoolWithServer();
 		List<String> servers = m_redisService.getRedisServers();
 		view.addObject("servers", servers);
 		view.addObject("redisServerId", servers.get(0));
 		return view;
+	}
+	
+	private void initRedisPoolWithServer(){
+		List<RedisVo> rediss = m_pasService.getRedisServer();
+		if(null!=rediss){
+			log.info("初始化redis--开始--");
+			for(RedisVo vo:rediss){
+				JedisPoolConfig config = new JedisPoolConfig();
+		        config.setMaxTotal(10);
+		        config.setMaxIdle(5);
+		        config.setMaxWaitMillis(15000);
+		        config.setTestOnBorrow(true);
+		        String id = vo.getIp()+":"+ vo.getPort();
+		        JedisPool jedisPool = new JedisPool(config, vo.getIp(), vo.getPort());
+		        JedisPoolUtils.addJedisPool(id, jedisPool);
+			}
+			log.info("初始化redis--结束--");
+		}
 	}
 	
 	private void initRedisPool(){

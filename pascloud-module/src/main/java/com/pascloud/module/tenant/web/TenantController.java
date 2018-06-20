@@ -2,6 +2,7 @@ package com.pascloud.module.tenant.web;
 
 import java.io.File;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,7 @@ import com.pascloud.module.docker.service.DockerService;
 import com.pascloud.module.mycat.service.MycatService;
 import com.pascloud.module.passervice.service.ConfigService;
 import com.pascloud.module.passervice.service.PasService;
+import com.pascloud.module.redis.service.RedisService;
 import com.pascloud.module.server.service.ServerService;
 import com.pascloud.module.tenant.service.TenantService;
 import com.pascloud.utils.DBUtils;
@@ -34,6 +36,7 @@ import com.pascloud.vo.docker.ContainerVo;
 import com.pascloud.vo.docker.NodeVo;
 import com.pascloud.vo.mycat.DataNodeVo;
 import com.pascloud.vo.pass.PasTypeEnum;
+import com.pascloud.vo.pass.RedisVo;
 import com.pascloud.vo.result.ResultBean;
 import com.pascloud.vo.result.ResultCommon;
 import com.pascloud.vo.server.ServerVo;
@@ -65,6 +68,8 @@ public class TenantController extends BaseController {
 	private PasCloudConfig   m_config;
 	@Autowired
 	private DockerService    m_dockerService;
+	@Autowired
+	private RedisService     m_redisService;
 	
 	@RequestMapping("index.html")
 	public String index(HttpServletRequest request){
@@ -188,14 +193,60 @@ public class TenantController extends BaseController {
 			result = new ResultCommon(20000, "不能删除公共库，请重新选择");
 			return result;
 		}
+		/*
 		if(m_configService.delDBConfig(name)){
-			result = new ResultCommon(PasCloudCode.SUCCESS);
+			//result = new ResultCommon(PasCloudCode.SUCCESS);
+			//删除行员
+			
 			
 		}else{
 			result = new ResultCommon(PasCloudCode.ERROR);
+		}*/
+		Connection dn0Conn = null;
+		try{
+			if(m_configService.delDBConfig(name)){
+				//result = new ResultCommon(PasCloudCode.SUCCESS);
+				//删除行员
+				dn0Conn = getPublicDB();
+				if(null!=dn0Conn){
+					log.info("清除租户在公共库的全部行员数据");
+					m_tenantService.deleteHyWithPublicDB(dn0Conn, name);
+					List<RedisVo> rediss = m_pasService.getRedisServer();
+					if(null!=rediss && rediss.size()>0){
+						for(RedisVo vo:rediss){
+							String id = vo.getIp()+":"+ vo.getPort();
+							log.info("清除租户在缓存的全部行员数据");
+							m_redisService.delRedisByKey(id, 0, "app_*");
+						}
+					}
+					
+				}
+				result = new ResultCommon(PasCloudCode.SUCCESS);
+				
+			}else{
+				result = new ResultCommon(PasCloudCode.ERROR);
+			}
+		}catch(Exception e){
+			result = new ResultCommon(PasCloudCode.EXCEPTION);
+		}finally{
+			try {
+				if(null!=dn0Conn){
+					dn0Conn.close();
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}	
+			
 		}
 		return result;
 	}
+	
+	
+	
+	
+	
 	/**
 	 * 上传服务的config.properties文件
 	 * @param request

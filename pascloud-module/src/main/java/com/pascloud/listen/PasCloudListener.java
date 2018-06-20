@@ -19,7 +19,7 @@ public class PasCloudListener implements ServletContextListener {
 			prefix = prefix.substring(0, prefix.length() - 1);
 			prefix = prefix.replaceAll("\\\\", "/");
 		}
-		System.out.println(prefix);
+		//System.out.println(prefix);
 		System.setProperty(Constants.WEB_APP_ROOT_DEFAULT, prefix);
 	}
 

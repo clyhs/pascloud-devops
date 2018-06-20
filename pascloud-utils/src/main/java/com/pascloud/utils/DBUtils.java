@@ -33,14 +33,14 @@ public class DBUtils {
         Connection conn = null;  
         try {  
         	Class.forName(driverClass); 
-        	log.info("连接开始...");
+        	//log.info("连接开始...");
         	Locale originalLocale = Locale.getDefault();
         	// Set "en_US" as the safe default
         	Locale.setDefault( Locale.US );
             conn = DriverManager.getConnection(url, username, password);  
             if(null !=conn){
             	flag = true;
-            	log.info("连接成功...");
+            	//log.info("连接成功...");
             }
             log.info("连接结束...");
         } catch (SQLException | ClassNotFoundException e) {  

@@ -19,11 +19,13 @@ import com.pascloud.bean.system.User;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.docker.service.DockerService;
 import com.pascloud.module.main.service.TreeService;
+import com.pascloud.module.passervice.service.ConfigService;
 import com.pascloud.utils.FileUtils;
 import com.pascloud.utils.PasCloudCode;
 import com.pascloud.utils.ScpClientUtils;
 import com.pascloud.utils.xml.XmlParser;
 import com.pascloud.vo.common.TreeVo;
+import com.pascloud.vo.database.DBInfo;
 import com.pascloud.vo.docker.NodeVo;
 import com.pascloud.vo.result.ResultCommon;
 import com.pascloud.vo.server.ServerVo;
@@ -39,6 +41,8 @@ public class MainController extends BaseController {
 	private DockerService m_dockerService;
 	@Autowired
 	private TreeService   m_treeService;
+	@Autowired
+	private ConfigService m_configService;
 
 	@RequestMapping("index.html")
 	public ModelAndView index(HttpServletRequest request) {
@@ -69,6 +73,28 @@ public class MainController extends BaseController {
 		List<NodeVo> nodes = new ArrayList<>();
 		nodes = m_dockerService.getNodes(getDockerClient());
 		view.addObject("nodes", nodes);
+		
+		List<ServerVo> dbServers = m_serverService.getDataBaseServers();
+		List<ServerVo> appServers = m_serverService.getAppServers();
+		if(null!=dbServers){
+			view.addObject("dbServers", dbServers.size());
+		}else{
+			view.addObject("dbServers", 0);
+		}
+		
+        if(null!=appServers){
+        	view.addObject("appServers", appServers.size());
+		}else{
+			view.addObject("appServers", 0);
+		}
+		
+        List<DBInfo> dbs= m_configService.getDBFromConfig();
+        if(null!=dbs){
+        	view.addObject("dbs", dbs.size());
+        }else{
+        	view.addObject("dbs", dbs.size());
+        }
+        
 		return view;
 	}
 

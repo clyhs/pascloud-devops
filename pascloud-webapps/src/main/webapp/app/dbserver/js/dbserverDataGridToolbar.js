@@ -1,7 +1,7 @@
 var toolbar = function(){
 	return [{
 		text : '新建数据库',  
-        iconCls : 'icon-database_copy',  
+        iconCls : 'icon-database_add',  
         handler : function(){
         	addDB();
         }

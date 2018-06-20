@@ -21,12 +21,12 @@
   </tree>
   <tree>
     <id>2000</id>
-    <text>云平台管理</text>
+    <text>绩效管理</text>
     <isLeaf>false</isLeaf>
     <children>
       <tree>
-        <id>2600</id>
-        <text>配置管理</text>
+        <id>2400</id>
+        <text>配置查询</text>
         <isLeaf>true</isLeaf>
         <children/>
         <iconCls>icon-2012080404391</iconCls>
@@ -34,7 +34,7 @@
         <pid>2000</pid>
       </tree>
       <tree>
-        <id>2500</id>
+        <id>2100</id>
         <text>租户管理</text>
         <isLeaf>true</isLeaf>
         <children/>
@@ -43,7 +43,7 @@
         <pid>2000</pid>
       </tree>
       <tree>
-        <id>2100</id>
+        <id>2200</id>
         <text>服务管理</text>
         <isLeaf>true</isLeaf>
         <children/>
@@ -51,26 +51,10 @@
         <url>/module/pasService/index.html</url>
         <pid>2000</pid>
       </tree>
-      <tree>
-        <id>2200</id>
-        <text>镜像管理</text>
-        <isLeaf>true</isLeaf>
-        <children/>
-        <iconCls>icon-package</iconCls>
-        <url>/module/image/index.html</url>
-        <pid>2000</pid>
-      </tree>
+      
+      
       <tree>
         <id>2300</id>
-        <text>缓存管理</text>
-        <isLeaf>true</isLeaf>
-        <children/>
-        <iconCls>icon-folder_database</iconCls>
-        <url>/module/redis/index.html</url>
-        <pid>2000</pid>
-      </tree>
-      <tree>
-        <id>2400</id>
         <text>资源管理</text>
         <isLeaf>true</isLeaf>
         <children/>
@@ -99,7 +83,7 @@
       </tree>
       <tree>
         <id>3200</id>
-        <text>数据库客户端</text>
+        <text>数据库查询</text>
         <isLeaf>true</isLeaf>
         <children/>
         <iconCls>icon-database_lightning</iconCls>
@@ -131,9 +115,28 @@
   </tree>
   <tree>
     <id>4000</id>
-    <text>其它管理</text>
+    <text>工具管理</text>
     <isLeaf>false</isLeaf>
     <children>
+      <tree>
+        <id>4200</id>
+        <text>镜像管理</text>
+        <isLeaf>true</isLeaf>
+        <children/>
+        <iconCls>icon-package</iconCls>
+        <url>/module/image/index.html</url>
+        <pid>4000</pid>
+      </tree>
+      <tree>
+        <id>4300</id>
+        <text>缓存管理</text>
+        <isLeaf>true</isLeaf>
+        <children/>
+        <iconCls>icon-folder_database</iconCls>
+        <url>/module/redis/index.html</url>
+        <pid>4000</pid>
+      </tree>
+      <!--  
       <tree>
         <id>4100</id>
         <text>PB应用管理</text>
@@ -143,6 +146,7 @@
         <url>/module/paspb/index.html</url>
         <pid>4000</pid>
       </tree>
+      -->
     </children>
     <iconCls>icon-brick</iconCls>
     <url>#</url>

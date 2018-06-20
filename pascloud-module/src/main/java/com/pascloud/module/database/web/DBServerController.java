@@ -108,11 +108,7 @@ public class DBServerController extends BaseController {
 		if("".equals(ip) || ip.length() == 0 || "".equals(sid) || sid.length()==0){
 			return result = new ResultCommon(PasCloudCode.ERROR);
 		}else{
-			if(m_dbServerService.createOracleWithSid(ip, sid,tnsnamePath)){
-				result = new ResultCommon(PasCloudCode.SUCCESS);
-			}else{
-				return result = new ResultCommon(PasCloudCode.ERROR);
-			}
+			result = m_dbServerService.createOracleWithSid(ip, sid,tnsnamePath);
 		}
 		return result;
 		
@@ -190,11 +186,7 @@ public class DBServerController extends BaseController {
 				}
 			}
 			
-			if(m_dbServerService.deleteOracleWithSid(ip, sid, oratabfilePath,tnsnamePath)){
-				result = new ResultCommon(PasCloudCode.SUCCESS);
-			}else{
-				return result = new ResultCommon(PasCloudCode.ERROR);
-			}
+			result=m_dbServerService.deleteOracleWithSid(ip, sid, oratabfilePath,tnsnamePath);
 		}
 		return result;
 		

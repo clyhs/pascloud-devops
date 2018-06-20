@@ -99,7 +99,9 @@ function addDBSubmit(){
 	$('#addDB').dialog('close');
 	//alert(addrVal+''+nameVal );
 	
-	EasyUILoad('mainCenter');
+	//EasyUILoad('mainCenter');
+	MaskUtil.mask();
+	MaskUtil.mask('创建数据库...');
 	$.post("createOracle.json",param,function(data,status){
 		if(data.code == 10000){
 		    //alert(data.desc);
@@ -108,8 +110,9 @@ function addDBSubmit(){
 			//$.messager.alert('提示','创建成功');	
 			impDmpWithSidW(sid)
 		}else{
-			dispalyEasyUILoad('mainCenter');
+			//dispalyEasyUILoad('mainCenter');
 			$.messager.alert('提示',data.desc);	
+			MaskUtil.unmask(); 
 		}
 	});
 }
@@ -169,6 +172,7 @@ function impDmpWithSid(){
 	var sid = row.id;
 	var params = {sid:sid,ip:defaultIp};
 	EasyUILoad('mainCenter');
+	
 	$.post("impDmpWithSid.json",params,function(data,status){
 		if(data.code == 10000){
 		    //alert(data.desc);
@@ -185,15 +189,19 @@ function impDmpWithSidW(sid){
 	//var row = $('#mainDataGrid').datagrid('getSelected'); 
 	//var sid = row.id;
 	var params = {sid:sid,ip:defaultIp};
-	EasyUILoad('mainCenter');
+	//EasyUILoad('mainCenter');
+	MaskUtil.mask('初始化数据库...');
 	$.post("impDmpWithSid.json",params,function(data,status){
 		if(data.code == 10000){
 		    //alert(data.desc);
-			dispalyEasyUILoad('mainCenter');
+			//dispalyEasyUILoad('mainCenter');
 			$.messager.alert('提示','导入成功');	
+			MaskUtil.unmask(); 
 		}else{
-			dispalyEasyUILoad('mainCenter');
+			//dispalyEasyUILoad('mainCenter');
+			//$.messager.alert('提示',data.desc);	
 			$.messager.alert('提示',data.desc);	
+			MaskUtil.unmask(); 
 		}
 	});
 }

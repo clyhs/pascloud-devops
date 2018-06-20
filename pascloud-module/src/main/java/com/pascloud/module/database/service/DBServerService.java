@@ -28,7 +28,9 @@ import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.server.service.ServerService;
 import com.pascloud.utils.DBUtils;
 import com.pascloud.utils.FileUtils;
+import com.pascloud.utils.PasCloudCode;
 import com.pascloud.vo.database.DBInfo;
+import com.pascloud.vo.result.ResultCommon;
 import com.pascloud.vo.server.ServerVo;
 import com.pascloud.vo.tenant.KhdxHyVo;
 
@@ -96,7 +98,7 @@ public class DBServerService extends AbstractBaseService {
 					} else {
 						continue;
 					}
-					System.out.println(line);
+					log.info(line);
 					sb.append(line);
 				}
 			}
@@ -124,17 +126,29 @@ public class DBServerService extends AbstractBaseService {
 		return lists;
 	}
 
-	public Boolean createOracleWithSid(String ip, String sid, String tnsnamePath) {
+	/**
+	 * 创建数据库
+	 * @param ip
+	 * @param sid
+	 * @param tnsnamePath
+	 * @return
+	 */
+	public ResultCommon createOracleWithSid(String ip, String sid, String tnsnamePath) {
+		ResultCommon result = null;
 		Boolean flag = false;
-		ServerVo vo = m_serverService.getByIP(ip);
+		//ServerVo vo = m_serverService.getByIP(ip);
 		log.info("ip:" + ip + ",sid:" + sid);
-		flag = createOracleBySID(sid, ip, tnsnamePath);
-
-		return flag;
+		//flag = createOracleBySID(sid, ip, tnsnamePath);
+        //if(null!=vo){
+        	
+        //}
+		result = createOracleBySID(sid, ip, tnsnamePath);
+		return result;
 	}
 
-	private Boolean createOracleBySID(String sid, String ip, String tnsnamePath) {
+	private ResultCommon createOracleBySID(String sid, String ip, String tnsnamePath) {
 		Boolean flag = false;
+		ResultCommon result = null;
 		StringBuffer sb = new StringBuffer();
 		InputStream stdout = null;
 		Session session = null;
@@ -161,7 +175,7 @@ public class DBServerService extends AbstractBaseService {
 					}
 					sb.append(line);
 				}
-				System.out.println(flag);
+				//System.out.println(flag);
 
 				if (flag) {
 
@@ -169,6 +183,7 @@ public class DBServerService extends AbstractBaseService {
 						flag = changeScriptMod(conn);
 					} else {
 						flag = false;
+						result = new ResultCommon(PasCloudCode.ERROR.getCode(),"更改权限changeScriptOwn失败");
 					}
 
 					if (flag) {
@@ -178,41 +193,69 @@ public class DBServerService extends AbstractBaseService {
 							if(addSidWithListener(sid,conn,ip)){
 								if (createTableSpaceWithSid(conn, sid)) {
 									if (grantWithSid(conn, sid)) {
-										flag = restartListenerWithSid(conn, sid);
+										if(restartListenerWithSid(conn, sid)){
+											
+											result = new ResultCommon(PasCloudCode.SUCCESS);
+										}else{
+											result = new ResultCommon(PasCloudCode.ERROR.getCode(),"restartListenerWithSid失败");
+										}
+									}else{
+										result = new ResultCommon(PasCloudCode.ERROR.getCode(),"grantWithSid失败");
 									}
+								}else{
+									result = new ResultCommon(PasCloudCode.ERROR.getCode(),"createTableSpaceWithSid失败");
 								}
+							}else{
+								result = new ResultCommon(PasCloudCode.ERROR.getCode(),"addSidWithListener失败");
 							}
+						}else{
+							result = new ResultCommon(PasCloudCode.ERROR.getCode(),"addSidWithTnsname失败");
 						}
 						
+					}else{
+						result = new ResultCommon(PasCloudCode.ERROR.getCode(),"更改权限changeScriptMod失败");
 					}
 				}
 			} else {
-				return flag;
+				result = new ResultCommon(PasCloudCode.ERROR.getCode(),"执行创建脚本create_database.sh失败");
+				return result;
 			}
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			result = new ResultCommon(PasCloudCode.ERROR.getCode(),e.getMessage());
 			log.error(e.getMessage());
 		} finally {
 			// session.close();
 			try {
-				stdout.close();
+				if(null!=stdout){
+					stdout.close();
+				}
+				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				log.error(e1.getMessage());
 			}
 			try {
-				br.close();
+				if(null!=br){
+					br.close();
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				log.error(e.getMessage());
 			}
-			session.close();
-			conn2.close();
-			conn.close();
+			if(null!=session){
+				session.close();
+			}
+			if(null!=conn2){
+				conn2.close();
+			}
+			if(null!=conn){
+				conn.close();
+			}
 		}
 
-		return flag;
+		return result;
 	}
 
 	private Boolean createTableSpaceWithSid(Connection conn, String sid) {
@@ -350,8 +393,8 @@ public class DBServerService extends AbstractBaseService {
 		return flag;
 	}
 
-	public Boolean deleteOracleWithSid(String ip, String sid, String oratabfilePath, String tnsnamePath) {
-
+	public ResultCommon deleteOracleWithSid(String ip, String sid, String oratabfilePath, String tnsnamePath) {
+		ResultCommon result = null;
 		Boolean flag = false;
 		Connection conn = null;
 		try {
@@ -363,20 +406,43 @@ public class DBServerService extends AbstractBaseService {
 					if (deleteOracleWithSid(conn, sid)) {
 						if (delSIDWithOratab(conn, sid, oratabfilePath)) {
 							if(delSidWithListener(sid,conn,ip)){
-								flag = delSidWithTnsname(sid, conn, ip, tnsnamePath);
-								flag = restartListenerWithSid(conn, sid);
+								if(delSidWithTnsname(sid, conn, ip, tnsnamePath)){
+									flag = restartListenerWithSid(conn, sid);
+									if(flag){
+										result = new ResultCommon(PasCloudCode.SUCCESS);
+									}else{
+										result = new ResultCommon(PasCloudCode.ERROR.getCode(),"restartListenerWithSid失败");
+									}
+								}else{
+									result = new ResultCommon(PasCloudCode.ERROR.getCode(),"delSidWithTnsname失败");
+								}
+								
+							}else{
+								result = new ResultCommon(PasCloudCode.ERROR.getCode(),"delSidWithListener失败");
 							}
 							
+						}else{
+							result = new ResultCommon(PasCloudCode.ERROR.getCode(),"delSIDWithOratab失败");
 						}
+					}else{
+						result = new ResultCommon(PasCloudCode.ERROR.getCode(),"deleteOracleWithSid失败");
 					}
+				}else{
+					result = new ResultCommon(PasCloudCode.ERROR.getCode(),"shutDownOracleWithSid失败");
 				}
+			}else{
+				result = new ResultCommon(PasCloudCode.ERROR.getCode(),"找不到服务器");
 			}
 		} catch (Exception e) {
 			log.info("删除数据库开始" + sid + "异常");
+			result = new ResultCommon(PasCloudCode.ERROR.getCode(),e.getMessage());
 		} finally {
-			conn.close();
+			if(null!=conn){
+				conn.close();
+			}
+			
 		}
-		return flag;
+		return result;
 	}
 
 	public Boolean startOracleWithSid(String sid) {

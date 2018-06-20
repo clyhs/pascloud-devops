@@ -246,8 +246,9 @@ function addSelectDB(){
 				}
 			});
 		}else{
-			dispalyEasyUILoad('mainCenter');
+			//dispalyEasyUILoad('mainCenter');
 			$.messager.alert('提示','此节点已经被使用，请换其它节点');
+			MaskUtil.unmask(); 
 		}
 	});
 }
