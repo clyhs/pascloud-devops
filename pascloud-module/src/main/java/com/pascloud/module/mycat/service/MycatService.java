@@ -124,6 +124,29 @@ public class MycatService extends AbstractBaseService {
 		return result;
 	}
 	
+	public synchronized String generateName(){
+		String name="";
+		List<DataNodeVo> nodes = getDataNodes();
+		int i = 1;
+		if(null!=nodes && nodes.size()>0){
+			for(DataNodeVo vo:nodes){
+				if(vo.getName().equals("dn"+i)){
+					
+				}else{
+					name = "dn"+i;
+					break;
+				}
+				i++;
+			}
+			if("".equals(name)){
+				name = "dn"+(nodes.size()+1);
+			}
+		}else{
+			name = "dn"+i; 
+		}
+		return name;
+	}
+	
 	public synchronized Boolean addDatanode(String name,String dbType,String ip,String user,String password,String database,Integer port){
 		Boolean flag = false;
 		String mycat_schema_path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SCHEMA;

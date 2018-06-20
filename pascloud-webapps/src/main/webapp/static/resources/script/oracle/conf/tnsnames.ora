@@ -39,3 +39,13 @@ CPAS16 =
     )
   )
 
+
+CPAS13 =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.0.101)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = cpas13)
+    )
+  )
+

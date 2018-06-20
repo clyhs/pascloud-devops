@@ -48,8 +48,9 @@
 		        border-radius:8px;box-shadow: 2px 2px 2px #888888;">
 		        <div style="width:100%;line-height:30px;text-align:center;"><h2>添加数据库</h2></div>
 		        <div style="width:80%;margin-left:10%;height:50%;">
-		            <div style="width:60%;height:64px;background-color:#fff;float:left;line-height:50px;">
-		                <div>数据库服务器数量：<font color="blue">${dbServers}</font> 台</div>
+		            <div style="width:60%;height:64px;background-color:#fff;float:left;line-height:25px;">
+		                <div>数据库服务器数量：</div>
+		                <div><font color="blue">${dbServers}</font> 台</div>
 		            </div>
 		            <div style="width:28%;height:64px;background-color:#fff;border-radius:32px;float:right;">
 		                <img src="/static/images/enter.png" width="100%" height="100%">
@@ -63,7 +64,7 @@
 		        <div style="width:80%;margin-left:10%;height:50%;">
 		            <div style="width:60%;height:64px;background-color:#fff;float:left;line-height:25px;">
 		                <div>应用服务器数量：<font color="blue">${appServers}</font> 台</div>
-		                <div>租户数量：：<font color="blue">${dbs}</font> 个</div>
+		                <div>租户数量：<font color="blue">${dbs}</font> 个</div>
 		            </div>
 		            <div style="width:28%;height:64px;background-color:#fff;border-radius:32px;float:right;">
 		                <img src="/static/images/enter.png" width="100%" height="100%">

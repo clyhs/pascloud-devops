@@ -152,16 +152,20 @@ function delDB(){
 	var row = $('#mainDataGrid').datagrid('getSelected'); 
 	var sid = row.id;
 	var params = {sid:sid,ip:defaultIp};
-	EasyUILoad('mainCenter');
+	//EasyUILoad('mainCenter');
+	MaskUtil.mask();
+	MaskUtil.mask('创建数据库...');
 	$.post("deleteOracle.json",params,function(data,status){
 		if(data.code == 10000){
 		    //alert(data.desc);
 			reloadTableWithID(defaultIp);
-			dispalyEasyUILoad('mainCenter');
-			$.messager.alert('提示','删除成功');	
+			//dispalyEasyUILoad('mainCenter');
+			//$.messager.alert('提示','删除成功');
+			delMycatDatanode(sid,ip);
 		}else{
-			dispalyEasyUILoad('mainCenter');
+			//dispalyEasyUILoad('mainCenter');
 			$.messager.alert('提示',data.desc);	
+			MaskUtil.unmask(); 
 		}
 	});
 	
@@ -195,8 +199,9 @@ function impDmpWithSidW(sid){
 		if(data.code == 10000){
 		    //alert(data.desc);
 			//dispalyEasyUILoad('mainCenter');
-			$.messager.alert('提示','导入成功');	
-			MaskUtil.unmask(); 
+			//$.messager.alert('提示','导入成功');	
+			//MaskUtil.unmask(); 
+			addMycatDB(sid,defaultIp);
 		}else{
 			//dispalyEasyUILoad('mainCenter');
 			//$.messager.alert('提示',data.desc);	
@@ -204,4 +209,83 @@ function impDmpWithSidW(sid){
 			MaskUtil.unmask(); 
 		}
 	});
+}
+
+function addMycatDB(sid,ip){
+	//alert('设置数据库');
+	//var name = $("#name").val();
+	var dbType = "oracle";
+	var port = "1521";
+	var database = sid;
+	var ip = ip;
+	var user = "pas";
+	var password = "pas";
+	
+	var params = {dbType:dbType,ip:ip,port:port,database:database,username:user,password:password};
+	//alert(name.length);
+	if(dbType.length<=0 || port.length<=0 || database.length<=0 || ip.length<=0 || user.length<=0 || password.length<=0){
+		$.messager.alert('提示','参数没有填写完整');
+		MaskUtil.unmask(); 
+		return ;
+	}
+	
+
+	var regDatabase=/^[a-zA-Z0-9]+$/;
+	if(!regDatabase.test(database)){
+		$.messager.alert('提示','端口的格式必须为4-6位数字');
+		MaskUtil.unmask(); 
+		return ;
+	}
+	
+	var regIP= /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+	if(!regIP.test(ip)){
+		$.messager.alert('提示','ip格式必须为x.x.x.x x为数字');
+		MaskUtil.unmask(); 
+		return ;
+	}
+	
+	MaskUtil.mask('配置mycat并重启...');
+	$.post("/module/mycat/addDatanodeAndRestart.json",params,function(data,status){
+		if(data.code == 10000){
+			//alert(data.desc);
+			//alert("修改成功，请重新启动应用");
+			//$('#mainDataGrid').datagrid('reload');//刷新
+			//dispalyEasyUILoad('mainCenter');
+			$.messager.alert('提示','成功');
+			MaskUtil.unmask(); 
+		}else{
+			//dispalyEasyUILoad('mainCenter');
+			$.messager.alert('提示',data.desc);
+			MaskUtil.unmask(); 
+		}
+	});	
+	
+}
+
+function delMycatDatanode(sid,ip){
+	//alert('设置数据库');
+	var dbType = "oracle";
+	var port = "1521";
+	var database = sid;
+	var ip = ip;
+	var user = "pas";
+	var password = "pas";
+	var params = {dbType:dbType,ip:ip,port:port,database:database,username:user,password:password};
+	//EasyUILoad('mainCenter');
+	MaskUtil.mask('配置mycat并重启...');
+	$.post("/module/mycat/addDatanodeAndRestart.json",params,function(data,status){
+		if(data.code == 10000){
+			//alert(data.desc);
+			//alert("修改成功，请重新启动应用");
+			//$('#mainDataGrid').datagrid('reload');//刷新
+			//dispalyEasyUILoad('mainCenter');
+			$.messager.alert('提示','成功')
+			MaskUtil.unmask(); 
+		}else{
+			//dispalyEasyUILoad('mainCenter');
+			$.messager.alert('提示',data.desc);
+			MaskUtil.unmask(); 
+		}
+	});
+	
 }

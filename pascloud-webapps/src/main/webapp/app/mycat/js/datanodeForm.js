@@ -91,7 +91,6 @@ function addDB(){
 	var ip = $("#ip").val();
 	var user = $("#username").val();
 	var password = $("#password").val();
-	var params = {dbType:dbType,ip:ip,port:port,database:database,username:user,password:password};
 	
 	var params = {name:name,dbType:dbType,ip:ip,port:port,database:database,username:user,password:password};
 	//alert(name.length);

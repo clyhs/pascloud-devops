@@ -154,6 +154,109 @@ public class MycatController extends BaseController {
 		return result;
 		
 	}
+	@RequestMapping("addDatanodeAndRestart.json")
+	@ResponseBody
+	public ResultCommon addDatanodeAndRestart(HttpServletRequest request,
+			@RequestParam(value="ip",defaultValue="",required=true) String ip,
+			@RequestParam(value="port",defaultValue="0",required=true) Integer port,
+			@RequestParam(value="dbType",defaultValue="",required=true) String dbType,
+			@RequestParam(value="database",defaultValue="",required=true) String database,
+			@RequestParam(value="username",defaultValue="",required=true) String user,
+			@RequestParam(value="password",defaultValue="",required=true) String password){
+		ResultCommon result = null;
+		String mycat_schema_path =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SCHEMA;
+		String mycat_server_path =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SERVER;
+	
+		log.info("添加节点");
+		String name = "";
+		name = m_mycatService.generateName();
+		log.info("生成mycat节点"+name);
+		if(ip.length() == 0 || port == 0 || name.length() ==0 
+				|| dbType.length()==0 || database.length() ==0 
+				|| user.length() == 0 || password.length() ==0){
+			result = new ResultCommon(PasCloudCode.PARAMEXCEPTION);
+			return result;
+		}
+		
+		List<DataNodeVo> nodes = new ArrayList<>();
+		nodes = m_mycatService.getDataNodes();
+		
+		String url = DBUtils.getUrlByParams(dbType, ip, database, port);
+		
+		if(nodes.size()>0){
+			for(DataNodeVo n:nodes){
+				if(n.getName().equals(name)){
+					return new ResultCommon(PasCloudCode.ERROR.getCode(),"节点已经存在，不能添加重复节点");
+				}
+				if(null!=url){
+					if(n.getUrl().equals(url)){
+						return new ResultCommon(PasCloudCode.ERROR.getCode(),"数据库地址已经被使用，请选其他数据库");
+					}
+				}
+				
+			}
+		}
+		
+		if(m_mycatService.addDatanode(name, dbType, ip, user, password, database, port)){
+			result = new ResultCommon(PasCloudCode.SUCCESS);
+			
+		}else{
+			result = new ResultCommon(PasCloudCode.ERROR.getCode(),"添加到MYCAT的配置文件异常，请去MYCAT的配置管理手动添加 并上传");
+		}
+		return result;
+	}
+	
+	@RequestMapping("delDatanodeAndRestart.json")
+	@ResponseBody
+	public ResultCommon delDatanodeAndRestart(HttpServletRequest request,
+			@RequestParam(value="ip",defaultValue="",required=true) String ip,
+			@RequestParam(value="port",defaultValue="0",required=true) Integer port,
+			@RequestParam(value="dbType",defaultValue="",required=true) String dbType,
+			@RequestParam(value="database",defaultValue="",required=true) String database,
+			@RequestParam(value="username",defaultValue="",required=true) String user,
+			@RequestParam(value="password",defaultValue="",required=true) String password){
+		log.info("删除节点");
+		ResultCommon result = null;
+		String mycat_schema_path =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SCHEMA;
+		String mycat_server_path =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SERVER;
+	
+		
+		if(ip.length() == 0 || port == 0  
+				|| dbType.length()==0 || database.length() ==0 
+				|| user.length() == 0 || password.length() ==0){
+			result = new ResultCommon(PasCloudCode.PARAMEXCEPTION);
+			return result;
+		}
+		String name="";
+		String url = DBUtils.getUrlByParams(dbType, ip, database, port);
+		if(null!=url){
+			List<DBInfo> dbs = new ArrayList<>();
+			dbs = m_configService.getDBFromConfig();
+			if(dbs.size()>0){
+				for(DBInfo db:dbs){
+					if(db.getUrl().equals(url)){
+						name = db.getName();
+					}
+				}
+			}
+		}
+		if(name.length() == 0){
+			return new ResultCommon(PasCloudCode.ERROR.getCode(),"你删除的数据库没有配置到MYCAT中");
+		}
+
+		if(name.equals("dn0")){
+			return new ResultCommon(PasCloudCode.ERROR);
+		}else{
+			if(m_mycatService.delDatanode(name)){
+				result = new ResultCommon(PasCloudCode.SUCCESS);
+				
+			}else{
+				result = new ResultCommon(PasCloudCode.ERROR);
+			}
+		}
+		return result;
+		
+	}
 	
 	@RequestMapping("delDatanode.json")
 	@ResponseBody
@@ -185,8 +288,6 @@ public class MycatController extends BaseController {
 				result = new ResultCommon(PasCloudCode.ERROR);
 			}
 		}
-		
-		
 		return result;
 		
 	}
