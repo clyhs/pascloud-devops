@@ -45,6 +45,13 @@ function addPasfile(){
 		return ;
 	}
 	
+	var regName=/^dn[1-9]{1}[0-9]{0,2}$/;
+	if(!regName.test(name)){
+		$.messager.alert('提示','节点代号的格式必须为dn1,dn2,dn10,dn99...等');
+		return ;
+	}
+	
+	
 	if(name == 'pasdev'){
 		$.messager.alert('提示','不能填写');	
 	}else{

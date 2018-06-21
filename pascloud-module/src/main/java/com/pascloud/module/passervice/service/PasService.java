@@ -114,47 +114,48 @@ public class PasService extends AbstractBaseService {
 	 * @param service
 	 * @return
 	 */
-	public Boolean addPasService(String ip,Integer type,String service){
+	public ResultCommon addPasService(String ip,Integer type,String service){
 		Boolean flag = false;
-		
+		ResultCommon result = null;
 		switch(type){
 		case 1:
 			log.info("添加paspm");
-			flag = copyPaspmServiceContainer(ip,"8202","8212");
+			result = copyPaspmServiceContainer(ip,"8202","8212");
 			break;
 		case 2:
 			log.info("添加demo");
-			flag = copyMainServiceContainer(ip,"8201","8211");
+			result = copyMainServiceContainer(ip,"8201","8211");
 			break;
 		case 3:
 			log.info("添加redis");
-			flag = addRedisContainer(ip,service);
+			result = addRedisContainer(ip,service);
 			break;
 		case 4:
 			log.info("添加mycat");
-			flag = addMycatContainer(ip,service);
+			result = addMycatContainer(ip,service);
 			break;
 		case 5:
 			log.info("添加mq");
-			flag = addMQContainer(ip,service);
+			result = addMQContainer(ip,service);
 			break;
 		case 6:
 			log.info("添加tomcat");
-			flag = addTomcatContainer(ip,service);
+			result = addTomcatContainer(ip,service);
 			break;
 		case 7:
 			log.info("添加zk");
-			flag = addZookeeperContainer(ip,service);
+			result = addZookeeperContainer(ip,service);
 			break;
 		case 8:
 			log.info("添加mysql");
-			flag = addMysqlContainer(ip,service);
+			result = addMysqlContainer(ip,service);
 			break;
 		default:
 			log.info("没有服务可以创建");
+			result = new ResultCommon(PasCloudCode.SUCCESS);
 			break;
 		}
-		return flag;
+		return result;
 	}
 	
 	public Boolean checkImageExist(String ip,String name){
@@ -226,8 +227,9 @@ public class PasService extends AbstractBaseService {
 		return flag;
 	}
 	
-	public Boolean copyMainServiceContainer(String ip,String servicePort,String restPort){
+	public ResultCommon copyMainServiceContainer(String ip,String servicePort,String restPort){
         //String ip = "192.168.0.7";
+		ResultCommon result = null;
         Boolean flag = false;
 		log.info("设置服务参数");
         String randomId = RandomUtils.generateLowerString(6);
@@ -240,7 +242,9 @@ public class PasService extends AbstractBaseService {
 		String imageName = "pascloud/jdk7:v1.0";
 		
 		if(!checkImageExist(ip,imageName)){
-			return flag;
+			//return flag;
+			result = new ResultCommon(PasCloudCode.ERROR.getCode(),imageName+"镜像不存在");
+			return result;
 		}
 		
 		
@@ -259,7 +263,9 @@ public class PasService extends AbstractBaseService {
 				conn = getScpClientConn(vo.getIp(),vo.getUsername(),vo.getPassword());
 				
 				if(!checkDirIsExist(conn,basePath)){
-					return flag;
+					//return flag;
+					result = new ResultCommon(PasCloudCode.ERROR.getCode(),basePath+"目录不存在");
+					return result;
 				}
 				
 				log.info("上传pas+文件");
@@ -281,18 +287,23 @@ public class PasService extends AbstractBaseService {
 				
 				log.info("结束新建main容器");
 				flag = true;
+				result = new ResultCommon(PasCloudCode.SUCCESS);
+			}else{
+				result = new ResultCommon(PasCloudCode.ERROR);
 			}
 		}catch(Exception e){
 			log.info("复制服务异常");
 			log.error(e.getMessage());
+			result = new ResultCommon(PasCloudCode.ERROR);
 		}finally{
 			conn.close();
 		}
-		return flag;
+		return result;
 	}
 	
-	public Boolean copyPaspmServiceContainer(String ip,String servicePort,String restPort){
+	public ResultCommon copyPaspmServiceContainer(String ip,String servicePort,String restPort){
 
+		ResultCommon result = null;
 		Boolean flag = false;
         String randomId = RandomUtils.generateLowerString(6);
 		
@@ -305,7 +316,9 @@ public class PasService extends AbstractBaseService {
 		String imageName = "pascloud/jdk7:v1.0";
 		
 		if(!checkImageExist(ip,imageName)){
-			return flag;
+			//return flag;
+			result = new ResultCommon(PasCloudCode.ERROR.getCode(),imageName+"镜像不存在");
+			return result;
 		}
 		
 		Map<String,String> port = new HashMap<String,String>();
@@ -321,7 +334,9 @@ public class PasService extends AbstractBaseService {
 				conn = getScpClientConn(vo.getIp(),vo.getUsername(),vo.getPassword());
 				
 				if(!checkDirIsExist(conn,basePath)){
-					return flag;
+					///return flag;
+					result = new ResultCommon(PasCloudCode.ERROR.getCode(),basePath+"目录不存在");
+					return result;
 				}
 				
 				log.info("开始拷贝服务源码目录");
@@ -340,14 +355,18 @@ public class PasService extends AbstractBaseService {
 				
 				log.info("结束新建main容器");
 				flag = true;
+				result = new ResultCommon(PasCloudCode.SUCCESS);
+			}else{
+				result = new ResultCommon(PasCloudCode.ERROR);
 			}
 		}catch(Exception e){
 			log.info("复制服务异常");
 			log.error(e.getMessage());
+			result = new ResultCommon(PasCloudCode.ERROR);
 		}finally{
 			conn.close();
 		}
-		return flag;
+		return result;
 	}
 	
 	public Boolean uploadConfigForStart(String ip,PasTypeEnum type,String containerName){
@@ -653,8 +672,9 @@ public class PasService extends AbstractBaseService {
 	
 	
 	
-	public Boolean addRedisContainer(String ip,String service){
+	public ResultCommon addRedisContainer(String ip,String service){
 		Boolean flag = false;
+		ResultCommon result=null;
 		//String containerName = "pascloud_redis";
 		String containerName = service;
 		String bindVolumeFrom = "";
@@ -664,7 +684,9 @@ public class PasService extends AbstractBaseService {
 		String imageName = "redis:latest";
 		
 		if(!checkImageExist(ip,imageName)){
-			return flag;
+			//return flag;
+			result = new ResultCommon(PasCloudCode.ERROR.getCode(),imageName+"镜像不存在");
+			return result;
 		}
 		
 		Map<String,String> port = new HashMap<String,String>();
@@ -680,11 +702,14 @@ public class PasService extends AbstractBaseService {
 			flag = true;
 		}
 		log.info("结束新建reids容器");
-		return flag;
+		result = new ResultCommon(PasCloudCode.SUCCESS);
+		return result;
+		//return flag;
 	}
 	
-	public Boolean addMysqlContainer(String ip,String service){
+	public ResultCommon addMysqlContainer(String ip,String service){
 		Boolean flag = false;
+		ResultCommon result=null;
 		//String containerName = "pascloud_redis";
 		String containerName = service;
 		String bindVolumeFrom = "";
@@ -694,7 +719,8 @@ public class PasService extends AbstractBaseService {
 		String imageName = "mysql:5.7";
 		
 		if(!checkImageExist(ip,imageName)){
-			return flag;
+			result = new ResultCommon(PasCloudCode.ERROR.getCode(),imageName+"镜像不存在");
+			return result;
 		}
 		Map<String,String> port = new HashMap<String,String>();
 		port.put("3306", "3306");
@@ -710,12 +736,14 @@ public class PasService extends AbstractBaseService {
 			flag = true;
 		}
 		log.info("结束新建mysql容器");
-		return flag;
+		result = new ResultCommon(PasCloudCode.SUCCESS);
+		return result;
 	}
 	
-	public Boolean addZookeeperContainer(String ip,String service){
+	public ResultCommon addZookeeperContainer(String ip,String service){
 		Boolean flag = false;
 		//String containerName = "pascloud_zookeeper_admin";
+		ResultCommon result=null;
 		String containerName = service;
 		String bindVolumeFrom = "";
 		String bindVolumeTo = bindVolumeFrom;
@@ -724,7 +752,8 @@ public class PasService extends AbstractBaseService {
 		String imageName = "pascloud/zk_dubbo:v1.1";
 		
 		if(!checkImageExist(ip,imageName)){
-			return flag;
+			result = new ResultCommon(PasCloudCode.ERROR.getCode(),imageName+"镜像不存在");
+			return result;
 		}
 		
 		Map<String,String> port = new HashMap<String,String>();
@@ -740,12 +769,14 @@ public class PasService extends AbstractBaseService {
 			flag = true;
 		}
 		log.info("结束新建zk容器");
-		return flag;
+		result = new ResultCommon(PasCloudCode.SUCCESS);
+		return result;
 	}
 	
-	public Boolean addMQContainer(String ip,String service){
+	public ResultCommon addMQContainer(String ip,String service){
 		//String containerName = "pascloud_activemq";
 		Boolean flag = false;
+		ResultCommon result=null;
 		//String containerName = "pascloud_zookeeper_admin";
 		String containerName = service;
 		String bindVolumeFrom = "";
@@ -755,7 +786,8 @@ public class PasService extends AbstractBaseService {
 		String imageName = "webcenter/activemq:latest";
 		
 		if(!checkImageExist(ip,imageName)){
-			return flag;
+			result = new ResultCommon(PasCloudCode.ERROR.getCode(),imageName+"镜像不存在");
+			return result;
 		}
 		
 		Map<String,String> port = new HashMap<String,String>();
@@ -772,12 +804,14 @@ public class PasService extends AbstractBaseService {
 			flag = true;
 		}
 		log.info("结束新建mq容器");
-		return flag;
+		result = new ResultCommon(PasCloudCode.SUCCESS);
+		return result;
 	}
 	
-	public Boolean addMycatContainer(String ip,String service){
+	public ResultCommon addMycatContainer(String ip,String service){
 		//String containerName = "pascloud_mycat";
 		Boolean flag = false;
+		ResultCommon result=null;
 		//String containerName = "pascloud_zookeeper_admin";
 		String containerName = service;
 		String bindVolumeFrom = "/home/pascloud/mycat";
@@ -787,7 +821,8 @@ public class PasService extends AbstractBaseService {
 		String imageName = "pascloud/jdk7:v1.0";
 		
 		if(!checkImageExist(ip,imageName)){
-			return flag;
+			result = new ResultCommon(PasCloudCode.ERROR.getCode(),imageName+"镜像不存在");
+			return result;
 		}
 		
 		Map<String,String> port = new HashMap<String,String>();
@@ -801,7 +836,8 @@ public class PasService extends AbstractBaseService {
 			if(null!=vo){
 				conn = getScpClientConn(vo.getIp(),vo.getUsername(),vo.getPassword());
 				if(!checkDirIsExist(conn,bindVolumeFrom)){
-					return flag;
+					result = new ResultCommon(PasCloudCode.ERROR.getCode(),bindVolumeFrom+"目录不存在");
+					return result;
 				}
 				uploadMycatConfig(conn);
 			}
@@ -814,21 +850,23 @@ public class PasService extends AbstractBaseService {
 				flag = true;
 			}
 			log.info("结束新建mycat容器");
-			
+			result = new ResultCommon(PasCloudCode.SUCCESS);
 			
 		}catch(Exception e){
 			log.error(e.getMessage());
+			result = new ResultCommon(PasCloudCode.EXCEPTION);
 		}finally{
 			conn.close();
 		}
 		
         
-		return flag;
+		return result;
 	}
 	
-	public Boolean addTomcatContainer(String ip,String service){
+	public ResultCommon addTomcatContainer(String ip,String service){
     	//String containerName = "pascloud_tomcat";
 		Boolean flag = false;
+		ResultCommon result=null;
 		//String containerName = "pascloud_zookeeper_admin";
 		String containerName = service;
 		String bindVolumeFrom = "/home/pascloud/tomcat";
@@ -838,7 +876,8 @@ public class PasService extends AbstractBaseService {
 		String imageName = "pascloud/jdk7:v1.0";
 		
 		if(!checkImageExist(ip,imageName)){
-			return flag;
+			result = new ResultCommon(PasCloudCode.ERROR.getCode(),imageName+"镜像不存在");
+			return result;
 		}
 		Map<String,String> port = new HashMap<String,String>();
 		port.put("8170", "8170");
@@ -850,7 +889,8 @@ public class PasService extends AbstractBaseService {
 			if(null!=vo){
 				conn = getScpClientConn(vo.getIp(),vo.getUsername(),vo.getPassword());
 				if(!checkDirIsExist(conn,bindVolumeFrom)){
-					return flag;
+					result = new ResultCommon(PasCloudCode.ERROR.getCode(),bindVolumeFrom+"目录不存在");
+					return result;
 				}
 				uploadTomcatfile(conn);
 			}
@@ -861,14 +901,18 @@ public class PasService extends AbstractBaseService {
 			id = m_dockerService.addContainer(client, port, bindVolumeFrom, bindVolumeTo, imageName, containerName,cmd,envs);
 			if(!id.equals("")){
 				flag = true;
+				result = new ResultCommon(PasCloudCode.SUCCESS);
+			}else{
+				result = new ResultCommon(PasCloudCode.ERROR);
 			}
 			log.info("结束新建tomcat容器");
 		}catch(Exception e){
 			log.error(e.getMessage());
+			result = new ResultCommon(PasCloudCode.EXCEPTION);
 		}finally{
 			conn.close();
 		}
-		return flag;
+		return result;
 	}
 	
 	private Boolean copyFolder(Connection conn,String sourceFolder, String targetFolder) {

@@ -162,11 +162,7 @@ public class PasServiceController extends BaseController {
 			return new ResultCommon(PasCloudCode.ISEXIST);
 		}else{
 			log.info("ip="+ip+",service="+service);
-			if(m_pasService.addPasService(ip, type,service)){
-				return new ResultCommon(PasCloudCode.SUCCESS);
-			}else{
-				result= new ResultCommon(PasCloudCode.ERROR);
-			}
+			result =m_pasService.addPasService(ip, type,service);
 		}
 		return result;
 	}
@@ -204,11 +200,7 @@ public class PasServiceController extends BaseController {
 		if("".equals(ip) || "".equals(servicePort) || "".equals(restPort)){
 			return result = new ResultCommon(PasCloudCode.ERROR);
 		}else{
-			if(m_pasService.copyPaspmServiceContainer(ip, servicePort, restPort)){
-				result = new ResultCommon(PasCloudCode.SUCCESS);
-			}else{
-				result = new ResultCommon(PasCloudCode.ERROR);
-			}
+			result = m_pasService.copyPaspmServiceContainer(ip, servicePort, restPort);
 		}
 		return result;
 	}
@@ -234,11 +226,7 @@ public class PasServiceController extends BaseController {
 		if("".equals(ip) || "".equals(servicePort) || "".equals(restPort)){
 			return result = new ResultCommon(PasCloudCode.ERROR);
 		}else{
-			if(m_pasService.copyMainServiceContainer(ip, servicePort, restPort)){
-				result = new ResultCommon(PasCloudCode.SUCCESS);
-			}else{
-				result = new ResultCommon(PasCloudCode.ERROR);
-			}
+			result = m_pasService.copyMainServiceContainer(ip, servicePort, restPort);
 		}
 		return result;
 	}

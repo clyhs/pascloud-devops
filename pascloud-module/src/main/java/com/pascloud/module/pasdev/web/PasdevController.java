@@ -158,8 +158,11 @@ public class PasdevController extends BaseController {
 		}
 		if(!flag){
 			m_pasdevService.copyPasfileWidthID(name);
+			result = new ResultCommon(PasCloudCode.SUCCESS);
+		}else{
+			result = new ResultCommon(PasCloudCode.ERROR.getCode(),"已经存在");
 		}
-		result = new ResultCommon(PasCloudCode.SUCCESS);
+		
 		return result;
 	}
 	
