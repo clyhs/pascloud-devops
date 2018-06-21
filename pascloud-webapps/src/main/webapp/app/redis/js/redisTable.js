@@ -8,7 +8,15 @@ function searchForkey(){
 }
        
 function deleteForkey(){
-    var key = $('#key').val();
+    var key = $('#key').val();  
+    
+    var reg = /^app\_\S$/;
+    
+    if(!reg.test(key)){
+		$.messager.alert('提示','只能删除app_开头的！');
+		return ;
+	}
+    
     var params= {redisServerId:redisServerId,index:index,selectKey:key}; 
     $.messager.confirm('提示框','你确定要删除些节点，会影响到云平台的租户，请再确定？',function(r){
 	    if (r){

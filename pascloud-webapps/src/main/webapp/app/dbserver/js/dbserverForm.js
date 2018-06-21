@@ -151,6 +151,12 @@ function updateHySubmit(){
 function delDB(){
 	var row = $('#mainDataGrid').datagrid('getSelected'); 
 	var sid = row.id;
+	if(sid == 'cloudpas'){
+		$.messager.alert('提示','cloudpas不能删除');	
+		return ;
+	}
+	
+	
 	var params = {sid:sid,ip:defaultIp};
 	//EasyUILoad('mainCenter');
 	MaskUtil.mask();

@@ -178,6 +178,54 @@ public class PasService extends AbstractBaseService {
 		return flag;
 	}
 	
+	public Boolean checkDirIsExist(Connection conn,String dirPath){
+		Boolean flag = false;
+		Session session = null;
+		InputStream stdout = null;
+		BufferedReader br = null;
+		StringBuffer sb = new StringBuffer();
+		try {
+			log.info("检查目录");
+			session = conn.openSession();
+			session.execCommand(" [ -s "+dirPath+" ] && echo \"true\" || echo \"false\"");
+			stdout = new StreamGobbler(session.getStdout());
+			br = new BufferedReader(new InputStreamReader(stdout));
+			while (true) {
+				String line = br.readLine();
+				if (line == null) {
+					break;
+				} else {
+					log.info(line);
+					sb.append(line);
+				}
+			}
+			if("true".equals(sb.toString())){
+				flag = true;
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+			log.error("检查目录异常");
+		} finally {
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				// e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			try {
+				stdout.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				// e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			session.close();
+		}
+		return flag;
+	}
+	
 	public Boolean copyMainServiceContainer(String ip,String servicePort,String restPort){
         //String ip = "192.168.0.7";
         Boolean flag = false;
@@ -195,6 +243,8 @@ public class PasService extends AbstractBaseService {
 			return flag;
 		}
 		
+		
+		
 		Map<String,String> port = new HashMap<String,String>();
 		port.put("8201", servicePort);
 		port.put("8211", restPort);
@@ -205,7 +255,13 @@ public class PasService extends AbstractBaseService {
 			if(null!=vo){
 				//*******复制PAS+文件
 				
+				
 				conn = getScpClientConn(vo.getIp(),vo.getUsername(),vo.getPassword());
+				
+				if(!checkDirIsExist(conn,basePath)){
+					return flag;
+				}
+				
 				log.info("上传pas+文件");
 				uploadPasdev(conn,ip);
 				log.info("开始拷贝服务源码目录");
@@ -263,6 +319,11 @@ public class PasService extends AbstractBaseService {
 			if(null!=vo){
 				
 				conn = getScpClientConn(vo.getIp(),vo.getUsername(),vo.getPassword());
+				
+				if(!checkDirIsExist(conn,basePath)){
+					return flag;
+				}
+				
 				log.info("开始拷贝服务源码目录");
 				copyFolder(conn,basePath,bindVolumeFrom);
 				log.info("结束拷贝源码目录");
@@ -739,6 +800,9 @@ public class PasService extends AbstractBaseService {
 			ServerVo vo = m_serverService.getByIP(ip);
 			if(null!=vo){
 				conn = getScpClientConn(vo.getIp(),vo.getUsername(),vo.getPassword());
+				if(!checkDirIsExist(conn,bindVolumeFrom)){
+					return flag;
+				}
 				uploadMycatConfig(conn);
 			}
 			log.info("开始新建mycat容器");
@@ -785,6 +849,9 @@ public class PasService extends AbstractBaseService {
 			ServerVo vo = m_serverService.getByIP(ip);
 			if(null!=vo){
 				conn = getScpClientConn(vo.getIp(),vo.getUsername(),vo.getPassword());
+				if(!checkDirIsExist(conn,bindVolumeFrom)){
+					return flag;
+				}
 				uploadTomcatfile(conn);
 			}
 			log.info("开始新建tomcat容器");
