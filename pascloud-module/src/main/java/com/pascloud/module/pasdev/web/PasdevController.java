@@ -221,11 +221,12 @@ public class PasdevController extends BaseController {
 	public ResultCommon putPasfileToRedis(HttpServletRequest request,
 			@RequestParam(value="name",defaultValue="",required=true) String name){
 		ResultCommon result = null;
-		
+		/*
 		String url = "http://192.168.0.7:8311/module/system/admin/v100/reloadConfig.json";
 		
 		
         try {
+        	
         	List<NameValuePair> header = new ArrayList<NameValuePair>();
         	Map<String,NameValuePair> params = new HashMap<>();
         	params.put("db", new BasicNameValuePair("db",name));
@@ -250,7 +251,9 @@ public class PasdevController extends BaseController {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			result = new ResultCommon(PasCloudCode.ERROR);
-		}
+		}*/
+        
+        result = new ResultCommon(PasCloudCode.SUCCESS);
         
 		return result;
 	}

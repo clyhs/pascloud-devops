@@ -18,7 +18,7 @@ var toolbar = function(){
         handler : function(){
         	delDB();
         }
-	},{
+	}/*,{
 		text : '配置上传',  
         iconCls : 'icon-disk_upload',  
         handler : function(){
@@ -36,5 +36,5 @@ var toolbar = function(){
         handler : function(){
         	closeConnCheck();
         }
-	}];
+	}*/];
 }();

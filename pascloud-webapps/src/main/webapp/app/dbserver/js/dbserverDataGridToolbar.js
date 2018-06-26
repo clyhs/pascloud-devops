@@ -11,13 +11,13 @@ var toolbar = function(){
         handler : function(){
         	delDB();
         }
-	},{
+	}/*,{
 		text : '导入数据',  
         iconCls : 'icon-database_go',  
         handler : function(){
         	impDmpWithSid();
         }
-	}/*,{
+	},{
 		text : '设置行员',  
         iconCls : 'icon-database_go',  
         handler : function(){

@@ -450,11 +450,12 @@ public class PasdevService extends AbstractBaseService {
 				SCPClient scpClient = conn.createSCPClient();
 				log.info("文件正在上传");
 				scpClient.put(gzpath, serverPath);
+				Thread.sleep(1000*10);
 				flag = true;
 				log.info("文件上传完毕");
-			} catch (IOException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		}
 		return flag;
@@ -473,17 +474,21 @@ public class PasdevService extends AbstractBaseService {
 				session.execCommand(cmd);
 				stdout = new StreamGobbler(session.getStdout());
 				br = new BufferedReader(new InputStreamReader(stdout));
-				
+				/*
 				while (true) {
 					String line = br.readLine();
-					if (line == null)
+					if (line == null){
+						flag = true;
 						break;
+					}
 					sb.append(line);
-				}
-				log.info("执行命令完毕");
+				}*/
+				Thread.sleep(1000*5);
 				flag = true;
+				log.info("执行命令完毕");
+				
 				// System.out.println(sb.toString());
-			} catch (IOException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				// e.printStackTrace();
 				log.info("执行命令异常");

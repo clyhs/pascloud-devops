@@ -51,7 +51,7 @@ function createServerFormFooter(){
 	html +=   '&nbsp;'; 
 	html +=   '</div>';
 	html +=   '<div style="float:left;width:20%;">';
-	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-database_save\'" onclick="test()" >测试</a>'; 
+	//html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-database_save\'" onclick="test()" >测试</a>'; 
 	html +=   '</div>';
 	html +=   '<div style="float:left;width:20%;">';
 	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-database_save\'" onclick="addServer()" >确定</a>'; 

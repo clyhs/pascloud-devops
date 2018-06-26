@@ -115,7 +115,7 @@ function uploadPasfile(){
         var name = node.id;
 		var param = {name:name};
 		if(name == 'pasdev'){
-			$.messager.alert('提示','pasdev目录不能好传');	
+			$.messager.alert('提示','pasdev目录不能上传');	
 		}else{
 			EasyUILoad('mainCenter');
 			$.post("uploadPasfile.json",param,function(data,status){

@@ -160,14 +160,14 @@ function delDB(){
 	var params = {sid:sid,ip:defaultIp};
 	//EasyUILoad('mainCenter');
 	MaskUtil.mask();
-	MaskUtil.mask('创建数据库...');
+	MaskUtil.mask('删除数据库...');
 	$.post("deleteOracle.json",params,function(data,status){
 		if(data.code == 10000){
 		    //alert(data.desc);
 			reloadTableWithID(defaultIp);
 			//dispalyEasyUILoad('mainCenter');
 			//$.messager.alert('提示','删除成功');
-			delMycatDatanode(sid,ip);
+			delMycatDatanode(sid,defaultIp);
 		}else{
 			//dispalyEasyUILoad('mainCenter');
 			$.messager.alert('提示',data.desc);	

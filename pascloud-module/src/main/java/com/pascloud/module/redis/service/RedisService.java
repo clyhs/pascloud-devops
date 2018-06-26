@@ -99,7 +99,7 @@ public class RedisService extends AbstractRedisService {
 			log.info("删除reids结束" + i);
 		}catch(Exception e){
 			log.error(e.getMessage());
-			e.printStackTrace();
+			//e.printStackTrace();
 		}finally{
 			returnResource(jedis,jedisPool);
 		}

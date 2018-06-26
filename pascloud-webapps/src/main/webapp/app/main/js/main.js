@@ -18,6 +18,7 @@ checkHealthId =setInterval( function () {
         error: function() {
         	if(healthflag){
         		$.messager.alert('提示','服务器已经停止。请重启服务');
+        		window.location.href="/module/login/index.html";
         	}
         	healthflag = false;
         }

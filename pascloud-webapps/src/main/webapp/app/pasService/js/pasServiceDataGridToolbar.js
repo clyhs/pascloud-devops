@@ -48,11 +48,11 @@ var toolbar = function(){
         handler : function(){
         	removeContainer();
         }
-	},{
+	}/*,{
 		text : '查看日志',  
         iconCls : 'icon-table_edit',  
         handler : function(){
         	getContainerLog();
         }
-	}];
+	}*/];
 }();

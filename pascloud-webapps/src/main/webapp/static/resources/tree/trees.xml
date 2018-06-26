@@ -21,7 +21,7 @@
   </tree>
   <tree>
     <id>2000</id>
-    <text>绩效管理</text>
+    <text>运维管理</text>
     <isLeaf>false</isLeaf>
     <children>
       <tree>
@@ -81,6 +81,7 @@
         <url>/module/dbserver/index.html</url>
         <pid>3000</pid>
       </tree>
+      <!--  
       <tree>
         <id>3200</id>
         <text>数据库查询</text>
@@ -89,7 +90,7 @@
         <iconCls>icon-database_lightning</iconCls>
         <url>/module/database/index.html</url>
         <pid>3000</pid>
-      </tree>
+      </tree>-->
       <tree>
         <id>3300</id>
         <text>MYCAT配置</text>
@@ -99,6 +100,7 @@
         <url>/module/mycat/index.html</url>
         <pid>3000</pid>
       </tree>
+      <!--  
       <tree>
         <id>3400</id>
         <text>MYCAT监控</text>
@@ -107,7 +109,7 @@
         <iconCls>icon-monitor</iconCls>
         <url>/module/mycat/monitor.html</url>
         <pid>3000</pid>
-      </tree>
+      </tree>-->
     </children>
     <iconCls>icon-server_database</iconCls>
     <url>#</url>

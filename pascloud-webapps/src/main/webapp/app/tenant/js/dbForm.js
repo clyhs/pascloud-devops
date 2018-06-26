@@ -372,8 +372,9 @@ function addPasfile(name){
 				uploadPasfile(name);
 			}else{
 				//dispalyEasyUILoad('mainCenter');
-				MaskUtil.unmask(); 
-				$.messager.alert('提示','复制文件'+data.desc);	
+				//MaskUtil.unmask(); 
+				//$.messager.alert('提示','复制文件'+data.desc);	
+				uploadPasfile(name);
 			}
 		});
 	}

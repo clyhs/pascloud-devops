@@ -15,12 +15,8 @@ SID_LIST_LISTENER =
   (SID_NAME = cloudpas)
   )
   (SID_DESC =
-  (GLOBAL_DBNAME = cpas16)
-  (SID_NAME = cpas16)
-  )
-  (SID_DESC =
-  (GLOBAL_DBNAME = cpas13)
-  (SID_NAME = cpas13)
+  (GLOBAL_DBNAME = cpas12)
+  (SID_NAME = cpas12)
   )
 )
 ADR_BASE_LISTENER = /u01/app/oracle

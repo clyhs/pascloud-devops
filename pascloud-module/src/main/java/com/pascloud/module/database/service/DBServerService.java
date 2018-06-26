@@ -161,6 +161,13 @@ public class DBServerService extends AbstractBaseService {
 				ServerVo vo = m_serverService.getByIP(ip);
 				conn2 = getScpClientConn(ip, "oracle", "oracle");
 				conn = getScpClientConn(ip, vo.getUsername(), vo.getPassword());
+				
+				if(!checkDirIsExist(conn, "/u01/app/oracle/product/11.2.0/dbhome_1")){
+					result = new ResultCommon(PasCloudCode.ERROR.getCode(),"/u01/app/oracle/product/11.2.0/dbhome_1目录不存在");
+					return result;
+				}
+				
+				
 				session = conn2.openSession();
 				session.execCommand("/home/oracle/script/create_database.sh" + " " + sid);
 				stdout = new StreamGobbler(session.getStdout());
@@ -1329,4 +1336,51 @@ public class DBServerService extends AbstractBaseService {
 
 	}
 
+	public Boolean checkDirIsExist(Connection conn,String dirPath){
+		Boolean flag = false;
+		Session session = null;
+		InputStream stdout = null;
+		BufferedReader br = null;
+		StringBuffer sb = new StringBuffer();
+		try {
+			log.info("检查目录");
+			session = conn.openSession();
+			session.execCommand(" [ -s "+dirPath+" ] && echo \"true\" || echo \"false\"");
+			stdout = new StreamGobbler(session.getStdout());
+			br = new BufferedReader(new InputStreamReader(stdout));
+			while (true) {
+				String line = br.readLine();
+				if (line == null) {
+					break;
+				} else {
+					log.info(line);
+					sb.append(line);
+				}
+			}
+			if("true".equals(sb.toString())){
+				flag = true;
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+			log.error("检查目录异常");
+		} finally {
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				// e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			try {
+				stdout.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				// e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			session.close();
+		}
+		return flag;
+	}
 }
