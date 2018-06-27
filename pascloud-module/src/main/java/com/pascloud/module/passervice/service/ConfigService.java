@@ -291,6 +291,20 @@ public class ConfigService {
 		sb.append("tcp://").append(ip).append(":").append(port);
 		p.setValueByKey("mq.brokerUrl", sb.toString(), "");
 	}
+	/**
+	 * pascloud.service.hessian.port=8201
+     * pascloud.service.rest.port=8211
+	 * @param servicePort
+	 * @param restPort
+	 */
+	public void setPort(String servicePort,String restPort){
+		PropertiesUtil p =new PropertiesUtil();
+		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
+		log.info(servicePort);
+		log.info(restPort);
+		p.setValueByKey("pascloud.service.hessian.port", servicePort, "");
+		p.setValueByKey("pascloud.service.rest.port", restPort, "");
+	}
 	
 	/**
 	 * zookeeper.host=zookeeper\://192.168.0.7

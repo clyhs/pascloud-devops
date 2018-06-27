@@ -166,6 +166,16 @@ public class TenantController extends BaseController {
 		
 		if(null!=datanode){
 			//添加到MYCAT的schema.xml server.xml
+			List<RedisVo> rediss = m_pasService.getRedisServer();
+			if(null!=rediss && rediss.size()>0){
+				for(RedisVo vo:rediss){
+					String id = vo.getIp()+":"+ vo.getPort();
+					log.info("清除租户在缓存的全部行员数据");
+					m_redisService.delRedisByKey(id, 0, "app_*");
+				}
+			}
+			
+			
 			m_configService.addDBConfig(datanode.getIp(),Integer.valueOf(datanode.getPort()), datanode.getUser(),
 						datanode.getPassword(), datanode.getDbType(), name, datanode.getDatabase(),
 						en,cn);

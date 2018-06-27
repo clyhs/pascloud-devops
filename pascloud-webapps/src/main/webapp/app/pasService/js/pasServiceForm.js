@@ -261,7 +261,7 @@ function pauseContainer(){
 	
 	var row = $('#mainDataGrid').datagrid('getSelected'); 
 	if(null!=row){
-		if(row.name.indexOf("shipyard")){
+		if(row.name == "shipyard-proxy"){
 			$.messager.alert('提示','基础服务不能停止');
 			return ;
 		}

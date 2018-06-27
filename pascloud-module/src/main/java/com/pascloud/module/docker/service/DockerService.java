@@ -26,6 +26,7 @@ import com.google.gson.Gson;
 import com.pascloud.vo.docker.ContainerVo;
 import com.pascloud.vo.docker.ImageVo;
 import com.pascloud.vo.docker.NodeVo;
+import com.pascloud.vo.pass.PasTypeEnum;
 import com.spotify.docker.client.DefaultDockerClient;
 import com.spotify.docker.client.DockerClient.ListContainersParam;
 import com.spotify.docker.client.DockerClient.ListImagesParam;
@@ -186,7 +187,14 @@ public class DockerService {
 				vo.setState(container.state());
 				vo.setStatus(container.status());
 				vo.setIp(host);
-				vo.setPublicPort(container.portsAsString());
+				if(name.contains(PasTypeEnum.DEMO.getValue())){
+					vo.setPublicPort("8201,8211");
+				}else if(name.contains(PasTypeEnum.PASPM.getValue())){
+					vo.setPublicPort("8202,8212");
+				}else{
+					vo.setPublicPort(container.portsAsString());
+				}
+				
 				
 				if(name.startsWith(str)){
 					containers.add(vo);
@@ -229,12 +237,86 @@ public class DockerService {
 	        	hostConfig = HostConfig.builder()
 		        		.portBindings(portBindings)
 		        		.appendBinds(bindStringFrom + ":" + bindStringTo)
+		        		
 		        		.build();
 	        }else{
 	        	hostConfig = HostConfig.builder()
 		        		.portBindings(portBindings)
 		        		.build();
 	        }
+	        
+	       
+	       
+	        ContainerConfig config = null;
+	        if(envs.size()>0){
+	        	config = ContainerConfig.builder()
+						.image(imageName)
+						.hostConfig(hostConfig)
+						.env(envs)
+						.cmd(cmd)
+						.exposedPorts(ports)
+						.build();
+	        }else{
+	        	config = ContainerConfig.builder()
+						.image(imageName)
+						.hostConfig(hostConfig)
+						.cmd(cmd)
+						.exposedPorts(ports)
+						.build();
+	        }
+			
+			System.out.println(config.toString());
+			
+			creation = dockerClient.createContainer(config, containerName);
+			id = creation.id();
+			//dockerClient.startContainer(id);
+		} catch (DockerException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			log.error(e.getMessage());
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			log.error(e.getMessage());
+		}
+		return id;
+    }
+    
+    public String addContainerWithNet(DefaultDockerClient dockerClient,Map<String,String> publicPort,
+    		String volumeFrom,String volumeTo,String imageName,String containerName,String[] cmd,
+    		List<String> envs,String network){
+    	ContainerCreation creation;
+		String id = "";
+		try {
+			Set<String> ports = new HashSet<>();
+			Map<String, List<PortBinding>> portBindings = new HashMap<>();
+			Iterator<Entry<String, String>> it = publicPort.entrySet().iterator();
+			while (it.hasNext()) {
+				Map.Entry<String,String> entry = it.next();
+			    List<PortBinding> hostPorts = new ArrayList<>();
+			    hostPorts.add(PortBinding.of("0.0.0.0", entry.getValue()));
+			    portBindings.put(entry.getKey(), hostPorts);
+			    ports.add(entry.getKey());
+			}
+			String bindStringFrom = volumeFrom;
+			String bindStringTo = volumeTo;
+	        HostConfig hostConfig = null;
+	        
+	        if(!"".equals(bindStringFrom)){
+	        	hostConfig = HostConfig.builder()
+		        		.portBindings(portBindings)
+		        		.appendBinds(bindStringFrom + ":" + bindStringTo)
+		        		.networkMode(network)
+		        		.build();
+	        }else{
+	        	hostConfig = HostConfig.builder()
+		        		.portBindings(portBindings)
+		        		.networkMode(network)
+		        		.build();
+	        }
+	        
+	       
+	       
 	        ContainerConfig config = null;
 	        if(envs.size()>0){
 	        	config = ContainerConfig.builder()

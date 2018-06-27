@@ -29,7 +29,7 @@ function initMainDataGrid(){
             //{ field: 'suffix', title: '后缀名', width: 80, align: 'center' },
             { field: 'version', title: '版本号', width: 80, align: 'center' }
         ]],
-        //toolbar:toolbar,
+        toolbar:toolbar,
         onBeforeLoad: function (param) {
         },
         onLoadSuccess: function (data) {

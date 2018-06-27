@@ -127,6 +127,7 @@ public class MycatService extends AbstractBaseService {
 	public synchronized String generateName(){
 		String name="";
 		List<DataNodeVo> nodes = getDataNodes();
+		/*
 		int i = 1;
 		if(null!=nodes && nodes.size()>0){
 			for(DataNodeVo vo:nodes){
@@ -143,8 +144,37 @@ public class MycatService extends AbstractBaseService {
 			}
 		}else{
 			name = "dn"+i; 
+		}*/
+		if(null!=nodes && nodes.size()>0){
+			for(int i=1;i<=nodes.size();i++){
+				String n1 = "dn"+i;
+				if(checkName(n1,nodes)){
+					continue;
+				}else{
+					name = n1;
+					break;
+				}
+			}
+			if(name.equals("")){
+				name = "dn"+(nodes.size()+1);
+			}
 		}
+		
 		return name;
+	}
+	
+	private Boolean checkName(String name,List<DataNodeVo> nodes){
+		Boolean flag = false;
+		if(null!=nodes && nodes.size()>0){
+			for(DataNodeVo vo:nodes){
+				if(vo.getName().equals(name)){
+					flag = true;
+				}
+			}
+		}
+		
+		
+		return flag;
 	}
 	
 	public synchronized Boolean addDatanode(String name,String dbType,String ip,String user,String password,String database,Integer port){
@@ -389,6 +419,59 @@ public class MycatService extends AbstractBaseService {
 			log.error(e.getMessage());
 		}
 		return ds;
+	}
+	
+	public static void main(String[] args ){
+		
+		MycatService s = new MycatService();
+		
+		List<DataNodeVo> result = new ArrayList<>();
+		String mycat_schema_path = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/mycat/conf/schema.xml";
+		Document doc = XmlParser.getDocument(mycat_schema_path);
+		Element root = doc.getRootElement();
+		List<Element> nodes = root.elements("dataNode");
+		
+		if(nodes.size()>0){
+			Iterator<Element> it = nodes.iterator();
+			while(it.hasNext()){
+				Element e = it.next();
+				DataNodeVo vo = new DataNodeVo();
+				vo.setName(e.attributeValue("name"));
+				vo.setDataHost(e.attributeValue("dataHost"));
+				vo.setDatabase(e.attributeValue("database"));
+				DataHostVo dvo = s.getDataHostByName(vo.getDataHost(),root);
+				if(null != dvo){
+					vo.setUrl(dvo.getUrl());
+					vo.setPassword(dvo.getPassword());
+					vo.setUser(dvo.getUser());
+					vo.setDbType(dvo.getDbType());
+					vo.setDbDriver(dvo.getDbDriver());
+					vo.setPort(s.parserPort(dvo.getUrl(),dvo.getDbType()));
+					vo.setIp(s.parserIP(dvo.getUrl(),dvo.getDbType()));
+				}
+				
+				result.add(vo);
+			}	
+		}
+		
+		String name="";
+		List<DataNodeVo> nodes1 = result;
+		//int i = 1;
+		if(null!=nodes && nodes1.size()>0){
+			for(int i=1;i<=nodes1.size();i++){
+				String n1 = "dn"+i;
+				if(s.checkName(n1,nodes1)){
+					continue;
+				}else{
+					name = n1;
+					break;
+				}
+			}
+			if(name.equals("")){
+				name = "dn"+(nodes1.size()+1);
+			}
+		}
+		System.out.println(name);
 	}
 
 }

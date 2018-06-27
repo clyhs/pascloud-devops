@@ -99,7 +99,11 @@ public class MycatController extends BaseController {
 		
 		if(null!=name && !"".equals(name)){
 			dn = getDataNodeByName(name);
-			result.setBean(dn);
+			//result.setBean(dn);
+			if(dn==null){
+				result = new ResultBean<>(PasCloudCode.ERROR);
+				return result;
+			}
 		}else{
 			return new ResultBean<>(PasCloudCode.NULLDATA);
 		}

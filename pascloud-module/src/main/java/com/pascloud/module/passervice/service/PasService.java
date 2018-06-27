@@ -283,7 +283,8 @@ public class PasService extends AbstractBaseService {
 				log.info("开始新建main容器");
 				DefaultDockerClient client = DefaultDockerClient.builder()
 						.uri("http://"+ip+":"+defaultPort).build();
-				id = m_dockerService.addContainer(client, port, bindVolumeFrom, bindVolumeTo, imageName, containerName,cmd,envs);
+				id = m_dockerService.addContainerWithNet(client, port, bindVolumeFrom, bindVolumeTo, imageName, containerName,cmd,envs,
+						"host");
 				
 				log.info("结束新建main容器");
 				flag = true;
@@ -351,7 +352,8 @@ public class PasService extends AbstractBaseService {
 				log.info("开始新建main容器");
 				DefaultDockerClient client = DefaultDockerClient.builder()
 						.uri("http://"+ip+":"+defaultPort).build();
-				id = m_dockerService.addContainer(client, port, bindVolumeFrom, bindVolumeTo, imageName, containerName,cmd,envs);
+				id = m_dockerService.addContainerWithNet(client, port, bindVolumeFrom, bindVolumeTo, imageName, containerName,cmd,envs,
+						"host");
 				
 				log.info("结束新建main容器");
 				flag = true;
@@ -385,6 +387,7 @@ public class PasService extends AbstractBaseService {
 					uploadDbfile(conn,serverPath,containerName);
 					flag = true;
 				}else if(type.equals(PasTypeEnum.PASPM)){
+					log.info("paspm......");
 					uploadDubbofile(conn,serverPath,containerName);
 					uploadConfigfile(conn,serverPath,true,containerName);
 					uploadZkfile(conn,serverPath,containerName);
@@ -440,9 +443,12 @@ public class PasService extends AbstractBaseService {
 			if(dev){
 				m_configService.setHomePath(Constants.PASCLOUD_HOME+Constants.PASCLOUD_SERVICE_DEMO);
 				m_configService.setDev("true");
+				m_configService.setPort("8202", "8212");
 			}else{
 				m_configService.setHomePath(serverPath);
 				m_configService.setDev("false");
+				m_configService.setPort("8201", "8211");
+				
 			}
 			
 			mqs = getMqServer();

@@ -195,7 +195,7 @@ public class PropertiesUtil {
 		try {
 			fos = new FileOutputStream(this.file);
 			this.properties.setProperty(Key, value);
-			this.properties.store(fos, "this field is modify by system(software) note:" + note);
+			this.properties.store(fos, null);
 			fos.flush();
 		} catch (FileNotFoundException e) {
 			logger.error("set value error");

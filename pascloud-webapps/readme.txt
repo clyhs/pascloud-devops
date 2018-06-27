@@ -9,11 +9,13 @@ docker run --name pas_service_demo   -d -v /home/pascloud/pas-cloud-service-demo
 #paspm
 docker run --name pas_mycat   -d -v /home/pascloud16/mycat:/home/pascloud16/mycat -p 8066:8066 -p 9066:9066 pascloud/jdk7:v1.0 /home/pascloud16/mycat/bin/mycat console & 
 #zookeeper
-docker run --name pas_zk_dubbo_admin  --restart=always  -d -p 8686:8686 -p 2181:2181 pascloud/zk_dubbo:v1.1
+docker run --name pascloud_zookeeper_admin  --restart=always  -d -p 8686:8686 -p 2181:2181 pascloud/zk_dubbo:v1.1
 
 http://localhost:8080/graph/D_192.168.0.7_9066/MycatActiveThreadGraph?probe=MycatThreadPool
 
 http://localhost:8080/graph/D_192.168.0.7_9066/MycatActiveThreadGraph?probe=MycatThreadPool&begin=2018-05-17%2000:00&end=2018-05-17%2016:54
+
+docker run --name pascloud_zookeeper_admin  --restart=always --network=host  -d  zookeeper
 
 缓冲队列分析
 /mycat/graph/D_192.168.0.7_9066/MycatTaskQueueGraph?probe=MycatThreadPool
@@ -67,4 +69,15 @@ docker pull mysql:5.7
 docker run --name pascloud_mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7 --lower_case_table_names=1
 
 #chmod -R 777 /var/tmp/.oracle
+  
+  
+docker run --name pascloud_service_paspm_csifom --network=host  -d -v /home/pascloud/pas-cloud-service-paspm-csifom:/home/pascloud/pas-cloud-service-paspm-csifom -p 8202:8202 -p 8212:8212 pascloud/jdk7:v1.0 /home/pascloud/pas-cloud-service-paspm-csifom/bin/start.sh
+
+docker run --name pascloud_service_paspm_lecaup  -d -v /home/pascloud/pas-cloud-service-paspm-lecaup:/home/pascloud/pas-cloud-service-paspm-lecaup -p 8202:8202 -p 8212:8212 pascloud/jdk7:v1.0 /home/pascloud/pas-cloud-service-paspm-lecaup/bin/start.sh
+
+docker run --name pascloud_service_paspm_jpumpp  -d -v /home/pascloud/pas-cloud-service-paspm-jpumpp:/home/pascloud/pas-cloud-service-paspm-jpumpp -p 8202:8202 -p 8212:8212 pascloud/jdk7:v1.0 /home/pascloud/pas-cloud-service-paspm-jpumpp/bin/start.sh
+
+
+
+docker run --name pascloud_service_demo_mdsqwb  -d -v /home/pascloud/pas-cloud-service-demo-mdsqwb:/home/pascloud/pas-cloud-service-demo-mdsqwb -p 8201:8201 -p 8211:8211 pascloud/jdk7:v1.0 /home/pascloud/pas-cloud-service-demo-mdsqwb/bin/start.sh
   

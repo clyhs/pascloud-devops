@@ -179,7 +179,7 @@ function addDB(){
 		$.messager.alert('提示','参数没有填写完整');
 	}else{
 		$.post("addTenantDB.json",params,function(data,status){
-			if(data.code = 10000){
+			if(data.code == 10000){
 				//alert(data.desc);
 				//alert("修改成功，请重新启动应用");
 				$('#tenantAddDb').dialog('close');
@@ -229,7 +229,7 @@ function addSelectDB(){
 			//这一步先把信息填到db.properties
 			
 			$.post("addTenantDBByName.json",params,function(data,status){
-				if(data.code = 10000){
+				if(data.code == 10000){
 					//alert(data.desc);
 					//alert("修改成功，请重新启动应用");
 					$('#mainDataGrid').datagrid('reload');//刷新
@@ -304,7 +304,7 @@ function delDB(){
 			    	MaskUtil.mask();
 			    	MaskUtil.mask('删除租户节点...'); 
 			    	$.post("delTenantDB.json",params,function(data,status){
-						if(data.code = 10000){
+						if(data.code == 10000){
 							//alert(data.desc);
 							//alert("修改成功，请重新启动应用");
 							uploadCofingBySelectDB();
@@ -329,7 +329,7 @@ function delDB(){
 
 function uploadConfig(){
 	$.post("uploadConfig.json",{},function(data,status){
-		if(data.code = 10000){
+		if(data.code == 10000){
 			//alert(data.desc);
 			$.messager.alert('提示','成功');
 		}
@@ -341,7 +341,7 @@ function uploadCofingBySelectDB(){
 	//EasyUILoadForMsgUpdate('上传配置文件,并重启服务！','maskId');
 	MaskUtil.mask('上传配置文件,并重启服务...'); 
 	$.post("uploadConfig.json",{},function(data,status){
-		if(data.code = 10000){
+		if(data.code == 10000){
 			//dispalyEasyUILoad( 'mainCenter' );
 			MaskUtil.unmask(); 
 			$.messager.alert('提示','成功');
