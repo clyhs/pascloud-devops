@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>绩效运维管理中心</title>
+	<link rel="shortcut icon" href="/favicon.ico" />
 	<link rel="stylesheet" type="text/css" href="/static/easyui/themes/metro/easyui.css">
 	
     <link rel="stylesheet" type="text/css" href="/static/easyui/themes/icon.css">
@@ -103,12 +104,12 @@
 	    .border_bottom{border-bottom:#ccc 1px solid;}
 	</style>
 </head>
-<body id="main" class="easyui-layout" >
+<body id="main" class="easyui-layout" style="background-color: #3399FF;" >
     <div data-options="region:'north'" style="height:50px;border:0;" class="top2">
-        
-        <div class="" style="float:left;width:160px;text-align:left;color:#ffffff;margin-left:20px;"><h2>绩效运维管理中心</h2></div>
+        <div class="" style="float:left;width:40px;text-align:left;color:#ffffff;margin-left:10px;margin-top:5px;"><img src="/static/images/logo.png" width="40px" /></div>
+        <div class="" style="float:left;width:160px;text-align:left;color:#ffffff;margin-left:5px;"><h2 style="">绩效运维管理中心</h2></div>
         <!--
-        <div class="" style="float:left;width:1px;text-align:left;height:40px;background-color:#cccccc;margin-top:5px;">&nbsp;</div>
+        <div class="" style="float:left;width:0px;text-align:left;height:40px;margin-top:5px;box-shadow: 0px 0px 4px 4px #CCFFFF;">&nbsp;</div>
         -->
         <div class="" style="float:right;width:200px;text-align:left;">
             <div style="float:left;width:149px;">
@@ -145,11 +146,11 @@
 		
 		<!--树形菜单  结束-->
     </div>
-    <div id="center" data-options="region:'center',border:false,resizable:false" >
+    <div id="center" data-options="region:'center',border:false,resizable:false" style="background-color: #3399FF;">
         <div id="mainCenter" class="easyui-tabs" data-options="region:'center',fit:true"  >
             <div id="mainGridLayout" class="easyui-layout" data-options="title:'首页',fit:true,iconCls:'icon-house'" >
                 <div data-options="region:'center',fit:true" style="padding:0.5px;">
-		            <iframe scrolling="no" frameborder="0"  src="/module/main/main.html" style="width:100%;height:99.4%;"></iframe>
+		            <iframe scrolling="no" frameborder="0"  src="/module/main/main.html" style="width:100%;height:99.5%;"></iframe>
 		        </div>
             </div>
         </div>
