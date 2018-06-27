@@ -12,6 +12,13 @@
 	overflow:hidden;
 }
 
+.top2{
+	height: 50px;
+	background-color: #3399FF;
+	border:0;
+	overflow:hidden;
+}
+
 .logo {
 	background-image: url(../images/logo.png);
 	background-repeat: no-repeat;

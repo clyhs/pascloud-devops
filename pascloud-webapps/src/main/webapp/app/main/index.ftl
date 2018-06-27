@@ -37,13 +37,22 @@
         color:#3399FF;
     }
     .layout-split-west {
-        border-right: 5px solid #eee;
+        border-right: 5px solid #3399FF;
     }
     .layout-split-north {
         border-bottom: 5px solid #3399FF;
     }
     .layout-split-south {
         border-top: 5px solid #3399FF;
+    }
+    .layout-panel-west {
+        z-index: 2;
+        border-left:5px solid #3399FF;
+        border-bottom:5px solid #3399FF;
+    }
+    #center {
+        border-bottom:5px solid #3399FF;
+        border-right:5px solid #3399FF;
     }
     </style>
     
@@ -95,7 +104,7 @@
 	</style>
 </head>
 <body id="main" class="easyui-layout" >
-    <div data-options="region:'north'" style="height:50px;background-color:#99FFFF;border:0;" class="top">
+    <div data-options="region:'north'" style="height:50px;border:0;" class="top2">
         
         <div class="" style="float:left;width:160px;text-align:left;color:#ffffff;margin-left:20px;"><h2>绩效运维管理中心</h2></div>
         <!--
@@ -138,7 +147,7 @@
     </div>
     <div id="center" data-options="region:'center',border:false,resizable:false" >
         <div id="mainCenter" class="easyui-tabs" data-options="region:'center',fit:true"  >
-            <div id="mainGridLayout" class="easyui-layout" data-options="title:'首页',fit:true,iconCls:'icon-house'">
+            <div id="mainGridLayout" class="easyui-layout" data-options="title:'首页',fit:true,iconCls:'icon-house'" >
                 <div data-options="region:'center',fit:true" style="padding:0.5px;">
 		            <iframe scrolling="no" frameborder="0"  src="/module/main/main.html" style="width:100%;height:99.4%;"></iframe>
 		        </div>
