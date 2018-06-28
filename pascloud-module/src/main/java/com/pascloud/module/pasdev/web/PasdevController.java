@@ -265,7 +265,7 @@ public class PasdevController extends BaseController {
 			 @RequestParam(name = "file", required = false) CommonsMultipartFile file){
 		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
 		if (file != null && !file.isEmpty()) {
-			System.out.println("");
+			System.out.println(file.getOriginalFilename());
 		}
 		return result;
 		

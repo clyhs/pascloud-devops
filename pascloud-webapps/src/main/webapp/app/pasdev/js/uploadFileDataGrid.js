@@ -23,7 +23,7 @@ function createUploadDataGridDialog(){
     div +='</div>';
     div +='</div>';
 	
-	createDialogDivWithSize('mainDataGrid', 'uploadFile','上传文件', '',500,300,div);
+	createDialogDivWithSize('mainDataGrid', 'uploadFile','上传文件', '',600,300,div);
 	
 	initUploadDataGrid();
 }
@@ -48,9 +48,9 @@ function initUploadDataGrid(){
         showFooter: true,
         columns: [[
         	{ field: 'ck',checkbox:true },
-            { title: 'fileId', field: 'fileId',hidden:true,width:100},
-        	{ field: 'filename', title: '文件名称', width: 80, align: 'left' },
-            { field: 'size', title: '大小', width: 80, align: 'left'  },
+        	{ title: 'fileId', field: 'fileId',hidden:true,width:100},
+            { title: '文件名称',field: 'fileName',width: 150,fixed:true},
+            { title: '文件大小',field: 'fileSize',width: 80,fixed:true}, 
             
             { title: '上传进度',field: 'progress',width: 180,fixed:true,formatter: function (value, rec){
                 var htmlstr = '<div class="easyui-progressbar progressbar" style="width: 170px; height: 20px;" value="'+value +'" text="'+value+'%">'+
@@ -189,8 +189,10 @@ function uploadRegister(){
     uploader.on('error', function(handler){
         if(handler=='F_EXCEED_SIZE'){
             //tim.parentAlert('error','上传的单个文件不能大于'+initfilesize+'。<br>操作无法进行,如有需求请联系管理员','error');
+        	$.messager.alert("提示", "上传的单个文件不能大于"+initfilesize);
         }else if(handler=='Q_TYPE_DENIED'){
             //tim.parentAlert('error','不允许上传此类文件!。<br>操作无法进行,如有需求请联系管理员','error');
+        	$.messager.alert("提示", "不允许上传此类文件!");
         }
     });
 }
@@ -213,6 +215,7 @@ function removeFile(fileId){
 function uploadToServer(){
     if(uploader.getFiles().length<=0){
         //tim.parentAlert('提示', '没有上传的文件!', 'error');
+    	$.messager.alert("提示", "没有上传的文件!");
         return;
      }
     if ( state === 'uploading' ) {
