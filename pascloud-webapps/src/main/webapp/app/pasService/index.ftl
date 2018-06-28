@@ -39,13 +39,18 @@
 </head>
 <body id="main" class="easyui-layout" data-options="fit:true,border:false" > 
 
-		<div id="mainCenter" data-options="region:'center'" style="padding:0px;">
+	<div id="mainCenter" data-options="region:'center'" style="padding:0px;">
 		    <!--内容  开始-->
-		    <table id="mainDataGrid" >	
+		<table id="mainDataGrid" >	
 		        
-	        </table>
+	    </table>
 		    <!--内容  结束-->
-		</div>
+    </div>
+		
+	<div id="pasSpringlog" class="easyui-dialog" title="log" style="width:800px;height:400px;"
+        data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
+        <textarea id='pasSpringlog_text' style="width:97%;height:97%;" ></textarea>
+    </div>
 
 </body>
 </html>

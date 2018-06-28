@@ -6,23 +6,28 @@
 	<link rel="stylesheet" type="text/css" href="/static/easyui/themes/bootstrap/easyui.css">
     <link rel="stylesheet" type="text/css" href="/static/easyui/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="/static/easyui/themes/IconExtension.css">
-    <link rel="stylesheet" type="text/css" href="/static/js/uploadify/uploadify.css">
+    
+    <link rel="stylesheet" type="text/css" href="/static/js/rebox/jquery-rebox.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/js/webuploader/css/webuploader.css"/>
+	<link rel="stylesheet" type="text/css" href="/static/js/webuploader/css/upload.css"/>
     
     <link id="themesUI" href="/static/css/jquery-ui-1.9.2.custom.min.css" rel="stylesheet"  type="text/css"/>
    
     
 	<script type="text/javascript" src="/static/easyui/jquery-1.8.0.min.js"></script>
-	<script type="text/javascript" src="/static/js/uploadify/jquery.uploadify.min.js"></script>
+	<script type="text/javascript" src="/static/js/webuploader/webuploader.js"></script>
+	<script type="text/javascript" src="/static/js/rebox/jquery-rebox.js"></script>
 	
     <script type="text/javascript" src="/static/easyui/jquery.easyui.min.js"></script>
     
-    <script type="text/javascript" src="/static/js/lib/jquery.format.js"></script>
+    <script type="text/javascript" type="text/javascript" src="/static/js/lib/jquery.format.js"></script>
     
     
     
     
     <script type="text/javascript" src="/static/js/common/pascloudfunctions.js"></script>
     
+    <script type="text/javascript" src="/app/pasdev/js/uploadFileDataGrid.js"></script>
     <script type="text/javascript" src="/app/pasdev/js/pasfileForm.js"></script>
     <script type="text/javascript" src="/app/pasdev/js/pasfileDataGridToolbar.js"></script>
     <script type="text/javascript" src="/app/pasdev/js/pasfileDataGrid.js"></script>
@@ -34,10 +39,9 @@
 		    initMainDataGrid();
 		    
 		    initPasfileTree();
-		    
-		    initUploadfile();
-		    
 		});
+		
+		
 		
 	</script>
 	<style>
@@ -58,18 +62,7 @@
 
 	<div id="mainCenter" data-options="region:'center'" style="padding:0px;">
 		<!--内容  开始-->
-		<!--
-		<div>
-           <input class="easyui-validatebox" type="hidden" id="Attachment_GUID" name="Attachment_GUID" />
-           <input id="file_upload" name="file_upload" type="file" multiple="multiple">
-           <a href="javascript:void(0)" class="easyui-linkbutton" id="btnUpload" data-options="plain:true,iconCls:'icon-save'"
-                                    onclick="javascript: $('#file_upload').uploadify('upload', '*')">上传</a>
-           <a href="javascript:void(0)" class="easyui-linkbutton" id="btnCancelUpload" data-options="plain:true,iconCls:'icon-cancel'"
-                                    onclick="javascript: $('#file_upload').uploadify('cancel', '*')">取消</a>
-           <div id="fileQueue" class="fileQueue"></div>
-           <div id="div_files"></div>
-           <br />
-        </div>-->
+		
 		<table id="mainDataGrid" style="padding:0px;">	
 		        
 	    </table>

@@ -39,6 +39,8 @@ function initMainDataGrid(){
                 //setInterval("checkSysc('"+data.rows[i].name+"','"+i+"')",1000*10);
                 //alert(data.rows[i].name);
             }
+            $("#mainDataGrid").parent().find("div .datagrid-header-check").children("input[type=\"checkbox\"]").eq(0).attr("style", "display:none;");
+
         },
         onLoadError: function () {
         

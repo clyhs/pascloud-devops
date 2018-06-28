@@ -120,7 +120,7 @@ function createSelectDBFormFooter(){
 	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-database_save\'" onclick="addSelectDB()" >确定</a>'; 
 	html +=   '</div>';
 	html +=   '<div style="border:#ccc 0px solid;float:left;width:35%;">';
-	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-2013040601125064_easyicon_net_16\'">重置</a>'; 
+	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-2013040601125064_easyicon_net_16\'" onclick="reset()">重置</a>'; 
 	html +=   '</div>';
 	html +=   '<div style="clear:both;"></div>';
 	html += '</div>';
@@ -128,6 +128,11 @@ function createSelectDBFormFooter(){
 	return html;
 }
 
+function reset(){
+	$('#dbname').combobox('setValue', '');
+	$("#en").val("");
+	$("#cn").val("");
+}
 
 
 function changeName(name){

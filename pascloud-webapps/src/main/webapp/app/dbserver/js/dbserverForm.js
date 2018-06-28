@@ -44,7 +44,7 @@ function createFormFooter(){
 	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-database_save\'" onclick="addDBSubmit()" >确定</a>'; 
 	html +=   '</div>';
 	html +=   '<div style="border:#ccc 0px solid;float:left;width:30%;">';
-	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-2013040601125064_easyicon_net_16\'">重置</a>'; 
+	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-2013040601125064_easyicon_net_16\'" onclick="reset()" >重置</a>'; 
 	html +=   '</div>';
 	html +=   '<div style="clear:both;"></div>';
 	html += '</div>';
@@ -64,12 +64,16 @@ function createHYFooter(){
 	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-database_save\'" onclick="updateHySubmit()" >确定</a>'; 
 	html +=   '</div>';
 	html +=   '<div style="border:#ccc 0px solid;float:left;width:30%;">';
-	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-2013040601125064_easyicon_net_16\'">重置</a>'; 
+	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-2013040601125064_easyicon_net_16\'" onclick="reset()" >重置</a>'; 
 	html +=   '</div>';
 	html +=   '<div style="clear:both;"></div>';
 	html += '</div>';
 	
 	return html;
+}
+
+function reset(){
+	$('#sid').val("");
 }
 
 function addDBSubmit(){

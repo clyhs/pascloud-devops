@@ -161,6 +161,8 @@ function createDialogDivWithSize(dialogFrame, dialogId,dialogTitle, dialogUrl,wi
     });  
 } 
 
+
+
 function createDialogSourceWithSize(dialogFrame, dialogId,dialogTitle, dialogUrl,width,height,htmldiv)  
 {  
     var div = $('#'+dialogFrame);  

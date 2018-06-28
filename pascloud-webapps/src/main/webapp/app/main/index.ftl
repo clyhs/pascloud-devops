@@ -23,6 +23,7 @@
     <script type="text/javascript" src="/app/main/js/mainDataGridToolbar.js"></script>
     <script type="text/javascript" src="/app/main/js/mainDataGrid.js"></script>
     <script type="text/javascript" src="/app/main/js/mainLeft.js"></script>
+    <script type="text/javascript" src="/app/main/js/mainTab.js"></script>
     <script type="text/javascript" src="/app/main/js/databaseForm.js"></script>
     <script type="text/javascript" src="/app/main/js/tenantForm.js"></script>
     <script type="text/javascript" src="/app/main/js/main.js"></script>
@@ -38,7 +39,7 @@
         color:#3399FF;
     }
     .layout-split-west {
-        border-right: 5px solid #3399FF;
+        border-right: 0px solid #3399FF;
     }
     .layout-split-north {
         border-bottom: 5px solid #3399FF;
@@ -48,13 +49,28 @@
     }
     .layout-panel-west {
         z-index: 2;
+        border-top:5px solid #3399FF;
+        border-left:5px solid #3399FF;
+        border-bottom:5px solid #3399FF;
+    }
+    
+    .layout-expand {
+        position: absolute;
+        padding: 0px;
+        font-size: 1px;
+        cursor: pointer;
+        z-index: 1;
+        border-top:5px solid #3399FF;
         border-left:5px solid #3399FF;
         border-bottom:5px solid #3399FF;
     }
     #center {
+        border-top:5px solid #3399FF;
         border-bottom:5px solid #3399FF;
         border-right:5px solid #3399FF;
+        border-left:5px solid #3399FF;
     }
+    
     </style>
     
 	<script type="text/javascript">
@@ -91,6 +107,7 @@
                 }
             });
             
+            
 		 });
 		 
 		 
@@ -105,7 +122,7 @@
 	</style>
 </head>
 <body id="main" class="easyui-layout" style="background-color: #3399FF;" >
-    <div data-options="region:'north'" style="height:50px;border:0;" class="top2">
+    <div data-options="region:'north'" style="height:45px;border:0;" class="top2">
         <div class="" style="float:left;width:40px;text-align:left;color:#ffffff;margin-left:10px;margin-top:5px;"><img src="/static/images/logo.png" width="40px" /></div>
         <div class="" style="float:left;width:160px;text-align:left;color:#ffffff;margin-left:5px;"><h2 style="">绩效运维管理中心</h2></div>
         <!--
@@ -146,7 +163,7 @@
 		
 		<!--树形菜单  结束-->
     </div>
-    <div id="center" data-options="region:'center',border:false,resizable:false" style="background-color: #3399FF;">
+    <div id="center" data-options="region:'center',border:false,resizable:true" style="background-color: #3399FF;">
         <div id="mainCenter" class="easyui-tabs" data-options="region:'center',fit:true"  >
             <div id="mainGridLayout" class="easyui-layout" data-options="title:'首页',fit:true,iconCls:'icon-house'" >
                 <div data-options="region:'center',fit:true" style="padding:0.5px;">

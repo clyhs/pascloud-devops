@@ -9,7 +9,6 @@ checkHealthId =setInterval( function () {
         url: "health.json",
         data: "",
         success: function(data) {
-        	console.log(data);
         	healthflag = true;
         	if(data.code!=10000){
         		window.location.href="/module/login/index.html";

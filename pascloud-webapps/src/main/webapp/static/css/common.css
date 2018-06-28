@@ -5,7 +5,7 @@
 .border_bottom{border-bottom:#ccc 1px solid;}
 
 .top{
-	height: 50px;
+	height: 45px;
 	background-image: url(../images/top_bg.png);
 	border:0;
 	background-repeat:repeat-x;
@@ -13,7 +13,7 @@
 }
 
 .top2{
-	height: 50px;
+	height: 45px;
 	background-color: #3399FF;
 	border:0;
 	overflow:hidden;
@@ -26,7 +26,7 @@
 	margin-left:20px;
 	margin-top:5px;
 	width: 101px;
-	height: 50px;
+	height: 45px;
 	display: inline-block;
 	vertical-align: middle;
 	margin-right: 2%;

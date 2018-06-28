@@ -57,12 +57,20 @@ function createServerFormFooter(){
 	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-database_save\'" onclick="addServer()" >确定</a>'; 
 	html +=   '</div>';
 	html +=   '<div style="border:#ccc 0px solid;float:left;width:35%;">';
-	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-2013040601125064_easyicon_net_16\'">重置</a>'; 
+	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-2013040601125064_easyicon_net_16\'" onclick="reset()" >重置</a>'; 
 	html +=   '</div>';
 	html +=   '<div style="clear:both;"></div>';
 	html += '</div>';
 	
 	return html;
+}
+
+function reset(){
+	$('#ip').val("");
+	$('#user').val("");
+	$('#password').val("");
+	$('#port').val("");
+	$('#typeEnum').val("");
 }
 
 function addServer(){

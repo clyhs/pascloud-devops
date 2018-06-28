@@ -19,6 +19,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pascloud.constant.Constants;
@@ -256,5 +258,16 @@ public class PasdevController extends BaseController {
         result = new ResultCommon(PasCloudCode.SUCCESS);
         
 		return result;
+	}
+	@RequestMapping("/uploadfile.json")
+	@ResponseBody
+	public ResultCommon uploadfile(HttpServletRequest request,
+			 @RequestParam(name = "file", required = false) CommonsMultipartFile file){
+		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
+		if (file != null && !file.isEmpty()) {
+			System.out.println("");
+		}
+		return result;
+		
 	}
 }
