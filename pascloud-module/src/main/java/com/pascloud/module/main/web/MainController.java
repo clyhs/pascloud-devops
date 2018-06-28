@@ -149,14 +149,14 @@ public class MainController extends BaseController {
 		if (null != user) {
 			result = new ResultCommon(PasCloudCode.SUCCESS);
 		} else {
+			/*
 			user = new User();
 			user.setId(10000);
 			user.setName("admin");
-			session.setAttribute("user", user);
-			// result = new ResultCommon(PasCloudCode.ERROR);
-			result = new ResultCommon(PasCloudCode.SUCCESS);
+			session.setAttribute("user", user);*/
+			result = new ResultCommon(PasCloudCode.ERROR);
+			//result = new ResultCommon(PasCloudCode.SUCCESS);
 		}
-
 		return result;
 	}
 

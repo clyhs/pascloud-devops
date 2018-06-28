@@ -15,11 +15,8 @@
     
     <script type="text/javascript" src="/static/js/common/pascloudfunctions.js"></script>
     
-    <script type="text/javascript" src="/app/main/js/databaseForm.js"></script>
-    <script type="text/javascript" src="/app/main/js/tenantForm.js"></script>
-    <script type="text/javascript" src="/app/main/js/main.js"></script>
-    <script type="text/javascript" src="/app/main/js/mainDataGridToolbar.js"></script>
-    <script type="text/javascript" src="/app/main/js/mainDataGrid.js"></script>
+    
+    <script type="text/javascript" src="/app/main/js/mainIndexPage.js"></script>
     
     
 	<script type="text/javascript">
@@ -61,7 +58,7 @@
 		    </div>
 		    <div id="tenant_add" style="width:24%;height:150px;float:left;background-color:#fff;margin-left:0.4%;margin-right:0.4%;
 		        border-radius:8px;box-shadow: 2px 2px 2px #888888;">
-		        <div style="width:100%;line-height:30px;text-align:center;"><h2>一键租户</h2></div>
+		        <div style="width:100%;line-height:30px;text-align:center;"><h2>一键开户</h2></div>
 		        <div style="width:80%;margin-left:10%;height:50%;">
 		            <div style="width:60%;height:64px;background-color:#fff;float:left;line-height:25px;">
 		                <div>应用服务器数量：<font color="blue">${appServers}</font> 台</div>

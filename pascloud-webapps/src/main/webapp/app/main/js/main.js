@@ -14,12 +14,12 @@ checkHealthId =setInterval( function () {
         		window.location.href="/module/login/index.html";
         	}
         },
-        error: function() {
+        error: function(jqXHR, textStatus, errorThrown) {
         	if(healthflag){
         		$.messager.alert('提示','服务器已经停止。请重启服务');
-        		window.location.href="/module/login/index.html";
+        		healthflag = false;
         	}
-        	healthflag = false;
+        	
         }
     });
 },2000);
@@ -34,12 +34,3 @@ function exitAction(){
 
 
 
-function init(){
-	$('#database_add').click(function(){
-		//addDB();
-		parent.addTab('数据库管理','/module/dbserver/index.html','icon-databases');
-	});
-	$('#tenant_add').click(function(){
-		parent.addTab('租户管理','/module/tenant/index.html','icon-application_double');
-	});
-}

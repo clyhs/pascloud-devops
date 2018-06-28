@@ -11,7 +11,10 @@
     <script type="text/javascript" src="/app/login/js/login.js"></script>
     
     <script type="text/javascript">
-        
+        if (window != top){
+            top.location.href = location.href;  
+        }
+     
     </script>
 </head>
 <body>
