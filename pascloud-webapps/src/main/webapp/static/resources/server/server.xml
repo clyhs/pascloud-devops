@@ -8,16 +8,6 @@
     <desc>应用服务器</desc>
     <type>master</type>
     <typeEnum>1</typeEnum>
-    <dockerVersion>Docker version 17.05.0-ce, build 89658be</dockerVersion>
-  </server>
-  <server>
-    <ip>192.168.0.7</ip>
-    <username>root</username>
-    <password>tccp@2012</password>
-    <port>22</port>
-    <desc>应用服务器</desc>
-    <type>slave</type>
-    <typeEnum>1</typeEnum>
     <dockerVersion>Docker version 1.13.1, build 092cba3</dockerVersion>
   </server>
   <server>
@@ -39,5 +29,14 @@
     <type>slave</type>
     <typeEnum>2</typeEnum>
     <dockerVersion></dockerVersion>
+  </server>
+  <server>
+    <ip>192.168.0.7</ip>
+    <username>root</username>
+    <password>tccp@2012</password>
+    <port>22</port>
+    <desc>应用服务器</desc>
+    <type></type>
+    <typeEnum>1</typeEnum>
   </server>
 </list>

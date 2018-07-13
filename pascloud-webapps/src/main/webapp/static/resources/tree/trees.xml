@@ -47,7 +47,7 @@
         <text>服务管理</text>
         <isLeaf>true</isLeaf>
         <children/>
-        <iconCls>icon-application</iconCls>
+        <iconCls>icon-application_side_tree</iconCls>
         <url>/module/pasService/index.html</url>
         <pid>2000</pid>
       </tree>
@@ -58,8 +58,26 @@
         <text>资源管理</text>
         <isLeaf>true</isLeaf>
         <children/>
-        <iconCls>icon-application</iconCls>
+        <iconCls>icon-package</iconCls>
         <url>/module/pasdev/index.html</url>
+        <pid>2000</pid>
+      </tree>
+      <tree>
+        <id>2500</id>
+        <text>标准版本</text>
+        <isLeaf>true</isLeaf>
+        <children/>
+        <iconCls>icon-folder_link</iconCls>
+        <url>/module/mversion/index.html</url>
+        <pid>2000</pid>
+      </tree>
+      <tree>
+        <id>2600</id>
+        <text>应用管理</text>
+        <isLeaf>true</isLeaf>
+        <children/>
+        <iconCls>icon-folder_link</iconCls>
+        <url>/module/mversion/menu.html</url>
         <pid>2000</pid>
       </tree>
     </children>
