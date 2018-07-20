@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<pageSetting id="yyckyj" title="预约业绩管理" type="manage"> 
+<pageSetting id="yyckyj" title="预约业绩管理" type="manage" version="1.0.0.0" pid="" desc="标准版"> 
   <conPart> 
     <tags> 
       <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="录入日期" fieldName=""> 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<pageSetting id="grzmapp" title="个人桌面APP" type="manage"> 
+<pageSetting id="grzmapp" title="个人桌面APP" type="manage" version="1.0.0.0" pid="" desc="标准版"> 
   <conPart> 
     <tags> 
       <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="APP名称" fieldName=""> 
@@ -145,7 +145,7 @@
       <isNotEmpty property="appname">and app.name like '%$appname$%'</isNotEmpty> 
     </select>  
     <select id="dn0.grzmappCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select app.appid,app.appurl,app.name,app.imgurl,app.width,app.height,app.ms,app.sfxs,dmms.dmms sfxsMs from grzm_app app inner join csb_dmms dmms on dmms.dmz=app.sfxs and lower(dmms.dmmc)='jsbs' where 1=1
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select app.appid,app.appurl,app.name,app.imgurl,app.width,app.height,app.ms,app.sfxs,dmms.dmms sfxsMs from grzm_app app inner join csb_dmms dmms on dmms.dmz=app.sfxs and lower(dmms.dmmc)='jsbs' where 1=1 
       <isNotEmpty property="appname">and app.name like '%$appname$%'</isNotEmpty> ) t
     </select>  
     <select id="dn0.grzmapp_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 

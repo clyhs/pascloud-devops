@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<pageSetting id="lcyjfp" title="理财业绩分配" type="yjgx" version="2.0.0"> 
+<pageSetting id="lcyjfp" title="理财业绩分配" type="yjgx" version="1.0.0.0" pid="" desc="标准版"> 
   <mainPage> 
     <tags> 
       <tag name="Date" fieldName="JXDX_LCJYLS.JYRQ" condition="between ? and 1" col="0" row="0" colspan="1" label="交易日期"> 

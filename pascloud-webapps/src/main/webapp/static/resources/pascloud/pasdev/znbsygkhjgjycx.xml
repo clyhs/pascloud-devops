@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<pageSetting id="znbsygkhjgjycx" title="职能部室员工考核结果评价查询" type="query" version="2.0.0"> 
+<pageSetting id="znbsygkhjgjycx" title="职能部室员工考核结果评价查询" type="query" version="1.0.0.0" pid="" desc="标准版"> 
   <conPart> 
     <tags> 
       <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="考核年度"> 

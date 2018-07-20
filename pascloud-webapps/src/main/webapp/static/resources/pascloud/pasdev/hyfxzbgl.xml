@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<pageSetting id="hyfxzbgl" title="行员分析指标管理" type="manage"> 
+<pageSetting id="hyfxzbgl" title="行员分析指标管理" type="manage" version="1.0.0.0" pid="" desc="标准版"> 
   <conPart> 
     <tags> 
       <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="分析指标名称" fieldName=""> 

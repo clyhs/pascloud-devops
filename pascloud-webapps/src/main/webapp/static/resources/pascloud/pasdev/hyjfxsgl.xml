@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<pageSetting id="hyjfxsgl" title="行员计分系数管理" type="manage"> 
+<pageSetting id="hyjfxsgl" title="行员计分系数管理" type="manage" version="1.0.0.0" pid="" desc="标准版"> 
   <conPart> 
     <tags> 
       <tag row="0" col="0" rowspan="1" colspan="1" name="HYKhzbSelect" label="考核指标名称" fieldName=""> 

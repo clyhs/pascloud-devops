@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<pageSetting id="kjgyjmx" title="跨机构存贷款业绩明细" type="query" version="2.0.0"> 
+<pageSetting id="kjgyjmx" title="跨机构存贷款业绩明细" type="query" version="1.0.0.0" pid="" desc="标准版"> 
   <conPart> 
     <tags> 
       <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期"> 
@@ -130,7 +130,7 @@
   <sqlMap namespace="studio.kjgyjmx"> 
     <select id="dn0.kjgyjmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
-      <isEqual property="result" compareValue="11">select $tjrq$ as tjrq,khh,zhdh,zhhm,khjg,ssjg,hydh,hymc,gxfp,zhye,qsrq,jsrq,bz,kmh,qx,khrq,dqrq,xhrq from( select zh.khh,zh.zhdh,zh.zhhm,khjg.jgmc as khjg,jg.jgmc as ssjg,hy.hydh,hy.hymc , case when gx.gxhslx='1' then '百分比:'||F_NumToChar(gx.zlbl) else '阈值:'||F_NumToChar(gx.yz)||',阈值以下:'||F_NumToChar(gx.clbl)||',阈值以上'||F_NumToChar(gx.zlbl) end as gxfp , zh.zhye,gx.qsrq,gx.jsrq,bz.bzzwmc bz,zh.kmh,coalesce(qx.qxmc, zh.qx) as qx,zh.khrq,zh.dqrq,zh.xhrq from jxdx_ckzh zh inner join khdx_jg khjg on khjg.jgdh = zh.jgdh inner join dxgx_hyyjgx_ck gx on gx.jxdxdh = zh.jxdxdh
+      <isEqual property="result" compareValue="11">select $tjrq$ as tjrq,khh,zhdh,zhhm,khjg,ssjg,hydh,hymc,gxfp,zhye,qsrq,jsrq,bz,kmh,qx,khrq,dqrq,xhrq from( select zh.khh,zh.zhdh,zh.zhhm,khjg.jgmc as khjg,jg.jgmc as ssjg,hy.hydh,hy.hymc , case when gx.gxhslx='1' then '百分比:'||F_NumToChar(gx.zlbl) else '阈值:'||F_NumToChar(gx.yz)||',阈值以下:'||F_NumToChar(gx.clbl)||',阈值以上'||F_NumToChar(gx.zlbl) end as gxfp , zh.zhye,gx.qsrq,gx.jsrq,bz.bzzwmc bz,zh.kmh,coalesce(qx.qxmc, zh.qx) as qx,zh.khrq,zh.dqrq,zh.xhrq from jxdx_ckzh zh inner join khdx_jg khjg on khjg.jgdh = zh.jgdh inner join dxgx_hyyjgx_ck gx on gx.jxdxdh = zh.jxdxdh 
         <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh = gx.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
         <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join csb_bz bz on bz.bz=zh.bz left outer join csb_qxsdb qx on zh.qx between qx.qsqx and qx.jsqx and jxdxlx =1 where zh.gxhslx='1' 
         <isNotEmpty property="jgkhdxdh">and khjg.khdxdh in ($jgkhdxdh$)</isNotEmpty>  <![CDATA[and khjg.khdxdh<>jg.khdxdh]]>  

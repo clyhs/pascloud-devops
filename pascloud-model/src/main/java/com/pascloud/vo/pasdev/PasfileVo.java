@@ -25,7 +25,17 @@ public class PasfileVo implements Serializable {
 	
 	private String filepath;
 	
+	private String pid;
 	
+	
+
+	public String getPid() {
+		return pid;
+	}
+
+	public void setPid(String pid) {
+		this.pid = pid;
+	}
 
 	public String getFilepara() {
 		return filepara;

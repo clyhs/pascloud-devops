@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<pageSetting id="xttzdjckgd" title="系统通知查看更多" type="manage"> 
+<pageSetting id="xttzdjckgd" title="系统通知查看更多" type="manage" version="1.0.0.0" pid="" desc="标准版"> 
   <conPart> 
     <tags/> 
   </conPart>  

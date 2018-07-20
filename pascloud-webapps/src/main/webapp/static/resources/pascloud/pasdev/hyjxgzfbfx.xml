@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<pageSetting id="hyjxgzfbfx" title="行员绩效工资分布分析" type="query" version="2.0.0"> 
+<pageSetting id="hyjxgzfbfx" title="行员绩效工资分布分析" type="query" version="1.0.0.0" pid="" desc="标准版"> 
   <conPart> 
     <tags> 
       <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="年份"> 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<pageSetting id="zhjstzdr2" title="存款账户基数调整导入" type="import" version="2.0.0"> 
+<pageSetting id="zhjstzdr2" title="存款账户基数调整导入" type="import" version="1.0.0.0" pid="" desc="标准版"> 
   <template> 
     <src>ONLINE</src>  
     <column> 

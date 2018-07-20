@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<pageSetting id="jxkhcspz" title="绩效考核参数配置" type="manage"> 
+<pageSetting id="jxkhcspz" title="绩效考核参数配置" type="manage" version="1.0.0.0" pid="" desc="标准版"> 
   <conPart> 
     <tags> 
       <tag row="0" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="参数名称" fieldName=""> 

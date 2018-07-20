@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<pageSetting id="yswslxkfjfhcx" title="应收未收利息扣罚及返还查询" type="query" version="2.0.0"> 
+<pageSetting id="yswslxkfjfhcx" title="应收未收利息扣罚及返还查询" type="query" version="1.0.0.0" pid="" desc="标准版"> 
   <conPart> 
     <tags> 
       <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月"> 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<pageSetting id="xtdlhyxxmx" title="系统登陆行员信息明细" type="query" version="2.0.0"> 
+<pageSetting id="xtdlhyxxmx" title="系统登陆行员信息明细" type="query" version="1.0.0.0" pid="" desc="标准版"> 
   <conPart> 
     <tags/> 
   </conPart>  

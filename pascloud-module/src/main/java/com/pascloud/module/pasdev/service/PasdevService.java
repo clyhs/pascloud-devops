@@ -2,11 +2,15 @@ package com.pascloud.module.pasdev.service;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -21,6 +25,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.pas.cloud.studio.parameters.ImportParameters;
+import com.pas.cloud.studio.parameters.ManageParameters;
+import com.pas.cloud.studio.parameters.Parameter;
+import com.pas.cloud.studio.parameters.Parameters;
+import com.pas.cloud.studio.parameters.YjgxParameters;
 import com.pascloud.constant.Constants;
 import com.pascloud.module.common.service.AbstractBaseService;
 import com.pascloud.module.config.PasCloudConfig;
@@ -500,7 +509,96 @@ public class PasdevService extends AbstractBaseService {
 		return flag;
 	}
 	
-	
+	public static void main(String[] args) throws IOException, ClassNotFoundException{
+		/*
+		String path = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/pascloud/pasdev";
+		
+		List<File> files = new ArrayList<File>();
+		files = FileUtils.listFilesInDirWithFilter(path, ".para", false);
+		//System.out.println(m_config.getPASCLOUD_DEV_DIR());
+		if(files.size()>0){
+			Iterator<File> it = files.iterator();
+			while(it.hasNext()){
+				File f = it.next();
+				System.out.println(f.getName());
+				FileInputStream fis = new FileInputStream(f);
+				ObjectInputStream ois = new ObjectInputStream(fis);
+				Parameter p = (Parameter) ois.readObject();
+				System.out.println(p.getFunName());
+				System.out.println(p.getFunType());
+				
+				System.out.println(p.getVersion()+p.getDesc());
+				
+				if(p.getFunType().equals("query")){
+					Parameters para = (Parameters) p;
+					
+					para.setPid("");
+					para.setVersion("1.0.0.0");
+					para.setDesc("标准版");
+					OutputStream pos = new FileOutputStream(f);
+					ObjectOutputStream oos = new ObjectOutputStream(pos);
+					oos.writeObject(para);
+				}else if(p.getFunType().equals("manage")){
+					
+					ManageParameters para = (ManageParameters) p;
+					
+					para.setPid("");
+					para.setVersion("1.0.0.0");
+					para.setDesc("标准版");
+					OutputStream pos = new FileOutputStream(f);
+					ObjectOutputStream oos = new ObjectOutputStream(pos);
+					oos.writeObject(para);
+				}else if(p.getFunType().equals("import")){
+					ImportParameters para = (ImportParameters) p;
+					
+					para.setPid("");
+					para.setVersion("1.0.0.0");
+					para.setDesc("标准版");
+					OutputStream pos = new FileOutputStream(f);
+					ObjectOutputStream oos = new ObjectOutputStream(pos);
+					oos.writeObject(para);
+				}else if(p.getFunType().equals("yjgx")){
+					YjgxParameters para = (YjgxParameters) p;
+					
+					para.setPid("");
+					para.setVersion("1.0.0.0");
+					para.setDesc("标准版");
+					OutputStream pos = new FileOutputStream(f);
+					ObjectOutputStream oos = new ObjectOutputStream(pos);
+					oos.writeObject(para);
+				}
+				
+			}
+		}
+		
+        String path = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/pascloud/pasdev";
+		
+		List<File> files = new ArrayList<File>();
+		files = FileUtils.listFilesInDirWithFilter(path, ".xml", false);
+		
+		if(files.size()>0){
+			Iterator<File> it = files.iterator();
+			while(it.hasNext()){
+				File f = it.next();
+				//parserPasfileForID(f.getAbsolutePath());
+				Document doc = XmlParser.getDocument(f.getAbsolutePath());
+				Element root = doc.getRootElement();
+				String title= root.attributeValue("title");
+				//vo.setType(root.attributeValue("type"));
+				root.addAttribute("version", "1.0.0.0");
+				root.addAttribute("pid", "");
+				root.addAttribute("desc", "标准版");
+				
+				System.out.println(title);
+				
+				OutputFormat format = OutputFormat.createPrettyPrint();
+				
+				XMLWriter writer =writer = new XMLWriter(new FileOutputStream(f.getAbsolutePath()),format);
+				writer.write(doc);
+			}
+		}*/
+		
+	}
 	 
 	
 

@@ -18,5 +18,9 @@ SID_LIST_LISTENER =
   (GLOBAL_DBNAME = cpas12)
   (SID_NAME = cpas12)
   )
+  (SID_DESC =
+  (GLOBAL_DBNAME = cpas25)
+  (SID_NAME = cpas25)
+  )
 )
 ADR_BASE_LISTENER = /u01/app/oracle
