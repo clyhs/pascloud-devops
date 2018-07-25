@@ -1,4 +1,4 @@
-var mtoolbar = function(){
+var menutoolbar = function(){
 	return [{
 		text : '添加',  
         iconCls : 'icon-add',  
@@ -6,34 +6,34 @@ var mtoolbar = function(){
         	addMVersionDialog();
         }
 	},{
-		text : '分配',  
-        iconCls : 'icon-arrow_branch',  
-        handler : function(){
-        	createTenantTreeDialog(tenantTreeGridToolbar);
-        }
-	},{
 		text : '删除',  
         iconCls : 'icon-delete',  
         handler : function(){
-        	delMVersion();
+        	delMenu();
         }
 	},{
 		text : '开启',  
         iconCls : 'icon-bullet_tick',  
         handler : function(){
-        	changeMVersionSfxs('0');
+        	changeMenuSfxs('0');
         }
 	},{
 		text : '禁用',  
         iconCls : 'icon-cancel',  
         handler : function(){
-        	changeMVersionSfxs('1');
+        	changeMenuSfxs('1');
         }
 	},{
-		text : '同步',  
-        iconCls : 'icon-arrow_switch',  
+		text : '发布',  
+        iconCls : 'icon-arrow_turn_left',  
         handler : function(){
-        	createTenantTreeDialog(tenantTreeGridToolbarForSys);
+        	
+        }
+	},{
+		text : '初始化',  
+        iconCls : 'icon-cog_go',  
+        handler : function(){
+        	
         }
 	}];
 }();

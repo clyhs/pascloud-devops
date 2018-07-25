@@ -78,7 +78,7 @@
     <col id="YYLX" title="YYLX" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.yyjlhd"> 
-    <select id="dn0.yyjlhdList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.yyjlhdList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select jg.jgdh, jg.jgmc, jg.khdxdh as jgkhdxdh, hy.khdxdh, hy.hymc, hy.hydh, yyck.lsh, khlx.dmms khlx,yyck.khmc,zjlx.dmms zjlx,zjhm,yyjg.jgmc yyjg, yyck.yjje, yyck.blrq, yyck.yyqsrq,yyjsrq, yyck.bz,ppjg.dmms ppjg,csb.yyms ,csb.yylx from JXDX_YYYJ yyck inner join khdx_hy hy on hy.khdxdh=yyck.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh=yyck.khdxdh and yyck.blrq between jgcy.qsrq and jgcy.jsrq inner join khdx_jg jg on jg.khdxdh=jgcy.jgkhdxdh inner join khdx_jg yyjg on yyck.jgkhdxdh=yyjg.khdxdh left outer join csb_dmms khlx on yyck.khlx=khlx.dmz and khlx.dmmc='KHFXKHLX' left outer join csb_dmms zjlx on yyck.zjlb=zjlx.dmz and zjlx.dmmc='ZJLX' left outer join csb_dmms ppjg on yyck.ppbz = ppjg.dmz and ppjg.dmmc = 'YYJLPPBZ' inner join csb_yylx csb on csb.yylx = yyck.yylx where 1=1 
       <isNotEmpty property="qsrq">and yyck.blrq between $qsrq$ and $jsrq$</isNotEmpty>  
       <isNotEmpty property="khmc">and yyck.khmc like '%$khmc$%'</isNotEmpty>  
@@ -86,7 +86,7 @@
       <isNotEmpty property="ppbz">and yyck.ppbz = '$ppbz$'</isNotEmpty>  
       <isNotEmpty property="yylx">and yyck.yylx in ('$yylx$')</isNotEmpty> order by yyck.yylx,yyck.lsh desc
     </select>  
-    <select id="dn0.yyjlhdCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.yyjlhdCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select jg.jgdh, jg.jgmc, jg.khdxdh as jgkhdxdh, hy.khdxdh, hy.hymc, hy.hydh, yyck.lsh, khlx.dmms khlx,yyck.khmc,zjlx.dmms zjlx,zjhm,yyjg.jgmc yyjg, yyck.yjje, yyck.blrq, yyck.yyqsrq,yyjsrq, yyck.bz,ppjg.dmms ppjg,csb.yyms ,csb.yylx from JXDX_YYYJ yyck inner join khdx_hy hy on hy.khdxdh=yyck.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh=yyck.khdxdh and yyck.blrq between jgcy.qsrq and jgcy.jsrq inner join khdx_jg jg on jg.khdxdh=jgcy.jgkhdxdh inner join khdx_jg yyjg on yyck.jgkhdxdh=yyjg.khdxdh left outer join csb_dmms khlx on yyck.khlx=khlx.dmz and khlx.dmmc='KHFXKHLX' left outer join csb_dmms zjlx on yyck.zjlb=zjlx.dmz and zjlx.dmmc='ZJLX' left outer join csb_dmms ppjg on yyck.ppbz = ppjg.dmz and ppjg.dmmc = 'YYJLPPBZ' inner join csb_yylx csb on csb.yylx = yyck.yylx where 1=1 
       <isNotEmpty property="qsrq">and yyck.blrq between $qsrq$ and $jsrq$</isNotEmpty>  
       <isNotEmpty property="khmc">and yyck.khmc like '%$khmc$%'</isNotEmpty>  
@@ -94,7 +94,7 @@
       <isNotEmpty property="ppbz">and yyck.ppbz = '$ppbz$'</isNotEmpty>  
       <isNotEmpty property="yylx">and yyck.yylx in ('$yylx$')</isNotEmpty> order by yyck.yylx,yyck.lsh desc ) t
     </select>  
-    <select id="dn0.yyjlhd_MSQL4SELECT_yylx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csb.yylx as key, csb.yyms as value from csb_yylx csb inner join table(FN_GETSJJG_JAVA_YWLB($jsrq$, $login_khdxdh$, 0))a on a.ywlb = csb.ywlb order by a.ywlb</select> 
+    <select id="dn1.yyjlhd_MSQL4SELECT_yylx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csb.yylx as key, csb.yyms as value from csb_yylx csb inner join table(FN_GETSJJG_JAVA_YWLB($jsrq$, $login_khdxdh$, 0))a on a.ywlb = csb.ywlb order by a.ywlb</select> 
   </sqlMap>  
   <rels> 
     <items id="yyjlhd_xsjy1jgj"/> 

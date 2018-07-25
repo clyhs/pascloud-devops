@@ -47,19 +47,19 @@
     <col id="PM" title="PM" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" orderby="asc" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.hydjpdcx"> 
-    <select id="dn0.hydjpdcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.hydjpdcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select khdx_hy.khdxdh, djpd_yyjg_hy.tjrq pdrq, khdx_jg.jgdh, khdx_jg.jgmc, khdx_hy.hydh, khdx_hy.hymc, dmms.dmms khzq, djpd_yyjg_hy.pm, djpd_yyjg_hy.jbmc dj, djpd_yyjg_hy.dj djpx, djpd_yyjg_hy.jlbz, djpd_yyjg_hy.ms from djpd_yyjg_hy djpd_yyjg_hy inner join khdx_hy khdx_hy on khdx_hy.khdxdh=djpd_yyjg_hy.khdxdh inner join khdx_jgcy khdx_jgcy on khdx_hy.khdxdh=khdx_jgcy.khdxdh and djpd_yyjg_hy.tjrq between khdx_jgcy.qsrq and khdx_jgcy.jsrq inner join khdx_jg khdx_jg on khdx_jgcy.jgkhdxdh = khdx_jg.khdxdh inner join khdx_hylb hylb on djpd_yyjg_hy.khdxdh=hylb.khdxdh and djpd_yyjg_hy.tjrq between hylb.qsrq and hylb.jsrq inner join csb_dmms dmms on upper(dmms.dmmc) = 'DJPDZQ' and dmms.dmz = djpd_yyjg_hy.pdzq inner join table(fn_getsjjg_java_qxhy($pdrq$, $login_khdxdh$, 0)) qx on qx.khdxdh = khdx_hy.khdxdh where 1=1 
       <isNotEmpty property="pdrq">and djpd_yyjg_hy.tjrq= $pdrq$</isNotEmpty>  
       <isNotEmpty property="khdxdh">and khdx_hy.khdxdh in ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="djpdmc">and djpd_yyjg_hy.djpdmc = '$djpdmc$'</isNotEmpty> 
     </select>  
-    <select id="dn0.hydjpdcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.hydjpdcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select khdx_hy.khdxdh, djpd_yyjg_hy.tjrq pdrq, khdx_jg.jgdh, khdx_jg.jgmc, khdx_hy.hydh, khdx_hy.hymc, dmms.dmms khzq, djpd_yyjg_hy.pm, djpd_yyjg_hy.jbmc dj, djpd_yyjg_hy.dj djpx, djpd_yyjg_hy.jlbz, djpd_yyjg_hy.ms from djpd_yyjg_hy djpd_yyjg_hy inner join khdx_hy khdx_hy on khdx_hy.khdxdh=djpd_yyjg_hy.khdxdh inner join khdx_jgcy khdx_jgcy on khdx_hy.khdxdh=khdx_jgcy.khdxdh and djpd_yyjg_hy.tjrq between khdx_jgcy.qsrq and khdx_jgcy.jsrq inner join khdx_jg khdx_jg on khdx_jgcy.jgkhdxdh = khdx_jg.khdxdh inner join khdx_hylb hylb on djpd_yyjg_hy.khdxdh=hylb.khdxdh and djpd_yyjg_hy.tjrq between hylb.qsrq and hylb.jsrq inner join csb_dmms dmms on upper(dmms.dmmc) = 'DJPDZQ' and dmms.dmz = djpd_yyjg_hy.pdzq inner join table(fn_getsjjg_java_qxhy($pdrq$, $login_khdxdh$, 0)) qx on qx.khdxdh = khdx_hy.khdxdh where 1=1 
       <isNotEmpty property="pdrq">and djpd_yyjg_hy.tjrq= $pdrq$</isNotEmpty>  
       <isNotEmpty property="khdxdh">and khdx_hy.khdxdh in ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="djpdmc">and djpd_yyjg_hy.djpdmc = '$djpdmc$'</isNotEmpty> ) t
     </select>  
-    <select id="dn0.hydjpdcx_MSQL4SELECT_djpdmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select djpdmc as key,djpdmc as value from djpd_djbz where f_numtochar(pdnf) = substr(f_numtochar($pdrq$),1,4) and khdx='2'</select> 
+    <select id="dn1.hydjpdcx_MSQL4SELECT_djpdmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select djpdmc as key,djpdmc as value from djpd_djbz where f_numtochar(pdnf) = substr(f_numtochar($pdrq$),1,4) and khdx='2'</select> 
   </sqlMap>  
   <rels> 
     <items id="hydjpdcx_xsjy1jgj"/> 

@@ -19,6 +19,7 @@ function initMVersionMainTreeGrid(){
             {title:'名称',field:'text',width:200,sortable:true},
             {title:'级别',field:'level',width:160,sortable:true,hidden:'true'},
             {title:'版本',field:'version',width:40,sortable:true},
+            {title:'是否禁用',field:'sfxs',width:40,sortable:true,formatter:formatOper },
             {title:'地址',field:'url',width:160,sortable:true}
         ]],
         toolbar:mtoolbar,
@@ -37,6 +38,14 @@ function initMVersionMainTreeGrid(){
 	});
 }
 
+function formatOper(val,row,index){ 
+	if (val == '0'){
+		return '<span style="color:blue;">否</span>';
+	} else {
+		return '<span style="color:red;">是</span>';;
+	} 
+} 
+
 function onContextMenu(e,node){
     e.preventDefault();
 	$(this).treegrid('select',node.id);
@@ -49,10 +58,16 @@ function onContextMenu(e,node){
 }
 
 function onClickRow(node){
-	alert(node);
+	
 	level = node.level;
 	pId = node.id;
 	
 }
+
+function reloadTree(){
+	$('#mVersionMainTreeGrid').treegrid('options').url ='getMVersionMenuTree.json?Id=dn0';
+	$('#mVersionMainTreeGrid').treegrid("reload");
+}
+
 
 

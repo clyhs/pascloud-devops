@@ -97,7 +97,7 @@ public class DBUtils {
 		
 		switch(dbType.toLowerCase()){
 		case "mysql":
-			sb.append("jdbc:mysql://").append(ip+":"+port+"/"+database);
+			sb.append("jdbc:mysql://").append(ip+":"+port+"/"+database).append("?useUnicode=true&characterEncoding=utf8");
 			break;
 		case "db2":
 			sb.append("jdbc:db2://").append(ip+":"+port+"/"+database);

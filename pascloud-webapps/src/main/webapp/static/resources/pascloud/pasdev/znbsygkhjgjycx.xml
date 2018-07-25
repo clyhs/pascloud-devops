@@ -64,7 +64,7 @@
     <col id="PJR" title="PJR" align="left" type="hidden" width="120" frozen="false" format="" showDymCol="" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.znbsygkhjgjycx"> 
-    <select id="dn0.znbsygkhjgjycxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.znbsygkhjgjycxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select fapz.khnf, case when fapz.khzq=1 then '月' when fapz.khzq=2 then '季' else '年' end as khzq, case when fapz.khzq=1 then cast(zxpffa.khqs as char(8))|| '月' when fapz.khzq=2 then '第'||cast(zxpffa.khqs as char(8) )|| '季度' else cast(zxpffa.khqs as char(8))|| '年' end as khqs, fapz.famc, khjg.jgdh, khjg.jgmc, hygw.gwmc, hy.hydh, hy.hymc , zxpffa.py, zxpffa.fabh, zxpffa.khdxdh ,fapz.khzq khzq1, zxpffa.khqs khqs1,hygw.gwbh,zxpffa.pjr from znbs_zxpffa zxpffa inner join khdx_hygw hygw on zxpffa.khdxdh=hygw.khdxdh and zxpffa.khqm between hygw.qsrq and hygw.jsrq inner join znbs_fapz fapz on zxpffa.fabh=fapz.fabh inner join khdx_jg khjg on zxpffa.khdxdh=khjg.khdxdh inner join khdx_hy hy on zxpffa.khdxdh=hy.khdxdh where 1=1 
       <isNotEmpty property="khnd">and fapz.khnf=$khnd$</isNotEmpty>  
       <isNotEmpty property="khzq">and fapz.khzq=$khzq$</isNotEmpty>  
@@ -73,7 +73,7 @@
       <isNotEmpty property="khdxdh">and zxpffa.khdxdh in ($khdxdh$)</isNotEmpty> and zxpffa.khdx='2' 
       <isNotEmpty property="gwmc">and hygw.gwbh='$gwmc$'</isNotEmpty> 
     </select>  
-    <select id="dn0.znbsygkhjgjycxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.znbsygkhjgjycxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select fapz.khnf, case when fapz.khzq=1 then '月' when fapz.khzq=2 then '季' else '年' end as khzq, case when fapz.khzq=1 then cast(zxpffa.khqs as char(8))|| '月' when fapz.khzq=2 then '第'||cast(zxpffa.khqs as char(8) )|| '季度' else cast(zxpffa.khqs as char(8))|| '年' end as khqs, fapz.famc, khjg.jgdh, khjg.jgmc, hygw.gwmc, hy.hydh, hy.hymc , zxpffa.py, zxpffa.fabh, zxpffa.khdxdh ,fapz.khzq khzq1, zxpffa.khqs khqs1,hygw.gwbh,zxpffa.pjr from znbs_zxpffa zxpffa inner join khdx_hygw hygw on zxpffa.khdxdh=hygw.khdxdh and zxpffa.khqm between hygw.qsrq and hygw.jsrq inner join znbs_fapz fapz on zxpffa.fabh=fapz.fabh inner join khdx_jg khjg on zxpffa.khdxdh=khjg.khdxdh inner join khdx_hy hy on zxpffa.khdxdh=hy.khdxdh where 1=1 
       <isNotEmpty property="khnd">and fapz.khnf=$khnd$</isNotEmpty>  
       <isNotEmpty property="khzq">and fapz.khzq=$khzq$</isNotEmpty>  
@@ -82,9 +82,9 @@
       <isNotEmpty property="khdxdh">and zxpffa.khdxdh in ($khdxdh$)</isNotEmpty> and zxpffa.khdx='2' 
       <isNotEmpty property="gwmc">and hygw.gwbh='$gwmc$'</isNotEmpty> ) t
     </select>  
-    <select id="dn0.znbsygkhjgjycx_MSQL4SELECT_khzq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from CSB_DMMS where dmmc ='KHZQ'</select>  
-    <select id="dn0.znbsygkhjgjycx_MSQL4SELECT_khqs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from CSB_DMMS where dmmc ='KHZQ' and 1=2</select>  
-    <select id="dn0.znbsygkhjgjycx_MSQL4SELECT_famc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ <![CDATA[select fabh as key, famc as value from znbs_fapz where khnf=$khnd$ and khzq=$khzq$ and 'test'<>'test$khzq$']]></select> 
+    <select id="dn1.znbsygkhjgjycx_MSQL4SELECT_khzq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from CSB_DMMS where dmmc ='KHZQ'</select>  
+    <select id="dn1.znbsygkhjgjycx_MSQL4SELECT_khqs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from CSB_DMMS where dmmc ='KHZQ' and 1=2</select>  
+    <select id="dn1.znbsygkhjgjycx_MSQL4SELECT_famc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ <![CDATA[select fabh as key, famc as value from znbs_fapz where khnf=$khnd$ and khzq=$khzq$ and 'test'<>'test$khzq$']]></select> 
   </sqlMap>  
   <rels> 
     <items id="znbsygkhjgjycx_xsjy1jgj"/> 

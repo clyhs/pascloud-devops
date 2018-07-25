@@ -29,11 +29,11 @@
     <col id="SJMS" title="事件描述" align="left" type="string" width="400" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.psrz"> 
-    <select id="dn0.psrzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.psrzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select xtrz.sjdh sjdh, F_TimeToChar(xtrz.sjsj, 'YYYY-MM-DD HH24:MI:SS') sjsj, xtrz.sjlx sjlx,xtrz.sjly sjly, xtrz.sjms sjms,dmms.dmms dmms from XTB_XTRZ xtrz ,csb_dmms dmms where xtrz.sjlx= dmms.dmz and lower(dmms.dmmc) = 'sjlx' and sjsj between F_INTTOTIME($tjrq$,1) and F_INTTOTIME($tjrq$,2) 
       <isNotEmpty property="sjlx">and xtrz.sjlx = '$sjlx$'</isNotEmpty> order by xtrz.sjdh desc
     </select>  
-    <select id="dn0.psrzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.psrzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select xtrz.sjdh sjdh, F_TimeToChar(xtrz.sjsj, 'YYYY-MM-DD HH24:MI:SS') sjsj, xtrz.sjlx sjlx,xtrz.sjly sjly, xtrz.sjms sjms,dmms.dmms dmms from XTB_XTRZ xtrz ,csb_dmms dmms where xtrz.sjlx= dmms.dmz and lower(dmms.dmmc) = 'sjlx' and sjsj between F_INTTOTIME($tjrq$,1) and F_INTTOTIME($tjrq$,2) 
       <isNotEmpty property="sjlx">and xtrz.sjlx = '$sjlx$'</isNotEmpty> order by xtrz.sjdh desc ) t
     </select> 

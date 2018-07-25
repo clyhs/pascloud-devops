@@ -79,7 +79,7 @@
     <col id="JSRQ" title="结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" showDymCol="" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.dkzryjfpcx"> 
-    <select id="dn0.dkzryjfpcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.dkzryjfpcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="cxfs" compareValue="2">select zh.khh,zh.zhhm,zh.zhdh,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc, '百分比:' || f_numtochar (jl.zlbl) as fpgx,jl.qsrq,jl.jsrq,czy.hymc as xgry, case when rz.czlx='01' then '新增'when rz.czlx='02' then '修改' else '删除' end as czlx, f_timetochar(rz.jlsj,'yyyy/mm/dd hh24:mi:ss') as jlsj, case when jl.ggbz='0' then '旧数据' else '修改后' end as ggbz,zh.khrq from xtb_zhgxrz_dkzr rz inner join xtb_zhgxjl_dkzr jl on jl.jldh = rz.jldh inner join jxdx_dkzh zh on zh.jxdxdh = rz.jxdxdh inner join khdx_hy hy on hy.khdxdh = jl.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
         <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh 
@@ -94,7 +94,7 @@
         <isNotEmpty property="zh">and zh.zhdh like '%$zh$%'</isNotEmpty> order by rz.jlsj desc,zh.zhdh asc,jl.jldh asc,jl.ggbz asc
       </isEqual> 
     </select>  
-    <select id="dn0.dkzryjfpcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.dkzryjfpcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="cxfs" compareValue="2">select zh.khh,zh.zhhm,zh.zhdh,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc, '百分比:' || f_numtochar (jl.zlbl) as fpgx,jl.qsrq,jl.jsrq,czy.hymc as xgry, case when rz.czlx='01' then '新增'when rz.czlx='02' then '修改' else '删除' end as czlx, f_timetochar(rz.jlsj,'yyyy/mm/dd hh24:mi:ss') as jlsj, case when jl.ggbz='0' then '旧数据' else '修改后' end as ggbz,zh.khrq from xtb_zhgxrz_dkzr rz inner join xtb_zhgxjl_dkzr jl on jl.jldh = rz.jldh inner join jxdx_dkzh zh on zh.jxdxdh = rz.jxdxdh inner join khdx_hy hy on hy.khdxdh = jl.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
         <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh 
@@ -109,7 +109,7 @@
         <isNotEmpty property="zh">and zh.zhdh like '%$zh$%'</isNotEmpty> order by rz.jlsj desc,zh.zhdh asc,jl.jldh asc,jl.ggbz asc
       </isEqual> ) t
     </select>  
-    <select id="dn0.dkzryjfpcx_MSQL4SELECT_cxfs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dm.dmz as key,dm.dmms as value from csb_dmms dm where dmmc='CXFS' order by xh</select> 
+    <select id="dn1.dkzryjfpcx_MSQL4SELECT_cxfs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dm.dmz as key,dm.dmms as value from csb_dmms dm where dmmc='CXFS' order by xh</select> 
   </sqlMap>  
   <finger custPlotMth=""> 
     <plotType/>  

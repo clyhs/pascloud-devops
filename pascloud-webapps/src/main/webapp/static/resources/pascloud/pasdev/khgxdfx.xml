@@ -65,14 +65,14 @@
     <col id="DKNRJ" title="贷款年日均(万元)" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.khgxdfx"> 
-    <select id="dn0.khgxdfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.khgxdfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select * from( SELECT RANK() OVER(ORDER BY $orderkey$ DESC ) AS MC,RS.TJRQ AS TJRQ,RS.KHH,RS.KHMC,RS.KHLX, rs.CKSD/10000.00 as cksd,rs.cknrj/10000.00 AS CKNRJ,rs.dksd/10000.00 as dksd,rs.dknrj/10000.00 AS DKNRJ from ( SELECT sytj.tjrq ,ms.dmms as khlx ,sytj.khh,sytj.khmc,sytj.ckye as cksd,sytj.cknrj,sytj.dkye as dksd,sytj.dknrj FROM KHFX_KHSYTJ_$tjrq_yyyymm$ SYTJ INNER JOIN TABLE(FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,$jgkhdxdh$)) QX ON QX.KHDXDH=SYTJ.jgKHDXDH inner join csb_dmms ms on lower(ms.dmmc)='khlx' and ms.dmz = SYTJ.khlx WHERE sytj.TJRQ = (select ym from CSB_SJW where tjrq=$tjrq$) 
       <isNotEmpty property="khlx">AND sytj.khlx='$khlx$'</isNotEmpty>  
       <isNotEmpty property="khh">AND sytj.KHH LIKE '$khh$%'</isNotEmpty>  
       <isNotEmpty property="khmc">and sytj.khmc like '%$khmc$%'</isNotEmpty> ) RS ) t where 1=1 
       <isNotEmpty property="mc"><![CDATA[and  t.mc <= $mc$]]></isNotEmpty> 
     </select>  
-    <select id="dn0.khgxdfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.khgxdfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select * from( SELECT RANK() OVER(ORDER BY $orderkey$ DESC ) AS MC,RS.TJRQ AS TJRQ,RS.KHH,RS.KHMC,RS.KHLX, rs.CKSD/10000.00 as cksd,rs.cknrj/10000.00 AS CKNRJ,rs.dksd/10000.00 as dksd,rs.dknrj/10000.00 AS DKNRJ from ( SELECT sytj.tjrq ,ms.dmms as khlx ,sytj.khh,sytj.khmc,sytj.ckye as cksd,sytj.cknrj,sytj.dkye as dksd,sytj.dknrj FROM KHFX_KHSYTJ_$tjrq_yyyymm$ SYTJ INNER JOIN TABLE(FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,$jgkhdxdh$)) QX ON QX.KHDXDH=SYTJ.jgKHDXDH inner join csb_dmms ms on lower(ms.dmmc)='khlx' and ms.dmz = SYTJ.khlx WHERE sytj.TJRQ = (select ym from CSB_SJW where tjrq=$tjrq$) 
       <isNotEmpty property="khlx">AND sytj.khlx='$khlx$'</isNotEmpty>  
       <isNotEmpty property="khh">AND sytj.KHH LIKE '$khh$%'</isNotEmpty>  

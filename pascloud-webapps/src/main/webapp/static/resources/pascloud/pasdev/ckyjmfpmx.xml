@@ -41,7 +41,7 @@
     <col id="JXDXDH" title="绩效对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.ckyjmfpmx"> 
-    <select id="dn0.ckyjmfpmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.ckyjmfpmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="mxcsz" compareValue="1">select * from (select zh.jgdh, jg.jgmc, zh.zhdh, zh.zhhm, round(zh.zhye,2) zhye, zh.khrq, f_get_dqfp($jsrq$, zh.jxdxdh, zh.gxhslx, zh.khdxdh, 'ck') as fpgx, zh.kmh,bz.bzzwmc, zh.qx ,zh.jxdxdh from jxdx_ckzh zh inner join khdx_jg jg on zh.jgdh = jg.jgdh inner join csb_bz bz on bz.bz = zh.bz left join khdx_hy hy on zh.khdxdh=hy.khdxdh 
         <isNotEmpty property="qsrq">where zh.khrq between $qsrq$ and $jsrq$</isNotEmpty>  
@@ -54,7 +54,7 @@
         <isNotEmpty property="jgdh">and zh.jgdh = '$jgdh$'</isNotEmpty> and zh.gxhslx='0' and hy.hydh like 'XN%') a /*where NOT EXISTS (SELECT 1 FROM dxgx_yjsp_ck sp WHERE sp.jxdxdh = a.jxdxdh AND ((sp.spzt ='0' AND sp.spjg = '0' AND sp.xrbz = '0') OR (sp.spzt = '1' AND sp.spjg = '1' AND sp.xrbz = '0')) )*/ order by a.khrq desc
       </isEqual> 
     </select>  
-    <select id="dn0.ckyjmfpmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.ckyjmfpmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="mxcsz" compareValue="1">select * from (select zh.jgdh, jg.jgmc, zh.zhdh, zh.zhhm, round(zh.zhye,2) zhye, zh.khrq, f_get_dqfp($jsrq$, zh.jxdxdh, zh.gxhslx, zh.khdxdh, 'ck') as fpgx, zh.kmh,bz.bzzwmc, zh.qx ,zh.jxdxdh from jxdx_ckzh zh inner join khdx_jg jg on zh.jgdh = jg.jgdh inner join csb_bz bz on bz.bz = zh.bz left join khdx_hy hy on zh.khdxdh=hy.khdxdh 
         <isNotEmpty property="qsrq">where zh.khrq between $qsrq$ and $jsrq$</isNotEmpty>  
@@ -67,7 +67,7 @@
         <isNotEmpty property="jgdh">and zh.jgdh = '$jgdh$'</isNotEmpty> and zh.gxhslx='0' and hy.hydh like 'XN%') a /*where NOT EXISTS (SELECT 1 FROM dxgx_yjsp_ck sp WHERE sp.jxdxdh = a.jxdxdh AND ((sp.spzt ='0' AND sp.spjg = '0' AND sp.xrbz = '0') OR (sp.spzt = '1' AND sp.spjg = '1' AND sp.xrbz = '0')) )*/ order by a.khrq desc
       </isEqual> ) t
     </select>  
-    <select id="dn0.ckyjmfpmx_ckyjmfpcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='CKYJGXMS'</select> 
+    <select id="dn1.ckyjmfpmx_ckyjmfpcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='CKYJGXMS'</select> 
   </sqlMap>  
   <rels> 
     <items id="ckyjmfpmx_xsjy1jgj"> 

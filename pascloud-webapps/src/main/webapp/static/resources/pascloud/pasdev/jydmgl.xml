@@ -74,25 +74,25 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.jydmgl"> 
-    <select id="dn0.jydmglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.jydmglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select jydm,jymc from CSB_HXJYDM where jydm like '%$jydm$%' and jymc like '%$jymc$%'
     </select>  
-    <select id="dn0.jydmglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.jydmglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select jydm,jymc from CSB_HXJYDM where jydm like '%$jydm$%' and jymc like '%$jymc$%' ) t
     </select>  
-    <select id="dn0.jydmgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.jydmgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select JYDM, JYJC, JYMC from CSB_HXJYDM where 1= 1 and JYDM = '$jydm$'
     </select>  
-    <select id="dn0.jydmgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.jydmgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select JYDM, JYJC, JYMC from CSB_HXJYDM where 1= 1 and JYDM = '$jydm$'
     </select>  
-    <insert id="dn0.jydmgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn1.jydmgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into CSB_HXJYDM( JYMC, JYDM ) values ( '$jymc$','$jydm$')
     </insert>  
-    <update id="dn0.jydmgl_update" parameterClass="java.util.Map"> 
+    <update id="dn1.jydmgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_HXJYDM set JYMC = '$jymc$' where 1=1 and JYDM = '$jydm$'
     </update>  
-    <delete id="dn0.jydmgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn1.jydmgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from CSB_HXJYDM where 1=1 and JYDM = '$jydm$'
     </delete> 
   </sqlMap>  

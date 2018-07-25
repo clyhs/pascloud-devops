@@ -41,13 +41,13 @@
     <col id="LJTLYE" title="提留余额" align="right" type="float" width="120" frozen="false" format="" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.hyjxtlmxcx"> 
-    <select id="dn0.hyjxtlmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.hyjxtlmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select jg.khdxdh jgkhdxdh , hy.khdxdh ,jgmc , jg.jgdh , hy.hydh , hy.hymc , tjrq, tjye ljtlye ,dxje ,tlje lzje from khfa_jxtl_hy h inner join khdx_hy hy on hy.khdxdh = h.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh and h.tjrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh INNER JOIN table(FN_GETSJJG_JAVA_QXHY(h.tjrq,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh where 1=1 
       <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="jgkhdxdh">and jg.khdxdh = $jgkhdxdh$</isNotEmpty>  
       <isNotEmpty property="qsrq">and h.tjrq between $qsrq$ and $jsrq$</isNotEmpty> 
     </select>  
-    <select id="dn0.hyjxtlmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.hyjxtlmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select jg.khdxdh jgkhdxdh , hy.khdxdh ,jgmc , jg.jgdh , hy.hydh , hy.hymc , tjrq, tjye ljtlye ,dxje ,tlje lzje from khfa_jxtl_hy h inner join khdx_hy hy on hy.khdxdh = h.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh and h.tjrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh INNER JOIN table(FN_GETSJJG_JAVA_QXHY(h.tjrq,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh where 1=1 
       <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="jgkhdxdh">and jg.khdxdh = $jgkhdxdh$</isNotEmpty>  

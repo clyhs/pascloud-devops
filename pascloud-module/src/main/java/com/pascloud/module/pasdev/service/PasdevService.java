@@ -1,6 +1,7 @@
 package com.pascloud.module.pasdev.service;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -49,6 +50,9 @@ import ch.ethz.ssh2.Connection;
 import ch.ethz.ssh2.SCPClient;
 import ch.ethz.ssh2.Session;
 import ch.ethz.ssh2.StreamGobbler;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 /**
  * pas+版本管理服务
@@ -298,7 +302,7 @@ public class PasdevService extends AbstractBaseService {
 				return flag;
 			}
 			files = FileUtils.listFilesInDir(path);
-			if(files.size()>0 && !FileUtils.isFileExists(gzpath)){
+			if(files.size()>=0 && !FileUtils.isFileExists(gzpath)){
 				if(!FileUtils.isFileExists(tarpath)){
 					log.info("对目录进行tar压缩");
 					TarUtils.archive(path,tarpath);
@@ -598,6 +602,36 @@ public class PasdevService extends AbstractBaseService {
 			}
 		}*/
 		
+		JedisPoolConfig config = new JedisPoolConfig();
+        config.setMaxTotal(10);
+        config.setMaxIdle(5);
+        config.setMaxWaitMillis(15000);
+        config.setTestOnBorrow(true);
+        String id = "192.168.0.7"+":"+ "6379";
+        JedisPool jedisPool = new JedisPool(config, "192.168.0.7", 6379);
+        Jedis j = jedisPool.getResource();
+        
+        byte[] o = j.get("dn1.testhydr.para".getBytes());
+        
+        byte[] content = j.get("dn1.bldkkfmxcx".getBytes());
+        
+        
+        InputStream is = new ByteArrayInputStream(o);
+		ObjectInputStream ois = new ObjectInputStream(is);
+        Parameter p = (Parameter) ois.readObject();
+        
+        InputStream nis = new ByteArrayInputStream(content);
+		ObjectInputStream nois = new ObjectInputStream(nis);
+        
+        System.out.println(p.getFunId());
+        System.out.println("------------");
+        //System.out.println(content);
+        
+        String contentstr = (String) nois.readObject();
+        System.out.println(contentstr);
+        Document doc =XmlParser.getDocumentFromString(contentstr);
+        Element root =doc.getRootElement();
+        System.out.println(root.attributeValue("id"));
 	}
 	 
 	

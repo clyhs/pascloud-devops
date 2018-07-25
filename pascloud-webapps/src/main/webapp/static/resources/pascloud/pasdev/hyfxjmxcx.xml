@@ -65,7 +65,7 @@
     <col id="DFHFXJ" title="待返还风险金" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="true"/> 
   </table>  
   <sqlMap namespace="studio.hyfxjmxcx"> 
-    <select id="dn0.hyfxjmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.hyfxjmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select substr(cast(fxjmx.tjrq as char(8)),1,6) as tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,dkzh.khh,dkzh.zhhm,dmms.dmms as khlx, dkzh.zhdh,dkzh.ffrq,dkzh.dqrq,fxjmx.ljyjtfxj,fxjmx.yfhfxj,fxjmx.dfhfxj from dkjx_dkfxjmx fxjmx inner join khdx_hy hy on hy.khdxdh = fxjmx.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh = hy.khdxdh 
       <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = jgcy.jgkhdxdh inner join jxdx_dkzh dkzh on fxjmx.jxdxdh = dkzh.jxdxdh inner join csb_dmms dmms on dkzh.zhbs = dmms.dmz and dmms.dmmc = 'ZHBS' inner join table(FN_GETSJJG_JAVA_QXHY($tjrq_ym$,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh 
       <isNotEmpty property="tjrq">where fxjmx.tjrq between $tjrq$01 and $tjrq_ym$</isNotEmpty>  
@@ -75,7 +75,7 @@
       <isNotEmpty property="zhdh">and dkzh.zhdh like '%$zhdh$%'</isNotEmpty>  
       <isNotEmpty property="zhbs">and dkzh.zhbs = '$zhbs$'</isNotEmpty> 
     </select>  
-    <select id="dn0.hyfxjmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.hyfxjmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select substr(cast(fxjmx.tjrq as char(8)),1,6) as tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,dkzh.khh,dkzh.zhhm,dmms.dmms as khlx, dkzh.zhdh,dkzh.ffrq,dkzh.dqrq,fxjmx.ljyjtfxj,fxjmx.yfhfxj,fxjmx.dfhfxj from dkjx_dkfxjmx fxjmx inner join khdx_hy hy on hy.khdxdh = fxjmx.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh = hy.khdxdh 
       <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = jgcy.jgkhdxdh inner join jxdx_dkzh dkzh on fxjmx.jxdxdh = dkzh.jxdxdh inner join csb_dmms dmms on dkzh.zhbs = dmms.dmz and dmms.dmmc = 'ZHBS' inner join table(FN_GETSJJG_JAVA_QXHY($tjrq_ym$,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh 
       <isNotEmpty property="tjrq">where fxjmx.tjrq between $tjrq$01 and $tjrq_ym$</isNotEmpty>  

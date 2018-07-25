@@ -24,17 +24,17 @@
     
     
     
-    
     <script type="text/javascript" src="/static/js/common/pascloudfunctions.js"></script>
+    
+    <script type="text/javascript" src="/app/mversion/js/main.js"></script>
     <script type="text/javascript" src="/app/mversion/js/mVersionTree.js"></script>
+    <script type="text/javascript" src="/app/mversion/js/menuTreeGridToolbar.js"></script>
     <script type="text/javascript" src="/app/mversion/js/menuTreeGrid.js"></script>
     
     
 	<script type="text/javascript">
 		$(function(){
 		    initMVersionTree();
-		    
-		    //initMenuTreeGrid();
 		});
 		
 		

@@ -74,7 +74,7 @@
     <col id="KHLX" title="客户类型" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.dkkhglmxcx"> 
-    <select id="dn0.dkkhglmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.dkkhglmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select substr(cast(mx.tjrq as char(8)),1,6) as tjrq ,jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, mx.khh, mx.zhhm, dmms.dmms as khlx, bz.bzzwmc, mx.jcbz, mx.tjxs, mx.khdkje,mx.khs,mx.jlje from (select khmx.tjrq , khmx.khdxdh,dkzh.khh, dkzh.zhhm, khmx.zhbs, khmx.jcbz, khmx.tjxs, khmx.khdkje,dkzh.bz,round(sum(khmx.khs),2) as khs,sum(khmx.jlje) as jlje from dkjx_dkkhgljxmx khmx inner join jxdx_dkzh dkzh on khmx.jxdxdh = dkzh.jxdxdh where 1=1 
       <isNotEmpty property="khh">and dkzh.khh like '%$khh$%'</isNotEmpty>  
       <isNotEmpty property="zhhm">and dkzh.zhhm like '%$zhhm$%'</isNotEmpty>  
@@ -83,7 +83,7 @@
       <isNotEmpty property="tjrq_ym">and khmx.tjrq=$tjrq_ym$</isNotEmpty> group by khmx.tjrq ,khmx.khdxdh, dkzh.khh, dkzh.zhhm, khmx.zhbs, khmx.jcbz, khmx.tjxs, khmx.khdkje,dkzh.bz )mx inner join khdx_hy hy on mx.khdxdh = hy.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh = hy.khdxdh and mx.tjrq between jgcy.qsrq and jgcy.jsrq inner join khdx_jg jg on jg.khdxdh = jgcy.jgkhdxdh inner join csb_dmms dmms on dmms.dmz = mx.zhbs and dmms.dmmc='ZHBS' inner join csb_bz bz on mx.bz = bz.bz inner join table(fn_getsjjg_java_qxhy($tjrq_ym$, $login_khdxdh$, 0)) qxhy on hy.khdxdh=qxhy.khdxdh 
       <isNotEmpty property="khdxdh">where hy.khdxdh in ($khdxdh$)</isNotEmpty> 
     </select>  
-    <select id="dn0.dkkhglmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.dkkhglmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select substr(cast(mx.tjrq as char(8)),1,6) as tjrq ,jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, mx.khh, mx.zhhm, dmms.dmms as khlx, bz.bzzwmc, mx.jcbz, mx.tjxs, mx.khdkje,mx.khs,mx.jlje from (select khmx.tjrq , khmx.khdxdh,dkzh.khh, dkzh.zhhm, khmx.zhbs, khmx.jcbz, khmx.tjxs, khmx.khdkje,dkzh.bz,round(sum(khmx.khs),2) as khs,sum(khmx.jlje) as jlje from dkjx_dkkhgljxmx khmx inner join jxdx_dkzh dkzh on khmx.jxdxdh = dkzh.jxdxdh where 1=1 
       <isNotEmpty property="khh">and dkzh.khh like '%$khh$%'</isNotEmpty>  
       <isNotEmpty property="zhhm">and dkzh.zhhm like '%$zhhm$%'</isNotEmpty>  

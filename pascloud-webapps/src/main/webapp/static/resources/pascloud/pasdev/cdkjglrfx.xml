@@ -88,7 +88,7 @@
     <col id="PM" title="排名" align="right" type="string" width="50" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.cdkjglrfx"> 
-    <select id="dn0.cdkjglrfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.cdkjglrfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="dxlx" compareValue="1">select tjny,jgdh,jgmc,dqye,rjye,ftplxsr,zbjsr,tqlxzchk,lxzc,mnlr,rank() over(order by mnlr desc) as pm from( select $tjny$ as tjny, jg.jgdh, jg.jgmc, sum(case when gl.pxxh=1 then yj.zbz else 0 end)/cast(10000 as float) as dqye, sum(case when gl.pxxh=2 then yj.zbz else 0 end)/cast(10000 as float) as rjye, sum(case when gl.pxxh=3 then yj.zbz else 0 end)/cast(10000 as float) as ftplxsr, sum(case when gl.pxxh=4 then yj.zbz else 0 end)/cast(10000 as float) as zbjsr, sum(case when gl.pxxh=5 then yj.zbz else 0 end)/cast(10000 as float) as tqlxzchk, sum(case when gl.pxxh=6 then yj.zbz else 0 end)/cast(10000 as float) as lxzc, sum(case when gl.pxxh=7 then yj.zbz else 0 end)/cast(10000 as float) as mnlr from pas.khdx_zbbbgl gl inner join pas.yjzb_gjyj_jg yj on yj.zbdh= gl.zbdh and yj.bz=gl.bz and yj.tjkj=gl.tjkj inner join pas.khdx_jg jg on yj.khdxdh=jg.khdxdh
         <isNotEmpty property="jgdj">and jg.jgdj='$jgdj$'</isNotEmpty> inner join pas.csb_sjw sj on sj.ym = yj.tjrq and sj.tjrq = cast(cast($tjny$ as char(6))||'01' as integer) inner join table (fn_getsjjg_java_qx(sj.ym, $login_khdxdh$, 0) ) qxjg on qxjg.khdxdh=jg.khdxdh where 1=1 
@@ -109,7 +109,7 @@
         group by jg.jgdh,jg.jgmc) z]]> 
       </isEqual> 
     </select>  
-    <select id="dn0.cdkjglrfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.cdkjglrfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="dxlx" compareValue="1">select tjny,jgdh,jgmc,dqye,rjye,ftplxsr,zbjsr,tqlxzchk,lxzc,mnlr,rank() over(order by mnlr desc) as pm from( select $tjny$ as tjny, jg.jgdh, jg.jgmc, sum(case when gl.pxxh=1 then yj.zbz else 0 end)/cast(10000 as float) as dqye, sum(case when gl.pxxh=2 then yj.zbz else 0 end)/cast(10000 as float) as rjye, sum(case when gl.pxxh=3 then yj.zbz else 0 end)/cast(10000 as float) as ftplxsr, sum(case when gl.pxxh=4 then yj.zbz else 0 end)/cast(10000 as float) as zbjsr, sum(case when gl.pxxh=5 then yj.zbz else 0 end)/cast(10000 as float) as tqlxzchk, sum(case when gl.pxxh=6 then yj.zbz else 0 end)/cast(10000 as float) as lxzc, sum(case when gl.pxxh=7 then yj.zbz else 0 end)/cast(10000 as float) as mnlr from pas.khdx_zbbbgl gl inner join pas.yjzb_gjyj_jg yj on yj.zbdh= gl.zbdh and yj.bz=gl.bz and yj.tjkj=gl.tjkj inner join pas.khdx_jg jg on yj.khdxdh=jg.khdxdh 
         <isNotEmpty property="jgdj">and jg.jgdj='$jgdj$'</isNotEmpty> inner join pas.csb_sjw sj on sj.ym = yj.tjrq and sj.tjrq = cast(cast($tjny$ as char(6))||'01' as integer) inner join table (fn_getsjjg_java_qx(sj.ym, $login_khdxdh$, 0) ) qxjg on qxjg.khdxdh=jg.khdxdh where 1=1 
@@ -130,7 +130,7 @@
         group by jg.jgdh,jg.jgmc) z]]> 
       </isEqual> ) t
     </select>  
-    <select id="dn0.cdkjglrfx_MSQL4SELECT_sdbs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc='ZBSDBS' and dmz in('5','6','7') order by dmz</select> 
+    <select id="dn1.cdkjglrfx_MSQL4SELECT_sdbs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc='ZBSDBS' and dmz in('5','6','7') order by dmz</select> 
   </sqlMap>  
   <finger custPlotMth="" id="cdkjglrfx_xsjy2jgj"> 
     <plotType>bar</plotType>  

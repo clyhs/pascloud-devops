@@ -203,30 +203,30 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.dktjrgl"> 
-    <select id="dn0.dktjrglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.dktjrglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select zh.zhdh,zh.zhhm,sg.tjr1 as tjr1,hy1.hymc as tjr1mc,sg.tjr1fpbl,hy2.hydh as tjr2,hy2.hymc as tjr2mc, sg.tjr2fpbl,sg.bzsm,sg.jxdxdh,hy1.khdxdh as tjrkhdxdh1,hy2.khdxdh as tjrkhdxdh2 from sglr_dktjr sg inner join jxdx_dkzh zh on zh.jxdxdh=sg.jxdxdh inner join khdx_hy hy1 on hy1.hydh=sg.tjr1 left join khdx_hy hy2 on hy2.hydh=sg.tjr2 where 1=1 
       <isNotEmpty property="dkzh">and zh.zhdh like '%$dkzh$%'</isNotEmpty> order by zh.zhdh
     </select>  
-    <select id="dn0.dktjrglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.dktjrglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select zh.zhdh,zh.zhhm,sg.tjr1 as tjr1,hy1.hymc as tjr1mc,sg.tjr1fpbl,hy2.hydh as tjr2,hy2.hymc as tjr2mc, sg.tjr2fpbl,sg.bzsm,sg.jxdxdh,hy1.khdxdh as tjrkhdxdh1,hy2.khdxdh as tjrkhdxdh2 from sglr_dktjr sg inner join jxdx_dkzh zh on zh.jxdxdh=sg.jxdxdh inner join khdx_hy hy1 on hy1.hydh=sg.tjr1 left join khdx_hy hy2 on hy2.hydh=sg.tjr2 where 1=1 
       <isNotEmpty property="dkzh">and zh.zhdh like '%$dkzh$%'</isNotEmpty> order by zh.zhdh ) t
     </select>  
-    <select id="dn0.dktjrgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.dktjrgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select TJR2FPBL, TJR1FPBL, BZSM, JXDXDH,F_TIMETOCHAR(CZSJ,'yyyy-mm-dd hh24:mi:ss') as CZSJ, CZR, TJR2, TJR1 from SGLR_DKTJR where 1= 1 and JXDXDH = $jxdxdh$
     </select>  
-    <select id="dn0.dktjrgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.dktjrgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select TJR2FPBL, TJR1FPBL, BZSM, JXDXDH,F_TIMETOCHAR(CZSJ,'yyyy-mm-dd hh24:mi:ss') as CZSJ, CZR, TJR2, TJR1 from SGLR_DKTJR where 1= 1 and JXDXDH = $jxdxdh$
     </select>  
-    <insert id="dn0.dktjrgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn1.dktjrgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into SGLR_DKTJR( TJR1, TJR2, JXDXDH, TJR2FPBL, CZSJ, CZR, TJR1FPBL, BZSM ) values ( '$tjr1$','$tjr2$',$jxdxdh$,$tjr2fpbl$,f_get_timestamp('$czsj$'),'$czr$',$tjr1fpbl$,'$bzsm$')
     </insert>  
-    <update id="dn0.dktjrgl_update" parameterClass="java.util.Map"> 
+    <update id="dn1.dktjrgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update SGLR_DKTJR set TJR1 = '$tjr1$',TJR2 = '$tjr2$',TJR2FPBL = $tjr2fpbl$,TJR1FPBL = $tjr1fpbl$,BZSM = '$bzsm$' where 1=1 and JXDXDH = $jxdxdh$
     </update>  
-    <delete id="dn0.dktjrgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn1.dktjrgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from SGLR_DKTJR where 1=1 and JXDXDH = $jxdxdh$
     </delete>  
-    <select id="dn0.dktjrgl_getzh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select jxdxdh from jxdx_dkzh where zhdh='$zhdh$'</select> 
+    <select id="dn1.dktjrgl_getzh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select jxdxdh from jxdx_dkzh where zhdh='$zhdh$'</select> 
   </sqlMap>  
   <javascript> 
     <import>parent.addTab('dktjrgldr','贷款推荐人管理','/module/parser/import/visitHtml/dktjrgldr');</import>  

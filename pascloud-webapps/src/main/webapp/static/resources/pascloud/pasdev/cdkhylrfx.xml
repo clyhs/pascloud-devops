@@ -75,7 +75,7 @@
     <col id="PM" title="排名" align="right" type="string" width="50" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.cdkhylrfx"> 
-    <select id="dn0.cdkhylrfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.cdkhylrfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="dxlx" compareValue="1">select tjny,jgdh,jgmc,hydh,hymc,dqye,rjye,ftplxsr,zbjsr,tqlxzckh,lxzc,mnlr, rank() over(order by mnlr desc) as pm from( select $tjny$ as tjny, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, sum(case when gl.pxxh=1 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as dqye, sum(case when gl.pxxh=2 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as rjye, sum(case when gl.pxxh=3 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as ftplxsr, sum(case when gl.pxxh=4 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as zbjsr, sum(case when gl.pxxh=5 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as tqlxzckh, sum(case when gl.pxxh=6 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as lxzc, sum(case when gl.pxxh=7 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as mnlr from khdx_zbbbgl gl inner join yjzb_gjyj_hy yj on yj.zbdh= gl.zbdh and yj.bz=gl.bz inner join khdx_hy hy on yj.khdxdh=hy.khdxdh inner join khdx_jgcy cy on yj.khdxdh=cy.khdxdh and yj.tjrq between cy.qsrq and cy.jsrq <![CDATA[inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh                     
             inner join csb_sjw sj on sj.ym = yj.tjrq and sj.tjrq =cast(cast($tjny$ as char(6))||'01' as integer)
@@ -98,7 +98,7 @@
            and gl.bbdh=1002 
         group by jg.jgdh,jg.jgmc,hy.hydh,hy.hymc) z]]></isEqual> 
     </select>  
-    <select id="dn0.cdkhylrfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.cdkhylrfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="dxlx" compareValue="1">select tjny,jgdh,jgmc,hydh,hymc,dqye,rjye,ftplxsr,zbjsr,tqlxzckh,lxzc,mnlr, rank() over(order by mnlr desc) as pm from( select $tjny$ as tjny, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, sum(case when gl.pxxh=1 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as dqye, sum(case when gl.pxxh=2 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as rjye, sum(case when gl.pxxh=3 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as ftplxsr, sum(case when gl.pxxh=4 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as zbjsr, sum(case when gl.pxxh=5 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as tqlxzckh, sum(case when gl.pxxh=6 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as lxzc, sum(case when gl.pxxh=7 then coalesce(yj.zbz,0) else 0 end)/cast(10000 as float) as mnlr from khdx_zbbbgl gl inner join yjzb_gjyj_hy yj on yj.zbdh= gl.zbdh and yj.bz=gl.bz inner join khdx_hy hy on yj.khdxdh=hy.khdxdh inner join khdx_jgcy cy on yj.khdxdh=cy.khdxdh and yj.tjrq between cy.qsrq and cy.jsrq <![CDATA[inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh                     
             inner join csb_sjw sj on sj.ym = yj.tjrq and sj.tjrq =cast(cast($tjny$ as char(6))||'01' as integer)
@@ -121,7 +121,7 @@
            and gl.bbdh=1002 
         group by jg.jgdh,jg.jgmc,hy.hydh,hy.hymc) z]]></isEqual> ) t
     </select>  
-    <select id="dn0.cdkhylrfx_MSQL4SELECT_sdbs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc='ZBSDBS' and dmz in('5','6','7') order by dmz</select> 
+    <select id="dn1.cdkhylrfx_MSQL4SELECT_sdbs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc='ZBSDBS' and dmz in('5','6','7') order by dmz</select> 
   </sqlMap>  
   <finger custPlotMth="" id="cdkhylrfx_xsjy2jgj"> 
     <plotType>bar</plotType>  

@@ -95,7 +95,7 @@
     <col id="KFJE" title="扣罚金额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="true"/> 
   </table>  
   <sqlMap namespace="studio.bldkkfmxcx"> 
-    <select id="dn0.bldkkfmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.bldkkfmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select substr(cast(bldkmx.tjrq as char(8)), 1, 6) as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, dkzh.khh, dkzh.zhhm, dmms.dmms as khlx, dkzh.zhdh, dkzh.pjh, dkzh.hth, dkzh.kmh, bz.bzzwmc, qxsdb.qxmc as qx, dkzh.ffrq, dkzh.dqrq, dmms2.dmms, dkzh.dkje, bldkmx.zhye, bldkmx.kfbz, bldkmx.hyye, bldkmx.kfje from dkjx_bldkkfmx bldkmx inner join jxdx_dkzh dkzh on dkzh.jxdxdh = bldkmx.jxdxdh inner join csb_qxsdb qxsdb ON dkzh.QX BETWEEN qxsdb.QSQX AND qxsdb.JSQX and qxsdb.jxdxlx=2 inner join csb_dmms dmms on bldkmx.zhbs = dmms.dmz and dmms.dmmc='ZHBS' inner join csb_dmms dmms2 on bldkmx.wjfl = dmms2.dmz and dmms2.dmmc='BLWJFL' inner join khdx_hy hy on hy.khdxdh = bldkmx.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh = hy.khdxdh
       <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = jgcy.jgkhdxdh inner join table(FN_GETSJJG_JAVA_QXHY($tjrq_ym$,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh inner join csb_km km on km.kmh = dkzh.kmh inner join csb_bz bz on dkzh.bz = bz.bz where 1=1 
       <isNotEmpty property="zhhm">and dkzh.zhhm like '%$zhhm$%'</isNotEmpty>  
@@ -107,7 +107,7 @@
       <isNotEmpty property="zhbs">and bldkmx.zhbs = '$zhbs$'</isNotEmpty>  
       <isNotEmpty property="tjrq">and bldkmx.tjrq between $tjrq$01 and $tjrq_ym$</isNotEmpty> 
     </select>  
-    <select id="dn0.bldkkfmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.bldkkfmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select substr(cast(bldkmx.tjrq as char(8)), 1, 6) as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, dkzh.khh, dkzh.zhhm, dmms.dmms as khlx, dkzh.zhdh, dkzh.pjh, dkzh.hth, dkzh.kmh, bz.bzzwmc, qxsdb.qxmc as qx, dkzh.ffrq, dkzh.dqrq, dmms2.dmms, dkzh.dkje, bldkmx.zhye, bldkmx.kfbz, bldkmx.hyye, bldkmx.kfje from dkjx_bldkkfmx bldkmx inner join jxdx_dkzh dkzh on dkzh.jxdxdh = bldkmx.jxdxdh inner join csb_qxsdb qxsdb ON dkzh.QX BETWEEN qxsdb.QSQX AND qxsdb.JSQX and qxsdb.jxdxlx=2 inner join csb_dmms dmms on bldkmx.zhbs = dmms.dmz and dmms.dmmc='ZHBS' inner join csb_dmms dmms2 on bldkmx.wjfl = dmms2.dmz and dmms2.dmmc='BLWJFL' inner join khdx_hy hy on hy.khdxdh = bldkmx.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh = hy.khdxdh 
       <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = jgcy.jgkhdxdh inner join table(FN_GETSJJG_JAVA_QXHY($tjrq_ym$,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh inner join csb_km km on km.kmh = dkzh.kmh inner join csb_bz bz on dkzh.bz = bz.bz where 1=1 
       <isNotEmpty property="zhhm">and dkzh.zhhm like '%$zhhm$%'</isNotEmpty>  

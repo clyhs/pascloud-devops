@@ -153,32 +153,32 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.jgdbrsgl"> 
-    <select id="dn0.jgdbrsglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.jgdbrsglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select $tjny$ as tjny, rs.tjrq, jg.jgdh, jg.jgmc, rs.khdxdh, rs.hylb, lb.lbmc, rs.dbrs from sglr_jgdbrs rs inner join khdx_jg jg on jg.khdxdh = rs.khdxdh left join csb_hylb lb on rs.hylb = lb.lbdh inner join table(fn_getsjjg_java_qx($tjny_ym$, $login_khdxdh$, 0)) t on t.khdxdh = rs.khdxdh 
       <isNotEmpty property="jgkhdxdh">where rs.khdxdh in ($jgkhdxdh$)</isNotEmpty>  
       <isNotEmpty property="tjny_ym">and rs.tjrq = $tjny_ym$</isNotEmpty> 
     </select>  
-    <select id="dn0.jgdbrsglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.jgdbrsglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select $tjny$ as tjny, rs.tjrq, jg.jgdh, jg.jgmc, rs.khdxdh, rs.hylb, lb.lbmc, rs.dbrs from sglr_jgdbrs rs inner join khdx_jg jg on jg.khdxdh = rs.khdxdh left join csb_hylb lb on rs.hylb = lb.lbdh inner join table(fn_getsjjg_java_qx($tjny_ym$, $login_khdxdh$, 0)) t on t.khdxdh = rs.khdxdh 
       <isNotEmpty property="jgkhdxdh">where rs.khdxdh in ($jgkhdxdh$)</isNotEmpty>  
       <isNotEmpty property="tjny_ym">and rs.tjrq = $tjny_ym$</isNotEmpty> ) t
     </select>  
-    <select id="dn0.jgdbrsgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.jgdbrsgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select HYLB, KHDXDH, DBRS,F_TIMETOCHAR(CZSJ,'yyyy-mm-dd hh24:mi:ss') as CZSJ, CZR, TJRQ from SGLR_JGDBRS where 1= 1 and HYLB = '$hylb$' and KHDXDH = $khdxdh$ and TJRQ = $tjrq$
     </select>  
-    <select id="dn0.jgdbrsgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.jgdbrsgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select HYLB, KHDXDH, DBRS,F_TIMETOCHAR(CZSJ,'yyyy-mm-dd hh24:mi:ss') as CZSJ, CZR, TJRQ from SGLR_JGDBRS where 1= 1 and HYLB = '$hylb$' and KHDXDH = $jgkhdxdh$ and TJRQ = $tjrq_ym$
     </select>  
-    <insert id="dn0.jgdbrsgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn1.jgdbrsgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into SGLR_JGDBRS( HYLB, CZSJ, CZR, TJRQ, DBRS, KHDXDH ) values ( '$hylb$',f_get_timestamp('$czsj$'),'$czr$',$tjrq_ym$,$dbrs$,$jgkhdxdh$)
     </insert>  
-    <update id="dn0.jgdbrsgl_update" parameterClass="java.util.Map"> 
+    <update id="dn1.jgdbrsgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update SGLR_JGDBRS set DBRS = $dbrs$ where 1=1 and HYLB = '$hylb$' and KHDXDH = $jgkhdxdh$ and TJRQ = $tjrq_ym$
     </update>  
-    <delete id="dn0.jgdbrsgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn1.jgdbrsgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from SGLR_JGDBRS where 1=1 and HYLB = '$hylb$' and KHDXDH = $khdxdh$ and TJRQ = $tjrq$
     </delete>  
-    <select id="dn0.jgdbrsgl_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key,lbmc as value from csb_hylb</select> 
+    <select id="dn1.jgdbrsgl_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key,lbmc as value from csb_hylb</select> 
   </sqlMap>  
   <javascript> 
     <import>parent.addTab('jgdbrsdr','机构定编人数管理','/module/parser/import/visitHtml/jgdbrsdr');</import>  

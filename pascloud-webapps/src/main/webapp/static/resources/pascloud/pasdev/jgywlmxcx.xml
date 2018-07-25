@@ -68,7 +68,7 @@
     <col id="JGKHDXDH" title="机构考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.jgywlmxcx"> 
-    <select id="dn0.jgywlmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.jgywlmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select $qsrq$ qsrq,$jsrq$ jsrq,t.* from ( select f_numtochar(ywl.tjrq) as tjrq,jg.khdxdh jgkhdxdh,jg.jgmc,jg.jgdh,ywl.jydm,jydm.jymc jymc, round(sum(ywl.zhywlhj),2) as zhywlhj, round(sum(ywl.xtzqywl),2) as xtzqywl,round(sum(ywl.xtzhywl),2) as xtzhywl,round(sum(ywl.sgzqywl) ,2) as sgzqywl, round(sum(ywl.sgzhywl),2) as sgzhywl,round((sum(ywl.zqxjsrl)+sum(ywl.zqxjfcl))/10000,2) as zqxjsf, round((sum(ywl.zhxjsrl)+sum(ywl.zhxjfcl)),2) as zhxjsf, f_numtochar(ywl.dqcyxs) as dqcyxs, f_numtochar(ywl.zsxs) as zsxs ,ywl.bcywl from table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,$jgkhdxdh$)) jg inner join nbzz_jgkh_ywl ywl on ywl.khdxdh = jg.khdxdh 
       <isNotEmpty property="qsrq">and ywl.tjrq between $qsrq$ and $jsrq$</isNotEmpty> left join csb_hxjydm jydm on jydm.jydm = ywl.jydm where 1=1 
       <isNotEmpty property="jydm">and ywl.jydm = '$jydm$'</isNotEmpty>  
@@ -77,7 +77,7 @@
       <isNotEmpty property="jydm">and ywl.jydm = '$jydm$'</isNotEmpty>  
       <isNotEmpty property="jymc">and jydm.jymc like '%$jymc$%'</isNotEmpty> ) t order by jgmc desc
     </select>  
-    <select id="dn0.jgywlmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.jgywlmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select $qsrq$ qsrq,$jsrq$ jsrq,t.* from ( select f_numtochar(ywl.tjrq) as tjrq,jg.khdxdh jgkhdxdh,jg.jgmc,jg.jgdh,ywl.jydm,jydm.jymc jymc, round(sum(ywl.zhywlhj),2) as zhywlhj, round(sum(ywl.xtzqywl),2) as xtzqywl,round(sum(ywl.xtzhywl),2) as xtzhywl,round(sum(ywl.sgzqywl) ,2) as sgzqywl, round(sum(ywl.sgzhywl),2) as sgzhywl,round((sum(ywl.zqxjsrl)+sum(ywl.zqxjfcl))/10000,2) as zqxjsf, round((sum(ywl.zhxjsrl)+sum(ywl.zhxjfcl)),2) as zhxjsf, f_numtochar(ywl.dqcyxs) as dqcyxs, f_numtochar(ywl.zsxs) as zsxs ,ywl.bcywl from table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,$jgkhdxdh$)) jg inner join nbzz_jgkh_ywl ywl on ywl.khdxdh = jg.khdxdh 
       <isNotEmpty property="qsrq">and ywl.tjrq between $qsrq$ and $jsrq$</isNotEmpty> left join csb_hxjydm jydm on jydm.jydm = ywl.jydm where 1=1 
       <isNotEmpty property="jydm">and ywl.jydm = '$jydm$'</isNotEmpty>  

@@ -49,7 +49,7 @@
     <col id="JSRQ" title="结束日期" align="left" type="hidden" width="75" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.khzbjxgzhz"> 
-    <select id="dn0.khzbjxgzhzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.khzbjxgzhzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select $qsrq$ qsrq,$jsrq$ jsrq,nf,khzbdh,khzbmc,yf,yyjg,zb from (
 select t.nf,t.KHZBMC,t.khzbdh,t.YF,t.YYJG,case when t.qh=0 then 0 else round(cast(t.yyjg*100 as decimal(19,3))/cast(t.qh as decimal(19,3)),2) end zb from (
 select y.nf,y.KHZBMC,y.khzbdh,y.YF,y.YYJG,sum(y.YYJG) over(partition by y.NF,y.yf) qh from (
@@ -120,7 +120,7 @@ select y.nf,y.KHZBMC,y.khzbdh,y.YF,y.YYJG,sum(y.YYJG) over(partition by y.NF,y.y
 )t where 1=1]]>  
       <isNotEmpty property="khzb">and t.khzbdh=$khzb$</isNotEmpty> group by t.nf,t.khzbmc,t.khzbdh ) b order by b.yf
     </select>  
-    <select id="dn0.khzbjxgzhzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.khzbjxgzhzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( <![CDATA[select $qsrq$ qsrq,$jsrq$ jsrq,nf,khzbdh,khzbmc,yf,yyjg,zb from (
 select t.nf,t.KHZBMC,t.khzbdh,t.YF,t.YYJG,case when t.qh=0 then 0 else round(cast(t.yyjg*100 as decimal(19,3))/cast(t.qh as decimal(19,3)),2) end zb from (
 select y.nf,y.KHZBMC,y.khzbdh,y.YF,y.YYJG,sum(y.YYJG) over(partition by y.NF,y.yf) qh from (
@@ -191,7 +191,7 @@ select y.nf,y.KHZBMC,y.khzbdh,y.YF,y.YYJG,sum(y.YYJG) over(partition by y.NF,y.y
 )t where 1=1]]>  
       <isNotEmpty property="khzb">and t.khzbdh=$khzb$</isNotEmpty> group by t.nf,t.khzbmc,t.khzbdh ) b order by b.yf ) t
     </select>  
-    <select id="dn0.khzbjxgzhz_MSQL4SELECT_khzb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ <![CDATA[select key ,value from (select khzbdh as key, khzbmc as value from khfa_khzb_hy union all select distinct zbpz.khzbdh key ,zbpz.xmmc value from khfa_fapz fapz, khfa_khzbpz zbpz  where fapz.yyzlbh = 1 and zbpz.khzbdh < 0 and fapz.fabh = zbpz.fabh ) t  order by key]]></select> 
+    <select id="dn1.khzbjxgzhz_MSQL4SELECT_khzb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ <![CDATA[select key ,value from (select khzbdh as key, khzbmc as value from khfa_khzb_hy union all select distinct zbpz.khzbdh key ,zbpz.xmmc value from khfa_fapz fapz, khfa_khzbpz zbpz  where fapz.yyzlbh = 1 and zbpz.khzbdh < 0 and fapz.fabh = zbpz.fabh ) t  order by key]]></select> 
   </sqlMap>  
   <rels> 
     <items id="khzbjxgzhz_xsjy1jgj"/> 

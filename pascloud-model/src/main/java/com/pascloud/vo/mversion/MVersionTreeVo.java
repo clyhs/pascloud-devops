@@ -30,6 +30,17 @@ public class MVersionTreeVo implements Serializable {
 	
 	private String level;
 	
+	private Integer sfxs;
+	
+	
+	public Integer getSfxs() {
+		return sfxs;
+	}
+
+	public void setSfxs(Integer sfxs) {
+		this.sfxs = sfxs;
+	}
+
 	public String getLevel() {
 		return level;
 	}

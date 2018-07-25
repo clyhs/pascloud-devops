@@ -25,15 +25,15 @@
     <col id="TZYY" title="调整原因" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.zhjstzmx"> 
-    <select id="dn0.zhjstzmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.zhjstzmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select * from SGDR_$CDK$JSZH_TZJS js where 1=1 
       <isNotEmpty property="jxdxdh">and js.jxdxdh=$jxdxdh$</isNotEmpty> order by js.qsrq
     </select>  
-    <select id="dn0.zhjstzmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.zhjstzmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select * from SGDR_$CDK$JSZH_TZJS js where 1=1 
       <isNotEmpty property="jxdxdh">and js.jxdxdh=$jxdxdh$</isNotEmpty> order by js.qsrq ) t
     </select>  
-    <select id="dn0.zhjstzmx_mxcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='CKYJGXMS'</select> 
+    <select id="dn1.zhjstzmx_mxcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='CKYJGXMS'</select> 
   </sqlMap>  
   <finger custPlotMth=""> 
     <plotType/>  

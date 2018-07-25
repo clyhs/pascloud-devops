@@ -71,7 +71,7 @@
     <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" showDymCol="" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.clyjrjrlfx"> 
-    <select id="dn0.clyjrjrlfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.clyjrjrlfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="dxlx" compareValue="1">SELECT f.jgdh, f.jgmc, CASE WHEN f.rjye=0 THEN 0 ELSE(CAST(f.rjye AS DECIMAL(17,2))/CAST(h.jgsthyrs AS DECIMAL(17,2))) END AS zhsth, CASE WHEN f.qyrjye=0 THEN 0 ELSE(CAST(f.qyrjye AS DECIMAL(17,2))/CAST(h.qyjgsthyrs AS DECIMAL(17,2))) END AS qyzhsth, CASE WHEN f.rjye=0 THEN 0 ELSE ROUND(CAST((f.rjye /h.jgsthyrs )AS DECIMAL(17,2))/CAST((f.qyrjye /h.qyjgsthyrs)AS DECIMAL(17,2)),2) END AS pld, cast(h.jgsthyrs as integer) as jgsthyrs, cast(h.qyjgsthyrs as integer ) as qyjgsthyrs, f.khdxdh FROM (SELECT b.khdxdh, b.jgdh, b.jgmc, b.rjye, SUM(rjye) over () AS qyrjye FROM (SELECT a.khdxdh, a.jgdh, a.jgmc, SUM(a.zhye) rjye FROM (SELECT jg.khdxdh, jg.jgdh, jg.jgmc, SUM(ckzh.zhye) AS zhye FROM jxdx_ckzh ckzh INNER JOIN khdx_hy hy ON ckzh.khdxdh = hy.khdxdh INNER JOIN khdx_jg jg ON ckzh.jgdh =jg.jgdh WHERE ckzh.gxhslx='0' AND hy.hydh NOT LIKE '%XN%' 
         <isNotEmpty property="ksrq">AND ckzh.khrq BETWEEN $ksrq$ AND $jsrq$</isNotEmpty>  
@@ -88,7 +88,7 @@
         <isNotEmpty property="jsrq">AND $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> AND hy.hydh NOT LIKE 'XN%' GROUP BY jgkhdxdh )d )h ON f.khdxdh=h.khdxdh WHERE f.khdxdh IN($jgkhdxdh$)
       </isEqual> 
     </select>  
-    <select id="dn0.clyjrjrlfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.clyjrjrlfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="dxlx" compareValue="1">SELECT f.jgdh, f.jgmc, CASE WHEN f.rjye=0 THEN 0 ELSE(CAST(f.rjye AS DECIMAL(17,2))/CAST(h.jgsthyrs AS DECIMAL(17,2))) END AS zhsth, CASE WHEN f.qyrjye=0 THEN 0 ELSE(CAST(f.qyrjye AS DECIMAL(17,2))/CAST(h.qyjgsthyrs AS DECIMAL(17,2))) END AS qyzhsth, CASE WHEN f.rjye=0 THEN 0 ELSE ROUND(CAST((f.rjye /h.jgsthyrs )AS DECIMAL(17,2))/CAST((f.qyrjye /h.qyjgsthyrs)AS DECIMAL(17,2)),2) END AS pld, cast(h.jgsthyrs as integer) as jgsthyrs, cast(h.qyjgsthyrs as integer ) as qyjgsthyrs, f.khdxdh FROM (SELECT b.khdxdh, b.jgdh, b.jgmc, b.rjye, SUM(rjye) over () AS qyrjye FROM (SELECT a.khdxdh, a.jgdh, a.jgmc, SUM(a.zhye) rjye FROM (SELECT jg.khdxdh, jg.jgdh, jg.jgmc, SUM(ckzh.zhye) AS zhye FROM jxdx_ckzh ckzh INNER JOIN khdx_hy hy ON ckzh.khdxdh = hy.khdxdh INNER JOIN khdx_jg jg ON ckzh.jgdh =jg.jgdh WHERE ckzh.gxhslx='0' AND hy.hydh NOT LIKE '%XN%' 
         <isNotEmpty property="ksrq">AND ckzh.khrq BETWEEN $ksrq$ AND $jsrq$</isNotEmpty>  
@@ -105,8 +105,8 @@
         <isNotEmpty property="jsrq">AND $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> AND hy.hydh NOT LIKE 'XN%' GROUP BY jgkhdxdh )d )h ON f.khdxdh=h.khdxdh WHERE f.khdxdh IN($jgkhdxdh$)
       </isEqual> ) t
     </select>  
-    <select id="dn0.clyjrjrlfx_MSQL4SELECT_dxlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key ,dmms as value from csb_dmms where dmmc='ZHLX'</select>  
-    <select id="dn0.clyjrjrlfx_MSQL4SELECT_zhbs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key ,dmms as value from csb_dmms where dmmc='ZHBS'</select> 
+    <select id="dn1.clyjrjrlfx_MSQL4SELECT_dxlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key ,dmms as value from csb_dmms where dmmc='ZHLX'</select>  
+    <select id="dn1.clyjrjrlfx_MSQL4SELECT_zhbs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key ,dmms as value from csb_dmms where dmmc='ZHBS'</select> 
   </sqlMap>  
   <finger custPlotMth=""> 
     <plotType/>  

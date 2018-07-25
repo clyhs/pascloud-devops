@@ -111,30 +111,30 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.hyxxgl"> 
-    <select id="dn0.hyxxglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.hyxxglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select hyxx.hydh ,hy.khdxdh, hy.hymc ,hylb.lbdh,hylb.lbmc,jg.jgdh,jg.jgmc, hyxx.wxh , hyxx.sjhm, hyxx.yjdz from mpas_hyxx hyxx inner join khdx_hy hy on hyxx.hydh = hy.hydh inner join khdx_hylb hylb on hy.khdxdh = hylb.khdxdh inner join khdx_jgcy jgcy on hy.khdxdh = jgcy.khdxdh inner join khdx_jg jg on jg.khdxdh = jgcy.jgkhdxdh inner join csb_hylb a on a.lbdh = hylb.lbdh where 1=1 
       <isNotEmpty property="hylb">and a.lbdh = '$hylb$'</isNotEmpty> and 1=1 and(hy.hymc like '%$hydh$%'or hy.hydh like '%$hydh$%')
     </select>  
-    <select id="dn0.hyxxglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.hyxxglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select hyxx.hydh ,hy.khdxdh, hy.hymc ,hylb.lbdh,hylb.lbmc,jg.jgdh,jg.jgmc, hyxx.wxh , hyxx.sjhm, hyxx.yjdz from mpas_hyxx hyxx inner join khdx_hy hy on hyxx.hydh = hy.hydh inner join khdx_hylb hylb on hy.khdxdh = hylb.khdxdh inner join khdx_jgcy jgcy on hy.khdxdh = jgcy.khdxdh inner join khdx_jg jg on jg.khdxdh = jgcy.jgkhdxdh inner join csb_hylb a on a.lbdh = hylb.lbdh where 1=1 
       <isNotEmpty property="hylb">and a.lbdh = '$hylb$'</isNotEmpty> and 1=1 and(hy.hymc like '%$hydh$%'or hy.hydh like '%$hydh$%') ) t
     </select>  
-    <select id="dn0.hyxxgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.hyxxgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select YJDZ, HYDH, WXH, SJHM from MPAS_HYXX where 1= 1 and HYDH = '$hydh$'
     </select>  
-    <select id="dn0.hyxxgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.hyxxgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select YJDZ, HYDH, WXH, SJHM from MPAS_HYXX where 1= 1 and HYDH = '$hydh$'
     </select>  
-    <insert id="dn0.hyxxgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn1.hyxxgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into MPAS_HYXX( YJDZ, HYDH, SJHM, WXH ) values ( '$yjdz$','$hydh$','$sjhm$','$wxh$')
     </insert>  
-    <update id="dn0.hyxxgl_update" parameterClass="java.util.Map"> 
+    <update id="dn1.hyxxgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update MPAS_HYXX set YJDZ = '$yjdz$',SJHM = '$sjhm$',WXH = '$wxh$' where 1=1 and HYDH = '$hydh$'
     </update>  
-    <delete id="dn0.hyxxgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn1.hyxxgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from MPAS_HYXX where 1=1 and HYDH = '$hydh$'
     </delete>  
-    <select id="dn0.hyxxgl_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_hylb</select> 
+    <select id="dn1.hyxxgl_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_hylb</select> 
   </sqlMap>  
   <javascript> 
     <import>parent.addTab('hyxxgldr','行员信息管理','../studio/impParser.do?method=visitHTML&amp;funId=hyxxgldr');</import>  

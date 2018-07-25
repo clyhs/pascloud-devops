@@ -56,7 +56,7 @@
     </col> 
   </table>  
   <sqlMap namespace="studio.khcdkfctj"> 
-    <select id="dn0.khcdkfctjList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.khcdkfctjList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> SELECT d.TJRQ ,d.JGDH,d.JGMC,d.HZKHS,d.HZHYZB,d.QJMS,d.QJZ,d.QJKHS,d.qjzb from ( SELECT $tjrq$ AS TJRQ, JG.JGDH AS JGDH, JG.JGMC AS JGMC, B.KHS AS HZKHS, (cast(B.KHS as decimal(25,4))/cast(b.hzkhs as decimal(25,4)))*100 AS HZHYZB, c.QJMS AS QJMS, C.QJZ AS QJZ, C.KHS AS QJKHS, case when b.khs = 0 then 0 else (cast(c.khs as decimal(25,4))/ cast(b.khs as decimal(25,4)))*100 end as qjzb FROM KHFX_KHYEQJDTJ KHYE INNER JOIN KHDX_JG JG ON JG.KHDXDH = KHYE.JGKHDXDH INNER JOIN( select cast(sum(a.khs)as decimal(25,4)) as khs, a.hzkhs, a.jgkhdxdh from ( SELECT KHYE1.KHS, CAST(SUM(KHYE1.KHS) OVER(PARTITION BY KHYE1.TJRQ,KHYE1.JXDXLX,KHYE1.KHLX)as decimal(25,4)) as hzkhs, KHYE1.JGKHDXDH FROM KHFX_KHYEQJDTJ KHYE1 INNER JOIN KHDX_JG JG ON JG.KHDXDH = KHYE1.JGKHDXDH WHERE KHYE1.TJRQ = (SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) ) 
       <isNotEmpty property="ywlx">AND KHYE1.JXDXLX = $ywlx$</isNotEmpty>  
       <isNotEmpty property="khlx">AND KHYE1.KHLX='$khlx$'</isNotEmpty> AND JG.KHDXDH IN($jgkhdxdh$) ) A GROUP BY A.JGKHDXDH ,a.hzkhs )B ON B.JGKHDXDH = KHYE.JGKHDXDH inner join ( SELECT cast(sum(khye.khs)as decimal(25,4)) as khs , qjpz.qjz, qjpz.qjms, KHYE.JGKHDXDH FROM KHFX_KHYEQJDTJ KHYE INNER JOIN CSB_QJPZ QJPZ ON KHYE.KHYEQJ = QJPZ.QJZ INNER JOIN KHDX_JG JG ON JG.KHDXDH = KHYE.JGKHDXDH AND KHYE.TJRQ BETWEEN QJPZ.QSRQ AND QJPZ.JSRQ AND QJPZ.QJMC = (CASE WHEN $ywlx$=1 AND '$khlx$'='1' THEN 'CKDGKHYEQJ' WHEN $ywlx$=1 AND '$khlx$'='2' THEN 'CKDSKHYEQJ' WHEN $ywlx$=2 AND '$khlx$'='1' THEN 'DKDGKHYEQJ' WHEN $ywlx$=2 AND '$khlx$'='2' THEN 'DKDSKHYEQJ' END) where KHYE.TJRQ = (SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) ) 
@@ -65,7 +65,7 @@
       <isNotEmpty property="ywlx">AND KHYE.JXDXLX =$ywlx$</isNotEmpty>  
       <isNotEmpty property="khlx">AND KHYE.KHLX='$khlx$'</isNotEmpty> and JG.KHDXDH in($jgkhdxdh$) )d group by d.TJRQ ,d.JGDH,d.JGMC,d.HZKHS,d.HZHYZB,d.QJMS,d.QJZ,d.QJKHS,d.qjzb
     </select>  
-    <select id="dn0.khcdkfctjCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.khcdkfctjCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( SELECT d.TJRQ ,d.JGDH,d.JGMC,d.HZKHS,d.HZHYZB,d.QJMS,d.QJZ,d.QJKHS,d.qjzb from ( SELECT $tjrq$ AS TJRQ, JG.JGDH AS JGDH, JG.JGMC AS JGMC, B.KHS AS HZKHS, (cast(B.KHS as decimal(25,4))/cast(b.hzkhs as decimal(25,4)))*100 AS HZHYZB, c.QJMS AS QJMS, C.QJZ AS QJZ, C.KHS AS QJKHS, case when b.khs = 0 then 0 else (cast(c.khs as decimal(25,4))/ cast(b.khs as decimal(25,4)))*100 end as qjzb FROM KHFX_KHYEQJDTJ KHYE INNER JOIN KHDX_JG JG ON JG.KHDXDH = KHYE.JGKHDXDH INNER JOIN( select cast(sum(a.khs)as decimal(25,4)) as khs, a.hzkhs, a.jgkhdxdh from ( SELECT KHYE1.KHS, CAST(SUM(KHYE1.KHS) OVER(PARTITION BY KHYE1.TJRQ,KHYE1.JXDXLX,KHYE1.KHLX)as decimal(25,4)) as hzkhs, KHYE1.JGKHDXDH FROM KHFX_KHYEQJDTJ KHYE1 INNER JOIN KHDX_JG JG ON JG.KHDXDH = KHYE1.JGKHDXDH WHERE KHYE1.TJRQ = (SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) ) 
       <isNotEmpty property="ywlx">AND KHYE1.JXDXLX = $ywlx$</isNotEmpty>  
       <isNotEmpty property="khlx">AND KHYE1.KHLX='$khlx$'</isNotEmpty> AND JG.KHDXDH IN($jgkhdxdh$) ) A GROUP BY A.JGKHDXDH ,a.hzkhs )B ON B.JGKHDXDH = KHYE.JGKHDXDH inner join ( SELECT cast(sum(khye.khs)as decimal(25,4)) as khs , qjpz.qjz, qjpz.qjms, KHYE.JGKHDXDH FROM KHFX_KHYEQJDTJ KHYE INNER JOIN CSB_QJPZ QJPZ ON KHYE.KHYEQJ = QJPZ.QJZ INNER JOIN KHDX_JG JG ON JG.KHDXDH = KHYE.JGKHDXDH AND KHYE.TJRQ BETWEEN QJPZ.QSRQ AND QJPZ.JSRQ AND QJPZ.QJMC = (CASE WHEN $ywlx$=1 AND '$khlx$'='1' THEN 'CKDGKHYEQJ' WHEN $ywlx$=1 AND '$khlx$'='2' THEN 'CKDSKHYEQJ' WHEN $ywlx$=2 AND '$khlx$'='1' THEN 'DKDGKHYEQJ' WHEN $ywlx$=2 AND '$khlx$'='2' THEN 'DKDSKHYEQJ' END) where KHYE.TJRQ = (SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) )
@@ -74,8 +74,8 @@
       <isNotEmpty property="ywlx">AND KHYE.JXDXLX =$ywlx$</isNotEmpty>  
       <isNotEmpty property="khlx">AND KHYE.KHLX='$khlx$'</isNotEmpty> and JG.KHDXDH in($jgkhdxdh$) )d group by d.TJRQ ,d.JGDH,d.JGMC,d.HZKHS,d.HZHYZB,d.QJMS,d.QJZ,d.QJKHS,d.qjzb ) t
     </select>  
-    <select id="dn0.khcdkfctj_MSQL4SELECT_ywlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where DMMC= 'ZHLX'</select>  
-    <select id="dn0.khcdkfctj_MSQL4SELECT_khlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where DMMC= 'KHLX'</select> 
+    <select id="dn1.khcdkfctj_MSQL4SELECT_ywlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where DMMC= 'ZHLX'</select>  
+    <select id="dn1.khcdkfctj_MSQL4SELECT_khlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where DMMC= 'KHLX'</select> 
   </sqlMap>  
   <finger custPlotMth=""> 
     <plotType/>  

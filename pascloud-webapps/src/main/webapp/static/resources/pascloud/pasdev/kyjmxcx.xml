@@ -38,11 +38,11 @@
     </col> 
   </table>  
   <sqlMap namespace="studio.kyjmxcx"> 
-    <select id="dn0.kyjmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.kyjmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select jxdxdh,kh,jg.jgdh,jg.jgmc,zh, (case when kl.dmms is not null then kl.dmms else k.kl end) kl, fkrq,hy.hydh,hy.hymc,qsrq,jsrq,zlbl from (select kzl.jxdxdh,kzl.kh,kzl.jgdh,kzl.zh,kzl.kl,kzl.fkrq,gx.khdxdh,gx.qsrq,gx.jsrq,gx.zlbl from jxdx_kzl kzl inner join dxgx_kyjgx gx on kzl.jxdxdh=gx.jxdxdh 
       <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty> where kzl.gxhslx='1' and gx.khdxdh in($khdxdh$) union all select kzl.jxdxdh,kzl.kh,kzl.jgdh,kzl.zh,kzl.kl,kzl.fkrq,kzl.khdxdh,kzl.fkrq qsrq,29991231 jsrq,100 zlbl from jxdx_kzl kzl where kzl.gxhslx='0' and kzl.khdxdh in($khdxdh$)) k inner join khdx_jg jg on k.jgdh=jg.jgdh inner join khdx_hy hy on k.khdxdh=hy.khdxdh left join csb_dmms kl on k.kl=kl.dmz and kl.dmmc='KL' inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$, $login_khdxdh$, 0)) hyqx on k.khdxdh = hyqx.khdxdh order by qsrq
     </select>  
-    <select id="dn0.kyjmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.kyjmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select jxdxdh,kh,jg.jgdh,jg.jgmc,zh, (case when kl.dmms is not null then kl.dmms else k.kl end) kl, fkrq,hy.hydh,hy.hymc,qsrq,jsrq,zlbl from (select kzl.jxdxdh,kzl.kh,kzl.jgdh,kzl.zh,kzl.kl,kzl.fkrq,gx.khdxdh,gx.qsrq,gx.jsrq,gx.zlbl from jxdx_kzl kzl inner join dxgx_kyjgx gx on kzl.jxdxdh=gx.jxdxdh 
       <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty> where kzl.gxhslx='1' and gx.khdxdh in($khdxdh$) union all select kzl.jxdxdh,kzl.kh,kzl.jgdh,kzl.zh,kzl.kl,kzl.fkrq,kzl.khdxdh,kzl.fkrq qsrq,29991231 jsrq,100 zlbl from jxdx_kzl kzl where kzl.gxhslx='0' and kzl.khdxdh in($khdxdh$)) k inner join khdx_jg jg on k.jgdh=jg.jgdh inner join khdx_hy hy on k.khdxdh=hy.khdxdh left join csb_dmms kl on k.kl=kl.dmz and kl.dmmc='KL' inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$, $login_khdxdh$, 0)) hyqx on k.khdxdh = hyqx.khdxdh order by qsrq ) t
     </select> 

@@ -134,84 +134,84 @@
     <after/> 
   </flow>  
   <sqlMap namespace="studio.jggzxsdr"> 
-    <update parameterClass="java.util.Map" id="dn0.jggzxsdr_check_khzbmc_0"> 
+    <update parameterClass="java.util.Map" id="dn1.jggzxsdr_check_khzbmc_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jggzxsdr_temp t set t.error=t.error||'考核指标名称输入错误，不能为空!' where f_java_rule_length(t.khzbmc)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jggzxsdr_check_jglb_1"> 
+    <update parameterClass="java.util.Map" id="dn1.jggzxsdr_check_jglb_1"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jggzxsdr_temp t set t.error=t.error||'机构类别输入错误，不能为空!' where f_java_rule_length(t.jglb)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jggzxsdr_check_qsrq_2"> 
+    <update parameterClass="java.util.Map" id="dn1.jggzxsdr_check_qsrq_2"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jggzxsdr_temp t set t.error=t.error||'起始日期输入错误，格式应该是:yyyyMMdd!' where f_java_rule_date(t.qsrq,'yyyyMMdd')=1 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jggzxsdr_check_qsrq_3"> 
+    <update parameterClass="java.util.Map" id="dn1.jggzxsdr_check_qsrq_3"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jggzxsdr_temp t set t.error=t.error||'起始日期输入错误，不能为空!' where f_java_rule_length(t.qsrq)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jggzxsdr_check_bzxs_4"> 
+    <update parameterClass="java.util.Map" id="dn1.jggzxsdr_check_bzxs_4"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jggzxsdr_temp t set t.error=t.error||'标准计酬单价输入错误，只能输入:4位整数,2位小数!' where f_java_rule_length(t.bzxs)&gt;0 and f_java_rule_number(t.bzxs,4,2)=1 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jggzxsdr_check_bzxs_5"> 
+    <update parameterClass="java.util.Map" id="dn1.jggzxsdr_check_bzxs_5"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jggzxsdr_temp t set t.error=t.error||'标准计酬单价输入错误，不能为空!' where f_java_rule_length(t.bzxs)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jggzxsdr_check_kfdj_6"> 
+    <update parameterClass="java.util.Map" id="dn1.jggzxsdr_check_kfdj_6"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jggzxsdr_temp t set t.error=t.error||'扣罚单价输入错误，只能输入:4位整数,2位小数!' where f_java_rule_length(t.kfdj)&gt;0 and f_java_rule_number(t.kfdj,4,2)=1 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jggzxsdr_check_kfdj_7"> 
+    <update parameterClass="java.util.Map" id="dn1.jggzxsdr_check_kfdj_7"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jggzxsdr_temp t set t.error=t.error||'扣罚单价输入错误，不能为空!' where f_java_rule_length(t.kfdj)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jggzxsdr_checkupdate_khzbmc_0"> 
+    <update parameterClass="java.util.Map" id="dn1.jggzxsdr_checkupdate_khzbmc_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jggzxsdr_temp t set error=error||'考核指标名称不存在!' where not exists ( select 1 from khfa_khzb_jg jg where t.khzbmc=jg.khzbmc) and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jggzxsdr_checkupdate_jglb_0"> 
+    <update parameterClass="java.util.Map" id="dn1.jggzxsdr_checkupdate_jglb_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jggzxsdr_temp t set error=error||'机构类别名称不存在!' where not exists ( select 1 from csb_jglb lb where t.jglb = lb.lbmc ) and t.khdxdh=$login_khdxdh$ and t.jglb!='全行'
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jggzxsdr_checkupdate_qsrq_0"> 
+    <update parameterClass="java.util.Map" id="dn1.jggzxsdr_checkupdate_qsrq_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jggzxsdr_temp t set t.error= t.error||'起始日期不能小于(系统日期-重跑天数)'||f_change_days((SELECT cast(rq.csz as integer) FROM xtb_xtcs rq WHERE rq.csmc='SYS_DATE'),-(SELECT cast(cs.csz as integer) FROM xtb_xtcs cs WHERE cs.csmc='SYS_CSTS'))||'!' where cast( t.qsrq as integer)&lt;(select f_change_days(cast(rq.csz as integer ),-cast(cs.csz as integer )) from xtb_xtcs rq ,xtb_xtcs cs where rq.csmc='SYS_DATE' and cs.csmc='SYS_CSTS' ) and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jggzxsdr_exists_target"> 
+    <update parameterClass="java.util.Map" id="dn1.jggzxsdr_exists_target"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jggzxsdr_temp t set t.error=t.error||'数据已存在!' where exists ( select 1 from CSB_KHZBXS_JG tar inner join KHFA_KHZB_JG jg on jg.khzbdh=tar.khzbdh inner join (select '-1' as lbdh,'全行' as lbmc from csb_jglb union select lbdh ,lbmc from csb_jglb ) lb on lb.lbdh =tar.jglb where 1=1 and t.khzbmc=jg.khzbmc and t.jglb=lb.lbmc and 1=tar.YYZLBH and tar.QSRQ <![CDATA[>]]>= cast(t.qsrq as Integer) and t.khdxdh=$login_khdxdh$ and (length(t.error)=0 or t.error is null ))
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jggzxsdr_exists_same_temp"> 
+    <update parameterClass="java.util.Map" id="dn1.jggzxsdr_exists_same_temp"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jggzxsdr_temp t set t.error=error||'存在重复数据!' where exists( select 1 from (select khzbmc,jglb from jggzxsdr_temp dr where khdxdh=$login_khdxdh$ group by khzbmc,jglb having count(1)<![CDATA[>]]>1 ) dr where 1=1 and t.khzbmc=dr.khzbmc and t.jglb=dr.jglb) and khdxdh=$login_khdxdh$
     </update>  
-    <insert parameterClass="java.util.Map" id="dn0.jggzxsdr_create_lsb"> 
+    <insert parameterClass="java.util.Map" id="dn1.jggzxsdr_create_lsb"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> CREATE TABLE jggzxsdr_temp ( khzbmc varchar(100) , jglb varchar(100) , qsrq varchar(100) , bzxs varchar(100) , kfdj varchar(100) , khdxdh integer,error varchar(1000) )
     </insert>  
-    <delete parameterClass="java.util.Map" id="dn0.jggzxsdr_delete_lsb"> 
+    <delete parameterClass="java.util.Map" id="dn1.jggzxsdr_delete_lsb"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from jggzxsdr_temp where khdxdh=$login_khdxdh$
     </delete>  
-    <insert parameterClass="java.util.Map" id="dn0.jggzxsdr_insert_into_lsb"> 
+    <insert parameterClass="java.util.Map" id="dn1.jggzxsdr_insert_into_lsb"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into JGGZXSDR_TEMP (khzbmc,jglb,qsrq,bzxs,kfdj,khdxdh,error) values(?,?,?,?,?,?,?)
     </insert>  
-    <select parameterClass="java.util.Map" id="dn0.jggzxsdr_exists_error_msg" resultClass="java.lang.Integer"> 
+    <select parameterClass="java.util.Map" id="dn1.jggzxsdr_exists_error_msg" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from jggzxsdr_temp where length(error) <![CDATA[>]]> 0 and khdxdh = $login_khdxdh$
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn0.jggzxsdr_exists_same_data"> 
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn1.jggzxsdr_exists_same_data"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from jggzxsdr_temp where length(error) <![CDATA[>]]> 0 and error != '数据已存在!' and khdxdh = $login_khdxdh$
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn0.jggzxsdr_select_error_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn1.jggzxsdr_select_error_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/cancel.jpg" border="0"/<![CDATA[>]]>' as zt, khzbmc,jglb,qsrq,bzxs,kfdj,khdxdh,error from jggzxsdr_temp where khdxdh=$login_khdxdh$ and length(error)<![CDATA[>]]>0
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn0.jggzxsdr_count_all_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn1.jggzxsdr_count_all_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, khzbmc,jglb,qsrq,bzxs,kfdj,khdxdh,error from jggzxsdr_temp where khdxdh=$login_khdxdh$ )a
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn0.jggzxsdr_select_all_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn1.jggzxsdr_select_all_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, khzbmc,jglb,qsrq,bzxs,kfdj,khdxdh,error from jggzxsdr_temp where khdxdh=$login_khdxdh$
     </select>  
-    <delete id="dn0.jggzxsdr_before_insert_delqsrqAndCover" parameterClass="java.util.Map"> 
+    <delete id="dn1.jggzxsdr_before_insert_delqsrqAndCover" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from CSB_KHZBXS_JG tar where exists ( select 1 from jggzxsdr_temp t inner join KHFA_KHZB_JG jg on jg.khzbmc=t.khzbmc inner join (select '-1' as lbdh,'全行' as lbmc from csb_jglb union select lbdh ,lbmc from csb_jglb ) lb on lb.lbmc=t.jglb where (length(t.error)=0 or t.error is null or t.error='数据已存在!') and jg.khzbdh=tar.khzbdh and lb.lbdh =tar.jglb and 1=tar.YYZLBH and tar.qsrq <![CDATA[>]]>= cast(t.qsrq as integer) )
     </delete>  
-    <update id="dn0.jggzxsdr_before_insert_cutqsrq" parameterClass="java.util.Map"> 
+    <update id="dn1.jggzxsdr_before_insert_cutqsrq" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_KHZBXS_JG tar set jsrq=( select F_Change_Days(cast(dr.qsrq as Integer),-1) from jggzxsdr_temp dr inner join KHFA_KHZB_JG jg on jg.khzbmc=dr.khzbmc inner join (select '-1' as lbdh,'全行' as lbmc from csb_jglb union select lbdh ,lbmc from csb_jglb ) lb on lb.lbmc=dr.jglb where 1=1 and (length(dr.error)=0 or dr.error is null or dr.error='数据已存在!') and jg.khzbdh=tar.khzbdh and lb.lbdh =tar.jglb and 1=tar.YYZLBH and dr.khdxdh=$login_khdxdh$ ) where exists( select 1 from jggzxsdr_temp t inner join KHFA_KHZB_JG jg2 on jg2.khzbmc=t.khzbmc inner join (select '-1' as lbdh,'全行' as lbmc from csb_jglb union select lbdh ,lbmc from csb_jglb ) lb2 on lb2.lbmc=t.jglb where 1=1 and jg2.khzbdh=tar.khzbdh and lb2.lbdh =tar.jglb and 1=tar.YYZLBH and (length(t.error)=0 or t.error is null or t.error='数据已存在!') and t.khdxdh=$login_khdxdh$ and tar.jsrq = (select max(jsrq) from CSB_KHZBXS_JG where khzbdh=jg2.khzbdh and 1=YYZLBH and lb2.lbdh =jglb) )
     </update>  
-    <insert id="dn0.jggzxsdr_insert_into_target" parameterClass="java.util.Map"> 
+    <insert id="dn1.jggzxsdr_insert_into_target" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into CSB_KHZBXS_JG(khzbdh,jglb,yyzlbh,qsrq,jsrq,bzxs,cjhxs,clzxs,kfdj) ( select jg.khzbdh as khzbdh,lb.lbdh as jglb,1 ,cast(t.qsrq as DECIMAL(22,0)) ,29991231 ,cast(t.bzxs as DECIMAL(22,2)) ,0 ,0 ,cast(t.kfdj as DECIMAL(22,2)) from jggzxsdr_temp t inner join KHFA_KHZB_JG jg on jg.khzbmc=t.khzbmc inner join (select '-1' as lbdh,'全行' as lbmc from csb_jglb union select lbdh ,lbmc from csb_jglb ) lb on lb.lbmc=t.jglb where t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null) )
     </insert>  
-    <select id="dn0.jggzxsdr_select_template_data" parameterClass="java.util.Map" remapResults="true" resultClass="java.util.LinkedHashMap"> 
+    <select id="dn1.jggzxsdr_select_template_data" parameterClass="java.util.Map" remapResults="true" resultClass="java.util.LinkedHashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select zb.khzbmc as khzbmc, jglb.lbmc as jglb,'$qsrq$' as qsrq from khfa_khzb_jg zb , (select '-1' as lbdh,'全行' as lbmc from csb_jglb union select lbdh ,lbmc from csb_jglb ) jglb where 1=1 
       <isNotEmpty property="khzbdh">and zb.khzbdh in ($khzbdh$)</isNotEmpty>  
       <isNotEmpty property="jglb">and jglb.lbdh='$jglb$'</isNotEmpty> order by zb.khzbdh
     </select>  
-    <select id="dn0.jggzxsdr_MSQL4SELECT_jglb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.jggzxsdr_MSQL4SELECT_jglb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select key,value from( select '-1' as key,'全行' as value from csb_jglb union select lbdh as key,lbmc as value from csb_jglb ) t order by key
     </select> 
   </sqlMap> 

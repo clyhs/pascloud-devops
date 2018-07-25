@@ -82,7 +82,7 @@
     <col id="YYSM" title="应用说明" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.hykhdfcxmx"> 
-    <select id="dn0.hykhdfcxmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.hykhdfcxmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select $tjrq$ tjrq,jg.jgdh,jg.jgmc, hy.hydh,hy.hymc,hylb.lbmc,khfa.famc, zbpz.wdmc, case when khzb.khzbmc is null then zbpz.xmmc else khzb.khzbmc end as khzbmc , yyjg.yyjg,yyjg.zbz,yyjg.jhz,zbpz.bdz, zbpz.fdz, yyjg.yysm from khfa_yyjg_hy yyjg inner join khfa_fapz khfa on khfa.fabh = yyjg.fabh inner join khdx_hy hy on yyjg.khdxdh=hy.khdxdh 
       <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty> inner join table(fn_getsjjg_java_qxhy($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh=hy.KHDXDH inner join khdx_hylb hylb on hy.khdxdh=hylb.khdxdh 
       <isNotEmpty property="tjrq">and $tjrq$ between hylb.qsrq and hylb.jsrq</isNotEmpty> inner join khdx_jgcy cy on hy.khdxdh=cy.khdxdh 
@@ -93,7 +93,7 @@
       <isNotEmpty property="khzbdh">and zbpz.khzbdh=$khzbdh$</isNotEmpty>  
       <isNotEmpty property="hylb">and hylb.lbdh = '$hylb$'</isNotEmpty> and khfa.yyzlbh=2 and khfa.khdx='2' order by khfa.fabh desc,zbpz.wdmc,yyjg.yyjg desc,jg.khdxdh,hy.khdxdh
     </select>  
-    <select id="dn0.hykhdfcxmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.hykhdfcxmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select $tjrq$ tjrq,jg.jgdh,jg.jgmc, hy.hydh,hy.hymc,hylb.lbmc,khfa.famc, zbpz.wdmc, case when khzb.khzbmc is null then zbpz.xmmc else khzb.khzbmc end as khzbmc , yyjg.yyjg,yyjg.zbz,yyjg.jhz,zbpz.bdz, zbpz.fdz, yyjg.yysm from khfa_yyjg_hy yyjg inner join khfa_fapz khfa on khfa.fabh = yyjg.fabh inner join khdx_hy hy on yyjg.khdxdh=hy.khdxdh 
       <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty> inner join table(fn_getsjjg_java_qxhy($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh=hy.KHDXDH inner join khdx_hylb hylb on hy.khdxdh=hylb.khdxdh 
       <isNotEmpty property="tjrq">and $tjrq$ between hylb.qsrq and hylb.jsrq</isNotEmpty> inner join khdx_jgcy cy on hy.khdxdh=cy.khdxdh 
@@ -104,15 +104,15 @@
       <isNotEmpty property="khzbdh">and zbpz.khzbdh=$khzbdh$</isNotEmpty>  
       <isNotEmpty property="hylb">and hylb.lbdh = '$hylb$'</isNotEmpty> and khfa.yyzlbh=2 and khfa.khdx='2' order by khfa.fabh desc,zbpz.wdmc,yyjg.yyjg desc,jg.khdxdh,hy.khdxdh ) t
     </select>  
-    <select id="dn0.hykhdfcxmx_MSQL4SELECT_fabh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select fabh as key,famc as value from khfa_fapz where khnf= cast(substr('$tjrq$',1,4) as integer) and yyzlbh=2 and khdx='2'</select>  
-    <select id="dn0.hykhdfcxmx_MSQL4SELECT_wdmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct pz.wdmc as key, pz.wdmc as value from khfa_fapz fa inner join khfa_khzbpz pz on fa.fabh=pz.fabh where fa.khdx='2' and fa.yyzlbh=2 
+    <select id="dn1.hykhdfcxmx_MSQL4SELECT_fabh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select fabh as key,famc as value from khfa_fapz where khnf= cast(substr('$tjrq$',1,4) as integer) and yyzlbh=2 and khdx='2'</select>  
+    <select id="dn1.hykhdfcxmx_MSQL4SELECT_wdmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct pz.wdmc as key, pz.wdmc as value from khfa_fapz fa inner join khfa_khzbpz pz on fa.fabh=pz.fabh where fa.khdx='2' and fa.yyzlbh=2 
       <isNotEmpty property="fabh">and pz.fabh = $fabh$</isNotEmpty> 
     </select>  
-    <select id="dn0.hykhdfcxmx_MSQL4SELECT_khzbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct pz.khzbdh as key, case when zb.khzbdh is null then pz.xmmc else zb.khzbmc end as value from khfa_fapz fa inner join khfa_khzbpz pz on fa.fabh=pz.fabh left join khfa_khzb_hy zb on zb.khzbdh=pz.khzbdh where fa.khdx='2' and fa.yyzlbh=2 
+    <select id="dn1.hykhdfcxmx_MSQL4SELECT_khzbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct pz.khzbdh as key, case when zb.khzbdh is null then pz.xmmc else zb.khzbmc end as value from khfa_fapz fa inner join khfa_khzbpz pz on fa.fabh=pz.fabh left join khfa_khzb_hy zb on zb.khzbdh=pz.khzbdh where fa.khdx='2' and fa.yyzlbh=2 
       <isNotEmpty property="fabh">and pz.fabh = $fabh$</isNotEmpty>  
       <isNotEmpty property="wdmc">and pz.wdmc = '$wdmc$'</isNotEmpty> 
     </select>  
-    <select id="dn0.hykhdfcxmx_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct hylb.lbdh as key,hylb.lbmc as value from khfa_fapz fapz inner join khfa_yyjg_hy yyjg on fapz.fabh=yyjg.fabh inner join khdx_hylb hylb on hylb.khdxdh=yyjg.khdxdh 
+    <select id="dn1.hykhdfcxmx_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct hylb.lbdh as key,hylb.lbmc as value from khfa_fapz fapz inner join khfa_yyjg_hy yyjg on fapz.fabh=yyjg.fabh inner join khdx_hylb hylb on hylb.khdxdh=yyjg.khdxdh 
       <isNotEmpty property="tjrq">and $tjrq$ between hylb.qsrq and hylb.jsrq</isNotEmpty> where fapz.khdx='2' and fapz.yyzlbh=2 
       <isNotEmpty property="tjrq">and yyjg.tjrq=$tjrq$</isNotEmpty>  
       <isNotEmpty property="khdxdh">and yyjg.khdxdh in ($khdxdh$)</isNotEmpty>  

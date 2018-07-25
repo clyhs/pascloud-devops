@@ -373,40 +373,40 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.yyckyj"> 
-    <select id="dn0.yyckyjList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.yyckyjList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select jg.jgdh,jg.jgmc,jg.khdxdh as jgkhdxdh,hy.khdxdh,hy.hymc,hy.hydh,yyck.lsh,khlx.dmms khlx, yyck.khmc,zjlx.dmms zjlx,zjhm,yyck.yjje,yyck.blrq,yyck.yyqsrq,yyck.yyjsrq,yyck.bz ,csb.yyms,csb.yylx from jxdx_yyyj yyck inner join khdx_hy hy on hy.khdxdh=yyck.khdxdh inner join khdx_jg jg on jg.khdxdh=yyck.jgkhdxdh inner join table(fn_getsjjg_java_qxhy($jsrq$,$login_khdxdh$,0)) qx on qx.khdxdh=hy.khdxdh left join csb_dmms khlx on khlx.dmz=yyck.khlx and khlx.dmmc='KHFXKHLX' left join csb_dmms zjlx on zjlx.dmz=yyck.zjlb and zjlx.dmmc='ZJLX' left join csb_yylx csb on csb.yylx=yyck.yylx 
       <isNotEmpty property="qsrq">where yyck.blrq between $qsrq$ and $jsrq$</isNotEmpty>  
       <isNotEmpty property="khmc">and yyck.khmc like '%$khmc$%'</isNotEmpty>  
       <isNotEmpty property="khdxdh">and yyck.khdxdh in ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="yylx">and yyck.yylx='$yylx$'</isNotEmpty> order by yyck.lsh desc
     </select>  
-    <select id="dn0.yyckyjCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.yyckyjCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select jg.jgdh,jg.jgmc,jg.khdxdh as jgkhdxdh,hy.khdxdh,hy.hymc,hy.hydh,yyck.lsh,khlx.dmms khlx, yyck.khmc,zjlx.dmms zjlx,zjhm,yyck.yjje,yyck.blrq,yyck.yyqsrq,yyck.yyjsrq,yyck.bz ,csb.yyms,csb.yylx from jxdx_yyyj yyck inner join khdx_hy hy on hy.khdxdh=yyck.khdxdh inner join khdx_jg jg on jg.khdxdh=yyck.jgkhdxdh inner join table(fn_getsjjg_java_qxhy($jsrq$,$login_khdxdh$,0)) qx on qx.khdxdh=hy.khdxdh left join csb_dmms khlx on khlx.dmz=yyck.khlx and khlx.dmmc='KHFXKHLX' left join csb_dmms zjlx on zjlx.dmz=yyck.zjlb and zjlx.dmmc='ZJLX' left join csb_yylx csb on csb.yylx=yyck.yylx 
       <isNotEmpty property="qsrq">where yyck.blrq between $qsrq$ and $jsrq$</isNotEmpty>  
       <isNotEmpty property="khmc">and yyck.khmc like '%$khmc$%'</isNotEmpty>  
       <isNotEmpty property="khdxdh">and yyck.khdxdh in ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="yylx">and yyck.yylx='$yylx$'</isNotEmpty> order by yyck.lsh desc ) t
     </select>  
-    <select id="dn0.yyckyj_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.yyckyj_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select JGKHDXDH, KHMC, YYQSRQ, PPBZ, KHDXDH, LSH, ZJHM, BZ, YYLX, ZJLB, YJJE, BLRQ, KHLX, YYJSRQ from JXDX_YYYJ where 1= 1 and LSH = $lsh$
     </select>  
-    <select id="dn0.yyckyj_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.yyckyj_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select JGKHDXDH, KHMC, YYQSRQ, PPBZ, KHDXDH, LSH, ZJHM, BZ, YYLX, ZJLB, YJJE, BLRQ, KHLX, YYJSRQ from JXDX_YYYJ where 1= 1 and LSH = $lsh$
     </select>  
-    <insert id="dn0.yyckyj_insert" parameterClass="java.util.Map"> 
+    <insert id="dn1.yyckyj_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into JXDX_YYYJ( LSH, YJJE, ZJLB, BLRQ, BZ, KHDXDH, KHLX, YYQSRQ, YYJSRQ, PPBZ, KHMC, ZJHM, YYLX, JGKHDXDH ) values ( $lsh$,$yjje$,'$zjlb$',$blrq$,'$bz$',$khdxdh$,'$khlx$',$qsrq$,$jsrq$,'$ppbz$','$khmc$','$zjhm$','$yylx$',$jgkhdxdh$)
     </insert>  
-    <update id="dn0.yyckyj_update" parameterClass="java.util.Map"> 
+    <update id="dn1.yyckyj_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update JXDX_YYYJ set ZJLB = '$zjlb$',BZ = '$bz$',KHLX = '$khlx$',ZJHM = '$zjhm$' where 1=1 and LSH = $lsh$
     </update>  
-    <delete id="dn0.yyckyj_delete" parameterClass="java.util.Map"> 
+    <delete id="dn1.yyckyj_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from JXDX_YYYJ where 1=1 and LSH = $lsh$
     </delete>  
-    <select id="dn0.yyckyj_getLsh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select (case when max(lsh)=0 or max(lsh) is null then 0 else max(lsh) end) +1 as LSH from JXDX_YYCK</select>  
-    <select id="dn0.yyckyj_existYy" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select count(1) cnt from JXDX_YYYJ where jgkhdxdh = $jgkhdxdh$ and khmc = '$khmc$' and ($qsrq$ between yyqsrq and yyjsrq or $jsrq$ between yyqsrq and yyjsrq) and yylx = '$yylx$'</select>  
-    <select id="dn0.yyckyj_getYYSXTS" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select coalesce(csz,'5') as YYSXTS from CSB_YWGXLCCS_FH where csmc='YYSXTS' and ywlx = '$yylx$'</select>  
-    <select id="dn0.yyckyj_getMRYYSXTS" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz as yysxts from xtb_xtcs where csmc = 'YYSXTS'</select>  
-    <select id="dn0.yyckyj_MSQL4SELECT_yylx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csb.yylx as key, csb.yyms as value from csb_yylx csb inner join table(FN_GETSJJG_JAVA_YWLB($jsrq$, $login_khdxdh$, 0))a on a.ywlb = csb.ywlb order by a.ywlb</select> 
+    <select id="dn1.yyckyj_getLsh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select (case when max(lsh)=0 or max(lsh) is null then 0 else max(lsh) end) +1 as LSH from JXDX_YYCK</select>  
+    <select id="dn1.yyckyj_existYy" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select count(1) cnt from JXDX_YYYJ where jgkhdxdh = $jgkhdxdh$ and khmc = '$khmc$' and ($qsrq$ between yyqsrq and yyjsrq or $jsrq$ between yyqsrq and yyjsrq) and yylx = '$yylx$'</select>  
+    <select id="dn1.yyckyj_getYYSXTS" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select coalesce(csz,'5') as YYSXTS from CSB_YWGXLCCS_FH where csmc='YYSXTS' and ywlx = '$yylx$'</select>  
+    <select id="dn1.yyckyj_getMRYYSXTS" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz as yysxts from xtb_xtcs where csmc = 'YYSXTS'</select>  
+    <select id="dn1.yyckyj_MSQL4SELECT_yylx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csb.yylx as key, csb.yyms as value from csb_yylx csb inner join table(FN_GETSJJG_JAVA_YWLB($jsrq$, $login_khdxdh$, 0))a on a.ywlb = csb.ywlb order by a.ywlb</select> 
   </sqlMap>  
   <javascript> 
     <query>jQuery(document).ready(function () { //起始日期设计为服务器时间的月初 $("#qsrq").val(createTimeObj($("#qsrq").val()).yc); }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; } /* function customFastLink($table,row){//this 对象绑定当前行的单元格 // var del = $('&lt;a class="operation_del LIST_BAR" title="删除"&gt;删除&lt;/a&gt;'); //this.append(del); del.click(function(){ showDeleteDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]); }); return true; }*/</query>  

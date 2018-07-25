@@ -1,7 +1,11 @@
 package com.pascloud.utils.xml;
+import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
 import java.io.File;  
 import java.io.FileWriter;  
-import java.io.IOException;  
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringWriter;
 import java.util.ArrayList;  
 import java.util.HashMap;  
 import java.util.Iterator;  
@@ -75,7 +79,31 @@ public class XmlParser{
             e.printStackTrace();  
         }  
         return document;  
-    }  
+    }
+    
+    public static Document getDocumentFromString(String content){
+    	
+    	Document document = null;
+    	OutputFormat format = OutputFormat.createPrettyPrint(); 
+    	XMLWriter output; 
+    	try {  
+    		document = DocumentHelper.parseText(content);
+    		StringWriter sw = new StringWriter();
+            output = new XMLWriter(sw, format);  
+            output.write(document);  
+            output.close();  
+            sw.close();
+        } catch (IOException e) {
+        	e.printStackTrace();
+            return null;  
+        } catch (DocumentException e) {
+			// TODO Auto-generated catch block
+        	e.printStackTrace();
+        	return null; 
+		} 
+    	
+    	return document;
+    }
     /** 
      *  
      * @方法功能描述：得到根节点 

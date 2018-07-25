@@ -154,7 +154,7 @@
     <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.GRCDKHMX"> 
-    <select id="dn0.GRCDKHMXList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.GRCDKHMXList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="grcsz" compareValue="1">select * from ( SELECT $tjrq$ tjrq,JG.Khdxdh JGDH,JG.JGDH jgdh2,JG.JGMC,HY.KHDXDH,HY.HYDH, HY.HYMC,CKZH.KHH,DMMS.DMMS KHLX,CKZH.ZHDH, CKZH.ZHHM,CKZH.KHRQ,CKZHMX.ZHYE,CKZH.GXHSLX, CKZH.khrq QSRQ,CKZH.xhrq JSRQ,'百分比:100' as fpgx,CKZH.KMH FROM JXDX_CKZH CKZH INNER JOIN JXDX_CKZHMX_$tjrq_year$ CKZHMX ON CKZH.JXDXDH = CKZHMX.JXDXDH INNER JOIN KHDX_JGCY JGCY ON CKZH.KHDXDH = JGCY.KHDXDH 
         <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> INNER JOIN KHDX_JG JG ON JG.KHDXDH = JGCY.JGKHDXDH INNER JOIN KHDX_HY HY ON JGCY.KHDXDH = HY.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh left JOIN CSB_DMMS DMMS ON DMMS.DMMC = 'ZHBS' AND DMMS.DMZ=CKZH.zhbs 
@@ -221,7 +221,7 @@
         <isNotEmpty property="sdyefrom">AND CKZHMX.ZHYE BETWEEN $sdyefrom$ and $sdyeto$</isNotEmpty> )a ORDER BY a.ZHYE DESC
       </isEqual> 
     </select>  
-    <select id="dn0.GRCDKHMXCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.GRCDKHMXCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="grcsz" compareValue="1">select * from ( SELECT $tjrq$ tjrq,JG.Khdxdh JGDH,JG.JGDH jgdh2,JG.JGMC,HY.KHDXDH,HY.HYDH, HY.HYMC,CKZH.KHH,DMMS.DMMS KHLX,CKZH.ZHDH, CKZH.ZHHM,CKZH.KHRQ,CKZHMX.ZHYE,CKZH.GXHSLX, CKZH.khrq QSRQ,CKZH.xhrq JSRQ,'百分比:100' as fpgx,CKZH.KMH FROM JXDX_CKZH CKZH INNER JOIN JXDX_CKZHMX_$tjrq_year$ CKZHMX ON CKZH.JXDXDH = CKZHMX.JXDXDH INNER JOIN KHDX_JGCY JGCY ON CKZH.KHDXDH = JGCY.KHDXDH 
         <isNotEmpty property="tjrq">and $tjrq$ between JGCY.qsrq and JGCY.jsrq</isNotEmpty> INNER JOIN KHDX_JG JG ON JG.KHDXDH = JGCY.JGKHDXDH INNER JOIN KHDX_HY HY ON JGCY.KHDXDH = HY.KHDXDH INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh left JOIN CSB_DMMS DMMS ON DMMS.DMMC = 'ZHBS' AND DMMS.DMZ=CKZH.zhbs 
@@ -288,9 +288,9 @@
         <isNotEmpty property="sdyefrom">AND CKZHMX.ZHYE BETWEEN $sdyefrom$ and $sdyeto$</isNotEmpty> )a ORDER BY a.ZHYE DESC
       </isEqual> ) t
     </select>  
-    <select id="dn0.GRCDKHMX_MSQL4SELECT_ywlb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT YWLB AS KEY,MS AS VALUE FROM CSB_YWLB WHERE MS IN('存款业务','贷款业务')</select>  
-    <select id="dn0.GRCDKHMX_MSQL4SELECT_khlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc = 'ZHBS'</select>  
-    <select id="dn0.GRCDKHMX_grmxcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select xtb.csz from XTB_XTCS xtb where xtb.CSMC = (case when $ywlb$ = 1 then 'CKYJGXMS' when $ywlb$ = 2 then 'DKYJGXMS' end)</select> 
+    <select id="dn1.GRCDKHMX_MSQL4SELECT_ywlb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT YWLB AS KEY,MS AS VALUE FROM CSB_YWLB WHERE MS IN('存款业务','贷款业务')</select>  
+    <select id="dn1.GRCDKHMX_MSQL4SELECT_khlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc = 'ZHBS'</select>  
+    <select id="dn1.GRCDKHMX_grmxcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select xtb.csz from XTB_XTCS xtb where xtb.CSMC = (case when $ywlb$ = 1 then 'CKYJGXMS' when $ywlb$ = 2 then 'DKYJGXMS' end)</select> 
   </sqlMap>  
   <rels> 
     <items id="GRCDKHMX_ckywjgj"> 

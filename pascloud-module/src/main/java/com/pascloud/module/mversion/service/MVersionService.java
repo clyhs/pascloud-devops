@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,10 @@ import com.google.gson.Gson;
 import com.pascloud.module.common.service.AbstractBaseService;
 import com.pascloud.module.passervice.service.ConfigService;
 import com.pascloud.utils.DBUtils;
+import com.pascloud.utils.PasCloudCode;
 import com.pascloud.vo.database.DBInfo;
 import com.pascloud.vo.mversion.XtcdVo;
+import com.pascloud.vo.result.ResultCommon;
 
 @Service
 public class MVersionService extends AbstractBaseService {
@@ -85,5 +88,331 @@ public class MVersionService extends AbstractBaseService {
 		
 		return cds;
 	}
+	
+	private Connection getConnectionById(String Id){
+		List<DBInfo> dbs = new ArrayList<>();
+		Connection conn = null;
+		dbs = m_configService.getDBFromConfig();
+		DBInfo db = null;
+		if(dbs.size() > 0){
+			for(DBInfo dbf:dbs){
+				//log.info(dbf.getId());
+				if(dbf.getId().equals(Id)){
+					db =dbf;
+				}
+			}
+		}
+		if(null!=db){
+			String driverClass = DBUtils.getDirverClassName(db.getDbType());
+			if(Id.equals("dn0")){
+				db.setUrl(db.getUrl()+"?useUnicode=true&characterEncoding=utf8");
+			}
+			DBUtils dbUtils = new DBUtils(driverClass, db.getUrl(), db.getUsername(), db.getPassword());
+			conn = dbUtils.getConnection();
+		}else{
+			log.info("db为空");
+		}
+		return conn;
+	}
+	
+	public ResultCommon addXtcd(XtcdVo cd,String Id){
+		ResultCommon result = null;
+		Connection conn = null;
+		String sql = "";
+		Integer row = 0;
+		try {
+			conn = getConnectionById(Id);
+			QueryRunner qRunner = new QueryRunner(); 
+			if(Id.equals("dn0")){
+				sql = "INSERT INTO xtb_xtzycd(xmmc,xmdz,sjxm,cdjb,dzlx,classid,sfxs,imgurl,qxbs,version)"
+						+ "VALUES(?,?,?,?,?,?,?,?,?,?)";
+				Object[] params = {cd.getXmmc(),cd.getXmdz(),cd.getSjxm(),cd.getCdjb(),
+						cd.getDzlx(),cd.getClassid(),cd.getSfxs(),cd.getImgurl(),cd.getQxbs(),cd.getVersion()};
+				row = qRunner.update(conn, sql, params);
+			}else{
+				sql = "INSERT INTO xtb_xtcd(xmdh,xmmc,xmdz,sjxm,cdjb,dzlx,classid,sfxs,imgurl,qxbs,version)"
+						+ "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+				Object[] params = {cd.getXmdh(),cd.getXmmc(),cd.getXmdz(),cd.getSjxm(),cd.getCdjb(),
+						cd.getDzlx(),cd.getClassid(),cd.getSfxs(),cd.getImgurl(),cd.getQxbs(),cd.getVersion()};
+				row = qRunner.update(conn, sql, params);
+			}
+			
+			
+			log.info(sql);
+
+			if(row>0){
+				result = new ResultCommon(PasCloudCode.SUCCESS);
+			}else{
+				result = new ResultCommon(PasCloudCode.ERROR);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+			log.error(e.getMessage());
+			//e.printStackTrace();
+			result = new ResultCommon(PasCloudCode.EXCEPTION.getCode(),e.getMessage());
+		}finally{
+			try {
+				if(null!=conn){
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+	
+	public ResultCommon addXtcd(XtcdVo cd,String[] Ids){
+		ResultCommon result = null;
+		Connection conn = null;
+		String sql = "";
+		Integer row = 0;
+		try {
+			QueryRunner qRunner = new QueryRunner();  
+			for(String Id:Ids){
+				conn = getConnectionById(Id);
+				if(Id.equals("dn0")){
+					sql = "INSERT INTO xtb_xtzycd(xmmc,xmdz,sjxm,cdjb,dzlx,classid,sfxs,imgurl,qxbs,version)"
+							+ "VALUES(?,?,?,?,?,?,?,?,?,?)";
+					Object[] params = {cd.getXmmc(),cd.getXmdz(),cd.getSjxm(),cd.getCdjb(),
+							cd.getDzlx(),cd.getClassid(),cd.getSfxs(),cd.getImgurl(),cd.getQxbs(),cd.getVersion()};
+					row += qRunner.update(conn, sql, params);
+					conn.close();
+					conn = null;
+				}else{
+					sql = "INSERT INTO xtb_xtcd(xmdh,xmmc,xmdz,sjxm,cdjb,dzlx,classid,sfxs,imgurl,qxbs,version)"
+							+ "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+					Object[] params = {cd.getXmdh(),cd.getXmmc(),cd.getXmdz(),cd.getSjxm(),cd.getCdjb(),
+							cd.getDzlx(),cd.getClassid(),cd.getSfxs(),cd.getImgurl(),cd.getQxbs(),cd.getVersion()};
+					row += qRunner.update(conn, sql, params);
+					conn.close();
+					conn = null;
+				}
+				log.info(sql);
+			}
+			
+			if(row>0){
+				result = new ResultCommon(PasCloudCode.SUCCESS);
+			}else{
+				result = new ResultCommon(PasCloudCode.ERROR);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+			log.error(e.getMessage());
+			//e.printStackTrace();
+			result = new ResultCommon(PasCloudCode.EXCEPTION.getCode(),e.getMessage());
+		}finally{
+			try {
+				if(null!=conn){
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+	
+	public ResultCommon delXtcd(XtcdVo cd,String Id){
+		ResultCommon result = null;
+		Connection conn = null;
+		String sql = "";
+		Integer row = 0;
+		try {
+			if(Id.equals("dn0")){
+				sql = "delete from xtb_xtzycd where xmdh=?";
+			}else{
+				sql = "delete from xtb_xtcd where xmdh=?";
+			}
+			conn = getConnectionById(Id);
+			log.info(sql);
+
+			Object[] params = {cd.getXmdh()};
+			QueryRunner qRunner = new QueryRunner();  
+
+			row = qRunner.update(conn, sql, params);
+			if(row>0){
+				result = new ResultCommon(PasCloudCode.SUCCESS);
+			}else{
+				result = new ResultCommon(PasCloudCode.ERROR);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+			log.error(e.getMessage());
+			//e.printStackTrace();
+			result = new ResultCommon(PasCloudCode.EXCEPTION.getCode(),e.getMessage());
+		}finally{
+			try {
+				if(null!=conn){
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	public ResultCommon changeXtcdStatus(XtcdVo cd,String Id){
+		ResultCommon result = null;
+		Connection conn = null;
+		String sql = "";
+		Integer row = 0;
+		try {
+			if(Id.equals("dn0")){
+				sql = "update xtb_xtzycd set sfxs=? where xmdh=?";
+			}else{
+				sql = "update xtb_xtcd set sfxs=? where xmdh=?";
+			}
+			conn = getConnectionById(Id);
+			log.info(sql);
+
+			Object[] params = {cd.getSfxs(),cd.getXmdh()};
+			QueryRunner qRunner = new QueryRunner();  
+
+			row = qRunner.update(conn, sql, params);
+			if(row>0){
+				result = new ResultCommon(PasCloudCode.SUCCESS);
+			}else{
+				result = new ResultCommon(PasCloudCode.ERROR);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error(e.getMessage());
+			//e.printStackTrace();
+			result = new ResultCommon(PasCloudCode.EXCEPTION.getCode(),e.getMessage());
+		}finally{
+			try {
+				if(null!=conn){
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	public ResultCommon sysAllXtcdToTenant(String[] Ids){
+		ResultCommon result =null;
+		List<XtcdVo> cds = new ArrayList<>();
+		Connection conn = null;
+		Integer row=0;
+		try {
+			conn = getConnectionById("dn0");
+			log.info("获取公共菜单资源");
+			cds = getXtcdList(conn,"dn0");
+			String sql = "INSERT INTO xtb_xtcd(xmdh,xmmc,xmdz,sjxm,cdjb,dzlx,classid,sfxs,imgurl,qxbs,version)"
+					+ "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+			
+			conn = null;
+			log.info(sql);
+			QueryRunner qRunner = new QueryRunner();  
+			if(cds.size()>0){
+				for(String Id:Ids){
+					conn = getConnectionById(Id);
+					result = truncateXtcd(conn);
+					if(result.getCode().equals(PasCloudCode.SUCCESS.getCode())){
+						Object[][] params = new Object[cds.size()][];
+						for(int i=0;i<cds.size();i++){
+							XtcdVo cd = cds.get(i);
+							params[i] = new Object[]{cd.getXmdh(),cd.getXmmc(),cd.getXmdz(),cd.getSjxm(),cd.getCdjb(),
+									cd.getDzlx(),cd.getClassid(),cd.getSfxs(),cd.getImgurl(),cd.getQxbs(),cd.getVersion()};
+						}
+						log.info("同步公共菜单资源到租户："+Id);
+						qRunner.batch(conn, sql, params);
+						conn.close();
+						conn = null;
+						row++;
+					}
+				}
+			}
+			if(row>0){
+				result = new ResultCommon(PasCloudCode.SUCCESS);
+			}else{
+				result = new ResultCommon(PasCloudCode.ERROR);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error(e.getMessage());
+			//e.printStackTrace();
+			result = new ResultCommon(PasCloudCode.EXCEPTION);
+		}finally{
+		}
+		
+		return result;
+	}
+	
+	private ResultCommon truncateXtcd(Connection conn){
+		ResultCommon result = null;
+		Integer row = 0;
+		try {
+			log.info("清空菜单资源表");
+			String sql = "truncate table xtb_xtcd";
+			
+			log.info(sql);
+			QueryRunner qRunner = new QueryRunner();  
+			//vo = qRunner.query(conn, sql, params,new BeanHandler<XtcdVo>(XtcdVo.class));
+			row = qRunner.update(conn, sql);
+			result = new ResultCommon(PasCloudCode.SUCCESS);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error(e.getMessage());
+			//e.printStackTrace();
+			result = new ResultCommon(PasCloudCode.ERROR);
+		}finally{
+		}
+		return result;
+	}
+	
+	
+	public XtcdVo getXtcdVoByXmdh(XtcdVo cd,String Id){
+		Connection conn = null;
+		String sql = "";
+		XtcdVo vo  = null;
+		try {
+			if(Id.equals("dn0")){
+				sql = "select * from xtb_xtzycd where xmdh=?";
+			}else{
+				sql = "select * from xtb_xtcd where xmdh=?";
+			}
+			conn = getConnectionById(Id);
+			log.info(sql);
+
+			Object[] params = {cd.getXmdh()};
+			QueryRunner qRunner = new QueryRunner();  
+
+			//vo = qRunner.query(conn, sql, params,new BeanHandler<XtcdVo>(XtcdVo.class));
+			vo = qRunner.query(conn, sql, new BeanHandler<XtcdVo>(XtcdVo.class), params);
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error(e.getMessage());
+			//e.printStackTrace();
+		}finally{
+			try {
+				if(null!=conn){
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+		return vo;
+	}
+	
+	
 
 }

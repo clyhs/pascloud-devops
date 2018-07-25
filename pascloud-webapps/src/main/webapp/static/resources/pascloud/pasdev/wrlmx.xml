@@ -76,7 +76,7 @@
     <col id="CLYE" title="存量余额" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.wrlmx"> 
-    <select id="dn0.wrlmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.wrlmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="dxlx2" compareValue="1">select jgdh,jgmc,khh,zhdh,zhhm,qxsd.qxmc,case when zhbs='1' then '对公' when zhbs='2' then '对私' end zhbs,khrq,dqrq,khye,clye from ( select jg.jgdh,jg.JGMC,zh.KHH,zh.ZHDH,zh.zhhm,zh.QX,zh.ZHBS,zh.KHRQ,zh.DQRQ,sum(zh.zhye) over (partition by zh.khh) as khye, zh.zhye clye from jxdx_ckzh zh inner join dxgx_hyyjgx_ck gx on zh.jxdxdh=gx.jxdxdh and gx.jsrq=29991231 inner join khdx_hy hy on hy.khdxdh=gx.khdxdh inner join khdx_jg jg on zh.jgdh=jg.jgdh where zh.gxhslx='1' and hy.hydh like 'XN%' and gx.zlbl=100 
         <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
@@ -111,7 +111,7 @@
         <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> ) a inner join csb_qxsdb qxsd on a.qx=qxsd.qxdh order by khh, zhbs asc ,qx,clye desc
       </isEqual> 
     </select>  
-    <select id="dn0.wrlmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.wrlmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="dxlx2" compareValue="1">select jgdh,jgmc,khh,zhdh,zhhm,qxsd.qxmc,case when zhbs='1' then '对公' when zhbs='2' then '对私' end zhbs,khrq,dqrq,khye,clye from ( select jg.jgdh,jg.JGMC,zh.KHH,zh.ZHDH,zh.zhhm,zh.QX,zh.ZHBS,zh.KHRQ,zh.DQRQ,sum(zh.zhye) over (partition by zh.khh) as khye, zh.zhye clye from jxdx_ckzh zh inner join dxgx_hyyjgx_ck gx on zh.jxdxdh=gx.jxdxdh and gx.jsrq=29991231 inner join khdx_hy hy on hy.khdxdh=gx.khdxdh inner join khdx_jg jg on zh.jgdh=jg.jgdh where zh.gxhslx='1' and hy.hydh like 'XN%' and gx.zlbl=100 
         <isNotEmpty property="khrq">and zh.khrq between $khrq$ and $tjrq$</isNotEmpty>  
@@ -146,8 +146,8 @@
         <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> ) a inner join csb_qxsdb qxsd on a.qx=qxsd.qxdh order by khh, zhbs asc ,qx,clye desc
       </isEqual> ) t
     </select>  
-    <select id="dn0.wrlmx_wrlmxcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='CKYJGXMS'</select>  
-    <select id="dn0.wrlmx_wrlmxcsz2" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='DKYJGXMS'</select> 
+    <select id="dn1.wrlmx_wrlmxcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='CKYJGXMS'</select>  
+    <select id="dn1.wrlmx_wrlmxcsz2" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='DKYJGXMS'</select> 
   </sqlMap>  
   <finger custPlotMth=""> 
     <plotType/>  

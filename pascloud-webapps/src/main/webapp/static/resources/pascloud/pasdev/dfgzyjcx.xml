@@ -37,12 +37,12 @@
     </col> 
   </table>  
   <sqlMap namespace="studio.dfgzyjcx"> 
-    <select id="dn0.dfgzyjcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.dfgzyjcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select a.* from (select khdx_hy.khdxdh, JXDX_DFGZDJB.djbh, JXDX_DFGZDJB.dlzh, JXDX_DFGZDJB.QYRQ, JXDX_DFGZDJB.jyrq, KHDX_JG_alias.JGMC qyjg, khdx_hy.hydh, khdx_hy.hymc, dxgx_yjgx_dfgz.qsrq, dxgx_yjgx_dfgz.jsrq, dxgx_yjgx_dfgz.zlbl fpbl from dxgx_yjgx_dfgz dxgx_yjgx_dfgz inner join JXDX_DFGZDJB JXDX_DFGZDJB on dxgx_yjgx_dfgz.djbh = JXDX_DFGZDJB.djbh inner join khdx_hy khdx_hy on dxgx_yjgx_dfgz.khdxdh = khdx_hy.khdxdh inner join KHDX_JG KHDX_JG_alias on KHDX_JG_alias.JGDH = JXDX_DFGZDJB.JGDH 
       <isNotEmpty property="tjrq">where $tjrq$ between dxgx_yjgx_dfgz.qsrq and dxgx_yjgx_dfgz.jsrq</isNotEmpty>  
       <isNotEmpty property="khdxdh">and khdx_hy.khdxdh in ($khdxdh$)</isNotEmpty> ) a inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$, $login_khdxdh$, 0)) hyqx on a.khdxdh = hyqx.khdxdh order by qsrq
     </select>  
-    <select id="dn0.dfgzyjcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.dfgzyjcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select a.* from (select khdx_hy.khdxdh, JXDX_DFGZDJB.djbh, JXDX_DFGZDJB.dlzh, JXDX_DFGZDJB.QYRQ, JXDX_DFGZDJB.jyrq, KHDX_JG_alias.JGMC qyjg, khdx_hy.hydh, khdx_hy.hymc, dxgx_yjgx_dfgz.qsrq, dxgx_yjgx_dfgz.jsrq, dxgx_yjgx_dfgz.zlbl fpbl from dxgx_yjgx_dfgz dxgx_yjgx_dfgz inner join JXDX_DFGZDJB JXDX_DFGZDJB on dxgx_yjgx_dfgz.djbh = JXDX_DFGZDJB.djbh inner join khdx_hy khdx_hy on dxgx_yjgx_dfgz.khdxdh = khdx_hy.khdxdh inner join KHDX_JG KHDX_JG_alias on KHDX_JG_alias.JGDH = JXDX_DFGZDJB.JGDH 
       <isNotEmpty property="tjrq">where $tjrq$ between dxgx_yjgx_dfgz.qsrq and dxgx_yjgx_dfgz.jsrq</isNotEmpty>  
       <isNotEmpty property="khdxdh">and khdx_hy.khdxdh in ($khdxdh$)</isNotEmpty> ) a inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$, $login_khdxdh$, 0)) hyqx on a.khdxdh = hyqx.khdxdh order by qsrq ) t

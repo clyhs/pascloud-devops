@@ -250,41 +250,41 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.jgkhzbgl"> 
-    <select id="dn0.jgkhzbglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.jgkhzbglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select khzb.khzbdh,khzb.khzbmc,khzb.zbdh,zb.zbmc,khzb.sdbs,dmms1.dmms as sdbsmc, khzb.bz,dmms2.dmms as bzmc,khzb.tjkj,dmms3.dmms as tjkjmc, zblb.ywlb,khzb.zbpx,'引用方案' as yyfa from khfa_khzb_jg khzb inner join khdx_zblb zblb on zblb.zbdh=khzb.zbdh and zblb.jsrq=29991231 inner join khdx_zb zb on zb.zbdh=khzb.zbdh inner join csb_dmms dmms1 on lower(dmms1.dmmc)='zbsdbs' and dmms1.dmz=khzb.sdbs inner join csb_dmms dmms2 on lower(dmms2.dmmc)='zbbz' and dmms2.dmz=khzb.bz inner join csb_dmms dmms3 on lower(dmms3.dmmc)='tjkj' and dmms3.dmz=khzb.tjkj where 1=1 
       <isNotEmpty property="khzbmc">and khzb.khzbmc like '%$khzbmc$%'</isNotEmpty>  
       <isNotEmpty property="zbmc">and zb.zbmc like '%$zbmc$%'</isNotEmpty> order by zbpx
     </select>  
-    <select id="dn0.jgkhzbglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.jgkhzbglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select khzb.khzbdh,khzb.khzbmc,khzb.zbdh,zb.zbmc,khzb.sdbs,dmms1.dmms as sdbsmc, khzb.bz,dmms2.dmms as bzmc,khzb.tjkj,dmms3.dmms as tjkjmc, zblb.ywlb,khzb.zbpx,'引用方案' as yyfa from khfa_khzb_jg khzb inner join khdx_zblb zblb on zblb.zbdh=khzb.zbdh and zblb.jsrq=29991231 inner join khdx_zb zb on zb.zbdh=khzb.zbdh inner join csb_dmms dmms1 on lower(dmms1.dmmc)='zbsdbs' and dmms1.dmz=khzb.sdbs inner join csb_dmms dmms2 on lower(dmms2.dmmc)='zbbz' and dmms2.dmz=khzb.bz inner join csb_dmms dmms3 on lower(dmms3.dmmc)='tjkj' and dmms3.dmz=khzb.tjkj where 1=1 
       <isNotEmpty property="khzbmc">and khzb.khzbmc like '%$khzbmc$%'</isNotEmpty>  
       <isNotEmpty property="zbmc">and zb.zbmc like '%$zbmc$%'</isNotEmpty> order by zbpx ) t
     </select>  
-    <select id="dn0.jgkhzbgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.jgkhzbgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select ZBPX, ZBDH, TJKJ, KHZBDH, KHZBMC, SDBS, BZ from KHFA_KHZB_JG where 1= 1 and KHZBDH = $khzbdh$
     </select>  
-    <select id="dn0.jgkhzbgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.jgkhzbgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select ZBPX, ZBDH, TJKJ, KHZBDH, KHZBMC, SDBS, BZ from KHFA_KHZB_JG where 1= 1 and KHZBDH = $khzbdh$
     </select>  
-    <insert id="dn0.jgkhzbgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn1.jgkhzbgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into KHFA_KHZB_JG( BZ, ZBPX, ZBDH, TJKJ, KHZBMC, KHZBDH, SDBS ) values ( '$bz$',$zbpx$,$zbdh$,'$tjkj$','$khzbmc$',$khzbdh$,'$sdbs$')
     </insert>  
-    <update id="dn0.jgkhzbgl_update" parameterClass="java.util.Map"> 
+    <update id="dn1.jgkhzbgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update KHFA_KHZB_JG set BZ = '$bz$',ZBPX = $zbpx$,ZBDH = $zbdh$,TJKJ = '$tjkj$',KHZBMC = '$khzbmc$',SDBS = '$sdbs$' where 1=1 and KHZBDH = $khzbdh$
     </update>  
-    <delete id="dn0.jgkhzbgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn1.jgkhzbgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from KHFA_KHZB_JG where 1=1 and KHZBDH = $khzbdh$
     </delete>  
-    <select id="dn0.jgkhzbgl_checkDelete" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select fa.fabh from khfa_khzbpz pz,KHFA_FAPZ fa where pz.fabh=fa.fabh and pz.khzbdh=$khzbdh$ and fa.khdx='1'</select>  
-    <delete id="dn0.jgkhzbgl_deleteJgKhzbxs" parameterClass="java.util.Map">/**!mycat:datanode=$db$**/ delete from csb_khzbxs_jg where khzbdh=$khzbdh$</delete>  
-    <select id="dn0.jgkhzbgl_selectIsExist" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select count(1) as nums from khfa_khzbpz zbpz inner join khfa_khzb_jg hy on hy.KHZBDH=zbpz.KHZBDH where hy.KHZBMC = '$dkhzbmc$'</select>  
-    <select id="dn0.jgkhzbgl_getKhzbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select coalesce(max(khzbdh),0)+1 as ID from khfa_khzb_jg</select>  
-    <select id="dn0.jgkhzbgl_checkKhzbmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select jg.khzbdh from khfa_khzb_jg jg where jg.khzbmc!='$oldkhzbmc$' and jg.khzbmc='$khzbmc$'</select>  
-    <select id="dn0.jgkhzbgl_MSQL4SELECT_zbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct key,value from ( select a.zbdh as key, a.zbmc as value from khdx_zb a inner join khdx_zbtjkj b on a.zbdh=b.zbdh inner join khdx_zblb c on a.zbdh=c.zbdh 
+    <select id="dn1.jgkhzbgl_checkDelete" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select fa.fabh from khfa_khzbpz pz,KHFA_FAPZ fa where pz.fabh=fa.fabh and pz.khzbdh=$khzbdh$ and fa.khdx='1'</select>  
+    <delete id="dn1.jgkhzbgl_deleteJgKhzbxs" parameterClass="java.util.Map">/**!mycat:datanode=$db$**/ delete from csb_khzbxs_jg where khzbdh=$khzbdh$</delete>  
+    <select id="dn1.jgkhzbgl_selectIsExist" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select count(1) as nums from khfa_khzbpz zbpz inner join khfa_khzb_jg hy on hy.KHZBDH=zbpz.KHZBDH where hy.KHZBMC = '$dkhzbmc$'</select>  
+    <select id="dn1.jgkhzbgl_getKhzbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select coalesce(max(khzbdh),0)+1 as ID from khfa_khzb_jg</select>  
+    <select id="dn1.jgkhzbgl_checkKhzbmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select jg.khzbdh from khfa_khzb_jg jg where jg.khzbmc!='$oldkhzbmc$' and jg.khzbmc='$khzbmc$'</select>  
+    <select id="dn1.jgkhzbgl_MSQL4SELECT_zbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct key,value from ( select a.zbdh as key, a.zbmc as value from khdx_zb a inner join khdx_zbtjkj b on a.zbdh=b.zbdh inner join khdx_zblb c on a.zbdh=c.zbdh 
       <isNotEmpty property="sysdate">and $sysdate$ between c.qsrq and c.jsrq</isNotEmpty> where a.zbzt!=1 and a.sfxs != '1' 
       <isNotEmpty property="ywlb">and c.ywlb='$ywlb$'</isNotEmpty> and b.tjkj!=2 order by a.zbpx, a.zbdh) d
     </select>  
-    <select id="dn0.jgkhzbgl_MSQL4SELECT_tjkj" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where lower(dmmc) = 'zbtjkj' and rtrim(dmz) in (select cast(tjkj as VARCHAR(20)) from khdx_zbtjkj where zbdh= $zbdh$ and tjkj!=2) order by dmz</select> 
+    <select id="dn1.jgkhzbgl_MSQL4SELECT_tjkj" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where lower(dmmc) = 'zbtjkj' and rtrim(dmz) in (select cast(tjkj as VARCHAR(20)) from khdx_zbtjkj where zbdh= $zbdh$ and tjkj!=2) order by dmz</select> 
   </sqlMap>  
   <javascript> 
     <import>parent.addTab('jgkhzbgldr','机构考核指标管理','/module/parser/import/visitHtml/jgkhzbgldr');</import>  

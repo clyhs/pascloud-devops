@@ -81,66 +81,66 @@
     <after/> 
   </flow>  
   <sqlMap namespace="studio.dqcytjxsgldr"> 
-    <update parameterClass="java.util.Map" id="dn0.dqcytjxsgldr_check_jglb_0"> 
+    <update parameterClass="java.util.Map" id="dn1.dqcytjxsgldr_check_jglb_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dqcytjxsgldr_temp t set t.error=t.error||'考核角色输入错误，不能为空!' where f_java_rule_length(t.jglb)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.dqcytjxsgldr_check_ywlb_1"> 
+    <update parameterClass="java.util.Map" id="dn1.dqcytjxsgldr_check_ywlb_1"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dqcytjxsgldr_temp t set t.error=t.error||'业务类别输入错误，不能为空!' where f_java_rule_length(t.ywlb)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.dqcytjxsgldr_check_qsrq_2"> 
+    <update parameterClass="java.util.Map" id="dn1.dqcytjxsgldr_check_qsrq_2"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dqcytjxsgldr_temp t set t.error=t.error||'起始日期输入错误，格式应该是:yyyyMMdd!' where f_java_rule_date(t.qsrq,'yyyyMMdd')=1 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.dqcytjxsgldr_check_qsrq_3"> 
+    <update parameterClass="java.util.Map" id="dn1.dqcytjxsgldr_check_qsrq_3"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dqcytjxsgldr_temp t set t.error=t.error||'起始日期输入错误，不能为空!' where f_java_rule_length(t.qsrq)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.dqcytjxsgldr_check_cyxs_4"> 
+    <update parameterClass="java.util.Map" id="dn1.dqcytjxsgldr_check_cyxs_4"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dqcytjxsgldr_temp t set t.error=t.error||'差异系数输入错误，只能输入:15位整数,4位小数!' where f_java_rule_length(t.cyxs)&gt;0 and f_java_rule_number(t.cyxs,15,4)=1 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.dqcytjxsgldr_check_cyxs_5"> 
+    <update parameterClass="java.util.Map" id="dn1.dqcytjxsgldr_check_cyxs_5"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dqcytjxsgldr_temp t set t.error=t.error||'差异系数输入错误，不能为空!' where f_java_rule_length(t.cyxs)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.dqcytjxsgldr_checkupdate_jglb_0"> 
+    <update parameterClass="java.util.Map" id="dn1.dqcytjxsgldr_checkupdate_jglb_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dqcytjxsgldr_temp t set error=error||'机构类别不存在!' where not exists ( select 1 from csb_jglb jglb where rtrim(jglb.lbmc) = rtrim(t.jglb)) and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.dqcytjxsgldr_checkupdate_ywlb_0"> 
+    <update parameterClass="java.util.Map" id="dn1.dqcytjxsgldr_checkupdate_ywlb_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dqcytjxsgldr_temp t set error=error||'业务类型不存在!' where not exists ( select 1 from csb_ywlb ywlb where rtrim(ywlb.ms) = rtrim(t.ywlb)) and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.dqcytjxsgldr_exists_target"> 
+    <update parameterClass="java.util.Map" id="dn1.dqcytjxsgldr_exists_target"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dqcytjxsgldr_temp t set t.error=t.error||'数据已存在!' where exists(select 1 from CSB_DQYWCYXS tar ,CSB_JGLB CSB_JGLB0,CSB_YWLB CSB_YWLB1 where 1=1 and t.jglb=CSB_JGLB0.LBMC and CSB_JGLB0.LBDH=tar.JGLB and t.ywlb=CSB_YWLB1.MS and CSB_YWLB1.YWLB=tar.YWLB and tar.QSRQ <![CDATA[>]]>= cast(t.qsrq as DECIMAL(22,0)) and t.khdxdh=$login_khdxdh$ and (length(t.error)=0 or t.error is null ))
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.dqcytjxsgldr_exists_same_temp"> 
+    <update parameterClass="java.util.Map" id="dn1.dqcytjxsgldr_exists_same_temp"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dqcytjxsgldr_temp t set t.error=error||'存在重复数据!' where exists( select 1 from (select jglb,ywlb from dqcytjxsgldr_temp dr where khdxdh=$login_khdxdh$ group by jglb,ywlb having count(1)<![CDATA[>]]>1 ) dr where 1=1 and t.jglb=dr.jglb and t.ywlb=dr.ywlb) and khdxdh=$login_khdxdh$
     </update>  
-    <insert parameterClass="java.util.Map" id="dn0.dqcytjxsgldr_create_lsb"> 
+    <insert parameterClass="java.util.Map" id="dn1.dqcytjxsgldr_create_lsb"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> CREATE TABLE dqcytjxsgldr_temp ( jglb varchar(100) , ywlb varchar(100) , qsrq varchar(100) , cyxs varchar(100) , khdxdh integer,error varchar(1000) )
     </insert>  
-    <delete parameterClass="java.util.Map" id="dn0.dqcytjxsgldr_delete_lsb"> 
+    <delete parameterClass="java.util.Map" id="dn1.dqcytjxsgldr_delete_lsb"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from dqcytjxsgldr_temp where khdxdh=$login_khdxdh$
     </delete>  
-    <insert parameterClass="java.util.Map" id="dn0.dqcytjxsgldr_insert_into_lsb">insert into DQCYTJXSGLDR_TEMP (jglb,ywlb,qsrq,cyxs,khdxdh,error) values(?,?,?,?,?,?)</insert>  
-    <select parameterClass="java.util.Map" id="dn0.dqcytjxsgldr_exists_error_msg" resultClass="java.lang.Integer"> 
+    <insert parameterClass="java.util.Map" id="dn1.dqcytjxsgldr_insert_into_lsb">insert into DQCYTJXSGLDR_TEMP (jglb,ywlb,qsrq,cyxs,khdxdh,error) values(?,?,?,?,?,?)</insert>  
+    <select parameterClass="java.util.Map" id="dn1.dqcytjxsgldr_exists_error_msg" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from dqcytjxsgldr_temp where length(error) <![CDATA[>]]> 0 and khdxdh = $login_khdxdh$
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn0.dqcytjxsgldr_exists_same_data"> 
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn1.dqcytjxsgldr_exists_same_data"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from dqcytjxsgldr_temp where length(error) <![CDATA[>]]> 0 and error != '数据已存在!' and khdxdh = $login_khdxdh$
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn0.dqcytjxsgldr_select_error_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn1.dqcytjxsgldr_select_error_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/cancel.jpg" border="0"/<![CDATA[>]]>' as zt, jglb,ywlb,qsrq,cyxs,khdxdh,error from dqcytjxsgldr_temp where khdxdh=$login_khdxdh$ and length(error)<![CDATA[>]]>0
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn0.dqcytjxsgldr_count_all_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn1.dqcytjxsgldr_count_all_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, jglb,ywlb,qsrq,cyxs,khdxdh,error from dqcytjxsgldr_temp where khdxdh=$login_khdxdh$ )a
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn0.dqcytjxsgldr_select_all_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn1.dqcytjxsgldr_select_all_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, jglb,ywlb,qsrq,cyxs,khdxdh,error from dqcytjxsgldr_temp where khdxdh=$login_khdxdh$
     </select>  
-    <delete id="dn0.dqcytjxsgldr_before_insert_delqsrqAndCover" parameterClass="java.util.Map"> 
+    <delete id="dn1.dqcytjxsgldr_before_insert_delqsrqAndCover" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from CSB_DQYWCYXS tar where exists ( select 1 from $temp$ t ,CSB_JGLB CSB_JGLB0,CSB_YWLB CSB_YWLB1 where (length(t.error)=0 or t.error is null or t.error ='数据已存在!') and t.khdxdh=$login_khdxdh$ and cast(t.jglb as VARCHAR(50) )=CSB_JGLB0.LBMC and CSB_JGLB0.LBDH=tar.JGLB and cast(t.ywlb as VARCHAR(200) )=CSB_YWLB1.MS and CSB_YWLB1.YWLB=tar.YWLB and tar.qsrq<![CDATA[>]]>= cast(t.qsrq as integer) )
     </delete>  
-    <update id="dn0.dqcytjxsgldr_before_insert_cutqsrq" parameterClass="java.util.Map"> 
+    <update id="dn1.dqcytjxsgldr_before_insert_cutqsrq" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_DQYWCYXS tar set jsrq=(select F_Change_Days(cast(dr.qsrq as Integer),-1) from dqcytjxsgldr_temp dr,CSB_JGLB CSB_JGLB0,CSB_YWLB CSB_YWLB1 where 1=1 and cast(dr.jglb as VARCHAR(50) )=CSB_JGLB0.LBMC and CSB_JGLB0.LBDH=tar.JGLB and cast(dr.ywlb as VARCHAR(200) )=CSB_YWLB1.MS and CSB_YWLB1.YWLB=tar.YWLB and (length(dr.error)=0 or dr.error is null or dr.error='数据已存在!') and dr.khdxdh=$login_khdxdh$) where exists( select 1 from dqcytjxsgldr_temp t ,CSB_JGLB CSB_JGLB0,CSB_YWLB CSB_YWLB1 where 1=1 and cast(t.jglb as VARCHAR(50) )=CSB_JGLB0.LBMC and CSB_JGLB0.LBDH=tar.JGLB and cast(t.ywlb as VARCHAR(200) )=CSB_YWLB1.MS and CSB_YWLB1.YWLB=tar.YWLB and (length(t.error)=0 or t.error is null or t.error='数据已存在!') and t.khdxdh=$login_khdxdh$ and tar.jsrq&gt;=F_Change_Days(cast(t.qsrq as Integer),-1))
     </update>  
-    <update id="dn0.dqcytjxsgldr_before_insert_0" parameterClass="java.util.Map">update CSB_DQYWCYXS tar set tar.jsrq = (select F_Change_Days(cast(dr.qsrq as Integer), -1) from dqcytjxsgldr_temp dr inner join CSB_JGLB jglb on jglb.lbmc=cast(dr.jglb as VARCHAR(50)) inner join CSB_YWLB ywlb on ywlb.ms=cast(dr.ywlb as VARCHAR(200)) where (dr.error = '数据已存在!' or length(dr.error) = 0 or dr.error is null) and dr.khdxdh = $login_khdxdh$ and jglb.lbdh=tar.jglb and ywlb.ywlb=tar.ywlb) where tar.jsrq=(select max(jsrq) from CSB_DQYWCYXS xs inner join CSB_JGLB jglb on jglb.lbdh=xs.jglb inner join CSB_YWLB ywlb on ywlb.ywlb=xs.ywlb inner join dqcytjxsgldr_temp dr on jglb.lbmc=cast(dr.jglb as VARCHAR(50)) and ywlb.ms=cast(dr.ywlb as VARCHAR(200)) and dr.khdxdh =$login_khdxdh$ and (dr.error = '数据已存在!' or length(dr.error) = 0 or dr.error is null) )</update>  
-    <insert parameterClass="java.util.Map" id="dn0.dqcytjxsgldr_insert_into_target"> 
+    <update id="dn1.dqcytjxsgldr_before_insert_0" parameterClass="java.util.Map">update CSB_DQYWCYXS tar set tar.jsrq = (select F_Change_Days(cast(dr.qsrq as Integer), -1) from dqcytjxsgldr_temp dr inner join CSB_JGLB jglb on jglb.lbmc=cast(dr.jglb as VARCHAR(50)) inner join CSB_YWLB ywlb on ywlb.ms=cast(dr.ywlb as VARCHAR(200)) where (dr.error = '数据已存在!' or length(dr.error) = 0 or dr.error is null) and dr.khdxdh = $login_khdxdh$ and jglb.lbdh=tar.jglb and ywlb.ywlb=tar.ywlb) where tar.jsrq=(select max(jsrq) from CSB_DQYWCYXS xs inner join CSB_JGLB jglb on jglb.lbdh=xs.jglb inner join CSB_YWLB ywlb on ywlb.ywlb=xs.ywlb inner join dqcytjxsgldr_temp dr on jglb.lbmc=cast(dr.jglb as VARCHAR(50)) and ywlb.ms=cast(dr.ywlb as VARCHAR(200)) and dr.khdxdh =$login_khdxdh$ and (dr.error = '数据已存在!' or length(dr.error) = 0 or dr.error is null) )</update>  
+    <insert parameterClass="java.util.Map" id="dn1.dqcytjxsgldr_insert_into_target"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into CSB_DQYWCYXS(JGLB,YWLB,QSRQ,JSRQ,CYXS) select CSB_JGLB0.LBDH,CSB_YWLB1.YWLB,cast (t.qsrq as DECIMAL(22,0)),29991231,cast (t.cyxs as DECIMAL(19,5)) from dqcytjxsgldr_temp t ,CSB_JGLB CSB_JGLB0,CSB_YWLB CSB_YWLB1 where t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null) and CSB_JGLB0.LBMC=cast (t.jglb as VARCHAR(50)) and CSB_YWLB1.MS=cast (t.ywlb as VARCHAR(200))
     </insert> 
   </sqlMap> 

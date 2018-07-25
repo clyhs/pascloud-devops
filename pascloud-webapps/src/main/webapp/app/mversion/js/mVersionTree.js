@@ -15,7 +15,7 @@ function initMVersionTree(){
         showFooter:false,//是否使用页脚
 		columns:[[
             //{title:'编号',field:'id',width:40,sortable:true},
-            {title:'名称',field:'text',width:200,sortable:true}
+            {title:'应用名称',field:'text',width:200,sortable:true}
 
         ]],
 		//onContextMenu: onContextMenu,
@@ -23,12 +23,19 @@ function initMVersionTree(){
 		onLoadSuccess:function(node, data){
 			if (data.length > 0) {
 		         //找到第一个元素
-				   
-				$('#mVersionTree').treegrid('select', data[0].id);
-				dnId=data[0].id;
-				if(!isInit){
-					initMenuTreeGrid(dnId);
+				
+				if(dnId.length>0){
+					$('#mVersionTree').treegrid('select', dnId);
+					reloadTreeGridWithID(dnId)
+				}else{
+					$('#mVersionTree').treegrid('select', data[0].id);
+					dnId=data[0].id;
+					if(!isInit){
+						initMenuTreeGrid(dnId);
+					}
 				}
+				
+				
 		    }
 			
 		},
@@ -49,7 +56,11 @@ function reloadTree(){
 	$('#mVersionTree').treegrid('options').url ='getMVersionTree.json';
 	$('#mVersionTree').treegrid("reload");
 }
-
+/*
+function reloadTreeWithId(){
+	$('#mVersionTree').treegrid('options').url ='getMVersionTree.json?';
+	$('#mVersionTree').treegrid("reload");
+}*/
 
 function reloadTreeGridWithID(Id){
     $('#menuTreeGrid').treegrid('options').url ='getMVersionMenuTree.json?Id='+Id;

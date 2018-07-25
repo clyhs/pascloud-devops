@@ -222,7 +222,7 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.hykhjsplgl"> 
-    <select id="dn0.hykhjsplglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.hykhjsplglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select hy.hydh,hy.hymc,zb.zbmc,js.khdxdh,js.zbdh,js.bz,js.sdbs,js.qsrq,js.jsrq,js.khjs,dms.dmms bzmc,dms1.dmms sdbsmc from sgdr_hykhjs js inner join khdx_zb zb on js.zbdh=zb.zbdh inner join khdx_hy hy on js.khdxdh=hy.khdxdh inner join table(fn_getsjjg_java_qxhy($tjrq$, $login_khdxdh$, 0)) qx on hy.khdxdh=qx.khdxdh left join csb_dmms dms on js.bz=dms.dmz and upper(dms.dmmc)='ZBBZ' left join csb_dmms dms1 on js.sdbs=dms1.dmz and upper(dms1.dmmc)='ZBSDBS' where 1=1 
       <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="tjrq">and $tjrq$ between js.qsrq and js.jsrq</isNotEmpty>  
@@ -230,7 +230,7 @@
       <isNotEmpty property="bz">and js.bz='$bz$'</isNotEmpty>  
       <isNotEmpty property="sdbs">and js.sdbs='$sdbs$'</isNotEmpty> order by zb.zbdh,js.qsrq desc
     </select>  
-    <select id="dn0.hykhjsplglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.hykhjsplglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select hy.hydh,hy.hymc,zb.zbmc,js.khdxdh,js.zbdh,js.bz,js.sdbs,js.qsrq,js.jsrq,js.khjs,dms.dmms bzmc,dms1.dmms sdbsmc from sgdr_hykhjs js inner join khdx_zb zb on js.zbdh=zb.zbdh inner join khdx_hy hy on js.khdxdh=hy.khdxdh inner join table(fn_getsjjg_java_qxhy($tjrq$, $login_khdxdh$, 0)) qx on hy.khdxdh=qx.khdxdh left join csb_dmms dms on js.bz=dms.dmz and upper(dms.dmmc)='ZBBZ' left join csb_dmms dms1 on js.sdbs=dms1.dmz and upper(dms1.dmmc)='ZBSDBS' where 1=1 
       <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="tjrq">and $tjrq$ between js.qsrq and js.jsrq</isNotEmpty>  
@@ -238,40 +238,40 @@
       <isNotEmpty property="bz">and js.bz='$bz$'</isNotEmpty>  
       <isNotEmpty property="sdbs">and js.sdbs='$sdbs$'</isNotEmpty> order by zb.zbdh,js.qsrq desc ) t
     </select>  
-    <select id="dn0.hykhjsplgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.hykhjsplgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select ZBDH, KHDXDH, QSRQ, KHJS, JSRQ, SDBS, BZ from SGDR_HYKHJS where 1= 1 and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and QSRQ = $qsrq$ and SDBS = '$sdbs$' and BZ = '$bz$'
     </select>  
-    <select id="dn0.hykhjsplgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.hykhjsplgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select ZBDH, KHDXDH, QSRQ, KHJS, JSRQ, SDBS, BZ from SGDR_HYKHJS where 1= 1 and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and QSRQ = $qsrq$ and SDBS = '$zbsdbs$' and BZ = '$zbbz$'
     </select>  
-    <insert id="dn0.hykhjsplgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn1.hykhjsplgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into SGDR_HYKHJS( ZBDH, KHDXDH, BZ, QSRQ, SDBS, KHJS, JSRQ ) values ( $zbdh$,$khdxdh$,'$zbbz$',$qsrq$,'$zbsdbs$',$khjs$,$jsrq$)
     </insert>  
-    <update id="dn0.hykhjsplgl_update" parameterClass="java.util.Map"> 
+    <update id="dn1.hykhjsplgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update SGDR_HYKHJS set KHJS = $khjs$ where 1=1 and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and QSRQ = $qsrq$ and SDBS = '$zbsdbs$' and BZ = '$zbbz$'
     </update>  
-    <delete id="dn0.hykhjsplgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn1.hykhjsplgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from SGDR_HYKHJS where 1=1 and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and QSRQ = $qsrq$ and SDBS = '$sdbs$' and BZ = '$bz$'
     </delete>  
-    <delete id="dn0.hykhjsplgl_check_itemAddDel" parameterClass="java.util.Map"> 
+    <delete id="dn1.hykhjsplgl_check_itemAddDel" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[delete from SGDR_HYKHJS where qsrq >=$qsrq$  and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and SDBS = '$zbsdbs$' and BZ = '$zbbz$']]> 
     </delete>  
-    <update id="dn0.hykhjsplgl_check_itemUP" parameterClass="java.util.Map"> 
+    <update id="dn1.hykhjsplgl_check_itemUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update SGDR_HYKHJS set jsrq=$qdate$ 
       <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty> and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and SDBS = '$zbsdbs$' and BZ = '$zbbz$'
     </update>  
-    <select id="dn0.hykhjsplgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.hykhjsplgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select max(qsrq) from SGDR_HYKHJS where 1=1 and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and SDBS = '$sdbs$' and BZ = '$bz$'
     </select>  
-    <select id="dn0.hykhjsplgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.hykhjsplgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select  ZBDH, KHDXDH, QSRQ, KHJS, JSRQ, SDBS, BZ from SGDR_HYKHJS where 1=1  and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and SDBS = '$zbsdbs$' and BZ = '$zbbz$' and $qsrq$ > $maxqsrq$]]> 
     </select>  
-    <update id="dn0.hykhjsplgl_check_itemDELUP" parameterClass="java.util.Map"> 
+    <update id="dn1.hykhjsplgl_check_itemDELUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update SGDR_HYKHJS set jsrq =29991231 where 1=1 and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and SDBS = '$sdbs$' and BZ = '$bz$' and jsrq =$lastjsrq$
     </update>  
-    <select id="dn0.hykhjsplgl_selectZBByTjrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select zb.zbdh as key,zb.zbmc as value from jsfa_jszb jszb inner join khdx_zb zb on zb.zbdh=jszb.zbdh inner join jsfa_fapz fapz on fapz.FABH=jszb.fabh where fapz.faly='2' and cast(substr(cast(fapz.khnf as char(8)),1,4) as integer) =cast(substr(cast($tjrq$ as char(8)),1,4) as integer)</select>  
-    <select id="dn0.hykhjsplgl_getMaxqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'</select>  
-    <select id="dn0.hykhjsplgl_MSQL4SELECT_zbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select zb.zbdh as key,zb.zbmc as value from jsfa_jszb jszb inner join khdx_zb zb on zb.zbdh=jszb.zbdh inner join jsfa_fapz fapz on fapz.FABH=jszb.fabh where fapz.faly='3' and cast(substr(cast(fapz.khnf as char(8)),1,4) as integer) =$sysdate_yyyy$</select> 
+    <select id="dn1.hykhjsplgl_selectZBByTjrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select zb.zbdh as key,zb.zbmc as value from jsfa_jszb jszb inner join khdx_zb zb on zb.zbdh=jszb.zbdh inner join jsfa_fapz fapz on fapz.FABH=jszb.fabh where fapz.faly='2' and cast(substr(cast(fapz.khnf as char(8)),1,4) as integer) =cast(substr(cast($tjrq$ as char(8)),1,4) as integer)</select>  
+    <select id="dn1.hykhjsplgl_getMaxqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'</select>  
+    <select id="dn1.hykhjsplgl_MSQL4SELECT_zbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select zb.zbdh as key,zb.zbmc as value from jsfa_jszb jszb inner join khdx_zb zb on zb.zbdh=jszb.zbdh inner join jsfa_fapz fapz on fapz.FABH=jszb.fabh where fapz.faly='3' and cast(substr(cast(fapz.khnf as char(8)),1,4) as integer) =$sysdate_yyyy$</select> 
   </sqlMap>  
   <javascript> 
     <import>parent.addTab('hykhjspldr','行员手工基数管理','/module/parser/import/visitHtml/hykhjspldr');</import>  

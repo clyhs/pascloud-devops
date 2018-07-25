@@ -14,7 +14,7 @@
     <col id="PY" title="评语" align="left" type="string" width="120" frozen="false" format="" showDymCol="" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.znbskhpycx"> 
-    <select id="dn0.znbskhpycxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.znbskhpycxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select distinct fapz.khnf, case when fapz.khzq=1 then '月' when fapz.khzq=2 then '季' else '年' end as khzq, case when fapz.khzq=1 then cast(zxpffa.khqs as char(8))|| '月' when fapz.khzq=2 then '第'||cast(zxpffa.khqs as char(8) )|| '季度' else cast(zxpffa.khqs as char(8))|| '年' end as khqs, khjg.jgdh, khjg.jgmc, fapz.famc,zxpffa.py from znbs_zxpffa zxpffa inner join znbs_fapz fapz on zxpffa.fabh=fapz.fabh inner join khdx_jg khjg on zxpffa.khdxdh =khjg.khdxdh inner join khdx_hy hy2 on zxpffa.pjr = hy2.khdxdh where 1=1 
       <isNotEmpty property="khnd">and fapz.khnf=$khnd$</isNotEmpty>  
       <isNotEmpty property="khzq">and fapz.khzq=$khzq$</isNotEmpty>  
@@ -22,7 +22,7 @@
       <isNotEmpty property="fabh">and fapz.fabh =$fabh$</isNotEmpty>  
       <isNotEmpty property="jgkhdxdh">and khjg.khdxdh in ($jgkhdxdh$)</isNotEmpty> and zxpffa.khdx='1'
     </select>  
-    <select id="dn0.znbskhpycxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.znbskhpycxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select distinct fapz.khnf, case when fapz.khzq=1 then '月' when fapz.khzq=2 then '季' else '年' end as khzq, case when fapz.khzq=1 then cast(zxpffa.khqs as char(8))|| '月' when fapz.khzq=2 then '第'||cast(zxpffa.khqs as char(8) )|| '季度' else cast(zxpffa.khqs as char(8))|| '年' end as khqs, khjg.jgdh, khjg.jgmc, fapz.famc,zxpffa.py from znbs_zxpffa zxpffa inner join znbs_fapz fapz on zxpffa.fabh=fapz.fabh inner join khdx_jg khjg on zxpffa.khdxdh =khjg.khdxdh inner join khdx_hy hy2 on zxpffa.pjr = hy2.khdxdh where 1=1 
       <isNotEmpty property="khnd">and fapz.khnf=$khnd$</isNotEmpty>  
       <isNotEmpty property="khzq">and fapz.khzq=$khzq$</isNotEmpty>  

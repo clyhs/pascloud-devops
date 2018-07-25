@@ -15,13 +15,13 @@
     <col id="TLJE" title="提留金额" align="right" type="float" width="120" frozen="false" format="" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.hyjxtljemxcx"> 
-    <select id="dn0.hyjxtljemxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.hyjxtljemxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select yyjg.tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,fapz.famc,khzb.khzbmc,yyjg.tlje from khfa_yyjg_hy yyjg inner join khdx_hy hy on hy.khdxdh=yyjg.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh and yyjg.tjrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join khfa_fapz fapz on fapz.fabh=yyjg.fabh inner join khfa_khzb_hy khzb on khzb.khzbdh=yyjg.khzbdh INNER JOIN table(FN_GETSJJG_JAVA_QXHY(yyjg.tjrq,2,0)) qx on qx.khdxdh = hy.khdxdh where 1=1 
       <isNotEmpty property="khdxdh">and hy.khdxdh =$khdxdh$</isNotEmpty>  
       <isNotEmpty property="tjrq">and yyjg.tjrq=$tjrq$</isNotEmpty>  
       <isNotEmpty property="fabh">and yyjg.fabh=$fabh$</isNotEmpty> 
     </select>  
-    <select id="dn0.hyjxtljemxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.hyjxtljemxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select yyjg.tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,fapz.famc,khzb.khzbmc,yyjg.tlje from khfa_yyjg_hy yyjg inner join khdx_hy hy on hy.khdxdh=yyjg.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh and yyjg.tjrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join khfa_fapz fapz on fapz.fabh=yyjg.fabh inner join khfa_khzb_hy khzb on khzb.khzbdh=yyjg.khzbdh INNER JOIN table(FN_GETSJJG_JAVA_QXHY(yyjg.tjrq,2,0)) qx on qx.khdxdh = hy.khdxdh where 1=1 
       <isNotEmpty property="khdxdh">and hy.khdxdh =$khdxdh$</isNotEmpty>  
       <isNotEmpty property="tjrq">and yyjg.tjrq=$tjrq$</isNotEmpty>  

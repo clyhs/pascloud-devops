@@ -104,19 +104,19 @@
     <primaryKey>QYKEY</primaryKey> 
   </performance>  
   <sqlMap> 
-    <select id="dn0.wsyhyjfp_select_validateDate" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.wsyhyjfp_select_validateDate" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from JXDX_WYQY JXDX_WYQY where 1=1 and JXDX_WYQY.QYKEY = '$QYKEY$' and QYRQ &gt; $QSRQ$
     </select>  
-    <select id="dn0.wsyhyjfp_select_maxQsrq" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.wsyhyjfp_select_maxQsrq" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select max(qsrq) from dxgx_yjgx_wsyh where 1=1 and QYKEY = '$QYKEY$'
     </select>  
-    <select id="dn0.wsyhyjfp_select_khrq" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.wsyhyjfp_select_khrq" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select QYRQ from JXDX_WYQY where 1=1 and QYKEY = '$QYKEY$'
     </select>  
-    <select id="dn0.wsyhyjfp_select_minQsrq" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.wsyhyjfp_select_minQsrq" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select min(qsrq) from dxgx_yjgx_wsyh gx where 1=1 and gx.QYKEY = '$QYKEY$'
     </select>  
-    <select id="dn0.wsyhyjfp_select_mainPage_db2" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.wsyhyjfp_select_mainPage_db2" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select JXDX_WYQY.KHMC as KHMC,JXDX_WYQY.HTH as HTH,JXDX_WYQY.CXRQ as CXRQ,JXDX_WYQY.JGDH as JGDH,JXDX_WYQY.QYRQ as QYRQ,JXDX_WYQY.JYZH as JYZH,JXDX_WYQY.KHH as KHH,KHDX_JG771.JGMC as JGMC,JXDX_WYQY.QYKEY as QYKEY, case when coalesce(max(dxgx_yjgx_wsyh.zlbl),0) = 0 then '无关系' when max(dxgx_yjgx_wsyh.zlbl)=100 then max(khdx_hy.hymc)||'|100' else cast('百分比:'||replace(replace(xml2clob(xmlagg(xmlelement(name a, khdx_hy.hymc||'|'||f_numtochar(dxgx_yjgx_wsyh.zlbl)||','))),'&lt;A&gt;',''),'&lt;/A&gt;',' ') as varchar(200)) end as DQFPGX from JXDX_WYQY JXDX_WYQY left outer join dxgx_yjgx_wsyh dxgx_yjgx_wsyh on 1=1 and dxgx_yjgx_wsyh.QYKEY=JXDX_WYQY.QYKEY and $sysdate$ between dxgx_yjgx_wsyh.qsrq and dxgx_yjgx_wsyh.jsrq left outer join khdx_hy khdx_hy on dxgx_yjgx_wsyh.khdxdh=khdx_hy.khdxdh inner join khdx_jg khdx_jg on khdx_jg.jgdh=JXDX_WYQY.jgdh inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,$JGKHDXDH$)) qx on qx.khdxdh=khdx_jg.khdxdh inner join KHDX_JG KHDX_JG771 on KHDX_JG771.JGDH=JXDX_WYQY.JGDH where 1=1
       <isNotEmpty property="KHMC">and JXDX_WYQY.KHMC like '%$KHMC$%'</isNotEmpty>  
       <isNotEmpty property="JSRQ"> 
@@ -130,7 +130,7 @@
       </isNotEmpty>  
       <isNotEmpty property="KHH">and JXDX_WYQY.KHH like '%$KHH$%'</isNotEmpty> group by JXDX_WYQY.KHMC,JXDX_WYQY.HTH,JXDX_WYQY.CXRQ,JXDX_WYQY.JGDH,JXDX_WYQY.QYRQ,JXDX_WYQY.JYZH,JXDX_WYQY.KHH,KHDX_JG771.JGMC,JXDX_WYQY.QYKEY order by JXDX_WYQY.QYKEY
     </select>  
-    <select id="dn0.wsyhyjfp_select_mainPage_ora" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.wsyhyjfp_select_mainPage_ora" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select JXDX_WYQY.KHMC as KHMC,JXDX_WYQY.HTH as HTH,JXDX_WYQY.CXRQ as CXRQ,JXDX_WYQY.JGDH as JGDH,JXDX_WYQY.QYRQ as QYRQ,JXDX_WYQY.JYZH as JYZH,JXDX_WYQY.KHH as KHH,KHDX_JG771.JGMC as JGMC,JXDX_WYQY.QYKEY as QYKEY, F_WM_CONCAT(khdx_hy.hymc || dxgx_yjgx_wsyh.zlbl) DQFPGX from JXDX_WYQY JXDX_WYQY left outer join dxgx_yjgx_wsyh dxgx_yjgx_wsyh on 1=1 and dxgx_yjgx_wsyh.QYKEY=JXDX_WYQY.QYKEY and $sysdate$ between dxgx_yjgx_wsyh.qsrq and dxgx_yjgx_wsyh.jsrq left outer join khdx_hy khdx_hy on dxgx_yjgx_wsyh.khdxdh=khdx_hy.khdxdh inner join khdx_jg khdx_jg on khdx_jg.jgdh=JXDX_WYQY.jgdh inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,$JGKHDXDH$)) qx on qx.khdxdh=khdx_jg.khdxdh inner join KHDX_JG KHDX_JG771 on KHDX_JG771.JGDH=JXDX_WYQY.JGDH where 1=1 
       <isNotEmpty property="KHMC">and JXDX_WYQY.KHMC like '%$KHMC$%'</isNotEmpty>  
       <isNotEmpty property="JSRQ"> 
@@ -144,7 +144,7 @@
       </isNotEmpty>  
       <isNotEmpty property="KHH">and JXDX_WYQY.KHH like '%$KHH$%'</isNotEmpty> group by JXDX_WYQY.KHMC,JXDX_WYQY.HTH,JXDX_WYQY.CXRQ,JXDX_WYQY.JGDH,JXDX_WYQY.QYRQ,JXDX_WYQY.JYZH,JXDX_WYQY.KHH,KHDX_JG771.JGMC,JXDX_WYQY.QYKEY order by JXDX_WYQY.QYKEY
     </select>  
-    <select id="dn0.wsyhyjfp_select_mainCount_db2" parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true"> 
+    <select id="dn1.wsyhyjfp_select_mainCount_db2" parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select JXDX_WYQY.KHMC as KHMC,JXDX_WYQY.HTH as HTH,JXDX_WYQY.CXRQ as CXRQ,JXDX_WYQY.JGDH as JGDH,JXDX_WYQY.QYRQ as QYRQ,JXDX_WYQY.JYZH as JYZH,JXDX_WYQY.KHH as KHH,KHDX_JG771.JGMC as JGMC,JXDX_WYQY.QYKEY as QYKEY, case when coalesce(max(dxgx_yjgx_wsyh.zlbl),0) = 0 then '无关系' when max(dxgx_yjgx_wsyh.zlbl)=100 then max(khdx_hy.hymc)||'|100' else cast('百分比:'||replace(replace(xml2clob(xmlagg(xmlelement(name a, khdx_hy.hymc||'|'||f_numtochar(dxgx_yjgx_wsyh.zlbl)||','))),'&lt;A&gt;',''),'&lt;/A&gt;',' ') as varchar(200)) end as DQFPGX from JXDX_WYQY JXDX_WYQY left outer join dxgx_yjgx_wsyh dxgx_yjgx_wsyh on 1=1 and dxgx_yjgx_wsyh.QYKEY=JXDX_WYQY.QYKEY and $sysdate$ between dxgx_yjgx_wsyh.qsrq and dxgx_yjgx_wsyh.jsrq left outer join khdx_hy khdx_hy on dxgx_yjgx_wsyh.khdxdh=khdx_hy.khdxdh inner join khdx_jg khdx_jg on khdx_jg.jgdh=JXDX_WYQY.jgdh inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,$JGKHDXDH$)) qx on qx.khdxdh=khdx_jg.khdxdh inner join KHDX_JG KHDX_JG771 on KHDX_JG771.JGDH=JXDX_WYQY.JGDH where 1=1
       <isNotEmpty property="KHMC">and JXDX_WYQY.KHMC like '%$KHMC$%'</isNotEmpty>  
       <isNotEmpty property="JSRQ"> 
@@ -158,7 +158,7 @@
       </isNotEmpty>  
       <isNotEmpty property="KHH">and JXDX_WYQY.KHH like '%$KHH$%'</isNotEmpty> group by JXDX_WYQY.KHMC,JXDX_WYQY.HTH,JXDX_WYQY.CXRQ,JXDX_WYQY.JGDH,JXDX_WYQY.QYRQ,JXDX_WYQY.JYZH,JXDX_WYQY.KHH,KHDX_JG771.JGMC,JXDX_WYQY.QYKEY order by JXDX_WYQY.QYKEY) count
     </select>  
-    <select id="dn0.wsyhyjfp_select_mainCount_ora" parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true"> 
+    <select id="dn1.wsyhyjfp_select_mainCount_ora" parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select JXDX_WYQY.KHMC as KHMC,JXDX_WYQY.HTH as HTH,JXDX_WYQY.CXRQ as CXRQ,JXDX_WYQY.JGDH as JGDH,JXDX_WYQY.QYRQ as QYRQ,JXDX_WYQY.JYZH as JYZH,JXDX_WYQY.KHH as KHH,KHDX_JG771.JGMC as JGMC,JXDX_WYQY.QYKEY as QYKEY, F_WM_CONCAT(khdx_hy.hymc || dxgx_yjgx_wsyh.zlbl) DQFPGX from JXDX_WYQY JXDX_WYQY left outer join dxgx_yjgx_wsyh dxgx_yjgx_wsyh on 1=1 and dxgx_yjgx_wsyh.QYKEY=JXDX_WYQY.QYKEY and $sysdate$ between dxgx_yjgx_wsyh.qsrq and dxgx_yjgx_wsyh.jsrq left outer join khdx_hy khdx_hy on dxgx_yjgx_wsyh.khdxdh=khdx_hy.khdxdh inner join khdx_jg khdx_jg on khdx_jg.jgdh=JXDX_WYQY.jgdh inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,$JGKHDXDH$)) qx on qx.khdxdh=khdx_jg.khdxdh inner join KHDX_JG KHDX_JG771 on KHDX_JG771.JGDH=JXDX_WYQY.JGDH where 1=1 
       <isNotEmpty property="KHMC">and JXDX_WYQY.KHMC like '%$KHMC$%'</isNotEmpty>  
       <isNotEmpty property="JSRQ"> 
@@ -172,37 +172,37 @@
       </isNotEmpty>  
       <isNotEmpty property="KHH">and JXDX_WYQY.KHH like '%$KHH$%'</isNotEmpty> group by JXDX_WYQY.KHMC,JXDX_WYQY.HTH,JXDX_WYQY.CXRQ,JXDX_WYQY.JGDH,JXDX_WYQY.QYRQ,JXDX_WYQY.JYZH,JXDX_WYQY.KHH,KHDX_JG771.JGMC,JXDX_WYQY.QYKEY order by JXDX_WYQY.QYKEY) count
     </select>  
-    <select id="dn0.wsyhyjfp_select_gxmxPage" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.wsyhyjfp_select_gxmxPage" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select distinct khdx_jg.JGDH as JGDH,khdx_hy.HYMC as HYMC,khdx_hy.HYDH as HYDH,JXDX_WYQY.QYKEY,DXGX_YJGX_WSYH.QSRQ as QSRQ,DXGX_YJGX_WSYH.JSRQ as JSRQ,khdx_jg.JGMC as JGMC,DXGX_YJGX_WSYH.ZLBL as ZLBL from dxgx_yjgx_wsyh dxgx_yjgx_wsyh inner join JXDX_WYQY JXDX_WYQY on 1=1 and JXDX_WYQY.QYKEY=dxgx_yjgx_wsyh.QYKEY inner join khdx_hy khdx_hy on dxgx_yjgx_wsyh.khdxdh=khdx_hy.khdxdh inner join khdx_jgcy khdx_jgcy on khdx_hy.khdxdh=khdx_jgcy.khdxdh inner join khdx_jg khdx_jg on khdx_jgcy.jgkhdxdh=khdx_jg.khdxdh and $sysdate$ between khdx_jgcy.qsrq and khdx_jgcy.jsrq where 1=1 and dxgx_yjgx_wsyh.QYKEY = '$QYKEY$' order by dxgx_yjgx_wsyh.qsrq
     </select>  
-    <select id="dn0.wsyhyjfp_select_gxmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.wsyhyjfp_select_gxmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select distinct khdx_jg.JGDH as JGDH,khdx_hy.HYMC as HYMC,khdx_hy.HYDH as HYDH,JXDX_WYQY.QYKEY,DXGX_YJGX_WSYH.QSRQ as QSRQ,DXGX_YJGX_WSYH.JSRQ as JSRQ,khdx_jg.JGMC as JGMC,DXGX_YJGX_WSYH.ZLBL as ZLBL from dxgx_yjgx_wsyh dxgx_yjgx_wsyh inner join JXDX_WYQY JXDX_WYQY on 1=1 and JXDX_WYQY.QYKEY=dxgx_yjgx_wsyh.QYKEY inner join khdx_hy khdx_hy on dxgx_yjgx_wsyh.khdxdh=khdx_hy.khdxdh inner join khdx_jgcy khdx_jgcy on khdx_hy.khdxdh=khdx_jgcy.khdxdh inner join khdx_jg khdx_jg on khdx_jgcy.jgkhdxdh=khdx_jg.khdxdh and $sysdate$ between khdx_jgcy.qsrq and khdx_jgcy.jsrq where 1=1 and dxgx_yjgx_wsyh.QYKEY = '$QYKEY$' order by dxgx_yjgx_wsyh.qsrq) a
     </select>  
-    <delete id="dn0.wsyhyjfp_delete_last_yjgx" parameterClass="java.util.Map"> 
+    <delete id="dn1.wsyhyjfp_delete_last_yjgx" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from dxgx_yjgx_wsyh where 1=1 and QYKEY = '$QYKEY$' and jsrq=29991231
     </delete>  
-    <update id="dn0.wsyhyjfp_before_insert_yjgx2" parameterClass="java.util.Map"> 
+    <update id="dn1.wsyhyjfp_before_insert_yjgx2" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dxgx_yjgx_wsyh set jsrq=$BEFORE$ where 1=1 and QYKEY = '$QYKEY$' and qsrq=(select max(qsrq) from dxgx_yjgx_wsyh where 1=1 and QYKEY = '$QYKEY$')
     </update>  
-    <insert id="dn0.wsyhyjfp_before_insert_yjgx" parameterClass="java.util.Map"> 
+    <insert id="dn1.wsyhyjfp_before_insert_yjgx" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dxgx_yjgx_wsyh set jsrq=$BEFORE$ where 1=1 and QYKEY = '$QYKEY$' and jsrq=29991231
     </insert>  
-    <insert id="dn0.wsyhyjfp_insert_yjgx" parameterClass="java.util.Map"> 
+    <insert id="dn1.wsyhyjfp_insert_yjgx" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into DXGX_YJGX_WSYH(QYKEY,KHDXDH,QSRQ,JSRQ,ZLBL) values('$QYKEY$',$KHDXDH$,$QSRQ$,$JSRQ$,$ZLBL$)
     </insert>  
-    <delete id="dn0.wsyhyjfp_delete_yjgx" parameterClass="java.util.Map"> 
+    <delete id="dn1.wsyhyjfp_delete_yjgx" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from dxgx_yjgx_wsyh gx where 1=1 and gx.QYKEY = '$QYKEY$' and gx.jsrq=29991231
     </delete>  
-    <update id="dn0.wsyhyjfp_after_delete_yjgx" parameterClass="java.util.Map"> 
+    <update id="dn1.wsyhyjfp_after_delete_yjgx" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update dxgx_yjgx_wsyh set jsrq=29991231 where 1=1 and QYKEY = '$QYKEY$' and jsrq=(select max(jsrq) from dxgx_yjgx_wsyh where 1=1 and QYKEY = '$QYKEY$')
     </update>  
-    <select id="dn0.wsyhyjfp_select_maxjldh" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.wsyhyjfp_select_maxjldh" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select coalesce(max(jldh),0) from XTB_HYGXRZ_WSYH
     </select>  
-    <insert id="dn0.wsyhyjfp_insert_gxrz" parameterClass="java.util.Map"> 
+    <insert id="dn1.wsyhyjfp_insert_gxrz" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into XTB_HYGXRZ_WSYH(JLDH,JLSJ,CZLX,XGRDH,QYKEY) values($JLDH$,F_GET_SYSTIME(),'$CZLX$',$XGRDH$,'$QYKEY$')
     </insert>  
-    <insert id="dn0.wsyhyjfp_insert_gxjl" parameterClass="java.util.Map"> 
+    <insert id="dn1.wsyhyjfp_insert_gxjl" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into XTB_HYGXJL_WSYH(JLDH,GGBZ,KHDXDH,QSRQ,JSRQ,ZLBL) select $JLDH$,'$GGBZ$',gx.KHDXDH,gx.QSRQ,gx.JSRQ,gx.ZLBL from dxgx_yjgx_wsyh gx where 1=1 and gx.QYKEY = '$QYKEY$' and jsrq=29991231
     </insert> 
   </sqlMap> 

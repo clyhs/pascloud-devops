@@ -106,73 +106,73 @@
     <after/> 
   </flow>  
   <sqlMap namespace="studio.jgfydr"> 
-    <update parameterClass="java.util.Map" id="dn0.jgfydr_check_jgdh_0"> 
+    <update parameterClass="java.util.Map" id="dn1.jgfydr_check_jgdh_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgfydr_temp t set t.error=t.error||'机构代号输入错误，不能为空!' where f_java_rule_length(t.jgdh)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jgfydr_check_jgdh_1"> 
+    <update parameterClass="java.util.Map" id="dn1.jgfydr_check_jgdh_1"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgfydr_temp t set t.error=t.error||'机构代号不存在!' where not exists(select 1 from khdx_jg j where rtrim(t.jgdh)=rtrim(j.jgdh)) and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jgfydr_check_fyzl_2"> 
+    <update parameterClass="java.util.Map" id="dn1.jgfydr_check_fyzl_2"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgfydr_temp t set t.error=t.error||'费用种类输入错误，不能为空!' where f_java_rule_length(t.fyzl)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jgfydr_check_kmh_3"> 
+    <update parameterClass="java.util.Map" id="dn1.jgfydr_check_kmh_3"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgfydr_temp t set t.error=t.error||'科目号输入错误，不能为空!' where f_java_rule_length(t.kmh)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jgfydr_check_je_4"> 
+    <update parameterClass="java.util.Map" id="dn1.jgfydr_check_je_4"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgfydr_temp t set t.error=t.error||'金额输入错误，只能输入:21位整数,4位小数!' where f_java_rule_length(t.je)&gt;0 and f_java_rule_number(t.je,21,4)=1 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jgfydr_check_je_5"> 
+    <update parameterClass="java.util.Map" id="dn1.jgfydr_check_je_5"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgfydr_temp t set t.error=t.error||'金额输入错误，不能为空!' where f_java_rule_length(t.je)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jgfydr_check_tjrq_6"> 
+    <update parameterClass="java.util.Map" id="dn1.jgfydr_check_tjrq_6"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgfydr_temp t set t.error=t.error||'统计年月输入错误，格式应该是:yyyyMM!' where f_java_rule_date(t.tjrq,'yyyyMM')=1 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jgfydr_checkupdate_fyzl_0"> 
+    <update parameterClass="java.util.Map" id="dn1.jgfydr_checkupdate_fyzl_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgfydr_temp t set error=error||'费用种类错误!' where not exists( select 1 from csb_dmms ms where lower(ms.dmmc)='fyzl' and ms.dmms=rtrim(t.fyzl) ) and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jgfydr_checkupdate_kmh_0"> 
+    <update parameterClass="java.util.Map" id="dn1.jgfydr_checkupdate_kmh_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgfydr_temp t set error=error||'科目号错误!' where not exists( select 1 from csb_km km where km.kmh = rtrim(t.kmh) ) and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jgfydr_checkupdate_tjrq_0"> 
+    <update parameterClass="java.util.Map" id="dn1.jgfydr_checkupdate_tjrq_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgfydr_temp t set t.tjrq=(select sjw.ym from csb_sjw sjw where sjw.tjrq=cast(t.tjrq||'01' as integer)) where t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jgfydr_checkupdate_tjrq_1"> 
+    <update parameterClass="java.util.Map" id="dn1.jgfydr_checkupdate_tjrq_1"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgfydr_temp t set t.error=t.error||'起始日期不能小于(系统日期-重跑天数)'||(select f_change_days(cast(rq.csz as integer ),-cast(cs.csz as integer )) from xtb_xtcs rq,xtb_xtcs cs where rq.csmc='SYS_DATE' and cs.csmc='SYS_CSTS')||'！' where cast(t.tjrq as integer)&lt;(select f_change_days(cast(rq.csz as integer ),-cast(cs.csz as integer )) from xtb_xtcs rq,xtb_xtcs cs where rq.csmc='SYS_DATE' and cs.csmc='SYS_CSTS') and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jgfydr_exists_target"> 
+    <update parameterClass="java.util.Map" id="dn1.jgfydr_exists_target"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgfydr_temp t set t.error=t.error||'数据已存在!' where exists(select 1 from SGLR_JGFY tar ,KHDX_JG KHDX_JG0 where 1=1 and cast(t.tjrq as INTEGER)=tar.TJRQ and t.jgdh=KHDX_JG0.JGDH and KHDX_JG0.KHDXDH=tar.KHDXDH and t.fyzl =tar.FYZL and t.khdxdh=$login_khdxdh$ and (length(t.error)=0 or t.error is null ))
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.jgfydr_exists_same_temp"> 
+    <update parameterClass="java.util.Map" id="dn1.jgfydr_exists_same_temp"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgfydr_temp t set t.error=error||'存在重复数据!' where exists( select 1 from (select tjrq,jgdh,fyzl from jgfydr_temp dr where khdxdh=$login_khdxdh$ group by tjrq,jgdh,fyzl having count(1)<![CDATA[>]]>1 ) dr where 1=1 and t.tjrq=dr.tjrq and t.jgdh=dr.jgdh and t.fyzl=dr.fyzl) and khdxdh=$login_khdxdh$
     </update>  
-    <insert parameterClass="java.util.Map" id="dn0.jgfydr_create_lsb"> 
+    <insert parameterClass="java.util.Map" id="dn1.jgfydr_create_lsb"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> CREATE TABLE jgfydr_temp ( tjrq varchar(100) , jgdh varchar(100) , jgmc varchar(100) , fyzl varchar(100) , kmh varchar(100) , je varchar(100) , khdxdh integer,error varchar(1000) )
     </insert>  
-    <delete parameterClass="java.util.Map" id="dn0.jgfydr_delete_lsb"> 
+    <delete parameterClass="java.util.Map" id="dn1.jgfydr_delete_lsb"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from jgfydr_temp where khdxdh=$login_khdxdh$
     </delete>  
-    <insert parameterClass="java.util.Map" id="dn0.jgfydr_insert_into_lsb"> 
+    <insert parameterClass="java.util.Map" id="dn1.jgfydr_insert_into_lsb"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into JGFYDR_TEMP (tjrq,jgdh,jgmc,fyzl,kmh,je,khdxdh,error) values(?,?,?,?,?,?,?,?)
     </insert>  
-    <select parameterClass="java.util.Map" id="dn0.jgfydr_exists_error_msg" resultClass="java.lang.Integer"> 
+    <select parameterClass="java.util.Map" id="dn1.jgfydr_exists_error_msg" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from jgfydr_temp where length(error) <![CDATA[>]]> 0 and khdxdh = $login_khdxdh$
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn0.jgfydr_exists_same_data"> 
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn1.jgfydr_exists_same_data"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from jgfydr_temp where length(error) <![CDATA[>]]> 0 and error != '数据已存在!' and khdxdh = $login_khdxdh$
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn0.jgfydr_select_error_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn1.jgfydr_select_error_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/cancel.jpg" border="0"/<![CDATA[>]]>' as zt, tjrq,jgdh,jgmc,fyzl,kmh,je,khdxdh,error from jgfydr_temp where khdxdh=$login_khdxdh$ and length(error)<![CDATA[>]]>0
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn0.jgfydr_count_all_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn1.jgfydr_count_all_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, tjrq,jgdh,jgmc,fyzl,kmh,je,khdxdh,error from jgfydr_temp where khdxdh=$login_khdxdh$ )a
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn0.jgfydr_select_all_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn1.jgfydr_select_all_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, tjrq,jgdh,jgmc,fyzl,kmh,je,khdxdh,error from jgfydr_temp where khdxdh=$login_khdxdh$
     </select>  
-    <insert parameterClass="java.util.Map" id="dn0.jgfydr_insert_into_target"> 
+    <insert parameterClass="java.util.Map" id="dn1.jgfydr_insert_into_target"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into SGLR_JGFY(TJRQ,KHDXDH,FYZL,KMH,BZ,JE,BZSM,CZR,CZSJ) select cast (t.tjrq as INTEGER),KHDX_JG0.KHDXDH, t.fyzl , t.kmh ,'01',cast (t.je as DECIMAL(25,4)),'','$login_khdxdh$',F_GET_SYSTIME() from jgfydr_temp t ,KHDX_JG KHDX_JG0 where t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null) and KHDX_JG0.JGDH=cast (t.jgdh as VARCHAR(15))
     </insert>  
-    <delete parameterClass="java.util.Map" id="dn0.jgfydr_delete_before_override"> 
+    <delete parameterClass="java.util.Map" id="dn1.jgfydr_delete_before_override"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from SGLR_JGFY tar where exists(select 1 from jgfydr_temp t ,KHDX_JG KHDX_JG0 where 1=1 and cast(t.tjrq as INTEGER)=tar.TJRQ and t.jgdh=KHDX_JG0.JGDH and KHDX_JG0.KHDXDH=tar.KHDXDH and t.fyzl=tar.FYZL and t.khdxdh=$login_khdxdh$ )
     </delete> 
   </sqlMap> 

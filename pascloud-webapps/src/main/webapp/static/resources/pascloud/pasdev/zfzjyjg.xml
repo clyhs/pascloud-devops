@@ -55,7 +55,7 @@
     <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.zfzjyjg"> 
-    <select id="dn0.zfzjyjgList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.zfzjyjgList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select f_timetochar(xtb.sjsj,'yyyy-mm-dd hh24:mi:ss') sjsj, xtb.zzrq,xtb.jgdh,jg.jgmc,xtb.kmh,km.kmmc,bz.bzzwmc, case when xtb.jybz=1 then '接口与总账接口核对' when xtb.jybz=2 then '帐户明细与总账核对' when xtb.jybz=3 then '内部总账与总账核对' end as kdlx, xtb.zzye,xtb.fzye,xtb.cb,xtb.wcfw,jg.khdxdh from xtb_zfjyjg xtb inner join khdx_jg jg on jg.jgdh=xtb.jgdh left join csb_bz bz on bz.bz=xtb.bz left join csb_km km on km.kmh=xtb.kmh inner join table(fn_getsjjg_java_qx($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh=jg.khdxdh where 1=1 
       <isNotEmpty property="tjrq">and xtb.zzrq=$tjrq$</isNotEmpty>  
       <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>  
@@ -63,7 +63,7 @@
       <isNotEmpty property="kmh">and xtb.kmh like '%$kmh$%'</isNotEmpty>  
       <isNotEmpty property="kmmc">and km.kmmc like '%$kmmc$%'</isNotEmpty> order by xtb.sjdh desc
     </select>  
-    <select id="dn0.zfzjyjgCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.zfzjyjgCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select f_timetochar(xtb.sjsj,'yyyy-mm-dd hh24:mi:ss') sjsj, xtb.zzrq,xtb.jgdh,jg.jgmc,xtb.kmh,km.kmmc,bz.bzzwmc, case when xtb.jybz=1 then '接口与总账接口核对' when xtb.jybz=2 then '帐户明细与总账核对' when xtb.jybz=3 then '内部总账与总账核对' end as kdlx, xtb.zzye,xtb.fzye,xtb.cb,xtb.wcfw,jg.khdxdh from xtb_zfjyjg xtb inner join khdx_jg jg on jg.jgdh=xtb.jgdh left join csb_bz bz on bz.bz=xtb.bz left join csb_km km on km.kmh=xtb.kmh inner join table(fn_getsjjg_java_qx($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh=jg.khdxdh where 1=1 
       <isNotEmpty property="tjrq">and xtb.zzrq=$tjrq$</isNotEmpty>  
       <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>  

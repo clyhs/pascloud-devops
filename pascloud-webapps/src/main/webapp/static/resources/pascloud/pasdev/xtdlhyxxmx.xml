@@ -15,7 +15,7 @@
     <col id="DLCS" title="活跃度" align="center" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.xtdlhyxxmx"> 
-    <select id="dn0.xtdlhyxxmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.xtdlhyxxmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select $qsrq$ as qsrq,$jsrq$ as jsrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,lb.lbmc,count(distinct yyrz.sjsj) dlcs from khdx_hy hy
 inner join khdx_jgcy jgcy on jgcy.khdxdh=hy.khdxdh and $qsrq$>=jgcy.qsrq and $jsrq$<=jgcy.jsrq
 inner join khdx_jg jg on jg.khdxdh=jgcy.jgkhdxdh
@@ -26,7 +26,7 @@ yyrz.sjsj between F_INTTOTIME($qsrq$,1) and F_INTTOTIME($jsrq$,2)
 and yyrz.sjms like '%system/index%']]>  
       <isNotEmpty property="jgdh">and jg.jgdh='$jgdh$'</isNotEmpty> group by jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,lb.lbmc order by jg.jgdh,lb.lbmc,hy.hydh
     </select>  
-    <select id="dn0.xtdlhyxxmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.xtdlhyxxmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( <![CDATA[select $qsrq$ as qsrq,$jsrq$ as jsrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,lb.lbmc,count(distinct yyrz.sjsj) dlcs from khdx_hy hy
 inner join khdx_jgcy jgcy on jgcy.khdxdh=hy.khdxdh and $qsrq$>=jgcy.qsrq and $jsrq$<=jgcy.jsrq
 inner join khdx_jg jg on jg.khdxdh=jgcy.jgkhdxdh

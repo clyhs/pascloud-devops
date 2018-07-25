@@ -109,6 +109,11 @@ public class PasdevController extends BaseController {
 		dirs = m_pasdevService.getPasfileDir();
 		
 		for(int i=0;i<dirs.size();i++){
+			
+			if(dirs.get(i).equals("dn0")){
+				continue;
+			}
+			
 			TreeVo vo = new TreeVo();
 			vo.setId(dirs.get(i));
 			

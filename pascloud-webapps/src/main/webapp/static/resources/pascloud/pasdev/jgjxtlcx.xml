@@ -28,12 +28,12 @@
     <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.jgjxtlcx"> 
-    <select id="dn0.jgjxtlcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.jgjxtlcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select jg.khdxdh ,jg.jgmc , jg.jgdh , tjrq, tjye ljtlye , '绩效提留余额' ms from khfa_jxtl_jg h inner join khdx_jg jg on jg.khdxdh = h.khdxdh inner join table(FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$ ,0)) qx on jg.khdxdh = qx.khdxdh where 1=1 
       <isNotEmpty property="tjrq">and h.tjrq =$tjrq$</isNotEmpty>  
       <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty> 
     </select>  
-    <select id="dn0.jgjxtlcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.jgjxtlcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select jg.khdxdh ,jg.jgmc , jg.jgdh , tjrq, tjye ljtlye , '绩效提留余额' ms from khfa_jxtl_jg h inner join khdx_jg jg on jg.khdxdh = h.khdxdh inner join table(FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$ ,0)) qx on jg.khdxdh = qx.khdxdh where 1=1 
       <isNotEmpty property="tjrq">and h.tjrq =$tjrq$</isNotEmpty>  
       <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty> ) t

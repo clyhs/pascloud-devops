@@ -66,7 +66,7 @@
 		<table id="mainDataGrid" style="padding:0px;">	
 		        
 	    </table>
-		    <!--内容  结束-->
+		<!--内容  结束-->
     </div>
 
 </body>

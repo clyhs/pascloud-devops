@@ -51,7 +51,7 @@
     <col id="LBDH" title="类别编号" align="left" type="hidden" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.jglbjxgzhz"> 
-    <select id="dn0.jglbjxgzhzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.jglbjxgzhzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select $qsrq$ qsrq,$jsrq$ jsrq,nf,lbmc,lbdh,YF,jgs,yyjg/jgs jgpjjxgz,yyjg,zb from (
 select t.nf,t.lbmc,t.lbdh,t.YF,t.jgs,
 case when t.jgs=0 then 0 else (t.YYJG/t.jgs) end jgpjjxgz,
@@ -93,7 +93,7 @@ where ym=tjrq]]>
       <isNotEmpty property="jsrq1">and $jsrq1$ between jglb.qsrq and jglb.jsrq</isNotEmpty> inner join CSB_JGLB csb on csb.LBDH=jglb.LBDH where exists(select 1 from khfa_fapz pz where yyjg.fabh=pz.fabh and pz.yyzlbh=1) group by substr(f_numtochar(yyjg.tjrq), 1, 4),substr(f_numtochar(yyjg.tjrq), 5, 2),csb.LBMC,jglb.lbdh,cy.jgkhdxdh order by nf,yf,lbdh )l group by l.nf,l.lbmc,l.lbdh,l.yf)y )t where 1=1 
       <isNotEmpty property="jglb">and t.lbdh='$jglb$'</isNotEmpty> ) t2 group by t2.nf,t2.lbmc,t2.lbdh ) m order by m.yf
     </select>  
-    <select id="dn0.jglbjxgzhzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.jglbjxgzhzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( <![CDATA[select $qsrq$ qsrq,$jsrq$ jsrq,nf,lbmc,lbdh,YF,jgs,yyjg/jgs jgpjjxgz,yyjg,zb from (
 select t.nf,t.lbmc,t.lbdh,t.YF,t.jgs,
 case when t.jgs=0 then 0 else (t.YYJG/t.jgs) end jgpjjxgz,
@@ -135,7 +135,7 @@ where ym=tjrq]]>
       <isNotEmpty property="jsrq1">and $jsrq1$ between jglb.qsrq and jglb.jsrq</isNotEmpty> inner join CSB_JGLB csb on csb.LBDH=jglb.LBDH where exists(select 1 from khfa_fapz pz where yyjg.fabh=pz.fabh and pz.yyzlbh=1) group by substr(f_numtochar(yyjg.tjrq), 1, 4),substr(f_numtochar(yyjg.tjrq), 5, 2),csb.LBMC,jglb.lbdh,cy.jgkhdxdh order by nf,yf,lbdh )l group by l.nf,l.lbmc,l.lbdh,l.yf)y )t where 1=1 
       <isNotEmpty property="jglb">and t.lbdh='$jglb$'</isNotEmpty> ) t2 group by t2.nf,t2.lbmc,t2.lbdh ) m order by m.yf ) t
     </select>  
-    <select id="dn0.jglbjxgzhz_MSQL4SELECT_jglb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key,lbmc as value from csb_jglb</select> 
+    <select id="dn1.jglbjxgzhz_MSQL4SELECT_jglb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key,lbmc as value from csb_jglb</select> 
   </sqlMap>  
   <rels> 
     <items id="jglbjxgzhz_xsjy1jgj"/> 

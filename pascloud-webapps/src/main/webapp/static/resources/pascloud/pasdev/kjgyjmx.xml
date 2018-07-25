@@ -128,7 +128,7 @@
     <col id="XHRQ" title="销户日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.kjgyjmx"> 
-    <select id="dn0.kjgyjmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.kjgyjmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="result" compareValue="11">select $tjrq$ as tjrq,khh,zhdh,zhhm,khjg,ssjg,hydh,hymc,gxfp,zhye,qsrq,jsrq,bz,kmh,qx,khrq,dqrq,xhrq from( select zh.khh,zh.zhdh,zh.zhhm,khjg.jgmc as khjg,jg.jgmc as ssjg,hy.hydh,hy.hymc , case when gx.gxhslx='1' then '百分比:'||F_NumToChar(gx.zlbl) else '阈值:'||F_NumToChar(gx.yz)||',阈值以下:'||F_NumToChar(gx.clbl)||',阈值以上'||F_NumToChar(gx.zlbl) end as gxfp , zh.zhye,gx.qsrq,gx.jsrq,bz.bzzwmc bz,zh.kmh,coalesce(qx.qxmc, zh.qx) as qx,zh.khrq,zh.dqrq,zh.xhrq from jxdx_ckzh zh inner join khdx_jg khjg on khjg.jgdh = zh.jgdh inner join dxgx_hyyjgx_ck gx on gx.jxdxdh = zh.jxdxdh 
         <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh = gx.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
@@ -163,7 +163,7 @@
         <isNotEmpty property="khmc">and zh.zhhm like '%$khmc$%'</isNotEmpty> )a order by qsrq desc
       </isEqual> 
     </select>  
-    <select id="dn0.kjgyjmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.kjgyjmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="result" compareValue="11">select $tjrq$ as tjrq,khh,zhdh,zhhm,khjg,ssjg,hydh,hymc,gxfp,zhye,qsrq,jsrq,bz,kmh,qx,khrq,dqrq,xhrq from( select zh.khh,zh.zhdh,zh.zhhm,khjg.jgmc as khjg,jg.jgmc as ssjg,hy.hydh,hy.hymc , case when gx.gxhslx='1' then '百分比:'||F_NumToChar(gx.zlbl) else '阈值:'||F_NumToChar(gx.yz)||',阈值以下:'||F_NumToChar(gx.clbl)||',阈值以上'||F_NumToChar(gx.zlbl) end as gxfp , zh.zhye,gx.qsrq,gx.jsrq,bz.bzzwmc bz,zh.kmh,coalesce(qx.qxmc, zh.qx) as qx,zh.khrq,zh.dqrq,zh.xhrq from jxdx_ckzh zh inner join khdx_jg khjg on khjg.jgdh = zh.jgdh inner join dxgx_hyyjgx_ck gx on gx.jxdxdh = zh.jxdxdh 
         <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh = gx.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 

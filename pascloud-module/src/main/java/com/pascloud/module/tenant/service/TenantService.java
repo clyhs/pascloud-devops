@@ -42,8 +42,8 @@ public class TenantService {
 					result2 = qRunner.update(conn, sql2, params2);
 					String dlmc = en+"admin";
 					String old_dlmc=en+"as11";
-					String sql3 = "update khdx_hy set dlmc=?,hymc=? where dlmc=? ";
-					Object [] params3 = new Object[]{dlmc,dlmc,old_dlmc};
+					String sql3 = "update khdx_hy set dlmc=?,hymc=? where khdxdh=? ";
+					Object [] params3 = new Object[]{dlmc,dlmc,1};
 					result3 = qRunner.update(conn, sql3, params3);
 					
 				}else{

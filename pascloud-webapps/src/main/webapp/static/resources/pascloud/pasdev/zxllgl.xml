@@ -189,51 +189,51 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.zxllgl"> 
-    <select id="dn0.zxllglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.zxllglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> SELECT dmms1.DMMS AS jxdxlxmc ,csb.JXDXLX, dmms2.DMMS AS ywlxmc ,csb.YWLX,cpxz.CPMC,csb.CPDH, coalesce(qx.QXMC,'无') as qxmc,csb.QXDH,csb.ZXLL,csb.QSRQ,csb.JSRQ FROM CSB_ZXLL csb INNER JOIN CSB_DMMS dmms1 ON CAST(dmms1.DMZ AS INTEGER) = csb.JXDXLX AND dmms1.DMMC='ZHLX' INNER JOIN CSB_DMMS dmms2 ON dmms2.DMZ = csb.ywlx AND dmms2.DMMC='YWLX' INNER JOIN CSB_CPXZ cpxz ON cpxz.CPDH = csb.CPDH left JOIN CSB_QXSDB qx ON qx.QXDH = csb.QXDH AND csb.JXDXLX = qx.JXDXLX WHERE 1=1 
       <isNotEmpty property="jxdxlx">AND csb.JXDXLX = $jxdxlx$</isNotEmpty>  
       <isNotEmpty property="ywlx">AND csb.YWLX = '$ywlx$'</isNotEmpty>  
       <isNotEmpty property="cpmc">AND cpxz.CPMC LIKE '%$cpmc$%'</isNotEmpty> order by csb.jxdxlx,csb.ywlx,cpxz.cpmc,qx.qxdh,csb.qsrq
     </select>  
-    <select id="dn0.zxllglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.zxllglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( SELECT dmms1.DMMS AS jxdxlxmc ,csb.JXDXLX, dmms2.DMMS AS ywlxmc ,csb.YWLX,cpxz.CPMC,csb.CPDH, coalesce(qx.QXMC,'无') as qxmc,csb.QXDH,csb.ZXLL,csb.QSRQ,csb.JSRQ FROM CSB_ZXLL csb INNER JOIN CSB_DMMS dmms1 ON CAST(dmms1.DMZ AS INTEGER) = csb.JXDXLX AND dmms1.DMMC='ZHLX' INNER JOIN CSB_DMMS dmms2 ON dmms2.DMZ = csb.ywlx AND dmms2.DMMC='YWLX' INNER JOIN CSB_CPXZ cpxz ON cpxz.CPDH = csb.CPDH left JOIN CSB_QXSDB qx ON qx.QXDH = csb.QXDH AND csb.JXDXLX = qx.JXDXLX WHERE 1=1 
       <isNotEmpty property="jxdxlx">AND csb.JXDXLX = $jxdxlx$</isNotEmpty>  
       <isNotEmpty property="ywlx">AND csb.YWLX = '$ywlx$'</isNotEmpty>  
       <isNotEmpty property="cpmc">AND cpxz.CPMC LIKE '%$cpmc$%'</isNotEmpty> order by csb.jxdxlx,csb.ywlx,cpxz.cpmc,qx.qxdh,csb.qsrq ) t
     </select>  
-    <select id="dn0.zxllgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.zxllgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select YWLX, JXDXLX, ZXLL, QSRQ, JSRQ, CPDH, QXDH from CSB_ZXLL where 1= 1 and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and QSRQ = $qsrq$ and CPDH = '$cpdh$' and QXDH = '$qxdh$'
     </select>  
-    <select id="dn0.zxllgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.zxllgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select YWLX, JXDXLX, ZXLL, QSRQ, JSRQ, CPDH, QXDH from CSB_ZXLL where 1= 1 and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and QSRQ = $qsrq$ and CPDH = '$cpmc$' and QXDH = '$qxmc$'
     </select>  
-    <insert id="dn0.zxllgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn1.zxllgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into CSB_ZXLL( YWLX, CPDH, QSRQ, JXDXLX, QXDH, JSRQ, ZXLL ) values ( '$ywlx$','$cpmc$',$qsrq$,$jxdxlx$,'$qxmc$',$jsrq$,$zxll$)
     </insert>  
-    <update id="dn0.zxllgl_update" parameterClass="java.util.Map"> 
+    <update id="dn1.zxllgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_ZXLL set ZXLL = $zxll$ where 1=1 and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and QSRQ = $qsrq$ and CPDH = '$cpmc$' and QXDH = '$qxmc$'
     </update>  
-    <delete id="dn0.zxllgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn1.zxllgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from CSB_ZXLL where 1=1 and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and QSRQ = $qsrq$ and CPDH = '$cpdh$' and QXDH = '$qxdh$'
     </delete>  
-    <delete id="dn0.zxllgl_check_itemAddDel" parameterClass="java.util.Map"> 
+    <delete id="dn1.zxllgl_check_itemAddDel" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[delete from CSB_ZXLL where qsrq >=$qsrq$  and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and CPDH = '$cpmc$' and QXDH = '$qxmc$']]> 
     </delete>  
-    <update id="dn0.zxllgl_check_itemUP" parameterClass="java.util.Map"> 
+    <update id="dn1.zxllgl_check_itemUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_ZXLL set jsrq=$qdate$ 
       <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty> and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and CPDH = '$cpmc$' and QXDH = '$qxmc$'
     </update>  
-    <select id="dn0.zxllgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.zxllgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select max(qsrq) from CSB_ZXLL where 1=1 and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and CPDH = '$cpdh$' and QXDH = '$qxdh$'
     </select>  
-    <select id="dn0.zxllgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.zxllgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select  YWLX, JXDXLX, ZXLL, QSRQ, JSRQ, CPDH, QXDH from CSB_ZXLL where 1=1  and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and CPDH = '$cpmc$' and QXDH = '$qxmc$' and $qsrq$ > $maxqsrq$]]> 
     </select>  
-    <update id="dn0.zxllgl_check_itemDELUP" parameterClass="java.util.Map"> 
+    <update id="dn1.zxllgl_check_itemDELUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_ZXLL set jsrq =29991231 where 1=1 and YWLX = '$ywlx$' and JXDXLX = $jxdxlx$ and CPDH = '$cpdh$' and QXDH = '$qxdh$' and jsrq =$lastjsrq$
     </update>  
-    <select id="dn0.zxllgl_MSQL4SELECT_cpmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select cpdh as key, cpmc as value FROM CSB_CPXZ WHERE 1=1 and jxdxlx = $jxdxlx$ and '$ywlx$'= ywlx</select>  
-    <select id="dn0.zxllgl_MSQL4SELECT_qxmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select key , value from ( select qxdh as key, qxmc as value FROM CSB_QXSDB WHERE 1=1 AND JXDXLX = $jxdxlx$ union all select '-1' as key,'无' as value from xtb_xtcs where lower(csmc) = 'sys_date' ) t</select> 
+    <select id="dn1.zxllgl_MSQL4SELECT_cpmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select cpdh as key, cpmc as value FROM CSB_CPXZ WHERE 1=1 and jxdxlx = $jxdxlx$ and '$ywlx$'= ywlx</select>  
+    <select id="dn1.zxllgl_MSQL4SELECT_qxmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select key , value from ( select qxdh as key, qxmc as value FROM CSB_QXSDB WHERE 1=1 AND JXDXLX = $jxdxlx$ union all select '-1' as key,'无' as value from xtb_xtcs where lower(csmc) = 'sys_date' ) t</select> 
   </sqlMap>  
   <javascript> 
     <import>parent.addTab('zxlldr','执行利率管理','/module/parser/import/visitHtml/zxlldr');</import>  

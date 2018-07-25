@@ -118,7 +118,7 @@
     <col id="ZB" title="占比(%)" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.hyhgfx"> 
-    <select id="dn0.hyhgfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.hyhgfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="yjlx" compareValue="fxzb">select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,fxzb.zbmc,yjzb.zbz, case when (sum(yjzb.zbz) over(partition by fxzb.zbmc))=0 then 100 else cast (yjzb.zbz/(sum(yjzb.zbz) over(partition by fxzb.zbmc))*100 as decimal(19,2)) end as zb , bz.bzzwmc as bz, dmms_sdbs.dmms as sdbs from khdx_hy hy inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,$jgkhdxdh$)) qx on hy.khdxdh=qx.khdxdh inner join khdx_hylb lb on hy.khdxdh=lb.khdxdh 
         <isNotEmpty property="tjrq">and $tjrq$ between lb.qsrq and lb.jsrq</isNotEmpty> inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
@@ -138,7 +138,7 @@
         <isNotEmpty property="hylb">and lb.lbdh='$hylb$'</isNotEmpty> order by yjzb.zbz desc,khzb.zbpx
       </isEqual> 
     </select>  
-    <select id="dn0.hyhgfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.hyhgfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="yjlx" compareValue="fxzb">select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,fxzb.zbmc,yjzb.zbz, case when (sum(yjzb.zbz) over(partition by fxzb.zbmc))=0 then 100 else cast (yjzb.zbz/(sum(yjzb.zbz) over(partition by fxzb.zbmc))*100 as decimal(19,2)) end as zb , bz.bzzwmc as bz, dmms_sdbs.dmms as sdbs from khdx_hy hy inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,$jgkhdxdh$)) qx on hy.khdxdh=qx.khdxdh inner join khdx_hylb lb on hy.khdxdh=lb.khdxdh 
         <isNotEmpty property="tjrq">and $tjrq$ between lb.qsrq and lb.jsrq</isNotEmpty> inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
@@ -158,8 +158,8 @@
         <isNotEmpty property="hylb">and lb.lbdh='$hylb$'</isNotEmpty> order by yjzb.zbz desc,khzb.zbpx
       </isEqual> ) t
     </select>  
-    <select id="dn0.hyhgfx_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_hylb order by 1</select>  
-    <select id="dn0.hyhgfx_MSQL4SELECT_khzb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khzbdh as KEY,khzbmc as VALUE from khfa_khzb_hy order by zbpx</select> 
+    <select id="dn1.hyhgfx_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_hylb order by 1</select>  
+    <select id="dn1.hyhgfx_MSQL4SELECT_khzb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khzbdh as KEY,khzbmc as VALUE from khfa_khzb_hy order by zbpx</select> 
   </sqlMap>  
   <finger custPlotMth="" id="hyhgfx_khzbjgj"> 
     <plotType>pie</plotType>  

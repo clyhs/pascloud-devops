@@ -18,10 +18,12 @@ import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.mversion.service.MVersionService;
 import com.pascloud.module.passervice.service.ConfigService;
 import com.pascloud.utils.DBUtils;
+import com.pascloud.utils.PasCloudCode;
 import com.pascloud.vo.common.TreeVo;
 import com.pascloud.vo.database.DBInfo;
 import com.pascloud.vo.mversion.MVersionTreeVo;
 import com.pascloud.vo.mversion.XtcdVo;
+import com.pascloud.vo.result.ResultCommon;
 
 @Controller
 @RequestMapping("module/mversion")
@@ -87,11 +89,159 @@ public class MVersionController extends BaseController {
         cds = m_mVersionService.getXtcdById(Id);
         result = buildTreeVo(cds,"0");
     	
-        Gson g = new Gson();
-		System.out.println(g.toJson(result));
+        //Gson g = new Gson();
+		//System.out.println(g.toJson(result));
         
     	return result;
     }
+	
+	/**
+	 * 添加资源菜单
+	 * @param request
+	 * @param Id
+	 * @param name
+	 * @param cdjb
+	 * @param url
+	 * @param version
+	 * @param pId
+	 * @return
+	 */
+	@RequestMapping("/addXtcd.json")
+	@ResponseBody
+    public ResultCommon	addXtcd(HttpServletRequest request,
+    		@RequestParam(value="Id",defaultValue="",required=true) String Id,
+    		@RequestParam(value="name",defaultValue="",required=true) String name,
+    		@RequestParam(value="cdjb",defaultValue="0",required=true) String cdjb,
+    		@RequestParam(value="url",defaultValue="",required=true) String url,
+    		@RequestParam(value="version",defaultValue="",required=true) String version,
+    		@RequestParam(value="pId",defaultValue="",required=true) Integer pId,
+    		@RequestParam(value="classid",defaultValue="",required=true) String classid){
+		ResultCommon result = null;
+		XtcdVo vo = new XtcdVo();
+		//INSERT INTO xtb_xtzycd(xmmc,xmdz,sjxm,cdjb,dzlx,classid,sfxs,imgurl,qxbs,version)
+		log.info("添加菜单资源开始");
+		if(name.length() <=0 || Id.length()<=0 || url.length()<=0 || version.length()<=0 || pId <0 || classid.length()<=0){
+			result = new ResultCommon(PasCloudCode.PARAMEXCEPTION);
+		}
+		
+		vo.setXmmc(name);
+		vo.setXmdz(url);
+		vo.setSjxm(pId);
+		vo.setCdjb(cdjb);
+		vo.setDzlx("1");
+		vo.setClassid(classid);
+		vo.setSfxs(0);
+		vo.setQxbs(0);
+		vo.setVersion(version);
+		vo.setImgurl("");
+		
+		result = m_mVersionService.addXtcd(vo, Id);
+        
+		log.info("添加菜单资源结束");
+    	return result;
+    }
+	
+	
+	@RequestMapping("/delXtcd.json")
+	@ResponseBody
+    public ResultCommon	delXtcd(HttpServletRequest request,
+    		@RequestParam(value="Id",defaultValue="",required=true) String Id,
+    		@RequestParam(value="xmdh",defaultValue="0",required=true) Integer xmdh){
+		ResultCommon result = null;
+		XtcdVo vo = new XtcdVo();
+		log.info("删除菜单资源开始");
+		if( xmdh <=0 || Id.length()<=0){
+			result = new ResultCommon(PasCloudCode.PARAMEXCEPTION);
+		}
+		vo.setXmdh(xmdh);
+		
+		result = m_mVersionService.delXtcd(vo, Id);
+        
+		log.info("删除菜单资源结束");
+    	return result;
+    }
+	
+	
+	@RequestMapping("/changeXtcdSfxs.json")
+	@ResponseBody
+    public ResultCommon	changeXtcdSfxs(HttpServletRequest request,
+    		@RequestParam(value="Id",defaultValue="",required=true) String Id,
+    		@RequestParam(value="xmdh",defaultValue="0",required=true) Integer xmdh,
+    		@RequestParam(value="sfxs",defaultValue="0",required=true) Integer sfxs){
+		ResultCommon result = null;
+		XtcdVo vo = new XtcdVo();
+		log.info("改变菜单资源显示方式 开始");
+		if( xmdh <=0 || Id.length()<=0){
+			result = new ResultCommon(PasCloudCode.PARAMEXCEPTION);
+		}
+		vo.setXmdh(xmdh);
+		vo.setSfxs(sfxs);
+		
+		result = m_mVersionService.changeXtcdStatus(vo, Id);
+        
+		log.info("改变菜单资源显示方式 结束");
+    	return result;
+    }
+	
+	@RequestMapping("/setCDToTenant.json")
+	@ResponseBody
+    public ResultCommon	setCDToTenant(HttpServletRequest request,
+    		@RequestParam(value="Id",defaultValue="",required=true) String Id,
+    		@RequestParam(value="tIds",defaultValue="",required=true) String tIds,
+    		@RequestParam(value="xmdh",defaultValue="0",required=true) Integer xmdh){
+		ResultCommon result = null;
+		XtcdVo vo = new XtcdVo();
+		XtcdVo vop= null;
+		log.info("分配菜单资源 开始");
+		if( xmdh <=0 || Id.length()<=0 || tIds.length()<=0){
+			result = new ResultCommon(PasCloudCode.PARAMEXCEPTION);
+			return result;
+		}
+		
+		vo.setXmdh(xmdh);
+		vop = m_mVersionService.getXtcdVoByXmdh(vo, Id);
+		if(null==vop){
+			result = new ResultCommon(PasCloudCode.ERROR);
+			return result;
+		}else{
+			
+			String[] Ids = tIds.split(",");
+			if(null!=Ids && Ids.length>0){
+				result = m_mVersionService.addXtcd(vop, Ids);
+			}else{
+				result = new ResultCommon(PasCloudCode.ERROR);
+			}
+			
+		}
+        
+		log.info("分配菜单资源结束");
+    	return result;
+    }
+	
+	@RequestMapping("/sysAllXtcdToTenant.json")
+	@ResponseBody
+    public ResultCommon	sysAllXtcdToTenant(HttpServletRequest request,
+    		@RequestParam(value="tIds",defaultValue="",required=true) String tIds){
+		ResultCommon result = null;
+		log.info("同步菜单资源 开始");
+		if( tIds.length()<=0){
+			result = new ResultCommon(PasCloudCode.PARAMEXCEPTION);
+			return result;
+		}
+
+		String[] Ids = tIds.split(",");
+		if(null!=Ids && Ids.length>0){
+			result = m_mVersionService.sysAllXtcdToTenant(Ids);
+		}else{
+			result = new ResultCommon(PasCloudCode.ERROR);
+		}
+			
+		
+        
+		log.info("同步菜单资源结束");
+    	return result;
+    }
+	
 	
 	private List<MVersionTreeVo> buildTreeVo(List<XtcdVo> cds,String parentId){
 		List<MVersionTreeVo> childtree = new ArrayList<MVersionTreeVo>(); 
@@ -107,6 +257,7 @@ public class MVersionController extends BaseController {
 				t.setText(cd.getXmmc());
 				t.setUrl(cd.getXmdz());
 				t.setLevel(cd.getCdjb());
+				t.setSfxs(cd.getSfxs());
 				
 				if(cd.getCdjb().equals("0") || cd.getCdjb().equals("1") || cd.getCdjb().equals("3")){
 					t.setVersion("#");
@@ -114,7 +265,7 @@ public class MVersionController extends BaseController {
 					if(null!=cd.getVersion()){
 						t.setVersion(cd.getVersion());
 					}else{
-						t.setVersion("1.0.0");
+						t.setVersion("1.0.0.0");
 					}
 				}
 				if(cd.getCdjb().endsWith("2")){

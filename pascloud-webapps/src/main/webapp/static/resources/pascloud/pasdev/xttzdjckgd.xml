@@ -31,29 +31,29 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.xttzdjckgd"> 
-    <select id="dn0.xttzdjckgdList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.xttzdjckgdList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select mx.sfzd,tz.tzdh,tz.tzrq,tz.bt,tzf.tzfmc,case when mx.sfyd='1' then '已读' else '未读' end sfyd from xtb_xttz tz inner join xtb_xttzfxxb tzf on tz.tzfid=tzf.tzfid inner join xtb_xttzmx mx on tz.tzdh=mx.tzdh where 1=1 
       <isNotEmpty property="login_khdxdh">and mx.khdxdh=$login_khdxdh$</isNotEmpty>  <![CDATA[and tz.zt='1' and $sysdate$ >= tz.tzrq
 order by mx.sfzd desc,mx.sfyd asc,tz.tzrq desc,tz.tzdh desc]]> 
     </select>  
-    <select id="dn0.xttzdjckgdCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.xttzdjckgdCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select mx.sfzd,tz.tzdh,tz.tzrq,tz.bt,tzf.tzfmc,case when mx.sfyd='1' then '已读' else '未读' end sfyd from xtb_xttz tz inner join xtb_xttzfxxb tzf on tz.tzfid=tzf.tzfid inner join xtb_xttzmx mx on tz.tzdh=mx.tzdh where 1=1 
       <isNotEmpty property="login_khdxdh">and mx.khdxdh=$login_khdxdh$</isNotEmpty>  <![CDATA[and tz.zt='1' and $sysdate$ >= tz.tzrq
 order by mx.sfzd desc,mx.sfyd asc,tz.tzrq desc,tz.tzdh desc]]> ) t
     </select>  
-    <select id="dn0.xttzdjckgd_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.xttzdjckgd_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select from where 1= 1
     </select>  
-    <select id="dn0.xttzdjckgd_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.xttzdjckgd_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select from where 1= 1
     </select>  
-    <insert id="dn0.xttzdjckgd_insert" parameterClass="java.util.Map"> 
+    <insert id="dn1.xttzdjckgd_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into ) values ()
     </insert>  
-    <update id="dn0.xttzdjckgd_update" parameterClass="java.util.Map"> 
+    <update id="dn1.xttzdjckgd_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update set where 1=1
     </update>  
-    <delete id="dn0.xttzdjckgd_delete" parameterClass="java.util.Map"> 
+    <delete id="dn1.xttzdjckgd_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from where 1=1
     </delete> 
   </sqlMap>  

@@ -552,31 +552,31 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.hyyjhgl"> 
-    <select id="dn0.hyyjhglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.hyyjhglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select yjh.khnf,yjh.khdxdh,'1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月', yjh.jhz1, yjh.lzz1,yjh.jhz2, yjh.lzz2,yjh.jhz3, yjh.lzz3,yjh.jhz4, yjh.lzz4,yjh.jhz5, yjh.lzz5,yjh.jhz6, yjh.lzz6, yjh.jhz7, yjh.lzz7,yjh.jhz8, yjh.lzz8,yjh.jhz9, yjh.lzz9,yjh.jhz10, yjh.lzz10,yjh.jhz11, yjh.lzz11,yjh.jhz12, yjh.lzz12, jg.khdxdh jgkhdxdh, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, hykhzb.khzbdh, hykhzb.khzbmc from khfa_khzb_hy hykhzb inner join yjzb_hyyjh yjh on hykhzb.khzbdh=yjh.khzbdh inner join khdx_hy hy on yjh.khdxdh=hy.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh=hy.khdxdh and jgcy.jsrq =29991231 inner join khdx_jg jg on jg.khdxdh=jgcy.jgkhdxdh inner join table(fn_getsjjg_java_qxhy($sysdate$, $login_khdxdh$, 0)) qx on qx.khdxdh=jgcy.khdxdh where 1=1 
       <isNotEmpty property="khnf">and yjh.khnf=$khnf$</isNotEmpty>  
       <isNotEmpty property="khzbdh">and hykhzb.khzbdh=$khzbdh$</isNotEmpty>  
       <isNotEmpty property="khdxdh">and yjh.khdxdh in ($khdxdh$)</isNotEmpty> order by hykhzb.zbpx
     </select>  
-    <select id="dn0.hyyjhglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.hyyjhglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select yjh.khnf,yjh.khdxdh,'1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月', yjh.jhz1, yjh.lzz1,yjh.jhz2, yjh.lzz2,yjh.jhz3, yjh.lzz3,yjh.jhz4, yjh.lzz4,yjh.jhz5, yjh.lzz5,yjh.jhz6, yjh.lzz6, yjh.jhz7, yjh.lzz7,yjh.jhz8, yjh.lzz8,yjh.jhz9, yjh.lzz9,yjh.jhz10, yjh.lzz10,yjh.jhz11, yjh.lzz11,yjh.jhz12, yjh.lzz12, jg.khdxdh jgkhdxdh, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, hykhzb.khzbdh, hykhzb.khzbmc from khfa_khzb_hy hykhzb inner join yjzb_hyyjh yjh on hykhzb.khzbdh=yjh.khzbdh inner join khdx_hy hy on yjh.khdxdh=hy.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh=hy.khdxdh and jgcy.jsrq =29991231 inner join khdx_jg jg on jg.khdxdh=jgcy.jgkhdxdh inner join table(fn_getsjjg_java_qxhy($sysdate$, $login_khdxdh$, 0)) qx on qx.khdxdh=jgcy.khdxdh where 1=1 
       <isNotEmpty property="khnf">and yjh.khnf=$khnf$</isNotEmpty>  
       <isNotEmpty property="khzbdh">and hykhzb.khzbdh=$khzbdh$</isNotEmpty>  
       <isNotEmpty property="khdxdh">and yjh.khdxdh in ($khdxdh$)</isNotEmpty> order by hykhzb.zbpx ) t
     </select>  
-    <select id="dn0.hyyjhgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.hyyjhgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select KHZBDH, LZZ12, KHNF, JHZ7, JHZ11, JHZ12, LZZ11, JHZ6, JHZ5, JHZ4, KHDXDH, JHZ9, LZZ10, JHZ8, JHZ10, JHZ3, JHZ2, JHZ1, LZZ7, LZZ6, LZZ5, LZZ4, LZZ9, LZZ8, LZZ3, LZZ2, LZZ1 from YJZB_HYYJH where 1= 1 and KHZBDH = $khzbdh$ and KHNF = $khnf$ and KHDXDH = $khdxdh$
     </select>  
-    <select id="dn0.hyyjhgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.hyyjhgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select KHZBDH, LZZ12, KHNF, JHZ7, JHZ11, JHZ12, LZZ11, JHZ6, JHZ5, JHZ4, KHDXDH, JHZ9, LZZ10, JHZ8, JHZ10, JHZ3, JHZ2, JHZ1, LZZ7, LZZ6, LZZ5, LZZ4, LZZ9, LZZ8, LZZ3, LZZ2, LZZ1 from YJZB_HYYJH where 1= 1 and KHZBDH = $KHZBDH$ and KHNF = $jgnjh_nf$ and KHDXDH = $khdxdh$
     </select>  
-    <insert id="dn0.hyyjhgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn1.hyyjhgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into YJZB_HYYJH( KHDXDH, KHZBDH, LZZ6, LZZ5, LZZ4, LZZ12, LZZ3, LZZ11, LZZ9, LZZ10, LZZ8, LZZ7, JHZ10, JHZ11, JHZ12, JHZ3, JHZ2, JHZ1, KHNF, JHZ9, JHZ8, JHZ7, JHZ6, LZZ1, JHZ5, JHZ4, LZZ2 ) values ( $khdxdh$,$KHZBDH$,$hyyjh_lzz6$,$hyyjh_lzz5$,$hyyjh_lzz4$,$hyyjh_lzz12$,$hyyjh_lzz3$,$hyyjh_lzz11$,$hyyjh_lzz9$,$hyyjh_lzz10$,$hyyjh_lzz8$,$hyyjh_lzz7$,$jgnjh_jhz10$,$jgnjh_jhz11$,$jgnjh_jhz12$,$jgnjh_jhz3$,$jgnjh_jhz2$,$jgnjh_jhz1$,$jgnjh_nf$,$jgnjh_jhz9$,$jgnjh_jhz8$,$jgnjh_jhz7$,$jgnjh_jhz6$,$hyyjh_lzz1$,$jgnjh_jhz5$,$jgnjh_jhz4$,$hyyjh_lzz2$)
     </insert>  
-    <update id="dn0.hyyjhgl_update" parameterClass="java.util.Map"> 
+    <update id="dn1.hyyjhgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update YJZB_HYYJH set LZZ6 = $hyyjh_lzz6$,LZZ5 = $hyyjh_lzz5$,LZZ4 = $hyyjh_lzz4$,LZZ12 = $hyyjh_lzz12$,LZZ3 = $hyyjh_lzz3$,LZZ11 = $hyyjh_lzz11$,LZZ9 = $hyyjh_lzz9$,LZZ10 = $hyyjh_lzz10$,LZZ8 = $hyyjh_lzz8$,LZZ7 = $hyyjh_lzz7$,JHZ10 = $jgnjh_jhz10$,JHZ11 = $jgnjh_jhz11$,JHZ12 = $jgnjh_jhz12$,JHZ3 = $jgnjh_jhz3$,JHZ2 = $jgnjh_jhz2$,JHZ1 = $jgnjh_jhz1$,JHZ9 = $jgnjh_jhz9$,JHZ8 = $jgnjh_jhz8$,JHZ7 = $jgnjh_jhz7$,JHZ6 = $jgnjh_jhz6$,LZZ1 = $hyyjh_lzz1$,JHZ5 = $jgnjh_jhz5$,JHZ4 = $jgnjh_jhz4$,LZZ2 = $hyyjh_lzz2$ where 1=1 and KHZBDH = $KHZBDH$ and KHNF = $jgnjh_nf$ and KHDXDH = $khdxdh$
     </update>  
-    <delete id="dn0.hyyjhgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn1.hyyjhgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from YJZB_HYYJH where 1=1 and KHZBDH = $khzbdh$ and KHNF = $khnf$ and KHDXDH = $khdxdh$
     </delete> 
   </sqlMap>  

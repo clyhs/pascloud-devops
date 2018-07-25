@@ -128,46 +128,46 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.ckzbj"> 
-    <select id="dn0.ckzbjList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.ckzbjList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select qsrq, jsrq, zbjl, zbjll, ftpll from csb_ckzbj zbj 
       <isNotEmpty property="tjrq">where $tjrq$ between qsrq and jsrq</isNotEmpty> order by qsrq desc
     </select>  
-    <select id="dn0.ckzbjCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.ckzbjCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select qsrq, jsrq, zbjl, zbjll, ftpll from csb_ckzbj zbj 
       <isNotEmpty property="tjrq">where $tjrq$ between qsrq and jsrq</isNotEmpty> order by qsrq desc ) t
     </select>  
-    <select id="dn0.ckzbj_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.ckzbj_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select ZBJLL, ZBJL, QSRQ, FTPLL, JSRQ from CSB_CKZBJ where 1= 1 and QSRQ = $qsrq$
     </select>  
-    <select id="dn0.ckzbj_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.ckzbj_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select ZBJLL, ZBJL, QSRQ, FTPLL, JSRQ from CSB_CKZBJ where 1= 1 and QSRQ = $qsrq$
     </select>  
-    <insert id="dn0.ckzbj_insert" parameterClass="java.util.Map"> 
+    <insert id="dn1.ckzbj_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into CSB_CKZBJ( ZBJLL, QSRQ, ZBJL, JSRQ, FTPLL ) values ( $zbjll$,$qsrq$,$zbjl$,$jsrq$,$ftpll$)
     </insert>  
-    <update id="dn0.ckzbj_update" parameterClass="java.util.Map"> 
+    <update id="dn1.ckzbj_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_CKZBJ set ZBJLL = $zbjll$,ZBJL = $zbjl$,FTPLL = $ftpll$ where 1=1 and QSRQ = $qsrq$
     </update>  
-    <delete id="dn0.ckzbj_delete" parameterClass="java.util.Map"> 
+    <delete id="dn1.ckzbj_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from CSB_CKZBJ where 1=1 and QSRQ = $qsrq$
     </delete>  
-    <delete id="dn0.ckzbj_check_itemAddDel" parameterClass="java.util.Map"> 
+    <delete id="dn1.ckzbj_check_itemAddDel" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[delete from CSB_CKZBJ where qsrq >=$qsrq$]]> 
     </delete>  
-    <update id="dn0.ckzbj_check_itemUP" parameterClass="java.util.Map"> 
+    <update id="dn1.ckzbj_check_itemUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_CKZBJ set jsrq=$qdate$ 
       <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty> 
     </update>  
-    <select id="dn0.ckzbj_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.ckzbj_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select max(qsrq) from CSB_CKZBJ where 1=1
     </select>  
-    <select id="dn0.ckzbj_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.ckzbj_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select  ZBJLL, ZBJL, QSRQ, FTPLL, JSRQ from CSB_CKZBJ where 1=1  and $qsrq$ > $maxqsrq$]]> 
     </select>  
-    <update id="dn0.ckzbj_check_itemDELUP" parameterClass="java.util.Map"> 
+    <update id="dn1.ckzbj_check_itemDELUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_CKZBJ set jsrq =29991231 where 1=1 and jsrq =$lastjsrq$
     </update>  
-    <select id="dn0.ckzbj_getMaxqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'</select> 
+    <select id="dn1.ckzbj_getMaxqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'</select> 
   </sqlMap>  
   <javascript> 
     <query>jQuery(document).ready(function () { }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; }</query>  

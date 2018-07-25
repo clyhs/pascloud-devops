@@ -364,7 +364,7 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.bldkqsjlgl"> 
-    <select id="dn0.bldkqsjlglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.bldkqsjlglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select bl.qsrq ,jg.JGDH,jg.JGMC,hy.HYDH,hy.HYMC,qx.qxmc,hy.khdxdh ,bl.zhdh,bl.zhhm,dmms1.dmms as WJFL,bl.yqrq, dmms2.dmms AS BLLX ,dmms3.dmms as QSFS,bl.shbj,bl.bjjtbl,bl.shlx, bl.lxjtbl,bl.jtgz,bl.bzsm from SGLR_BLDKQSMX bl inner join KHDX_HY hy on hy.KHDXDH=bl.khdxdh inner join khdx_jgcy jgcy on hy.KHDXDH=jgcy.khdxdh 
       <isNotEmpty property="qsjsrq">and $qsjsrq$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty> inner join KHDX_JG jg on jg.khdxdh=jgcy.jgkhdxdh left join CSB_DMMS dmms1 on dmms1.dmz=bl.wjfl and upper(dmms1.dmmc)='BLWJFL' left join CSB_DMMS dmms2 on dmms2.dmz=bl.bllx and upper(dmms2.dmmc)='BLLX' left join CSB_DMMS dmms3 on dmms3.dmz=bl.qsfs and upper(dmms3.dmmc)='QSFS' inner join csb_qxsdb qx on qx.jxdxlx = 2 and bl.dkqx between qx.qsqx and qx.jsqx 
       <isNotEmpty property="qsqsrq">where bl.qsrq between $qsqsrq$ and $qsjsrq$</isNotEmpty>  
@@ -375,7 +375,7 @@
       <isNotEmpty property="dkzh">and bl.zhdh like '%$dkzh$%'</isNotEmpty>  
       <isNotEmpty property="zhmc">and bl.zhhm like '%$zhmc$%'</isNotEmpty> 
     </select>  
-    <select id="dn0.bldkqsjlglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.bldkqsjlglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select bl.qsrq ,jg.JGDH,jg.JGMC,hy.HYDH,hy.HYMC,qx.qxmc,hy.khdxdh ,bl.zhdh,bl.zhhm,dmms1.dmms as WJFL,bl.yqrq, dmms2.dmms AS BLLX ,dmms3.dmms as QSFS,bl.shbj,bl.bjjtbl,bl.shlx, bl.lxjtbl,bl.jtgz,bl.bzsm from SGLR_BLDKQSMX bl inner join KHDX_HY hy on hy.KHDXDH=bl.khdxdh inner join khdx_jgcy jgcy on hy.KHDXDH=jgcy.khdxdh 
       <isNotEmpty property="qsjsrq">and $qsjsrq$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty> inner join KHDX_JG jg on jg.khdxdh=jgcy.jgkhdxdh left join CSB_DMMS dmms1 on dmms1.dmz=bl.wjfl and upper(dmms1.dmmc)='BLWJFL' left join CSB_DMMS dmms2 on dmms2.dmz=bl.bllx and upper(dmms2.dmmc)='BLLX' left join CSB_DMMS dmms3 on dmms3.dmz=bl.qsfs and upper(dmms3.dmmc)='QSFS' inner join csb_qxsdb qx on qx.jxdxlx = 2 and bl.dkqx between qx.qsqx and qx.jsqx 
       <isNotEmpty property="qsqsrq">where bl.qsrq between $qsqsrq$ and $qsjsrq$</isNotEmpty>  
@@ -386,23 +386,23 @@
       <isNotEmpty property="dkzh">and bl.zhdh like '%$dkzh$%'</isNotEmpty>  
       <isNotEmpty property="zhmc">and bl.zhhm like '%$zhmc$%'</isNotEmpty> ) t
     </select>  
-    <select id="dn0.bldkqsjlgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.bldkqsjlgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select BLLX, JTGZ, SHLX, WJFL, KHDXDH, SHBJ, BZSM, YQRQ, LXJTBL, CZR, QSFS, ZHHM, QSRQ,F_TIMETOCHAR(CZSJ,'yyyy-mm-dd hh24:mi:ss') as CZSJ, ZHDH, DKQX, BJJTBL from SGLR_BLDKQSMX where 1= 1 and KHDXDH = $khdxdh$ and QSRQ = $qsrq$ and ZHDH = '$zhdh$'
     </select>  
-    <select id="dn0.bldkqsjlgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.bldkqsjlgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select BLLX, JTGZ, SHLX, WJFL, KHDXDH, SHBJ, BZSM, YQRQ, LXJTBL, CZR, QSFS, ZHHM, QSRQ,F_TIMETOCHAR(CZSJ,'yyyy-mm-dd hh24:mi:ss') as CZSJ, ZHDH, DKQX, BJJTBL from SGLR_BLDKQSMX where 1= 1 and KHDXDH = $khdxdh$ and QSRQ = $qsrq$ and ZHDH = '$zhdh$'
     </select>  
-    <insert id="dn0.bldkqsjlgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn1.bldkqsjlgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into SGLR_BLDKQSMX( LXJTBL, ZHHM, KHDXDH, BJJTBL, QSRQ, CZR, ZHDH, DKQX, SHLX, JTGZ, WJFL, BLLX, SHBJ, YQRQ, CZSJ, QSFS, BZSM ) values ( $lxjtbl$,'$zhhm$',$khdxdh$,$bjjtbl$,$qsrq$,'$CZR$','$zhdh$','$dkqx$',$shlx$,$jtgz$,'$BLWJFL$','$bllx$',$shbj$,$yqrq$,f_get_timestamp('$CZSJ$'),'$qsfs$','$bzsm$')
     </insert>  
-    <update id="dn0.bldkqsjlgl_update" parameterClass="java.util.Map"> 
+    <update id="dn1.bldkqsjlgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update SGLR_BLDKQSMX set LXJTBL = $lxjtbl$,ZHHM = '$zhhm$',BJJTBL = $bjjtbl$,DKQX = '$dkqx$',SHLX = $shlx$,JTGZ = $jtgz$,WJFL = '$BLWJFL$',BLLX = '$bllx$',SHBJ = $shbj$,YQRQ = $yqrq$,QSFS = '$qsfs$',BZSM = '$bzsm$' where 1=1 and KHDXDH = $khdxdh$ and QSRQ = $qsrq$ and ZHDH = '$zhdh$'
     </update>  
-    <delete id="dn0.bldkqsjlgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn1.bldkqsjlgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from SGLR_BLDKQSMX where 1=1 and KHDXDH = $khdxdh$ and QSRQ = $qsrq$ and ZHDH = '$zhdh$'
     </delete>  
-    <select id="dn0.bldkqsjlgl_checkzhdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select 1 from jxdx_dkzh zh where 1=1 and zh.zhdh='$zhdh$'</select>  
-    <select id="dn0.bldkqsjlgl_MSQL4SELECT_dkqx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select qxdh as key,qxmc as value from csb_qxsdb where JXDXLX=2</select> 
+    <select id="dn1.bldkqsjlgl_checkzhdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select 1 from jxdx_dkzh zh where 1=1 and zh.zhdh='$zhdh$'</select>  
+    <select id="dn1.bldkqsjlgl_MSQL4SELECT_dkqx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select qxdh as key,qxmc as value from csb_qxsdb where JXDXLX=2</select> 
   </sqlMap>  
   <javascript> 
     <import>parent.addTab('bldkqsjlgldr','不良贷款清收奖励管理','/module/parser/import/visitHtml/bldkqsjlgldr');</import>  

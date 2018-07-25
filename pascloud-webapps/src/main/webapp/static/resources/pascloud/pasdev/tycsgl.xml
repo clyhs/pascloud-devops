@@ -184,53 +184,53 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.tycsgl"> 
-    <select id="dn0.tycsglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.tycsglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select cslxms.dmz as cslx,cslxms.dmms as cslxmc, csms.dmz as csmc,csms.dmms as csmcmc,cs.qsrq , cs.jsrq,cs.csz from csb_lrcs cs inner join csb_dmms cslxms on trim(cslxms.dmmc) = 'LRCSLX' and cslxms.dmz = cs.cslx inner join csb_dmms csms on trim(csms.dmmc)=trim(cs.cslx) and csms.dmz = trim(cs.csmc) where 1=1 
       <isNotEmpty property="cslx">and cslxms.dmz like '$cslx$'</isNotEmpty>  
       <isNotEmpty property="csmc1">and csms.dmz like '$csmc1$'</isNotEmpty> order by cs.cslx,cs.csmc,cs.qsrq
     </select>  
-    <select id="dn0.tycsglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.tycsglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select cslxms.dmz as cslx,cslxms.dmms as cslxmc, csms.dmz as csmc,csms.dmms as csmcmc,cs.qsrq , cs.jsrq,cs.csz from csb_lrcs cs inner join csb_dmms cslxms on trim(cslxms.dmmc) = 'LRCSLX' and cslxms.dmz = cs.cslx inner join csb_dmms csms on trim(csms.dmmc)=trim(cs.cslx) and csms.dmz = trim(cs.csmc) where 1=1 
       <isNotEmpty property="cslx">and cslxms.dmz like '$cslx$'</isNotEmpty>  
       <isNotEmpty property="csmc1">and csms.dmz like '$csmc1$'</isNotEmpty> order by cs.cslx,cs.csmc,cs.qsrq ) t
     </select>  
-    <select id="dn0.tycsgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.tycsgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select QSRQ, JSRQ, CSMC, CSLX, CSZ from CSB_LRCS where 1= 1 and QSRQ = $qsrq$ and CSMC = '$csmc$' and CSLX = '$cslx$'
     </select>  
-    <select id="dn0.tycsgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.tycsgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select QSRQ, JSRQ, CSMC, CSLX, CSZ from CSB_LRCS where 1= 1 and QSRQ = $qsrq$ and CSMC = '$csmc$' and CSLX = '$cslx$'
     </select>  
-    <insert id="dn0.tycsgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn1.tycsgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into CSB_LRCS( CSZ, CSMC, QSRQ, CSLX, JSRQ ) values ( $csz$,'$csmc$',$qsrq$,'$cslx$',$jsrq$)
     </insert>  
-    <update id="dn0.tycsgl_update" parameterClass="java.util.Map"> 
+    <update id="dn1.tycsgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_LRCS set CSZ = $csz$ where 1=1 and QSRQ = $qsrq$ and CSMC = '$csmc$' and CSLX = '$cslx$'
     </update>  
-    <delete id="dn0.tycsgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn1.tycsgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from CSB_LRCS where 1=1 and QSRQ = $qsrq$ and CSMC = '$csmc$' and CSLX = '$cslx$'
     </delete>  
-    <delete id="dn0.tycsgl_check_itemAddDel" parameterClass="java.util.Map"> 
+    <delete id="dn1.tycsgl_check_itemAddDel" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[delete from CSB_LRCS where qsrq >=$qsrq$  and CSMC = '$csmc$' and CSLX = '$cslx$']]> 
     </delete>  
-    <update id="dn0.tycsgl_check_itemUP" parameterClass="java.util.Map"> 
+    <update id="dn1.tycsgl_check_itemUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_LRCS set jsrq=$qdate$ 
       <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty> and CSMC = '$csmc$' and CSLX = '$cslx$'
     </update>  
-    <select id="dn0.tycsgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.tycsgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select max(qsrq) from CSB_LRCS where 1=1 and CSMC = '$csmc$' and CSLX = '$cslx$'
     </select>  
-    <select id="dn0.tycsgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.tycsgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select  QSRQ, JSRQ, CSMC, CSLX, CSZ from CSB_LRCS where 1=1  and CSMC = '$csmc$' and CSLX = '$cslx$' and $qsrq$ > $maxqsrq$]]> 
     </select>  
-    <update id="dn0.tycsgl_check_itemDELUP" parameterClass="java.util.Map"> 
+    <update id="dn1.tycsgl_check_itemDELUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_LRCS set jsrq =29991231 where 1=1 and CSMC = '$csmc$' and CSLX = '$cslx$' and jsrq =$lastjsrq$
     </update>  
-    <select id="dn0.tycsgl_getMaxqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'</select>  
-    <select id="dn0.tycsgl_MSQL4SELECT_cslx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc='LRCSLX'</select>  
-    <select id="dn0.tycsgl_MSQL4SELECT_csmc1" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select ' ' as key, '全部' as value from pas_vt union all select a.dmz as key,a.dmms as value from csb_dmms a where a.dmmc in ( select dmz as key from csb_dmms where dmmc='LRCSLX') 
+    <select id="dn1.tycsgl_getMaxqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'</select>  
+    <select id="dn1.tycsgl_MSQL4SELECT_cslx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc='LRCSLX'</select>  
+    <select id="dn1.tycsgl_MSQL4SELECT_csmc1" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select ' ' as key, '全部' as value from pas_vt union all select a.dmz as key,a.dmms as value from csb_dmms a where a.dmmc in ( select dmz as key from csb_dmms where dmmc='LRCSLX') 
       <isNotEmpty property="cslx">and a.dmmc='$cslx$'</isNotEmpty> 
     </select>  
-    <select id="dn0.tycsgl_MSQL4SELECT_csmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select a.dmz as key,a.dmms as value from csb_dmms a where a.dmmc in ( select dmz as key from csb_dmms where dmmc='LRCSLX') 
+    <select id="dn1.tycsgl_MSQL4SELECT_csmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select a.dmz as key,a.dmms as value from csb_dmms a where a.dmmc in ( select dmz as key from csb_dmms where dmmc='LRCSLX') 
       <isNotEmpty property="cslx">and a.dmmc='$cslx$'</isNotEmpty> 
     </select> 
   </sqlMap>  

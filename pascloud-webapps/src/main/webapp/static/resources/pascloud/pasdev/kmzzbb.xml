@@ -47,13 +47,13 @@
     <col id="KMYE" title="科目余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.kmzzbb"> 
-    <select id="dn0.kmzzbbList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.kmzzbbList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select kmzz.zzrq,kmzz.kmh,km.kmmc,kmzz.jgdh,jg.jgmc,bz.bzzwmc, kmzz.jffse,kmzz.dffse,kmzz.sqjfye,kmzz.sqdfye,kmzz.jfye,kmzz.dfye,kmzz.kmye from jxdx_kmzz_$tjrq_yyyy$ kmzz left join csb_km km on km.kmh=kmzz.kmh inner join khdx_jg jg on jg.jgdh=kmzz.jgdh left join csb_bz bz on kmzz.bz=bz.bz inner join table(fn_getsjjg_java_qx($tjrq$,$login_khdxdh$,$jgkhdxdh$)) qx on jg.khdxdh=qx.khdxdh where 1=1 
       <isNotEmpty property="tjrq">and kmzz.zzrq=$tjrq$</isNotEmpty>  
       <isNotEmpty property="kmh">and kmzz.kmh='$kmh$'</isNotEmpty>  
       <isNotEmpty property="kmmc">and km.kmmc like '%$kmmc$%'</isNotEmpty> order by kmzz.zzrq,kmzz.kmh,kmzz.jgdh
     </select>  
-    <select id="dn0.kmzzbbCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.kmzzbbCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select kmzz.zzrq,kmzz.kmh,km.kmmc,kmzz.jgdh,jg.jgmc,bz.bzzwmc, kmzz.jffse,kmzz.dffse,kmzz.sqjfye,kmzz.sqdfye,kmzz.jfye,kmzz.dfye,kmzz.kmye from jxdx_kmzz_$tjrq_yyyy$ kmzz left join csb_km km on km.kmh=kmzz.kmh inner join khdx_jg jg on jg.jgdh=kmzz.jgdh left join csb_bz bz on kmzz.bz=bz.bz inner join table(fn_getsjjg_java_qx($tjrq$,$login_khdxdh$,$jgkhdxdh$)) qx on jg.khdxdh=qx.khdxdh where 1=1 
       <isNotEmpty property="tjrq">and kmzz.zzrq=$tjrq$</isNotEmpty>  
       <isNotEmpty property="kmh">and kmzz.kmh='$kmh$'</isNotEmpty>  

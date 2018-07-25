@@ -115,30 +115,30 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.cystdkzhgl"> 
-    <select id="dn0.cystdkzhglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.cystdkzhglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select a.zhdh,b.zhhm,a.bzsm,a.zhkzsx from sglr_dkzhkzsx2 a inner join jxdx_dkzh b on a.zhdh=b.zhdh where a.zhkzsx='MZ' 
       <isNotEmpty property="zhdh">and a.zhdh like '%$zhdh$%'</isNotEmpty> order by a.zhdh
     </select>  
-    <select id="dn0.cystdkzhglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.cystdkzhglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select a.zhdh,b.zhhm,a.bzsm,a.zhkzsx from sglr_dkzhkzsx2 a inner join jxdx_dkzh b on a.zhdh=b.zhdh where a.zhkzsx='MZ' 
       <isNotEmpty property="zhdh">and a.zhdh like '%$zhdh$%'</isNotEmpty> order by a.zhdh ) t
     </select>  
-    <select id="dn0.cystdkzhgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.cystdkzhgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select BZSM, ZHKZSX, CZSJ, CZR, SXZ, ZHDH from SGLR_DKZHKZSX2 where 1= 1 and ZHKZSX = '$zhkzsx$' and ZHDH = '$zhdh$'
     </select>  
-    <select id="dn0.cystdkzhgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.cystdkzhgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select BZSM, ZHKZSX, CZSJ, CZR, SXZ, ZHDH from SGLR_DKZHKZSX2 where 1= 1 and ZHKZSX = '$zhkzsx$' and ZHDH = '$zhdh$'
     </select>  
-    <insert id="dn0.cystdkzhgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn1.cystdkzhgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into SGLR_DKZHKZSX2( CZSJ, SXZ, CZR, ZHDH, ZHKZSX, BZSM ) values ( f_get_timestamp('$czsj$'),'$sxz$','$czr$','$zhdh$','$zhkzsx$','$bzsm$')
     </insert>  
-    <update id="dn0.cystdkzhgl_update" parameterClass="java.util.Map"> 
+    <update id="dn1.cystdkzhgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update SGLR_DKZHKZSX2 set BZSM = '$bzsm$' where 1=1 and ZHKZSX = '$zhkzsx$' and ZHDH = '$zhdh$'
     </update>  
-    <delete id="dn0.cystdkzhgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn1.cystdkzhgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from SGLR_DKZHKZSX2 where 1=1 and ZHKZSX = '$zhkzsx$' and ZHDH = '$zhdh$'
     </delete>  
-    <select id="dn0.cystdkzhgl_checkzhdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select 1 from jxdx_dkzh zh where 1=1 and zh.zhdh='$zhdh$'</select> 
+    <select id="dn1.cystdkzhgl_checkzhdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select 1 from jxdx_dkzh zh where 1=1 and zh.zhdh='$zhdh$'</select> 
   </sqlMap>  
   <javascript> 
     <import>parent.addTab('cystdkzhgldr','参与社团贷款账户管理','/module/parser/import/visitHtml/cystdkzhgldr');</import>  

@@ -537,6 +537,7 @@ public class TenantController extends BaseController {
 				}
 			}
 			if(null!=dn0){
+
 				String driverClass = DBUtils.getDirverClassName(dn0.getDbType());
 				DBUtils db = new DBUtils(driverClass, dn0.getUrl(), dn0.getUsername(), dn0.getPassword());
 				conn = db.getConnection();

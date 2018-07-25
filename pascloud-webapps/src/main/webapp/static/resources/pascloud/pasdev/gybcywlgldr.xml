@@ -130,73 +130,73 @@
     <after/> 
   </flow>  
   <sqlMap namespace="studio.gybcywlgldr"> 
-    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_check_hydh_0"> 
+    <update parameterClass="java.util.Map" id="dn1.gybcywlgldr_check_hydh_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update gybcywlgldr_temp t set t.error=t.error||'行员代号输入错误，不能为空!' where f_java_rule_length(t.hydh)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_check_hydh_1"> 
+    <update parameterClass="java.util.Map" id="dn1.gybcywlgldr_check_hydh_1"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update gybcywlgldr_temp t set t.error=t.error||'行员代号不存在!' where not exists(select 1 from khdx_hy h where rtrim(t.hydh)=rtrim(h.hydh)) and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_check_bzsm_2"> 
+    <update parameterClass="java.util.Map" id="dn1.gybcywlgldr_check_bzsm_2"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update gybcywlgldr_temp t set t.error=t.error||'备注说明输入错误，长度不能超过:200!' where f_java_rule_length(t.bzsm)&gt;200 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_check_bzsm_3"> 
+    <update parameterClass="java.util.Map" id="dn1.gybcywlgldr_check_bzsm_3"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update gybcywlgldr_temp t set t.error=t.error||'备注说明输入错误，存在特殊字符!' where exists(select 1 from csb_tszf ts where F_EXISTS_SUM(ts.tszfmc,t.bzsm)&gt;0 and ts.zt='0') and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_check_tjrq_4"> 
+    <update parameterClass="java.util.Map" id="dn1.gybcywlgldr_check_tjrq_4"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update gybcywlgldr_temp t set t.error=t.error||'统计年月输入错误，格式应该是:yyyyMM!' where f_java_rule_date(t.tjrq,'yyyyMM')=1 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_check_bcywl_5"> 
+    <update parameterClass="java.util.Map" id="dn1.gybcywlgldr_check_bcywl_5"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update gybcywlgldr_temp t set t.error=t.error||'分配补偿业务量输入错误，只能输入:21位整数,2位小数!' where f_java_rule_length(t.bcywl)&gt;0 and f_java_rule_number(t.bcywl,21,2)=1 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_check_bcywl_6"> 
+    <update parameterClass="java.util.Map" id="dn1.gybcywlgldr_check_bcywl_6"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update gybcywlgldr_temp t set t.error=t.error||'分配补偿业务量输入错误，不能为空!' where f_java_rule_length(t.bcywl)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_checkupdate_tjrq_0"> 
+    <update parameterClass="java.util.Map" id="dn1.gybcywlgldr_checkupdate_tjrq_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update gybcywlgldr_temp t set t.tjrq=(select sjw.ym from csb_sjw sjw where sjw.tjrq=cast(t.tjrq||'01' as integer)) where t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_checkupdate_tjrq_1"> 
+    <update parameterClass="java.util.Map" id="dn1.gybcywlgldr_checkupdate_tjrq_1"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update gybcywlgldr_temp t set t.error=t.error||'起始日期不能小于(系统日期-重跑天数)'||(select f_change_days(cast(rq.csz as integer ),-cast(cs.csz as integer )) from xtb_xtcs rq,xtb_xtcs cs where rq.csmc='SYS_DATE' and cs.csmc='SYS_CSTS')||'！' where cast(t.tjrq as integer)&lt;(select f_change_days(cast(rq.csz as integer ),-cast(cs.csz as integer )) from xtb_xtcs rq,xtb_xtcs cs where rq.csmc='SYS_DATE' and cs.csmc='SYS_CSTS') and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_checkupdate_bcywl_0"> 
+    <update parameterClass="java.util.Map" id="dn1.gybcywlgldr_checkupdate_bcywl_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update gybcywlgldr_temp temp set error=error||'柜员补偿业务量汇总必须小于等于该机构补偿业务量' where exists( select 1 from ( select distinct t.tjrq as tjrq,jgcy.jgkhdxdh,(coalesce(jgywl.bcywl,0)) as bcywl from gybcywlgldr_temp t inner join khdx_hy hy on hy.hydh=t.hydh inner join khdx_jgcy jgcy on jgcy.khdxdh=hy.khdxdh and t.tjrq between jgcy.qsrq and jgcy.jsrq left join nbzz_jgkh_ywl jgywl on jgywl.khdxdh=jgcy.jgkhdxdh and jgywl.tjrq=t.tjrq where t.khdxdh=$login_khdxdh$ ) a inner join ( select tjrq,jgkhdxdh,sum(bcywl) as bcywl from( select t.tjrq as tjrq,jgcy.jgkhdxdh,sum(t.bcywl) as bcywl from gybcywlgldr_temp t inner join khdx_hy hy on hy.hydh=t.hydh inner join khdx_jgcy jgcy on jgcy.khdxdh=hy.khdxdh and t.tjrq between jgcy.qsrq and jgcy.jsrq where t.khdxdh=$login_khdxdh$ group by t.tjrq,jgcy.jgkhdxdh union all select cast(sg.tjrq as char(8)) as tjrq,jgcy.jgkhdxdh,sum(sg.bcywl) as bcywl from sgdr_gybcywl sg inner join khdx_jgcy jgcy on jgcy.khdxdh=sg.khdxdh and sg.tjrq between jgcy.qsrq and jgcy.jsrq where not exists( select 1 from gybcywlgldr_temp t inner join khdx_hy hy on hy.hydh=t.hydh where t.khdxdh=$login_khdxdh$ and hy.khdxdh=sg.khdxdh and t.tjrq=sg.tjrq ) group by sg.tjrq,jgcy.jgkhdxdh ) group by tjrq,jgkhdxdh ) b on a.tjrq=b.tjrq and a.jgkhdxdh=b.jgkhdxdh and b.bcywl&gt;a.bcywl inner join khdx_jgcy jgcy on jgcy.jgkhdxdh=a.jgkhdxdh and a.tjrq between jgcy.qsrq and jgcy.jsrq inner join khdx_hy hy on hy.khdxdh=jgcy.khdxdh where a.tjrq=temp.tjrq and hy.hydh=temp.hydh ) and temp.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_exists_target"> 
+    <update parameterClass="java.util.Map" id="dn1.gybcywlgldr_exists_target"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update gybcywlgldr_temp t set t.error=t.error||'数据已存在!' where exists(select 1 from SGDR_GYBCYWL tar ,KHDX_HY KHDX_HY0 where 1=1 and cast(t.tjrq as INTEGER)=tar.TJRQ and t.hydh=KHDX_HY0.HYDH and KHDX_HY0.KHDXDH=tar.KHDXDH and t.khdxdh=$login_khdxdh$ and (length(t.error)=0 or t.error is null ))
     </update>  
-    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_exists_same_temp"> 
+    <update parameterClass="java.util.Map" id="dn1.gybcywlgldr_exists_same_temp"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update gybcywlgldr_temp t set t.error=error||'存在重复数据!' where exists( select 1 from (select tjrq,hydh from gybcywlgldr_temp dr where khdxdh=$login_khdxdh$ group by tjrq,hydh having count(1)<![CDATA[>]]>1 ) dr where 1=1 and t.tjrq=dr.tjrq and t.hydh=dr.hydh) and khdxdh=$login_khdxdh$
     </update>  
-    <insert parameterClass="java.util.Map" id="dn0.gybcywlgldr_create_lsb"> 
+    <insert parameterClass="java.util.Map" id="dn1.gybcywlgldr_create_lsb"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> CREATE TABLE gybcywlgldr_temp ( tjrq varchar(100) , hydh varchar(100) , hymc varchar(100) , jgbcywl varchar(100) , bcywl varchar(100) , bzsm varchar(100) , khdxdh integer,error varchar(1000) )
     </insert>  
-    <delete parameterClass="java.util.Map" id="dn0.gybcywlgldr_delete_lsb"> 
+    <delete parameterClass="java.util.Map" id="dn1.gybcywlgldr_delete_lsb"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from gybcywlgldr_temp where khdxdh=$login_khdxdh$
     </delete>  
-    <insert parameterClass="java.util.Map" id="dn0.gybcywlgldr_insert_into_lsb"> 
+    <insert parameterClass="java.util.Map" id="dn1.gybcywlgldr_insert_into_lsb"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into GYBCYWLGLDR_TEMP (tjrq,hydh,hymc,jgbcywl,bcywl,bzsm,khdxdh,error) values(?,?,?,?,?,?,?,?)
     </insert>  
-    <select parameterClass="java.util.Map" id="dn0.gybcywlgldr_exists_error_msg" resultClass="java.lang.Integer"> 
+    <select parameterClass="java.util.Map" id="dn1.gybcywlgldr_exists_error_msg" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from gybcywlgldr_temp where length(error) <![CDATA[>]]> 0 and khdxdh = $login_khdxdh$
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn0.gybcywlgldr_exists_same_data"> 
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn1.gybcywlgldr_exists_same_data"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from gybcywlgldr_temp where length(error) <![CDATA[>]]> 0 and error != '数据已存在!' and khdxdh = $login_khdxdh$
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn0.gybcywlgldr_select_error_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn1.gybcywlgldr_select_error_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/cancel.jpg" border="0"/<![CDATA[>]]>' as zt, tjrq,hydh,hymc,jgbcywl,bcywl,bzsm,khdxdh,error from gybcywlgldr_temp where khdxdh=$login_khdxdh$ and length(error)<![CDATA[>]]>0
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn0.gybcywlgldr_count_all_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn1.gybcywlgldr_count_all_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, tjrq,hydh,hymc,jgbcywl,bcywl,bzsm,khdxdh,error from gybcywlgldr_temp where khdxdh=$login_khdxdh$ )a
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn0.gybcywlgldr_select_all_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn1.gybcywlgldr_select_all_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, tjrq,hydh,hymc,jgbcywl,bcywl,bzsm,khdxdh,error from gybcywlgldr_temp where khdxdh=$login_khdxdh$
     </select>  
-    <insert parameterClass="java.util.Map" id="dn0.gybcywlgldr_insert_into_target"> 
+    <insert parameterClass="java.util.Map" id="dn1.gybcywlgldr_insert_into_target"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into SGDR_GYBCYWL(TJRQ,KHDXDH,BCYWL,BZSM,CZR,CZSJ) select cast (t.tjrq as INTEGER),KHDX_HY0.KHDXDH,cast (t.bcywl as DECIMAL(25,4)), t.bzsm ,$login_khdxdh$,F_GET_SYSTIME() from gybcywlgldr_temp t ,KHDX_HY KHDX_HY0 where t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null) and KHDX_HY0.HYDH=cast (t.hydh as VARCHAR(20))
     </insert>  
-    <delete parameterClass="java.util.Map" id="dn0.gybcywlgldr_delete_before_override"> 
+    <delete parameterClass="java.util.Map" id="dn1.gybcywlgldr_delete_before_override"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from SGDR_GYBCYWL tar where exists(select 1 from gybcywlgldr_temp t ,KHDX_HY KHDX_HY0 where 1=1 and cast(t.tjrq as INTEGER)=tar.TJRQ and t.hydh=KHDX_HY0.HYDH and KHDX_HY0.KHDXDH=tar.KHDXDH and t.khdxdh=$login_khdxdh$ )
     </delete>  
-    <select id="dn0.gybcywlgldr_select_template_data" parameterClass="java.util.Map" remapResults="true" resultClass="java.util.LinkedHashMap"> 
+    <select id="dn1.gybcywlgldr_select_template_data" parameterClass="java.util.Map" remapResults="true" resultClass="java.util.LinkedHashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select $tjrq$ as tjrq,hy.hydh,hy.hymc,cast(coalesce(jgbcywl.bcywl,0) as decimal(25,2)) as jgbcywl, cast(coalesce(sgdr.bcywl,0) as decimal(25,2)) as bcywl,sgdr.bzsm from khdx_jgcy jgcy inner join khdx_hy hy on hy.khdxdh=jgcy.khdxdh inner join csb_sjw sjw on 1=1 
       <isNotEmpty property="tjrq">and sjw.tjrq=$tjrq$01</isNotEmpty> left join sgdr_gybcywl sgdr on sgdr.khdxdh=hy.khdxdh and sgdr.tjrq=sjw.ym left join nbzz_jgkh_ywl jgbcywl on jgbcywl.khdxdh=jgcy.jgkhdxdh and jgbcywl.tjrq=sjw.ym where 1=1 
       <isNotEmpty property="jgkhdxdh">and jgcy.jgkhdxdh=$jgkhdxdh$</isNotEmpty> and sjw.ym between jgcy.qsrq and jgcy.jsrq order by sgdr.bcywl desc

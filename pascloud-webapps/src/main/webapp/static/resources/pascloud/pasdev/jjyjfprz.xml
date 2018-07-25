@@ -78,7 +78,7 @@
     <col id="QYRQ" title="签约日期" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.jjyjfprz"> 
-    <select id="dn0.jjyjfprzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.jjyjfprzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="cxfs" compareValue="1">SELECT F_TIMETOCHAR(GXRZ.JLSJ,'yyyy/mm/dd hh24:mi:ss') JLSJ, czy.hymc as xgry, case when gxjl.ggbz='0' then '旧数据' else '修改后' end as jlbz , case when gxrz.czlx='01' then '新增'when gxrz.czlx='02' then '修改' else '删除' end as czlx, jxdx.JJZH, jxdx.khh, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, gxjl.QSRQ, gxjl.jsrq, '百分比:' || F_NumToChar(gxjl.zlbl) as fpgx, jg1.jgmc as qyjg, jxdx.QYRQ from xtb_hygxrz_jj gxrz inner join xtb_hygxjl_jj gxjl on gxrz.jldh=gxjl.jldh inner join khdx_hy hy on hy.khdxdh=gxjl.KHDXDH inner join khdx_jgcy cy on cy.khdxdh=hy.khdxdh
         <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh=cy.jgkhdxdh 
@@ -93,7 +93,7 @@
         <isNotEmpty property="khh">and jxdx.KHH like '%$khh$%'</isNotEmpty> order by gxrz.jlsj desc,jxdx.KHH, gxjl.jldh, gxjl.ggbz asc
       </isEqual> 
     </select>  
-    <select id="dn0.jjyjfprzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.jjyjfprzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="cxfs" compareValue="1">SELECT F_TIMETOCHAR(GXRZ.JLSJ,'yyyy/mm/dd hh24:mi:ss') JLSJ, czy.hymc as xgry, case when gxjl.ggbz='0' then '旧数据' else '修改后' end as jlbz , case when gxrz.czlx='01' then '新增'when gxrz.czlx='02' then '修改' else '删除' end as czlx, jxdx.JJZH, jxdx.khh, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, gxjl.QSRQ, gxjl.jsrq, '百分比:' || F_NumToChar(gxjl.zlbl) as fpgx, jg1.jgmc as qyjg, jxdx.QYRQ from xtb_hygxrz_jj gxrz inner join xtb_hygxjl_jj gxjl on gxrz.jldh=gxjl.jldh inner join khdx_hy hy on hy.khdxdh=gxjl.KHDXDH inner join khdx_jgcy cy on cy.khdxdh=hy.khdxdh 
         <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh=cy.jgkhdxdh 

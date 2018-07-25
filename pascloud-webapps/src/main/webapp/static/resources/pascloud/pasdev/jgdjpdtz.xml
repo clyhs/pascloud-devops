@@ -235,37 +235,37 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.jgdjpdtz"> 
-    <select id="dn0.jgdjpdtzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.jgdjpdtzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select djpd_yyjg_jg.tjrq, djpd_yyjg_jg.khdxdh, djpd_yyjg_jg.bh, djpd_yyjg_jg.djpdmc olddjpdmc, khdx_jg.jgdh, khdx_jg.jgmc, jglb.lbmc jglb, dmms.dmms khzq, djpd_yyjg_jg.pm, djpd_yyjg_jg.dj olddj, djpd_yyjg_jg.jbmc oldjbmc, djpd_yyjg_jg.jlbz oldjlbz, djpd_yyjg_jg.pdlb oldpdlb, djpd_yyjg_jg.ms oldms from djpd_yyjg_jg djpd_yyjg_jg inner join khdx_jg khdx_jg on khdx_jg.khdxdh=djpd_yyjg_jg.khdxdh inner join csb_dmms dmms on upper(dmms.dmmc) = 'DJPDZQ' and dmms.dmz = djpd_yyjg_jg.pdzq inner join khdx_jglb jglb on djpd_yyjg_jg.khdxdh=jglb.khdxdh and djpd_yyjg_jg.tjrq between jglb.qsrq and jglb.jsrq inner join table(fn_getsjjg_java_qx($pdrq$, $login_khdxdh$, 0)) qx on qx.khdxdh = khdx_jg.khdxdh where 1=1 
       <isNotEmpty property="pdrq">and djpd_yyjg_jg.tjrq= $pdrq$</isNotEmpty>  
       <isNotEmpty property="jgkhdxdh">and khdx_jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>  
       <isNotEmpty property="djpdmc">and djpd_yyjg_jg.djpdmc = '$djpdmc$'</isNotEmpty> order by djpd_yyjg_jg.pm asc
     </select>  
-    <select id="dn0.jgdjpdtzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.jgdjpdtzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select djpd_yyjg_jg.tjrq, djpd_yyjg_jg.khdxdh, djpd_yyjg_jg.bh, djpd_yyjg_jg.djpdmc olddjpdmc, khdx_jg.jgdh, khdx_jg.jgmc, jglb.lbmc jglb, dmms.dmms khzq, djpd_yyjg_jg.pm, djpd_yyjg_jg.dj olddj, djpd_yyjg_jg.jbmc oldjbmc, djpd_yyjg_jg.jlbz oldjlbz, djpd_yyjg_jg.pdlb oldpdlb, djpd_yyjg_jg.ms oldms from djpd_yyjg_jg djpd_yyjg_jg inner join khdx_jg khdx_jg on khdx_jg.khdxdh=djpd_yyjg_jg.khdxdh inner join csb_dmms dmms on upper(dmms.dmmc) = 'DJPDZQ' and dmms.dmz = djpd_yyjg_jg.pdzq inner join khdx_jglb jglb on djpd_yyjg_jg.khdxdh=jglb.khdxdh and djpd_yyjg_jg.tjrq between jglb.qsrq and jglb.jsrq inner join table(fn_getsjjg_java_qx($pdrq$, $login_khdxdh$, 0)) qx on qx.khdxdh = khdx_jg.khdxdh where 1=1 
       <isNotEmpty property="pdrq">and djpd_yyjg_jg.tjrq= $pdrq$</isNotEmpty>  
       <isNotEmpty property="jgkhdxdh">and khdx_jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>  
       <isNotEmpty property="djpdmc">and djpd_yyjg_jg.djpdmc = '$djpdmc$'</isNotEmpty> order by djpd_yyjg_jg.pm asc ) t
     </select>  
-    <select id="dn0.jgdjpdtz_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.jgdjpdtz_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select JLBZ, PM, BH, JBMC, PDLB, KHDXDH, DJPDMC, PDZQ, TJRQ, MS, DJ from DJPD_YYJG_JG where 1= 1 and BH = $bh$ and KHDXDH = $khdxdh$ and TJRQ = $tjrq$
     </select>  
-    <select id="dn0.jgdjpdtz_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.jgdjpdtz_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select JLBZ, PM, BH, JBMC, PDLB, KHDXDH, DJPDMC, PDZQ, TJRQ, MS, DJ from DJPD_YYJG_JG where 1= 1 and BH = $BH$ and KHDXDH = $KHDXDH$ and TJRQ = $TJRQ$
     </select>  
-    <insert id="dn0.jgdjpdtz_insert" parameterClass="java.util.Map"> 
+    <insert id="dn1.jgdjpdtz_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into DJPD_YYJG_JG( KHDXDH, JBMC, JLBZ, DJ, TJRQ, BH, MS ) values ( $KHDXDH$,'$updateJbmc$',$updateJlbz$,$updateDj$,$TJRQ$,$BH$,'$oldms$')
     </insert>  
-    <update id="dn0.jgdjpdtz_update" parameterClass="java.util.Map"> 
+    <update id="dn1.jgdjpdtz_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update DJPD_YYJG_JG set JBMC = '$updateJbmc$',JLBZ = $updateJlbz$,DJ = $updateDj$,MS = '$oldms$' where 1=1 and BH = $BH$ and KHDXDH = $KHDXDH$ and TJRQ = $TJRQ$
     </update>  
-    <delete id="dn0.jgdjpdtz_delete" parameterClass="java.util.Map"> 
+    <delete id="dn1.jgdjpdtz_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from DJPD_YYJG_JG where 1=1 and BH = $bh$ and KHDXDH = $khdxdh$ and TJRQ = $tjrq$
     </delete>  
-    <select id="dn0.jgdjpdtz_getUpdateJlbz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select jlbz from djpd_dj where pdlb='$oldpdlb$' and dj=$tzdj$</select>  
-    <select id="dn0.jgdjpdtz_getUpdateJbmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select jbmc from djpd_dj where pdlb='$oldpdlb$' and dj=$tzdj$</select>  
-    <select id="dn0.jgdjpdtz_MSQL4SELECT_djpdmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select djpdmc as key,djpdmc as value from djpd_djbz where f_numtochar(pdnf) = substr(f_numtochar($pdrq$),1,4) and khdx='1'</select>  
-    <select id="dn0.jgdjpdtz_MSQL4SELECT_tzdj" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select -1 as key ,' ' as value from dual union all select dj as key,jbmc as value from djpd_dj where pdlb='$oldpdlb$'</select> 
+    <select id="dn1.jgdjpdtz_getUpdateJlbz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select jlbz from djpd_dj where pdlb='$oldpdlb$' and dj=$tzdj$</select>  
+    <select id="dn1.jgdjpdtz_getUpdateJbmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select jbmc from djpd_dj where pdlb='$oldpdlb$' and dj=$tzdj$</select>  
+    <select id="dn1.jgdjpdtz_MSQL4SELECT_djpdmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select djpdmc as key,djpdmc as value from djpd_djbz where f_numtochar(pdnf) = substr(f_numtochar($pdrq$),1,4) and khdx='1'</select>  
+    <select id="dn1.jgdjpdtz_MSQL4SELECT_tzdj" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select -1 as key ,' ' as value from dual union all select dj as key,jbmc as value from djpd_dj where pdlb='$oldpdlb$'</select> 
   </sqlMap>  
   <javascript> 
     <query>jQuery(document).ready(function () { $("#tool_bar").hide(); BindParent('djpdmc','pdrq','blur'); }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; } // 只显示调整按钮 function customFastLink($table,row){//this 对象绑定当前行的单元格 var edit = $('&lt;a class="operation_edit LIST_BAR" title="编辑"&gt;编辑&lt;/a&gt;'); this.append(edit); edit.click(function(){ showUpdateEdtiDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]); }); return true; }</query>  

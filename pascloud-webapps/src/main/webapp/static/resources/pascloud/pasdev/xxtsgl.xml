@@ -253,36 +253,36 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.xxtsgl"> 
-    <select id="dn0.xxtsglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.xxtsglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select xx.TSFS,tsfs.dmms as tsfsms,xx.QZLX,qzlx.dmms as qzlxms,xx.XSFL, xsfl.dmms as xsflms,xx.xsmc,xx.sjly,xx.appbb,appbb.dmms as appbbms, case when xx.QZLX='1' then (select khzbmc from khfa_khzb_hy hy where rtrim(cast(hy.khzbdh as char(20)))=xx.sjly) when xx.QZLX='2' then (select khzbmc from khfa_khzb_jg jg where rtrim(cast(jg.khzbdh as char(20)))=xx.sjly) when xx.QZLX='4' then (select famc from khfa_fapz pz where rtrim(cast(pz.FABH as char(20)))=xx.sjly) else xx.sjly end sjlymx,xx.LBDH,xx.lbmc from MPAS_HYLBXXPZ xx inner join csb_dmms tsfs on tsfs.DMZ=xx.TSFS and upper(tsfs.DMMC)='TSFS' inner join csb_dmms qzlx on qzlx.dmz=xx.QZLX and upper(qzlx.dmmc)='MPASQZLX' inner join csb_dmms xsfl on xsfl.DMZ=xx.XSFL and upper(xsfl.DMMC)='MPASXSFL' inner join csb_dmms appbb on appbb.DMZ=xx.appbb and upper(appbb.DMMC)='MPASAPPBB' where 1=1 
       <isNotEmpty property="hylb">and xx.lbdh like '%$hylb$%'</isNotEmpty>  
       <isNotEmpty property="tsfs">and xx.TSFS='$tsfs$'</isNotEmpty>  
       <isNotEmpty property="appbb">and xx.appbb = '$appbb$'</isNotEmpty> 
     </select>  
-    <select id="dn0.xxtsglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.xxtsglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select xx.TSFS,tsfs.dmms as tsfsms,xx.QZLX,qzlx.dmms as qzlxms,xx.XSFL, xsfl.dmms as xsflms,xx.xsmc,xx.sjly,xx.appbb,appbb.dmms as appbbms, case when xx.QZLX='1' then (select khzbmc from khfa_khzb_hy hy where rtrim(cast(hy.khzbdh as char(20)))=xx.sjly) when xx.QZLX='2' then (select khzbmc from khfa_khzb_jg jg where rtrim(cast(jg.khzbdh as char(20)))=xx.sjly) when xx.QZLX='4' then (select famc from khfa_fapz pz where rtrim(cast(pz.FABH as char(20)))=xx.sjly) else xx.sjly end sjlymx,xx.LBDH,xx.lbmc from MPAS_HYLBXXPZ xx inner join csb_dmms tsfs on tsfs.DMZ=xx.TSFS and upper(tsfs.DMMC)='TSFS' inner join csb_dmms qzlx on qzlx.dmz=xx.QZLX and upper(qzlx.dmmc)='MPASQZLX' inner join csb_dmms xsfl on xsfl.DMZ=xx.XSFL and upper(xsfl.DMMC)='MPASXSFL' inner join csb_dmms appbb on appbb.DMZ=xx.appbb and upper(appbb.DMMC)='MPASAPPBB' where 1=1 
       <isNotEmpty property="hylb">and xx.lbdh like '%$hylb$%'</isNotEmpty>  
       <isNotEmpty property="tsfs">and xx.TSFS='$tsfs$'</isNotEmpty>  
       <isNotEmpty property="appbb">and xx.appbb = '$appbb$'</isNotEmpty> ) t
     </select>  
-    <select id="dn0.xxtsgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.xxtsgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select LBMC, XSMC, LBDH, XSFL, QZLX, APPBB, TSFS, SJLY from MPAS_HYLBXXPZ where 1= 1 and XSMC = '$xsmc$' and XSFL = '$xsfl$' and QZLX = '$qzlx$' and APPBB = '$appbb$' and TSFS = '$tsfs$'
     </select>  
-    <select id="dn0.xxtsgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.xxtsgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select LBMC, XSMC, LBDH, XSFL, QZLX, APPBB, TSFS, SJLY from MPAS_HYLBXXPZ where 1= 1 and XSMC = '$xsmc$' and XSFL = '$xsfl$' and QZLX = '$qzlx$' and APPBB = '$appbb$' and TSFS = '$tsfs$'
     </select>  
-    <insert id="dn0.xxtsgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn1.xxtsgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into MPAS_HYLBXXPZ( LBMC, XSMC, QZLX, LBDH, SJLY, TSFS, APPBB, XSFL ) values ( '$lbmc$','$xsmc$','$qzlx$','$lbdh$','$sjly$','$tsfs$','$appbb$','$xsfl$')
     </insert>  
-    <update id="dn0.xxtsgl_update" parameterClass="java.util.Map"> 
+    <update id="dn1.xxtsgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update MPAS_HYLBXXPZ set LBMC = '$lbmc$',LBDH = '$lbdh$',SJLY = '$sjly$' where 1=1 and XSMC = '$xsmc$' and XSFL = '$xsfl$' and QZLX = '$qzlx$' and APPBB = '$appbb$' and TSFS = '$tsfs$'
     </update>  
-    <delete id="dn0.xxtsgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn1.xxtsgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from MPAS_HYLBXXPZ where 1=1 and XSMC = '$xsmc$' and XSFL = '$xsfl$' and QZLX = '$qzlx$' and APPBB = '$appbb$' and TSFS = '$tsfs$'
     </delete>  
-    <select id="dn0.xxtsgl_getHylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh,lbmc from csb_hylb</select>  
-    <select id="dn0.xxtsgl_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_hylb</select>  
-    <select id="dn0.xxtsgl_MSQL4SELECT_khfabh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select fabh as key,famc as value from khfa_fapz where khnf=$sysdate_yyyy$ and khdx='2'</select> 
+    <select id="dn1.xxtsgl_getHylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh,lbmc from csb_hylb</select>  
+    <select id="dn1.xxtsgl_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_hylb</select>  
+    <select id="dn1.xxtsgl_MSQL4SELECT_khfabh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select fabh as key,famc as value from khfa_fapz where khnf=$sysdate_yyyy$ and khdx='2'</select> 
   </sqlMap>  
   <javascript> 
     <query>jQuery(document).ready(function () { editpage_width=830; editpage_height=560; }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; }</query>  

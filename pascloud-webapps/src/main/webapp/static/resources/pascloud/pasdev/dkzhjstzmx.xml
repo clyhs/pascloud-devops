@@ -15,11 +15,11 @@
     <col id="TZYY" title="调整原因" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.dkzhjstzmx"> 
-    <select id="dn0.dkzhjstzmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.dkzhjstzmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select * from SGDR_$CDK$JSZH_TZJS js where 1=1 
       <isNotEmpty property="jxdxdh">and js.jxdxdh=$jxdxdh$</isNotEmpty> order by js.qsrq
     </select>  
-    <select id="dn0.dkzhjstzmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.dkzhjstzmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select * from SGDR_$CDK$JSZH_TZJS js where 1=1 
       <isNotEmpty property="jxdxdh">and js.jxdxdh=$jxdxdh$</isNotEmpty> order by js.qsrq ) t
     </select> 

@@ -86,29 +86,29 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.gwxxgl"> 
-    <select id="dn0.gwxxglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.gwxxglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select gwbh,gwmc from csb_hygw where gwmc like '%$gwmc$%' order by gwbh
     </select>  
-    <select id="dn0.gwxxglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.gwxxglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select gwbh,gwmc from csb_hygw where gwmc like '%$gwmc$%' order by gwbh ) t
     </select>  
-    <select id="dn0.gwxxgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.gwxxgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select GWBH, GWMC from CSB_HYGW where 1= 1 and GWBH = '$gwbh$'
     </select>  
-    <select id="dn0.gwxxgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.gwxxgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select GWBH, GWMC from CSB_HYGW where 1= 1 and GWBH = '$gwbh$'
     </select>  
-    <insert id="dn0.gwxxgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn1.gwxxgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into CSB_HYGW( GWBH, GWMC ) values ( '$gwbh$','$gwmc$')
     </insert>  
-    <update id="dn0.gwxxgl_update" parameterClass="java.util.Map"> 
+    <update id="dn1.gwxxgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_HYGW set GWMC = '$gwmc$' where 1=1 and GWBH = '$gwbh$'
     </update>  
-    <delete id="dn0.gwxxgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn1.gwxxgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from CSB_HYGW where 1=1 and GWBH = '$gwbh$'
     </delete>  
-    <select id="dn0.gwxxgl_selectGwmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select count(1) as gwmccou from csb_hygw where gwmc='$gwmc$'</select>  
-    <select id="dn0.gwxxgl_selectGwbh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select count(1) as gwbhcou from csb_hygw where gwbh='$gwbh$'</select> 
+    <select id="dn1.gwxxgl_selectGwmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select count(1) as gwmccou from csb_hygw where gwmc='$gwmc$'</select>  
+    <select id="dn1.gwxxgl_selectGwbh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select count(1) as gwbhcou from csb_hygw where gwbh='$gwbh$'</select> 
   </sqlMap>  
   <javascript> 
     <query>jQuery(document).ready(function () { }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; } function customFastLink($table,row){//this 对象绑定当前行的单元格 var edit = $('&lt;a class="operation_edit LIST_BAR" title="编辑"&gt;编辑&lt;/a&gt;'); var del = $('&lt;a class="operation_del LIST_BAR" title="删除"&gt;删除&lt;/a&gt;'); this.append(edit); this.append(del); edit.click(function(){ showUpdateEdtiDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]); }); del.click(function(){ showDeleteDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]); }); return true; } function showDeleteDialog(sel){ $.post('/module/khfa/selectData?gwbh='+sel["GWBH"],{},function(hd){ if(hd&gt;0){ custom_alert("该岗位仍有行员在使用，不能删除!"); }else{ custom_confirm('你确定要删除所选记录吗？','提示',function(){ $.post('/module/khfa/deleteData?gwbh='+sel["GWBH"],{},function(cb){ custom_alert("删除成功！"); loadData(); }).error(function(){ alert("发生内部错误，无法删除所选记录！"); }); }); } }).error(function(){ alert("发生内部错误，无法删除所选记录！"); }); }</query>  

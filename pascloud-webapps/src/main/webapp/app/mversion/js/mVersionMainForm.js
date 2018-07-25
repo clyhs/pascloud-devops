@@ -59,8 +59,8 @@ function addMVersionDialog(){
 	
 	
 	div +='<div style="margin:5px 0;width:100%;">';  
-	div +=    '<label for="order" class="formlabel">排序:</label>';
-	div +=    '<input class="easyui-validatebox formInput" id="order" name="order" data-options="required:true" size=20 >';
+	div +=    '<label for="classid" class="formlabel">排序:</label>';
+	div +=    '<input class="easyui-validatebox formInput" id="classid" name="classid" data-options="required:true" size=20 >';
 	div +=    '<div style="clear:both;"></div>';
 	div +='</div>';
 	
@@ -107,20 +107,22 @@ function addMV(){
 		return ;
 	}
 	var cdjb = 0;
-	
-	
 	if(pId == '1'){
 		cdjb = 0;
 	}
-	
 	if(pId != '1'){
 		cdjb = parseInt(level)+1;
 	}
+	
 	var version="";
 	if(level == '1'){
 		version = $('#version').val();
 	}else{
 		version = "#";
+	}
+	if(version.length <= 0){
+		$.messager.alert('提示','版本号不能为空');
+		return ;
 	}
 	var url = "";
 	if(level == '1' && level == '1'){
@@ -129,7 +131,99 @@ function addMV(){
 		url= "#";
 	}
 	
-	alert('name='+name+',cdjb='+cdjb+',url='+url+',version='+version+',pId='+pId+',level='+level);
+	if(url.length <= 0){
+		$.messager.alert('提示','url不能为空');
+		return ;
+	}
 	
+	var classid= $('#classid').val();
 	
+	if(classid.length <= 0){
+		$.messager.alert('提示','排序不能为空');
+		return ;
+	}
+	
+	var param = {Id:'dn0',name:name,cdjb:cdjb,url:url,version:version,pId:pId,classid:classid};
+	
+	$('#addMVersion').dialog('close');
+	EasyUILoad('mainCenter');
+	$.post("addXtcd.json",param,function(data,status){
+		
+		if(data.code == 10000){
+			
+			reloadTree();
+			dispalyEasyUILoad( 'mainCenter' );
+			$.messager.alert('提示','成功');
+		}else{
+			dispalyEasyUILoad( 'mainCenter' );
+			$.messager.alert('提示',data.desc);
+		}
+		
+	});
+	
+}
+
+function delMVersion(){
+	var node = $('#mVersionMainTreeGrid').treegrid('getSelected');
+	if(null == node){
+		$.messager.alert('提示','请先选择一个节点!');
+		return ;
+	}
+	
+	var xmdh = node.id;
+	
+	if(xmdh.length <=0 ){
+		$.messager.alert('提示','请先选择一个节点!');
+		return ;
+	}
+	
+	var param = {Id:'dn0',xmdh:xmdh};
+	$.messager.confirm('提示框','你确定要删除些节点，会影响到云平台的租户的菜单资源，请再确定？',function(r){
+	    if (r){
+	    	EasyUILoad('mainCenter');
+	    	$.post("delXtcd.json",param,function(data,status){
+	    		if(data.code == 10000){
+	    		    //alert(data.desc);
+	    			reloadTree();
+	    			dispalyEasyUILoad('mainCenter');
+	    			$.messager.alert('提示','删除成功');	
+	    		}else{
+	    			$.messager.alert('提示','删除失败');	
+	    		}
+	    	});
+	    }
+	});
+}
+
+function changeMVersionSfxs(status){
+	var node = $('#mVersionMainTreeGrid').treegrid('getSelected');
+	if(null == node){
+		$.messager.alert('提示','请先选择一个节点!');
+		return ;
+	}
+	
+	var xmdh = node.id;
+	
+	if(xmdh.length <=0 ){
+		$.messager.alert('提示','请先选择一个节点!');
+		return ;
+	}
+	
+	var param = {Id:'dn0',xmdh:xmdh,sfxs:status};
+	
+	$.messager.confirm('提示框','你确定要你要改变菜单状态，请再确定？',function(r){
+	    if (r){
+	    	EasyUILoad('mainCenter');
+	    	$.post("changeXtcdSfxs.json",param,function(data,status){
+	    		if(data.code == 10000){
+	    		    //alert(data.desc);
+	    			reloadTree();
+	    			dispalyEasyUILoad('mainCenter');
+	    			$.messager.alert('提示','成功');	
+	    		}else{
+	    			$.messager.alert('提示','失败');	
+	    		}
+	    	});
+	    }
+	});
 }

@@ -60,7 +60,7 @@
     </col> 
   </table>  
   <sqlMap namespace="studio.jgjxgzhz"> 
-    <select id="dn0.jgjxgzhzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.jgjxgzhzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select $qsrq$ qsrq,$jsrq$ jsrq,nf,lbmc,lbdh,jgdh,khdxdh,jgmc,yf,yyjg,zb from (
 select t.nf, t.lbmc, t.lbdh, t.jgdh, t.khdxdh, t.jgmc, f_numtochar(cast(t.yf as integer)) || '月份' yf,
 t.yyjg, case when t.qh = 0 then 0 else round(cast(t.yyjg * 100 as decimal(19, 3)) / cast(t.qh as decimal(19, 3)), 2) end zb 
@@ -103,7 +103,7 @@ from (
       <isNotEmpty property="jglb">and t.lbdh='$jglb$'</isNotEmpty>  
       <isNotEmpty property="jgkhdxdh">and t.khdxdh in ($jgkhdxdh$)</isNotEmpty> )t2 group by t2.nf,t2.lbmc,t2.lbdh,t2.jgdh,t2.khdxdh,t2.jgmc ) m order by m.yf
     </select>  
-    <select id="dn0.jgjxgzhzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.jgjxgzhzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( <![CDATA[select $qsrq$ qsrq,$jsrq$ jsrq,nf,lbmc,lbdh,jgdh,khdxdh,jgmc,yf,yyjg,zb from (
 select t.nf, t.lbmc, t.lbdh, t.jgdh, t.khdxdh, t.jgmc, f_numtochar(cast(t.yf as integer)) || '月份' yf,
 t.yyjg, case when t.qh = 0 then 0 else round(cast(t.yyjg * 100 as decimal(19, 3)) / cast(t.qh as decimal(19, 3)), 2) end zb 
@@ -146,7 +146,7 @@ from (
       <isNotEmpty property="jglb">and t.lbdh='$jglb$'</isNotEmpty>  
       <isNotEmpty property="jgkhdxdh">and t.khdxdh in ($jgkhdxdh$)</isNotEmpty> )t2 group by t2.nf,t2.lbmc,t2.lbdh,t2.jgdh,t2.khdxdh,t2.jgmc ) m order by m.yf ) t
     </select>  
-    <select id="dn0.jgjxgzhz_MSQL4SELECT_jglb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_jglb</select> 
+    <select id="dn1.jgjxgzhz_MSQL4SELECT_jglb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_jglb</select> 
   </sqlMap>  
   <finger custPlotMth=""> 
     <plotType/>  

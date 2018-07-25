@@ -59,7 +59,7 @@
     <col id="LBDH" title="类别编号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.jgkhdfcx"> 
-    <select id="dn0.jgkhdfcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.jgkhdfcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select yyjg.tjrq, jg.jgdh, jg.jgmc,jglb.lbdh,jglb.lbmc, jg.khdxdh, khfa.fabh, khfa.famc, yyjg.yyjg from ( select tjrq, fabh, khdxdh, sum(yyjg) yyjg ,sum(zbz) zbz,sum(jhz) jhz from( select tjrq, fabh, khdxdh, yyjg ,zbz,jhz from khfa_yyjg_jg yyjg where 1=1 
       <isNotEmpty property="tjrq">and yyjg.tjrq=$tjrq$</isNotEmpty>  
       <isNotEmpty property="jgkhdxdh">and yyjg.khdxdh in ($jgkhdxdh$)</isNotEmpty>  
@@ -67,7 +67,7 @@
       <isNotEmpty property="tjrq">and $tjrq$ between jglb.qsrq and jglb.jsrq</isNotEmpty> inner join table(fn_getsjjg_java_qx($tjrq$, $login_khdxdh$ , 0)) qx on jg.khdxdh = qx.khdxdh where khfa.yyzlbh=2 
       <isNotEmpty property="jglb">and jglb.lbdh='$jglb$'</isNotEmpty> order by khfa.fabh desc,yyjg.yyjg desc
     </select>  
-    <select id="dn0.jgkhdfcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.jgkhdfcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select yyjg.tjrq, jg.jgdh, jg.jgmc,jglb.lbdh,jglb.lbmc, jg.khdxdh, khfa.fabh, khfa.famc, yyjg.yyjg from ( select tjrq, fabh, khdxdh, sum(yyjg) yyjg ,sum(zbz) zbz,sum(jhz) jhz from( select tjrq, fabh, khdxdh, yyjg ,zbz,jhz from khfa_yyjg_jg yyjg where 1=1 
       <isNotEmpty property="tjrq">and yyjg.tjrq=$tjrq$</isNotEmpty>  
       <isNotEmpty property="jgkhdxdh">and yyjg.khdxdh in ($jgkhdxdh$)</isNotEmpty>  
@@ -75,8 +75,8 @@
       <isNotEmpty property="tjrq">and $tjrq$ between jglb.qsrq and jglb.jsrq</isNotEmpty> inner join table(fn_getsjjg_java_qx($tjrq$, $login_khdxdh$ , 0)) qx on jg.khdxdh = qx.khdxdh where khfa.yyzlbh=2 
       <isNotEmpty property="jglb">and jglb.lbdh='$jglb$'</isNotEmpty> order by khfa.fabh desc,yyjg.yyjg desc ) t
     </select>  
-    <select id="dn0.jgkhdfcx_MSQL4SELECT_fabh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select fabh as key,famc as value from khfa_fapz where khnf= cast(substr('$tjrq$',1,4) as integer) and yyzlbh=2 and khdx='1'</select>  
-    <select id="dn0.jgkhdfcx_MSQL4SELECT_jglb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct jglb.lbdh as key,jglb.lbmc as value from khfa_fapz fapz inner join khfa_yyjg_jg yyjg on fapz.fabh=yyjg.fabh inner join khdx_jglb jglb on jglb.khdxdh=yyjg.khdxdh 
+    <select id="dn1.jgkhdfcx_MSQL4SELECT_fabh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select fabh as key,famc as value from khfa_fapz where khnf= cast(substr('$tjrq$',1,4) as integer) and yyzlbh=2 and khdx='1'</select>  
+    <select id="dn1.jgkhdfcx_MSQL4SELECT_jglb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct jglb.lbdh as key,jglb.lbmc as value from khfa_fapz fapz inner join khfa_yyjg_jg yyjg on fapz.fabh=yyjg.fabh inner join khdx_jglb jglb on jglb.khdxdh=yyjg.khdxdh 
       <isNotEmpty property="tjrq">and $tjrq$ between jglb.qsrq and jglb.jsrq</isNotEmpty> where fapz.khdx='1' and fapz.yyzlbh=2 
       <isNotEmpty property="tjrq">and yyjg.tjrq=$tjrq$</isNotEmpty>  
       <isNotEmpty property="jgkhdxdh">and yyjg.khdxdh in ($jgkhdxdh$)</isNotEmpty>  

@@ -215,7 +215,7 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.eckhjxfp"> 
-    <select id="dn0.eckhjxfpList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.eckhjxfpList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select jxfp.tjrq ,jg.jgmc ,hy.khdxdh,hy.hydh ,hy.hymc ,hylb.LBMC ,yyjg.yyjg eckhjxb,yyjg.yyjg-a.fpjx as kfpjx ,jxfp.fpjx ,jxfp.bzsm from SGDR_ECKHJXFP jxfp left join khdx_jgcy cy on jxfp.khdxdh = cy.khdxdh 
       <isNotEmpty property="tjny_ym">and $tjny_ym$ between cy.qsrq and cy.jsrq</isNotEmpty> left join khdx_jg jg on cy.jgkhdxdh = jg.khdxdh left join khdx_hy hy on jxfp.khdxdh = hy.khdxdh left join khdx_hylb hylb on jxfp.khdxdh = hylb.khdxdh 
       <isNotEmpty property="tjny_ym">and $tjny_ym$ between hylb.qsrq and hylb.jsrq</isNotEmpty> left join KHFA_YYJG_JG yyjg on 1=1 
@@ -225,7 +225,7 @@
       <isNotEmpty property="khdxdh">where jxfp.khdxdh in ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="tjny_ym">and jxfp.tjrq = $tjny_ym$</isNotEmpty> order by jxfp.tjrq ,jg.jgdh,hy.hydh
     </select>  
-    <select id="dn0.eckhjxfpCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.eckhjxfpCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select jxfp.tjrq ,jg.jgmc ,hy.khdxdh,hy.hydh ,hy.hymc ,hylb.LBMC ,yyjg.yyjg eckhjxb,yyjg.yyjg-a.fpjx as kfpjx ,jxfp.fpjx ,jxfp.bzsm from SGDR_ECKHJXFP jxfp left join khdx_jgcy cy on jxfp.khdxdh = cy.khdxdh 
       <isNotEmpty property="tjny_ym">and $tjny_ym$ between cy.qsrq and cy.jsrq</isNotEmpty> left join khdx_jg jg on cy.jgkhdxdh = jg.khdxdh left join khdx_hy hy on jxfp.khdxdh = hy.khdxdh left join khdx_hylb hylb on jxfp.khdxdh = hylb.khdxdh 
       <isNotEmpty property="tjny_ym">and $tjny_ym$ between hylb.qsrq and hylb.jsrq</isNotEmpty> left join KHFA_YYJG_JG yyjg on 1=1 
@@ -235,24 +235,24 @@
       <isNotEmpty property="khdxdh">where jxfp.khdxdh in ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="tjny_ym">and jxfp.tjrq = $tjny_ym$</isNotEmpty> order by jxfp.tjrq ,jg.jgdh,hy.hydh ) t
     </select>  
-    <select id="dn0.eckhjxfp_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.eckhjxfp_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select KHDXDH, BZSM, FPJX,F_TIMETOCHAR(CZSJ,'yyyy-mm-dd hh24:mi:ss') as CZSJ, CZR, TJRQ from SGDR_ECKHJXFP where 1= 1 and KHDXDH = $khdxdh$ and TJRQ = $tjrq$
     </select>  
-    <select id="dn0.eckhjxfp_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.eckhjxfp_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select KHDXDH, BZSM, FPJX,F_TIMETOCHAR(CZSJ,'yyyy-mm-dd hh24:mi:ss') as CZSJ, CZR, TJRQ from SGDR_ECKHJXFP where 1= 1 and KHDXDH = $khdxdh$ and TJRQ = $tjrq_ym$
     </select>  
-    <insert id="dn0.eckhjxfp_insert" parameterClass="java.util.Map"> 
+    <insert id="dn1.eckhjxfp_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into SGDR_ECKHJXFP( KHDXDH, CZSJ, CZR, TJRQ, FPJX, BZSM ) values ( $khdxdh$,f_get_timestamp('$czsj$'),'$czr$',$tjrq_ym$,$fpjx$,'$bzsm$')
     </insert>  
-    <update id="dn0.eckhjxfp_update" parameterClass="java.util.Map"> 
+    <update id="dn1.eckhjxfp_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update SGDR_ECKHJXFP set FPJX = $fpjx$,BZSM = '$bzsm$' where 1=1 and KHDXDH = $khdxdh$ and TJRQ = $tjrq_ym$
     </update>  
-    <delete id="dn0.eckhjxfp_delete" parameterClass="java.util.Map"> 
+    <delete id="dn1.eckhjxfp_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from SGDR_ECKHJXFP where 1=1 and KHDXDH = $khdxdh$ and TJRQ = $tjrq$
     </delete>  
-    <select id="dn0.eckhjxfp_getEckhjxb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select ejg.yyjg from KHFA_YYJG_JG ejg inner join KHFA_FAPZ epz on ejg.fabh = epz.fabh and epz.famc like '%二次考核绩效包%' and epz.khdx = '1' and epz.yyzlbh = 1 inner join khdx_jgcy ecy on ejg.khdxdh = ecy.jgkhdxdh and $tjrq_ym$ between ecy.qsrq and ecy.jsrq where ejg.tjrq = $tjrq_ym$ and ecy.khdxdh = $khdxdh$</select>  
-    <select id="dn0.eckhjxfp_getKfpjx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select yyjg-coalesce(fpjx,0) as kfpjx from ( select yyjg.khdxdh as jgkhdxdh,sum(yyjg.yyjg) yyjg from KHFA_YYJG_JG yyjg inner join KHFA_FAPZ fapz on yyjg.fabh = fapz.fabh and fapz.famc like '%二次考核绩效包%' and fapz.khdx = '1' and fapz.yyzlbh = 1 where yyjg.tjrq = $tjrq_ym$ and yyjg.khdxdh in ( select cy.jgkhdxdh from khdx_jgcy cy where cy.khdxdh in ($khdxdh$) and $tjrq_ym$ between cy.qsrq and cy.jsrq ) group by yyjg.khdxdh ) a left join ( select cy.jgkhdxdh ,sum(kfp.fpjx) as fpjx from SGDR_ECKHJXFP kfp inner join khdx_jgcy cy on kfp.khdxdh = cy.khdxdh and $tjrq_ym$ between cy.qsrq and cy.jsrq where kfp.tjrq = $tjrq_ym$ and kfp.khdxdh in ( select fcy.khdxdh from khdx_jgcy kcy inner join khdx_jgcy fcy on kcy.jgkhdxdh = fcy.jgkhdxdh and kcy.khdxdh in ($khdxdh$) and $tjrq_ym$ between kcy.qsrq and kcy.jsrq and $tjrq_ym$ between fcy.qsrq and fcy.jsrq ) group by cy.jgkhdxdh ) b on a.jgkhdxdh=b.jgkhdxdh</select>  
-    <select id="dn0.eckhjxfp_getFpjx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select 1 from ( select cy.jgkhdxdh ,yyjg.yyjg from khfa_yyjg_jg yyjg inner join khfa_fapz fapz on yyjg.fabh = fapz.fabh and fapz.famc like '%二次考核绩效包%' and fapz.khdx = '1' and fapz.yyzlbh = 1 inner join khdx_jgcy cy on yyjg.khdxdh = cy.jgkhdxdh and cy.khdxdh = $khdxdh$ and yyjg.tjrq between cy.qsrq and cy.jsrq where yyjg.tjrq in(select ym from csb_sjw where tjrq=CAST('$tjrq$'||'01' AS INTEGER)) AND cy.jgkhdxdh IN(SELECT jgkhdxdh FROM KHDX_JGCY CY WHERE CY.KHDXDH=$khdxdh$ AND CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ )) b inner join ( select b.jgkhdxdh,sum(a.fpjx) as fpjx from sgdr_eckhjxfp a inner join khdx_jgcy b on a.khdxdh=b.khdxdh and a.tjrq between b.qsrq and b.jsrq where a.tjrq in(select ym from csb_sjw where tjrq=CAST('$tjrq$'||'01' AS INTEGER)) and b.jgkhdxdh in(SELECT jgkhdxdh FROM KHDX_JGCY CY WHERE CY.KHDXDH=$khdxdh$ AND CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ) AND a.khdxdh!=$khdxdh$ group by b.jgkhdxdh ) a on a.jgkhdxdh=b.jgkhdxdh where a.fpjx&gt;b.yyjg</select> 
+    <select id="dn1.eckhjxfp_getEckhjxb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select ejg.yyjg from KHFA_YYJG_JG ejg inner join KHFA_FAPZ epz on ejg.fabh = epz.fabh and epz.famc like '%二次考核绩效包%' and epz.khdx = '1' and epz.yyzlbh = 1 inner join khdx_jgcy ecy on ejg.khdxdh = ecy.jgkhdxdh and $tjrq_ym$ between ecy.qsrq and ecy.jsrq where ejg.tjrq = $tjrq_ym$ and ecy.khdxdh = $khdxdh$</select>  
+    <select id="dn1.eckhjxfp_getKfpjx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select yyjg-coalesce(fpjx,0) as kfpjx from ( select yyjg.khdxdh as jgkhdxdh,sum(yyjg.yyjg) yyjg from KHFA_YYJG_JG yyjg inner join KHFA_FAPZ fapz on yyjg.fabh = fapz.fabh and fapz.famc like '%二次考核绩效包%' and fapz.khdx = '1' and fapz.yyzlbh = 1 where yyjg.tjrq = $tjrq_ym$ and yyjg.khdxdh in ( select cy.jgkhdxdh from khdx_jgcy cy where cy.khdxdh in ($khdxdh$) and $tjrq_ym$ between cy.qsrq and cy.jsrq ) group by yyjg.khdxdh ) a left join ( select cy.jgkhdxdh ,sum(kfp.fpjx) as fpjx from SGDR_ECKHJXFP kfp inner join khdx_jgcy cy on kfp.khdxdh = cy.khdxdh and $tjrq_ym$ between cy.qsrq and cy.jsrq where kfp.tjrq = $tjrq_ym$ and kfp.khdxdh in ( select fcy.khdxdh from khdx_jgcy kcy inner join khdx_jgcy fcy on kcy.jgkhdxdh = fcy.jgkhdxdh and kcy.khdxdh in ($khdxdh$) and $tjrq_ym$ between kcy.qsrq and kcy.jsrq and $tjrq_ym$ between fcy.qsrq and fcy.jsrq ) group by cy.jgkhdxdh ) b on a.jgkhdxdh=b.jgkhdxdh</select>  
+    <select id="dn1.eckhjxfp_getFpjx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select 1 from ( select cy.jgkhdxdh ,yyjg.yyjg from khfa_yyjg_jg yyjg inner join khfa_fapz fapz on yyjg.fabh = fapz.fabh and fapz.famc like '%二次考核绩效包%' and fapz.khdx = '1' and fapz.yyzlbh = 1 inner join khdx_jgcy cy on yyjg.khdxdh = cy.jgkhdxdh and cy.khdxdh = $khdxdh$ and yyjg.tjrq between cy.qsrq and cy.jsrq where yyjg.tjrq in(select ym from csb_sjw where tjrq=CAST('$tjrq$'||'01' AS INTEGER)) AND cy.jgkhdxdh IN(SELECT jgkhdxdh FROM KHDX_JGCY CY WHERE CY.KHDXDH=$khdxdh$ AND CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ )) b inner join ( select b.jgkhdxdh,sum(a.fpjx) as fpjx from sgdr_eckhjxfp a inner join khdx_jgcy b on a.khdxdh=b.khdxdh and a.tjrq between b.qsrq and b.jsrq where a.tjrq in(select ym from csb_sjw where tjrq=CAST('$tjrq$'||'01' AS INTEGER)) and b.jgkhdxdh in(SELECT jgkhdxdh FROM KHDX_JGCY CY WHERE CY.KHDXDH=$khdxdh$ AND CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ) AND a.khdxdh!=$khdxdh$ group by b.jgkhdxdh ) a on a.jgkhdxdh=b.jgkhdxdh where a.fpjx&gt;b.yyjg</select> 
   </sqlMap>  
   <javascript> 
     <import>parent.addTab('eckhjxfpdr','二次考核绩效分配','/module/parser/import/visitHtml/eckhjxfpdr');</import>  

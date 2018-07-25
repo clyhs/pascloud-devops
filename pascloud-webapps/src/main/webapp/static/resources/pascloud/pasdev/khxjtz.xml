@@ -236,7 +236,7 @@
     </updateafter> 
   </flow>  
   <sqlMap namespace="studio.khxjtz"> 
-    <select id="dn0.khxjtzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.khxjtzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> SELECT PDJG.TJRQ, jg.jgdh,jg.jgmc, PDJG.KHH,PDJG.KHMC,dmms.dmms,PDFA.PDMC,PDJG.Xjmc,pdjg.pdbzms,PDFA.PDBH,PDXJ.xjbh ,PDJG.khlb FROM KHXJ_PDJG PDJG INNER JOIN KHDX_JG JG ON JG.KHDXDH = PDJG.JGKHDXDH INNER JOIN CSB_DMMS DMMS ON DMMC='DJPDKHLB' AND PDJG.KHLB = DMMS.DMZ INNER JOIN KHXJ_PDFA PDFA ON PDFA.PDBH = PDJG.PDBH inner join KHXJ_PDXJ pdxj on pdxj.pdbh=PDJG.PDBH and pdxj.xjmc = pdjg.xjmc where 1=1 
       <isNotEmpty property="tjrq">and PDJG.tjrq=$tjrq$</isNotEmpty> and jg.KHDXDH in($jgkhdxdh$) 
       <isNotEmpty property="khh">and pdjg.khh like '%$khh$%'</isNotEmpty>  
@@ -244,7 +244,7 @@
       <isNotEmpty property="pdfabh">and pdjg.pdbh = $pdfabh$</isNotEmpty>  
       <isNotEmpty property="xjmc">and pdjg.xjbh = '$xjmc$'</isNotEmpty> order by jg.jgdh desc ,pdfa.pdbh desc ,pdxj.xjbh desc
     </select>  
-    <select id="dn0.khxjtzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.khxjtzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( SELECT PDJG.TJRQ, jg.jgdh,jg.jgmc, PDJG.KHH,PDJG.KHMC,dmms.dmms,PDFA.PDMC,PDJG.Xjmc,pdjg.pdbzms,PDFA.PDBH,PDXJ.xjbh ,PDJG.khlb FROM KHXJ_PDJG PDJG INNER JOIN KHDX_JG JG ON JG.KHDXDH = PDJG.JGKHDXDH INNER JOIN CSB_DMMS DMMS ON DMMC='DJPDKHLB' AND PDJG.KHLB = DMMS.DMZ INNER JOIN KHXJ_PDFA PDFA ON PDFA.PDBH = PDJG.PDBH inner join KHXJ_PDXJ pdxj on pdxj.pdbh=PDJG.PDBH and pdxj.xjmc = pdjg.xjmc where 1=1 
       <isNotEmpty property="tjrq">and PDJG.tjrq=$tjrq$</isNotEmpty> and jg.KHDXDH in($jgkhdxdh$) 
       <isNotEmpty property="khh">and pdjg.khh like '%$khh$%'</isNotEmpty>  
@@ -252,27 +252,27 @@
       <isNotEmpty property="pdfabh">and pdjg.pdbh = $pdfabh$</isNotEmpty>  
       <isNotEmpty property="xjmc">and pdjg.xjbh = '$xjmc$'</isNotEmpty> order by jg.jgdh desc ,pdfa.pdbh desc ,pdxj.xjbh desc ) t
     </select>  
-    <select id="dn0.khxjtz_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.khxjtz_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select JGKHDXDH, KHMC, XTXJMC, XJBH, KHLB, XJMC, KHH, PDBH, XTXJBH, PDBZMS, TJRQ from KHXJ_PDJG where 1= 1 and KHH = '$khh$' and PDBH = $pdbh$ and TJRQ = $tjrq$
     </select>  
-    <select id="dn0.khxjtz_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.khxjtz_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select JGKHDXDH, KHMC, XTXJMC, XJBH, KHLB, XJMC, KHH, PDBH, XTXJBH, PDBZMS, TJRQ from KHXJ_PDJG where 1= 1 and KHH = '$khh$' and PDBH = $pdbh$ and TJRQ = $tjrq$
     </select>  
-    <insert id="dn0.khxjtz_insert" parameterClass="java.util.Map"> 
+    <insert id="dn1.khxjtz_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into KHXJ_PDJG( KHLB, PDBH, KHH, XTXJBH, XTXJMC, JGKHDXDH, XJMC, KHMC, XJBH, PDBZMS, TJRQ ) values ( '$KHLB$',$pdbh$,'$khh$',$contXjbh$,'$contXjmc$',$JGDH$,'$tzhxjmc$','$khmc$',$tzxj$,'$contMs$',$tjrq$)
     </insert>  
-    <update id="dn0.khxjtz_update" parameterClass="java.util.Map"> 
+    <update id="dn1.khxjtz_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update KHXJ_PDJG set XJMC = '$tzhxjmc$',XJBH = $tzxj$,PDBZMS = '$contMs$' where 1=1 and KHH = '$khh$' and PDBH = $pdbh$ and TJRQ = $tjrq$
     </update>  
-    <delete id="dn0.khxjtz_delete" parameterClass="java.util.Map"> 
+    <delete id="dn1.khxjtz_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from KHXJ_PDJG where 1=1 and KHH = '$khh$' and PDBH = $pdbh$ and TJRQ = $tjrq$
     </delete>  
-    <insert id="dn0.khxjtz_update_after_item0" parameterClass="java.util.Map">INSERT INTO KHXJ_PDJGSGTZ (CZSJ,TZRQ,KHH,PDBH,KHMC,KHLB ,TZQXJBH,TZQXJMC,TZHXJBH,TZHXJMC,CZRDH,TZYY) VALUES (F_GET_SYSTIME(),$tjrq$,'$khh$',$pdbh$,'$khmc$','$KHLB$' ,$xjbh$,'$XJMC$',$tzxj$,'$tzhxjmc$','$login_khdxdh$','$tzyy$' )</insert>  
-    <select id="dn0.khxjtz_MSQL4SELECT_pdfabh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT FA.PDBH AS KEY, FA.PDMC AS VALUE FROM KHXJ_PDFA FA WHERE FA.PDNF=cast(SUBSTR('$tjrq$',1,4) as integer) order by FA.PDBH</select>  
-    <select id="dn0.khxjtz_MSQL4SELECT_xjmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct max(xj.xjbh) as key, xj.xjmc as value from khxj_pdxj xj where 1=1 
+    <insert id="dn1.khxjtz_update_after_item0" parameterClass="java.util.Map">INSERT INTO KHXJ_PDJGSGTZ (CZSJ,TZRQ,KHH,PDBH,KHMC,KHLB ,TZQXJBH,TZQXJMC,TZHXJBH,TZHXJMC,CZRDH,TZYY) VALUES (F_GET_SYSTIME(),$tjrq$,'$khh$',$pdbh$,'$khmc$','$KHLB$' ,$xjbh$,'$XJMC$',$tzxj$,'$tzhxjmc$','$login_khdxdh$','$tzyy$' )</insert>  
+    <select id="dn1.khxjtz_MSQL4SELECT_pdfabh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT FA.PDBH AS KEY, FA.PDMC AS VALUE FROM KHXJ_PDFA FA WHERE FA.PDNF=cast(SUBSTR('$tjrq$',1,4) as integer) order by FA.PDBH</select>  
+    <select id="dn1.khxjtz_MSQL4SELECT_xjmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct max(xj.xjbh) as key, xj.xjmc as value from khxj_pdxj xj where 1=1 
       <isNotEmpty property="pdfabh">and xj.pdbh=$pdfabh$</isNotEmpty> group by xj.xjmc order by key
     </select>  
-    <select id="dn0.khxjtz_MSQL4SELECT_tzxj" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT xjbh AS KEY ,XJMC AS VALUE FROM KHXJ_PDXJ WHERE XJMC !='$XJMC$' and pdbh = $pdbh$</select> 
+    <select id="dn1.khxjtz_MSQL4SELECT_tzxj" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT xjbh AS KEY ,XJMC AS VALUE FROM KHXJ_PDXJ WHERE XJMC !='$XJMC$' and pdbh = $pdbh$</select> 
   </sqlMap>  
   <javascript> 
     <query>jQuery(document).ready(function () { $("#tool_bar").hide(); BindParent('pdfabh','tjrq','blur'); }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; } // 只显示调整按钮 function customFastLink($table,row){//this 对象绑定当前行的单元格 var edit = $('&lt;a class="operation_edit LIST_BAR" title="调整"&gt;调整&lt;/a&gt;'); this.append(edit)/**.append(' ').append(del)**/; edit.click(function(){ showUpdateEdtiDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]); }); /**var del = $('&lt;a class="operation_del LIST_BAR" title="删除"&gt;删除&lt;/a&gt;'); del.click(function(){ showDeleteDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]); });**/ return true; }</query>  

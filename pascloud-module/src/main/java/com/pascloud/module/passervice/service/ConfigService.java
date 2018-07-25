@@ -271,7 +271,7 @@ public class ConfigService {
 		PropertiesUtil p =new PropertiesUtil();
 		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
 		String url = DBUtils.getUrlByParams("mysql", ip, "alldb", 8066);
-		url = url + "?autoReconnect=true";
+		url = url + "&autoReconnect=true";
 		p.setValueByKey("db.mcat.url", url, "");
 		p.setValueByKey("db.mcat.username", user, "");
 		p.setValueByKey("db.mcat.password", password, "");

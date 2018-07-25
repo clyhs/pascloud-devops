@@ -40,11 +40,11 @@
     <col id="HJRQ" title="合计人数" align="right" type="float" width="100" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="true"/> 
   </table>  
   <sqlMap namespace="studio.khnljgfx"> 
-    <select id="dn0.khnljgfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.khnljgfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select $tjrq$ tjrq,jg.jgdh,jg.jgmc, sum(case when fx.nlqj='1' then fx.khs else 0 end) nl1, sum(case when fx.nlqj='2' then fx.khs else 0 end) nl2, sum(case when fx.nlqj='3' then fx.khs else 0 end) nl3, sum(case when fx.nlqj='4' then fx.khs else 0 end) nl4, sum(case when fx.nlqj='5' then fx.khs else 0 end) nl5, sum(case when fx.nlqj='6' then fx.khs else 0 end) nl6, sum(case when fx.nlqj='7' then fx.khs else 0 end) nl7, sum(case when fx.nlqj='8' then fx.khs else 0 end) nl8, sum(fx.khs) hjrq from KHFX_LSKHNJJGTJ fx inner join khdx_jg jg on jg.khdxdh=fx.jgkhdxdh inner join csb_sjw sjw on sjw.tjrq=cast((cast($tjrq$ as char(6))||'01') as integer) and sjw.ym=fx.tjrq inner join TABLE(FN_GETSJJG_JAVA_QX(fx.tjrq,$login_khdxdh$, 0)) QX on qx.khdxdh = fx.jgkhdxdh 
       <isNotEmpty property="jgkhdxdh">where jg.khdxdh in ($jgkhdxdh$)</isNotEmpty> group by fx.tjrq,jg.jgdh,jg.jgmc
     </select>  
-    <select id="dn0.khnljgfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.khnljgfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select $tjrq$ tjrq,jg.jgdh,jg.jgmc, sum(case when fx.nlqj='1' then fx.khs else 0 end) nl1, sum(case when fx.nlqj='2' then fx.khs else 0 end) nl2, sum(case when fx.nlqj='3' then fx.khs else 0 end) nl3, sum(case when fx.nlqj='4' then fx.khs else 0 end) nl4, sum(case when fx.nlqj='5' then fx.khs else 0 end) nl5, sum(case when fx.nlqj='6' then fx.khs else 0 end) nl6, sum(case when fx.nlqj='7' then fx.khs else 0 end) nl7, sum(case when fx.nlqj='8' then fx.khs else 0 end) nl8, sum(fx.khs) hjrq from KHFX_LSKHNJJGTJ fx inner join khdx_jg jg on jg.khdxdh=fx.jgkhdxdh inner join csb_sjw sjw on sjw.tjrq=cast((cast($tjrq$ as char(6))||'01') as integer) and sjw.ym=fx.tjrq inner join TABLE(FN_GETSJJG_JAVA_QX(fx.tjrq,$login_khdxdh$, 0)) QX on qx.khdxdh = fx.jgkhdxdh 
       <isNotEmpty property="jgkhdxdh">where jg.khdxdh in ($jgkhdxdh$)</isNotEmpty> group by fx.tjrq,jg.jgdh,jg.jgmc ) t
     </select> 

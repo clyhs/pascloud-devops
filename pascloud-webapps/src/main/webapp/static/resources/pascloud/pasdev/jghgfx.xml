@@ -119,7 +119,7 @@
     <col id="ZB" title="占比(%)" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.jghgfx"> 
-    <select id="dn0.jghgfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.jghgfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="yjlx" compareValue="khzb">select jg.jgdh,jg.jgmc,fxzb.khzbmc, yjzb.zbz, case when (sum(yjzb.zbz) over(partition by fxzb.khzbmc))=0 then 100 else cast (yjzb.zbz/(sum(yjzb.zbz) over(partition by fxzb.khzbmc))*100 as decimal(19,2)) end as zb from yjzb_jg_$tjnf$ yjzb inner join khfa_khzb_jg fxzb on yjzb.zbdh = fxzb.zbdh and yjzb.bz = fxzb.bz and yjzb.sdbs = fxzb.sdbs and yjzb.tjkj = fxzb.tjkj inner join khdx_jg jg on yjzb.khdxdh = jg.khdxdh
         <isNotEmpty property="jgdj">and jg.jgdj='$jgdj$'</isNotEmpty> inner join table(FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,$jgkhdxdh$)) qx on qx.khdxdh = yjzb.khdxdh and qx.khdxdh != 1 where 1=1 
@@ -138,7 +138,7 @@ order by yjzb.zbz desc,fxzb.zbpx]]>
 order by yjzb.zbz desc,fxzb.zbpx]]> 
       </isEqual> 
     </select>  
-    <select id="dn0.jghgfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.jghgfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="yjlx" compareValue="khzb">select jg.jgdh,jg.jgmc,fxzb.khzbmc, yjzb.zbz, case when (sum(yjzb.zbz) over(partition by fxzb.khzbmc))=0 then 100 else cast (yjzb.zbz/(sum(yjzb.zbz) over(partition by fxzb.khzbmc))*100 as decimal(19,2)) end as zb from yjzb_jg_$tjnf$ yjzb inner join khfa_khzb_jg fxzb on yjzb.zbdh = fxzb.zbdh and yjzb.bz = fxzb.bz and yjzb.sdbs = fxzb.sdbs and yjzb.tjkj = fxzb.tjkj inner join khdx_jg jg on yjzb.khdxdh = jg.khdxdh 
         <isNotEmpty property="jgdj">and jg.jgdj='$jgdj$'</isNotEmpty> inner join table(FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,$jgkhdxdh$)) qx on qx.khdxdh = yjzb.khdxdh and qx.khdxdh != 1 where 1=1 
@@ -157,8 +157,8 @@ order by yjzb.zbz desc,fxzb.zbpx]]>
 order by yjzb.zbz desc,fxzb.zbpx]]> 
       </isEqual> ) t
     </select>  
-    <select id="dn0.jghgfx_MSQL4SELECT_jgdj" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc='JGDJ'</select>  
-    <select id="dn0.jghgfx_MSQL4SELECT_khzb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khzbdh as KEY,khzbmc as VALUE from khfa_khzb_jg order by zbpx</select> 
+    <select id="dn1.jghgfx_MSQL4SELECT_jgdj" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc='JGDJ'</select>  
+    <select id="dn1.jghgfx_MSQL4SELECT_khzb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khzbdh as KEY,khzbmc as VALUE from khfa_khzb_jg order by zbpx</select> 
   </sqlMap>  
   <finger custPlotMth="" id="jghgfx_xsjy1jgj"> 
     <plotType>pie</plotType>  

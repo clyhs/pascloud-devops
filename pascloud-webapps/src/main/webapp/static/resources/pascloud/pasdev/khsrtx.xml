@@ -14,11 +14,11 @@
     <col id="TXDZ" title="通讯地址" align="left" type="string" width="200" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.khsrtx"> 
-    <select id="dn0.khsrtxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.khsrtxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> SELECT LSB.KHH AS KHH , LSB.KHMC AS KHMC, dmms.DMMS AS KHLX, LSB.SRRQ AS SRRQ, LSB.LXDH AS LXDH, LSB.DZYJ AS DZYJ, lsb.txdz as txdz FROM LSB_LSZJQTSRKH LSB left JOIN CSB_DMMS DMMS ON DMMS.DMMC='KHLX' AND DMMS.DMZ = LSB.KHLX where 1=1 
       <isNotEmpty property="login_khdxdh">and LSB.KHDXDH = $login_khdxdh$</isNotEmpty> 
     </select>  
-    <select id="dn0.khsrtxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.khsrtxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( SELECT LSB.KHH AS KHH , LSB.KHMC AS KHMC, dmms.DMMS AS KHLX, LSB.SRRQ AS SRRQ, LSB.LXDH AS LXDH, LSB.DZYJ AS DZYJ, lsb.txdz as txdz FROM LSB_LSZJQTSRKH LSB left JOIN CSB_DMMS DMMS ON DMMS.DMMC='KHLX' AND DMMS.DMZ = LSB.KHLX where 1=1 
       <isNotEmpty property="login_khdxdh">and LSB.KHDXDH = $login_khdxdh$</isNotEmpty> ) t
     </select> 

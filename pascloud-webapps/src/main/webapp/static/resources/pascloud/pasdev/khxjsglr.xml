@@ -221,53 +221,53 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.khxjsglr"> 
-    <select id="dn0.khxjsglrList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.khxjsglrList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> SELECT sglr.khh,sglr.khmc,csb.dmms,pdfa.pdmc,sglr.xjmc,sglr.qsrq,sglr.jsrq,sglr.bzsm,SGLR.PDBH FROM KHXJ_KHXJSGLR SGLR left JOIN CSB_DMMS CSB ON CSB.DMMC='DJPDKHLB' AND CSB.DMZ=SGLR.KHLB INNER JOIN KHXJ_PDFA PDFA ON PDFA.PDBH=SGLR.PDBH 
       <isNotEmpty property="tjrq">where $tjrq$ between sglr.qsrq and sglr.jsrq</isNotEmpty>  
       <isNotEmpty property="khh">and sglr.khh like '%$khh$%'</isNotEmpty>  
       <isNotEmpty property="khmc">and sglr.khmc like '%$khmc$%'</isNotEmpty> order by sglr.khh
     </select>  
-    <select id="dn0.khxjsglrCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.khxjsglrCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( SELECT sglr.khh,sglr.khmc,csb.dmms,pdfa.pdmc,sglr.xjmc,sglr.qsrq,sglr.jsrq,sglr.bzsm,SGLR.PDBH FROM KHXJ_KHXJSGLR SGLR left JOIN CSB_DMMS CSB ON CSB.DMMC='DJPDKHLB' AND CSB.DMZ=SGLR.KHLB INNER JOIN KHXJ_PDFA PDFA ON PDFA.PDBH=SGLR.PDBH 
       <isNotEmpty property="tjrq">where $tjrq$ between sglr.qsrq and sglr.jsrq</isNotEmpty>  
       <isNotEmpty property="khh">and sglr.khh like '%$khh$%'</isNotEmpty>  
       <isNotEmpty property="khmc">and sglr.khmc like '%$khmc$%'</isNotEmpty> order by sglr.khh ) t
     </select>  
-    <select id="dn0.khxjsglr_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.khxjsglr_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select KHMC, XJBH, KHLB, XJMC, KHH, PDBH, BZSM, QSRQ, JSRQ from KHXJ_KHXJSGLR where 1= 1 and KHH = '$khh$' and PDBH = $pdbh$ and QSRQ = $qsrq$
     </select>  
-    <select id="dn0.khxjsglr_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.khxjsglr_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select KHMC, XJBH, KHLB, XJMC, KHH, PDBH, BZSM, QSRQ, JSRQ from KHXJ_KHXJSGLR where 1= 1 and KHH = '$khh$' and PDBH = $pdfa$ and QSRQ = $tjrq$
     </select>  
-    <insert id="dn0.khxjsglr_insert" parameterClass="java.util.Map"> 
+    <insert id="dn1.khxjsglr_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into KHXJ_KHXJSGLR( XJMC, KHLB, KHMC, KHH, XJBH, PDBH, JSRQ, QSRQ, BZSM ) values ( '$ycxjmc$','$khlb$','$khmc$','$khh$',$xjmc$,$pdfa$,$jsrq$,$tjrq$,'$bzsm$')
     </insert>  
-    <update id="dn0.khxjsglr_update" parameterClass="java.util.Map"> 
+    <update id="dn1.khxjsglr_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update KHXJ_KHXJSGLR set XJMC = '$ycxjmc$',XJBH = $xjmc$,BZSM = '$bzsm$' where 1=1 and KHH = '$khh$' and PDBH = $pdfa$ and QSRQ = $tjrq$
     </update>  
-    <delete id="dn0.khxjsglr_delete" parameterClass="java.util.Map"> 
+    <delete id="dn1.khxjsglr_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from KHXJ_KHXJSGLR where 1=1 and KHH = '$khh$' and PDBH = $pdbh$ and QSRQ = $qsrq$
     </delete>  
-    <delete id="dn0.khxjsglr_check_itemAddDel" parameterClass="java.util.Map"> 
+    <delete id="dn1.khxjsglr_check_itemAddDel" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[delete from KHXJ_KHXJSGLR where qsrq >=$tjrq$  and KHH = '$khh$' and PDBH = $pdfa$]]> 
     </delete>  
-    <update id="dn0.khxjsglr_check_itemUP" parameterClass="java.util.Map"> 
+    <update id="dn1.khxjsglr_check_itemUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update KHXJ_KHXJSGLR set jsrq=$qdate$ 
       <isNotEmpty property="tjrq">where $tjrq$ between qsrq and jsrq</isNotEmpty> and KHH = '$khh$' and PDBH = $pdfa$
     </update>  
-    <select id="dn0.khxjsglr_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.khxjsglr_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select max(qsrq) from KHXJ_KHXJSGLR where 1=1 and KHH = '$khh$' and PDBH = $pdbh$
     </select>  
-    <select id="dn0.khxjsglr_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.khxjsglr_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select  KHMC, XJBH, KHLB, XJMC, KHH, PDBH, BZSM, QSRQ, JSRQ from KHXJ_KHXJSGLR where 1=1  and KHH = '$khh$' and PDBH = $pdfa$ and $tjrq$ > $maxqsrq$]]> 
     </select>  
-    <update id="dn0.khxjsglr_check_itemDELUP" parameterClass="java.util.Map"> 
+    <update id="dn1.khxjsglr_check_itemDELUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update KHXJ_KHXJSGLR set jsrq =29991231 where 1=1 and KHH = '$khh$' and PDBH = $pdbh$ and jsrq =$lastjsrq$
     </update>  
-    <select id="dn0.khxjsglr_yzkhh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT KHFL.khh FROM KHDX_KHFL KHFL where khfl.khh='$khh$' and $tjrq$ between KHFL.QSRQ and KHFL.JSRQ</select>  
-    <select id="dn0.khxjsglr_khmczj" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khfl.khmc from khdx_khfl khfl where khfl.khh='$khh$' and $tjrq$ BETWEEN khfl.qsrq and khfl.jsrq</select>  
-    <select id="dn0.khxjsglr_khlbzj" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khfl.khlb from khdx_khfl khfl where khfl.khh='$khh$' and $tjrq$ BETWEEN khfl.qsrq and khfl.jsrq</select>  
-    <select id="dn0.khxjsglr_MSQL4SELECT_pdfa" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT pdfa.pdbh as key, pdfa.pdmc as value FROM KHXJ_PDFA PDFA left join ( select khfl.khlb from KHDX_KHFL KHFL 
+    <select id="dn1.khxjsglr_yzkhh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT KHFL.khh FROM KHDX_KHFL KHFL where khfl.khh='$khh$' and $tjrq$ between KHFL.QSRQ and KHFL.JSRQ</select>  
+    <select id="dn1.khxjsglr_khmczj" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khfl.khmc from khdx_khfl khfl where khfl.khh='$khh$' and $tjrq$ BETWEEN khfl.qsrq and khfl.jsrq</select>  
+    <select id="dn1.khxjsglr_khlbzj" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khfl.khlb from khdx_khfl khfl where khfl.khh='$khh$' and $tjrq$ BETWEEN khfl.qsrq and khfl.jsrq</select>  
+    <select id="dn1.khxjsglr_MSQL4SELECT_pdfa" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT pdfa.pdbh as key, pdfa.pdmc as value FROM KHXJ_PDFA PDFA left join ( select khfl.khlb from KHDX_KHFL KHFL 
       <isNotEmpty property="tjrq">where $tjrq$ between KHFL.QSRQ and KHFL.JSRQ</isNotEmpty>  
       <isNotEmpty property="khh">AND KHFL.KHH='$khh$'</isNotEmpty>  <![CDATA[group by   khfl.khlb
 )b   
@@ -276,7 +276,7 @@ where f_is_exists_str(pdfa.khlb,rtrim(b.khlb),',')>0
 group by pdfa.pdbh,pdfa.pdmc
 order by pdfa.pdbh]]> 
     </select>  
-    <select id="dn0.khxjsglr_MSQL4SELECT_xjmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT pdxj.XJBH AS KEY, pdxj.XJMC AS VALUE FROM KHXJ_PDXJ pdxj where cast(pdxj.jsfs as integer)=2 
+    <select id="dn1.khxjsglr_MSQL4SELECT_xjmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT pdxj.XJBH AS KEY, pdxj.XJMC AS VALUE FROM KHXJ_PDXJ pdxj where cast(pdxj.jsfs as integer)=2 
       <isNotEmpty property="pdfa">and pdxj.pdbh = $pdfa$</isNotEmpty> 
     </select> 
   </sqlMap>  

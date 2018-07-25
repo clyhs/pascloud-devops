@@ -152,43 +152,43 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.qjpzgl"> 
-    <select id="dn0.qjpzglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.qjpzglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select distinct qjpz.qjmc as qjmc1,dmms.dmms,qjpz.qsrq,qjpz.jsrq from csb_qjpz qjpz inner join csb_dmms dmms on qjpz.qjmc = dmms.dmz where 1=1 
       <isNotEmpty property="qjmc">and qjpz.qjmc = '$qjmc$'</isNotEmpty> order by qjpz.qjmc,qjpz.qsrq ASC
     </select>  
-    <select id="dn0.qjpzglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.qjpzglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select distinct qjpz.qjmc as qjmc1,dmms.dmms,qjpz.qsrq,qjpz.jsrq from csb_qjpz qjpz inner join csb_dmms dmms on qjpz.qjmc = dmms.dmz where 1=1
       <isNotEmpty property="qjmc">and qjpz.qjmc = '$qjmc$'</isNotEmpty> order by qjpz.qjmc,qjpz.qsrq ASC ) t
     </select>  
-    <select id="dn0.qjpzgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.qjpzgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select QJSX, QJMS, QJZ, QJMC, QSRQ, JSRQ, QJXX from CSB_QJPZ where 1= 1 and QJMC = '$qjmc$' and QSRQ = $qsrq$
     </select>  
-    <select id="dn0.qjpzgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.qjpzgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select QJSX, QJMS, QJZ, QJMC, QSRQ, JSRQ, QJXX from CSB_QJPZ where 1= 1 and QJMC = '$qjcslx$' and QSRQ = $qsrq$
     </select>  
-    <insert id="dn0.qjpzgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn1.qjpzgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into CSB_QJPZ( QJMC, QJSX, QJZ, QSRQ, JSRQ, QJXX ) values ( '$qjcslx$',$qjsx$,'$qjz$',$qsrq$,$jsrq$,$qjxx$)
     </insert>  
-    <update id="dn0.qjpzgl_update" parameterClass="java.util.Map"> 
+    <update id="dn1.qjpzgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_QJPZ set QJZ = '$qjz$' where 1=1 and QJMC = '$qjcslx$' and QSRQ = $qsrq$
     </update>  
-    <delete id="dn0.qjpzgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn1.qjpzgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from CSB_QJPZ where 1=1 and QJMC = '$qjmc$' and QSRQ = $qsrq$
     </delete>  
-    <delete id="dn0.qjpzgl_check_itemAddDel" parameterClass="java.util.Map"> 
+    <delete id="dn1.qjpzgl_check_itemAddDel" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[delete from CSB_QJPZ where qsrq >=$qsrq$  and QJMC = '$qjcslx$']]> 
     </delete>  
-    <update id="dn0.qjpzgl_check_itemUP" parameterClass="java.util.Map"> 
+    <update id="dn1.qjpzgl_check_itemUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_QJPZ set jsrq=$qdate$ 
       <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty> and QJMC = '$qjcslx$'
     </update>  
-    <select id="dn0.qjpzgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.qjpzgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select max(qsrq) from CSB_QJPZ where 1=1 and QJMC = '$qjmc$'
     </select>  
-    <select id="dn0.qjpzgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.qjpzgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select  QJSX, QJMS, QJZ, QJMC, QSRQ, JSRQ, QJXX from CSB_QJPZ where 1=1  and QJMC = '$qjcslx$' and $qsrq$ > $maxqsrq$]]> 
     </select>  
-    <update id="dn0.qjpzgl_check_itemDELUP" parameterClass="java.util.Map"> 
+    <update id="dn1.qjpzgl_check_itemDELUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_QJPZ set jsrq =29991231 where 1=1 and QJMC = '$qjmc$' and jsrq =$lastjsrq$
     </update> 
   </sqlMap>  

@@ -33,13 +33,13 @@
     <col id="BZSM" title="备注" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.khxjpdgxxdfgl"> 
-    <select id="dn0.khxjpdgxxdfglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.khxjpdgxxdfglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> SELECT SGLR.TJRQ,SGLR.KHH,SGLR.KHMC,dmms.dmms,pdfa.pdmc,SGLR.GXXMC,SGLR.GXXZ,SGLR.BZSM FROM KHXJ_PDGXXSGLR SGLR left JOIN CSB_DMMS DMMS ON DMMS.DMMC='DJPDKHLB' and DMMS.DMZ=SGLR.KHLB INNER JOIN KHXJ_PDFA PDFA ON PDFA.PDBH = SGLR.PDBH where 1=1 
       <isNotEmpty property="tjrq">and sglr.tjrq=$tjrq$</isNotEmpty>  
       <isNotEmpty property="khh">and sglr.khh like '%$khh$%'</isNotEmpty>  
       <isNotEmpty property="khmc">and sglr.khmc like '%$khmc$%'</isNotEmpty> 
     </select>  
-    <select id="dn0.khxjpdgxxdfglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.khxjpdgxxdfglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( SELECT SGLR.TJRQ,SGLR.KHH,SGLR.KHMC,dmms.dmms,pdfa.pdmc,SGLR.GXXMC,SGLR.GXXZ,SGLR.BZSM FROM KHXJ_PDGXXSGLR SGLR left JOIN CSB_DMMS DMMS ON DMMS.DMMC='DJPDKHLB' and DMMS.DMZ=SGLR.KHLB INNER JOIN KHXJ_PDFA PDFA ON PDFA.PDBH = SGLR.PDBH where 1=1 
       <isNotEmpty property="tjrq">and sglr.tjrq=$tjrq$</isNotEmpty>  
       <isNotEmpty property="khh">and sglr.khh like '%$khh$%'</isNotEmpty>  

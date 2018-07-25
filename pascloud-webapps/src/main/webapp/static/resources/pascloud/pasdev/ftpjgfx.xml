@@ -56,7 +56,7 @@
     <col id="FTPJG" title="FTP价格" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.ftpjgfx"> 
-    <select id="dn0.ftpjgfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.ftpjgfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="dxlx" compareValue="1">select qx.qxmc as qx, cp.pjll, COALESCE(jj.jzjg,0) as jjjg, zx.zxll, dj.ftpjg from csb_qxsdb qx left join csb_ftpdj_ck dj on dj.qxdh = qx.qxdh 
         <isNotEmpty property="cpdh">and dj.cpdh = '$cpdh$'</isNotEmpty>  
@@ -83,7 +83,7 @@
         <isNotEmpty property="tjrq">and $tjrq$ between jj.qsrq and jj.jsrq</isNotEmpty> where 1=1 and qx.jxdxlx = 2 order by qx.qxdh asc
       </isEqual> 
     </select>  
-    <select id="dn0.ftpjgfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.ftpjgfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="dxlx" compareValue="1">select qx.qxmc as qx, cp.pjll, COALESCE(jj.jzjg,0) as jjjg, zx.zxll, dj.ftpjg from csb_qxsdb qx left join csb_ftpdj_ck dj on dj.qxdh = qx.qxdh 
         <isNotEmpty property="cpdh">and dj.cpdh = '$cpdh$'</isNotEmpty>  
@@ -110,7 +110,7 @@
         <isNotEmpty property="tjrq">and $tjrq$ between jj.qsrq and jj.jsrq</isNotEmpty> where 1=1 and qx.jxdxlx = 2 order by qx.qxdh asc
       </isEqual> ) t
     </select>  
-    <select id="dn0.ftpjgfx_MSQL4SELECT_cpdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select cpdh as key,cpmc as value from pas.csb_cpxz t where 1=1 
+    <select id="dn1.ftpjgfx_MSQL4SELECT_cpdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select cpdh as key,cpmc as value from pas.csb_cpxz t where 1=1 
       <isNotEmpty property="dxlx">and t.jxdxlx = $dxlx$</isNotEmpty>  
       <isNotEmpty property="ywlx">and t.ywlx = '$ywlx$'</isNotEmpty> 
     </select> 

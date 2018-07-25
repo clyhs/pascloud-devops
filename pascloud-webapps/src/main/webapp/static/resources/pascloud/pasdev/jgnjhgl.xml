@@ -150,31 +150,31 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.jgnjhgl"> 
-    <select id="dn0.jgnjhglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.jgnjhglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select jh.khnf, jh.khdxdh, qx.jgdh, qx.jgmc, khzb.khzbmc, jh.jhz, jh.lzz,khzb.khzbdh from yjzb_jgnjh jh inner join khfa_khzb_jg khzb on jh.khzbdh=khzb.khzbdh inner join table(fn_getsjjg_java_qx($sysdate$, $login_khdxdh$, 0)) qx on qx.khdxdh=jh.khdxdh where 1=1 
       <isNotEmpty property="khnf">and jh.khnf =$khnf$</isNotEmpty>  
       <isNotEmpty property="khzbdh">and khzb.khzbdh=$khzbdh$</isNotEmpty>  
       <isNotEmpty property="jgkhdxdh">and qx.khdxdh in ($jgkhdxdh$)</isNotEmpty> order by khzb.zbpx
     </select>  
-    <select id="dn0.jgnjhglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.jgnjhglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select jh.khnf, jh.khdxdh, qx.jgdh, qx.jgmc, khzb.khzbmc, jh.jhz, jh.lzz,khzb.khzbdh from yjzb_jgnjh jh inner join khfa_khzb_jg khzb on jh.khzbdh=khzb.khzbdh inner join table(fn_getsjjg_java_qx($sysdate$, $login_khdxdh$, 0)) qx on qx.khdxdh=jh.khdxdh where 1=1 
       <isNotEmpty property="khnf">and jh.khnf =$khnf$</isNotEmpty>  
       <isNotEmpty property="khzbdh">and khzb.khzbdh=$khzbdh$</isNotEmpty>  
       <isNotEmpty property="jgkhdxdh">and qx.khdxdh in ($jgkhdxdh$)</isNotEmpty> order by khzb.zbpx ) t
     </select>  
-    <select id="dn0.jgnjhgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.jgnjhgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select KHNF, LZZ, KHDXDH, KHZBDH, JHZ from YJZB_JGNJH where 1= 1 and KHNF = $khnf$ and KHDXDH = $khdxdh$ and KHZBDH = $khzbdh$
     </select>  
-    <select id="dn0.jgnjhgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn1.jgnjhgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select KHNF, LZZ, KHDXDH, KHZBDH, JHZ from YJZB_JGNJH where 1= 1 and KHNF = $jgnjh_nf$ and KHDXDH = $jgkhdxdh$ and KHZBDH = $KHZBDH$
     </select>  
-    <insert id="dn0.jgnjhgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn1.jgnjhgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into YJZB_JGNJH( JHZ, KHNF, LZZ, KHZBDH, KHDXDH ) values ( $jgnjh_jhz$,$jgnjh_nf$,$jgnjh_lzz$,$KHZBDH$,$jgkhdxdh$)
     </insert>  
-    <update id="dn0.jgnjhgl_update" parameterClass="java.util.Map"> 
+    <update id="dn1.jgnjhgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update YJZB_JGNJH set JHZ = $jgnjh_jhz$,LZZ = $jgnjh_lzz$ where 1=1 and KHNF = $jgnjh_nf$ and KHDXDH = $jgkhdxdh$ and KHZBDH = $KHZBDH$
     </update>  
-    <delete id="dn0.jgnjhgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn1.jgnjhgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from YJZB_JGNJH where 1=1 and KHNF = $khnf$ and KHDXDH = $khdxdh$ and KHZBDH = $khzbdh$
     </delete> 
   </sqlMap>  

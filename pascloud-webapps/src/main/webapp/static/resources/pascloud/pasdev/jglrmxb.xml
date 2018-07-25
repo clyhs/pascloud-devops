@@ -80,7 +80,7 @@
     <col id="HJ" title="合计" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.jglrmxb"> 
-    <select id="dn0.jglrmxbList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.jglrmxbList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="zhlx" compareValue="1">select tjrq,jgmc,jgdh,ftpsr,zbjsr,tqzqlxhk,lxzc,(ftpsr+zbjsr+tqzqlxhk-lxzc) hj from( select yj.tjrq,jg.jgdh,jg.jgmc, sum(case when gl.pxxh=1 then yj.zbz else 0 end) ftpsr, sum(case when gl.pxxh=2 then yj.zbz else 0 end) zbjsr, sum(case when gl.pxxh=3 then yj.zbz else 0 end) tqzqlxhk, sum(case when gl.pxxh=4 then yj.zbz else 0 end) lxzc from khdx_zbbbgl gl inner join yjzb_jg_all yj on gl.zbdh=yj.zbdh and gl.bz=yj.bz inner join khdx_jg jg on yj.khdxdh=jg.khdxdh 
         <isNotEmpty property="jgdj">and jg.jgdj='$jgdj$'</isNotEmpty> inner join table (FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,0) ) qxjg on qxjg.khdxdh=jg.khdxdh where 1=1 
@@ -95,7 +95,7 @@
         <isNotEmpty property="sdbs">and yj.sdbs='$sdbs$'</isNotEmpty> and jg.khdxdh in($jgkhdxdh$) and gl.bbdh=1002 group by yj.tjrq, jg.jgdh, jg.jgmc, jg.pxbz order by jg.jgdh, jg.pxbz desc ) z
       </isEqual> 
     </select>  
-    <select id="dn0.jglrmxbCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.jglrmxbCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="zhlx" compareValue="1">select tjrq,jgmc,jgdh,ftpsr,zbjsr,tqzqlxhk,lxzc,(ftpsr+zbjsr+tqzqlxhk-lxzc) hj from( select yj.tjrq,jg.jgdh,jg.jgmc, sum(case when gl.pxxh=1 then yj.zbz else 0 end) ftpsr, sum(case when gl.pxxh=2 then yj.zbz else 0 end) zbjsr, sum(case when gl.pxxh=3 then yj.zbz else 0 end) tqzqlxhk, sum(case when gl.pxxh=4 then yj.zbz else 0 end) lxzc from khdx_zbbbgl gl inner join yjzb_jg_all yj on gl.zbdh=yj.zbdh and gl.bz=yj.bz inner join khdx_jg jg on yj.khdxdh=jg.khdxdh 
         <isNotEmpty property="jgdj">and jg.jgdj='$jgdj$'</isNotEmpty> inner join table (FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,0) ) qxjg on qxjg.khdxdh=jg.khdxdh where 1=1 
@@ -110,7 +110,7 @@
         <isNotEmpty property="sdbs">and yj.sdbs='$sdbs$'</isNotEmpty> and jg.khdxdh in($jgkhdxdh$) and gl.bbdh=1002 group by yj.tjrq, jg.jgdh, jg.jgmc, jg.pxbz order by jg.jgdh, jg.pxbz desc ) z
       </isEqual> ) t
     </select>  
-    <select id="dn0.jglrmxb_MSQL4SELECT_sdbs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc='ZBSDBS' and dmz in('5','6','7') order by dmz</select> 
+    <select id="dn1.jglrmxb_MSQL4SELECT_sdbs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc='ZBSDBS' and dmz in('5','6','7') order by dmz</select> 
   </sqlMap>  
   <finger custPlotMth=""> 
     <plotType/>  

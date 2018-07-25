@@ -81,21 +81,21 @@
     <col id="PM" title="排名" align="right" type="string" width="50" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.khsypmfx"> 
-    <select id="dn0.khsypmfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.khsypmfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select b.khlx,b.khh,b.khmc, b.cksr,b.ckzc,case when b.cksy=0 then 0 else round(((cast(b.cksy as decimal(25,4))/cast(sum(b.cksy) over() as decimal(25,4)))*100),4) end as cksyzb, b.dksr,b.dkzc,case when b.dksy=0 then 0 else round(((cast(b.dksy as decimal(25,4))/cast(sum(b.dksy) over() as decimal(25,4)))*100),4) end as dksyzb, b.wysxfsr,b.sjyhsxfsr,b.jjsxfsr,b.lcsxfsr,b.dlbxsxfsr,b.gjywsxfsr,b.zhsy ,case when b.zhsy=0 then 0 else round(((cast(b.zhsy as decimal(25,4))/cast(sum(b.zhsy) over() as decimal(25,4)))*100),4) end as zhsyzb,b.pm from ( select csb.dmms as khlx , sypm.khh as khh , sypm.khmc as khmc, sum(sypm.ckftpsr+sypm.ckzbjsr+sypm.cktqzqlxkh) as cksr, sum(sypm.cklxzc) as ckzc, sum(sypm.cklr) as cksy, sum(sypm.dklxsr) as dksr, sum(sypm.dkftplxzc+sypm.dkyswslxxz+sypm.dkzcjzss) as dkzc, sum(sypm.dklr) as dksy, sum(sypm.wysxfsr) as wysxfsr , sum(sypm.sjyhsxfsr) as sjyhsxfsr , sum(sypm.jjsxfsr) as jjsxfsr, sum(sypm.lcsxfsr) as lcsxfsr, sum(sypm.dlbxsxfsr) as dlbxsxfsr, sum(sypm.gjywsxfsr) as gjywsxfsr, sum(sypm.zhsy ) as zhsy, rank() over(order by round(sum(sypm.zhsy ),2) desc) as pm from nbzz_khlrmx_$tjrq_yyyymm$ sypm inner join table (fn_getsjjg_java_qx(cast(cast($tjrq$ as char(6))||'01' as integer),$login_khdxdh$, $jgkhdxdh$)) qx on qx.khdxdh in( sypm.jgkhdxdh) inner join csb_dmms csb on csb.dmmc= 'KHLX' and csb.dmz=sypm.khlx where 1=1
       <isNotEmpty property="khlx">and sypm.khlx = '$khlx$'</isNotEmpty>  
       <isNotEmpty property="khh">and sypm.khh like '%$khh$%'</isNotEmpty>  
       <isNotEmpty property="khmc">and sypm.khmc like '%$khmc$%'</isNotEmpty> group by csb.dmms ,sypm.khh,sypm.khmc )b where 1=1 
       <isNotEmpty property="zhsyq"><![CDATA[and   b.pm <= $zhsyq$]]></isNotEmpty> 
     </select>  
-    <select id="dn0.khsypmfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.khsypmfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select b.khlx,b.khh,b.khmc, b.cksr,b.ckzc,case when b.cksy=0 then 0 else round(((cast(b.cksy as decimal(25,4))/cast(sum(b.cksy) over() as decimal(25,4)))*100),4) end as cksyzb, b.dksr,b.dkzc,case when b.dksy=0 then 0 else round(((cast(b.dksy as decimal(25,4))/cast(sum(b.dksy) over() as decimal(25,4)))*100),4) end as dksyzb, b.wysxfsr,b.sjyhsxfsr,b.jjsxfsr,b.lcsxfsr,b.dlbxsxfsr,b.gjywsxfsr,b.zhsy ,case when b.zhsy=0 then 0 else round(((cast(b.zhsy as decimal(25,4))/cast(sum(b.zhsy) over() as decimal(25,4)))*100),4) end as zhsyzb,b.pm from ( select csb.dmms as khlx , sypm.khh as khh , sypm.khmc as khmc, sum(sypm.ckftpsr+sypm.ckzbjsr+sypm.cktqzqlxkh) as cksr, sum(sypm.cklxzc) as ckzc, sum(sypm.cklr) as cksy, sum(sypm.dklxsr) as dksr, sum(sypm.dkftplxzc+sypm.dkyswslxxz+sypm.dkzcjzss) as dkzc, sum(sypm.dklr) as dksy, sum(sypm.wysxfsr) as wysxfsr , sum(sypm.sjyhsxfsr) as sjyhsxfsr , sum(sypm.jjsxfsr) as jjsxfsr, sum(sypm.lcsxfsr) as lcsxfsr, sum(sypm.dlbxsxfsr) as dlbxsxfsr, sum(sypm.gjywsxfsr) as gjywsxfsr, sum(sypm.zhsy ) as zhsy, rank() over(order by round(sum(sypm.zhsy ),2) desc) as pm from nbzz_khlrmx_$tjrq_yyyymm$ sypm inner join table (fn_getsjjg_java_qx(cast(cast($tjrq$ as char(6))||'01' as integer),$login_khdxdh$, $jgkhdxdh$)) qx on qx.khdxdh in( sypm.jgkhdxdh) inner join csb_dmms csb on csb.dmmc= 'KHLX' and csb.dmz=sypm.khlx where 1=1 
       <isNotEmpty property="khlx">and sypm.khlx = '$khlx$'</isNotEmpty>  
       <isNotEmpty property="khh">and sypm.khh like '%$khh$%'</isNotEmpty>  
       <isNotEmpty property="khmc">and sypm.khmc like '%$khmc$%'</isNotEmpty> group by csb.dmms ,sypm.khh,sypm.khmc )b where 1=1 
       <isNotEmpty property="zhsyq"><![CDATA[and   b.pm <= $zhsyq$]]></isNotEmpty> ) t
     </select>  
-    <select id="dn0.khsypmfx_MSQL4SELECT_khlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where DMMC= 'KHLX'</select> 
+    <select id="dn1.khsypmfx_MSQL4SELECT_khlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where DMMC= 'KHLX'</select> 
   </sqlMap>  
   <finger custPlotMth=""> 
     <plotType/>  

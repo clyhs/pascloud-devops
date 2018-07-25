@@ -44,19 +44,19 @@
     <col id="MS" title="评定标准" align="left" type="string" width="140" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.jgdjpdcx"> 
-    <select id="dn0.jgdjpdcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn1.jgdjpdcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select djpd_yyjg_jg.tjrq pdrq, khdx_jg.jgdh, khdx_jg.jgmc, jglb.lbmc jglb, dmms.dmms khzq, djpd_yyjg_jg.pm, djpd_yyjg_jg.jbmc dj, djpd_yyjg_jg.jbmc djmc, djpd_yyjg_jg.jlbz, djpd_yyjg_jg.ms from djpd_yyjg_jg djpd_yyjg_jg inner join khdx_jg khdx_jg on khdx_jg.khdxdh=djpd_yyjg_jg.khdxdh inner join csb_dmms dmms on upper(dmms.dmmc) = 'DJPDZQ' and dmms.dmz = djpd_yyjg_jg.pdzq inner join khdx_jglb jglb on djpd_yyjg_jg.khdxdh=jglb.khdxdh and djpd_yyjg_jg.tjrq between jglb.qsrq and jglb.jsrq inner join table(fn_getsjjg_java_qx($pdrq$, $login_khdxdh$, 0)) qx on qx.khdxdh = khdx_jg.khdxdh where 1=1 
       <isNotEmpty property="pdrq">and djpd_yyjg_jg.tjrq= $pdrq$</isNotEmpty>  
       <isNotEmpty property="jgkhdxdh">and khdx_jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>  
       <isNotEmpty property="djpdmc">and djpd_yyjg_jg.djpdmc = '$djpdmc$'</isNotEmpty> order by djpd_yyjg_jg.pm asc
     </select>  
-    <select id="dn0.jgdjpdcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn1.jgdjpdcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select djpd_yyjg_jg.tjrq pdrq, khdx_jg.jgdh, khdx_jg.jgmc, jglb.lbmc jglb, dmms.dmms khzq, djpd_yyjg_jg.pm, djpd_yyjg_jg.jbmc dj, djpd_yyjg_jg.jbmc djmc, djpd_yyjg_jg.jlbz, djpd_yyjg_jg.ms from djpd_yyjg_jg djpd_yyjg_jg inner join khdx_jg khdx_jg on khdx_jg.khdxdh=djpd_yyjg_jg.khdxdh inner join csb_dmms dmms on upper(dmms.dmmc) = 'DJPDZQ' and dmms.dmz = djpd_yyjg_jg.pdzq inner join khdx_jglb jglb on djpd_yyjg_jg.khdxdh=jglb.khdxdh and djpd_yyjg_jg.tjrq between jglb.qsrq and jglb.jsrq inner join table(fn_getsjjg_java_qx($pdrq$, $login_khdxdh$, 0)) qx on qx.khdxdh = khdx_jg.khdxdh where 1=1 
       <isNotEmpty property="pdrq">and djpd_yyjg_jg.tjrq= $pdrq$</isNotEmpty>  
       <isNotEmpty property="jgkhdxdh">and khdx_jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>  
       <isNotEmpty property="djpdmc">and djpd_yyjg_jg.djpdmc = '$djpdmc$'</isNotEmpty> order by djpd_yyjg_jg.pm asc ) t
     </select>  
-    <select id="dn0.jgdjpdcx_MSQL4SELECT_djpdmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select djpdmc as key,djpdmc as value from djpd_djbz where f_numtochar(pdnf) = substr(f_numtochar($pdrq$),1,4) and khdx='1'</select> 
+    <select id="dn1.jgdjpdcx_MSQL4SELECT_djpdmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select djpdmc as key,djpdmc as value from djpd_djbz where f_numtochar(pdnf) = substr(f_numtochar($pdrq$),1,4) and khdx='1'</select> 
   </sqlMap>  
   <rels> 
     <items id="jgdjpdcx_xsjy1jgj"/> 
