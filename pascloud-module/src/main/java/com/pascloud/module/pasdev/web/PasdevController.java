@@ -34,6 +34,7 @@ import com.pascloud.utils.PasCloudCode;
 import com.pascloud.vo.common.TreeVo;
 import com.pascloud.vo.pasdev.PasfileVo;
 import com.pascloud.vo.result.ResultCommon;
+import com.pascloud.vo.result.ResultPageVo;
 
 /**
  * pas+文件版本管理
@@ -66,10 +67,18 @@ public class PasdevController extends BaseController {
 	 */
 	@RequestMapping("/pasfiles.json")
 	@ResponseBody
-	public List<PasfileVo> getPasFilesWithDir(HttpServletRequest request,
-			@RequestParam(value="dirId",defaultValue="",required=true) String dirId){
-		List<PasfileVo> result = new ArrayList<>();
-		result = m_pasdevService.getPasdevFiles(dirId);
+	public ResultPageVo<PasfileVo> getPasFilesWithDir(HttpServletRequest request,
+			@RequestParam(value="dirId",defaultValue="",required=true) String dirId,
+			@RequestParam(value="page",defaultValue="",required=true) Integer page,
+			@RequestParam(value="rows",defaultValue="",required=true) Integer rows){
+		ResultPageVo<PasfileVo> result = new ResultPageVo<>(PasCloudCode.SUCCESS);
+		
+		if(dirId.length() <=0 || page < 0 || rows < 0){
+			result = new ResultPageVo<>(PasCloudCode.PARAMEXCEPTION);
+		}
+		
+		result = m_pasdevService.getPageData(dirId, page, rows);
+		//result = m_pasdevService.getPasdevFiles(dirId);
 		return result;
 	}
 	
@@ -110,14 +119,12 @@ public class PasdevController extends BaseController {
 		
 		for(int i=0;i<dirs.size();i++){
 			
-			if(dirs.get(i).equals("dn0")){
-				continue;
-			}
+			
 			
 			TreeVo vo = new TreeVo();
 			vo.setId(dirs.get(i));
 			
-			if(dirs.get(i).equals("pasdev")){
+			if(dirs.get(i).equals(Constants.PASCLOUD_PUBLIC_DB)){
 				vo.setText("标准版");
 			}else{
 				String cn =m_configService.getCnByDnname(dirs.get(i));
@@ -151,7 +158,7 @@ public class PasdevController extends BaseController {
 		dirs = m_pasdevService.getPasfileDir();
 		Boolean flag = false;
 		
-		if(name.equals(Constants.PASCLOUD_DEV_DEFAULT)){
+		if(name.equals(Constants.PASCLOUD_PUBLIC_DB)){
 			result = new ResultCommon(PasCloudCode.ERROR);
 			return result;
 		}
@@ -190,7 +197,7 @@ public class PasdevController extends BaseController {
 			return new ResultCommon(PasCloudCode.NULLDATA);
 		} 
 		
-		if(name.equals(Constants.PASCLOUD_DEV_DEFAULT)){
+		if(name.equals(Constants.PASCLOUD_PUBLIC_DB)){
 			return new ResultCommon(PasCloudCode.PARAMEXCEPTION);
 		} 
 		
@@ -210,7 +217,7 @@ public class PasdevController extends BaseController {
 		ResultCommon result = null;
 		log.info("上传前进行压缩");
 		
-		if("".equals(name) || Constants.PASCLOUD_DEV_DEFAULT.equals(name)){
+		if("".equals(name)){
 			result = new ResultCommon(PasCloudCode.ERROR);
 			return result;
 		}
@@ -274,5 +281,20 @@ public class PasdevController extends BaseController {
 		}
 		return result;
 		
+	}
+	@RequestMapping("/sysPasfileToDB.json")
+	@ResponseBody
+	public ResultCommon sysPasfileToDB(HttpServletRequest request,
+			@RequestParam(name = "dirId",defaultValue="", required = true) String dirId){
+		ResultCommon result = null;
+		log.info("同步pas+文件到公共数据库 开始");
+		if(dirId.length() <=0){
+			result = new ResultCommon(PasCloudCode.PARAMEXCEPTION);
+			return result;
+		}
+		
+		result = m_pasdevService.sysPasfileToDB(dirId);
+		log.info("同步pas+文件到公共数据库 结束");
+		return result;
 	}
 }

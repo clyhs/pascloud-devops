@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.pascloud.constant.Constants;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.mversion.service.MVersionService;
 import com.pascloud.module.passervice.service.ConfigService;
@@ -59,7 +60,7 @@ public class MVersionController extends BaseController {
 			for(DBInfo dbf:result){
 				TreeVo t = new TreeVo();
 				
-				if(dbf.getId().equals("dn0")){
+				if(dbf.getId().equals(Constants.PASCLOUD_PUBLIC_DB)){
 					continue;
 				}
 				
@@ -259,6 +260,20 @@ public class MVersionController extends BaseController {
 				t.setLevel(cd.getCdjb());
 				t.setSfxs(cd.getSfxs());
 				
+				if(cd.getCdjb().equals("0") || cd.getCdjb().equals("1")){
+					t.setType("目录");
+				}
+				if(cd.getCdjb().equals("3")){
+					t.setType("按钮");
+				}
+				if(cd.getCdjb().equals("2")){
+					if(cd.getXmdz().contains("/module/parser")){
+						t.setType("pas+");
+					}else{
+						t.setType("java");
+					}
+				}
+				
 				if(cd.getCdjb().equals("0") || cd.getCdjb().equals("1") || cd.getCdjb().equals("3")){
 					t.setVersion("#");
 				}else{
@@ -274,8 +289,6 @@ public class MVersionController extends BaseController {
 				if(cd.getCdjb().equals("3")){
 					t.setIconCls("icon-bullet_green");
 				}
-				
-				
 				
 				List<MVersionTreeVo> lists = buildTreeVo(cds, id);
 				if(lists.size()>0){

@@ -13,10 +13,15 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
@@ -34,6 +39,7 @@ import com.pas.cloud.studio.parameters.YjgxParameters;
 import com.pascloud.constant.Constants;
 import com.pascloud.module.common.service.AbstractBaseService;
 import com.pascloud.module.config.PasCloudConfig;
+import com.pascloud.module.database.service.DataBaseService;
 import com.pascloud.module.passervice.service.PasService;
 import com.pascloud.module.server.service.ServerService;
 import com.pascloud.utils.FileUtils;
@@ -42,8 +48,10 @@ import com.pascloud.utils.gzip.GZipUtils;
 import com.pascloud.utils.gzip.TarUtils;
 import com.pascloud.utils.xml.XmlParser;
 import com.pascloud.vo.docker.ContainerVo;
+import com.pascloud.vo.mversion.XtcdVo;
 import com.pascloud.vo.pasdev.PasfileVo;
 import com.pascloud.vo.result.ResultCommon;
+import com.pascloud.vo.result.ResultPageVo;
 import com.pascloud.vo.server.ServerVo;
 
 import ch.ethz.ssh2.Connection;
@@ -73,6 +81,10 @@ public class PasdevService extends AbstractBaseService {
 	@Autowired
 	private ServerService      m_serverService;
 	
+	
+	@Autowired
+	private DataBaseService    m_databaseService;
+	
 	/**
 	 * 根据目录ID(分行代号)进行遍历目录
 	 * @param dirId
@@ -94,14 +106,131 @@ public class PasdevService extends AbstractBaseService {
 				vo.setSuffix(FileUtils.getFileExtension(f));
 				vo.setFilepara(funId+".para");
 				vo.setFilepath(f.getAbsolutePath());
+				vo.setFhdh(dirId);
 				parserPasfile(f.getAbsolutePath(),vo);
 				result.add(vo);
 			}
 		}
 		
 		return result;
-		
 	}
+	
+	public ResultPageVo<PasfileVo> getPageData(String dirId,Integer pageNo,Integer pageSize){
+		ResultPageVo<PasfileVo> result = null;
+		List<PasfileVo> list = new ArrayList<>();
+		java.sql.Connection conn = null;
+		Integer start = 0;
+		Integer totals = 0;
+		try{
+			conn = m_databaseService.getConnectionById(Constants.PASCLOUD_PUBLIC_DB);
+			QueryRunner qRunner = new QueryRunner(); 
+			start = (pageNo - 1) * pageSize;
+			String sql = "select * from xtb_pasfile where fhdh=? order by id asc limit ?,?";
+			String tSql= "select count(1) from xtb_pasfile where fhdh=?";
+			
+			Object[] tparams = {dirId};
+			Object[] params = {dirId,start,pageSize};
+			
+			Number num =  (Number)qRunner.query(conn,tSql, new ScalarHandler(),tparams);
+			if(null!=num){
+				totals = num.intValue();
+				if(totals>0){
+					list =  qRunner.query(conn,sql, new BeanListHandler<PasfileVo>(PasfileVo.class),params);
+				}
+			}
+			result = new ResultPageVo<PasfileVo>(PasCloudCode.SUCCESS);
+			result.setTotal(totals);
+			result.setRows(list);
+			
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+			result = new ResultPageVo<PasfileVo>(PasCloudCode.EXCEPTION);
+		}finally{
+			try {
+				if(null!=conn){
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	public ResultCommon delPasfileFromDB(String dirId){
+		ResultCommon result = null;
+		java.sql.Connection conn = null;
+		try{
+			conn = m_databaseService.getConnectionById(Constants.PASCLOUD_PUBLIC_DB);
+			QueryRunner qRunner = new QueryRunner(); 
+		
+			String delSql = "delete from xtb_pasfile where fhdh=?";
+			Object[] delparams = {dirId};
+			qRunner.update(conn, delSql, delparams);
+			result = new ResultCommon(PasCloudCode.SUCCESS);
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+			result = new ResultCommon(PasCloudCode.EXCEPTION);
+		}finally{
+			try {
+				if(null!=conn){
+					conn.close();
+					conn = null;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	public ResultCommon sysPasfileToDB(String dirId){
+		ResultCommon result = null;
+		java.sql.Connection conn = null;
+		List<PasfileVo> pfs = new ArrayList<>();
+		
+		try{
+			conn = m_databaseService.getConnectionById(Constants.PASCLOUD_PUBLIC_DB);
+			QueryRunner qRunner = new QueryRunner(); 
+			String sql = "insert into xtb_pasfile(`funId`,`title`,`type`,`version`,`desc`,`pid`,`createTime`,`fhdh`)"
+					+ "values(?,?,?,?,?,?,?,?)";
+			String delSql = "delete from xtb_pasfile where fhdh=?";
+			
+			pfs = getPasdevFiles(dirId);
+			
+			if(pfs.size()>0){
+				Object[] delparams = {dirId};
+				log.info("先"+dirId+"清空xtb_pasfile表");
+				qRunner.update(conn, delSql, delparams);
+				Object[][] params = new Object[pfs.size()][];
+				for(int i=0;i<pfs.size();i++){
+					PasfileVo vo = pfs.get(i);
+					params[i] = new Object[]{vo.getFunId(),vo.getTitle(),vo.getType(),
+							vo.getVersion(),vo.getDesc(),vo.getPid(),new Date(),vo.getFhdh()};
+				}
+				qRunner.batch(conn, sql, params);
+			}
+			
+			result = new ResultCommon(PasCloudCode.SUCCESS);
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+			result = new ResultCommon(PasCloudCode.EXCEPTION);
+		}finally{
+			try {
+				if(null!=conn){
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	
 	
 	private void parserPasfile(String filepath,PasfileVo vo){
 		Document doc = XmlParser.getDocument(filepath);
@@ -113,13 +242,15 @@ public class PasdevService extends AbstractBaseService {
 		}else{
 			vo.setVersion(root.attributeValue("version"));
 		}
+		vo.setPid(root.attributeValue("pid"));
+		vo.setDesc(root.attributeValue("desc"));
 	}
 	
 	public synchronized Integer modifyPasdevFilesWidthID(String dbSchema){
         Integer totals = 0;
 		List<File> files = new ArrayList<File>();
 		files = FileUtils.listFilesInDirWithFilter(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()
-		+"/"+Constants.PASCLOUD_DEV_DEFAULT, ".xml", false);
+		+"/"+Constants.PASCLOUD_PUBLIC_DB, ".xml", false);
 		//System.out.println(m_config.getPASCLOUD_DEV_DIR());
 		if(files.size()>0){
 			Iterator<File> it = files.iterator();
@@ -139,18 +270,24 @@ public class PasdevService extends AbstractBaseService {
 		Integer num = 0;
 		
 		String defaultpath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()
-		+"/"+Constants.PASCLOUD_DEV_DEFAULT;
+		+"/"+Constants.PASCLOUD_PUBLIC_DB;
 		String newpath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()
 		+"/"+dbSchema;
-		System.out.println(newpath);
 		if(FileUtils.isFileExists(newpath)){
 			
 		}else{
 			if(FileUtils.createOrExistsDir(newpath)){
+				log.info("复制PAS+文件到"+dbSchema);
 				if(FileUtils.copyDir(defaultpath, newpath)){
-					copyPasdevFilesWidthID(dbSchema);
+					num = copyPasdevFilesWidthID(dbSchema);
 				}
+				log.info("复制PAS+文件到"+dbSchema+"完成");
 			}
+		}
+		
+		if(num>0){
+			log.info("同步PAS+文件到公共库");
+			sysPasfileToDB(dbSchema);
 		}
 		
 		return num;
@@ -164,11 +301,20 @@ public class PasdevService extends AbstractBaseService {
 		Integer result = 0;
 		String path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()
 		+"/"+dbSchema;
-		if(dbSchema.equals(Constants.PASCLOUD_DEV_DEFAULT)){
+		String gzPath = path+".tar.gz";
+		if(dbSchema.equals(Constants.PASCLOUD_PUBLIC_DB)){
 			result = -1;
 		}else{
 			if(FileUtils.isFileExists(path)){
+				log.info("删除目录文件："+path);
 				if(FileUtils.deleteDir(path)){
+					
+					if(FileUtils.isFileExists(gzPath)){
+						log.info("删除压缩包文件："+gzPath);
+						FileUtils.deleteFile(gzPath);
+					}
+					log.info("删除数据库数据："+dbSchema);
+					delPasfileFromDB(dbSchema);
 					result = 1;
 				}else{
 					result = -1;
@@ -602,6 +748,7 @@ public class PasdevService extends AbstractBaseService {
 			}
 		}*/
 		
+		/*
 		JedisPoolConfig config = new JedisPoolConfig();
         config.setMaxTotal(10);
         config.setMaxIdle(5);
@@ -631,7 +778,7 @@ public class PasdevService extends AbstractBaseService {
         System.out.println(contentstr);
         Document doc =XmlParser.getDocumentFromString(contentstr);
         Element root =doc.getRootElement();
-        System.out.println(root.attributeValue("id"));
+        System.out.println(root.attributeValue("id"));*/
 	}
 	 
 	

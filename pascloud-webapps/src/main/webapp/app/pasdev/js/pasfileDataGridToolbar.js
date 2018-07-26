@@ -6,5 +6,17 @@ var toolbar = function(){
         handler : function(){
         	createUploadDataGridDialog();
         }
+	},{
+		text : '同步到服务器',  
+        iconCls : 'icon-disk_upload',  
+        handler : function(){
+        	uploadPasfile();
+        }
+	},{
+		text : '同步到数据库',  
+        iconCls : 'icon-database_copy',  
+        handler : function(){
+        	sysPasfileToDB();
+        }
 	}];
 }();

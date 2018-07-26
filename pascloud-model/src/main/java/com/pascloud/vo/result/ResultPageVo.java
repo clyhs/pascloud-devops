@@ -3,6 +3,8 @@ package com.pascloud.vo.result;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.pascloud.utils.PasCloudCode;
+
 public class ResultPageVo<T> extends ResultCommon {
 
 	/**
@@ -19,6 +21,10 @@ public class ResultPageVo<T> extends ResultCommon {
     public ResultPageVo(){
     	super();
     }
+    
+    public ResultPageVo(PasCloudCode c){
+		super(c);
+	}
     
     public ResultPageVo(Integer code,String desc) {
     	super(code,desc);

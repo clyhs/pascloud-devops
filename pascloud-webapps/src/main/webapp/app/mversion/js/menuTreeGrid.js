@@ -20,6 +20,7 @@ function initMenuTreeGrid(id){
             {title:'级别',field:'level',width:160,sortable:true,hidden:'true'},
             {title:'版本',field:'version',width:40,sortable:true},
             {title:'是否禁用',field:'sfxs',width:40,sortable:true,formatter:formatOper },
+            {title:'类型',field:'type',width:40,sortable:true},
             {title:'地址',field:'url',width:160,sortable:true}
         ]],
         toolbar:menutoolbar,

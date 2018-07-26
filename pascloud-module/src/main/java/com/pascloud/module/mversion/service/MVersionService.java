@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
+import com.pascloud.constant.Constants;
 import com.pascloud.module.common.service.AbstractBaseService;
 import com.pascloud.module.passervice.service.ConfigService;
 import com.pascloud.utils.DBUtils;
@@ -33,7 +34,7 @@ public class MVersionService extends AbstractBaseService {
 	public List<XtcdVo> getXtcdList(Connection conn,String id){
 		List<XtcdVo> result = new ArrayList<>();
 		String sql = "select * from xtb_xtcd";
-		if(id.equals("dn0")){
+		if(id.equals(Constants.PASCLOUD_PUBLIC_DB)){
 			sql = "select * from xtb_xtzycd";
 		}
 		try {
@@ -104,7 +105,7 @@ public class MVersionService extends AbstractBaseService {
 		}
 		if(null!=db){
 			String driverClass = DBUtils.getDirverClassName(db.getDbType());
-			if(Id.equals("dn0")){
+			if(Id.equals(Constants.PASCLOUD_PUBLIC_DB)){
 				db.setUrl(db.getUrl()+"?useUnicode=true&characterEncoding=utf8");
 			}
 			DBUtils dbUtils = new DBUtils(driverClass, db.getUrl(), db.getUsername(), db.getPassword());
@@ -123,7 +124,7 @@ public class MVersionService extends AbstractBaseService {
 		try {
 			conn = getConnectionById(Id);
 			QueryRunner qRunner = new QueryRunner(); 
-			if(Id.equals("dn0")){
+			if(Id.equals(Constants.PASCLOUD_PUBLIC_DB)){
 				sql = "INSERT INTO xtb_xtzycd(xmmc,xmdz,sjxm,cdjb,dzlx,classid,sfxs,imgurl,qxbs,version)"
 						+ "VALUES(?,?,?,?,?,?,?,?,?,?)";
 				Object[] params = {cd.getXmmc(),cd.getXmdz(),cd.getSjxm(),cd.getCdjb(),
@@ -174,7 +175,7 @@ public class MVersionService extends AbstractBaseService {
 			QueryRunner qRunner = new QueryRunner();  
 			for(String Id:Ids){
 				conn = getConnectionById(Id);
-				if(Id.equals("dn0")){
+				if(Id.equals(Constants.PASCLOUD_PUBLIC_DB)){
 					sql = "INSERT INTO xtb_xtzycd(xmmc,xmdz,sjxm,cdjb,dzlx,classid,sfxs,imgurl,qxbs,version)"
 							+ "VALUES(?,?,?,?,?,?,?,?,?,?)";
 					Object[] params = {cd.getXmmc(),cd.getXmdz(),cd.getSjxm(),cd.getCdjb(),
@@ -225,7 +226,7 @@ public class MVersionService extends AbstractBaseService {
 		String sql = "";
 		Integer row = 0;
 		try {
-			if(Id.equals("dn0")){
+			if(Id.equals(Constants.PASCLOUD_PUBLIC_DB)){
 				sql = "delete from xtb_xtzycd where xmdh=?";
 			}else{
 				sql = "delete from xtb_xtcd where xmdh=?";
@@ -267,7 +268,7 @@ public class MVersionService extends AbstractBaseService {
 		String sql = "";
 		Integer row = 0;
 		try {
-			if(Id.equals("dn0")){
+			if(Id.equals(Constants.PASCLOUD_PUBLIC_DB)){
 				sql = "update xtb_xtzycd set sfxs=? where xmdh=?";
 			}else{
 				sql = "update xtb_xtcd set sfxs=? where xmdh=?";
@@ -308,9 +309,9 @@ public class MVersionService extends AbstractBaseService {
 		Connection conn = null;
 		Integer row=0;
 		try {
-			conn = getConnectionById("dn0");
+			conn = getConnectionById(Constants.PASCLOUD_PUBLIC_DB);
 			log.info("获取公共菜单资源");
-			cds = getXtcdList(conn,"dn0");
+			cds = getXtcdList(conn,Constants.PASCLOUD_PUBLIC_DB);
 			String sql = "INSERT INTO xtb_xtcd(xmdh,xmmc,xmdz,sjxm,cdjb,dzlx,classid,sfxs,imgurl,qxbs,version)"
 					+ "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 			
@@ -381,7 +382,7 @@ public class MVersionService extends AbstractBaseService {
 		String sql = "";
 		XtcdVo vo  = null;
 		try {
-			if(Id.equals("dn0")){
+			if(Id.equals(Constants.PASCLOUD_PUBLIC_DB)){
 				sql = "select * from xtb_xtzycd where xmdh=?";
 			}else{
 				sql = "select * from xtb_xtcd where xmdh=?";

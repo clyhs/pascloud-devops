@@ -19,17 +19,25 @@ import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.pascloud.constant.Constants;
+import com.pascloud.module.passervice.service.ConfigService;
+import com.pascloud.utils.DBUtils;
 import com.pascloud.utils.db.DataSourceUtils;
 import com.pascloud.vo.database.DBColumnVo;
+import com.pascloud.vo.database.DBInfo;
 import com.pascloud.vo.database.DBTableVo;
 import com.pascloud.vo.result.ResultPageVo;
 
 @Service
 public class DataBaseService extends AbstractDBService{
+	
+	@Autowired
+	private ConfigService m_configService;
 	
 	public List<DBTableVo> getTables(String dsId){
 		
@@ -445,6 +453,32 @@ public class DataBaseService extends AbstractDBService{
     	sb.append("【异常】 "+msg);
     	return sb.toString();
     }
+    
+    public Connection getConnectionById(String Id){
+		List<DBInfo> dbs = new ArrayList<>();
+		Connection conn = null;
+		dbs = m_configService.getDBFromConfig();
+		DBInfo db = null;
+		if(dbs.size() > 0){
+			for(DBInfo dbf:dbs){
+				//log.info(dbf.getId());
+				if(dbf.getId().equals(Id)){
+					db =dbf;
+				}
+			}
+		}
+		if(null!=db){
+			String driverClass = DBUtils.getDirverClassName(db.getDbType());
+			if(Id.equals(Constants.PASCLOUD_PUBLIC_DB)){
+				db.setUrl(db.getUrl()+"?useUnicode=true&characterEncoding=utf8");
+			}
+			DBUtils dbUtils = new DBUtils(driverClass, db.getUrl(), db.getUsername(), db.getPassword());
+			conn = dbUtils.getConnection();
+		}else{
+			log.info("db为空");
+		}
+		return conn;
+	}
 	
 
 }

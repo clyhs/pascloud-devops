@@ -32,7 +32,18 @@ public class MVersionTreeVo implements Serializable {
 	
 	private Integer sfxs;
 	
+	private String type;
 	
+	
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	public Integer getSfxs() {
 		return sfxs;
 	}

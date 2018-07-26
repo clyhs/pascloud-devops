@@ -1,6 +1,7 @@
 package com.pascloud.vo.pasdev;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class PasfileVo implements Serializable {
 
@@ -8,6 +9,8 @@ public class PasfileVo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private Integer id;
 	
 	private String filename;
 	
@@ -27,7 +30,43 @@ public class PasfileVo implements Serializable {
 	
 	private String pid;
 	
+	private String desc;
 	
+	private String fhdh;
+	
+	private Date   createTime;
+	
+	public String getFhdh() {
+		return fhdh;
+	}
+
+	public void setFhdh(String fhdh) {
+		this.fhdh = fhdh;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
 
 	public String getPid() {
 		return pid;

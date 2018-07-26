@@ -52,7 +52,7 @@ function addPasfile(){
 	}
 	
 	
-	if(name == 'pasdev'){
+	if(name == 'dn0'){
 		$.messager.alert('提示','不能填写');	
 	}else{
 		$('#addPasfileDir').dialog('close');
@@ -83,8 +83,8 @@ function delPasfile(){
 		
 		var param = {name:name};
 		
-		if(name == 'pasdev'){
-			$.messager.alert('提示','pasdev目录不能删除');	
+		if(name == 'dn0'){
+			$.messager.alert('提示','dn0目录不能删除');	
 		}else{
 			$.messager.confirm('提示框','你确定要删除些节点，会影响到云平台的租户，请再确定？',function(r){
 			    if (r){
@@ -114,8 +114,8 @@ function uploadPasfile(){
 	if(node!=null){
         var name = node.id;
 		var param = {name:name};
-		if(name == 'pasdev'){
-			$.messager.alert('提示','pasdev目录不能上传');	
+		if(name == ''){
+			$.messager.alert('提示','name不能为空');	
 		}else{
 			EasyUILoad('mainCenter');
 			$.post("uploadPasfile.json",param,function(data,status){
@@ -139,6 +139,28 @@ function uploadPasfile(){
 	    		}
 	    	});
 		}
+		
+	}else{
+		$.messager.alert('提示','请选择要上传的目录');
+	}
+}
+
+function sysPasfileToDB(){
+	var node = $('#pasfileTree').treegrid('getSelected');
+	//alert(node);
+	if(node!=null){
+        var name = node.id;
+		var param = {dirId:name};
+		EasyUILoad('mainCenter');
+		$.post("sysPasfileToDB.json",param,function(data,status){
+    		if(data.code == 10000){
+    			dispalyEasyUILoad('mainCenter');
+    			$.messager.alert('提示',data.desc);
+    		}else{
+    			dispalyEasyUILoad('mainCenter');
+    			$.messager.alert('提示',data.desc);	
+    		}
+    	});
 		
 	}else{
 		$.messager.alert('提示','请选择要上传的目录');
