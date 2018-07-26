@@ -26,7 +26,7 @@
     
     
     <script type="text/javascript" src="/static/js/common/pascloudfunctions.js"></script>
-    
+    <script type="text/javascript" src="/app/pasdev/js/main.js"></script>
     <script type="text/javascript" src="/app/pasdev/js/uploadFileDataGrid.js"></script>
     <script type="text/javascript" src="/app/pasdev/js/pasfileForm.js"></script>
     <script type="text/javascript" src="/app/pasdev/js/pasfileDataGridToolbar.js"></script>
@@ -36,7 +36,7 @@
     
 	<script type="text/javascript">
 		$(function(){
-		    initMainDataGrid();
+		    
 		    
 		    initPasfileTree();
 		});

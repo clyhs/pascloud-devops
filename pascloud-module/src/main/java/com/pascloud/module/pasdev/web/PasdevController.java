@@ -1,6 +1,9 @@
 package com.pascloud.module.pasdev.web;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -274,11 +277,18 @@ public class PasdevController extends BaseController {
 	@RequestMapping("/uploadfile.json")
 	@ResponseBody
 	public ResultCommon uploadfile(HttpServletRequest request,
-			 @RequestParam(name = "file", required = false) CommonsMultipartFile file){
+			 @RequestParam(name = "file", required = false) CommonsMultipartFile file,
+			 @RequestParam(name = "dirId",defaultValue="", required = true) String dirId){
 		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
-		if (file != null && !file.isEmpty()) {
-			System.out.println(file.getOriginalFilename());
+		
+		if(null == dirId || dirId.length()<=0){
+			result = new ResultCommon(PasCloudCode.PARAMEXCEPTION);
+			return result;
 		}
+		
+		log.info(dirId);
+		
+		result = m_pasdevService.uploadPasfile(file, dirId);
 		return result;
 		
 	}
@@ -296,5 +306,24 @@ public class PasdevController extends BaseController {
 		result = m_pasdevService.sysPasfileToDB(dirId);
 		log.info("同步pas+文件到公共数据库 结束");
 		return result;
+	}
+	
+	@RequestMapping("/deletePasfileByFunId.json")
+	@ResponseBody
+	public ResultCommon deletePasfileByFunId(HttpServletRequest request,
+			@RequestParam(name = "funId",defaultValue="", required = true) String funId,
+			@RequestParam(name = "dirId",defaultValue="", required = true) String dirId){
+		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
+		
+		if(funId.length()<=0 || dirId.length()<=0){
+			result = new ResultCommon(PasCloudCode.PARAMEXCEPTION);
+			return result;
+		}
+		
+		log.info(dirId);
+		
+		result = m_pasdevService.deletePasfile(funId, dirId);
+		return result;
+		
 	}
 }

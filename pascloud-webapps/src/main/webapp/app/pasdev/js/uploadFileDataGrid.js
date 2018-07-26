@@ -86,42 +86,7 @@ function initUploadDataGrid(){
 
 
 function uploadRegister(){
-	/*
-	WebUploader.Uploader.register({
-        "before-send-file":"beforeSendFile"
-    },{
-        beforeSendFile: function(file){
-            var task = new $.Deferred();
-            (new WebUploader.Uploader()).md5File(file, 0, 10*1024*1024).progress(function(percentage){
-                upfileGrid.datagrid('updateRow',
-                       {index:upfileGrid.datagrid('getRowIndex',file.id),row:{validateMd5:(percentage * 100).toFixed(2)+"%"}});
-             }).then(function(val){
-                   $.ajax({
-                       type: "POST"
-                       , url: "./upload/md5Validate.do"
-                       , data: {
-                           type: "md5Check",md5: val
-                       }
-                       , cache: false
-                       , timeout: 3000 
-                       , dataType: "json"
-                   }).then(function(data, textStatus, jqXHR){
-                       if(data.isHave){   //若存在，这返回失败给WebUploader，表明该文件不需要上传
-                           task.reject();
-                           uploader.skipFile(file);
-                           upfileGrid.datagrid('updateRow',
-                                   {index:upfileGrid.datagrid('getRowIndex',file.id),row:{fileState:"秒传",progress:100}});
-                       }else{
-                           $.extend(uploader.options.formData,{md5:val});
-                           task.resolve();
-                       }
-                   }, function(jqXHR, textStatus, errorThrown){    //任何形式的验证失败，都触发重新上传
-                       task.resolve();
-                   });
-             });
-            return $.when(task);
-        }
-    });*/
+	
 	
 	uploader = WebUploader.create({
         // 不压缩image
@@ -133,6 +98,7 @@ function uploadRegister(){
         // 选择文件的按钮。可选。
         // 内部根据当前运行是创建，可能是input元素，也可能是flash.
         pick: '#chooseFile',
+        formData: { "dirId": dirId},
         fileSingleSizeLimit:100*1024*1024,//单个文件大小
         accept:[{
             title: 'file',
@@ -183,8 +149,10 @@ function uploadRegister(){
     });
 
     uploader.on('uploadFinished',function(){//成功后
-
+    	reloadTableWithID(dirId);
     });
+    
+    
 
     uploader.on('error', function(handler){
         if(handler=='F_EXCEED_SIZE'){
@@ -217,7 +185,12 @@ function uploadToServer(){
         //tim.parentAlert('提示', '没有上传的文件!', 'error');
     	$.messager.alert("提示", "没有上传的文件!");
         return;
-     }
+    }
+    /*
+    var obj = new Object();
+    obj.dirId = dirId;
+    uploader.options.formData = obj;
+    */
     if ( state === 'uploading' ) {
         uploader.stop();
     } 

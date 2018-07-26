@@ -45,8 +45,19 @@ public class PasCloudConfig {
 	@Value("${project.tree}")
 	private String PASCLOUD_TREE;
 	
+	@Value("${project.upload}")
+	private String PASCLOUD_UPLOAD;
 	
 	
+	
+	public String getPASCLOUD_UPLOAD() {
+		return PASCLOUD_UPLOAD;
+	}
+
+	public void setPASCLOUD_UPLOAD(String pASCLOUD_UPLOAD) {
+		PASCLOUD_UPLOAD = pASCLOUD_UPLOAD;
+	}
+
 	public String getPASCLOUD_TREE() {
 		return PASCLOUD_TREE;
 	}

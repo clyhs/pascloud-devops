@@ -62,6 +62,7 @@ function addPasfile(){
 			if(data.code == 10000){
 			    //alert(data.desc);
 				reloadTree();
+				reloadTableWithID(name);
 				dispalyEasyUILoad('mainCenter');
 				$.messager.alert('提示','复制成功');	
 			}else{
@@ -93,6 +94,7 @@ function delPasfile(){
 			    		if(data.code == 10000){
 			    		    //alert(data.desc);
 			    			reloadTree();
+			    			reloadTableWithID('dn0');
 			    			dispalyEasyUILoad('mainCenter');
 			    			$.messager.alert('提示','删除成功');	
 			    		}else{
@@ -168,32 +170,37 @@ function sysPasfileToDB(){
 }
 
 
-function initUploadfile(){
-	$('#file_upload').uploadify({
-        'swf': '/static/js/uploadify/uploadify.swf',  //FLash文件路径
-        'buttonText': '浏  览',                                 //按钮文本
-        'uploader': '/FileUpload/Upload',                       //处理文件上传Action
-        'queueID': 'fileQueue',                        //队列的ID
-        'queueSizeLimit': 10,                          //队列最多可上传文件数量，默认为999
-        'auto': false,                                 //选择文件后是否自动上传，默认为true
-        'multi': true,                                 //是否为多选，默认为true
-        'removeCompleted': true,                       //是否完成后移除序列，默认为true
-        'fileSizeLimit': '10MB',                       //单个文件大小，0为无限制，可接受KB,MB,GB等单位的字符串值
-        'fileTypeDesc': 'Image Files',                 //文件描述
-        'fileTypeExts': '*.gif; *.jpg; *.png; *.bmp;*.tif;*.doc;*.xls;*.zip',  //上传的文件后缀过滤器
-        'onQueueComplete': function (event, data) {                 //所有队列完成后事件
-            
-            $.messager.alert("提示", "上传完毕！");                                     //提示完成           
-        },
-        'onUploadStart' : function(file) {
-            $("#file_upload").uploadify("settings", 'formData', { 'folder': '政策法规', 'guid': $("#Attachment_GUID").val() }); //动态传参数
-        },
-        'onUploadError': function (event, queueId, fileObj, errorObj) {
-            //alert(errorObj.type + "：" + errorObj.info);
-        }
-    });
+function deletePasfile(){
+	var row = $('#mainDataGrid').datagrid('getSelected'); 
+	
+	if(null == row){
+		$.messager.alert('错误',"请选择一行");
+		return ;
+	}
+	
+	var funId = row.funId;
+	
+	var params = {funId:funId,dirId:dirId};
+	//alert(funId);
+	
+	$.messager.confirm('提示框','你确定要删除，会影响到云平台的租户资源，请再确定？',function(r){
+	    if (r){
+	    	EasyUILoad('mainCenter');
+	    	$.post("deletePasfileByFunId.json",params,function(data,status){
+	    		if(data.code == 10000){
+	    		    //alert(data.desc);
+	    			reloadTableWithID(dirId);
+	    			dispalyEasyUILoad('mainCenter');
+	    			$.messager.alert('提示','删除成功');	
+	    		}else{
+	    			$.messager.alert('提示','删除失败');	
+	    		}
+	    	});
+	    }
+	});
+	
+	
 }
-
 
 
 

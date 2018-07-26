@@ -1,5 +1,5 @@
 
-function initMainDataGrid(){
+function initMainDataGrid(Id){
     
     $('#mainDataGrid').datagrid({
         height: 'auto',
@@ -7,7 +7,7 @@ function initMainDataGrid(){
         method: 'get',
         fit:true ,
         idField: 'id',
-        queryParams:{'dirId':'dn0'},
+        queryParams:{'dirId':Id},
         border:false,
         striped: true,
         fitColumns: true,
@@ -23,9 +23,9 @@ function initMainDataGrid(){
         	{ field: 'title', title: '名称', width: 120, align: 'left' },
             { field: 'funId', title: '编号', width: 80, align: 'left'  },
             
-            { field: 'filename', title: '文件名称', width: 80, align: 'left' },
+            { field: 'filename', title: 'xml文件', width: 80, align: 'left' ,formatter:formatXml },
             { field: 'type', title: '类型', width: 80, align: 'left' },
-            { field: 'filepara', title: 'para文件', width: 80, align: 'center' },
+            { field: 'filepara', title: 'para文件', width: 80, align: 'center' ,formatter:formatPara},
             //{ field: 'suffix', title: '后缀名', width: 80, align: 'center' },
             { field: 'version', title: '版本号', width: 80, align: 'center' }
         ]],
@@ -54,6 +54,14 @@ function initMainDataGrid(){
     });
 }
 
+function formatXml(val,row,index){ 
+	return row.funId+".xml"; 
+} 
+
+function formatPara(val,row,index){ 
+	return row.funId+".para"; 
+} 
+
 function modifyPasFiles(){
 	//alert(driverClassVal + passwordVal);
 	EasyUILoad('mainCenter');
@@ -69,9 +77,9 @@ function modifyPasFiles(){
 	});
 }
 
-function reloadTableWithID(dirId){
+function reloadTableWithID(Id){
 	$('#mainDataGrid').datagrid('clearSelections'); 
-    $('#mainDataGrid').datagrid('load',{'dirId' : dirId});
+    $('#mainDataGrid').datagrid('load',{'dirId' : Id});
 }
 
 

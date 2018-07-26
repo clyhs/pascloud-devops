@@ -7,6 +7,12 @@ var toolbar = function(){
         	createUploadDataGridDialog();
         }
 	},{
+		text : '删除',  
+        iconCls : 'icon-delete',  
+        handler : function(){
+        	deletePasfile();
+        }
+	},{
 		text : '同步到服务器',  
         iconCls : 'icon-disk_upload',  
         handler : function(){

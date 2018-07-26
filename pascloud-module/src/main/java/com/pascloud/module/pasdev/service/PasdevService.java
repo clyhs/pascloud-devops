@@ -1,11 +1,13 @@
 package com.pascloud.module.pasdev.service;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -30,6 +32,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.pas.cloud.studio.parameters.ImportParameters;
 import com.pas.cloud.studio.parameters.ManageParameters;
@@ -44,8 +47,10 @@ import com.pascloud.module.passervice.service.PasService;
 import com.pascloud.module.server.service.ServerService;
 import com.pascloud.utils.FileUtils;
 import com.pascloud.utils.PasCloudCode;
+import com.pascloud.utils.ZipUtils;
 import com.pascloud.utils.gzip.GZipUtils;
 import com.pascloud.utils.gzip.TarUtils;
+import com.pascloud.utils.redis.SerializeUtils;
 import com.pascloud.utils.xml.XmlParser;
 import com.pascloud.vo.docker.ContainerVo;
 import com.pascloud.vo.mversion.XtcdVo;
@@ -115,6 +120,29 @@ public class PasdevService extends AbstractBaseService {
 		return result;
 	}
 	
+	public List<PasfileVo> getPasdevFiles(List<File> files,String dirId){
+		List<PasfileVo> result = new ArrayList<>();
+		//System.out.println(m_config.getPASCLOUD_DEV_DIR());
+		if(files.size()>0){
+			Iterator<File> it = files.iterator();
+			while(it.hasNext()){
+				File f = it.next();
+				PasfileVo vo = new PasfileVo();
+				vo.setFilename(f.getName());
+				String funId = FileUtils.getFileNameNoExtension(f);
+				vo.setFunId(funId);
+				vo.setSuffix(FileUtils.getFileExtension(f));
+				vo.setFilepara(funId+".para");
+				vo.setFilepath(f.getAbsolutePath());
+				vo.setFhdh(dirId);
+				parserPasfile(f.getAbsolutePath(),vo);
+				result.add(vo);
+			}
+		}
+		
+		return result;
+	}
+	
 	public ResultPageVo<PasfileVo> getPageData(String dirId,Integer pageNo,Integer pageSize){
 		ResultPageVo<PasfileVo> result = null;
 		List<PasfileVo> list = new ArrayList<>();
@@ -125,13 +153,55 @@ public class PasdevService extends AbstractBaseService {
 			conn = m_databaseService.getConnectionById(Constants.PASCLOUD_PUBLIC_DB);
 			QueryRunner qRunner = new QueryRunner(); 
 			start = (pageNo - 1) * pageSize;
-			String sql = "select * from xtb_pasfile where fhdh=? order by id asc limit ?,?";
+			String sql = "select * from xtb_pasfile where fhdh=? order by id desc limit ?,?";
 			String tSql= "select count(1) from xtb_pasfile where fhdh=?";
 			
 			Object[] tparams = {dirId};
 			Object[] params = {dirId,start,pageSize};
 			
 			Number num =  (Number)qRunner.query(conn,tSql, new ScalarHandler(),tparams);
+			if(null!=num){
+				totals = num.intValue();
+				if(totals>0){
+					list =  qRunner.query(conn,sql, new BeanListHandler<PasfileVo>(PasfileVo.class),params);
+				}
+			}
+			result = new ResultPageVo<PasfileVo>(PasCloudCode.SUCCESS);
+			result.setTotal(totals);
+			result.setRows(list);
+			
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+			result = new ResultPageVo<PasfileVo>(PasCloudCode.EXCEPTION);
+		}finally{
+			try {
+				if(null!=conn){
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	public ResultPageVo<PasfileVo> getAllData(String dirId){
+		ResultPageVo<PasfileVo> result = null;
+		List<PasfileVo> list = new ArrayList<>();
+		java.sql.Connection conn = null;
+		
+		Integer totals = 0;
+		try{
+			conn = m_databaseService.getConnectionById(Constants.PASCLOUD_PUBLIC_DB);
+			QueryRunner qRunner = new QueryRunner(); 
+			
+			String sql = "select * from xtb_pasfile where fhdh=?";
+			String tSql= "select count(1) from xtb_pasfile where fhdh=?";
+			
+			Object[] params = {dirId};
+			
+			Number num =  (Number)qRunner.query(conn,tSql, new ScalarHandler(),params);
 			if(null!=num){
 				totals = num.intValue();
 				if(totals>0){
@@ -233,6 +303,7 @@ public class PasdevService extends AbstractBaseService {
 	
 	
 	private void parserPasfile(String filepath,PasfileVo vo){
+		log.info(filepath);
 		Document doc = XmlParser.getDocument(filepath);
 		Element root = doc.getRootElement();
 		vo.setTitle(root.attributeValue("title"));
@@ -263,6 +334,8 @@ public class PasdevService extends AbstractBaseService {
 		return totals;
 		
 	}
+	
+	
 	
 	
 	
@@ -659,6 +732,213 @@ public class PasdevService extends AbstractBaseService {
 		return flag;
 	}
 	
+	
+	public ResultCommon uploadPasfile(CommonsMultipartFile file,String dirId){
+        ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
+		
+		String filepath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_UPLOAD()+"/pasfile";
+        
+		//String filepath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR();
+		
+        //String filepath =
+		String destpath = filepath+"/"+dirId;
+		//String destpath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()+"/"+dirId;
+		
+		if(FileUtils.createOrExistsDir(filepath));
+		
+		String filename = "";
+		String fname =  "";
+		if (file != null && !file.isEmpty()) {
+			log.info(file.getOriginalFilename());
+			InputStream input = null;
+			BufferedOutputStream bos = null;
+			try {
+				filename = file.getOriginalFilename();
+				
+				fname = filename.substring(0, filename.lastIndexOf('.'));
+				log.info(fname);
+				
+				filepath = destpath+"/"+filename;
+				log.info(filepath);
+				File destfile = new File(filepath);
+				file.transferTo(destfile);
+
+				
+				String dest = destpath+"/"+fname; 
+				result = unzipAndSysToDB(filepath,dest,dirId);
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				log.error(e.getMessage());
+				result = new ResultCommon(PasCloudCode.EXCEPTION);
+			}finally{
+			}
+		}
+		return result;
+	}
+	
+	private ResultCommon unzipAndSysToDB(String filepath,String destpath,String dirId){
+		ResultCommon result = null;
+		String destDirPath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()+"/"+dirId;
+		log.info(destDirPath);
+		if(FileUtils.isFileExists(filepath)){
+			try {
+				log.info(filepath);
+				log.info(destpath);
+				//filepath.replaceAll(regex, replacement)
+				
+				log.info(FileUtils.getFileByPath(filepath).length()+"");
+				
+				List<File> files = ZipUtils.unzipFile(filepath, destpath);
+				
+				if(files.size()>0){
+					List<File> fs = FileUtils.listFilesInDirWithFilter(destpath, ".xml");
+					//List<File> fs = filterWithSuffix(files,".xml");
+					if(fs.size()>0){
+						result = sysPasfileToDB(dirId,fs);
+						
+						FileUtils.copyDir(destpath, destDirPath);
+						
+					}else{
+						result = new ResultCommon(PasCloudCode.ERROR);
+					}
+					
+				}else{
+					result = new ResultCommon(PasCloudCode.ERROR);
+				}
+				
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				log.error(e.getMessage());
+				result = new ResultCommon(PasCloudCode.EXCEPTION);
+			}
+			return result;
+		}else{
+			result = new ResultCommon(PasCloudCode.ERROR);
+		}
+		
+		return result;
+	}
+	
+	
+	private List<File> filterWithSuffix(List<File> files , String suffix){
+		List<File> fs = new ArrayList<>();
+		
+		if(files.size()>0){
+			for(int i=0;i<files.size();i++){
+				File f= files.get(i);
+				String name = f.getName();
+				log.info(name);
+				int lastIndex = name.lastIndexOf('.');
+                
+                // get extension
+                String str = name.substring(lastIndex);
+                if(str.equals(suffix)){
+                	fs.add(f);
+                }
+				
+			}
+		}
+         
+        return fs;
+	}
+
+	
+	
+	public ResultCommon sysPasfileToDB(String dirId,List<File> files){
+		ResultCommon result = null;
+		java.sql.Connection conn = null;
+		List<PasfileVo> pfs = new ArrayList<>();
+		
+		try{
+			conn = m_databaseService.getConnectionById(Constants.PASCLOUD_PUBLIC_DB);
+			QueryRunner qRunner = new QueryRunner(); 
+			String sql = "insert into xtb_pasfile(`funId`,`title`,`type`,`version`,`desc`,`pid`,`createTime`,`fhdh`)"
+					+ "values(?,?,?,?,?,?,?,?)";
+			String delSql = "delete from xtb_pasfile where fhdh=? and funId=?";
+			
+			pfs = getPasdevFiles(files,dirId);
+			
+			if(pfs.size()>0){
+				Object[][] delparams = new Object[pfs.size()][];
+				
+				//qRunner.update(conn, delSql, delparams);
+
+				Object[][] params = new Object[pfs.size()][];
+				for(int i=0;i<pfs.size();i++){
+					PasfileVo vo = pfs.get(i);
+					
+					delparams[i] = new Object[]{dirId,vo.getFunId()};
+					
+					params[i] = new Object[]{vo.getFunId(),vo.getTitle(),vo.getType(),
+							vo.getVersion(),vo.getDesc(),vo.getPid(),new Date(),vo.getFhdh()};
+				}
+				
+				log.info("先清空xtb_pasfile表");
+				qRunner.batch(conn, delSql, delparams);
+				qRunner.batch(conn, sql, params);
+			}
+			
+			result = new ResultCommon(PasCloudCode.SUCCESS);
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+			result = new ResultCommon(PasCloudCode.EXCEPTION);
+		}finally{
+			try {
+				if(null!=conn){
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	public ResultCommon deletePasfile(String funId,String dirId){
+		ResultCommon result = null;
+		
+		String destDirPath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()+"/"+dirId;
+		
+		java.sql.Connection conn = null;
+		int row = 0;
+		try{
+			conn = m_databaseService.getConnectionById(Constants.PASCLOUD_PUBLIC_DB);
+			QueryRunner qRunner = new QueryRunner(); 
+			
+			String delSql = "delete from xtb_pasfile where fhdh=? and funId=?";
+			
+			Object[] delparams ={dirId,funId};
+			row = qRunner.update(conn, delSql, delparams);
+			if(row>0){
+				String filexml = destDirPath+"/"+funId+".xml";
+				String filepara = destDirPath+"/"+funId+".para";
+				FileUtils.deleteFile(filexml);
+				FileUtils.deleteFile(filepara);
+			}
+			
+			result = new ResultCommon(PasCloudCode.SUCCESS);
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+			result = new ResultCommon(PasCloudCode.EXCEPTION);
+		}finally{
+			try {
+				if(null!=conn){
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	
 	public static void main(String[] args) throws IOException, ClassNotFoundException{
 		/*
 		String path = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/pascloud/pasdev";
@@ -748,7 +1028,17 @@ public class PasdevService extends AbstractBaseService {
 			}
 		}*/
 		
-		/*
+		String dest = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/upload/pasfile/dn0/testhydr/testhydr.xml";
+
+		String destp = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/upload/pasfile/dn0/testhydr/testhydr.para";
+
+		
+		Document doc = XmlParser.getDocument(dest);
+		
+		String contentxml = doc.asXML();
+		
+		System.out.println(contentxml);
+		
 		JedisPoolConfig config = new JedisPoolConfig();
         config.setMaxTotal(10);
         config.setMaxIdle(5);
@@ -758,27 +1048,72 @@ public class PasdevService extends AbstractBaseService {
         JedisPool jedisPool = new JedisPool(config, "192.168.0.7", 6379);
         Jedis j = jedisPool.getResource();
         
-        byte[] o = j.get("dn1.testhydr.para".getBytes());
+        //byte[] o = j.get("dn0.testhydr.para".getBytes());
+        byte[] contento = SerializeUtils.serialize(contentxml);
+        j.set("dn1.testhydr".getBytes(), contento);
         
-        byte[] content = j.get("dn1.bldkkfmxcx".getBytes());
         
         
-        InputStream is = new ByteArrayInputStream(o);
-		ObjectInputStream ois = new ObjectInputStream(is);
-        Parameter p = (Parameter) ois.readObject();
+        byte[] content = j.get("dn1.testhydr".getBytes());
+        
+        
+        //InputStream is = new ByteArrayInputStream(o);
+		//ObjectInputStream ois = new ObjectInputStream(is);
+        //Parameter p = (Parameter) ois.readObject();
         
         InputStream nis = new ByteArrayInputStream(content);
 		ObjectInputStream nois = new ObjectInputStream(nis);
         
-        System.out.println(p.getFunId());
+        //System.out.println(p.getFunId());
         System.out.println("------------");
         //System.out.println(content);
         
         String contentstr = (String) nois.readObject();
         System.out.println(contentstr);
-        Document doc =XmlParser.getDocumentFromString(contentstr);
-        Element root =doc.getRootElement();
-        System.out.println(root.attributeValue("id"));*/
+        Document doc2 =XmlParser.getDocumentFromString(contentstr);
+        Element root =doc2.getRootElement();
+        System.out.println(root.attributeValue("id"));
+        
+        File file = new File(destp);
+        
+        FileInputStream fis = new FileInputStream(file);
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		Parameter p = null;
+		byte[] parab = null;
+		p = (Parameter) ois.readObject();
+		if(p.getFunType().equals("query")){
+			Parameters para = (Parameters) p;
+			parab = SerializeUtils.serialize(para);
+		}else if(p.getFunType().equals("manage")){
+			ManageParameters para = (ManageParameters) p;
+			parab = SerializeUtils.serialize(para);
+		}else if(p.getFunType().equals("import")){
+			ImportParameters para = (ImportParameters) p;
+			parab = SerializeUtils.serialize(para);
+			parab = SerializeUtils.serialize(para);
+		}else if(p.getFunType().equals("yjgx")){
+			YjgxParameters para = (YjgxParameters) p;
+			parab = SerializeUtils.serialize(para);
+		}
+		
+		
+		j.set("dn1.testhydr.para".getBytes(), parab);
+		
+		byte[] o = j.get("dn1.testhydr.para".getBytes());
+		
+		InputStream is = new ByteArrayInputStream(o);
+		ObjectInputStream oiss = new ObjectInputStream(is);
+        Parameter ps = (Parameter) oiss.readObject();
+        
+        System.out.println(ps.getFunId());
+		
+		//String path = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/upload/pasfile/dn0/testhycx01.zip";
+		//String dest = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/upload/pasfile/dn0/testhydr/testhydr.xml";
+		//List<File> files = ZipUtils.unzipFile(path, dest);
+		
+		//System.out.println(files.size());
+		
+		
 	}
 	 
 	

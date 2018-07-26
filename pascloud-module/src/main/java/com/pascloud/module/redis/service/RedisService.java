@@ -219,6 +219,12 @@ public class RedisService extends AbstractRedisService {
 	private void returnResource(final Jedis jedis,final JedisPool jedisPool) {
         if (jedis != null) {
             jedisPool.returnResource(jedis);
+            jedisPool.close();
+            
         }
     }
+	
+	
+	
+	
 }

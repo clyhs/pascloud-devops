@@ -1,3 +1,5 @@
+var flag = false;
+
 function initPasfileTree(){
     EasyUILoad('pasfileTree');
     $('#pasfileTree').treegrid({
@@ -22,20 +24,28 @@ function initPasfileTree(){
 		onLoadSuccess:function(node, data){
 			if (data.length > 0) {
 		         //找到第一个元素
+				/*
 				for(var i=0;i<data.length;i++){
 					if(data[i].id == 'dn0'){
 						$('#pasfileTree').treegrid('select', data[i].id);
 					}
-				}          
+				}*/  
+				if(dirId.length == ''){
+					dirId = 'dn0';
+				}
+				$('#pasfileTree').treegrid('select', dirId);
+				if(!flag){
+					initMainDataGrid(dirId);
+				}
 		    }
 		},
 		onDblClickCell:function(rowIndex, field, value){
 			var node = $('#pasfileTree').treegrid('getSelected');
-			var title = node.id;
-			var index= node.id;
-			var icon = "";
+			dirId = node.id;
+			//var index= node.id;
+			//var icon = "";
 			//alert(title);
-			reloadTableWithID(title);
+			reloadTableWithID(dirId);
 		}
 	});
 }
