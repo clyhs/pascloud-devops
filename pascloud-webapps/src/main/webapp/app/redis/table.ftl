@@ -45,7 +45,7 @@
 				    pageSize:50,pageList:[ 50, 100, 150, 200],border:0,toolbar:'#tb'" >
                     <thead>
 		                <tr>
-			            <th data-options="field:'key',width:100">属性</th>
+			            <th data-options="field:'key',width:50">属性</th>
 			            <th data-options="field:'type',width:20">类型</th>
 			            <th data-options="field:'value',width:100">属性值</th>
 		                </tr>

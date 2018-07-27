@@ -18,8 +18,12 @@ import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -44,6 +48,7 @@ import com.pascloud.module.common.service.AbstractBaseService;
 import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.database.service.DataBaseService;
 import com.pascloud.module.passervice.service.PasService;
+import com.pascloud.module.redis.service.RedisService;
 import com.pascloud.module.server.service.ServerService;
 import com.pascloud.utils.FileUtils;
 import com.pascloud.utils.PasCloudCode;
@@ -55,6 +60,7 @@ import com.pascloud.utils.xml.XmlParser;
 import com.pascloud.vo.docker.ContainerVo;
 import com.pascloud.vo.mversion.XtcdVo;
 import com.pascloud.vo.pasdev.PasfileVo;
+import com.pascloud.vo.pass.RedisVo;
 import com.pascloud.vo.result.ResultCommon;
 import com.pascloud.vo.result.ResultPageVo;
 import com.pascloud.vo.server.ServerVo;
@@ -89,6 +95,9 @@ public class PasdevService extends AbstractBaseService {
 	
 	@Autowired
 	private DataBaseService    m_databaseService;
+	
+	@Autowired
+	private RedisService       m_redisService;
 	
 	/**
 	 * 根据目录ID(分行代号)进行遍历目录
@@ -270,6 +279,8 @@ public class PasdevService extends AbstractBaseService {
 			
 			pfs = getPasdevFiles(dirId);
 			
+			
+			
 			if(pfs.size()>0){
 				Object[] delparams = {dirId};
 				log.info("先"+dirId+"清空xtb_pasfile表");
@@ -281,6 +292,8 @@ public class PasdevService extends AbstractBaseService {
 							vo.getVersion(),vo.getDesc(),vo.getPid(),new Date(),vo.getFhdh()};
 				}
 				qRunner.batch(conn, sql, params);
+				
+				sysPasfileToRedis(dirId,pfs);
 			}
 			
 			result = new ResultCommon(PasCloudCode.SUCCESS);
@@ -937,6 +950,60 @@ public class PasdevService extends AbstractBaseService {
 		}
 		return result;
 	}
+	
+	
+	public ResultCommon sysPasfileToRedis(String dirId,List<PasfileVo> vos){
+		ResultCommon result = null;
+		List<RedisVo> rediss = m_pasService.getRedisServer();
+		JedisPool jedisPool = null;
+		Jedis jedis = null;
+		if(rediss.size()>0){
+			RedisVo vo = rediss.get(0);
+			JedisPoolConfig config = new JedisPoolConfig();
+	        config.setMaxTotal(10);
+	        config.setMaxIdle(5);
+	        config.setMaxWaitMillis(15000);
+	        config.setTestOnBorrow(true);
+	        String id = vo.getIp()+":"+ vo.getPort();
+	        jedisPool = new JedisPool(config, vo.getIp(), vo.getPort());
+	        jedis = jedisPool.getResource();
+	        
+		}
+		
+		if(null!=jedis && vos.size()>0){
+			Map<byte[],byte[]> map = new HashMap<>();
+			for(int i=0;i<vos.size();i++){
+				PasfileVo vo = vos.get(i);
+				m_redisService.setCacheForPasfile(jedis, vo.getFunId(), dirId);
+				m_redisService.setCacheFunList(jedis, vo.getFunId(), dirId,vo.getType());
+				String key = dirId+"."+vo.getFunId();
+				map.put(key.getBytes(), SerializeUtils.serialize(vo.getTitle()));
+				
+				if(vo.getPid().equals("")){
+					m_redisService.setCacheFunVersMap(jedis, vo.getFunId(), vo.getVersion(), dirId);
+				}else{
+					m_redisService.setCacheFunVersMap(jedis, vo.getPid(),vo.getFunId(), vo.getVersion(), dirId);
+				}
+			}
+			m_redisService.setCacheFunMapAll(jedis, map, dirId);
+			
+		}
+		
+		jedis.close();
+		jedisPool.close();
+		
+		return result;
+	}
+	
+	private Integer sysPasfileVoToRedis(String dirId,PasfileVo vo,Jedis jedis){
+		Integer res = 0;
+		
+		res = m_redisService.setCacheForPasfile(jedis, vo.getFunId(), dirId);
+		
+		
+		return res;
+	}
+	
 	
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException{
