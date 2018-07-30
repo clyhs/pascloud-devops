@@ -1,9 +1,6 @@
 var tenantTreeGrid;
 
 function createTenantTreeDialog(toolbar){
-	
-	
-	
 	var div = '';
 	
 	div +='<div class="easyui-layout" data-options="fit:true">';  

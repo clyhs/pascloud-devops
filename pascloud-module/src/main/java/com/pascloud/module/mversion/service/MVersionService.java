@@ -12,6 +12,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,8 +42,6 @@ public class MVersionService extends AbstractBaseService {
 			log.info(sql);
 			QueryRunner qRunner = new QueryRunner();  
 			result =  qRunner.query(conn,sql, new BeanListHandler<XtcdVo>(XtcdVo.class));
-			Gson g = new Gson();
-			System.out.println(g.toJson(result));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			log.info("查询表所有数据--失败--");
@@ -133,11 +132,11 @@ public class MVersionService extends AbstractBaseService {
 			}else{
 				sql = "INSERT INTO xtb_xtcd(xmdh,xmmc,xmdz,sjxm,cdjb,dzlx,classid,sfxs,imgurl,qxbs,version)"
 						+ "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-				Object[] params = {cd.getXmdh(),cd.getXmmc(),cd.getXmdz(),cd.getSjxm(),cd.getCdjb(),
+				Integer xmdh = getMaxXmdh(conn);
+				Object[] params = {xmdh,cd.getXmmc(),cd.getXmdz(),cd.getSjxm(),cd.getCdjb(),
 						cd.getDzlx(),cd.getClassid(),cd.getSfxs(),cd.getImgurl(),cd.getQxbs(),cd.getVersion()};
 				row = qRunner.update(conn, sql, params);
 			}
-			
 			
 			log.info(sql);
 
@@ -164,6 +163,20 @@ public class MVersionService extends AbstractBaseService {
 		}
 		
 		return result;
+	}
+	
+	//生成id,提供插入ORACLE数据库
+	private Integer getMaxXmdh(Connection conn) throws SQLException{
+		Integer res = 0;
+		String sql = "select max(xmdh) as count from xtb_xtcd";
+		QueryRunner qRunner = new QueryRunner(); 
+		Number num =  (Number)qRunner.query(conn,sql, new ScalarHandler());
+		
+		if(null!=num){
+			res = num.intValue() + 1;
+		}
+		
+		return res;
 	}
 	
 	public ResultCommon addXtcd(XtcdVo cd,String[] Ids){

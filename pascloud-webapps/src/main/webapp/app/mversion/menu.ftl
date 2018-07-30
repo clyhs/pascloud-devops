@@ -30,6 +30,7 @@
     <script type="text/javascript" src="/app/mversion/js/mVersionTree.js"></script>
     <script type="text/javascript" src="/app/mversion/js/pasfileDataGrid.js"></script>
     <script type="text/javascript" src="/app/mversion/js/menuTreeGridForm.js"></script>
+    <script type="text/javascript" src="/app/mversion/js/menuTenantTreeDialog.js"></script>
     <script type="text/javascript" src="/app/mversion/js/menuTreeGridToolbar.js"></script>
     <script type="text/javascript" src="/app/mversion/js/menuTreeGrid.js"></script>
     

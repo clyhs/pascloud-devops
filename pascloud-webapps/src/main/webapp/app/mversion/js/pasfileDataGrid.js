@@ -87,10 +87,10 @@ function buildUrl(type,funId){
 	if(type == 'query'){
 		return '/module/parser/query/visitHtml/'+funId+'.html';
 	}else if(type == 'manage'){
-		return '/module/manage/visitHtml/'+funId+'.html';
+		return '/module/parser/manage/visitHtml/'+funId+'.html';
 	}else if(type == 'import'){
-		return '/module/import/visitHtml/'+funId+'.html';
+		return '/module/parser/import/visitHtml/'+funId+'.html';
 	}else if(type == 'yjgx'){
-		return '/module/yjgx/visitHtml/'+funId+'.html';
+		return '/module/parser/yjgx/visitHtml/'+funId+'.html';
 	}
 }
