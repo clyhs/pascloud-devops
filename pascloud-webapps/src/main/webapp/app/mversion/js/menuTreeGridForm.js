@@ -1,6 +1,6 @@
-function addMVersionDialog(){
+function addMenuDialog(){
 	
-	var row = $('#mVersionMainTreeGrid').treegrid('getSelected');
+	var row = $('#menuTreeGrid').treegrid('getSelected');
 	if(null == row){
 		$.messager.alert('提示','请先选择一个节点!');
 		return ;
@@ -75,12 +75,12 @@ function addMVersionDialog(){
 	div += createFormFooter(); 
 	
 	if(pId!="" && level=='1'){
-		createDialogDivWithSize('mVersionMainTreeGrid', 'addMVersion','添加连接菜单', '',550,280,div);
+		createDialogDivWithSize('menuTreeGrid', 'addMenu','添加连接菜单', '',550,280,div);
 	}else if(pId!="" && level=='2'){
-		createDialogDivWithSize('mVersionMainTreeGrid', 'addMVersion','添加按钮', '',550,220,div);
+		createDialogDivWithSize('menuTreeGrid', 'addMenu','添加按钮', '',550,220,div);
 	}
 	else{
-		createDialogDivWithSize('mVersionMainTreeGrid', 'addMVersion','添加目录', '',550,200,div);
+		createDialogDivWithSize('menuTreeGrid', 'addMenu','添加目录', '',550,200,div);
 	}
 	
 }
@@ -94,7 +94,7 @@ function createFormFooter(){
 	html +=   '&nbsp;'; 
 	html +=   '</div>';
 	html +=   '<div style="float:left;width:35%;">';
-	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-database_save\'" onclick="addMV()" >确定</a>'; 
+	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-database_save\'" onclick="addMenu()" >确定</a>'; 
 	html +=   '</div>';
 	html +=   '<div style="border:#ccc 0px solid;float:left;width:30%;">';
 	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-2013040601125064_easyicon_net_16\'">重置</a>'; 
@@ -105,7 +105,6 @@ function createFormFooter(){
 	return html;
 }
 
-//当菜单类型变更时，不同操作
 function changeType(obj){
 	if(obj == '1'){
 		$("#selectPasfileBtn").linkbutton("disable");
@@ -121,12 +120,10 @@ function changeType(obj){
 }
 
 function selectPasfile(){
-	createPasfileDGDialog('dn0','mVersionMainTreeGrid');
+	createPasfileDGDialog(dnId,'menuTreeGrid');
 }
 
-
-
-function addMV(){
+function addMenu(){
 	var name = $('#name').val();
 	if(name.length <= 0){
 		$.messager.alert('提示','name不能为空');
@@ -169,15 +166,16 @@ function addMV(){
 		return ;
 	}
 	
-	var param = {Id:'dn0',name:name,cdjb:cdjb,url:url,version:version,pId:pId,classid:classid};
+	var param = {Id:dnId,name:name,cdjb:cdjb,url:url,version:version,pId:pId,classid:classid};
 	
-	$('#addMVersion').dialog('close');
+	$('#addMenu').dialog('close');
 	EasyUILoad('mainCenter');
 	$.post("addXtcd.json",param,function(data,status){
 		
 		if(data.code == 10000){
 			
-			reloadTree();
+			//reloadTree();
+			reloadTreeGridWithID(dnId);
 			dispalyEasyUILoad( 'mainCenter' );
 			$.messager.alert('提示','成功');
 		}else{
@@ -187,69 +185,4 @@ function addMV(){
 		
 	});
 	
-}
-
-function delMVersion(){
-	var node = $('#mVersionMainTreeGrid').treegrid('getSelected');
-	if(null == node){
-		$.messager.alert('提示','请先选择一个节点!');
-		return ;
-	}
-	
-	var xmdh = node.id;
-	
-	if(xmdh.length <=0 ){
-		$.messager.alert('提示','请先选择一个节点!');
-		return ;
-	}
-	
-	var param = {Id:'dn0',xmdh:xmdh};
-	$.messager.confirm('提示框','你确定要删除些节点，会影响到云平台的租户的菜单资源，请再确定？',function(r){
-	    if (r){
-	    	EasyUILoad('mainCenter');
-	    	$.post("delXtcd.json",param,function(data,status){
-	    		if(data.code == 10000){
-	    		    //alert(data.desc);
-	    			reloadTree();
-	    			dispalyEasyUILoad('mainCenter');
-	    			$.messager.alert('提示','删除成功');	
-	    		}else{
-	    			$.messager.alert('提示','删除失败');	
-	    		}
-	    	});
-	    }
-	});
-}
-
-function changeMVersionSfxs(status){
-	var node = $('#mVersionMainTreeGrid').treegrid('getSelected');
-	if(null == node){
-		$.messager.alert('提示','请先选择一个节点!');
-		return ;
-	}
-	
-	var xmdh = node.id;
-	
-	if(xmdh.length <=0 ){
-		$.messager.alert('提示','请先选择一个节点!');
-		return ;
-	}
-	
-	var param = {Id:'dn0',xmdh:xmdh,sfxs:status};
-	
-	$.messager.confirm('提示框','你确定要你要改变菜单状态，请再确定？',function(r){
-	    if (r){
-	    	EasyUILoad('mainCenter');
-	    	$.post("changeXtcdSfxs.json",param,function(data,status){
-	    		if(data.code == 10000){
-	    		    //alert(data.desc);
-	    			reloadTree();
-	    			dispalyEasyUILoad('mainCenter');
-	    			$.messager.alert('提示','成功');	
-	    		}else{
-	    			$.messager.alert('提示','失败');	
-	    		}
-	    	});
-	    }
-	});
 }

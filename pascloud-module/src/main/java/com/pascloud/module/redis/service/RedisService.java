@@ -521,7 +521,11 @@ public class RedisService extends AbstractRedisService {
 		if(null == map){
 			map = new HashMap<>();
 		}
-		map.put(funId.getBytes(), SerializeUtils.serialize(title));
+		
+
+		String key2 = dirId+"."+funId;
+		
+		map.put(key2.getBytes(), SerializeUtils.serialize(title));
 		jedis.hmset(key.getBytes(), map);
 		
 	}

@@ -4,6 +4,8 @@ import java.util.Map;
 
 public class Constants {
 	
+	public static final String CHARSET = "UTF-8";
+	
 	public static String DB_MYSQL_DIRVERCLASS  = "com.mysql.jdbc.Driver";
 	public static String DB_DB2L_DIRVERCLASS   = "com.ibm.db2.jcc.DB";
 	public static String DB_ORACLE_DIRVERCLASS = "oracle.jdbc.driver.OracleDriver";
@@ -40,6 +42,13 @@ public class Constants {
 	public static String PS_MYSQL_PORT="3306";
 	public static String PS_MYCAT_PORT="8066";
 	
+	public static final String MYCAT_EYE="/mycat-eye";
+	
+	public  static final String MYCATS = MYCAT_EYE+"/mycat";
+    public  static final String MYCAT_JMX = MYCAT_EYE+"/mycat_jmx";
+    public  static final String MYCAT_MYSQL = MYCAT_EYE+"/mysql";
+    public  static final String MYCAT_SNMP = MYCAT_EYE+"/mycat_snmp";
+    public  static final String MYCAT_PROCESSOR = MYCAT_EYE+"/mycat_processor";	
 	
 	
 }

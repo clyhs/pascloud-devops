@@ -25,7 +25,7 @@
     <isLeaf>false</isLeaf>
     <children>
       <tree>
-        <id>2400</id>
+        <id>2300</id>
         <text>配置查询</text>
         <isLeaf>true</isLeaf>
         <children/>
@@ -54,7 +54,7 @@
       
       
       <tree>
-        <id>2300</id>
+        <id>2400</id>
         <text>资源管理</text>
         <isLeaf>true</isLeaf>
         <children/>

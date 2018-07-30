@@ -16,6 +16,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -23,6 +24,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 import org.apache.commons.dbutils.QueryRunner;
@@ -145,6 +147,30 @@ public class PasdevService extends AbstractBaseService {
 				vo.setFilepath(f.getAbsolutePath());
 				vo.setFhdh(dirId);
 				parserPasfile(f.getAbsolutePath(),vo);
+				result.add(vo);
+			}
+		}
+		
+		return result;
+	}
+	
+	public List<PasfileVo> getPasdevFiles(List<File> files){
+		List<PasfileVo> result = new ArrayList<>();
+		//System.out.println(m_config.getPASCLOUD_DEV_DIR());
+		if(files.size()>0){
+			Iterator<File> it = files.iterator();
+			while(it.hasNext()){
+				File f = it.next();
+				PasfileVo vo = new PasfileVo();
+				vo.setFilename(f.getName());
+				String funId = FileUtils.getFileNameNoExtension(f);
+				vo.setFunId(funId);
+				vo.setSuffix(FileUtils.getFileExtension(f));
+				vo.setFilepara(funId+".para");
+				vo.setFilepath(f.getAbsolutePath());
+				parserPasfile(f.getAbsolutePath(),vo);
+				String dId = parserPasfile(f.getAbsolutePath());
+				vo.setFhdh(dId);
 				result.add(vo);
 			}
 		}
@@ -314,6 +340,61 @@ public class PasdevService extends AbstractBaseService {
 	}
 	
 	
+	public ResultCommon sysPasfileToDB(List<PasfileVo> pfs){
+		ResultCommon result = null;
+		java.sql.Connection conn = null;
+		//List<PasfileVo> pfs = new ArrayList<>();
+		String dId = "";
+		try{
+			conn = m_databaseService.getConnectionById(Constants.PASCLOUD_PUBLIC_DB);
+			QueryRunner qRunner = new QueryRunner(); 
+			String sql = "insert into xtb_pasfile(`funId`,`title`,`type`,`version`,`desc`,`pid`,`createTime`,`fhdh`)"
+					+ "values(?,?,?,?,?,?,?,?)";
+			String delSql = "delete from xtb_pasfile where fhdh=? and funId=?";
+			
+			//pfs = getPasdevFiles(files,dirId);
+			
+			if(pfs.size()>0){
+				Object[][] delparams = new Object[pfs.size()][];
+				
+				//qRunner.update(conn, delSql, delparams);
+
+				Object[][] params = new Object[pfs.size()][];
+				for(int i=0;i<pfs.size();i++){
+					PasfileVo vo = pfs.get(i);
+					
+					delparams[i] = new Object[]{vo.getFhdh(),vo.getFunId()};
+					params[i] = new Object[]{vo.getFunId(),vo.getTitle(),vo.getType(),
+							vo.getVersion(),vo.getDesc(),vo.getPid(),new Date(),vo.getFhdh()};
+					dId = vo.getFhdh();
+					
+				}
+				
+				log.info("清空xtb_pasfile表");
+				qRunner.batch(conn, delSql, delparams);
+				log.info("插入xtb_pasfile表");
+				qRunner.batch(conn, sql, params);
+				
+			}
+			
+			result = new ResultCommon(PasCloudCode.SUCCESS);
+			result.setDesc(dId);
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+			result = new ResultCommon(PasCloudCode.EXCEPTION);
+		}finally{
+			try {
+				if(null!=conn){
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
 	
 	private void parserPasfile(String filepath,PasfileVo vo){
 		log.info(filepath);
@@ -328,6 +409,24 @@ public class PasdevService extends AbstractBaseService {
 		}
 		vo.setPid(root.attributeValue("pid"));
 		vo.setDesc(root.attributeValue("desc"));
+	}
+	
+	private String parserPasfile(String filepath){
+		log.info(filepath);
+		Document doc = XmlParser.getDocument(filepath);
+		Element root = doc.getRootElement();
+		String version = "";
+		version = root.attributeValue("version");
+		
+		String[] vers = version.split("\\.");
+		
+		Integer  len = vers.length;
+		
+		String   dbNum = vers[2];
+		String   dirId = "dn"+dbNum;
+		log.info("文件的租户号为："+dirId);
+		return dirId;
+		
 	}
 	
 	public synchronized Integer modifyPasdevFilesWidthID(String dbSchema){
@@ -754,6 +853,7 @@ public class PasdevService extends AbstractBaseService {
 		//String filepath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR();
 		
         //String filepath =
+		//xxx/upload/pasfile/dn0
 		String destpath = filepath+"/"+dirId;
 		//String destpath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()+"/"+dirId;
 		
@@ -761,23 +861,34 @@ public class PasdevService extends AbstractBaseService {
 		
 		String filename = "";
 		String fname =  "";
+		String newfilename = "";
+		String newfname = "";
+		String suffix = "";
 		if (file != null && !file.isEmpty()) {
 			log.info(file.getOriginalFilename());
 			InputStream input = null;
 			BufferedOutputStream bos = null;
 			try {
+				
+				//testhydr.zip
 				filename = file.getOriginalFilename();
-				
+				//testhydr
 				fname = filename.substring(0, filename.lastIndexOf('.'));
+				suffix = filename.substring(filename.lastIndexOf('.'));
 				log.info(fname);
-				
-				filepath = destpath+"/"+filename;
+				//xxx/upload/pasfile/dn0/testhydr.zip
+				newfname = fname + "-" + getRandomFileName();
+				newfilename = newfname + suffix;
+				//filepath = destpath+"/"+filename;
+				filepath = destpath+"/"+newfilename;
 				log.info(filepath);
+				
 				File destfile = new File(filepath);
+				//file trans to xxx/upload/pasfile/dn0/testhydr.zip
 				file.transferTo(destfile);
 
 				
-				String dest = destpath+"/"+fname; 
+				String dest = destpath+"/"+newfname; 
 				result = unzipAndSysToDB(filepath,dest,dirId);
 				
 			} catch (IOException e) {
@@ -791,16 +902,35 @@ public class PasdevService extends AbstractBaseService {
 		return result;
 	}
 	
+	private String getRandomFileName() {
+ 
+		SimpleDateFormat simpleDateFormat;
+ 
+		simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+ 
+		Date date = new Date();
+ 
+		String str = simpleDateFormat.format(date);
+ 
+		Random random = new Random();
+ 
+		int rannum = (int) (random.nextDouble() * (99999 - 10000 + 1)) + 10000;// 获取5位随机数
+ 
+		return  str +rannum ;// 当前时间
+	}
+
+	
 	private ResultCommon unzipAndSysToDB(String filepath,String destpath,String dirId){
 		ResultCommon result = null;
-		String destDirPath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()+"/"+dirId;
-		log.info(destDirPath);
+		String destDirPath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()+"/";
+		
+		String dId="";
+		List<PasfileVo> vos = new ArrayList<>();
 		if(FileUtils.isFileExists(filepath)){
 			try {
 				log.info(filepath);
 				log.info(destpath);
 				//filepath.replaceAll(regex, replacement)
-				
 				log.info(FileUtils.getFileByPath(filepath).length()+"");
 				
 				List<File> files = ZipUtils.unzipFile(filepath, destpath);
@@ -809,12 +939,37 @@ public class PasdevService extends AbstractBaseService {
 					List<File> fs = FileUtils.listFilesInDirWithFilter(destpath, ".xml");
 					//List<File> fs = filterWithSuffix(files,".xml");
 					if(fs.size()>0){
-						result = sysPasfileToDB(dirId,fs);
 						
-						FileUtils.copyDir(destpath, destDirPath);
-						
+						vos = getPasdevFiles(fs);
+						result = sysPasfileToDB(vos);
+						if(result.getCode().equals(PasCloudCode.SUCCESS.getCode())){
+							dId = result.getDesc();
+							destDirPath = destDirPath+dId;
+							log.info(destDirPath);
+							
+							for(int i=0;i<vos.size();i++){
+								PasfileVo vo = vos.get(i);
+								String filexml = destDirPath+"/"+vo.getFunId()+".xml";
+								String filepara = destDirPath+"/"+vo.getFunId()+".para";
+								FileUtils.deleteFile(filexml);
+								FileUtils.deleteFile(filepara);
+							}
+							
+							Boolean flag = FileUtils.copyDir(destpath, destDirPath);
+
+							if(null!=flag && flag){
+								log.info("复制文件成功");
+								result = sysPasfileToRedis(dId,vos);
+							}else{
+								log.info("复制文件失败");
+								result = new ResultCommon(PasCloudCode.ERROR.getCode(),"复制到租户目录"+dId+"失败");
+							}
+							
+						}else{
+							result = new ResultCommon(PasCloudCode.ERROR.getCode(),"同步到数据库失败");
+						}
 					}else{
-						result = new ResultCommon(PasCloudCode.ERROR);
+						result = new ResultCommon(PasCloudCode.ERROR.getCode(),"解压后文件为空");
 					}
 					
 				}else{
@@ -835,6 +990,10 @@ public class PasdevService extends AbstractBaseService {
 		
 		return result;
 	}
+	
+	
+	
+	
 	
 	
 	private List<File> filterWithSuffix(List<File> files , String suffix){
@@ -861,56 +1020,7 @@ public class PasdevService extends AbstractBaseService {
 
 	
 	
-	public ResultCommon sysPasfileToDB(String dirId,List<File> files){
-		ResultCommon result = null;
-		java.sql.Connection conn = null;
-		List<PasfileVo> pfs = new ArrayList<>();
-		
-		try{
-			conn = m_databaseService.getConnectionById(Constants.PASCLOUD_PUBLIC_DB);
-			QueryRunner qRunner = new QueryRunner(); 
-			String sql = "insert into xtb_pasfile(`funId`,`title`,`type`,`version`,`desc`,`pid`,`createTime`,`fhdh`)"
-					+ "values(?,?,?,?,?,?,?,?)";
-			String delSql = "delete from xtb_pasfile where fhdh=? and funId=?";
-			
-			pfs = getPasdevFiles(files,dirId);
-			
-			if(pfs.size()>0){
-				Object[][] delparams = new Object[pfs.size()][];
-				
-				//qRunner.update(conn, delSql, delparams);
-
-				Object[][] params = new Object[pfs.size()][];
-				for(int i=0;i<pfs.size();i++){
-					PasfileVo vo = pfs.get(i);
-					
-					delparams[i] = new Object[]{dirId,vo.getFunId()};
-					
-					params[i] = new Object[]{vo.getFunId(),vo.getTitle(),vo.getType(),
-							vo.getVersion(),vo.getDesc(),vo.getPid(),new Date(),vo.getFhdh()};
-				}
-				
-				log.info("先清空xtb_pasfile表");
-				qRunner.batch(conn, delSql, delparams);
-				qRunner.batch(conn, sql, params);
-			}
-			
-			result = new ResultCommon(PasCloudCode.SUCCESS);
-		} catch (SQLException e) {
-			log.error(e.getMessage());
-			result = new ResultCommon(PasCloudCode.EXCEPTION);
-		}finally{
-			try {
-				if(null!=conn){
-					conn.close();
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				//e.printStackTrace();
-			}
-		}
-		return result;
-	}
+	
 	
 	public ResultCommon deletePasfile(String funId,String dirId){
 		ResultCommon result = null;
@@ -953,7 +1063,7 @@ public class PasdevService extends AbstractBaseService {
 	
 	
 	public ResultCommon sysPasfileToRedis(String dirId,List<PasfileVo> vos){
-		ResultCommon result = null;
+		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
 		List<RedisVo> rediss = m_pasService.getRedisServer();
 		JedisPool jedisPool = null;
 		Jedis jedis = null;
@@ -964,7 +1074,6 @@ public class PasdevService extends AbstractBaseService {
 	        config.setMaxIdle(5);
 	        config.setMaxWaitMillis(15000);
 	        config.setTestOnBorrow(true);
-	        String id = vo.getIp()+":"+ vo.getPort();
 	        jedisPool = new JedisPool(config, vo.getIp(), vo.getPort());
 	        jedis = jedisPool.getResource();
 	        
@@ -995,11 +1104,37 @@ public class PasdevService extends AbstractBaseService {
 		return result;
 	}
 	
-	private Integer sysPasfileVoToRedis(String dirId,PasfileVo vo,Jedis jedis){
+	private Integer sysPasfileVoToRedis(String dirId,PasfileVo vo){
 		Integer res = 0;
 		
-		res = m_redisService.setCacheForPasfile(jedis, vo.getFunId(), dirId);
+		List<RedisVo> rediss = m_pasService.getRedisServer();
+		JedisPool jedisPool = null;
+		Jedis jedis = null;
+		if(rediss.size()>0){
+			RedisVo r = rediss.get(0);
+			JedisPoolConfig config = new JedisPoolConfig();
+	        config.setMaxTotal(10);
+	        config.setMaxIdle(5);
+	        config.setMaxWaitMillis(15000);
+	        config.setTestOnBorrow(true);
+	        jedisPool = new JedisPool(config, r.getIp(), r.getPort());
+	        jedis = jedisPool.getResource();
+	        
+		}
 		
+		m_redisService.setCacheForPasfile(jedis, vo.getFunId(), dirId);
+		m_redisService.setCacheFunList(jedis, vo.getFunId(), dirId,vo.getType());
+		
+		if(vo.getPid().equals("")){
+			m_redisService.setCacheFunVersMap(jedis, vo.getFunId(), vo.getVersion(), dirId);
+		}else{
+			m_redisService.setCacheFunVersMap(jedis, vo.getPid(),vo.getFunId(), vo.getVersion(), dirId);
+		}
+		m_redisService.setCacheFunMap(jedis, vo.getFunId(), vo.getTitle(), dirId);
+		
+		
+		jedis.close();
+		jedisPool.close();
 		
 		return res;
 	}

@@ -25,7 +25,7 @@ function initMenuTreeGrid(id){
         ]],
         toolbar:menutoolbar,
 		//onContextMenu: onContextMenu,
-		//onClick: onDBClick,
+        onClickRow: onClickRow,
 		onLoadSuccess:function(node, data){
 			dispalyEasyUILoad( 'mainCenter' );	
 		},
@@ -37,6 +37,13 @@ function initMenuTreeGrid(id){
 			//alert(title);
 		}
 	});
+}
+
+function onClickRow(node){
+	
+	level = node.level;
+	pId = node.id;
+	
 }
 
 function formatOper(val,row,index){ 
@@ -69,7 +76,8 @@ function delMenu(){
 	    	$.post("delXtcd.json",param,function(data,status){
 	    		if(data.code == 10000){
 	    		    //alert(data.desc);
-	    			reloadTree();
+	    			//reloadTree();
+	    			reloadTreeGridWithID(dnId);
 	    			dispalyEasyUILoad('mainCenter');
 	    			$.messager.alert('提示','删除成功');	
 	    		}else{
@@ -102,7 +110,8 @@ function changeMenuSfxs(status){
 	    	$.post("changeXtcdSfxs.json",param,function(data,status){
 	    		if(data.code == 10000){
 	    		    //alert(data.desc);
-	    			reloadTree();
+	    			//reloadTree();
+	    			reloadTreeGridWithID(dnId);
 	    			dispalyEasyUILoad('mainCenter');
 	    			$.messager.alert('提示','成功');	
 	    		}else{

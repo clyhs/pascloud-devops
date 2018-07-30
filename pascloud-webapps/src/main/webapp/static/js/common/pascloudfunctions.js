@@ -151,7 +151,7 @@ function createDialogDivWithSize(dialogFrame, dialogId,dialogTitle, dialogUrl,wi
         height : height,  
         closed : false,  
         cache : false,  
-        draggable : false,  
+        draggable : true,  
         href : url,  
         modal : true,  
         onClose : function()  

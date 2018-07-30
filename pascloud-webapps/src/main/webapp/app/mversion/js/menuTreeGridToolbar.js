@@ -3,7 +3,7 @@ var menutoolbar = function(){
 		text : '添加',  
         iconCls : 'icon-add',  
         handler : function(){
-        	addMVersionDialog();
+        	addMenuDialog();
         }
 	},{
 		text : '删除',  

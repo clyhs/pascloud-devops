@@ -98,7 +98,8 @@ function uploadRegister(){
         // 选择文件的按钮。可选。
         // 内部根据当前运行是创建，可能是input元素，也可能是flash.
         pick: '#chooseFile',
-        formData: { "dirId": dirId},
+        //formData: { "dirId": dirId},
+        formData: { "dirId": 'dn0'},
         fileSingleSizeLimit:100*1024*1024,//单个文件大小
         accept:[{
             title: 'file',
