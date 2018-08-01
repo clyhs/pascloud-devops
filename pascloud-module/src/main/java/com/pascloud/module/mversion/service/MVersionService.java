@@ -26,6 +26,11 @@ import com.pascloud.vo.database.DBInfo;
 import com.pascloud.vo.mversion.XtcdVo;
 import com.pascloud.vo.result.ResultCommon;
 
+/**
+ * 功能版本管理
+ * @author chenly
+ *
+ */
 @Service
 public class MVersionService extends AbstractBaseService {
 	
@@ -148,18 +153,20 @@ public class MVersionService extends AbstractBaseService {
 	public ResultCommon addXtcd(XtcdVo cd,String Id){
 		ResultCommon result = null;
 		Connection conn = null;
+		Connection publicConn = null;
 		String sql = "";
 		Integer row = 0;
 		try {
 			conn = getConnectionById(Id);
+			publicConn = getConnectionById(Constants.PASCLOUD_PUBLIC_DB);
 			QueryRunner qRunner = new QueryRunner(); 
-			Integer xmdh = getMaxXmdh(conn);
+			Integer xmdh = getMaxXmdh(publicConn);
 			if(Id.equals(Constants.PASCLOUD_PUBLIC_DB)){
 				sql = "INSERT INTO xtb_xtzycd(xmdh,xmmc,xmdz,sjxm,cdjb,dzlx,classid,sfxs,imgurl,qxbs,version)"
 						+ "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 				Object[] params = {xmdh,cd.getXmmc(),cd.getXmdz(),cd.getSjxm(),cd.getCdjb(),
 						cd.getDzlx(),cd.getClassid(),cd.getSfxs(),cd.getImgurl(),cd.getQxbs(),cd.getVersion()};
-				row = qRunner.update(conn, sql, params);
+				row = qRunner.update(publicConn, sql, params);
 			}else{
 				sql = "INSERT INTO xtb_xtcd(xmdh,xmmc,xmdz,sjxm,cdjb,dzlx,classid,sfxs,imgurl,qxbs,version)"
 						+ "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
@@ -184,6 +191,9 @@ public class MVersionService extends AbstractBaseService {
 			result = new ResultCommon(PasCloudCode.EXCEPTION.getCode(),e.getMessage());
 		}finally{
 			try {
+				if(null!=publicConn){
+					publicConn.close();
+				}
 				if(null!=conn){
 					conn.close();
 				}

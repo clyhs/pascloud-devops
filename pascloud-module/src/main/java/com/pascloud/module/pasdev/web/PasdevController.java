@@ -70,7 +70,7 @@ public class PasdevController extends BaseController {
 	 */
 	@RequestMapping("/pasfiles.json")
 	@ResponseBody
-	public ResultPageVo<PasfileVo> getPasFilesWithDir(HttpServletRequest request,
+	public ResultPageVo<PasfileVo> getPasFiles(HttpServletRequest request,
 			@RequestParam(value="dirId",defaultValue="",required=true) String dirId,
 			@RequestParam(value="key",defaultValue="",required=false) String key,
 			@RequestParam(value="page",defaultValue="",required=true) Integer page,
@@ -179,8 +179,7 @@ public class PasdevController extends BaseController {
 			}
 		}
 		if(!flag){
-			m_pasdevService.copyPasfileWidthID(name);
-			result = new ResultCommon(PasCloudCode.SUCCESS);
+			result = m_pasdevService.copyPasfileWidthID(name);
 		}else{
 			result = new ResultCommon(PasCloudCode.ERROR.getCode(),"已经存在");
 		}
@@ -209,7 +208,7 @@ public class PasdevController extends BaseController {
 			return new ResultCommon(PasCloudCode.PARAMEXCEPTION);
 		} 
 		
-		t = m_pasdevService.delPasfileWidthID(name);
+		t = m_pasdevService.delPasfileByID(name);
 		if(t>0){
 			
 		}else{
@@ -273,8 +272,8 @@ public class PasdevController extends BaseController {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			result = new ResultCommon(PasCloudCode.ERROR);
-		}*/
-        
+		}
+        */
         result = new ResultCommon(PasCloudCode.SUCCESS);
         
 		return result;
@@ -327,7 +326,7 @@ public class PasdevController extends BaseController {
 		
 		log.info(dirId);
 		
-		result = m_pasdevService.deletePasfile(funId, dirId);
+		result = m_pasdevService.delPasfileByFunId(funId, dirId);
 		return result;
 		
 	}
