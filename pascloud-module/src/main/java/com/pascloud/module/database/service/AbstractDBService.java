@@ -14,6 +14,7 @@ public abstract class AbstractDBService {
 	protected Logger log = LoggerFactory.getLogger(getClass());
 	
 	
+	
 	protected String getTableSqlByType(ComboPooledDataSource ds){
 		String sql = "";
 		String dcn = ds.getDriverClass();

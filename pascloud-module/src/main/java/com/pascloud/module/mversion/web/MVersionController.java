@@ -74,6 +74,38 @@ public class MVersionController extends BaseController {
 		}
 		return trees;
 	}
+	
+	
+	@RequestMapping("/getMVersionTreeExcludeId.json")
+	@ResponseBody
+	public List<TreeVo> getMVersionTree(HttpServletRequest request,
+			@RequestParam(value="Id",defaultValue="",required=true) String Id){
+		List<TreeVo> trees = new ArrayList<>();
+		
+		List<DBInfo> result = new ArrayList<>();
+		
+		result = m_configService.getDBFromConfig();
+		
+		if(result.size() > 0){
+			for(DBInfo dbf:result){
+				TreeVo t = new TreeVo();
+				
+				if(dbf.getId().equals(Id)){
+					continue;
+				}
+				
+				t.setId(dbf.getId());
+				t.setText(dbf.getCn());
+				t.setLeaf(true);
+				t.setUrl("#");
+				t.setIconCls("icon-folder");
+				trees.add(t);
+			}
+		}
+		return trees;
+	}
+	
+	
 	@RequestMapping("/getMVersionMenuTree.json")
 	@ResponseBody
     public List<MVersionTreeVo>	getMVersionMenuTree(HttpServletRequest request,
@@ -184,9 +216,9 @@ public class MVersionController extends BaseController {
     	return result;
     }
 	
-	@RequestMapping("/setCDToTenant.json")
+	@RequestMapping("/sysOneMenuToTenant.json")
 	@ResponseBody
-    public ResultCommon	setCDToTenant(HttpServletRequest request,
+    public ResultCommon	sysOneMenuToTenant(HttpServletRequest request,
     		@RequestParam(value="Id",defaultValue="",required=true) String Id,
     		@RequestParam(value="tIds",defaultValue="",required=true) String tIds,
     		@RequestParam(value="xmdh",defaultValue="0",required=true) Integer xmdh){
@@ -219,9 +251,9 @@ public class MVersionController extends BaseController {
     	return result;
     }
 	
-	@RequestMapping("/sysAllXtcdToTenant.json")
+	@RequestMapping("/sysAllMenuToTenant.json")
 	@ResponseBody
-    public ResultCommon	sysAllXtcdToTenant(HttpServletRequest request,
+    public ResultCommon	sysAllMenuToTenant(HttpServletRequest request,
     		@RequestParam(value="tIds",defaultValue="",required=true) String tIds){
 		ResultCommon result = null;
 		log.info("同步菜单资源 开始");
@@ -237,12 +269,27 @@ public class MVersionController extends BaseController {
 			result = new ResultCommon(PasCloudCode.ERROR);
 		}
 			
-		
-        
 		log.info("同步菜单资源结束");
     	return result;
     }
 	
+	@RequestMapping("/sysOtherMenuToTenant.json")
+	@ResponseBody
+	public ResultCommon sysOtherMenuToTenant(HttpServletRequest request,
+			@RequestParam(value="selectId",defaultValue="",required=true) String selectId,
+			@RequestParam(value="dnId",defaultValue="",required=true) String dnId,
+			@RequestParam(value="idList",defaultValue="",required=true) String idList){
+		ResultCommon result = null;
+		
+		if( selectId.length()<=0 || dnId.length()<=0 || idList.length()<=0 ){
+			result = new ResultCommon(PasCloudCode.PARAMEXCEPTION);
+			return result;
+		}
+		
+		result = m_mVersionService.sysOtherXtcdToTenant(selectId,dnId,idList);
+		
+		return result;
+	}
 	
 	private List<MVersionTreeVo> buildTreeVo(List<XtcdVo> cds,String parentId){
 		List<MVersionTreeVo> childtree = new ArrayList<MVersionTreeVo>(); 

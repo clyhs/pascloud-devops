@@ -13,8 +13,19 @@ function createPasfileDGDialog(Id,divId){
 
 var pastoolbar = function(){
 	return [{
-		text : '确定',  
-        iconCls : 'icon-add',  
+		 text: '关键字：<input type="text" id="key" value="" size="20" />'
+	},{
+		text : '搜索',  
+        iconCls : 'icon-2012092109942', 
+        plain:true,
+        handler : function(){
+        	
+        	searchByKey();
+        }
+	},'-',{
+		text : '提交',  
+        iconCls : 'icon-bullet_tick', 
+        plain:true,
         handler : function(){
         	var row = $('#pasfileDataGrid').datagrid('getSelected'); 
         	
@@ -63,22 +74,20 @@ function initPasfileDG(Id){
         onBeforeLoad: function (param) {
         },
         onLoadSuccess: function (data) {
-            
+        	$("#pasfileDataGrid").parent().find(
+			"div .datagrid-header-check").children(
+			"input[type=\"checkbox\"]").eq(0).attr("style",
+			"display:none;");
         },
         toolbar:pastoolbar,
         onLoadError: function () {
         
         },
         onClickCell: function (rowIndex, field, value) {
-            var rows = $('#mainDataGrid').datagrid('getRows');
-            var row = rows[rowIndex];
-            var name = row.name;
+       
             //alert(name);
         },onDblClickCell: function (rowIndex, field, value) {
-            var rows = $('#mainDataGrid').datagrid('getRows');
-            var row = rows[rowIndex];
-            var name = row.name;
-            var addr = row.ip;
+       
         }
 	});
 }
@@ -93,4 +102,13 @@ function buildUrl(type,funId){
 	}else if(type == 'yjgx'){
 		return '/module/parser/yjgx/visitHtml/'+funId+'.html';
 	}
+}
+
+function searchByKey(){
+	var key = $('#key').val();
+	
+	
+	
+	$('#pasfileDataGrid').datagrid('clearSelections'); 
+    $('#pasfileDataGrid').datagrid('load',{'dirId' : 'dn0',key:key});
 }

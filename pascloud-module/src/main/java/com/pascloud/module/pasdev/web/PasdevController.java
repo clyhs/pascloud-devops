@@ -72,6 +72,7 @@ public class PasdevController extends BaseController {
 	@ResponseBody
 	public ResultPageVo<PasfileVo> getPasFilesWithDir(HttpServletRequest request,
 			@RequestParam(value="dirId",defaultValue="",required=true) String dirId,
+			@RequestParam(value="key",defaultValue="",required=false) String key,
 			@RequestParam(value="page",defaultValue="",required=true) Integer page,
 			@RequestParam(value="rows",defaultValue="",required=true) Integer rows){
 		ResultPageVo<PasfileVo> result = new ResultPageVo<>(PasCloudCode.SUCCESS);
@@ -79,8 +80,12 @@ public class PasdevController extends BaseController {
 		if(dirId.length() <=0 || page < 0 || rows < 0){
 			result = new ResultPageVo<>(PasCloudCode.PARAMEXCEPTION);
 		}
+		if(key.length()>0){
+			result = m_pasdevService.getPageData(dirId,key, page, rows);
+		}else{
+			result = m_pasdevService.getPageData(dirId, page, rows);
+		}
 		
-		result = m_pasdevService.getPageData(dirId, page, rows);
 		//result = m_pasdevService.getPasdevFiles(dirId);
 		return result;
 	}

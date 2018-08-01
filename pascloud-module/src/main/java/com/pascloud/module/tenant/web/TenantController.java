@@ -367,6 +367,7 @@ public class TenantController extends BaseController {
 		}
 
 		String driverClass = DBUtils.getDirverClassName(dbType);
+		
 		DBUtils db = new DBUtils(driverClass, url, username, password);
 		Connection sourceConn = null;
 		Connection dn0Conn = null;
@@ -539,7 +540,8 @@ public class TenantController extends BaseController {
 			if(null!=dn0){
 
 				String driverClass = DBUtils.getDirverClassName(dn0.getDbType());
-				DBUtils db = new DBUtils(driverClass, dn0.getUrl(), dn0.getUsername(), dn0.getPassword());
+				
+				DBUtils db = new DBUtils(driverClass, dn0.getUrl()+"?useUnicode=true&characterEncoding=utf8", dn0.getUsername(), dn0.getPassword());
 				conn = db.getConnection();
 			}
 		} catch (Exception e) {

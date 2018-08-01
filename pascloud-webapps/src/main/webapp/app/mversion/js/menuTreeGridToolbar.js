@@ -23,17 +23,17 @@ var menutoolbar = function(){
         handler : function(){
         	changeMenuSfxs('1');
         }
-	},{
+	}/*,{
 		text : '发布',  
         iconCls : 'icon-arrow_turn_left',  
         handler : function(){
         	
         }
-	},{
+	}*/,{
 		text : '初始化',  
         iconCls : 'icon-cog_go',  
         handler : function(){
-        	
+        	createTenantTreeDialog(tenantTreeGridToolbar);
         }
 	}];
 }();

@@ -83,4 +83,11 @@ function reloadTableWithID(Id){
 }
 
 
+function searchByKey(){
+	var key = $('#key').val();
+
+	$('#mainDataGrid').datagrid('clearSelections'); 
+    $('#mainDataGrid').datagrid('load',{'dirId' : dirId,key:key});
+}
+
 

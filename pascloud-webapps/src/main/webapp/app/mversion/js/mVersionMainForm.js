@@ -46,7 +46,7 @@ function addMVersionDialog(){
 		div +='<div style="margin:5px 0;width:100%;">';  
 		div +=    '<label for="url" class="formlabel">连接地址:</label>';
 		div +=    '<input class="easyui-validatebox formInput" id="url" name="url" data-options="required:true" size=30 >';
-		div +=    '<a class="easyui-linkbutton" id="selectPasfileBtn" data-options="iconCls:\'\'" disabled="false" style="height: 20px;width:50px;" onclick="selectPasfile()">选择</a>';
+		div +=    '<a class="easyui-linkbutton" id="selectPasfileBtn" data-options="iconCls:\'\',plain:true" disabled="false" style="height: 20px;width:50px;" onclick="selectPasfile()">选择</a>';
 		div +=    '<div style="clear:both;"></div>';
 		div +='</div>';
 		

@@ -55,6 +55,7 @@ function initTenantTreeGrid(toolbar){
         ]],
         toolbar:toolbar,
 		onLoadSuccess:function(node, data){
+			
 		},
 		onDblClickCell:function(rowIndex, field, value){
 		}
@@ -92,7 +93,7 @@ function setTenantXtcd(){
 	var param = {Id:'dn0',tIds:tIds,xmdh:xmdh};
 	$('#tenantTreeDialog').dialog('close');
 	EasyUILoad('mainCenter');
-	$.post("setCDToTenant.json",param,function(data,status){
+	$.post("sysOneMenuToTenant.json",param,function(data,status){
 			
 		if(data.code == 10000){
 			reloadTree();
@@ -127,7 +128,7 @@ function sysAllXtcdToTenant(){
 	var param = {tIds:tIds};
 	$('#tenantTreeDialog').dialog('close');
 	EasyUILoad('mainCenter');
-	$.post("sysAllXtcdToTenant.json",param,function(data,status){
+	$.post("sysAllMenuToTenant.json",param,function(data,status){
 			
 		if(data.code == 10000){
 			dispalyEasyUILoad( 'mainCenter' );

@@ -18,6 +18,12 @@ var toolbar = function(){
         handler : function(){
         	delDB();
         }
+	},{
+		text : '行员同步',  
+        iconCls : 'icon-database_go',  
+        handler : function(){
+        	sysHy();
+        }
 	}/*,{
 		text : '配置上传',  
         iconCls : 'icon-disk_upload',  

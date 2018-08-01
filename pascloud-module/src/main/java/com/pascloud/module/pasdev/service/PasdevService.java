@@ -178,6 +178,50 @@ public class PasdevService extends AbstractBaseService {
 		return result;
 	}
 	
+	public ResultPageVo<PasfileVo> getPageData(String dirId,String key,Integer pageNo,Integer pageSize){
+		ResultPageVo<PasfileVo> result = null;
+		List<PasfileVo> list = new ArrayList<>();
+		java.sql.Connection conn = null;
+		Integer start = 0;
+		Integer totals = 0;
+		try{
+			conn = m_databaseService.getConnectionById(Constants.PASCLOUD_PUBLIC_DB);
+			QueryRunner qRunner = new QueryRunner(); 
+			start = (pageNo - 1) * pageSize;
+			String sql = "select * from xtb_pasfile where fhdh=? and title like ? order by id desc limit ?,?";
+			String tSql= "select count(1) from xtb_pasfile where fhdh=? and title like ? ";
+			
+			Object[] tparams = {dirId,"%"+key+"%"};
+			Object[] params = {dirId,"%"+key+"%",start,pageSize};
+			
+			Number num =  (Number)qRunner.query(conn,tSql, new ScalarHandler(),tparams);
+			
+			if(null!=num){
+				totals = num.intValue();
+				if(totals>0){
+					list =  qRunner.query(conn,sql, new BeanListHandler<PasfileVo>(PasfileVo.class),params);
+				}
+			}
+			result = new ResultPageVo<PasfileVo>(PasCloudCode.SUCCESS);
+			result.setTotal(totals);
+			result.setRows(list);
+			
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+			result = new ResultPageVo<PasfileVo>(PasCloudCode.EXCEPTION);
+		}finally{
+			try {
+				if(null!=conn){
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
 	public ResultPageVo<PasfileVo> getPageData(String dirId,Integer pageNo,Integer pageSize){
 		ResultPageVo<PasfileVo> result = null;
 		List<PasfileVo> list = new ArrayList<>();
@@ -189,7 +233,7 @@ public class PasdevService extends AbstractBaseService {
 			QueryRunner qRunner = new QueryRunner(); 
 			start = (pageNo - 1) * pageSize;
 			String sql = "select * from xtb_pasfile where fhdh=? order by id desc limit ?,?";
-			String tSql= "select count(1) from xtb_pasfile where fhdh=?";
+			String tSql= "select count(1) from xtb_pasfile where fhdh=?  ";
 			
 			Object[] tparams = {dirId};
 			Object[] params = {dirId,start,pageSize};

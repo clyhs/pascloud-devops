@@ -16,7 +16,7 @@ function initMVersionMainTreeGrid(){
         showFooter:false,//是否使用页脚
 		columns:[[
             //{title:'编号',field:'id',width:40,sortable:true},
-            {title:'名称',field:'text',width:200,sortable:true},
+            {title:'资源名称',field:'text',width:200,sortable:true},
             {title:'级别',field:'level',width:160,sortable:true,hidden:'true'},
             {title:'版本',field:'version',width:40,sortable:true},
             {title:'是否禁用',field:'sfxs',width:40,sortable:true,formatter:formatOper },

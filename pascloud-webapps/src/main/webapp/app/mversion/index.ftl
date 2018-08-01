@@ -65,7 +65,7 @@
 		        <div onclick="addMVersionDialog()" data-options="iconCls:'icon-add'">添加</div>
 		        <div class="menu-sep"></div>
 		        <div onclick="updateMVersion()" data-options="iconCls:'icon-edit'">修改</div>
-		        <div onclick="delMVersion()" data-options="iconCls:'icon-del'">删除</div>
+		        <div onclick="delMVersion()" data-options="iconCls:'icon-delete'">删除</div>
 	        </div>
 	    </table>
 		<!--内容  结束-->

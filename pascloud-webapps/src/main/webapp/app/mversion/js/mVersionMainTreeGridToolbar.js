@@ -29,11 +29,11 @@ var mtoolbar = function(){
         handler : function(){
         	changeMVersionSfxs('1');
         }
-	},{
+	}/*,{
 		text : '同步',  
         iconCls : 'icon-arrow_switch',  
         handler : function(){
         	createTenantTreeDialog(tenantTreeGridToolbarForSys);
         }
-	}];
+	}*/];
 }();

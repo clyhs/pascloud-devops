@@ -32,7 +32,7 @@ public class MVersionService extends AbstractBaseService {
 	@Autowired
 	private ConfigService    m_configService;
 	
-	public List<XtcdVo> getXtcdList(Connection conn,String id){
+	private List<XtcdVo> getXtcdList(Connection conn,String id){
 		List<XtcdVo> result = new ArrayList<>();
 		String sql = "select * from xtb_xtcd";
 		if(id.equals(Constants.PASCLOUD_PUBLIC_DB)){
@@ -53,6 +53,36 @@ public class MVersionService extends AbstractBaseService {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	 
+	private List<XtcdVo> getXtcdList(Connection conn,String selectId,String ids){
+		List<XtcdVo> result = new ArrayList<>();
+		String sql = "select * from xtb_xtcd where xmdh in ("+ids+")";
+		if(selectId.equals(Constants.PASCLOUD_PUBLIC_DB)){
+			sql = "select * from xtb_xtzycd where xmdh in ("+ids+")";
+		}
+		try {
+			log.info("查询菜单资源");
+			log.info(sql);
+			QueryRunner qRunner = new QueryRunner();  
+			result =  qRunner.query(conn,sql, new BeanListHandler<XtcdVo>(XtcdVo.class));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.info("查询表所有数据--失败--");
+			log.error(e.getMessage());
+			//e.printStackTrace();
+		}finally{
+			try {
+				if(null!=conn){
+					conn.close();
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
 			}
 		}
 		return result;
@@ -123,16 +153,17 @@ public class MVersionService extends AbstractBaseService {
 		try {
 			conn = getConnectionById(Id);
 			QueryRunner qRunner = new QueryRunner(); 
+			Integer xmdh = getMaxXmdh(conn);
 			if(Id.equals(Constants.PASCLOUD_PUBLIC_DB)){
-				sql = "INSERT INTO xtb_xtzycd(xmmc,xmdz,sjxm,cdjb,dzlx,classid,sfxs,imgurl,qxbs,version)"
-						+ "VALUES(?,?,?,?,?,?,?,?,?,?)";
-				Object[] params = {cd.getXmmc(),cd.getXmdz(),cd.getSjxm(),cd.getCdjb(),
+				sql = "INSERT INTO xtb_xtzycd(xmdh,xmmc,xmdz,sjxm,cdjb,dzlx,classid,sfxs,imgurl,qxbs,version)"
+						+ "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+				Object[] params = {xmdh,cd.getXmmc(),cd.getXmdz(),cd.getSjxm(),cd.getCdjb(),
 						cd.getDzlx(),cd.getClassid(),cd.getSfxs(),cd.getImgurl(),cd.getQxbs(),cd.getVersion()};
 				row = qRunner.update(conn, sql, params);
 			}else{
 				sql = "INSERT INTO xtb_xtcd(xmdh,xmmc,xmdz,sjxm,cdjb,dzlx,classid,sfxs,imgurl,qxbs,version)"
 						+ "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-				Integer xmdh = getMaxXmdh(conn);
+				
 				Object[] params = {xmdh,cd.getXmmc(),cd.getXmdz(),cd.getSjxm(),cd.getCdjb(),
 						cd.getDzlx(),cd.getClassid(),cd.getSfxs(),cd.getImgurl(),cd.getQxbs(),cd.getVersion()};
 				row = qRunner.update(conn, sql, params);
@@ -168,12 +199,20 @@ public class MVersionService extends AbstractBaseService {
 	//生成id,提供插入ORACLE数据库
 	private Integer getMaxXmdh(Connection conn) throws SQLException{
 		Integer res = 0;
-		String sql = "select max(xmdh) as count from xtb_xtcd";
+		Number num = null;
+		String sql = "update mycat_sequence set current_value = current_value+increment where name='xtb_xtcd' ";
 		QueryRunner qRunner = new QueryRunner(); 
-		Number num =  (Number)qRunner.query(conn,sql, new ScalarHandler());
+		//Number num =  (Number)qRunner.query(conn,sql, new ScalarHandler());
+		
+		Integer row = qRunner.update(conn, sql);
+		
+		if(null!=row && row>0){
+			String mSql = "select current_value as count from  mycat_sequence where name='xtb_xtcd' ";
+			num =  (Number)qRunner.query(conn,mSql, new ScalarHandler());
+		}
 		
 		if(null!=num){
-			res = num.intValue() + 1;
+			res = num.intValue();
 		}
 		
 		return res;
@@ -189,9 +228,9 @@ public class MVersionService extends AbstractBaseService {
 			for(String Id:Ids){
 				conn = getConnectionById(Id);
 				if(Id.equals(Constants.PASCLOUD_PUBLIC_DB)){
-					sql = "INSERT INTO xtb_xtzycd(xmmc,xmdz,sjxm,cdjb,dzlx,classid,sfxs,imgurl,qxbs,version)"
-							+ "VALUES(?,?,?,?,?,?,?,?,?,?)";
-					Object[] params = {cd.getXmmc(),cd.getXmdz(),cd.getSjxm(),cd.getCdjb(),
+					sql = "INSERT INTO xtb_xtzycd(xmdh,xmmc,xmdz,sjxm,cdjb,dzlx,classid,sfxs,imgurl,qxbs,version)"
+							+ "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+					Object[] params = {cd.getXmdh(),cd.getXmmc(),cd.getXmdz(),cd.getSjxm(),cd.getCdjb(),
 							cd.getDzlx(),cd.getClassid(),cd.getSfxs(),cd.getImgurl(),cd.getQxbs(),cd.getVersion()};
 					row += qRunner.update(conn, sql, params);
 					conn.close();
@@ -366,6 +405,64 @@ public class MVersionService extends AbstractBaseService {
 		
 		return result;
 	}
+	
+	
+	public ResultCommon sysOtherXtcdToTenant(String selectId,String dnId,String idList){
+		ResultCommon result =null;
+		List<XtcdVo> cds = new ArrayList<>();
+		Connection selectConn = null;
+		Connection dnConn = null;
+		Integer row=0;
+		try {
+			selectConn = getConnectionById(selectId);
+			dnConn     = getConnectionById(dnId);
+			log.info("获取菜单资源");
+			cds = getXtcdList(selectConn,selectId,idList);
+			String sql = "INSERT INTO xtb_xtcd(xmdh,xmmc,xmdz,sjxm,cdjb,dzlx,classid,sfxs,imgurl,qxbs,version)"
+					+ "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+			log.info(sql);
+			QueryRunner qRunner = new QueryRunner();  
+			if(cds.size()>0){
+				result = truncateXtcd(dnConn);
+				if(result.getCode().equals(PasCloudCode.SUCCESS.getCode())){
+					Object[][] params = new Object[cds.size()][];
+					for(int i=0;i<cds.size();i++){
+						XtcdVo cd = cds.get(i);
+						params[i] = new Object[]{cd.getXmdh(),cd.getXmmc(),cd.getXmdz(),cd.getSjxm(),cd.getCdjb(),
+								cd.getDzlx(),cd.getClassid(),cd.getSfxs(),cd.getImgurl(),cd.getQxbs(),cd.getVersion()};
+					}
+					log.info("同步菜单资源到租户："+dnId);
+					qRunner.batch(dnConn, sql, params);
+					row = 1;
+				}
+				
+			}
+			if(row>0){
+				result = new ResultCommon(PasCloudCode.SUCCESS);
+			}else{
+				result = new ResultCommon(PasCloudCode.ERROR);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error(e.getMessage());
+			//e.printStackTrace();
+			result = new ResultCommon(PasCloudCode.EXCEPTION);
+		}finally{
+			try {
+				if(null!=dnConn){
+					dnConn.close();
+					dnConn = null;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+	
 	
 	private ResultCommon truncateXtcd(Connection conn){
 		ResultCommon result = null;

@@ -17,14 +17,13 @@
 	<script type="text/javascript" src="/static/easyui/jquery-1.8.0.min.js"></script>
 	<script type="text/javascript" src="/static/js/webuploader/webuploader.js"></script>
 	<script type="text/javascript" src="/static/js/rebox/jquery-rebox.js"></script>
-	
     <script type="text/javascript" src="/static/easyui/jquery.easyui.min.js"></script>
-    
     <script type="text/javascript" type="text/javascript" src="/static/js/lib/jquery.format.js"></script>
     
     
     
     <script type="text/javascript" src="/static/js/common/pascloudfunctions.js"></script>
+    
     
     <script type="text/javascript" src="/app/mversion/js/main.js"></script>
     <script type="text/javascript" src="/app/mversion/js/mVersionTree.js"></script>
@@ -55,7 +54,7 @@
 </head>
 <body id="main" class="easyui-layout" data-options="fit:true,border:false"  > 
     
-    <div id="mainLeft" data-options="region:'west',split:true,title:'租户',iconCls:'icon-application_double'" style="width:200px">
+    <div id="mainLeft" data-options="region:'west',split:true,title:'租户',iconCls:'icon-application_double'" style="width:180px">
 		<table id="mVersionTree" class="easyui-treegrid" >
 		</table>
 	</div>
