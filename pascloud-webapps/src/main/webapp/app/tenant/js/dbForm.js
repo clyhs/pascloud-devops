@@ -374,12 +374,15 @@ function addPasfile(name){
 		MaskUtil.mask('正在复制开发文件，请耐心等待...');
 		$.post("/module/pasdev/copyPasfileWithName.json",param,function(data,status){
 			if(data.code == 10000){
-				uploadPasfile(name);
+				uploadCofingBySelectDB();
+				//uploadPasfile(name);
 			}else{
 				//dispalyEasyUILoad('mainCenter');
 				//MaskUtil.unmask(); 
 				//$.messager.alert('提示','复制文件'+data.desc);	
-				uploadPasfile(name);
+				//uploadPasfile(name);
+				MaskUtil.unmask(); 
+    			$.messager.alert('提示',data.desc);	
 			}
 		});
 	}

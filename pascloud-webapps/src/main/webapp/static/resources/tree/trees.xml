@@ -80,6 +80,15 @@
         <url>/module/mversion/menu.html</url>
         <pid>2000</pid>
       </tree>
+      <tree>
+        <id>2700</id>
+        <text>源码管理</text>
+        <isLeaf>true</isLeaf>
+        <children/>
+        <iconCls>icon-page_code</iconCls>
+        <url>/module/pascode/index.html</url>
+        <pid>2000</pid>
+      </tree>
     </children>
     <iconCls>icon-application_cascade</iconCls>
     <url>#</url>

@@ -501,7 +501,11 @@ public class PasdevService extends AbstractBaseService {
 	
 	
 	
-	
+	/**
+	 * 复制标准版pasfile
+	 * @param dbSchema
+	 * @return
+	 */
 	public synchronized ResultCommon copyPasfileWidthID(String dbSchema){
 		Integer num = 0;
 		ResultCommon result = null;
@@ -1014,22 +1018,22 @@ public class PasdevService extends AbstractBaseService {
 		return result;
 	}
 	
-	private String getRandomFileName() {
- 
-		SimpleDateFormat simpleDateFormat;
- 
-		simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
- 
-		Date date = new Date();
- 
-		String str = simpleDateFormat.format(date);
- 
-		Random random = new Random();
- 
-		int rannum = (int) (random.nextDouble() * (99999 - 10000 + 1)) + 10000;// 获取5位随机数
- 
-		return  str +rannum ;// 当前时间
-	}
+//	protected String getRandomFileName() {
+// 
+//		SimpleDateFormat simpleDateFormat;
+// 
+//		simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+// 
+//		Date date = new Date();
+// 
+//		String str = simpleDateFormat.format(date);
+// 
+//		Random random = new Random();
+// 
+//		int rannum = (int) (random.nextDouble() * (99999 - 10000 + 1)) + 10000;// 获取5位随机数
+// 
+//		return  str +rannum ;// 当前时间
+//	}
 
 	
 	/**

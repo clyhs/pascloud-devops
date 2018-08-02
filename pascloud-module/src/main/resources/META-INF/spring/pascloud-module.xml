@@ -84,7 +84,7 @@
 
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
-		p:defaultEncoding="UTF-8" p:maxUploadSize="5400000" p:uploadTempDir="fileUpload/temp">
+		p:defaultEncoding="UTF-8" p:maxUploadSize="314572800" p:uploadTempDir="fileUpload/temp">
 	</bean>
 
     

@@ -48,8 +48,20 @@ public class PasCloudConfig {
 	@Value("${project.upload}")
 	private String PASCLOUD_UPLOAD;
 	
+	@Value("${project.pascode}")
+	private String PASCLOUD_PASCODE;
 	
 	
+	
+	
+	public String getPASCLOUD_PASCODE() {
+		return PASCLOUD_PASCODE;
+	}
+
+	public void setPASCLOUD_PASCODE(String pASCLOUD_PASCODE) {
+		PASCLOUD_PASCODE = pASCLOUD_PASCODE;
+	}
+
 	public String getPASCLOUD_UPLOAD() {
 		return PASCLOUD_UPLOAD;
 	}

@@ -446,7 +446,7 @@ public class PasService extends AbstractBaseService {
 				m_configService.setPort("8202", "8212");
 			}else{
 				m_configService.setHomePath(serverPath);
-				m_configService.setDev("false");
+				m_configService.setDev("true"); ///新版不用本地初始化
 				m_configService.setPort("8201", "8211");
 				
 			}

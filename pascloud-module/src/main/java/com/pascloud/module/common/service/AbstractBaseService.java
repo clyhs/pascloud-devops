@@ -1,6 +1,9 @@
 package com.pascloud.module.common.service;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -76,5 +79,35 @@ public abstract class AbstractBaseService {
 		this.dockerClient = DefaultDockerClient.builder().uri(m_serverService.getMasterDockerUrl()).build();
 		return dockerClient;
 	}
+	
+	protected String getRandomFileName() {
+		 
+		SimpleDateFormat simpleDateFormat;
+ 
+		simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+ 
+		Date date = new Date();
+ 
+		String str = simpleDateFormat.format(date);
+ 
+		Random random = new Random();
+ 
+		int rannum = (int) (random.nextDouble() * (99999 - 10000 + 1)) + 10000;// 获取5位随机数
+ 
+		return  str +rannum ;// 当前时间
+	}
+	
+	protected String getRandomFileName(Date now) {
+		 
+		SimpleDateFormat simpleDateFormat;
+ 
+		simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+		String str = simpleDateFormat.format(now);
+		Random random = new Random();
+		int rannum = (int) (random.nextDouble() * (99999 - 10000 + 1)) + 10000;// 获取5位随机数
+ 
+		return  str +rannum ;// 当前时间
+	}
+	
 
 }
