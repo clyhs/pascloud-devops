@@ -77,6 +77,12 @@ public class PasService extends AbstractBaseService {
 		return containters;
 	}
 	
+	public List<ContainerVo> getContainerWithPaspmService(){
+		List<ContainerVo> containters = new ArrayList<>();
+		containters = m_containerService.getContainers(Constants.PASCLOUD_SERVICE_PASPM_CONTAINER);
+		return containters;
+	}
+	
 	public String getServicePathWithContainerName(String name){
 		name = name.replaceAll("_", "-");
 		name = name.replaceAll("pascloud", "pas-cloud");

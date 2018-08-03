@@ -116,7 +116,7 @@ public class ConfigService {
     }
     
 	public List<DBInfo> getDBFromConfig(){
-		log.info("从本地的db.properties查询的所有的数据库");
+		//log.info("从本地的db.properties查询的所有的数据库");
 		List<DBInfo> dbs = new ArrayList<DBInfo>();
 		PropertiesUtil p =new PropertiesUtil();
 		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);

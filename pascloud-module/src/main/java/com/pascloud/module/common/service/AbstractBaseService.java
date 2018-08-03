@@ -1,6 +1,9 @@
 package com.pascloud.module.common.service;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -15,6 +18,8 @@ import com.spotify.docker.client.DefaultDockerClient;
 import ch.ethz.ssh2.Connection;
 import ch.ethz.ssh2.ConnectionInfo;
 import ch.ethz.ssh2.SCPClient;
+import ch.ethz.ssh2.Session;
+import ch.ethz.ssh2.StreamGobbler;
 
 public abstract class AbstractBaseService {
 	
@@ -64,12 +69,51 @@ public abstract class AbstractBaseService {
 				SCPClient scpClient = conn.createSCPClient();
 				log.info("文件正在上传");
 				scpClient.put(local, server);
+				Thread.sleep(1000*2);
 				flag = true;
 				log.info("文件上传完毕");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
 				log.info("文件上传异常");
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				log.info("文件上传异常");
+			}
+		}
+		return flag;
+	}
+	
+	public Boolean execCommand(Connection conn,String cmd) {
+		Boolean flag = false;
+		StringBuffer sb = new StringBuffer();
+		if (null!=conn) {
+			Session session = null;
+			InputStream stdout = null;
+			BufferedReader br = null;
+			try {
+				session = conn.openSession();
+				log.info("执行命令" + cmd);
+				session.execCommand(cmd);
+				stdout = new StreamGobbler(session.getStdout());
+				br = new BufferedReader(new InputStreamReader(stdout));
+				String line;
+				while ((line = br.readLine()) != null) {
+					//System.out.println(line);
+					sb.append(line);
+				}
+				Thread.sleep(1000*1);
+				flag = true;
+				log.info("执行命令完毕");
+				//System.out.println(sb.toString());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				// e.printStackTrace();
+				log.info("执行命令异常");
+				log.error(e.getMessage());
+			} finally {
+				session.close();
 			}
 		}
 		return flag;

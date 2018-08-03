@@ -134,12 +134,12 @@ public class ScpClientUtils {
 				br = new BufferedReader(new InputStreamReader(stdout));
 				String line;
 				while ((line = br.readLine()) != null) {
-
+					System.out.println(line);
 					sb.append(line);
 				}
 				log.info("执行命令完毕");
 				flag = true;
-				// System.out.println(sb.toString());
+				//System.out.println(sb.toString());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				// e.printStackTrace();

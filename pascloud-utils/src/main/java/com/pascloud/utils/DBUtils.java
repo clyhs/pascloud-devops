@@ -64,17 +64,17 @@ public class DBUtils {
         Connection conn = null;  
         try {  
         	Class.forName(driverClass); 
-        	log.info("连接开始...");
+        	//log.info("连接开始...");
         	Locale originalLocale = Locale.getDefault();
         	// Set "en_US" as the safe default
         	Locale.setDefault( Locale.US );
             conn = DriverManager.getConnection(url, username, password);  
             
-            log.info("连接成功...");
+            //log.info("连接成功...");
         } catch (SQLException | ClassNotFoundException e) {  
             System.out.println("connect failed!");  
             //e.printStackTrace();  
-            log.info("连接失败...");
+            log.error("连接失败...",e.getMessage());
         }         
         return conn;  
     }

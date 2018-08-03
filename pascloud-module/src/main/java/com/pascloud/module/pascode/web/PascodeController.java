@@ -104,7 +104,7 @@ public class PascodeController extends BaseController {
 		vo.setId(id);
 		vo.setName(name);
 		vo.setType(type);
-		//result = m_pascodeService.deletePascode(vo);
+		result = m_pascodeService.uploadPascodeAndRestart(vo);
 		return result;
 		
 	}
