@@ -39,21 +39,21 @@ public abstract class BaseController {
 	
 	protected String webappPath;
 	
-	{
-		try{
-			
-			//DefaultDockerClient docker = DefaultDockerClient.builder().uri("http://192.168.0.16:"+defaultPort).build();
-			//dockerClient = docker;
-			//dockerEndpoint = docker.builder().uri();
-			//dockerApiVersion = dockerClient.version().apiVersion();
-			
-			
-		}catch(Exception e){
-			//e.printStackTrace();
-			log.error(e.getMessage());
-		}
-		
-	}
+//	{
+//		try{
+//			
+//			//DefaultDockerClient docker = DefaultDockerClient.builder().uri("http://192.168.0.16:"+defaultPort).build();
+//			//dockerClient = docker;
+//			//dockerEndpoint = docker.builder().uri();
+//			//dockerApiVersion = dockerClient.version().apiVersion();
+//			
+//			
+//		}catch(Exception e){
+//			//e.printStackTrace();
+//			log.error(e.getMessage());
+//		}
+//		
+//	}
 
 	@ExceptionHandler(RuntimeException.class)
 	@ResponseBody
