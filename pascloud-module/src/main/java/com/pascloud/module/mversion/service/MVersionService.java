@@ -433,7 +433,7 @@ public class MVersionService extends AbstractBaseService {
 			log.info(sql);
 			QueryRunner qRunner = new QueryRunner();  
 			if(cds.size()>0){
-				result = truncateXtcd(dnConn);
+				result = deleteXtcd(dnConn,cds);
 				if(result.getCode().equals(PasCloudCode.SUCCESS.getCode())){
 					Object[][] params = new Object[cds.size()][];
 					for(int i=0;i<cds.size();i++){
@@ -485,6 +485,41 @@ public class MVersionService extends AbstractBaseService {
 			QueryRunner qRunner = new QueryRunner();  
 			//vo = qRunner.query(conn, sql, params,new BeanHandler<XtcdVo>(XtcdVo.class));
 			row = qRunner.update(conn, sql);
+			result = new ResultCommon(PasCloudCode.SUCCESS);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			log.error(e.getMessage());
+			//e.printStackTrace();
+			result = new ResultCommon(PasCloudCode.ERROR);
+		}finally{
+		}
+		return result;
+	}
+	
+	private ResultCommon deleteXtcd(Connection conn,List<XtcdVo> cds){
+		ResultCommon result = null;
+		Integer row = 0;
+		try {
+			log.info("清空菜单资源表");
+			QueryRunner qRunner = new QueryRunner();  
+			String sql = "delete from xtb_xtcd where xmdh=?";
+			
+			
+			if(cds.size()>0){
+				Object[][] params = new Object[cds.size()][];
+				for(int i=0;i<cds.size();i++){
+					XtcdVo cd = cds.get(i);
+					params[i] = new Object[]{cd.getXmdh()};
+				}
+				
+				qRunner.batch(conn, sql, params);
+				row = 1;
+			}
+			
+			log.info(sql);
+			
+			//vo = qRunner.query(conn, sql, params,new BeanHandler<XtcdVo>(XtcdVo.class));
+			//row = qRunner.update(conn, sql);
 			result = new ResultCommon(PasCloudCode.SUCCESS);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
