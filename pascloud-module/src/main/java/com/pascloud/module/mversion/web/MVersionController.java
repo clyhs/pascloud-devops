@@ -128,6 +128,33 @@ public class MVersionController extends BaseController {
     	return result;
     }
 	
+	@RequestMapping("/getMVersionMenuTreeWith.json")
+	@ResponseBody
+    public List<MVersionTreeVo>	getMVersionMenuTreeWith(HttpServletRequest request,
+    		@RequestParam(value="selectId",defaultValue="",required=true) String selectId,
+    		@RequestParam(value="dnId",defaultValue="",required=true) String dnId){
+    	List<MVersionTreeVo> result = new ArrayList<>();
+       
+        List<XtcdVo> cds = new ArrayList<>();
+        List<XtcdVo> dnCDS = new ArrayList<>();
+        
+        log.info("查询Id="+selectId+"的功能菜单");
+        
+        if(selectId.length() <=0 || dnId.length()<=0){
+        	return result;
+        }
+        cds = m_mVersionService.getXtcdById(selectId);
+        
+        dnCDS = m_mVersionService.getXtcdById(dnId);
+ 
+        result = buildTreeVo(cds,"0",dnCDS);
+    	
+        //Gson g = new Gson();
+		//System.out.println(g.toJson(result));
+        
+    	return result;
+    }
+	
 	/**
 	 * 添加资源菜单
 	 * @param request
@@ -338,6 +365,76 @@ public class MVersionController extends BaseController {
 				}
 				
 				List<MVersionTreeVo> lists = buildTreeVo(cds, id);
+				if(lists.size()>0){
+					t.setLeaf(false);
+					t.setChildren(lists);
+				}else{
+					t.setLeaf(true);
+				}
+				
+				if(cd.getCdjb().equals("2") && lists.size()>0){
+					t.setState("closed");
+				}
+				
+				childtree.add(t);
+			}
+		}
+		return childtree;
+	}
+	
+	private List<MVersionTreeVo> buildTreeVo(List<XtcdVo> cds,String parentId,List<XtcdVo> dnCDS){
+		List<MVersionTreeVo> childtree = new ArrayList<MVersionTreeVo>(); 
+		//JSONArray childMenu = new JSONArray();
+		for (XtcdVo cd : cds) {
+			///int menuId = Integer.parseInt(jg.getZbdh());
+            //int pid = jg.getSjzb() == null?0:Integer.parseInt(jg.getSjzb());
+            String id = cd.getXmdh()+"";
+            String pid = cd.getSjxm()+"";
+			if (parentId.equals(pid)) {
+				MVersionTreeVo t = new MVersionTreeVo();
+				t.setId(id);
+				t.setText(cd.getXmmc());
+				t.setUrl(cd.getXmdz());
+				t.setLevel(cd.getCdjb());
+				t.setSfxs(cd.getSfxs());
+				
+				if(cd.getCdjb().equals("0") || cd.getCdjb().equals("1")){
+					t.setType("目录");
+				}
+				if(cd.getCdjb().equals("3")){
+					t.setType("按钮");
+				}
+				if(cd.getCdjb().equals("2")){
+					if(cd.getXmdz().contains("/module/parser")){
+						t.setType("pas+");
+					}else{
+						t.setType("java");
+					}
+				}
+				
+				if(cd.getCdjb().equals("0") || cd.getCdjb().equals("1") || cd.getCdjb().equals("3")){
+					t.setVersion("#");
+				}else{
+					if(null!=cd.getVersion()){
+						t.setVersion(cd.getVersion());
+					}else{
+						t.setVersion("1.0.0.0");
+					}
+				}
+				if(cd.getCdjb().endsWith("2")){
+					t.setIconCls("icon-world_link");
+				}
+				if(cd.getCdjb().equals("3")){
+					t.setIconCls("icon-bullet_green");
+				}
+				
+				if(dnCDS.contains(cd)){
+					t.setChecked(true);
+				}else{
+					t.setChecked(false);
+				}
+				
+				List<MVersionTreeVo> lists = buildTreeVo(cds, id,dnCDS);
 				if(lists.size()>0){
 					t.setLeaf(false);
 					t.setChildren(lists);

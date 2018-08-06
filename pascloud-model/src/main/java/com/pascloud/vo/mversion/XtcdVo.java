@@ -128,7 +128,84 @@ public class XtcdVo implements Serializable {
 	public void setVersion(String version) {
 		this.version = version;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((sjxm == null) ? 0 : sjxm.hashCode());
+		result = prime * result + ((xmdh == null) ? 0 : xmdh.hashCode());
+		result = prime * result + ((xmdz == null) ? 0 : xmdz.hashCode());
+		result = prime * result + ((xmmc == null) ? 0 : xmmc.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		XtcdVo other = (XtcdVo) obj;
+		if (sjxm == null) {
+			if (other.sjxm != null)
+				return false;
+		} else if (!sjxm.equals(other.sjxm))
+			return false;
+		if (xmdh == null) {
+			if (other.xmdh != null)
+				return false;
+		} else if (!xmdh.equals(other.xmdh))
+			return false;
+		if (xmdz == null) {
+			if (other.xmdz != null)
+				return false;
+		} else if (!xmdz.equals(other.xmdz))
+			return false;
+		if (xmmc == null) {
+			if (other.xmmc != null)
+				return false;
+		} else if (!xmmc.equals(other.xmmc))
+			return false;
+		return true;
+	}
+
+	/*
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		int result = 17;
+		result = 31 * result + xmdh;
+        result = 31 * result + xmdz.hashCode();
+        result = 31 * result + sjxm;
+        result = 31 * result + xmmc.hashCode();
+        return result;
+		//return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		if(this == obj){
+			return true;
+		}
+		
+		if(!(obj instanceof XtcdVo)){
+			return false;
+		}
+		
+		XtcdVo vo = (XtcdVo) obj;
+		
+		return vo.xmdh == xmdh
+				&& vo.xmdz.equals(xmdz)
+				&& vo.xmmc.equals(xmmc)
+				&& vo.sjxm ==sjxm;
+		
+		//return super.equals(obj);
+	}
+	*/
 	
 
 }

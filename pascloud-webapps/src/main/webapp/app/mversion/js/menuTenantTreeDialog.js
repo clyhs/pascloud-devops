@@ -20,7 +20,7 @@ function createTenantTreeDialog(toolbar) {
 var tenantTreeGridToolbar = function() {
 	return [ {
 		text : '下一步',
-		iconCls : 'icon-bullet_tick',
+		iconCls : 'icon-accept',
 		handler : function() {
 			var row = $('#tenantTreeGrid').treegrid('getSelected');
 			if (null == row) {
@@ -97,7 +97,7 @@ function createMenuTreeGridDialog(toolbar) {
 var menuTreeGridToolbar = function() {
 	return [ {
 		text : '提交',
-		iconCls : 'icon-bullet_tick',
+		iconCls : 'icon-accept',
 		handler : function() {
 			getSelected();
 		}
@@ -107,13 +107,14 @@ var menuTreeGridToolbar = function() {
 function initMenuTreeGridDialog(toolbar) {
 	tenantMenuTreeGrid = $('#tenantMenuTreeGridDialog').treegrid(
 			{
-				url : 'getMVersionMenuTree.json',
+				url : 'getMVersionMenuTreeWith.json',
 				method : 'get',
 				border : false,
 				width : "auto",
 				fit : true,
 				queryParams : {
-					'Id' : selectId
+					'selectId' : selectId,
+					'dnId':dnId
 				},
 				animate : true,// 是否用动画效果
 				collapsible : false,// 是否可折叠

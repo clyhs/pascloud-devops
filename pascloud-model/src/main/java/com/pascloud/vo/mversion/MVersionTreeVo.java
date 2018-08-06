@@ -34,8 +34,26 @@ public class MVersionTreeVo implements Serializable {
 	
 	private String type;
 	
+	private Boolean checked;
 	
 	
+	
+	public Boolean getIsLeaf() {
+		return isLeaf;
+	}
+
+	public void setIsLeaf(Boolean isLeaf) {
+		this.isLeaf = isLeaf;
+	}
+
+	public Boolean getChecked() {
+		return checked;
+	}
+
+	public void setChecked(Boolean checked) {
+		this.checked = checked;
+	}
+
 	public String getType() {
 		return type;
 	}

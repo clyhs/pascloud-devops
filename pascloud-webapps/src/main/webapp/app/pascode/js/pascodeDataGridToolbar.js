@@ -14,7 +14,7 @@ var toolbar = function(){
         }
 	},{
 		text : '升级',  
-        iconCls : 'icon-delete',  
+        iconCls : 'icon-folder_up',  
         handler : function(){
         	uploadPascodeAndRestart();
         }
