@@ -21,7 +21,7 @@
   </tree>
   <tree>
     <id>2000</id>
-    <text>运维管理</text>
+    <text>平台管理</text>
     <isLeaf>false</isLeaf>
     <children>
       <tree>
@@ -76,7 +76,7 @@
         <text>应用管理</text>
         <isLeaf>true</isLeaf>
         <children/>
-        <iconCls>icon-folder_link</iconCls>
+        <iconCls>icon-application_cascade</iconCls>
         <url>/module/mversion/menu.html</url>
         <pid>2000</pid>
       </tree>
@@ -89,8 +89,19 @@
         <url>/module/pascode/index.html</url>
         <pid>2000</pid>
       </tree>
+      <!--  
+      <tree>
+        <id>2800</id>
+        <text>脚本管理</text>
+        <isLeaf>true</isLeaf>
+        <children/>
+        <iconCls>icon-script</iconCls>
+        <url>/module/script/index.html</url>
+        <pid>2000</pid>
+      </tree>
+      -->
     </children>
-    <iconCls>icon-application_cascade</iconCls>
+    <iconCls>icon-application</iconCls>
     <url>#</url>
     <pid>0</pid>
   </tree>
