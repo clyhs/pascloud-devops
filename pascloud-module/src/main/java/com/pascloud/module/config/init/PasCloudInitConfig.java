@@ -17,14 +17,18 @@ import org.springframework.stereotype.Repository;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.pascloud.constant.Constants;
 import com.pascloud.module.config.PasCloudConfig;
+import com.pascloud.module.passervice.service.PasService;
+import com.pascloud.module.redis.service.RedisService;
 import com.pascloud.utils.FileUtils;
 import com.pascloud.utils.PasCloudUtils;
 import com.pascloud.utils.db.DataSourceUtils;
 import com.pascloud.utils.redis.JedisPoolUtils;
 import com.pascloud.vo.database.DBInfo;
+import com.pascloud.vo.pass.RedisVo;
 import com.pascloud.vo.redis.RedisInfo;
 import com.thoughtworks.xstream.XStream;
 
+import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
@@ -36,6 +40,9 @@ public class PasCloudInitConfig implements ApplicationListener<ContextRefreshedE
 
 	@Autowired
 	private PasCloudConfig m_config;
+	
+	@Autowired
+	private RedisService   m_redisService;
 	
 	
 	@Override
@@ -88,6 +95,8 @@ public class PasCloudInitConfig implements ApplicationListener<ContextRefreshedE
 			log.info("初始化数据库--结束--");
 		}
 	} 
+	
+	
 	
 	private void initRedisPool(){
 		String redis_dir =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_REDIS_DIR();

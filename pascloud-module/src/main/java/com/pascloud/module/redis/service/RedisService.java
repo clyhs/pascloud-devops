@@ -57,6 +57,37 @@ public class RedisService extends AbstractRedisService {
 	@Autowired
 	private PasCloudConfig m_config;
 	
+	public void deleteRedisApp(){
+		List<RedisVo> rediss = m_pasService.getRedisServer();
+		if(null!=rediss && rediss.size()>0){
+			for(RedisVo vo:rediss){
+				String id = vo.getIp()+":"+ vo.getPort();
+				log.info("清除redis数据");
+				delRedisByKey(id, 0, "app_*");
+			}
+		}
+	}
+	
+	public void initRedisServer(){
+		List<RedisVo> rediss = m_pasService.getRedisServer();
+		JedisPool jedisPool = null;
+		Jedis jedis = null;
+		if(rediss.size()>0){
+			RedisVo vo = rediss.get(0);
+			JedisPoolConfig config = new JedisPoolConfig();
+	        config.setMaxTotal(10);
+	        config.setMaxIdle(5);
+	        config.setMaxWaitMillis(15000);
+	        config.setTestOnBorrow(true);
+	        jedisPool = new JedisPool(config, vo.getIp(), vo.getPort());
+	        
+	        
+	        String id = vo.getIp()+":"+ vo.getPort();
+	        JedisPoolUtils.addJedisPool(id, jedisPool);
+	        
+		}
+	}
+	
 	public List<String> getRedisServers(){
 		List<String> lists = new ArrayList<String>();
 		

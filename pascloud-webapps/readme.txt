@@ -81,3 +81,42 @@ docker run --name pascloud_service_paspm_jpumpp  -d -v /home/pascloud/pas-cloud-
 
 docker run --name pascloud_service_demo_mdsqwb  -d -v /home/pascloud/pas-cloud-service-demo-mdsqwb:/home/pascloud/pas-cloud-service-demo-mdsqwb -p 8201:8201 -p 8211:8211 pascloud/jdk7:v1.0 /home/pascloud/pas-cloud-service-demo-mdsqwb/bin/start.sh
   
+  
+-------------------------  
+redhat6.5
+1
+cd /etc/yum.repos.d
+wget http://www.hop5.in/yum/el6/hop5.repo
+yum install kernel-ml-aufs kernel-ml-aufs-devel
+
+2、修改引导的内核
+vi /etc/grub.conf
+把默认的引导文件设置为0。因为升级内核之后，新的内核在第一个（0）位置。
+
+
+3、重启系统，使用新的内核
+#检查内核版本：
+uname  -r
+3.10.5-3.el6.x86_64
+#检查aufs是否存在
+grep aufs /proc/filesystems
+nodev     aufs
+
+4
+wget http://ftp.riken.jp/Linux/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm
+rpm -ivh  epel-release-6-8.noarch.rpm
+
+5
+安装docker
+yum -y install docker-io  
+
+Get http:///var/run/docker.sock/v1.19/containers/json: dial unix /var/run/docker.sock: no such file or directory. Are you trying to connect to a TLS-enabled daemon without TLS?
+升级内核-》1
+
+docker: relocation error: docker: symbol dm_task_get_info_with_deferred_remove, version Base not defined in file libdevmapper.so.1.02 with link time reference
+yum install device-mapper-event-libs
+
+------------------
+
+
+docker swarm init --advertise-addr 192.168.0.16

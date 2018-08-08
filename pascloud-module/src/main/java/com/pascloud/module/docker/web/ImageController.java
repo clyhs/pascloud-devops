@@ -16,6 +16,7 @@ import com.pascloud.module.docker.service.DockerService;
 import com.pascloud.vo.docker.ContainerVo;
 import com.pascloud.vo.docker.ImageVo;
 import com.pascloud.vo.docker.NodeVo;
+import com.pascloud.vo.server.ServerVo;
 import com.spotify.docker.client.DefaultDockerClient;
 
 @Controller
@@ -36,6 +37,7 @@ public class ImageController extends BaseController {
 	@ResponseBody
 	public List<ImageVo> getImageList(){
 		List<ImageVo> result = new ArrayList<>();
+		/*
 		List<NodeVo> nodes = new ArrayList<>();
 		nodes = m_dockerService.getNodes(getDockerClient());
 		
@@ -45,6 +47,19 @@ public class ImageController extends BaseController {
 			List<ImageVo> images = m_dockerService.getImages(client);
 			if(null != images && images.size()>0){
 				result.addAll(images);
+			}
+		}*/
+		
+		List<ServerVo> servers = new ArrayList<ServerVo>();
+		servers = m_serverService.getAppServers();
+		if(servers.size()>0){
+			for(ServerVo vo:servers){
+				DefaultDockerClient client = DefaultDockerClient.builder()
+						.uri("http://"+vo.getIp()+":"+defaultPort).build();
+				List<ImageVo> images = m_dockerService.getImages(client);
+				if(null != images && images.size()>0){
+					result.addAll(images);
+				}
 			}
 		}
 		return result;

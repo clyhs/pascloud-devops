@@ -18,12 +18,15 @@ import com.pascloud.constant.Constants;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.mversion.service.MVersionService;
 import com.pascloud.module.passervice.service.ConfigService;
+import com.pascloud.module.passervice.service.PasService;
+import com.pascloud.module.redis.service.RedisService;
 import com.pascloud.utils.DBUtils;
 import com.pascloud.utils.PasCloudCode;
 import com.pascloud.vo.common.TreeVo;
 import com.pascloud.vo.database.DBInfo;
 import com.pascloud.vo.mversion.MVersionTreeVo;
 import com.pascloud.vo.mversion.XtcdVo;
+import com.pascloud.vo.pass.RedisVo;
 import com.pascloud.vo.result.ResultCommon;
 
 @Controller
@@ -35,14 +38,22 @@ public class MVersionController extends BaseController {
 	@Autowired
 	private MVersionService  m_mVersionService;
 	
+	@Autowired
+	private RedisService     m_redisService;
+	
+	@Autowired
+	private PasService       m_pasService;
+	
 	@RequestMapping("/index.html")
 	public ModelAndView index(HttpServletRequest request){
+		m_redisService.initRedisServer();
 		ModelAndView view = new ModelAndView("mversion/index");
 		return view;
 	}
 	
 	@RequestMapping("/menu.html")
 	public ModelAndView menu(HttpServletRequest request){
+		m_redisService.initRedisServer();
 		ModelAndView view = new ModelAndView("mversion/menu");
 		return view;
 	}
@@ -196,6 +207,10 @@ public class MVersionController extends BaseController {
 		vo.setImgurl("");
 		
 		result = m_mVersionService.addXtcd(vo, Id);
+		
+		if(result.getCode().equals(PasCloudCode.SUCCESS.getCode())){
+			m_redisService.deleteRedisApp();
+		}
         
 		log.info("添加菜单资源结束");
     	return result;
@@ -216,6 +231,9 @@ public class MVersionController extends BaseController {
 		vo.setXmdh(xmdh);
 		
 		result = m_mVersionService.delXtcd(vo, Id);
+		if(result.getCode().equals(PasCloudCode.SUCCESS.getCode())){
+			m_redisService.deleteRedisApp();
+		}
         
 		log.info("删除菜单资源结束");
     	return result;
@@ -238,6 +256,10 @@ public class MVersionController extends BaseController {
 		vo.setSfxs(sfxs);
 		
 		result = m_mVersionService.changeXtcdStatus(vo, Id);
+		
+		if(result.getCode().equals(PasCloudCode.SUCCESS.getCode())){
+			m_redisService.deleteRedisApp();
+		}
         
 		log.info("改变菜单资源显示方式 结束");
     	return result;
@@ -268,6 +290,9 @@ public class MVersionController extends BaseController {
 			String[] Ids = tIds.split(",");
 			if(null!=Ids && Ids.length>0){
 				result = m_mVersionService.addXtcd(vop, Ids);
+				if(result.getCode().equals(PasCloudCode.SUCCESS.getCode())){
+					m_redisService.deleteRedisApp();
+				}
 			}else{
 				result = new ResultCommon(PasCloudCode.ERROR);
 			}
@@ -292,6 +317,10 @@ public class MVersionController extends BaseController {
 		String[] Ids = tIds.split(",");
 		if(null!=Ids && Ids.length>0){
 			result = m_mVersionService.sysAllXtcdToTenant(Ids);
+			
+			if(result.getCode().equals(PasCloudCode.SUCCESS.getCode())){
+				m_redisService.deleteRedisApp();
+			}
 		}else{
 			result = new ResultCommon(PasCloudCode.ERROR);
 		}
@@ -313,7 +342,12 @@ public class MVersionController extends BaseController {
 			return result;
 		}
 		
+		
 		result = m_mVersionService.sysOtherXtcdToTenant(selectId,dnId,idList);
+		
+		if(result.getCode().equals(PasCloudCode.SUCCESS.getCode())){
+			m_redisService.deleteRedisApp();
+		}
 		
 		return result;
 	}

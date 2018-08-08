@@ -381,8 +381,14 @@ function addPasfile(name){
 				//MaskUtil.unmask(); 
 				//$.messager.alert('提示','复制文件'+data.desc);	
 				//uploadPasfile(name);
-				MaskUtil.unmask(); 
-    			$.messager.alert('提示',data.desc);	
+				if(data.desc == '已经存在'){
+					uploadCofingBySelectDB();
+				}else{
+					MaskUtil.unmask(); 
+	    			$.messager.alert('提示',data.desc+'，请手动重启服务！');	
+				}
+				
+				
 			}
 		});
 	}

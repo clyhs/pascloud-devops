@@ -275,7 +275,7 @@ public class PasService extends AbstractBaseService {
 				}
 				
 				log.info("上传pas+文件");
-				uploadPasdev(conn,ip);
+				//uploadPasdev(conn,ip);
 				log.info("开始拷贝服务源码目录");
 				copyFolder(conn,basePath,bindVolumeFrom);
 				log.info("结束拷贝源码目录");
@@ -909,7 +909,7 @@ public class PasService extends AbstractBaseService {
 			log.info("开始新建tomcat容器");
 			
 			DefaultDockerClient client = DefaultDockerClient.builder()
-					.uri("http://"+"192.168.0.7"+":"+defaultPort).build();
+					.uri("http://"+ip+":"+defaultPort).build();
 			id = m_dockerService.addContainer(client, port, bindVolumeFrom, bindVolumeTo, imageName, containerName,cmd,envs);
 			if(!id.equals("")){
 				flag = true;
