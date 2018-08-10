@@ -162,6 +162,14 @@ public class DBServerService extends AbstractBaseService {
 				conn2 = getScpClientConn(ip, "oracle", "oracle");
 				conn = getScpClientConn(ip, vo.getUsername(), vo.getPassword());
 				
+				if (changeScriptOwn(conn)) {
+					flag = changeScriptMod(conn);
+				} else {
+					flag = false;
+					result = new ResultCommon(PasCloudCode.ERROR.getCode(),"更改权限changeScriptOwn失败");
+				}
+
+				
 				if(!checkDirIsExist(conn, "/u01/app/oracle/product/11.2.0/dbhome_1")){
 					result = new ResultCommon(PasCloudCode.ERROR.getCode(),"/u01/app/oracle/product/11.2.0/dbhome_1目录不存在");
 					return result;
@@ -186,13 +194,7 @@ public class DBServerService extends AbstractBaseService {
 
 				if (flag) {
 
-					if (changeScriptOwn(conn)) {
-						flag = changeScriptMod(conn);
-					} else {
-						flag = false;
-						result = new ResultCommon(PasCloudCode.ERROR.getCode(),"更改权限changeScriptOwn失败");
-					}
-
+					
 					if (flag) {
 						if (addSidWithTnsname(sid, conn, ip, tnsnamePath)) {
 							// flag =
