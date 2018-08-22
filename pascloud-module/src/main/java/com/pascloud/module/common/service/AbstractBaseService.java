@@ -61,6 +61,36 @@ public abstract class AbstractBaseService {
 		return null;
 	} 
 	
+	protected Connection getScpClientConn(String ip,String user,String password,Integer port){
+		Connection conn = null;
+		ConnectionInfo info = null;
+		Boolean flag = false;
+		try{
+			conn = new Connection(ip,port);
+			
+			if(null!=conn){
+				info = conn.connect();
+				if(null!=info){
+					log.info("连接成功");
+					flag = conn.authenticateWithPassword(user, password);
+					
+				}
+			}else{
+				log.info("连接失败");
+			}
+			if(flag){
+				log.info("验证成功");
+				return conn;
+			}else{
+				log.info("验证失败");
+			}
+		}catch(Exception e){
+			log.info("连接异常");
+			log.error(e.getMessage());
+		}
+		return null;
+	} 
+	
 	protected Boolean putFileToServer(Connection conn,String local, String server) {
 		Boolean flag = false;
 		if (null!=conn) {

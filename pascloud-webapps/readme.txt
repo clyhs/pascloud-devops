@@ -61,7 +61,7 @@ tps分析
   
   删除实例配置文件中的信息
 1.vi /etc/oratab
-2.找到 bgsp:/Oracle_11g/oracle:N
+2.找到/Oracle_11g/oracle:N
 3.将该行信息删除，并保存文件
 
 
@@ -120,3 +120,16 @@ yum install device-mapper-event-libs
 
 
 docker swarm init --advertise-addr 192.168.0.16
+
+
+
+-------------------
+多实例：
+1.create_database.sh cpas01 $ORACLE_HOME
+2.create_tablespace.sh cpas01
+3.grant_sid.sh cpas01 $ORACLE_HOME
+4.imp_dmp.sh cpas01 $ORACLE_HOME
+
+多租户：
+1.
+

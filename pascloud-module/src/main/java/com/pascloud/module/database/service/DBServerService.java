@@ -145,6 +145,8 @@ public class DBServerService extends AbstractBaseService {
 		result = createOracleBySID(sid, ip, tnsnamePath);
 		return result;
 	}
+	
+	
 
 	private ResultCommon createOracleBySID(String sid, String ip, String tnsnamePath) {
 		Boolean flag = false;
@@ -159,17 +161,18 @@ public class DBServerService extends AbstractBaseService {
 		try {
 			if (null != ip) {
 				ServerVo vo = m_serverService.getByIP(ip);
-				conn2 = getScpClientConn(ip, "oracle", "oracle");
+				//conn2 = getScpClientConn(ip, "oracle", "oracle");
+				//conn = getScpClientConn(ip, vo.getUsername(), vo.getPassword());
 				conn = getScpClientConn(ip, vo.getUsername(), vo.getPassword());
-				
-				if(!checkDirIsExist(conn, "/u01/app/oracle/product/11.2.0/dbhome_1")){
-					result = new ResultCommon(PasCloudCode.ERROR.getCode(),"/u01/app/oracle/product/11.2.0/dbhome_1目录不存在");
+				if(!checkDirIsExist(conn, m_config.getORACLE_DBHOME())){
+					result = new ResultCommon(PasCloudCode.ERROR.getCode(),m_config.getORACLE_DBHOME()+"目录不存在");
 					return result;
 				}
 				
 				
-				session = conn2.openSession();
-				session.execCommand("/home/oracle/script/create_database.sh" + " " + sid);
+				//session = conn2.openSession();
+				session = conn.openSession();
+				session.execCommand(Constants.LINUX_ORACLE_HOME_SCRIPT+"/create_database.sh" + " " + sid+" "+m_config.getORACLE_DBHOME()+"/bin/dbca");
 				stdout = new StreamGobbler(session.getStdout());
 				br = new BufferedReader(new InputStreamReader(stdout));
 				while (true) {
@@ -185,13 +188,13 @@ public class DBServerService extends AbstractBaseService {
 				//System.out.println(flag);
 
 				if (flag) {
-
+                    /* 
 					if (changeScriptOwn(conn)) {
 						flag = changeScriptMod(conn);
 					} else {
 						flag = false;
 						result = new ResultCommon(PasCloudCode.ERROR.getCode(),"更改权限changeScriptOwn失败");
-					}
+					}*/
 
 					if (flag) {
 						if (addSidWithTnsname(sid, conn, ip, tnsnamePath)) {
@@ -269,15 +272,20 @@ public class DBServerService extends AbstractBaseService {
 		Boolean flag = false;
 		Session session = null;
 		InputStream stdout = null;
+		//InputStream stderr = null;
 		BufferedReader br = null;
+		//BufferedReader br2 = null;
 		try {
 			log.info("新建表空间");
 			session = conn.openSession();
-			session.execCommand("/home/oracle/script/create_tablespace.sh" + " " + sid);
+			//log.info(Constants.LINUX_ORACLE_HOME_SCRIPT+"/create_tablespace.sh" + " " + sid);
+			session.execCommand(Constants.LINUX_ORACLE_HOME_SCRIPT+"/create_tablespace.sh" + " " + sid+" "+m_config.getORACLE_DBHOME());
 			stdout = new StreamGobbler(session.getStdout());
+			//stderr = new StreamGobbler(session.getStderr());
 			br = new BufferedReader(new InputStreamReader(stdout));
 			while (true) {
 				String line = br.readLine();
+				
 				if (line == null) {
 					log.info("新建表空间成功");
 					flag = true;
@@ -285,24 +293,27 @@ public class DBServerService extends AbstractBaseService {
 				} else {
 					log.info(line);
 				}
+		        //log.info(line);
 			}
+			
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			// e.printStackTrace();
+			e.printStackTrace();
 			log.error("新建表空间异常");
 		} finally {
 			try {
 				br.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				// e.printStackTrace();
+				e.printStackTrace();
 				log.error(e.getMessage());
 			}
 			try {
 				stdout.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				// e.printStackTrace();
+				e.printStackTrace();
 				log.error(e.getMessage());
 			}
 			session.close();
@@ -318,7 +329,8 @@ public class DBServerService extends AbstractBaseService {
 		try {
 			log.info("新建用户pas");
 			session = conn.openSession();
-			session.execCommand("/home/oracle/script/grant_sid.sh" + " " + sid);
+			session.execCommand(Constants.LINUX_ORACLE_HOME_SCRIPT+"/grant_sid.sh" + " " + sid+" "+m_config.getORACLE_DBHOME());
+			//session.execCommand(Constants.LINUX_ORACLE_HOME_SCRIPT+"/grant_sid.sh" + " " + sid+" "+"/u01/app/oracle/product/11.2.0/dbhome_1");
 			stdout = new StreamGobbler(session.getStdout());
 			br = new BufferedReader(new InputStreamReader(stdout));
 			while (true) {
@@ -361,15 +373,15 @@ public class DBServerService extends AbstractBaseService {
 		InputStream stdout = null;
 		BufferedReader br = null;
 		try {
-			log.info("新建用户pas");
+			log.info("重启监听");
 			session = conn.openSession();
-			session.execCommand("/home/oracle/script/restart_listener.sh" + " " + sid);
+			session.execCommand(Constants.LINUX_ORACLE_HOME_SCRIPT+"/restart_listener.sh" + " " + sid +" "+m_config.getORACLE_DBHOME());
 			stdout = new StreamGobbler(session.getStdout());
 			br = new BufferedReader(new InputStreamReader(stdout));
 			while (true) {
 				String line = br.readLine();
 				if (line == null) {
-					log.info("新建用户pas成功");
+					log.info("重启监听成功");
 					flag = true;
 					break;
 				} else {
@@ -414,12 +426,12 @@ public class DBServerService extends AbstractBaseService {
 						if (delSIDWithOratab(conn, sid, oratabfilePath)) {
 							if(delSidWithListener(sid,conn,ip)){
 								if(delSidWithTnsname(sid, conn, ip, tnsnamePath)){
-									flag = restartListenerWithSid(conn, sid);
-									if(flag){
-										result = new ResultCommon(PasCloudCode.SUCCESS);
-									}else{
-										result = new ResultCommon(PasCloudCode.ERROR.getCode(),"restartListenerWithSid失败");
-									}
+									//flag = restartListenerWithSid(conn, sid);
+									//if(flag){
+									result = new ResultCommon(PasCloudCode.SUCCESS);
+									//}else{
+										//result = new ResultCommon(PasCloudCode.ERROR.getCode(),"restartListenerWithSid失败");
+									//}
 								}else{
 									result = new ResultCommon(PasCloudCode.ERROR.getCode(),"delSidWithTnsname失败");
 								}
@@ -484,7 +496,7 @@ public class DBServerService extends AbstractBaseService {
 		try {
 			log.info("导入DMP文件");
 			session = conn.openSession();
-			session.execCommand("/home/oracle/script/imp_dmp.sh" + " " + sid);
+			session.execCommand(Constants.LINUX_ORACLE_HOME_SCRIPT+"/imp_dmp.sh" + " " + sid+" "+m_config.getORACLE_DBHOME());
 			stdout = new StreamGobbler(session.getStdout());
 			br = new BufferedReader(new InputStreamReader(stdout));
 			while (true) {
@@ -530,7 +542,7 @@ public class DBServerService extends AbstractBaseService {
 		try {
 			log.info("关闭数据库");
 			session = conn.openSession();
-			session.execCommand("/home/oracle/script/shutdown.sh" + " " + sid);
+			session.execCommand(Constants.LINUX_ORACLE_HOME_SCRIPT+"/shutdown.sh" + " " + sid+" "+m_config.getORACLE_DBHOME());
 			stdout = new StreamGobbler(session.getStdout());
 			br = new BufferedReader(new InputStreamReader(stdout));
 			while (true) {
@@ -575,9 +587,10 @@ public class DBServerService extends AbstractBaseService {
 		try {
 			log.info("删除数据库文件");
 			session = conn.openSession();
-			session.execCommand("/home/oracle/script/delete_database.sh" + " " + sid + " " + getSidEx(sid));
-			stdout = new StreamGobbler(session.getStdout());
+			session.execCommand(Constants.LINUX_ORACLE_HOME_SCRIPT+"/delete_database.sh" + " " + sid + " " + getSidEx(sid));
+			stdout = new StreamGobbler(session.getStderr());
 			br = new BufferedReader(new InputStreamReader(stdout));
+			
 			while (true) {
 				String line = br.readLine();
 				if (line == null) {
@@ -588,6 +601,7 @@ public class DBServerService extends AbstractBaseService {
 					log.info(line);
 				}
 			}
+			//return true;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
@@ -701,10 +715,12 @@ public class DBServerService extends AbstractBaseService {
 	private Boolean uploadTnsnameToServer(Connection conn, String tnsnamePath) {
 		Boolean flag = false;
 		SCPClient scpClient = null;
+		//String testpath = "/u01/app/oracle/product/11.2.0/dbhome_1";
 		try {
 			log.info("上传" + tnsnamePath + "文件");
 			scpClient = conn.createSCPClient();
-			scpClient.put(tnsnamePath, "/u01/app/oracle/product/11.2.0/dbhome_1/network/admin/");
+		    scpClient.put(tnsnamePath, m_config.getORACLE_DBHOME()+"/network/admin/");
+			//scpClient.put(tnsnamePath, testpath+"/network/admin/");
 			flag = true;
 			log.info("上传" + tnsnamePath + "文件成功");
 		} catch (IOException e) {
@@ -725,10 +741,13 @@ public class DBServerService extends AbstractBaseService {
 		StringBuffer sb = new StringBuffer();
 		StringBuffer sidSb = new StringBuffer();
 		Boolean isExist = false;
+		//String testpath = "/u01/app/oracle/product/11.2.0/dbhome_1";
 		try {
 			log.info("读取tnsnames.ora文件");
 			session = conn.openSession();
-			session.execCommand("cat " + "/u01/app/oracle/product/11.2.0/dbhome_1/network/admin/tnsnames.ora");
+			session.execCommand("cat " + m_config.getORACLE_DBHOME()+"/network/admin/tnsnames.ora");
+			//session.execCommand("cat " + testpath+"/network/admin/tnsnames.ora");
+			
 			stdout = new StreamGobbler(session.getStdout());
 			br = new BufferedReader(new InputStreamReader(stdout));
 			int i = 0;
@@ -766,6 +785,7 @@ public class DBServerService extends AbstractBaseService {
 				log.info("tnsnames.ora文件已经配置了" + sid);
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			log.error(e.getMessage());
 			log.info("发生异常");
 		} finally {
@@ -797,7 +817,7 @@ public class DBServerService extends AbstractBaseService {
 		try {
 			log.info("读取tnsnames.ora文件");
 			session = conn.openSession();
-			session.execCommand("cat " + "/u01/app/oracle/product/11.2.0/dbhome_1/network/admin/tnsnames.ora");
+			session.execCommand("cat " + m_config.getORACLE_DBHOME()+"/network/admin/tnsnames.ora");
 			stdout = new StreamGobbler(session.getStdout());
 			br = new BufferedReader(new InputStreamReader(stdout));
 			int i = 0;
@@ -874,10 +894,14 @@ public class DBServerService extends AbstractBaseService {
 		Boolean isExist = false;
 		String listenerPath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SCRIPT_ORACLE_DIR()+
 				"/conf/listener.ora";
+		//String listenerPath = "D:/eclipse64/workspace/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/script/oracle/conf/conf/listener.ora";
+		//String testpath = "/u01/app/oracle/product/11.2.0/dbhome_1";
 		try {
 			log.info("读取listener.ora文件");
 			session = conn.openSession();
-			session.execCommand("cat " + "/u01/app/oracle/product/11.2.0/dbhome_1/network/admin/listener.ora");
+			session.execCommand("cat " + m_config.getORACLE_DBHOME()+"/network/admin/listener.ora");
+			//session.execCommand("cat " + testpath+"/network/admin/listener.ora");
+			
 			stdout = new StreamGobbler(session.getStdout());
 			br = new BufferedReader(new InputStreamReader(stdout));
 			int index = 0;
@@ -981,10 +1005,15 @@ public class DBServerService extends AbstractBaseService {
 		Boolean isExist = false;
 		String listenerPath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SCRIPT_ORACLE_DIR()+
 				"/conf/listener.ora";
+		
+		//String listenerPath ="D:/eclipse64/workspace/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/script/oracle/conf/listener.ora";
+		
 		try {
 			log.info("读取listener.ora文件");
 			session = conn.openSession();
-			session.execCommand("cat " + "/u01/app/oracle/product/11.2.0/dbhome_1/network/admin/listener.ora");
+			session.execCommand("cat " + m_config.getORACLE_DBHOME()+"/network/admin/listener.ora");
+			//session.execCommand("cat " + "/u01/app/oracle/product/11.2.0/dbhome_1/network/admin/listener.ora");
+			
 			stdout = new StreamGobbler(session.getStdout());
 			br = new BufferedReader(new InputStreamReader(stdout));
 			int index = 0;
@@ -1091,7 +1120,7 @@ public class DBServerService extends AbstractBaseService {
 		try {
 			log.info("检查" + sid + "监听是否启动");
 			session = conn.openSession();
-			session.execCommand("/home/oracle/script/lsnrctl_status.sh" + " " + sid);
+			session.execCommand(Constants.LINUX_ORACLE_HOME_SCRIPT+"/lsnrctl_status.sh" + " " + sid +" "+m_config.getORACLE_DBHOME());
 			stdout = new StreamGobbler(session.getStdout());
 			br = new BufferedReader(new InputStreamReader(stdout));
 			while (true) {
@@ -1171,9 +1200,9 @@ public class DBServerService extends AbstractBaseService {
 		InputStream stdout = null;
 		BufferedReader br = null;
 		try {
-			log.info("更改/home/oracle/script目录的用户权限");
+			log.info("更改目录的用户权限");
 			session = conn.openSession();
-			session.execCommand("chown -R oracle:oinstall /home/oracle/script");
+			session.execCommand("chown -R oracle:oinstall "+Constants.LINUX_ORACLE_HOME_SCRIPT);
 			stdout = new StreamGobbler(session.getStdout());
 			br = new BufferedReader(new InputStreamReader(stdout));
 			while (true) {
@@ -1213,9 +1242,9 @@ public class DBServerService extends AbstractBaseService {
 		InputStream stdout = null;
 		BufferedReader br = null;
 		try {
-			log.info("更改/home/oracle/script目录的读写权限");
+			log.info("更改目录的读写权限");
 			session = conn.openSession();
-			session.execCommand("chmod -R 755 /home/oracle/script");
+			session.execCommand("chmod -R 755 "+Constants.LINUX_ORACLE_HOME_SCRIPT);
 			stdout = new StreamGobbler(session.getStdout());
 			br = new BufferedReader(new InputStreamReader(stdout));
 			while (true) {
@@ -1228,7 +1257,7 @@ public class DBServerService extends AbstractBaseService {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			log.info("更改/home/oracle/script目录的读写权限异常");
+			log.info("更改"+Constants.LINUX_ORACLE_HOME_SCRIPT+"目录的读写权限异常");
 		} finally {
 			try {
 				br.close();
@@ -1249,92 +1278,7 @@ public class DBServerService extends AbstractBaseService {
 		return flag;
 	}
 
-	public static void main(String[] args) throws Exception {
-
-		String sid = "cloudpas";
-
-		DBServerService s = new DBServerService();
-		InputStream stdout = null;
-		BufferedReader br = null;
-		Session session = null;
-		StringBuffer sb = new StringBuffer();
-		StringBuffer sb2 = new StringBuffer();
-		StringBuffer sb3 = new StringBuffer();
-		StringBuffer sidSb = new StringBuffer();
-		Boolean isExist = false;
-		Connection conn = null;
-		try {
-			log.info("读取listener.ora文件");
-			conn = s.getScpClientConn("192.168.0.101", "root", "tccp@2012");
-			session = conn.openSession();
-			session.execCommand("cat " + "/u01/app/oracle/product/11.2.0/dbhome_1/network/admin/listener.ora");
-			stdout = new StreamGobbler(session.getStdout());
-			br = new BufferedReader(new InputStreamReader(stdout));
-			int index = 0;
-			int listStartIndex = 0;
-			int listEndIndex = 0;
-			int i = 0;
-
-			while (true) {
-				String line = br.readLine();
-				if (line == null) {
-					break;
-				}
-
-				sb.append(line).append("\n");
-				if (line.contains("SID_LIST_LISTENER =")) {
-					index = i;
-				}
-				if (line.contains("GLOBAL_DBNAME")) {
-					String[] str = line.split("=");
-					//System.out.println(str[1].toLowerCase().trim().toString());
-					if (str.length == 2) {
-						String name = str[1].toLowerCase().trim().toString();
-						name = name.replace(")", "");
-						if (sid.equals(name)) {
-							System.out.println("sid已经存在");
-							isExist = true;
-							listStartIndex = i;
-						} 
-					}
-				}
-				i++;
-			}
-			if(isExist && listStartIndex>0 && index>0){
-				InputStream in = new ByteArrayInputStream(sb.toString().getBytes());
-				BufferedReader br2 = new BufferedReader(new InputStreamReader(in));
-				int j=0;
-				while (true) {
-					String line = br2.readLine();
-					if (line == null) {
-						break;
-					}
-					if(j>=listStartIndex-1 && j<=listStartIndex+2){
-						
-					}else{
-						sb2.append(line).append("\n");
-					}
-					j++;
-				}
-			}
-			System.out.println(sb2.toString());
-			
-		} catch (Exception e) {
-			log.error(e.getMessage());
-			log.info("发生异常");
-		} finally {
-			try {
-				br.close();
-			} catch (IOException e) {
-			}
-			try {
-				stdout.close();
-			} catch (IOException e) {
-			}
-			session.close();
-		}
-
-	}
+	
 
 	public Boolean checkDirIsExist(Connection conn,String dirPath){
 		Boolean flag = false;
@@ -1382,5 +1326,67 @@ public class DBServerService extends AbstractBaseService {
 			session.close();
 		}
 		return flag;
+	}
+	
+	public static void main(String[] args) throws Exception {
+
+		DBServerService dbs = new DBServerService();
+		
+		Connection conn = null;
+		Boolean flag = false;
+		String oracle_dbhome = "/u01/app/oracle/product/11.2.0/dbhome_1";
+		String sid = "cpas10";
+		
+		String tnsnamePath = "D:/eclipse64/workspace/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/script/oracle/conf/conf/tnsnames.ora";
+		try {
+
+			StringBuffer sb = new StringBuffer();
+			InputStream stdout = null;
+			Session session = null;
+			BufferedReader br = null;
+			conn = dbs.getScpClientConn("121.33.38.199", "oracle", "oracle",10073);
+			/*
+			session = conn.openSession();
+			session.execCommand(Constants.LINUX_ORACLE_HOME_SCRIPT+"/create_database.sh" + " " + sid+" "+oracle_dbhome+"/bin/dbca");
+			stdout = new StreamGobbler(session.getStdout());
+			br = new BufferedReader(new InputStreamReader(stdout));
+			while (true) {
+				String line = br.readLine();
+				if (line == null) {
+					flag = true;
+					break;
+				} else {
+					log.info(line);
+				}
+				sb.append(line);
+			}
+			*/
+			
+			//dbs.addSidWithTnsname(sid, conn, "192.168.53.83", tnsnamePath);
+			//dbs.addSidWithListener(sid,conn,"192.168.53.83");
+			
+			//dbs.createTableSpaceWithSid(conn, sid);
+			//dbs.grantWithSid(conn, sid);
+			//dbs.restartListenerWithSid(conn, sid);
+			
+			//dbs.shutDownOracleWithSid(conn, sid);
+			//dbs.deleteOracleWithSid(conn, sid);
+			
+			//String tnsnamePath ="D:/eclipse64/workspace/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/script/oracle/conf/tnsnames.ora";
+	
+			//dbs.delSIDWithOratab(conn, sid, oratabfilePath);
+			//dbs.delSidWithListener(sid, conn, "192.168.53.83");
+			//dbs.delSidWithTnsname(sid, conn, "192.168.53.83", tnsnamePath);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error(e.getMessage());
+		} finally {
+			// session.close();
+			
+			
+			if(null!=conn){
+				conn.close();
+			}
+		}
 	}
 }

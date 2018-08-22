@@ -21,11 +21,6 @@
        http://www.springframework.org/schema/cache 
        http://www.springframework.org/schema/cache/spring-cache-3.2.xsd">
 
-	
-    
-    
-	
-
 </beans>
 
 

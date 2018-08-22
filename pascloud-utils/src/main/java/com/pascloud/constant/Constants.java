@@ -10,7 +10,7 @@ public class Constants {
 	public static String DB_DB2L_DIRVERCLASS   = "com.ibm.db2.jcc.DB";
 	public static String DB_ORACLE_DIRVERCLASS = "oracle.jdbc.driver.OracleDriver";
 	
-	public static String PASCLOUD_HOME = "/home/pascloud/";
+	public static String PASCLOUD_HOME = "/app/app/pascloud/";
 	
 	
 	public static String PASCLOUD_SERVICE_DEMO = "pas-cloud-service-demo";
@@ -29,8 +29,9 @@ public class Constants {
 	
 	public static String PASCLOUD_DEV_DEFAULT = "pasdev";
 	
-	public static String LINUX_ORACLE_HOME = "/home/oracle";
+	public static String LINUX_ORACLE_HOME_SCRIPT = "/home/oracle/script";
 	public static String LINUX_ORACLE_INST = "/u01/app/oracle";
+	public static String LINUX_ORACLE_DBHOME = "/u01/app/oracle/product/11.2.0/dbhome_1";
 	public static String LINUX_ORACLE_VERSION = "11.2.0";
 	
 	public static String ORACLE_SID_PREEFIX="cpas";

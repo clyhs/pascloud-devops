@@ -826,10 +826,10 @@ public class PasService extends AbstractBaseService {
 		ResultCommon result=null;
 		//String containerName = "pascloud_zookeeper_admin";
 		String containerName = service;
-		String bindVolumeFrom = "/home/pascloud/mycat";
+		String bindVolumeFrom = Constants.PASCLOUD_HOME+"/mycat";
 		String bindVolumeTo = bindVolumeFrom;
 		String id = "";
-		String[] cmd = {"/home/pascloud/mycat/bin/mycat","console","&"};
+		String[] cmd = {Constants.PASCLOUD_HOME+"/mycat/bin/mycat","console","&"};
 		String imageName = "pascloud/jdk7:v1.0";
 		
 		if(!checkImageExist(ip,imageName)){
@@ -881,10 +881,10 @@ public class PasService extends AbstractBaseService {
 		ResultCommon result=null;
 		//String containerName = "pascloud_zookeeper_admin";
 		String containerName = service;
-		String bindVolumeFrom = "/home/pascloud/tomcat";
+		String bindVolumeFrom = Constants.PASCLOUD_HOME+"/tomcat";
 		String bindVolumeTo = bindVolumeFrom;
 		String id = "";
-		String[] cmd = {"/home/pascloud/tomcat/bin/catalina.sh", "run"};
+		String[] cmd = {Constants.PASCLOUD_HOME+"/tomcat/bin/catalina.sh", "run"};
 		String imageName = "pascloud/jdk7:v1.0";
 		
 		if(!checkImageExist(ip,imageName)){

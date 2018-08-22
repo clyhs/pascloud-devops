@@ -1,5 +1,5 @@
 #!/bin/sh
-if [  $# -ne 1 ]; then
+if [  $# -ne 2 ]; then
     echo "wrong input para number"
     echo "create_database.sh databasename"
     exit 0
@@ -29,7 +29,7 @@ sh $basepath/create_dir_std.sh $1
 
 #-----------------------------------------------------------
 #3\create the database
-/u01/app/oracle/product/11.2.0/dbhome_1/bin/dbca -silent -responseFile $rspfile
+$2 -silent -responseFile $rspfile
 #-----------------------------------------------------------
 #4 create the tablespace
 #sqlplus / as sysdba @/home/oracle/script/oraCreateTableSpaces.sql $1

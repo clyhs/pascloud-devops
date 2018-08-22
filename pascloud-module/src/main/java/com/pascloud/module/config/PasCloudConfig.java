@@ -56,9 +56,18 @@ public class PasCloudConfig {
 	@Value("${project.pascode}")
 	private String PASCLOUD_PASCODE;
 	
+	@Value("${oracle.dbhome}")
+	private String ORACLE_DBHOME;
 	
 	
-	
+	public String getORACLE_DBHOME() {
+		return ORACLE_DBHOME;
+	}
+
+	public void setORACLE_DBHOME(String oRACLE_DBHOME) {
+		ORACLE_DBHOME = oRACLE_DBHOME;
+	}
+
 	public String getPASCLOUD_SCRIPT_DIR() {
 		return PASCLOUD_SCRIPT_DIR;
 	}

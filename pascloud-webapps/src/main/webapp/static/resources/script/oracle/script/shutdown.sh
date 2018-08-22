@@ -1,11 +1,12 @@
 #!/bin/sh
-su - oracle <<EON
+##su - oracle <<EON
 export ORACLE_SID=$1 
-lsnrctl stop
-sqlplus /nolog <<EOF
+export ORACLE_HOME=$2
+$2/bin/lsnrctl stop
+$2/bin/sqlplus /nolog <<EOF
 conn / as sysdba
 shutdown immediate
-exit  
-EOF
 exit
-EON
+EOF
+##exit
+##EON
