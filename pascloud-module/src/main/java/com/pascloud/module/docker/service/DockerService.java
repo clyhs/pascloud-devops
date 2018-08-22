@@ -183,8 +183,26 @@ public class DockerService {
 						vo.setName(name);
 					}
 				}
+				
+				
+				
 				//vo.setPublicPort(container.ports().);
-				vo.setState(container.state());
+				
+				if(null==container.state()){
+					String status = "";
+					ContainerInfo containerInfo = dockerClient.inspectContainer(container.id());
+					
+					if(null == containerInfo.state().status()){
+						status = getStatus(containerInfo);
+					}else{
+						status = containerInfo.state().status();
+					}
+					vo.setState(status);
+				}else{
+					vo.setState(container.state());
+				}
+				
+				//vo.setState(container.state());
 				vo.setStatus(container.status());
 				vo.setIp(host);
 				if(name.contains(PasTypeEnum.DEMO.getValue())){
@@ -434,7 +452,12 @@ public class DockerService {
 			dockerClient.startContainer(containerId);
 			
 			ContainerInfo containerInfo = dockerClient.inspectContainer(containerId);
-			status = containerInfo.state().status();
+			if(null == containerInfo.state().status()){
+				status = getStatus(containerInfo);
+			}else{
+				status = containerInfo.state().status();
+			}
+		
 		} catch (DockerException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
@@ -456,7 +479,11 @@ public class DockerService {
     		
 			dockerClient.pauseContainer(containerId);
 			ContainerInfo containerInfo = dockerClient.inspectContainer(containerId);
-			status = containerInfo.state().status();
+			if(null == containerInfo.state().status()){
+				status = getStatus(containerInfo);
+			}else{
+				status = containerInfo.state().status();
+			}
 		} catch (DockerException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
@@ -476,7 +503,11 @@ public class DockerService {
     		
 			dockerClient.unpauseContainer(containerId);
 			ContainerInfo containerInfo = dockerClient.inspectContainer(containerId);
-			status = containerInfo.state().status();
+			if(null == containerInfo.state().status()){
+				status = getStatus(containerInfo);
+			}else{
+				status = containerInfo.state().status();
+			}
 		} catch (DockerException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
@@ -495,7 +526,11 @@ public class DockerService {
     		
 			dockerClient.stopContainer(containerId, 1);
 			ContainerInfo containerInfo = dockerClient.inspectContainer(containerId);
-			status = containerInfo.state().status();
+			if(null == containerInfo.state().status()){
+				status = getStatus(containerInfo);
+			}else{
+				status = containerInfo.state().status();
+			}
 		} catch (DockerException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
@@ -514,7 +549,15 @@ public class DockerService {
     		
 			dockerClient.restartContainer(containerId);
 			ContainerInfo containerInfo = dockerClient.inspectContainer(containerId);
-			status = containerInfo.state().status();
+			
+			
+			if(null == containerInfo.state().status()){
+				status = getStatus(containerInfo);
+			}else{
+				status = containerInfo.state().status();
+			}
+				
+				
 		} catch (DockerException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
@@ -624,6 +667,44 @@ public class DockerService {
 			//e.printStackTrace();
 		}
     	return "";
+    }
+    
+    private String getStatus(ContainerInfo containerInfo){
+    	
+		String status = "";
+		if(!containerInfo.state().running() && 
+				!containerInfo.state().paused() && 
+				!containerInfo.state().restarting() && 
+				containerInfo.state().exitCode() == 0){
+		    //create
+			status = "created";
+		}
+		
+		if(containerInfo.state().running() && 
+				!containerInfo.state().paused() && 
+				!containerInfo.state().restarting() &&
+				containerInfo.state().exitCode() == 0){
+		    //running
+			status = "running";
+		}
+		
+		if(containerInfo.state().running() && 
+				containerInfo.state().paused() && 
+				!containerInfo.state().restarting() &&
+				containerInfo.state().exitCode() == 0){
+		    //paused	
+			status = "paused";
+		}
+		
+		if(!containerInfo.state().running() && 
+				!containerInfo.state().paused() && 
+				!containerInfo.state().restarting() && 
+				containerInfo.state().exitCode() > 0){
+		    //exited
+			status = "exited";
+		}
+		
+		return status;
     }
 
 }
