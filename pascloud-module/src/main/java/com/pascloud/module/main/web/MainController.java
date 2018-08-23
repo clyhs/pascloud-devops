@@ -70,9 +70,9 @@ public class MainController extends BaseController {
 	public ModelAndView main(HttpServletRequest request) {
 		ModelAndView view = new ModelAndView("main/main");
 		
-		List<NodeVo> nodes = new ArrayList<>();
-		nodes = m_dockerService.getNodes(getDockerClient());
-		view.addObject("nodes", nodes);
+		//List<NodeVo> nodes = new ArrayList<>();
+		//nodes = m_dockerService.getNodes(getDockerClient());
+		//view.addObject("nodes", nodes);
 		
 		List<ServerVo> dbServers = m_serverService.getDataBaseServers();
 		List<ServerVo> appServers = m_serverService.getAppServers();
