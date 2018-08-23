@@ -187,23 +187,32 @@ public class DockerService {
 				
 				
 				//vo.setPublicPort(container.ports().);
-				
+				Gson g = new Gson();
 				if(null==container.state()){
+					
 					String status = "";
 					ContainerInfo containerInfo = dockerClient.inspectContainer(container.id());
 					
 					if(null == containerInfo.state().status()){
+						
 						status = getStatus(containerInfo);
 					}else{
+						log.info("2."+g.toJson(containerInfo.state().status()));
 						status = containerInfo.state().status();
 					}
 					vo.setState(status);
 				}else{
+					log.info("1."+g.toJson(container.state()));
 					vo.setState(container.state());
 				}
 				
 				//vo.setState(container.state());
 				vo.setStatus(container.status());
+				
+				if(vo.getStatus().contains("Exited")){
+					vo.setState("exited");
+				}
+				
 				vo.setIp(host);
 				if(name.contains(PasTypeEnum.DEMO.getValue())){
 					vo.setPublicPort("8201,8211");
@@ -220,7 +229,7 @@ public class DockerService {
 			}	
 		} catch (DockerException e) {
 			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			e.printStackTrace();
 			log.error(e.getMessage());
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -703,7 +712,7 @@ public class DockerService {
 		    //exited
 			status = "exited";
 		}
-		
+		log.info("3."+status);
 		return status;
     }
 

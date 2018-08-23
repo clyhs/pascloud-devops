@@ -61,7 +61,8 @@ public class ServerService  {
 		return servers;
 	}
 	
-    public String getMasterDockerUrl(){
+    @SuppressWarnings("unchecked")
+	public String getMasterDockerUrl(){
 		
     	String url="";
 		List<ServerVo> servers = new ArrayList<ServerVo>();
