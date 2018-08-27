@@ -14,6 +14,7 @@ import java.util.StringTokenizer;
 import java.util.Vector;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ import com.pascloud.utils.FileUtils;
 import com.pascloud.utils.PasCloudCode;
 import com.pascloud.vo.database.DBInfo;
 import com.pascloud.vo.result.ResultCommon;
+import com.pascloud.vo.script.ScriptEnum;
 import com.pascloud.vo.server.ServerVo;
 import com.pascloud.vo.tenant.KhdxHyVo;
 
@@ -127,7 +129,7 @@ public class DBServerService extends AbstractBaseService {
 	}
 
 	/**
-	 * 创建数据库
+	 * 创建数据库实例
 	 * @param ip
 	 * @param sid
 	 * @param tnsnamePath
@@ -136,15 +138,73 @@ public class DBServerService extends AbstractBaseService {
 	public ResultCommon createOracleWithSid(String ip, String sid, String tnsnamePath) {
 		ResultCommon result = null;
 		Boolean flag = false;
-		//ServerVo vo = m_serverService.getByIP(ip);
 		log.info("ip:" + ip + ",sid:" + sid);
-		//flag = createOracleBySID(sid, ip, tnsnamePath);
-        //if(null!=vo){
-        	
-        //}
 		result = createOracleBySID(sid, ip, tnsnamePath);
 		return result;
 	}
+	
+	
+	/**
+	 * 创建数据库SCHEMA
+	 * @param ip
+	 * @param sid
+	 * @param username
+	 * @param password
+	 * @param url
+	 * @return
+	 */
+	public ResultCommon createOracleWithUser(String ip, String sid, String username,
+			String password,String url) {
+		ResultCommon result = null;
+		Boolean flag = false;
+		Session session = null;
+		Connection conn = null;
+		try {
+			if (null != ip) {
+				ServerVo vo = m_serverService.getByIP(ip);
+				conn = getScpClientConn(ip, vo.getUsername(), vo.getPassword());
+				if(!checkDirIsExist(conn, m_config.getORACLE_DBHOME())){
+					result = new ResultCommon(PasCloudCode.ERROR.getCode(),m_config.getORACLE_DBHOME()+"目录不存在");
+					return result;
+				}
+				
+				if(checkSchemaIsExists(sid,url,ScriptEnum.ORA.getValue(),username)>0){
+					result = new ResultCommon(PasCloudCode.ERROR.getCode(),m_config.getORACLE_DBHOME()+"该用户已经存在");
+					return result;
+				}
+				
+				if (grantWithSidAndUser(conn, sid,username,password)) {
+					if (grantWithSidAndUserShell(conn, sid,username,password)) {
+						if (impDmpFileWithSidAndUser(conn, sid,username,password)) {
+							result = new ResultCommon(PasCloudCode.SUCCESS);
+						}else{
+							result = new ResultCommon(PasCloudCode.ERROR.getCode(),"impDmpFileWithSidAndUser失败");
+						}
+					}else{
+						result = new ResultCommon(PasCloudCode.ERROR.getCode(),"grantWithSidAndUserShell失败");
+					}
+				}else{
+					result = new ResultCommon(PasCloudCode.ERROR.getCode(),"grantWithSidAndUser失败");
+				}
+				
+			}
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			result = new ResultCommon(PasCloudCode.ERROR.getCode(),e.getMessage());
+			log.error(e.getMessage());
+		} finally {
+			if(null!=session){
+				session.close();
+			}
+			if(null!=conn){
+				conn.close();
+			}
+		}
+		return result;
+	} 
+	
+	
 	
 	
 
@@ -169,8 +229,6 @@ public class DBServerService extends AbstractBaseService {
 					return result;
 				}
 				
-				
-				//session = conn2.openSession();
 				session = conn.openSession();
 				session.execCommand(Constants.LINUX_ORACLE_HOME_SCRIPT+"/create_database.sh" + " " + sid+" "+m_config.getORACLE_DBHOME()+"/bin/dbca");
 				stdout = new StreamGobbler(session.getStdout());
@@ -256,9 +314,6 @@ public class DBServerService extends AbstractBaseService {
 			}
 			if(null!=session){
 				session.close();
-			}
-			if(null!=conn2){
-				conn2.close();
 			}
 			if(null!=conn){
 				conn.close();
@@ -366,7 +421,112 @@ public class DBServerService extends AbstractBaseService {
 		}
 		return flag;
 	}
+	
+	private Boolean grantWithSidAndUser(Connection conn, String sid,String username,String password) {
+		Boolean flag = false;
+		Session session = null;
+		InputStream stdout = null;
+		BufferedReader br = null;
+		try {
+			log.info("新建用户"+username);
+			session = conn.openSession();
+			
+			session.execCommand(
+					Constants.LINUX_ORACLE_HOME_SCRIPT+
+					"/grant_sidV2.sh" +
+					" " + sid+
+					" "+m_config.getORACLE_DBHOME()+
+					" "+username+
+					" "+password);
+			//session.execCommand(Constants.LINUX_ORACLE_HOME_SCRIPT+"/grant_sid.sh" + " " + sid+" "+"/u01/app/oracle/product/11.2.0/dbhome_1");
+			stdout = new StreamGobbler(session.getStdout());
+			br = new BufferedReader(new InputStreamReader(stdout));
+			while (true) {
+				String line = br.readLine();
+				if (line == null) {
+					log.info("新建用户"+username+"成功");
+					flag = true;
+					break;
+				} else {
+					log.info(line);
+				}
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+			log.error("新建用户pas异常");
+		} finally {
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				// e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			try {
+				stdout.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				// e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			session.close();
+		}
+		return flag;
+	}
 
+	private Boolean grantWithSidAndUserShell(Connection conn, String sid,String username,String password) {
+		Boolean flag = false;
+		Session session = null;
+		InputStream stdout = null;
+		BufferedReader br = null;
+		try {
+			log.info("执行用户"+username+"脚本");
+			session = conn.openSession();
+			
+			session.execCommand(
+					Constants.LINUX_ORACLE_HOME_SCRIPT+
+					"/create_shell.sh" +
+					" " + sid+
+					" "+m_config.getORACLE_DBHOME()+
+					" "+username+
+					" "+password);
+			stdout = new StreamGobbler(session.getStdout());
+			br = new BufferedReader(new InputStreamReader(stdout));
+			while (true) {
+				String line = br.readLine();
+				if (line == null) {
+					log.info("执行用户脚本"+username+"成功");
+					flag = true;
+					break;
+				} else {
+					log.info(line);
+				}
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+			log.error("新建用户pas异常");
+		} finally {
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				// e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			try {
+				stdout.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				// e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			session.close();
+		}
+		return flag;
+	}
+	
 	private Boolean restartListenerWithSid(Connection conn, String sid) {
 		Boolean flag = false;
 		Session session = null;
@@ -497,6 +657,57 @@ public class DBServerService extends AbstractBaseService {
 			log.info("导入DMP文件");
 			session = conn.openSession();
 			session.execCommand(Constants.LINUX_ORACLE_HOME_SCRIPT+"/imp_dmp.sh" + " " + sid+" "+m_config.getORACLE_DBHOME());
+			stdout = new StreamGobbler(session.getStdout());
+			br = new BufferedReader(new InputStreamReader(stdout));
+			while (true) {
+				String line = br.readLine();
+				if (line == null) {
+					log.info("导入DMP文件成功");
+					flag = true;
+					break;
+				} else {
+					log.info(line);
+				}
+				System.out.println(line);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+			log.error("导入DMP文件异常");
+		} finally {
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				// e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			try {
+				stdout.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				// e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			session.close();
+		}
+		return flag;
+	}
+	
+	private Boolean impDmpFileWithSidAndUser(Connection conn, String sid,String username,String password) {
+		Boolean flag = false;
+		Session session = null;
+		InputStream stdout = null;
+		BufferedReader br = null;
+		try {
+			log.info("导入DMP文件");
+			session = conn.openSession();
+			session.execCommand(Constants.LINUX_ORACLE_HOME_SCRIPT+
+					"/imp_dmpV2.sh" +
+					" " + sid+
+					" "+m_config.getORACLE_DBHOME()+
+					" "+username+
+					" "+password);
 			stdout = new StreamGobbler(session.getStdout());
 			br = new BufferedReader(new InputStreamReader(stdout));
 			while (true) {
@@ -1128,7 +1339,7 @@ public class DBServerService extends AbstractBaseService {
 				if (line == null) {
 					break;
 				}
-				if (line.contains("Service \"" + sid + "\" has 1 instance(s)")) {
+				if (line.contains("Service \"" + sid + "\" has ")) {
 					flag = true;
 				}
 				log.info(line);
@@ -1156,6 +1367,42 @@ public class DBServerService extends AbstractBaseService {
 			conn.close();
 		}
 		return flag;
+	}
+	
+	public Integer checkSchemaIsExists(String sid,String url,String dbType,String username){
+		Integer res = 0;
+		
+		String driverClass = DBUtils.getDirverClassName(dbType);
+		DBUtils db = new DBUtils(driverClass, url, "pas", "pas");
+		java.sql.Connection conn = null;
+		
+		try {
+			QueryRunner qRunner = new QueryRunner();
+			conn = db.getConnection();
+			if (null != conn) {
+				String sql = "select count(1) from all_users where username=upper(?)";
+				Object[] params = new Object[] { username };
+				Number num =  (Number)qRunner.query(conn,sql, new ScalarHandler(),params);
+				if(null!=num){
+					res = num.intValue();
+				}
+			} 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			log.error(e.getMessage());
+		} finally {
+			try {
+				if(null!=conn){
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return res;
 	}
 
 	public Integer updateKhdxHy(String dbType, String url, String username, String password, String hyprefix) {

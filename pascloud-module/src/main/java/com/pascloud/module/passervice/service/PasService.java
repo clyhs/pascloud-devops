@@ -748,6 +748,9 @@ public class PasService extends AbstractBaseService {
 			flag = true;
 		}
 		log.info("结束新建mysql容器");
+		
+		
+		
 		result = new ResultCommon(PasCloudCode.SUCCESS);
 		return result;
 	}

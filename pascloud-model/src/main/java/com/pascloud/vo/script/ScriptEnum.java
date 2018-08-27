@@ -5,7 +5,8 @@ package com.pascloud.vo.script;
 public enum ScriptEnum {
 
 	ORA(0, "oracle"),
-	DB2(1, "db2");
+	DB2(1, "db2"),
+	MYSQL(3,"mysql");
 	
 	private String value;
 

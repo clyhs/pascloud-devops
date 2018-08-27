@@ -91,18 +91,26 @@ public class TenantController extends BaseController {
 				Connection conn = null;
 				String driverClass = DBUtils.getDirverClassName(dbf.getDbType());
 				DBUtils db = new DBUtils(driverClass, dbf.getUrl(), dbf.getUsername(), dbf.getPassword());
-				conn = db.getConnection();
-				Integer total = -1;
-				String tableName = "khdx_hy";
 				
-				if(null!=conn){
-					total = m_dbService.getDataCountsByConn(conn, tableName,true);
-					dbf.setUserCount(total);
-					String xmmc = m_dbService.getSimleColumnValueByConn(conn, "select csz from xtb_xtcs where csmc = 'SYS_XMMC' ", "");
-				    if(null!=xmmc){
-				    	dbf.setDesc(xmmc);
-				    }
+				if(db.canConnect()){
+					conn = db.getConnection();
+					Integer total = -1;
+					String tableName = "khdx_hy";
+					
+					if(null!=conn){
+						total = m_dbService.getDataCountsByConn(conn, tableName,true);
+						dbf.setUserCount(total);
+						String xmmc = m_dbService.getSimleColumnValueByConn(conn, "select csz from xtb_xtcs where csmc = 'SYS_XMMC' ", "");
+					    if(null!=xmmc){
+					    	dbf.setDesc(xmmc);
+					    }
+					}
+				}else{
+					dbf.setUserCount(-1);
+					dbf.setDesc("连接不上");
 				}
+				
+				
 			}
 			
 		} catch (Exception e) {
@@ -276,16 +284,23 @@ public class TenantController extends BaseController {
 		String status = "";
 		if(containers.size()>0){
 			for(ContainerVo vo : containers){
+				Boolean flag = false;
 				
 				if(vo.getName().contains(PasTypeEnum.DEMO.getValue())){
 					m_pasService.uploadConfigForStart(vo.getIp(), PasTypeEnum.DEMO, vo.getName());
+					flag = true;
 				}else if(vo.getName().contains(PasTypeEnum.PASPM.getValue())){
 					m_pasService.uploadConfigForStart(vo.getIp(), PasTypeEnum.PASPM, vo.getName());
+					flag = true;
 				}
-				DefaultDockerClient client = DefaultDockerClient.builder()
-						.uri("http://"+vo.getIp()+":"+defaultPort).build();
-				log.info("重启服务"+vo.getName());
-				status = m_dockerService.restartContainer(client, vo.getId());
+				if(flag){
+					DefaultDockerClient client = DefaultDockerClient.builder()
+							.uri("http://"+vo.getIp()+":"+defaultPort).build();
+					log.info("重启服务"+vo.getName());
+					status = m_dockerService.restartContainer(client, vo.getId());
+					log.info("重启服务"+vo.getName()+"成功");
+				}
+				
 			}
 		}
 		
