@@ -1,12 +1,12 @@
 var toolbar = function(){
 	return [{
-		text : '新建数据库',  
+		text : '新建数据库实例',  
         iconCls : 'icon-database_add',  
         handler : function(){
         	addDB();
         }
 	},{
-		text : '删除数据库',  
+		text : '删除数据库实例',  
         iconCls : 'icon-database_delete',  
         handler : function(){
         	delDB();

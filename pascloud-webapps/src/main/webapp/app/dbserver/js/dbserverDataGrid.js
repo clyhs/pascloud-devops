@@ -23,6 +23,8 @@ function initMainDataGrid(){
             //{ field: 'ck', checkbox: true },
         	{ field: 'id', title: '编号', width: 40, align: 'left'  },
         	{ field: 'name', title: '名称', width: 40, align: 'left' },
+        	{ field: 'username', title: '用户名', width: 40, align: 'left' },
+        	{ field: 'password', title: '密码', width: 40, align: 'left' },
         	{ field: 'url', title: '连接地址', width: 80, align: 'left' }//,
         	//{ field: 'lsnrctl', title: '监听状态', width: 60, align: 'left' }
         ]],

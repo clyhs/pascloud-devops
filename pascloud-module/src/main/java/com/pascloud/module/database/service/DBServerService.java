@@ -14,6 +14,7 @@ import java.util.StringTokenizer;
 import java.util.Vector;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +32,8 @@ import com.pascloud.utils.DBUtils;
 import com.pascloud.utils.FileUtils;
 import com.pascloud.utils.PasCloudCode;
 import com.pascloud.vo.database.DBInfo;
+import com.pascloud.vo.database.DBUser;
+import com.pascloud.vo.mversion.XtcdVo;
 import com.pascloud.vo.result.ResultCommon;
 import com.pascloud.vo.script.ScriptEnum;
 import com.pascloud.vo.server.ServerVo;
@@ -61,7 +64,9 @@ public class DBServerService extends AbstractBaseService {
 					s = s.replaceAll("ora_pmon_", "");
 					db.setId(s);
 					db.setName(s);
-					db.setUrl(DBUtils.getUrlByParams("oracle", server.getIp(), s, 1521));
+					db.setUsername("pas");
+					db.setPassword("pas");
+					db.setUrl(DBUtils.getUrlByParams(ScriptEnum.ORA.getValue(), server.getIp(), s, 1521));
 					result.add(db);
 				}
 			}
@@ -91,7 +96,7 @@ public class DBServerService extends AbstractBaseService {
 					String line = br.readLine();
 					if (line == null)
 						break;
-					if (line.contains("oracle")) {
+					if (line.contains(ScriptEnum.ORA.getValue())) {
 						tokenStat = new StringTokenizer(line);
 						for (i = 0; i < 7; i++) {
 							tokenStat.nextToken();
@@ -154,7 +159,7 @@ public class DBServerService extends AbstractBaseService {
 	 * @return
 	 */
 	public ResultCommon createOracleWithUser(String ip, String sid, String username,
-			String password,String url) {
+			String password,String url,String dbUser ,String dbPass) {
 		ResultCommon result = null;
 		Boolean flag = false;
 		Session session = null;
@@ -173,7 +178,7 @@ public class DBServerService extends AbstractBaseService {
 					return result;
 				}
 				
-				if (grantWithSidAndUser(conn, sid,username,password)) {
+				if (grantWithSidAndUser(conn, sid,username,password,dbUser,dbPass)) {
 					if (grantWithSidAndUserShell(conn, sid,username,password)) {
 						if (impDmpFileWithSidAndUser(conn, sid,username,password)) {
 							result = new ResultCommon(PasCloudCode.SUCCESS);
@@ -422,7 +427,8 @@ public class DBServerService extends AbstractBaseService {
 		return flag;
 	}
 	
-	private Boolean grantWithSidAndUser(Connection conn, String sid,String username,String password) {
+	private Boolean grantWithSidAndUser(Connection conn, String sid,String username,String password,
+			String dbUser,String dbPass) {
 		Boolean flag = false;
 		Session session = null;
 		InputStream stdout = null;
@@ -433,11 +439,13 @@ public class DBServerService extends AbstractBaseService {
 			
 			session.execCommand(
 					Constants.LINUX_ORACLE_HOME_SCRIPT+
-					"/grant_sidV2.sh" +
+					"/grant_sidV3.sh" +
 					" " + sid+
 					" "+m_config.getORACLE_DBHOME()+
-					" "+username+
-					" "+password);
+					" "+dbUser.toUpperCase()+
+					" "+dbPass.toUpperCase()+
+					" "+username.toUpperCase()+
+					" "+password.toUpperCase());
 			//session.execCommand(Constants.LINUX_ORACLE_HOME_SCRIPT+"/grant_sid.sh" + " " + sid+" "+"/u01/app/oracle/product/11.2.0/dbhome_1");
 			stdout = new StreamGobbler(session.getStdout());
 			br = new BufferedReader(new InputStreamReader(stdout));
@@ -489,8 +497,8 @@ public class DBServerService extends AbstractBaseService {
 					"/create_shell.sh" +
 					" " + sid+
 					" "+m_config.getORACLE_DBHOME()+
-					" "+username+
-					" "+password);
+					" "+username.toUpperCase()+
+					" "+password.toUpperCase());
 			stdout = new StreamGobbler(session.getStdout());
 			br = new BufferedReader(new InputStreamReader(stdout));
 			while (true) {
@@ -706,8 +714,8 @@ public class DBServerService extends AbstractBaseService {
 					"/imp_dmpV2.sh" +
 					" " + sid+
 					" "+m_config.getORACLE_DBHOME()+
-					" "+username+
-					" "+password);
+					" "+username.toUpperCase()+
+					" "+password.toUpperCase());
 			stdout = new StreamGobbler(session.getStdout());
 			br = new BufferedReader(new InputStreamReader(stdout));
 			while (true) {
@@ -1403,6 +1411,37 @@ public class DBServerService extends AbstractBaseService {
 		}
 		
 		return res;
+	}
+	
+	public List<DBUser> gerUserFromSid(String sid,String url,String dbType,String username){
+		List<DBUser> users = new ArrayList<>();
+		String driverClass = DBUtils.getDirverClassName(dbType);
+		DBUtils db = new DBUtils(driverClass, url, "pas", "pas");
+		java.sql.Connection conn = null;
+		
+		try {
+			QueryRunner qRunner = new QueryRunner();
+			conn = db.getConnection();
+			if (null != conn) {
+				String sql = "select * from all_users where username like ?;";
+				Object[] params = new Object[] { "%"+username+"%" };
+				users = qRunner.query(conn,sql, new BeanListHandler<DBUser>(DBUser.class),params);
+			} 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			log.error(e.getMessage());
+		} finally {
+			try {
+				if(null!=conn){
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return users;
 	}
 
 	public Integer updateKhdxHy(String dbType, String url, String username, String password, String hyprefix) {

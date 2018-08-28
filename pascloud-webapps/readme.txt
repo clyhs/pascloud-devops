@@ -130,6 +130,14 @@ docker swarm init --advertise-addr 192.168.0.16
 3.grant_sid.sh cpas01 $ORACLE_HOME
 4.imp_dmp.sh cpas01 $ORACLE_HOME
 
-多租户：
-1.
+超级用户执行过程
+export ORACLE_SID=cpas01
+sqlplus /nolog
+SQL>conn / as sysdba
+SQL>@home/oracle/script/createCloudManager.sql
+
+./grant_sidV3.sh cpas01 /u01/app/oracle/product/11.2.0/dbhome_1 CLOUDMANAGER CLOUDMANAGER PAS2 PAS2
+./create_shell.sh cpas01 /u01/app/oracle/product/11.2.0/dbhome_1 PAS2 pas2
+./imp_dmpV2.sh cpas01 /u01/app/oracle/product/11.2.0/dbhome_1 PAS2 pas2
+
 
