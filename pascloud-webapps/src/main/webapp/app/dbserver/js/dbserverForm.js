@@ -437,6 +437,9 @@ function deleteWithSidAndUser(){
 		$.messager.alert('提示','pas为默认用户，不能删除');
 		return ;
 	}
+	
+	$.messager.alert('提示','平台目前不提供删除权限');
+	return ;
 }
 
 function impDmpWithSidW(sid){
