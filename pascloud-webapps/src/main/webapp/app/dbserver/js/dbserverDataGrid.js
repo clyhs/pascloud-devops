@@ -1,4 +1,8 @@
 var checkLsnrArr =  new Array();
+var subSid;
+var subUsername;
+var subPassword;
+var subUrl;
 
 function initMainDataGrid(){
 	EasyUILoad('mainDataGrid');
@@ -66,7 +70,32 @@ function initMainDataGrid(){
 					setTimeout(function(){
 						$('#mainDataGrid').datagrid('fixDetailRowHeight',index);
 					},0);
-				}
+				},
+				onDblClickCell: function (rowIndex, field, value) {
+		            var rows = $('#ddv-'+index).datagrid('getRows');
+		            var row = rows[rowIndex];
+		            var username = row.username;
+		            alert(username);
+		        },
+		        onRowContextMenu: function(e, rowIndex, rowData) { //右键时触发事件
+	                //三个参数：e里面的内容很多，真心不明白，rowIndex就是当前点击时所在行的索引，rowData当前行的数据
+	                e.preventDefault(); //阻止浏览器捕获右键事件
+	                $(this).datagrid("clearSelections"); //取消所有选中项
+	                $(this).datagrid("selectRow", rowIndex); //根据索引选中该行
+	                var rows = $('#ddv-'+index).datagrid('getRows');
+	                var row = rows[rowIndex];
+	                //alert(row.username)
+	                subSid = row.id;
+	                subUsername = row.username;
+	                subPassword = row.password;
+	                subUrl = row.url;
+	                $('#menu').menu('show', {
+	                    //显示右键菜单
+	                    left: e.pageX,//在鼠标点击处显示菜单
+	                    top: e.pageY
+	                });
+	                
+	            }
 			});
 			$('#mainDataGrid').datagrid('fixDetailRowHeight',index);
 		},

@@ -392,6 +392,53 @@ function impDmpWithSid(){
 	});
 }
 
+function impDmpWithSidAndUser(){
+	
+	if(''==subSid || subSid.length<=0){
+		$.messager.alert('提示','sid不能为空');
+		return ;
+	}
+	if(''==subUrl || subUrl.length<=0){
+		$.messager.alert('提示','url不能为空');
+		return ;
+	}
+	if(''==subUsername || subUsername.length<=0){
+		$.messager.alert('提示','username不能为空');
+		return ;
+	}
+	if(''==subPassword || subPassword.length<=0){
+		$.messager.alert('提示','password不能为空');
+		return ;
+	}
+	var params = {sid:subSid,url:subUrl,username:subUsername,password:subPassword,ip:defaultIp};
+	alert(subUrl);
+	alert(subUsername);
+	//EasyUILoad('mainCenter');
+	/*
+	$.post("impDmpWithSidAndUser.json",params,function(data,status){
+		if(data.code == 10000){
+		    //alert(data.desc);
+			dispalyEasyUILoad('mainCenter');
+			$.messager.alert('提示','导入成功');	
+		}else{
+			dispalyEasyUILoad('mainCenter');
+			$.messager.alert('提示',data.desc);	
+		}
+	});*/
+}
+
+function deleteWithSidAndUser(){
+	if(''==subUsername || subUsername.length<=0){
+		$.messager.alert('提示','username不能为空');
+		return ;
+	}
+	
+	if(subUsername=='pas'){
+		$.messager.alert('提示','pas为默认用户，不能删除');
+		return ;
+	}
+}
+
 function impDmpWithSidW(sid){
 	//var row = $('#mainDataGrid').datagrid('getSelected'); 
 	//var sid = row.id;

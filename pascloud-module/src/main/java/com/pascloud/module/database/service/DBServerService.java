@@ -797,6 +797,19 @@ public class DBServerService extends AbstractBaseService {
 
 		return flag;
 	}
+	
+	public Boolean importDmpfileWithSidAndUser(String ip,String sid,String username,String password,String url) {
+		Boolean flag = false;
+		ServerVo vo = m_serverService.getByIP(ip);
+		log.info("ip:" + ip + ",sid:" + sid);
+		Connection conn = null;
+		if (null != vo) {
+			conn = getScpClientConn(vo.getIp(), vo.getUsername(), vo.getPassword());
+			flag = impDmpFileWithSidAndUser( conn,  sid, username, password);
+		}
+
+		return flag;
+	}
 
 	private Boolean impDmpFileWithSid(Connection conn, String sid) {
 		Boolean flag = false;

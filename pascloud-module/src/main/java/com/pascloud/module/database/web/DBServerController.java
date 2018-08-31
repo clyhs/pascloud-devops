@@ -244,6 +244,33 @@ public class DBServerController extends BaseController {
 		
 	}
 	
+	@RequestMapping("/impDmpWithSidAndUser.json")
+	@ResponseBody
+	public ResultCommon impDmpWithSidAndUser(HttpServletRequest request,
+			@RequestParam(value="ip",defaultValue="",required=true) String ip,
+			@RequestParam(value="sid",defaultValue="",required=true) String sid,
+			@RequestParam(value="username",defaultValue="",required=true) String username,
+			@RequestParam(value="password",defaultValue="",required=true) String password,
+			@RequestParam(value="url",defaultValue="",required=true) String url){
+		ResultCommon result = null;
+		
+		if("".equals(ip) || ip.length() == 0 || "".equals(sid) || sid.length()==0){
+			return result = new ResultCommon(PasCloudCode.ERROR);
+		}else{
+			if(m_dbServerService.checkLsnrctlStatus(ip, sid)){
+				if(m_dbServerService.importDmpfileWithSidAndUser( ip, sid, username, password, url) ){
+					result = new ResultCommon(PasCloudCode.SUCCESS);
+				}else{
+					result = new ResultCommon(PasCloudCode.ERROR);
+				}
+			}else{
+				result = new ResultCommon(PasCloudCode.ERROR.getCode(),"监听服务还没有启动");
+			}	
+		}
+		return result;
+		
+	}
+	
 	@RequestMapping("/checkLsnrctlStatus.json")
 	@ResponseBody
 	public ResultCommon checkLsnrctlStatus(HttpServletRequest request,
