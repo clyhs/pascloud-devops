@@ -1,6 +1,7 @@
 package com.pascloud.module.tenant.web;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -421,7 +422,7 @@ public class TenantController extends BaseController {
 	 * @param name
 	 * @return
 	 */
-	@RequestMapping(value = "syscHyByName.json", method = RequestMethod.GET)
+	@RequestMapping(value = "syscHyByName.json", method = RequestMethod.POST)
 	@ResponseBody
 	public ResultCommon syscHyByName(HttpServletRequest request,
 			@RequestParam(value = "name", defaultValue = "", required = true) String name,
@@ -439,7 +440,7 @@ public class TenantController extends BaseController {
 			return result;
 		}
 		
-		
+		log.info(cn);
 		
 		List<DataNodeVo> datanodes = new ArrayList<>();
 		DataNodeVo datanode = null;
