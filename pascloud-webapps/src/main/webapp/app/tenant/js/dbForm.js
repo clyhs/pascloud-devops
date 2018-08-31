@@ -279,7 +279,7 @@ function sysHyByDBName(name,en,cn){
 		//EasyUILoadForMsgUpdate('行员同步中，请耐心等待！','maskId');
 		MaskUtil.mask('行员同步中，请耐心等待...');
 		//alert(EasyUILoad('mainDataGrid'));
-		$.get('syscHyByName.json',params,function(data,status){
+		$.post('syscHyByName.json',params,function(data,status){
 			if(data.code == 10000){
 				
 				$('#mainDataGrid').datagrid('reload');//刷新
