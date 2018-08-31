@@ -15,6 +15,22 @@ function addDB(){
 	createDialogDivWithSize('mainDataGrid', 'addDB','添加数据库实例', '',500,180,div);
 }
 
+function addUser(){
+	var div = '';
+	
+	div +='<div style="margin:10px 0;width:100%;">&nbsp;';  
+	div +='</div>';
+	
+	div +='<div style="margin:5px 0;width:100%;">';  
+	div +=    '<label for="sid" class="formlabel">用户名称:</label>';
+	div +=    '<input class="easyui-validatebox formInput" id="username" name="username" data-options="required:true" >';
+	div +=    '<div style="clear:both;"></div>';
+	div +='</div>';
+	
+	div += createUserFooter(); 
+	createDialogDivWithSize('mainDataGrid', 'addUser','添加数据库用户', '',500,180,div);
+}
+
 function updateHyDialog(){
 	var div = '';
 	
@@ -72,6 +88,26 @@ function createHYFooter(){
 	return html;
 }
 
+function createUserFooter(){
+
+	var html ="";
+    html += '<div style="border:#ccc 0px solid;margin-bottom:25px;width:95%;line-height:24px;margin-top:10px;">';
+	
+    html +=   '<div style="float:left;width:25%;">';
+	html +=   '&nbsp;'; 
+	html +=   '</div>';
+	html +=   '<div style="float:left;width:20%;">';
+	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-database_save\'" onclick="addUserSubmit()" >确定</a>'; 
+	html +=   '</div>';
+	html +=   '<div style="border:#ccc 0px solid;float:left;width:30%;">';
+	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-2013040601125064_easyicon_net_16\'" onclick="#" >重置</a>'; 
+	html +=   '</div>';
+	html +=   '<div style="clear:both;"></div>';
+	html += '</div>';
+	
+	return html;
+}
+
 function reset(){
 	$('#sid').val("");
 }
@@ -113,6 +149,163 @@ function addDBSubmit(){
 			//dispalyEasyUILoad('mainCenter');
 			//$.messager.alert('提示','创建成功');	
 			impDmpWithSidW(sid)
+		}else{
+			//dispalyEasyUILoad('mainCenter');
+			$.messager.alert('提示',data.desc);	
+			MaskUtil.unmask(); 
+		}
+	});
+}
+
+
+function addUserSubmit(){
+	
+	var username = $('#username').val();
+	var node = $('#dbserverTree').treegrid('getSelected');
+	
+	
+	
+	var ip = node.text;
+	
+	if(null==node){
+		$.messager.alert('提示','请选择一个IP地址');
+		return ;
+	}
+	if(''==username || username.length<=0){
+		$.messager.alert('提示','username不能为空');
+		return ;
+	}
+	
+    var row = $('#mainDataGrid').datagrid('getSelected'); 
+	
+	if(null==row){
+		$.messager.alert('提示','请选择行记录');
+		return ;
+	}
+	
+	var sid = row.id;
+	var url = row.url;
+	
+	if(''==sid || sid.length<=0){
+		$.messager.alert('提示','sid不能为空');
+		return ;
+	}
+	
+	if(''==url || url.length<=0){
+		$.messager.alert('提示','url不能为空');
+		return ;
+	}
+	
+	var reg=/^pas[1-9]{1}[0-9]{0,1}$/;
+	if(!reg.test(username)){
+		$.messager.alert('提示','数据库实例名称的格式必须为pas1,pas2...pas99等');
+		return ;
+	}
+	
+	var param = {sid:sid,ip:ip,url:url,username:username};
+	$('#addUser').dialog('close');
+	//alert(addrVal+''+nameVal );
+	
+	//EasyUILoad('mainCenter');
+	MaskUtil.mask();
+	MaskUtil.mask('创建数据库用户...');
+	$.post("createPasUser.json",param,function(data,status){
+		if(data.code == 10000){
+		    //alert(data.desc);
+			$.messager.alert('提示',data.desc);	
+			MaskUtil.unmask();
+		}else{
+			//dispalyEasyUILoad('mainCenter');
+			$.messager.alert('提示',data.desc);	
+			MaskUtil.unmask(); 
+		}
+	});
+}
+
+function restartListener(){
+	
+	//var sid = $('#sid').val();
+	var node = $('#dbserverTree').treegrid('getSelected');
+	
+	var row = $('#mainDataGrid').datagrid('getSelected'); 
+	
+	if(null==row){
+		$.messager.alert('提示','请选择行记录');
+		return ;
+	}
+	var sid = row.id;
+	var ip = node.text;
+	
+	if(null==node){
+		$.messager.alert('提示','请选择一个IP地址');
+		return ;
+	}
+	if(''==sid || sid.length<=0){
+		$.messager.alert('提示','sid不能为空');
+		return ;
+	}
+	
+	var param = {sid:sid,ip:ip};
+	//alert(addrVal+''+nameVal );
+	
+	//EasyUILoad('mainCenter');
+	MaskUtil.mask();
+	MaskUtil.mask('重启监控器...');
+	$.post("restartListener.json",param,function(data,status){
+		if(data.code == 10000){
+		    //alert(data.desc);
+			//dispalyEasyUILoad('mainCenter');
+			$.messager.alert('提示',data.desc);
+			MaskUtil.unmask(); 
+		}else{
+			//dispalyEasyUILoad('mainCenter');
+			$.messager.alert('提示',data.desc);	
+			MaskUtil.unmask(); 
+		}
+	});
+}
+
+function createManagerUser(){
+	
+	//var sid = $('#sid').val();
+	var node = $('#dbserverTree').treegrid('getSelected');
+	
+	var row = $('#mainDataGrid').datagrid('getSelected'); 
+	
+	if(null==row){
+		$.messager.alert('提示','请选择行记录');
+		return ;
+	}
+	var sid = row.id;
+	var url = row.url;
+	var ip = node.text;
+	
+	if(null==node){
+		$.messager.alert('提示','请选择一个IP地址');
+		return ;
+	}
+	if(''==sid || sid.length<=0){
+		$.messager.alert('提示','sid不能为空');
+		return ;
+	}
+	
+	if(''==url || url.length<=0){
+		$.messager.alert('提示','url不能为空');
+		return ;
+	}
+	
+	var param = {sid:sid,ip:ip,url:url};
+	//alert(addrVal+''+nameVal );
+	
+	//EasyUILoad('mainCenter');
+	MaskUtil.mask();
+	MaskUtil.mask('新建管理员...');
+	$.post("createManagerUser.json",param,function(data,status){
+		if(data.code == 10000){
+		    //alert(data.desc);
+			//dispalyEasyUILoad('mainCenter');
+			$.messager.alert('提示',data.desc);
+			MaskUtil.unmask(); 
 		}else{
 			//dispalyEasyUILoad('mainCenter');
 			$.messager.alert('提示',data.desc);	
@@ -283,7 +476,7 @@ function delMycatDatanode(sid,ip){
 	var params = {dbType:dbType,ip:ip,port:port,database:database,username:user,password:password};
 	//EasyUILoad('mainCenter');
 	MaskUtil.mask('配置mycat并重启...');
-	$.post("/module/mycat/addDatanodeAndRestart.json",params,function(data,status){
+	$.post("/module/mycat/delDatanodeAndRestart.json",params,function(data,status){
 		if(data.code == 10000){
 			//alert(data.desc);
 			//alert("修改成功，请重新启动应用");

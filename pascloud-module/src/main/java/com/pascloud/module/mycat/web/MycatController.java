@@ -182,10 +182,17 @@ public class MycatController extends BaseController {
 			return result;
 		}
 		
+		String driverClass = DBUtils.getDirverClassName(dbType);
 		List<DataNodeVo> nodes = new ArrayList<>();
 		nodes = m_mycatService.getDataNodes();
 		
 		String url = DBUtils.getUrlByParams(dbType, ip, database, port);
+		DBUtils db = new DBUtils(driverClass, url, user, password);
+		if (db.canConnect()) {
+		} else {
+			result = new ResultCommon(PasCloudCode.ERROR.getCode(),"该数据库连接失败，无法添加到MYCAT配置中，请重新检查填写的信息。");
+			return result;
+		}
 		
 		if(nodes.size()>0){
 			for(DataNodeVo n:nodes){
@@ -193,7 +200,7 @@ public class MycatController extends BaseController {
 					return new ResultCommon(PasCloudCode.ERROR.getCode(),"节点已经存在，不能添加重复节点");
 				}
 				if(null!=url){
-					if(n.getUrl().equals(url)){
+					if(n.getUrl().equals(url) && n.getUser().equals(user) && n.getPassword().equals(password)){
 						return new ResultCommon(PasCloudCode.ERROR.getCode(),"数据库地址已经被使用，请选其他数据库");
 					}
 				}

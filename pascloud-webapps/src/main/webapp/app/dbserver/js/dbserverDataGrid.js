@@ -3,7 +3,8 @@ var checkLsnrArr =  new Array();
 function initMainDataGrid(){
 	EasyUILoad('mainDataGrid');
     $('#mainDataGrid').datagrid({
-        height: 'auto',
+        view:detailview,
+    	height: 'auto',
         url: 'getDBsWithServer.json',
         method: 'get',
         fit:true ,
@@ -21,8 +22,8 @@ function initMainDataGrid(){
         showFooter: true,
         columns: [[
             //{ field: 'ck', checkbox: true },
-        	{ field: 'id', title: '编号', width: 40, align: 'left'  },
-        	{ field: 'name', title: '名称', width: 40, align: 'left' },
+        	{ field: 'id', title: '实例名', width: 40, align: 'left'  },
+        	//{ field: 'name', title: '名称', width: 40, align: 'left' },
         	{ field: 'username', title: '用户名', width: 40, align: 'left' },
         	{ field: 'password', title: '密码', width: 40, align: 'left' },
         	{ field: 'url', title: '连接地址', width: 80, align: 'left' }//,
@@ -39,6 +40,36 @@ function initMainDataGrid(){
                 //alert(data.rows[i].name);
             }
         },
+        detailFormatter:function(index,row){
+			return '<div style="padding-top:0px"><table id="ddv-' + index + '"></table></div>';
+		},
+        onExpandRow: function(index,row){
+			$('#ddv-'+index).datagrid({//?itemid='+row.itemid
+				url:'getDBsWithSid.json',
+				fitColumns:true,
+				singleSelect:true,
+				rownumbers:true,
+				queryParams:{'sid':row.id,'username':row.username,'password':row.password,'url':row.url},
+				loadMsg:'',
+				height:'auto',
+				columns:[[
+					{ field: 'id', title: '实例名', width: 40, align: 'left'  },
+		        	{ field: 'username', title: '用户名', width: 40, align: 'left' },
+		        	{ field: 'password', title: '密码', width: 40, align: 'left' },
+		        	{ field: 'url', title: '连接地址', width: 80, align: 'left' }
+				]],
+				onResize:function(){
+					$('#mainDataGrid').datagrid('fixDetailRowHeight',index);
+				},
+				onLoadSuccess:function(){
+					$('#mainDataGrid').datagrid("selectRow", index)
+					setTimeout(function(){
+						$('#mainDataGrid').datagrid('fixDetailRowHeight',index);
+					},0);
+				}
+			});
+			$('#mainDataGrid').datagrid('fixDetailRowHeight',index);
+		},
         onLoadError: function () {
         
         },

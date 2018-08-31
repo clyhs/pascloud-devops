@@ -412,6 +412,8 @@ public class DataBaseController extends BaseController {
 		String url = DBUtils.getUrlByParams(dbType, ip, database, port);
 		log.info(url);
 		log.info(driverClass);
+		log.info(username);
+		log.info(password);
 		DBUtils db = new DBUtils(driverClass, url, username, password);
 
 		if (db.canConnect()) {

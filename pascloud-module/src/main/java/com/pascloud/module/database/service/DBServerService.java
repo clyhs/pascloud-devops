@@ -67,10 +67,31 @@ public class DBServerService extends AbstractBaseService {
 					db.setUsername("pas");
 					db.setPassword("pas");
 					db.setUrl(DBUtils.getUrlByParams(ScriptEnum.ORA.getValue(), server.getIp(), s, 1521));
+					
+					
 					result.add(db);
 				}
 			}
 		}
+		return result;
+	}
+	
+	public List<DBInfo> getOracleUserWithSid(String sid,String url,String username,String password) {
+		List<DBInfo> result = new ArrayList<>();
+		List<DBUser> users = new ArrayList<>();
+		users = gerUserFromSid( sid, url, ScriptEnum.ORA.getValue(), username, password);
+		if (null != users && users.size() > 0) {
+			for (DBUser u : users) {
+				DBInfo db = new DBInfo();
+				db.setId(sid);
+				db.setName(sid);
+				db.setUsername(u.getUsername().toLowerCase());
+				db.setPassword(u.getUsername().toLowerCase());
+				db.setUrl(url);
+				result.add(db);
+			}
+		}
+		
 		return result;
 	}
 
@@ -327,6 +348,61 @@ public class DBServerService extends AbstractBaseService {
 
 		return result;
 	}
+	
+	
+	public Boolean createManagerUserWithSid(String sid,String ip) {
+		Boolean flag = false;
+		Session session = null;
+		InputStream stdout = null;
+		BufferedReader br = null;
+		Connection conn = null;
+		try {
+			ServerVo vo = m_serverService.getByIP(ip);
+			conn = getScpClientConn(ip, vo.getUsername(), vo.getPassword());
+			log.info("新建管理员");
+			session = conn.openSession();
+			session.execCommand(Constants.LINUX_ORACLE_HOME_SCRIPT+"/create_cloudmanager.sh" + " " + sid +" "+m_config.getORACLE_DBHOME());
+			stdout = new StreamGobbler(session.getStdout());
+			br = new BufferedReader(new InputStreamReader(stdout));
+			while (true) {
+				String line = br.readLine();
+				if (line == null) {
+					log.info("管理员新建成功");
+					flag = true;
+					break;
+				} else {
+					log.info(line);
+				}
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+			log.error("新建管理员异常");
+		} finally {
+			
+			
+			
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				// e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			try {
+				stdout.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				// e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			session.close();
+			if(null!=conn){
+				conn.close();
+			}
+		}
+		return flag;
+	}
 
 	private Boolean createTableSpaceWithSid(Connection conn, String sid) {
 		Boolean flag = false;
@@ -427,6 +503,16 @@ public class DBServerService extends AbstractBaseService {
 		return flag;
 	}
 	
+	/**
+	 * 
+	 * @param conn
+	 * @param sid
+	 * @param username
+	 * @param password
+	 * @param dbUser
+	 * @param dbPass
+	 * @return
+	 */
 	private Boolean grantWithSidAndUser(Connection conn, String sid,String username,String password,
 			String dbUser,String dbPass) {
 		Boolean flag = false;
@@ -444,8 +530,8 @@ public class DBServerService extends AbstractBaseService {
 					" "+m_config.getORACLE_DBHOME()+
 					" "+dbUser.toUpperCase()+
 					" "+dbPass.toUpperCase()+
-					" "+username.toUpperCase()+
-					" "+password.toUpperCase());
+					" "+username.toLowerCase()+
+					" "+password.toLowerCase());
 			//session.execCommand(Constants.LINUX_ORACLE_HOME_SCRIPT+"/grant_sid.sh" + " " + sid+" "+"/u01/app/oracle/product/11.2.0/dbhome_1");
 			stdout = new StreamGobbler(session.getStdout());
 			br = new BufferedReader(new InputStreamReader(stdout));
@@ -497,8 +583,8 @@ public class DBServerService extends AbstractBaseService {
 					"/create_shell.sh" +
 					" " + sid+
 					" "+m_config.getORACLE_DBHOME()+
-					" "+username.toUpperCase()+
-					" "+password.toUpperCase());
+					" "+username.toLowerCase()+
+					" "+password.toLowerCase());
 			stdout = new StreamGobbler(session.getStdout());
 			br = new BufferedReader(new InputStreamReader(stdout));
 			while (true) {
@@ -535,6 +621,60 @@ public class DBServerService extends AbstractBaseService {
 		return flag;
 	}
 	
+	public Boolean restartListenerWithSid(String sid,String ip) {
+		Boolean flag = false;
+		Session session = null;
+		InputStream stdout = null;
+		BufferedReader br = null;
+		Connection conn = null;
+		try {
+			ServerVo vo = m_serverService.getByIP(ip);
+			conn = getScpClientConn(ip, vo.getUsername(), vo.getPassword());
+			log.info("重启监听");
+			session = conn.openSession();
+			session.execCommand(Constants.LINUX_ORACLE_HOME_SCRIPT+"/restart_listener.sh" + " " + sid +" "+m_config.getORACLE_DBHOME());
+			stdout = new StreamGobbler(session.getStdout());
+			br = new BufferedReader(new InputStreamReader(stdout));
+			while (true) {
+				String line = br.readLine();
+				if (line == null) {
+					log.info("重启监听成功");
+					flag = true;
+					break;
+				} else {
+					log.info(line);
+				}
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+			log.error("新建用户pas异常");
+		} finally {
+			
+			
+			
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				// e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			try {
+				stdout.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				// e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			session.close();
+			if(null!=conn){
+				conn.close();
+			}
+		}
+		return flag;
+	}
+	
 	private Boolean restartListenerWithSid(Connection conn, String sid) {
 		Boolean flag = false;
 		Session session = null;
@@ -561,6 +701,8 @@ public class DBServerService extends AbstractBaseService {
 			// e.printStackTrace();
 			log.error("新建用户pas异常");
 		} finally {
+			
+			
 			try {
 				br.close();
 			} catch (IOException e) {
@@ -714,8 +856,8 @@ public class DBServerService extends AbstractBaseService {
 					"/imp_dmpV2.sh" +
 					" " + sid+
 					" "+m_config.getORACLE_DBHOME()+
-					" "+username.toUpperCase()+
-					" "+password.toUpperCase());
+					" "+username.toLowerCase()+
+					" "+password.toLowerCase());
 			stdout = new StreamGobbler(session.getStdout());
 			br = new BufferedReader(new InputStreamReader(stdout));
 			while (true) {
@@ -1413,18 +1555,20 @@ public class DBServerService extends AbstractBaseService {
 		return res;
 	}
 	
-	public List<DBUser> gerUserFromSid(String sid,String url,String dbType,String username){
+	public List<DBUser> gerUserFromSid(String sid,String url,String dbType,String username,
+			String password){
 		List<DBUser> users = new ArrayList<>();
 		String driverClass = DBUtils.getDirverClassName(dbType);
-		DBUtils db = new DBUtils(driverClass, url, "pas", "pas");
+		DBUtils db = new DBUtils(driverClass, url, username, password);
 		java.sql.Connection conn = null;
 		
 		try {
 			QueryRunner qRunner = new QueryRunner();
 			conn = db.getConnection();
 			if (null != conn) {
-				String sql = "select * from all_users where username like ?;";
-				Object[] params = new Object[] { "%"+username+"%" };
+				String sql = "select * from all_users where username like ?";
+				String u = "PAS";
+		        Object[] params = new Object[] { "%"+u+"%" };
 				users = qRunner.query(conn,sql, new BeanListHandler<DBUser>(DBUser.class),params);
 			} 
 		} catch (SQLException e) {

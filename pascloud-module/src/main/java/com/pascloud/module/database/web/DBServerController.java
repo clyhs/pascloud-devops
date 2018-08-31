@@ -26,6 +26,7 @@ import com.pascloud.vo.common.TreeVo;
 import com.pascloud.vo.database.DBInfo;
 import com.pascloud.vo.result.ResultBean;
 import com.pascloud.vo.result.ResultCommon;
+import com.pascloud.vo.script.ScriptEnum;
 import com.pascloud.vo.server.ServerVo;
 import com.pascloud.vo.tenant.KhdxHyVo;
 
@@ -97,6 +98,23 @@ public class DBServerController extends BaseController {
 		return result;
 	}
 	
+	@RequestMapping("/getDBsWithSid.json")
+	@ResponseBody
+	public List<DBInfo> getDBsWithSid(HttpServletRequest request,
+			@RequestParam(value="sid",defaultValue="",required=true) String sid,
+			@RequestParam(value="url",defaultValue="",required=true) String url,
+			@RequestParam(value="username",defaultValue="",required=true) String username,
+			@RequestParam(value="password",defaultValue="",required=true) String password){
+		List<DBInfo> result = new ArrayList<DBInfo>();
+		if(""==sid || sid.length() == 0){
+			return result;
+		}
+		
+		result = m_dbServerService.getOracleUserWithSid(sid, url, username, password);
+		
+		return result;
+	}
+	
 	@RequestMapping("/createOracle.json")
 	@ResponseBody
 	public ResultCommon createOracle(HttpServletRequest request,
@@ -112,6 +130,91 @@ public class DBServerController extends BaseController {
 			
 			
 			result = m_dbServerService.createOracleWithSid(ip, sid,tnsnamePath);
+		}
+		return result;
+		
+	}
+	
+	@RequestMapping("/restartListener.json")
+	@ResponseBody
+	public ResultCommon restartListener(HttpServletRequest request,
+			@RequestParam(value="ip",defaultValue="",required=true) String ip,
+			@RequestParam(value="sid",defaultValue="",required=true) String sid){
+		ResultCommon result = null;
+		
+		if("".equals(ip) || ip.length() == 0 || "".equals(sid) || sid.length()==0){
+			return result = new ResultCommon(PasCloudCode.ERROR);
+		}else{
+			
+			
+			
+			if(m_dbServerService.restartListenerWithSid(sid, ip)){
+			    result = new ResultCommon(PasCloudCode.SUCCESS);
+			}else{
+			    result = new ResultCommon(PasCloudCode.ERROR);
+			}
+		}
+		return result;
+		
+	}
+	
+	@RequestMapping("/createManagerUser.json")
+	@ResponseBody
+	public ResultCommon createManagerUser(HttpServletRequest request,
+			@RequestParam(value="ip",defaultValue="",required=true) String ip,
+			@RequestParam(value="sid",defaultValue="",required=true) String sid,
+			@RequestParam(value="url",defaultValue="",required=true) String url){
+		ResultCommon result = null;
+		
+		if("".equals(ip) || ip.length() == 0 || "".equals(sid) || sid.length()==0
+				|| "".equals(url) || url.length() <=0){
+			return result = new ResultCommon(PasCloudCode.ERROR);
+		}else{
+			
+			if(m_dbServerService.checkSchemaIsExists(sid, url, ScriptEnum.ORA.getValue(), "CLOUDMANAGER")>0){
+				result = new ResultCommon(PasCloudCode.ERROR.getCode(),"用户CLOUDMANAGER已经存在");
+			}else{
+				if(m_dbServerService.createManagerUserWithSid(sid, ip)){
+				    result = new ResultCommon(PasCloudCode.SUCCESS);
+				}else{
+				    result = new ResultCommon(PasCloudCode.ERROR);
+				}
+			}
+			
+			
+		}
+		return result;
+		
+	}
+	
+	@RequestMapping("/createPasUser.json")
+	@ResponseBody
+	public ResultCommon createPasUser(HttpServletRequest request,
+			@RequestParam(value="ip",defaultValue="",required=true) String ip,
+			@RequestParam(value="sid",defaultValue="",required=true) String sid,
+			@RequestParam(value="url",defaultValue="",required=true) String url,
+			@RequestParam(value="username",defaultValue="",required=true) String username){
+		ResultCommon result = null;
+		
+		if("".equals(ip) || ip.length() == 0 || "".equals(sid) || sid.length()==0
+				|| "".equals(url) || url.length() <=0 
+				|| "".equals(username) || username.length() <=0){
+			return result = new ResultCommon(PasCloudCode.PARAMEXCEPTION);
+		}else{
+			
+			if(m_dbServerService.checkSchemaIsExists(sid, url, ScriptEnum.ORA.getValue(), "CLOUDMANAGER")<=0){
+				result = new ResultCommon(PasCloudCode.ERROR.getCode(),"请选新建管理员，否则你没有权限创建其他用户");
+				return result;
+			}
+			
+			if(m_dbServerService.checkSchemaIsExists(sid, url, ScriptEnum.ORA.getValue(), username)>0){
+				result = new ResultCommon(PasCloudCode.ERROR.getCode(),"用户"+username+"已经存在");
+			}else{
+				result = m_dbServerService.createOracleWithUser(ip, sid, 
+						username, username, url, "CLOUDMANAGER", "CLOUDMANAGER");
+			}
+			
+			
 		}
 		return result;
 		

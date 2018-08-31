@@ -197,12 +197,12 @@ public class DockerService {
 						
 						status = getStatus(containerInfo);
 					}else{
-						log.info("2."+g.toJson(containerInfo.state().status()));
+						//log.info("2."+g.toJson(containerInfo.state().status()));
 						status = containerInfo.state().status();
 					}
 					vo.setState(status);
 				}else{
-					log.info("1."+g.toJson(container.state()));
+					//log.info("1."+g.toJson(container.state()));
 					vo.setState(container.state());
 				}
 				
@@ -712,7 +712,7 @@ public class DockerService {
 		    //exited
 			status = "exited";
 		}
-		log.info("3."+status);
+		//log.info("3."+status);
 		return status;
     }
 

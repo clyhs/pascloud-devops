@@ -11,13 +11,31 @@ var toolbar = function(){
         handler : function(){
         	delDB();
         }
-	}/*,{
-		text : '导入数据',  
+	},{
+		text : '初始化数据',  
         iconCls : 'icon-database_go',  
         handler : function(){
         	impDmpWithSid();
         }
 	},{
+		text : '重启监听器',  
+        iconCls : 'icon-database_go',  
+        handler : function(){
+        	restartListener();
+        }
+	},{
+		text : '新建数据库管理员',  
+        iconCls : 'icon-database_go',  
+        handler : function(){
+        	createManagerUser();
+        }
+	},{
+		text : '新建数据库用户',  
+        iconCls : 'icon-database_go',  
+        handler : function(){
+        	addUser();
+        }
+	}/*,{
 		text : '设置行员',  
         iconCls : 'icon-database_go',  
         handler : function(){

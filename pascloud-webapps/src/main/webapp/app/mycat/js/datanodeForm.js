@@ -43,7 +43,7 @@ function addDbDialog(){
 	
 	div +='<div style="margin:5px 0;width:100%;">';  
 	div +=    '<label for="username" class="formlabel">用户名:</label>';
-	div +=    '<input class="easyui-validatebox formInput" id="username" name="username" data-options="required:true" value="root"  size=30 >';
+	div +=    '<input class="easyui-validatebox formInput" id="username" name="username" data-options="required:true" value="pas"  size=30 >';
 	div +=    '<div style="clear:both;"></div>';
 	div +='</div>';
 	
