@@ -297,13 +297,14 @@ public class ConfigService {
 	 * @param servicePort
 	 * @param restPort
 	 */
-	public void setPort(String servicePort,String restPort){
+	public void setPort(String servicePort,String restPort,String ip){
 		PropertiesUtil p =new PropertiesUtil();
 		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_config_file);
 		log.info(servicePort);
 		log.info(restPort);
 		p.setValueByKey("pascloud.service.hessian.port", servicePort, "");
 		p.setValueByKey("pascloud.service.rest.port", restPort, "");
+		p.setValueByKey("pascloud.service.rest.ip", ip, "");
 	}
 	
 	/**

@@ -52,6 +52,8 @@ function formatOper(val,row,index){
 		return '调度管家';
 	} else if(val == '2'){
 		return '公共服务';
+	} else if(val == '4'){
+		return '数据库中间件';
 	} else if(val == '6'){
 		return '前端服务';
 	}else{

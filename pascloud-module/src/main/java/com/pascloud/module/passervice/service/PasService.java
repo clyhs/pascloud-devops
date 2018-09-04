@@ -281,7 +281,7 @@ public class PasService extends AbstractBaseService {
 				log.info("结束拷贝源码目录");
 				
 				uploadDubbofile(conn,bindVolumeFrom,containerName);
-				uploadConfigfile(conn,bindVolumeFrom,false,containerName);
+				uploadConfigfile(conn,bindVolumeFrom,false,containerName,ip);
 				uploadZkfile(conn,bindVolumeFrom,containerName);
 				uploadRedisfile(conn,bindVolumeFrom,containerName);
 				uploadDbfile(conn,bindVolumeFrom,containerName);
@@ -350,7 +350,7 @@ public class PasService extends AbstractBaseService {
 				copyFolder(conn,basePath,bindVolumeFrom);
 				log.info("结束拷贝源码目录");
 				uploadDubbofile(conn,bindVolumeFrom,containerName);
-				uploadConfigfile(conn,bindVolumeFrom,true,containerName);
+				uploadConfigfile(conn,bindVolumeFrom,true,containerName,ip);
 				uploadZkfile(conn,bindVolumeFrom,containerName);
 				uploadRedisfile(conn,bindVolumeFrom,containerName);
 				uploadDbfile(conn,bindVolumeFrom,containerName);
@@ -387,7 +387,7 @@ public class PasService extends AbstractBaseService {
 				conn = getScpClientConn(vo.getIp(),vo.getUsername(),vo.getPassword());
 				if(type.equals(PasTypeEnum.DEMO)){
 					uploadDubbofile(conn,serverPath,containerName);
-					uploadConfigfile(conn,serverPath,false,containerName);
+					uploadConfigfile(conn,serverPath,false,containerName,ip);
 					uploadZkfile(conn,serverPath,containerName);
 					uploadRedisfile(conn,serverPath,containerName);
 					uploadDbfile(conn,serverPath,containerName);
@@ -395,7 +395,7 @@ public class PasService extends AbstractBaseService {
 				}else if(type.equals(PasTypeEnum.PASPM)){
 					log.info("paspm......");
 					uploadDubbofile(conn,serverPath,containerName);
-					uploadConfigfile(conn,serverPath,true,containerName);
+					uploadConfigfile(conn,serverPath,true,containerName,ip);
 					uploadZkfile(conn,serverPath,containerName);
 					uploadRedisfile(conn,serverPath,containerName);
 					uploadDbfile(conn,serverPath,containerName);
@@ -438,7 +438,7 @@ public class PasService extends AbstractBaseService {
 	 * @param containerName
 	 * @return
 	 */
-	private Boolean uploadConfigfile(Connection conn,String serverPath,Boolean dev,String containerName){
+	private Boolean uploadConfigfile(Connection conn,String serverPath,Boolean dev,String containerName,String ip){
 		Boolean flag = false;
 		List<MqVo> mqs = new ArrayList<MqVo>();
 		if(null!=conn){
@@ -449,11 +449,11 @@ public class PasService extends AbstractBaseService {
 			if(dev){
 				m_configService.setHomePath(Constants.PASCLOUD_HOME+Constants.PASCLOUD_SERVICE_DEMO);
 				m_configService.setDev("true");
-				m_configService.setPort("8202", "8212");
+				m_configService.setPort("8202", "8212",ip);
 			}else{
 				m_configService.setHomePath(serverPath);
 				m_configService.setDev("true"); ///新版不用本地初始化
-				m_configService.setPort("8201", "8211");
+				m_configService.setPort("8201", "8211",ip);
 				
 			}
 			

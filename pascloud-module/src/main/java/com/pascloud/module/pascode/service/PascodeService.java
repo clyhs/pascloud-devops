@@ -181,6 +181,10 @@ public class PascodeService extends AbstractBaseService {
 					type = PasTypeEnum.DEMO.getIndex();
 				}else if(filename.contains(Constants.PASCLOUD_SERVICE_PASPM)){
 					type = PasTypeEnum.PASPM.getIndex();
+				}else if(filename.contains(Constants.PASCLOUD_SERVICE_MYCAT)){
+					type = PasTypeEnum.MYCAT.getIndex();
+				}else if(filename.contains(Constants.PASCLOUD_SERVICE_TOMCAT)){
+					type = PasTypeEnum.TOMCAT.getIndex();
 				}else{
 					if(suffix.equals(PascodeEnum.WAR.getValue())){
 						type = PasTypeEnum.TOMCAT.getIndex();
@@ -328,11 +332,26 @@ public class PascodeService extends AbstractBaseService {
         for(ServerVo s:servers){
         	
         	if(vo.getType().equals(PasTypeEnum.TOMCAT.getIndex())){
-        		result = uploadWarToServer(vo,s,now);
+        		
+        		if(vo.getName().contains(Constants.PASCLOUD_SERVICE_TOMCAT)){
+        			result = uploadTomcatToServer(vo,s,now);
+                	if(result.getCode().equals(PasCloudCode.SUCCESS.getCode())){
+                		num ++;
+                	}
+        		}else{
+        			result = uploadWarToServer(vo,s,now);
+                	if(result.getCode().equals(PasCloudCode.SUCCESS.getCode())){
+                		num ++;
+                	}
+        		}
+        	}
+        	else if(vo.getType().equals(PasTypeEnum.MYCAT.getIndex())){
+        		result = uploadMycatToServer(vo,s,now);
             	if(result.getCode().equals(PasCloudCode.SUCCESS.getCode())){
             		num ++;
             	}
-        	}else{
+        	}
+        	else{
         		result = uploadServiceToServer(vo,s,now);
             	if(result.getCode().equals(PasCloudCode.SUCCESS.getCode())){
             		num ++;
@@ -344,7 +363,11 @@ public class PascodeService extends AbstractBaseService {
         if(vo.getType().equals(PasTypeEnum.TOMCAT.getIndex())){
         	result = new ResultCommon(PasCloudCode.SUCCESS.getCode(),
         			"成功部署出了"+num+"台应用服务器,请去服务管理进行重启前端服务");
-    	}else{
+    	}else if(vo.getType().equals(PasTypeEnum.MYCAT.getIndex())){
+    		result = new ResultCommon(PasCloudCode.SUCCESS.getCode(),
+        			"成功部署出了"+num+"台应用服务器,请去服务管理进行重启MYCAT服务");
+    	}
+    	else{
     		if(num>0){
             	result = copyPascodeToContainers(vo,now);
             	result = new ResultCommon(PasCloudCode.SUCCESS.getCode(),
@@ -480,10 +503,7 @@ public class PascodeService extends AbstractBaseService {
 		String webappPath = defaultPath+"tomcat/webapps";
 		String warpath    = webappPath+"/ROOT.war";
 		String webpath    = webappPath+"/ROOT";
-		
-		
-		
-		
+
 		String backname = getRandomFileName(now);
 		String web_backup_path = defaultPath+"ROOT"+"-"+backname;
 		
@@ -530,6 +550,145 @@ public class PascodeService extends AbstractBaseService {
 		return result;
 	}
 	
+	
+	private ResultCommon uploadMycatToServer(PascodeVo vo ,ServerVo s,Date now){
+		ResultCommon result = null;
+		
+        log.info("上传到/home/pascloud/mycat");
+        
+        String codepath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_PASCODE();
+		String defaultPath = Constants.PASCLOUD_HOME;
+		String mycatHome = defaultPath+"mycat";
+		//本地MYCAT的源码地址
+		codepath = codepath +"/"+ vo.getName();
+		//服务器的MYCAT地址
+		String servercodepath = defaultPath+vo.getName();
+		
+		ch.ethz.ssh2.Connection conn = null;
+		conn = getScpClientConn(s.getIp(), s.getUsername(), s.getPassword());
+    	if(null !=conn){
+    		if(!checkDirIsExist(conn, mycatHome)){
+    			log.info("上传源码包："+s.getIp()+" "+codepath);
+    			//home/pascloud/mycat-xxxx.tar.gz
+				if(putFileToServer(conn,codepath,Constants.PASCLOUD_HOME)){
+					
+					String uploadPath = Constants.PASCLOUD_HOME+vo.getName();
+					//home/pascloud/mycat
+    				String tarname = execTarCommand(conn,uploadPath,Constants.PASCLOUD_HOME);
+    				
+    				if(null!=tarname){
+    					String tarpath = Constants.PASCLOUD_HOME+tarname;
+    					//mv /home/pascloud/mycat /home/pascloud/
+    					result = new ResultCommon(PasCloudCode.SUCCESS);
+    				}else{
+    					result = new ResultCommon(PasCloudCode.ERROR.getCode(),"解压失败");
+    				}
+    				
+				}else{
+					result = new ResultCommon(PasCloudCode.ERROR.getCode(),"上传失败");
+				}
+			}else{
+				log.info(mycatHome+"已经存在！");
+				result = new ResultCommon(PasCloudCode.SUCCESS);
+			}
+    	}
+		
+		return result;
+	}
+	
+	
+	private ResultCommon uploadTomcatToServer(PascodeVo vo ,ServerVo s,Date now){
+		ResultCommon result = null;
+		
+        log.info("上传到/home/pascloud/tomcat");
+        
+        String codepath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_PASCODE();
+		String defaultPath = Constants.PASCLOUD_HOME;
+		String tomcatHome = defaultPath+"tomcat";
+		//本地MYCAT的源码地址
+		codepath = codepath +"/"+ vo.getName();
+		//服务器的MYCAT地址
+		String servercodepath = defaultPath+vo.getName();
+		
+		ch.ethz.ssh2.Connection conn = null;
+		conn = getScpClientConn(s.getIp(), s.getUsername(), s.getPassword());
+    	if(null !=conn){
+    		if(!checkDirIsExist(conn, tomcatHome)){
+    			log.info("上传源码包："+s.getIp()+" "+codepath);
+    			//home/pascloud/tomcat-xxxx.tar.gz
+				if(putFileToServer(conn,codepath,Constants.PASCLOUD_HOME)){
+					
+					String uploadPath = Constants.PASCLOUD_HOME+vo.getName();
+					//home/pascloud/tomcat
+    				String tarname = execTarCommand(conn,uploadPath,Constants.PASCLOUD_HOME);
+    				
+    				if(null!=tarname){
+    					String tarpath = Constants.PASCLOUD_HOME+tarname;
+    					//mv /home/pascloud/tomcat /home/pascloud/
+    					result = new ResultCommon(PasCloudCode.SUCCESS);
+    				}else{
+    					result = new ResultCommon(PasCloudCode.ERROR.getCode(),"解压失败");
+    				}
+    				
+				}else{
+					result = new ResultCommon(PasCloudCode.ERROR.getCode(),"上传失败");
+				}
+			}else{
+				log.info(tomcatHome+"已经存在！");
+				result = new ResultCommon(PasCloudCode.SUCCESS);
+			}
+    	}
+		
+		return result;
+	}
+	
+	public Boolean checkDirIsExist(ch.ethz.ssh2.Connection conn,String dirPath){
+		Boolean flag = false;
+		Session session = null;
+		InputStream stdout = null;
+		BufferedReader br = null;
+		StringBuffer sb = new StringBuffer();
+		try {
+			log.info("检查目录");
+			session = conn.openSession();
+			session.execCommand(" [ -s "+dirPath+" ] && echo \"true\" || echo \"false\"");
+			stdout = new StreamGobbler(session.getStdout());
+			br = new BufferedReader(new InputStreamReader(stdout));
+			while (true) {
+				String line = br.readLine();
+				if (line == null) {
+					break;
+				} else {
+					log.info(line);
+					sb.append(line);
+				}
+			}
+			if("true".equals(sb.toString())){
+				flag = true;
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+			log.error("检查目录异常");
+		} finally {
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				// e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			try {
+				stdout.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				// e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			session.close();
+		}
+		return flag;
+	}
 	
 	
 	public String execTarCommand(ch.ethz.ssh2.Connection conn,String filepath,String outpath) {

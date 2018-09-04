@@ -16,6 +16,9 @@ public class Constants {
 	
 	public static String PASCLOUD_SERVICE_DEMO = "pas-cloud-service-demo";
 	public static String PASCLOUD_SERVICE_PASPM= "pas-cloud-service-paspm";
+	public static String PASCLOUD_SERVICE_MYCAT= "mycat";
+	public static String PASCLOUD_SERVICE_TOMCAT= "tomcat";
+	
 	
 	public static String SHIPYARD_PROXY        = "shipyard-proxy";
 	public static String PASCLOUD_SERVICE_DEMO_CONTAINER = "pascloud_service_demo";
