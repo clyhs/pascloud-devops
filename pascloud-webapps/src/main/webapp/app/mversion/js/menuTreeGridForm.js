@@ -186,3 +186,26 @@ function addMenu(){
 	});
 	
 }
+
+
+function backup(){
+	var params = {Id:dnId};
+	
+	$.messager.confirm('提示框','你确定备份菜单，请再确定？',function(r){
+	    if (r){
+	    	EasyUILoad('mainCenter');
+	    	$.post("backup.json",params,function(data,status){
+				if(data.code == 10000){
+					//alert(data.desc);
+	    			$.messager.alert('提示',data.desc);
+	    			dispalyEasyUILoad( 'mainCenter' );
+				}else{
+					$.messager.alert('提示',data.desc);
+					//dispalyEasyUILoad( 'mainCenter' );
+					dispalyEasyUILoad( 'mainCenter' );
+				}
+			});
+	    }
+	});
+}
+

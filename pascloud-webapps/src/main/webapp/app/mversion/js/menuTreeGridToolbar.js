@@ -35,5 +35,17 @@ var menutoolbar = function(){
         handler : function(){
         	createTenantTreeDialog(tenantTreeGridToolbar);
         }
+	},{
+		text : '备份',  
+        iconCls : 'icon-cog_go',  
+        handler : function(){
+        	backup();
+        }
+	},{
+		text : '还原',  
+        iconCls : 'icon-cog_go',  
+        handler : function(){
+        	createMenuRestoreDialog(menuRestoreTreeGridToolbar);
+        }
 	}];
 }();

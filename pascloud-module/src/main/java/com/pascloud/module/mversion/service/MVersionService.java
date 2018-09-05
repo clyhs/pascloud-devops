@@ -1,8 +1,10 @@
 package com.pascloud.module.mversion.service;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -19,12 +21,16 @@ import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 import com.pascloud.constant.Constants;
 import com.pascloud.module.common.service.AbstractBaseService;
+import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.passervice.service.ConfigService;
 import com.pascloud.utils.DBUtils;
+import com.pascloud.utils.FileUtils;
 import com.pascloud.utils.PasCloudCode;
 import com.pascloud.vo.database.DBInfo;
 import com.pascloud.vo.mversion.XtcdVo;
 import com.pascloud.vo.result.ResultCommon;
+import com.pascloud.vo.server.ServerVo;
+import com.thoughtworks.xstream.XStream;
 
 /**
  * 功能版本管理
@@ -36,6 +42,9 @@ public class MVersionService extends AbstractBaseService {
 	
 	@Autowired
 	private ConfigService    m_configService;
+	
+	@Autowired
+	private PasCloudConfig   m_config;
 	
 	private List<XtcdVo> getXtcdList(Connection conn,String id){
 		List<XtcdVo> result = new ArrayList<>();
@@ -652,6 +661,124 @@ public class MVersionService extends AbstractBaseService {
 		}
 		return vo;
 	}
+	
+	
+	public ResultCommon backupXtcd(String dnId){
+		ResultCommon result = null;
+		
+		String serverPath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_XTCD();
+		List<XtcdVo> cds = new ArrayList<>();
+		Date now = new Date();
+		String filename = "xtcd_"+getRandomFileName(now)+".xml";
+		serverPath = serverPath+"/"+dnId;
+		File dir = new File(serverPath);
+		if(!dir.exists() || !dir.isDirectory()){
+			FileUtils.createOrExistsDir(dir);
+		}
+		
+		serverPath = serverPath+"/"+filename;
+		cds = getXtcdById(dnId);
+		if(cds.size()>0){
+			String header =  "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
+	    	File file = new File(serverPath);
+	        XStream xstream = new XStream(); 
+	        xstream.alias("xtcd", XtcdVo.class);
+	        String xml = xstream.toXML(cds);
+	        xml = header+xml;
+	        log.info("写入xml");
+	        if(!file.exists()){
+	        	FileUtils.createOrExistsFile(file);
+	        }
+	        FileUtils.writeFileFromString(file, xml, false);
+	        log.info("一共备份了"+cds.size()+"条记录");
+	        result = new ResultCommon(PasCloudCode.SUCCESS);
+		}else{
+			result = new ResultCommon(PasCloudCode.ERROR);
+		}
+		
+		return result;
+	}
+	
+	public List<String> getBackupfileList(String dnId){
+		List<String> result = new ArrayList<>();
+		String serverPath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_XTCD();
+		
+		serverPath = serverPath+"/"+dnId;
+		File dir = new File(serverPath);
+		if(dir.exists() && dir.isDirectory()){
+			
+			List<File> files = FileUtils.listFilesInDirWithFilter(dir, ".xml", false);
+			if(null!=files && files.size()>0){
+				for(File f:files){
+					result.add(f.getName());
+				}
+			}
+		}
+		
+		return result;
+	}
+	
+	public ResultCommon restore(String dnId,String filename){
+		ResultCommon result = null;
+        String serverPath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+ m_config.getPASCLOUD_XTCD();
+		serverPath = serverPath+"/"+dnId;
+		
+		String filepath = serverPath+"/"+filename;
+		
+		Connection conn = null;
+		String sql = "";
+		Integer row = 0;
+		try {
+			
+			File file = new File(filepath);
+	        XStream xstream = new XStream(); 
+	        xstream.alias("xtcd", XtcdVo.class);
+	        List<XtcdVo> cds =  (List<XtcdVo>) xstream.fromXML(file);
+	        QueryRunner qRunner = new QueryRunner();  
+	        if(null!=cds && cds.size()>0){
+	        	sql = "delete from xtb_xtcd ";
+				conn = getConnectionById(dnId);
+				log.info(sql);
+				
+				row = qRunner.update(conn, sql);
+	        }
+	        if(row>0){
+	        	sql = "INSERT INTO xtb_xtcd(xmdh,xmmc,xmdz,sjxm,cdjb,dzlx,classid,sfxs,imgurl,qxbs,version)"
+						+ "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+	        	Object[][] params = new Object[cds.size()][];
+	        	for(int i=0;i<cds.size();i++){
+					XtcdVo cd = cds.get(i);
+					params[i] = new Object[]{cd.getXmdh(),cd.getXmmc(),cd.getXmdz(),cd.getSjxm(),cd.getCdjb(),
+							cd.getDzlx(),cd.getClassid(),cd.getSfxs(),cd.getImgurl(),cd.getQxbs(),cd.getVersion()};
+				}
+	        	log.info("恢复到："+dnId);
+	        	
+				qRunner.batch(conn, sql, params);
+	        }
+			
+	        result = new ResultCommon(PasCloudCode.SUCCESS);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+			log.error(e.getMessage());
+			//e.printStackTrace();
+			result = new ResultCommon(PasCloudCode.EXCEPTION.getCode(),e.getMessage());
+		}finally{
+			try {
+				if(null!=conn){
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+		}
+		
+		
+		return result;
+	}
+	
+	
 	
 	
 

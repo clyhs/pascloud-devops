@@ -57,6 +57,11 @@
 	    </table>
 		    <!--内容  结束-->
     </div>
+    
+    <div id="menu" class="easyui-menu" style="width: 50px; display: none;">
+        <div data-options="iconCls:'icon-database_go'" onclick="impDmpWithSidAndUser()">初始化</div>
+        <div data-options="iconCls:'icon-delete'" onclick="deleteWithSidAndUser()">删除</div>
+    </div>
 
 </body>
 </html>

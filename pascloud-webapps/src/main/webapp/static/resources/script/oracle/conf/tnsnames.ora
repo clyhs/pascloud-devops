@@ -11,27 +11,30 @@ CLOUDPAS =
   )
 
 
-CPAS04 =
+
+
+
+
+
+
+CPAS01 =
   (DESCRIPTION =
     (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.0.101)(PORT = 1521))
     (CONNECT_DATA =
       (SERVER = DEDICATED)
-      (SERVICE_NAME = cpas04)
+      (SERVICE_NAME = cpas01)
     )
   )
 
 
-
-
-
-
-
-
-
-
-
-
-
+CPAS02 =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.0.101)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = cpas02)
+    )
+  )
 
 
 
@@ -47,41 +50,12 @@ CPAS12 =
 
 
 
-
-
-
-CPAS25 =
+CPAS04 =
   (DESCRIPTION =
     (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.0.101)(PORT = 1521))
     (CONNECT_DATA =
       (SERVER = DEDICATED)
-      (SERVICE_NAME = cpas25)
+      (SERVICE_NAME = cpas04)
     )
   )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

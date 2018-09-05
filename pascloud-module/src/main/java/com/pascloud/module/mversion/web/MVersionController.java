@@ -485,5 +485,62 @@ public class MVersionController extends BaseController {
 		}
 		return childtree;
 	}
+	
+	
+	@RequestMapping("/backup.json")
+	@ResponseBody
+    public ResultCommon	backupXtcd(HttpServletRequest request,
+    		@RequestParam(value="Id",defaultValue="",required=true) String Id){
+		ResultCommon result = null;
+		log.info("菜单备份开始");
+		if( Id.length() <=0 ){
+			result = new ResultCommon(PasCloudCode.PARAMEXCEPTION);
+		}
+		result = m_mVersionService.backupXtcd(Id);
+		log.info("菜单备份结束");
+    	return result;
+    }
+	
+	@RequestMapping("/getBackupfilelist.json")
+	@ResponseBody
+	public List<TreeVo> getBackupfileList(HttpServletRequest request,
+			@RequestParam(value="Id",defaultValue="",required=true) String Id){
+		List<TreeVo> trees = new ArrayList<>();
+		
+		List<String> result = new ArrayList<>();
+		
+		result = m_mVersionService.getBackupfileList(Id);
+		
+		if(result.size() > 0){
+			for(String s:result){
+				TreeVo t = new TreeVo();
+				String fileId = s.split("\\_")[1].replace(".xml", "");
+				t.setId(fileId);
+				t.setText(s);
+				t.setLeaf(true);
+				t.setUrl("#");
+				t.setIconCls("icon-file");
+				trees.add(t);
+			}
+		}
+		return trees;
+	}
+	
+	@RequestMapping("/restore.json")
+	@ResponseBody
+	public ResultCommon restore(HttpServletRequest request,
+			@RequestParam(value="Id",defaultValue="",required=true) String Id,
+			@RequestParam(value="filename",defaultValue="",required=true) String filename){
+		ResultCommon result = null;
+		
+		if( Id.length()<=0 || filename.length()<=0 ){
+			result = new ResultCommon(PasCloudCode.PARAMEXCEPTION);
+			return result;
+		}
+		
+		result = m_mVersionService.restore(Id, filename);
+		return result;
+	}
+	
 
 }

@@ -59,7 +59,19 @@ public class PasCloudConfig {
 	@Value("${oracle.dbhome}")
 	private String ORACLE_DBHOME;
 	
+	@Value("${project.xtcd}")
+	private String PASCLOUD_XTCD;
 	
+	
+	
+	public String getPASCLOUD_XTCD() {
+		return PASCLOUD_XTCD;
+	}
+
+	public void setPASCLOUD_XTCD(String pASCLOUD_XTCD) {
+		PASCLOUD_XTCD = pASCLOUD_XTCD;
+	}
+
 	public String getORACLE_DBHOME() {
 		return ORACLE_DBHOME;
 	}
