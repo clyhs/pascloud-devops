@@ -83,6 +83,7 @@ public class RedisService extends AbstractRedisService {
 	        
 	        
 	        String id = vo.getIp()+":"+ vo.getPort();
+	        log.info("加入"+id);
 	        JedisPoolUtils.addJedisPool(id, jedisPool);
 	        
 		}
@@ -598,6 +599,30 @@ public class RedisService extends AbstractRedisService {
 		jedis.hmset(key.getBytes(), map);
 	}
 	
+	public List<String> getPasCloudServiceIbatisUrl(Jedis jedis){
+		
+		List<String> urls = new ArrayList<>();
+		try{
+			Map<byte[],byte[]> map = jedis.hgetAll("pas-cloud-demoServiceUrls".getBytes());
+	        Iterator<Entry<byte[], byte[]>> it = map.entrySet().iterator();
+	        while(it.hasNext()){
+	        	Map.Entry<byte[], byte[]> t = it.next();
+	        	String key = new String(t.getKey());
+	        	ByteArrayInputStream is = new ByteArrayInputStream(t.getValue());
+	        	ObjectInputStream ois = new ObjectInputStream(is);
+	        	String v = (String) ois.readObject();
+	        	
+	        	log.info(key+","+v);
+	        	urls.add(v);
+	        }
+		}catch(Exception e){
+			log.error(e.getMessage());
+		}
+		
+		return urls;
+		
+	}
+	
 	public static void main(String[] args) throws IOException, ClassNotFoundException{
 		
 		JedisPoolConfig config = new JedisPoolConfig();
@@ -627,7 +652,7 @@ public class RedisService extends AbstractRedisService {
         	
         	System.out.println(key+","+v);
         }*/
-        
+        /*
         Set<byte[]> sets = j.smembers("dn1.query.funList".getBytes());
 		
 		Set<String> setall = new HashSet<>();
@@ -638,8 +663,19 @@ public class RedisService extends AbstractRedisService {
 			setall.add(s);
 		}
 		Gson g = new Gson();
-		System.out.println(g.toJson(setall));
+		System.out.println(g.toJson(setall));*/
         
+        Map<byte[],byte[]> map = j.hgetAll("pas-cloud-demoServiceUrls".getBytes());
+        Iterator<Entry<byte[], byte[]>> it = map.entrySet().iterator();
+        while(it.hasNext()){
+        	Map.Entry<byte[], byte[]> t = it.next();
+        	String key = new String(t.getKey());
+        	ByteArrayInputStream is = new ByteArrayInputStream(t.getValue());
+        	ObjectInputStream ois = new ObjectInputStream(is);
+        	String v = (String) ois.readObject();
+        	
+        	System.out.println(key+","+v);
+        }
 		
 	}
 	

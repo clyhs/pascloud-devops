@@ -54,6 +54,8 @@ public class Constants {
     public  static final String MYCAT_MYSQL = MYCAT_EYE+"/mysql";
     public  static final String MYCAT_SNMP = MYCAT_EYE+"/mycat_snmp";
     public  static final String MYCAT_PROCESSOR = MYCAT_EYE+"/mycat_processor";	
+    
+    public static final String PASCLOUD_SERVICE_IBATIS_URL="module/pasplus/restReParseSqlMap";
 	
 	
 }

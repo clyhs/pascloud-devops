@@ -305,6 +305,9 @@ public class MVersionService extends AbstractBaseService {
 			}else{
 				result = new ResultCommon(PasCloudCode.ERROR);
 			}
+			if(Id.equals(Constants.PASCLOUD_PUBLIC_DB)){
+				delAllTenantXtcd(cd);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			
@@ -320,6 +323,48 @@ public class MVersionService extends AbstractBaseService {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
 			}
+		}
+		return result;
+	}
+	
+	public ResultCommon delAllTenantXtcd(XtcdVo cd){
+		ResultCommon result = null;
+		Connection conn = null;
+		String sql = "";
+		Integer num = 0;
+		List<DBInfo> dbs = new ArrayList<>();
+		
+		try {
+			dbs = m_configService.getDBFromConfig();
+			sql = "delete from xtb_xtcd where xmdh=?";
+			for(DBInfo db:dbs){
+				log.info("同步删除"+db.getId());
+				Integer row = 0;
+				conn = getConnectionById(db.getId());
+				Object[] params = {cd.getXmdh()};
+				QueryRunner qRunner = new QueryRunner();  
+				row = qRunner.update(conn, sql, params);
+				num++;
+				
+				if(null!=conn){
+					conn.close();
+					conn=null;
+				}
+			}
+			
+			if(num>0){
+				result = new ResultCommon(PasCloudCode.SUCCESS);
+			}else{
+				result = new ResultCommon(PasCloudCode.ERROR);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+			log.error(e.getMessage());
+			//e.printStackTrace();
+			result = new ResultCommon(PasCloudCode.EXCEPTION.getCode(),e.getMessage());
+		}finally{
+			
 		}
 		return result;
 	}
@@ -342,6 +387,10 @@ public class MVersionService extends AbstractBaseService {
 			QueryRunner qRunner = new QueryRunner();  
 
 			row = qRunner.update(conn, sql, params);
+			
+			if(Id.equals(Constants.PASCLOUD_PUBLIC_DB)){
+				changeAllTenantXtcdStatus(cd);
+			}
 			if(row>0){
 				result = new ResultCommon(PasCloudCode.SUCCESS);
 			}else{
@@ -361,6 +410,41 @@ public class MVersionService extends AbstractBaseService {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
 			}
+		}
+		return result;
+	}
+	
+	public ResultCommon changeAllTenantXtcdStatus(XtcdVo cd){
+		ResultCommon result  = null;
+		
+        List<DBInfo> dbs = new ArrayList<>();
+		dbs = m_configService.getDBFromConfig();
+		Connection conn = null;
+		Integer num = 0;
+		try{
+			String sql = "update xtb_xtcd set sfxs=? where xmdh=?";
+			for(DBInfo db:dbs){
+				log.info("同步更新"+db.getId());
+				Integer row = 0;
+				conn = getConnectionById(db.getId());
+				Object[] params = {cd.getSfxs(),cd.getXmdh()};
+				QueryRunner qRunner = new QueryRunner();  
+				row = qRunner.update(conn, sql, params);
+				num++;
+				
+				if(null!=conn){
+					conn.close();
+					conn=null;
+				}
+			}
+			if(num>0){
+				result = new ResultCommon(PasCloudCode.SUCCESS);
+			}else{
+				result = new ResultCommon(PasCloudCode.ERROR);
+			}
+		}catch(Exception e){
+			log.error(e.getMessage());
+			result = new ResultCommon(PasCloudCode.EXCEPTION);
 		}
 		return result;
 	}

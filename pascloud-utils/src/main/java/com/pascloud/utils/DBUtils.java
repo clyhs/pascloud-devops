@@ -45,7 +45,7 @@ public class DBUtils {
             log.info("连接结束...");
         } catch (SQLException | ClassNotFoundException e) {  
             System.out.println("connect failed!");  
-            //e.printStackTrace();  
+            e.printStackTrace();  
             log.error(e.getMessage());
             log.info("连接失败...");
         } finally{

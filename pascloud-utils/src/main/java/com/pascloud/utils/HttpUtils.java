@@ -91,7 +91,7 @@ public class HttpUtils {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			logger.error("http error!", e);
 			http.getConnectionManager().shutdown();
 		} finally {

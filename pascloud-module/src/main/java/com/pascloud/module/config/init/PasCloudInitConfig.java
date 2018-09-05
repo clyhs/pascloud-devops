@@ -51,6 +51,7 @@ public class PasCloudInitConfig implements ApplicationListener<ContextRefreshedE
 		if(event.getApplicationContext().getParent() == null){
 			//initDataSource();
 			//initRedisPool();
+			//m_redisService.initRedisServer();
 			
 		}
 		

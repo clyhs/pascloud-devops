@@ -30,6 +30,8 @@ import java.util.Set;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
@@ -40,6 +42,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import com.google.gson.Gson;
 import com.pas.cloud.studio.parameters.ImportParameters;
 import com.pas.cloud.studio.parameters.ManageParameters;
 import com.pas.cloud.studio.parameters.Parameter;
@@ -54,6 +57,7 @@ import com.pascloud.module.passervice.service.PasService;
 import com.pascloud.module.redis.service.RedisService;
 import com.pascloud.module.server.service.ServerService;
 import com.pascloud.utils.FileUtils;
+import com.pascloud.utils.HttpUtils;
 import com.pascloud.utils.PasCloudCode;
 import com.pascloud.utils.ZipUtils;
 import com.pascloud.utils.gzip.GZipUtils;
@@ -956,7 +960,11 @@ public class PasdevService extends AbstractBaseService {
 	
 	
 	/**
-	 * 上传
+	 * 上传PAS+文件
+	 * 下一步 unzipAndSysToDB 解压同步到数据库
+	 * 下一步copyPasfileWidthForUpload 复制同步到数据库
+	 * 下一步sysPasfileToDBForUpload 同步到数据库
+	 * 下一步同步到缓存sysPasfileToRedis
 	 * @param file
 	 * @param dirId 默认为DN0
 	 * @return
@@ -1168,7 +1176,12 @@ public class PasdevService extends AbstractBaseService {
 		return result;
 	}
 	
-	
+	/**
+	 * 把pas+文件同步到缓存
+	 * @param dirId
+	 * @param vos
+	 * @return
+	 */
 	public ResultCommon sysPasfileToRedis(String dirId,List<PasfileVo> vos){
 		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
 		List<RedisVo> rediss = m_pasService.getRedisServer();
@@ -1200,6 +1213,8 @@ public class PasdevService extends AbstractBaseService {
 				}else{
 					m_redisService.setCacheFunVersMap(jedis, vo.getPid(),vo.getFunId(), vo.getVersion(), dirId);
 				}
+				
+				sysPasfileVoToIbatis(jedis,vo,dirId);
 			}
 			m_redisService.setCacheFunMapAll(jedis, map, dirId);
 			
@@ -1209,6 +1224,53 @@ public class PasdevService extends AbstractBaseService {
 		jedisPool.close();
 		
 		return result;
+	}
+	
+	/**
+	 * 装上传的文件同步到IBATIS上下文
+	 * @param jedis
+	 * @param vo
+	 * @param dirId
+	 * @return
+	 */
+	private Boolean  sysPasfileVoToIbatis(Jedis jedis,PasfileVo vo,String dirId){
+		Boolean flag = false;
+		
+		List<String> urls = new ArrayList<>();
+		try {
+	        
+			urls = m_redisService.getPasCloudServiceIbatisUrl(jedis);
+			if(urls.size()>0){
+				for(String url:urls){
+					url = url+Constants.PASCLOUD_SERVICE_IBATIS_URL;
+					List<NameValuePair> header = new ArrayList<NameValuePair>();
+		        	Map<String,NameValuePair> params = new HashMap<>();
+		        	params.put("db", new BasicNameValuePair("db",dirId));
+		        	params.put("funId", new BasicNameValuePair("funId",vo.getFunId()));
+		            String r= HttpUtils.httpGetTool(url,params,header);
+		            Gson g = new Gson();
+		            //ResultCommonHttp res = g.fromJson(r, ResultCommonHttp.class);
+		            log.info(url+"|res="+r);
+				}
+			}
+			flag = true;
+		}catch(Exception e){
+			log.info(e.getMessage());
+		}
+		
+		return flag;
+	}
+	
+	class ResultCommonHttp{
+		
+		String retcode;
+		ResultCommonHttp(){}
+		public String getRetcode() {
+			return retcode;
+		}
+		public void setRetcode(String retcode) {
+			this.retcode = retcode;
+		}
 	}
 	
 	private Integer sysPasfileVoToRedis(String dirId,PasfileVo vo){
