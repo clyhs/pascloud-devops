@@ -35,6 +35,56 @@ function createFormFooter(){
 	return html;
 }
 
+function publishPasfileDialog(){
+	var div = '';
+	
+	div +='<div style="margin:10px 0;width:100%;">&nbsp;';  
+	div +='</div>';
+	
+	div +='<div style="margin:5px 0;width:100%;">';  
+	div +=    '<label for="title" class="formlabel">名称:</label>';
+	div +=    '<input class="easyui-validatebox formInput" id="title" name="title" data-options="required:true" >';
+	div +=    '<div style="clear:both;"></div>';
+	div +='</div>';
+	
+	div +='<div style="margin:5px 0;width:100%;">';  
+	div +=    '<label for="newfunId" class="formlabel">ID:</label>';
+	div +=    '<input class="easyui-validatebox formInput" id="newfunId" name="newfunId" data-options="required:true" >';
+	div +=    '<div style="clear:both;"></div>';
+	div +='</div>';
+	
+	div +='<div style="margin:5px 0;width:100%;">';  
+	div +=    '<label for="desc" class="formlabel">描述:</label>';
+	div +=    '<input class="easyui-validatebox formInput" id="desc" name="desc" >';
+	div +=    '<div style="clear:both;"></div>';
+	div +='</div>';
+	
+	
+	div += createPublishFormFooter(); 
+	createDialogDivWithSize('mainDataGrid', 'publishPanel','发布为公共版本', '',500,260,div);
+}
+
+
+function createPublishFormFooter(){
+
+	var html ="";
+    html += '<div style="border:#ccc 0px solid;margin-bottom:25px;width:95%;line-height:24px;margin-top:10px;">';
+	
+    html +=   '<div style="float:left;width:25%;">';
+	html +=   '&nbsp;'; 
+	html +=   '</div>';
+	html +=   '<div style="float:left;width:20%;">';
+	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-database_save\'" onclick="publish()" >确定</a>'; 
+	html +=   '</div>';
+	html +=   '<div style="border:#ccc 0px solid;float:left;width:30%;">';
+	html +=   '<a href="#" class="easyui-linkbutton" data-options="iconCls:\'icon-2013040601125064_easyicon_net_16\'">重置</a>'; 
+	html +=   '</div>';
+	html +=   '<div style="clear:both;"></div>';
+	html += '</div>';
+	
+	return html;
+}
+
 function addPasfile(){
 	
 	var name = $('#name').val();
@@ -124,6 +174,7 @@ function uploadPasfile(){
 	    		if(data.code == 10000){
 	    		    //alert(data.desc);
 	    			//putPasfileToRedis.json
+	    			/*
 	    			EasyUILoadForMsg('mainCenter','上传完成，正在初始化到缓存中，请耐心等待！');
 	    			$.post("putPasfileToRedis.json",param,function(data,status){
 	    	    		if(data.code == 10000){
@@ -134,7 +185,9 @@ function uploadPasfile(){
 	    	    			dispalyEasyUILoad('mainCenter');
 	    	    			$.messager.alert('提示',data.desc);	
 	    	    		}
-	    	    	});
+	    	    	});*/
+	    			dispalyEasyUILoad('mainCenter');
+	    			$.messager.alert('提示',data.desc);	
 	    		}else{
 	    			dispalyEasyUILoad('mainCenter');
 	    			$.messager.alert('提示',data.desc);	
@@ -200,6 +253,66 @@ function deletePasfile(){
 	});
 	
 	
+}
+
+function publish(){
+	
+	var title = $("#title").val();
+	var newfunId = $("#newfunId").val();
+	var desc = $("#desc").val();
+	
+	var regCn=/^[\u4E00-\u9FA5]{2,15}$/;
+	if(!regCn.test(title)){
+		$.messager.alert('提示','中文名称只能2位到15位的汉字组成');
+		return ;
+	}
+	var regDesc=/^[A-Za-z0-9\u4E00-\u9FA5]{0,20}$/;
+	if(!regDesc.test(desc)){
+		$.messager.alert('提示','描述只能包括中英文数字组合，且不能超过20个字符');
+		return ;
+	}
+	
+	var regNewfunId=/^[A-Za-z0-9]{0,15}$/;
+	if(!regNewfunId.test(newfunId)){
+		$.messager.alert('提示','描述只能包括英文数字组合，且不能超过15个字符');
+		return ;
+	}
+	
+    var row = $('#mainDataGrid').datagrid('getSelected'); 
+	
+	if(null == row){
+		$.messager.alert('错误',"请选择一行");
+		return ;
+	}
+	
+	var funId = row.funId;
+	var version = row.version;
+	
+	var vers = version.split(".");
+	if(vers.length!=4){
+		$.messager.alert('错误',"该文件版本号不规范，版本号应该是x.x.x.x");
+		return ;
+	}else{
+		if(vers[1]=='0'){
+			$.messager.alert('错误',"该文件为公共版本，不需要发布。");
+			return ;
+		}
+	}
+	
+	var params = {funId:funId,dirId:dirId,desc:desc,title:title,newfunId:newfunId};
+	$('#publishPanel').dialog('close');
+	EasyUILoad('mainCenter');
+	$.post("publish.json",params,function(data,status){
+		if(data.code == 10000){
+		    //alert(data.desc);
+			reloadTableWithID(dirId);
+			dispalyEasyUILoad('mainCenter');
+			$.messager.alert('提示',data.desc);	
+		}else{
+			dispalyEasyUILoad('mainCenter');
+			$.messager.alert('提示',data.desc);	
+		}
+	});
 }
 
 

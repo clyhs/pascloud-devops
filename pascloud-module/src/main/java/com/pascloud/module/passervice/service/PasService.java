@@ -570,7 +570,7 @@ public class PasService extends AbstractBaseService {
 		if(dbs.size()>0){
 			for(DBInfo db:dbs){
 				log.info("uploadPasdev="+db.getId());
-				m_pasdevService.uploadPasfileWithID(db.getId(),ip);
+				m_pasdevService.uploadPasfileWithIDToServerWithIp(db.getId(),ip);
 			}
 			flag = true;
 		}

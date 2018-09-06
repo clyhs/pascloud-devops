@@ -217,6 +217,12 @@ public class PasdevController extends BaseController {
 		return result;
 	}
 	
+	/**
+	 * 将租户的PAS+文件目录上传到应用服务器的DATA目录下
+	 * @param request
+	 * @param name
+	 * @return
+	 */
 	@RequestMapping("/uploadPasfile.json")
 	@ResponseBody
 	public ResultCommon  uploadPasfile(HttpServletRequest request,
@@ -228,7 +234,7 @@ public class PasdevController extends BaseController {
 			result = new ResultCommon(PasCloudCode.ERROR);
 			return result;
 		}
-		if(!"".equals(name) && m_pasdevService.uploadPasfileWithID(name)){
+		if(!"".equals(name) && m_pasdevService.uploadPasfileWithIDToServer(name)){
 			result = new ResultCommon(PasCloudCode.SUCCESS);
 		}else{
 			result = new ResultCommon(PasCloudCode.ERROR);
@@ -236,6 +242,7 @@ public class PasdevController extends BaseController {
 		log.info("上传完成");
 		return result;
 	}
+	
 	
 	@RequestMapping("/putPasfileToRedis.json")
 	@ResponseBody
@@ -278,6 +285,14 @@ public class PasdevController extends BaseController {
         
 		return result;
 	}
+	
+	/**
+	 * 上传
+	 * @param request
+	 * @param file
+	 * @param dirId
+	 * @return
+	 */
 	@RequestMapping("/uploadfile.json")
 	@ResponseBody
 	public ResultCommon uploadfile(HttpServletRequest request,
@@ -296,6 +311,12 @@ public class PasdevController extends BaseController {
 		return result;
 		
 	}
+	/**
+	 * 同步到数据库，同时并租户的文件同步到缓存上
+	 * @param request
+	 * @param dirId
+	 * @return
+	 */
 	@RequestMapping("/sysPasfileToDB.json")
 	@ResponseBody
 	public ResultCommon sysPasfileToDB(HttpServletRequest request,
@@ -329,5 +350,33 @@ public class PasdevController extends BaseController {
 		result = m_pasdevService.delPasfileByFunId(funId, dirId);
 		return result;
 		
+	}
+	
+	@RequestMapping("/publish.json")
+	@ResponseBody
+	public ResultCommon publish(HttpServletRequest request,
+			@RequestParam(name = "funId",defaultValue="", required = true) String funId,
+			@RequestParam(name = "dirId",defaultValue="", required = true) String dirId,
+			@RequestParam(name = "newfunId",defaultValue="", required = true) String newfunId,
+			@RequestParam(name = "title",defaultValue="", required = true) String title,
+			@RequestParam(name = "desc",defaultValue="", required = true) String  desc){
+        ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
+		
+		if(funId.length()<=0 || dirId.length()<=0){
+			result = new ResultCommon(PasCloudCode.PARAMEXCEPTION);
+			return result;
+		}
+
+
+		if(m_pasdevService.checkFunIdIsExist(newfunId)){
+			result = new ResultCommon(PasCloudCode.ERROR.getCode(),"该funId已经存在公共库");
+			return result;
+		}else{
+			result = m_pasdevService.copyPasfileFromDN(funId, dirId, newfunId, title, desc);
+		}
+		
+		
+		
+		return result;
 	}
 }

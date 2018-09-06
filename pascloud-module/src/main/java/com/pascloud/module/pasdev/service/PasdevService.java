@@ -33,6 +33,7 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.dom4j.Document;
+import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
@@ -48,6 +49,7 @@ import com.pas.cloud.studio.parameters.ManageParameters;
 import com.pas.cloud.studio.parameters.Parameter;
 import com.pas.cloud.studio.parameters.Parameters;
 import com.pas.cloud.studio.parameters.YjgxParameters;
+import com.pas.cloud.studio.yjgx.bean.Page;
 import com.pascloud.constant.Constants;
 import com.pascloud.module.common.service.AbstractBaseService;
 import com.pascloud.module.config.PasCloudConfig;
@@ -68,6 +70,7 @@ import com.pascloud.vo.database.DBInfo;
 import com.pascloud.vo.docker.ContainerVo;
 import com.pascloud.vo.mversion.XtcdVo;
 import com.pascloud.vo.pasdev.PasfileVo;
+import com.pascloud.vo.pasdev.PassPlusType;
 import com.pascloud.vo.pass.RedisVo;
 import com.pascloud.vo.result.ResultCommon;
 import com.pascloud.vo.result.ResultPageVo;
@@ -398,7 +401,7 @@ public class PasdevService extends AbstractBaseService {
 	 * @param pfs
 	 * @return
 	 */
-	public ResultCommon sysPasfileToDBForUpload(List<PasfileVo> pfs,String dbSchema){
+	public ResultCommon uploadPasfileForDatabase(List<PasfileVo> pfs,String dbSchema){
 		ResultCommon result = null;
 		java.sql.Connection conn = null;
 		//List<PasfileVo> pfs = new ArrayList<>();
@@ -467,7 +470,7 @@ public class PasdevService extends AbstractBaseService {
 	}
 	
 	private String getIdByPasfileVersion(String filepath){
-		log.info(filepath);
+		//log.info(filepath);
 		Document doc = XmlParser.getDocument(filepath);
 		Element root = doc.getRootElement();
 		String version = "";
@@ -546,7 +549,7 @@ public class PasdevService extends AbstractBaseService {
 	 * @param funId
 	 * @return
 	 */
-	public Integer copyPasfileWidthForUpload(String dbSchema,String sourcePath,String funId){
+	public Integer uploadPasfileForCopyToDB(String dbSchema,String sourcePath,String funId){
 		Integer num = 0;
 		
 		String newpath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()
@@ -584,7 +587,7 @@ public class PasdevService extends AbstractBaseService {
 			List<PasfileVo> vos= getPasdevFiles(files);
 			
 			if(null!=vos && vos.size()>0){
-				sysPasfileToDBForUpload(vos,dbSchema);
+				uploadPasfileForDatabase(vos,dbSchema);
 			}
 		}
 		
@@ -611,6 +614,7 @@ public class PasdevService extends AbstractBaseService {
 	}
 	
 	private synchronized Integer copyPasfileForParser(String filepath,String dbSchema){
+		log.info("修改xml文件的id:"+filepath);
 		Integer num = 0;
 		Document doc = XmlParser.getDocument(filepath);
 		Element root = doc.getRootElement();
@@ -733,7 +737,7 @@ public class PasdevService extends AbstractBaseService {
 	 * @param dbSchema
 	 * @return
 	 */
-	public Boolean uploadPasfileWithID(String dbSchema){
+	public Boolean uploadPasfileWithIDToServer(String dbSchema){
 		Boolean flag = false;
 		String path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()
 		+"/"+dbSchema;
@@ -769,7 +773,7 @@ public class PasdevService extends AbstractBaseService {
 		return flag;
 	}
 	
-	public Boolean uploadPasfileWithID(String dbSchema,String ip){
+	public Boolean uploadPasfileWithIDToServerWithIp(String dbSchema,String ip){
 		Boolean flag = false;
 		String path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()
 		+"/"+dbSchema;
@@ -958,6 +962,276 @@ public class PasdevService extends AbstractBaseService {
 		return flag;
 	}
 	
+	/**
+	 * 在公共库里检查是否有重复的FUNID，
+	 * @param funId
+	 * @return
+	 */
+	public Boolean checkFunIdIsExist(String newfunId){
+		ResultCommon result = null;
+		java.sql.Connection conn = null;
+		Integer res = 0;
+		Boolean flag= false;
+		try{
+			log.info("查询公共库是否存在同样的funId="+newfunId);
+			conn = m_databaseService.getConnectionById(Constants.PASCLOUD_PUBLIC_DB);
+			QueryRunner qRunner = new QueryRunner(); 
+			
+			String sql = "select count(1) from xtb_pasfile where fhdh='dn0' and funId=? ";
+			Object[] params = {newfunId};
+			
+			Number num = (Number)qRunner.query(conn,sql, new ScalarHandler(),params);
+			
+			if(null!=num){
+				res = num.intValue();
+			}
+			if(res>0){
+				flag = true;
+			}
+			log.info("查询公共库是否存在同样的funId="+newfunId+"结束");
+		}catch(Exception e){
+			log.error(e.getMessage());
+			
+		}
+		
+		return flag;
+	}
+	
+	/**
+	 * 从别的租户里复制PAS+开发的文件到upload/dn0/funId-xxxxxx/funId.xml funId.para
+	 * @param funId
+	 * @param dnId
+	 * @return
+	 */
+	public ResultCommon copyPasfileFromDN(String funId,String dnId,String newfunId,
+			String title,String desc){
+		ResultCommon result = null;
+		log.info("从租户"+dnId+"复制funId="+funId+"到上传目录");
+		//上传的目录
+		String filepath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)
+				+m_config.getPASCLOUD_UPLOAD()
+				+"/pasfile";
+		//pas+目录
+		String pasfilepath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)
+				+m_config.getPASCLOUD_DEV_DIR()
+				+"/"+dnId;
+		//upload/pasfile/dn0
+		String destpath = filepath+"/"+Constants.PASCLOUD_PUBLIC_DB;
+		String fname =  newfunId;
+		String newfname = fname + "-" + getRandomFileName();
+		//upload/pasfile/dn0/newfunId-xxxxx
+		String dirpath  = destpath +"/"+ newfname;
+		//创建目录 upload/pasfile/dn0/newfunId-xxxxx
+		FileUtils.createOrExistsDir(dirpath);
+		
+		//接下来复制租户的文件到上传目录
+		String sfilename_xml = funId+".xml";
+		String sfilename_para= funId+".para";
+		String sfilename_xmlpath = pasfilepath+"/"+sfilename_xml;
+		String sfilename_parapath= pasfilepath+"/"+sfilename_para;
+		
+		String dfilename_xml = newfunId+".xml";
+		String dfilename_para= newfunId+".para";
+		String dfilename_xmlpath = dirpath+"/"+dfilename_xml;
+		String dfilename_parapath= dirpath+"/"+dfilename_para;
+		
+		Boolean cpxml_flag = false;
+		Boolean cppara_flag = false;
+		Boolean change_flag = false;
+	
+		cpxml_flag = FileUtils.copyFile(sfilename_xmlpath, dfilename_xmlpath);
+		cppara_flag = FileUtils.copyFile(sfilename_parapath, dfilename_parapath);
+		
+		log.info("源xml文件:"+sfilename_xmlpath);
+		log.info("源para文件:"+sfilename_parapath);
+		
+		log.info("从租户"+dnId+"复制funId="+funId+"："+dfilename_xmlpath);
+		log.info("从租户"+dnId+"复制funId="+funId+"："+dfilename_parapath);
+		
+		if(cpxml_flag && cppara_flag){
+			
+			//修改funId.xml里面的dn{0...99}->dn0
+			copyPasfileForParser(dfilename_xmlpath,Constants.PASCLOUD_PUBLIC_DB);
+			//接下来修改版本号，
+			change_flag = changePasfileProperty(dirpath,newfunId,title,desc,funId);
+			log.info("修改文件中的版号，下面进行同步到所有租户");
+			
+			if(change_flag){
+				List<File> fs = FileUtils.listFilesInDirWithFilter(dirpath, ".xml");
+				List<PasfileVo> vos = new ArrayList<>();
+				vos = getPasdevFiles(fs);
+				log.info("处理文件同步开始");
+				result = uploadPasfileForCopy(vos,dirpath);
+				log.info("处理文件同步结束");
+			}else{
+				result = new ResultCommon(PasCloudCode.ERROR.getCode(),"修改文件属性失败");
+			}
+			
+			
+
+		}else{
+			result = new ResultCommon(PasCloudCode.ERROR.getCode(),"复制文件失败");
+		}
+		
+		return result;
+	}
+	/**
+	 * 修改得别的租户过来的PAS+文件的版号
+	 * 如1.1.1.0->1.0.0.0
+	 * @param dirPath
+	 * @param funId
+	 * @return
+	 */
+	private Boolean changePasfileProperty(String dirpath,String newfunId,
+			String title,String desc,String oldfunId){
+		Boolean flag = false;
+		
+		
+		
+		String dfilename_xml = newfunId+".xml";
+		String dfilename_para= newfunId+".para";
+		String dfilename_xmlpath = dirpath+"/"+dfilename_xml;
+		String dfilename_parapath= dirpath+"/"+dfilename_para;
+		String newVersion = "";
+		try{
+			log.info("修改："+dfilename_xmlpath);
+			//修改xml
+			Document doc = XmlParser.getDocument(dfilename_xmlpath);
+			Element root = doc.getRootElement();
+			String version = "";
+			version = root.attributeValue("version");
+			String[] vers = version.split("\\.");
+			Integer  len = vers.length;
+			if(len == 4){
+				newVersion = vers[0]+".0.0."+vers[3];
+				root.addAttribute("version", newVersion);
+				root.addAttribute("title", title);
+				root.addAttribute("id", newfunId);
+				root.addAttribute("desc", desc);
+				
+				
+				String newContent = doc.asXML();
+				//需要将内容中带有funid变量内容，替换掉
+				newContent = newContent.replaceAll(oldfunId, newfunId);
+				
+				Document newdoc = DocumentHelper.parseText(newContent);
+				Element  newelement = newdoc.getRootElement();
+				newelement.addAttribute("id", newfunId);
+
+				saveDocument(dfilename_xmlpath,newdoc);
+			}
+			log.info("修改："+dfilename_parapath);
+			//修改para
+			File f = new File(dfilename_parapath);
+			log.info(f.getName());
+			FileInputStream fis = new FileInputStream(f);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			Parameter p = (Parameter) ois.readObject();
+			
+			if(p.getFunType().toLowerCase().equals(PassPlusType.Query.value)){
+				Parameters para = (Parameters) p;
+				para.setVersion(newVersion);
+				para.setSaveFunctionName(title);
+				para.setFileName(newfunId);
+				
+				para.setDesc(desc);
+				para.setPid("");
+				OutputStream pos = new FileOutputStream(f);
+				ObjectOutputStream oos = new ObjectOutputStream(pos);
+				oos.writeObject(para);
+				
+				if(null!=oos){
+					oos.close();
+					oos = null;
+				}
+				if(null!=pos){
+					pos.close();
+					pos = null;
+				}
+			}else if(p.getFunType().toLowerCase().equals(PassPlusType.Manage.value)){
+				ManageParameters para = (ManageParameters) p;
+				para.setVersion(newVersion);
+				para.setSaveFunctionName(title);
+				para.setFileName(newfunId);
+				para.setDesc(desc);
+				para.setPid("");
+				OutputStream pos = new FileOutputStream(f);
+				ObjectOutputStream oos = new ObjectOutputStream(pos);
+				oos.writeObject(para);
+				if(null!=oos){
+					oos.close();
+					oos = null;
+				}
+				if(null!=pos){
+					pos.close();
+					pos = null;
+				}
+			}else if(p.getFunType().toLowerCase().equals(PassPlusType.Import.value)){
+				ImportParameters para = (ImportParameters) p;
+				para.setVersion(newVersion);
+				para.setFunName(title);
+				para.setFunId(newfunId);
+				para.setDesc(desc);
+				para.setPid("");
+				OutputStream pos = new FileOutputStream(f);
+				ObjectOutputStream oos = new ObjectOutputStream(pos);
+				oos.writeObject(para);
+				if(null!=oos){
+					oos.close();
+					oos = null;
+				}
+				if(null!=pos){
+					pos.close();
+					pos = null;
+				}
+			}else if(p.getFunType().toLowerCase().equals(PassPlusType.Yjgx.value)){
+				YjgxParameters para = (YjgxParameters) p;
+				String pageStr = para.getPageJson();
+				Gson gson = new Gson();
+				Page page = gson.fromJson(pageStr, Page.class);
+				page.setVersion(newVersion);
+				page.setFid(newfunId);
+				page.setFname(title);
+				page.setPid("");
+				page.setDesc(desc);
+				
+				String newPageStr = gson.toJson(page);
+				para.setPageJson(newPageStr);
+				para.setVersion(newVersion);
+				para.setFunName(title);
+				para.setFunId(newfunId);
+				para.setDesc(desc);
+				para.setPid("");
+				OutputStream pos = new FileOutputStream(f);
+				ObjectOutputStream oos = new ObjectOutputStream(pos);
+				oos.writeObject(para);
+				if(null!=oos){
+					oos.close();
+					oos = null;
+				}
+				if(null!=pos){
+					pos.close();
+					pos = null;
+				}
+			}
+			
+			if(null!=ois){
+				ois.close();
+				ois = null;
+			}
+			
+			if(null!=fis){
+				fis.close();
+				fis = null;
+			}
+			
+			flag = true;
+		}catch(Exception e){
+			log.error(e.getMessage());
+		}
+		
+		return flag;
+	}
 	
 	/**
 	 * 上传PAS+文件
@@ -972,7 +1246,9 @@ public class PasdevService extends AbstractBaseService {
 	public ResultCommon uploadPasfile(CommonsMultipartFile file,String dirId){
         ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
 		
-		String filepath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_UPLOAD()+"/pasfile";
+		String filepath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)
+				+m_config.getPASCLOUD_UPLOAD()
+				+"/pasfile";
         
 		//String filepath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR();
 		
@@ -1013,7 +1289,7 @@ public class PasdevService extends AbstractBaseService {
 
 				
 				String dest = destpath+"/"+newfname; 
-				result = unzipAndSysToDB(filepath,dest);
+				result = uploadPasfileForUnzip(filepath,dest);
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -1026,22 +1302,6 @@ public class PasdevService extends AbstractBaseService {
 		return result;
 	}
 	
-//	protected String getRandomFileName() {
-// 
-//		SimpleDateFormat simpleDateFormat;
-// 
-//		simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-// 
-//		Date date = new Date();
-// 
-//		String str = simpleDateFormat.format(date);
-// 
-//		Random random = new Random();
-// 
-//		int rannum = (int) (random.nextDouble() * (99999 - 10000 + 1)) + 10000;// 获取5位随机数
-// 
-//		return  str +rannum ;// 当前时间
-//	}
 
 	
 	/**
@@ -1051,7 +1311,7 @@ public class PasdevService extends AbstractBaseService {
 	 * 
 	 * @return
 	 */
-	private ResultCommon unzipAndSysToDB(String filepath,String destpath){
+	private ResultCommon uploadPasfileForUnzip(String filepath,String destpath){
 		ResultCommon result = null;
 		List<PasfileVo> vos = new ArrayList<>();
 		try {
@@ -1063,7 +1323,7 @@ public class PasdevService extends AbstractBaseService {
 					List<File> fs = FileUtils.listFilesInDirWithFilter(destpath, ".xml");
 					vos = getPasdevFiles(fs);
 					log.info("处理文件同步开始");
-					result = unzipAndSysToDB(vos,destpath);
+					result = uploadPasfileForCopy(vos,destpath);
 					log.info("处理文件同步结束");
 				}else{
 					result = new ResultCommon(PasCloudCode.ERROR);
@@ -1086,8 +1346,8 @@ public class PasdevService extends AbstractBaseService {
 	 * @param sourcePath
 	 * @return
 	 */
-	private ResultCommon unzipAndSysToDB(List<PasfileVo> vos,String sourcePath){
-		ResultCommon result = null;
+	private ResultCommon uploadPasfileForCopy(List<PasfileVo> vos,String sourcePath){
+		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
 		String path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR();
 		List<DBInfo> dbs = new ArrayList<>();
 		dbs = m_configService.getDBFromConfig();
@@ -1097,11 +1357,11 @@ public class PasdevService extends AbstractBaseService {
 			if(vo.getFhdh().equals(Constants.PASCLOUD_PUBLIC_DB)){
 				for(DBInfo db:dbs){
 					path = path +"/"+db.getId();
-					copyPasfileWidthForUpload(db.getId(),sourcePath,vo.getFunId());
+					uploadPasfileForCopyToDB(db.getId(),sourcePath,vo.getFunId());
 				}
 			}else{
 				path = path + "/" + vo.getFhdh();
-				copyPasfileWidthForUpload(vo.getFhdh(),sourcePath,vo.getFunId());
+				uploadPasfileForCopyToDB(vo.getFhdh(),sourcePath,vo.getFunId());
 			}
 		}
 		

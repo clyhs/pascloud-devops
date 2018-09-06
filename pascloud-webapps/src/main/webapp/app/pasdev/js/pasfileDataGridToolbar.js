@@ -34,5 +34,11 @@ var toolbar = function(){
         handler : function(){
         	sysPasfileToDB();
         }
+	},{
+		text : '发布',  
+        iconCls : 'icon-note_go',  
+        handler : function(){
+        	publishPasfileDialog();
+        }
 	}];
 }();

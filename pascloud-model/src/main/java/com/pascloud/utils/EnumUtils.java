@@ -8,11 +8,10 @@ import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.List;
 
-/**   
- * 枚举类型的工具类
- * @author hetangdong   
- * @date 2016-9-13 下午4:55:28 
- * @version 1.0.0 
+/**
+ * 
+ * @author chenly
+ *
  */
 public class EnumUtils {
 

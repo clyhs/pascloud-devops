@@ -13,25 +13,25 @@ var toolbar = function(){
         }
 	}*/,{
 		text : '初始化数据',  
-        iconCls : 'icon-database_go',  
+        iconCls : 'icon-database_edit',  
         handler : function(){
         	impDmpWithSid();
         }
 	},{
 		text : '重启监听器',  
-        iconCls : 'icon-database_go',  
+        iconCls : 'icon-database_yellow_start',  
         handler : function(){
         	restartListener();
         }
 	},{
 		text : '新建数据库管理员',  
-        iconCls : 'icon-database_go',  
+        iconCls : 'icon-user',  
         handler : function(){
         	createManagerUser();
         }
 	},{
 		text : '新建数据库用户',  
-        iconCls : 'icon-database_go',  
+        iconCls : 'icon-user_go',  
         handler : function(){
         	addUser();
         }
