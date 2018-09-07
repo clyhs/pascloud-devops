@@ -670,10 +670,15 @@ public class PasService extends AbstractBaseService {
 			log.info(mycatConfigPath);
 			mysqls = getMysqlServer();
 			if(mysqls.size()>0){
+				
 				MysqlVo vo = mysqls.get(0);
 				if(null!=vo){
 					m_mycatService.setDataHostWithDn0(vo.getIp(), "pascloud", vo.getPort(), "root", "root");
 				}
+				/*
+				for(MysqlVo vo:mysqls){
+					m_mycatService.setDataHostWithDn0(vo.getIp(), "pascloud", vo.getPort(), "root", "root");
+				}*/
 			}
 			flag = putFileToServer(conn,configfilepath, mycatConfigPath);
 			flag = putFileToServer(conn,serverfilepath, mycatConfigPath);

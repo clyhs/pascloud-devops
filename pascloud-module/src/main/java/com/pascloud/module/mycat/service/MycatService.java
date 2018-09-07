@@ -17,6 +17,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.dom4j.Document;
 import org.dom4j.Element;
+import org.dom4j.Node;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,7 @@ import com.pascloud.vo.mycat.DataHostVo;
 import com.pascloud.vo.mycat.DataNodeVo;
 import com.pascloud.vo.mycat.DataSourceVo;
 import com.pascloud.vo.pass.MycatVo;
+import com.pascloud.vo.pass.MysqlVo;
 import com.pascloud.vo.result.ResultListData;
 import com.pascloud.vo.server.ServerVo;
 import com.spotify.docker.client.DefaultDockerClient;
@@ -246,6 +248,23 @@ public class MycatService extends AbstractBaseService {
 		return flag;
 	}
 	
+	public synchronized Boolean setDataHostWithDn0(List<MysqlVo> vos){
+		Boolean flag = false;
+		String mycat_server_path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SERVER;
+		String mycat_schema_path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SCHEMA;
+		//flag = MycatXmlUtils.setDataHostWithDn0(mycat_schema_path, ip, database, port, user, password,mycat_server_path);
+		return flag;
+	}
+	
+	public synchronized Boolean addWriteHost(String dbSchema,String ip,String database,Integer port,String user,
+			String password){
+		Boolean flag = false;
+		String mycat_schema_path = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_MYCAT_DIR()+File.separator+Constants.MYCAT_SCHEMA;
+		
+		
+		return flag;
+	} 
+	
     private List<DataHostVo> getDataHosts(Element root){
 		List<DataHostVo> result = new ArrayList<>();
 		
@@ -288,11 +307,17 @@ public class MycatService extends AbstractBaseService {
 	
 	private void parserWritehost(Element e,DataHostVo vo){
 		
-		Element children = (Element) e.selectSingleNode("writeHost");
-		vo.setUrl(children.attributeValue("url"));
-		vo.setPassword(children.attributeValue("password"));
-		vo.setUser(children.attributeValue("user"));
+		//Element children = (Element) e.selectSingleNode("writeHost");
 		
+		Element children = null;
+		
+		List<Element> els = e.elements("writeHost");
+		if(null!=els && els.size()>0){
+			children = els.get(0);
+			vo.setUrl(children.attributeValue("url"));
+			vo.setPassword(children.attributeValue("password"));
+			vo.setUser(children.attributeValue("user"));
+		}
 		//System.out.println(children.asXML());
 	}
 	

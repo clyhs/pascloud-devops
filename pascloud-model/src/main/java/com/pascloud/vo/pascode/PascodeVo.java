@@ -20,8 +20,15 @@ public class PascodeVo implements Serializable {
 	
 	private long   size;
 	
-	
-	
+	private Integer selected;
+
+	public Integer getSelected() {
+		return selected;
+	}
+
+	public void setSelected(Integer selected) {
+		this.selected = selected;
+	}
 
 	public long getSize() {
 		return size;

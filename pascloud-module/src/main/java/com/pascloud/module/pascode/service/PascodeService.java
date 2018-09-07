@@ -376,7 +376,56 @@ public class PascodeService extends AbstractBaseService {
             	result = new ResultCommon(PasCloudCode.ERROR.getCode(),"部署"+num+"台应用服务器都失败");
             }
     	}
+        
+        
+        
         log.info("源码部署结束");
+		return result;
+	}
+	
+	public ResultCommon updatePascodeState(PascodeVo vo){
+		ResultCommon result = null;
+		log.info("更新源码的部署状态");
+		Connection conn = null;
+	
+		Integer row = 0;
+		try{
+			String preffix_name  = vo.getName().substring(0, vo.getName().lastIndexOf("-"));
+			
+			QueryRunner qRunner = new QueryRunner(); 
+			if(null!=preffix_name){
+				
+				conn = m_databaseService.getConnectionById(Constants.PASCLOUD_PUBLIC_DB);
+				String sql = " update xtb_pascode set selected=0 where name like ? ";
+				log.info(sql);
+				Object[] params = {"%"+preffix_name+"%"};
+				qRunner.update(conn, sql, params);
+				
+				String sql2  = " update xtb_pascode set selected=1 where name=? ";
+				log.info(sql2);
+				Object[] params2 = {vo.getName()};
+				row = qRunner.update(conn, sql2, params2);
+			}
+			if(row>0){
+				result = new ResultCommon(PasCloudCode.SUCCESS);
+			}else{
+				result = new ResultCommon(PasCloudCode.ERROR);
+			}
+		}catch(SQLException e){
+			log.error(e.getMessage());
+			result = new ResultCommon(PasCloudCode.EXCEPTION.getCode(),e.getMessage());
+		}finally{
+			if(null!=conn){
+				try {
+					conn.close();
+					conn = null;
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+				}
+				
+			}
+		}
 		return result;
 	}
 	
@@ -747,27 +796,27 @@ public class PascodeService extends AbstractBaseService {
 	}
 	
 	public static void main(String[] args){
-		String name = "pas-cloud-service-demo-1.0.1-SNAPSHOT-assembly-2018080215195284198.tar.gz";
-		String path = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/pascode";
-		path = path + "/" + name;
+		//String name = "pas-cloud-service-demo-1.0.1-SNAPSHOT-assembly-2018080215195284198.tar.gz";
+		//String path = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/pascode";
+		//path = path + "/" + name;
 		
-		ScpClientUtils scpClient = new ScpClientUtils("192.168.0.16","root","tccp@2012");
+		//ScpClientUtils scpClient = new ScpClientUtils("192.168.0.16","root","tccp@2012");
 		
-		long startTime = System.currentTimeMillis();
+		//long startTime = System.currentTimeMillis();
 		
 		///scpClient.putFileToServer(path, "/home/pascloud");
-		String cmd = "tar -zxvf "+"/home/pascloud/"+name+" -C"+" "+Constants.PASCLOUD_HOME;
+		//String cmd = "tar -zxvf "+"/home/pascloud/"+name+" -C"+" "+Constants.PASCLOUD_HOME;
 		
 		//scpClient.execCommand(cmd);
-		String f = "pas-cloud-service-demo-1.0.1-SNAPSHOT/data/pasplus/config/dn8/xttzdjckgd.para";
-		System.out.println(f.substring(0, f.indexOf('/')));
+		//String f = "pas-cloud-service-demo-1.0.1-SNAPSHOT/data/pasplus/config/dn8/xttzdjckgd.para";
+		//System.out.println(f.substring(0, f.indexOf('/')));
 		
 		
-		long endTime   = System.currentTimeMillis();
+		//long endTime   = System.currentTimeMillis();
 		
-		long time = endTime - startTime;
+		//long time = endTime - startTime;
 		
-		System.out.println(time/1000);
+		//System.out.println(time/1000);
 		
 		//name = name.replace(".tar.gz", "");
 		
@@ -776,5 +825,10 @@ public class PascodeService extends AbstractBaseService {
 		//name = name.substring(0, name.lastIndexOf('-'));
 		//name = name.substring(0, name.lastIndexOf('-'));
 		//System.out.println(name);
+		
+		String name = "pas-cloud-service-demo-1.0.1-SNAPSHOT-assembly-2018080215195284198.tar.gz";
+		
+		name = name.substring(0, name.lastIndexOf("-"));
+		System.out.println(name);
 	}
 }

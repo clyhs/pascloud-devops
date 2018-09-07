@@ -15,7 +15,7 @@ function uploadPascodeAndRestart(){
 	MaskUtil.mask('部署升级代码...'); 
 	$.post("uploadPascodeAndRestart.json",params,function(data,status){
 		if(data.code == 10000){
-			
+			reloadTableWithID();
 			$.messager.alert('提示',data.desc);
 			MaskUtil.unmask(); 
 		}else{

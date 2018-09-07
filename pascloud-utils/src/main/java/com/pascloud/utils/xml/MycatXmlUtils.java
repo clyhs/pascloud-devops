@@ -129,6 +129,33 @@ public class MycatXmlUtils {
 	}
 	
 	
+	
+//	public static Boolean addWriteHost(String schemaPath,String dbSchema,String ip,String database,
+//			Integer port,String user,String password){
+//		Boolean flag = false;
+//		
+//		Document doc = XmlParser.getDocument(schemaPath);
+//		Element root = doc.getRootElement();
+//		List<Element> nodes = root.elements("dataHost");
+//		Element dn = null;
+//		if(nodes.size()>0){
+//			//dataHost_dn0
+//			for(Element e:nodes){
+//				if(e.attributeValue("name").equals("dataHost_"+dbSchema)){
+//					dn = e;
+//				}
+//			}
+//		}
+//		
+//		if(null!=dn){
+//			log.info("添加地址:"+dbSchema);
+//			
+//		}
+//		
+//		return flag;
+//	}
+	
+	
 	/**
 	 * 
 	 *<dataHost name="orahost20" maxCon="1000" minCon="1" balance="0" writeType="0" dbType="oracle" dbDriver="jdbc">
@@ -190,7 +217,13 @@ public class MycatXmlUtils {
 		e.addAttribute("password", password);
 	}
 	
-	
+	private static void addWriteHost(Element root,String url,String user,String password,String hostname){
+		Element e = root.addElement("writeHost");
+		e.addAttribute("host", hostname);
+		e.addAttribute("url", url);
+		e.addAttribute("user", user);
+		e.addAttribute("password", password);
+	}
 	
 	//<heartbeat>select 1 from sysibm.sysdummy1</heartbeat>
 	private static void addHeartbeat(Element root,String dbType){

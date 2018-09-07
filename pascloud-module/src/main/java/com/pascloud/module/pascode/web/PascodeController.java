@@ -105,6 +105,11 @@ public class PascodeController extends BaseController {
 		vo.setName(name);
 		vo.setType(type);
 		result = m_pascodeService.uploadPascodeAndRestart(vo);
+		
+		if(result.getCode().equals(PasCloudCode.SUCCESS.getCode())){
+			m_pascodeService.updatePascodeState(vo);
+		}
+		
 		return result;
 		
 	}

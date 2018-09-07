@@ -24,7 +24,8 @@ function initMainDataGrid(){
         	{ field: 'name', title: '名称', width: 160, align: 'left' },
         	{ field: 'type', title: '类型', width: 40, align: 'left' ,formatter:formatOper },
         	{ field: 'createTime', title: '创建时间', width: 60, align: 'left',formatter: DateTimeFormatter},
-        	{ field: 'size', title: '大小', width: 60, align: 'left',formatter:sizeFormatter}
+        	{ field: 'size', title: '大小', width: 40, align: 'left',formatter:sizeFormatter},
+        	{ field: 'selected', title: '状态', width: 30, align: 'center',formatter:selectFormatter}
         ]],
         toolbar:toolbar,
         onBeforeLoad: function (param) {
@@ -83,7 +84,12 @@ function sizeFormatter(val,row,index){
 	return Math.round(val*100)/100+'M';
 }
 
-
+function selectFormatter(val,row,index){
+	if(val > 0){
+		return "<font color=\"blue\" >&radic;</font>";
+	}
+	return "";
+}
 
 function deletePascode(){
 	var row = $('#mainDataGrid').datagrid('getSelected'); 

@@ -1572,7 +1572,7 @@ public class PasdevService extends AbstractBaseService {
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException{
 		/*
-		String path = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/pascloud/pasdev";
+		String path = "D:/eclipse64/workspace/pas-cloud-parent/pas-cloud-service/pas-cloud-service-demo/src/main/assembly/data/pasplus/config/dn28";
 		
 		List<File> files = new ArrayList<File>();
 		files = FileUtils.listFilesInDirWithFilter(path, ".para", false);
@@ -1632,17 +1632,17 @@ public class PasdevService extends AbstractBaseService {
 			}
 		}
 		
-        String path = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/pascloud/pasdev";
+        //String path = "D:/eclipse64/workspace/pas-cloud-parent/pas-cloud-service/pas-cloud-service-demo/src/main/assembly/data/pasplus/config/dn12";
 		
-		List<File> files = new ArrayList<File>();
-		files = FileUtils.listFilesInDirWithFilter(path, ".xml", false);
+		List<File> files2 = new ArrayList<File>();
+		files2 = FileUtils.listFilesInDirWithFilter(path, ".xml", false);
 		
-		if(files.size()>0){
-			Iterator<File> it = files.iterator();
+		if(files2.size()>0){
+			Iterator<File> it = files2.iterator();
 			while(it.hasNext()){
-				File f = it.next();
+				File f2 = it.next();
 				//parserPasfileForID(f.getAbsolutePath());
-				Document doc = XmlParser.getDocument(f.getAbsolutePath());
+				Document doc = XmlParser.getDocument(f2.getAbsolutePath());
 				Element root = doc.getRootElement();
 				String title= root.attributeValue("title");
 				//vo.setType(root.attributeValue("type"));
@@ -1654,11 +1654,12 @@ public class PasdevService extends AbstractBaseService {
 				
 				OutputFormat format = OutputFormat.createPrettyPrint();
 				
-				XMLWriter writer =writer = new XMLWriter(new FileOutputStream(f.getAbsolutePath()),format);
+				XMLWriter writer =writer = new XMLWriter(new FileOutputStream(f2.getAbsolutePath()),format);
 				writer.write(doc);
 			}
-		}*/
-		
+		}
+		*/
+		/*
 		String dest = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/upload/pasfile/dn0/testhydr/testhydr.xml";
 
 		String destp = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/upload/pasfile/dn0/testhydr/testhydr.para";
@@ -1737,7 +1738,7 @@ public class PasdevService extends AbstractBaseService {
         Parameter ps = (Parameter) oiss.readObject();
         
         System.out.println(ps.getFunId());
-		
+		*/
 		//String path = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/upload/pasfile/dn0/testhycx01.zip";
 		//String dest = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/upload/pasfile/dn0/testhydr/testhydr.xml";
 		//List<File> files = ZipUtils.unzipFile(path, dest);
