@@ -3,39 +3,4 @@
 
 <mycat:schema xmlns:mycat="http://io.mycat/">
   <schema name="alldb" checkSQLschema="false" sqlMaxLimit="100" dataNode="dn0"/>
-  <schema name="dn0_schema" checkSQLschema="false" sqlMaxLimit="100">
-    <table name="khdx_jg" primaryKey="KHDXDH" autoIncrement="true" dataNode="dn0"/>
-  </schema>
-  <schema name="dn1_schema" checkSQLschema="false" sqlMaxLimit="100">
-    <table name="khdx_jg" primaryKey="KHDXDH" autoIncrement="true" dataNode="dn1"/>
-  </schema>
-  <schema name="dn2_schema" checkSQLschema="false" sqlMaxLimit="100">
-    <table name="khdx_jg" primaryKey="KHDXDH" autoIncrement="true" dataNode="dn2"/>
-  </schema>
-  <schema name="dn3_schema" checkSQLschema="false" sqlMaxLimit="100">
-    <table name="khdx_jg" primaryKey="KHDXDH" autoIncrement="true" dataNode="dn3"/>
-  </schema>
-  <dataNode name="dn0" dataHost="dataHost_dn0" database="pascloud"/>
-  <dataNode name="dn1" dataHost="dataHost_dn1" database="cpas01"/>
-  <dataNode name="dn2" dataHost="dataHost_dn2" database="cpas02"/>
-  <dataNode name="dn3" dataHost="dataHost_dn3" database="cpas04"/>
-  <dataHost name="dataHost_dn0" maxCon="1000" minCon="10" balance="0" writeType="0" dbType="mysql" dbDriver="native">
-    <heartbeat>select user()</heartbeat>
-    <writeHost host="hostM1" url="192.168.0.16:3306" user="root" password="root"/>
-  </dataHost>
-  <dataHost name="dataHost_dn1" maxCon="1000" minCon="10" balance="0" writeType="0" dbType="oracle" dbDriver="jdbc">
-    <heartbeat>select 1 from dual</heartbeat>
-    <connectionInitSql>alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss'</connectionInitSql>
-    <writeHost host="hostM1" url="jdbc:oracle:thin:@192.168.0.101:1521:cpas01" user="pas" password="pas"/>
-  </dataHost>
-  <dataHost name="dataHost_dn2" maxCon="1000" minCon="10" balance="0" writeType="0" dbType="oracle" dbDriver="jdbc">
-    <heartbeat>select 1 from dual</heartbeat>
-    <connectionInitSql>alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss'</connectionInitSql>
-    <writeHost host="hostM1" url="jdbc:oracle:thin:@192.168.0.101:1521:cpas02" user="pas" password="pas"/>
-  </dataHost>
-  <dataHost name="dataHost_dn3" maxCon="1000" minCon="10" balance="0" writeType="0" dbType="oracle" dbDriver="jdbc">
-    <heartbeat>select 1 from dual</heartbeat>
-    <connectionInitSql>alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss'</connectionInitSql>
-    <writeHost host="hostM1" url="jdbc:oracle:thin:@192.168.0.101:1521:cpas04" user="pas1" password="pas1"/>
-  </dataHost>
 </mycat:schema>

@@ -11,7 +11,7 @@ public class Constants {
 	public static String DB_ORACLE_DIRVERCLASS = "oracle.jdbc.driver.OracleDriver";
 	
 	
-	public static String PASCLOUD_HOME = "/home/pascloud/";
+	public static String PASCLOUD_HOME = "/app/app/pascloud/";
 	
 	
 	public static String PASCLOUD_SERVICE_DEMO = "pas-cloud-service-demo";

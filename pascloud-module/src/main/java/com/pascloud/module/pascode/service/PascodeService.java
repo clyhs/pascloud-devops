@@ -25,17 +25,21 @@ import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.database.service.DataBaseService;
 import com.pascloud.module.passervice.service.PasService;
 import com.pascloud.module.server.service.ServerService;
+import com.pascloud.utils.DBUtils;
 import com.pascloud.utils.FileUtils;
 import com.pascloud.utils.PasCloudCode;
 import com.pascloud.utils.ScpClientUtils;
+import com.pascloud.vo.database.DBInfo;
 import com.pascloud.vo.docker.ContainerVo;
 import com.pascloud.vo.mversion.XtcdVo;
 import com.pascloud.vo.pascode.PascodeEnum;
 import com.pascloud.vo.pascode.PascodeVo;
 import com.pascloud.vo.pasdev.PasfileVo;
+import com.pascloud.vo.pass.MysqlVo;
 import com.pascloud.vo.pass.PasTypeEnum;
 import com.pascloud.vo.result.ResultCommon;
 import com.pascloud.vo.result.ResultPageVo;
+import com.pascloud.vo.script.ScriptEnum;
 import com.pascloud.vo.server.ServerVo;
 
 import ch.ethz.ssh2.SCPClient;
@@ -58,6 +62,22 @@ public class PascodeService extends AbstractBaseService {
 	private ServerService      m_serverService;
 	
 	
+	public Connection getConnectionPublic(){
+		Connection conn = null;
+		List<MysqlVo> vos = m_pasService.getMysqlServer();
+		if(null!=vos && vos.size()>0){
+			MysqlVo vo = vos.get(0);
+			String driverClass = DBUtils.getDirverClassName(ScriptEnum.MYSQL.getValue());
+			String url = DBUtils.getUrlByParams(ScriptEnum.MYSQL.getValue(), vo.getIp(), "pascloud", vo.getPort());
+			DBUtils dbUtils = new DBUtils(driverClass, url, vo.getUsername(), vo.getPassword());
+			conn = dbUtils.getConnection();
+		}else{
+			log.info("db为空");
+		}
+		return conn;
+	}
+	
+	
 	
 	public ResultPageVo<PascodeVo> getPageData(Integer pageNo,Integer pageSize){
 		ResultPageVo<PascodeVo> result = null;
@@ -66,7 +86,7 @@ public class PascodeService extends AbstractBaseService {
 		Integer start = 0;
 		Integer totals = 0;
 		try{
-			conn = m_databaseService.getConnectionById(Constants.PASCLOUD_PUBLIC_DB);
+			conn = getConnectionPublic();
 			QueryRunner qRunner = new QueryRunner(); 
 			start = (pageNo - 1) * pageSize;
 			String sql = "select * from xtb_pascode order by id desc limit ?,?";
@@ -109,7 +129,7 @@ public class PascodeService extends AbstractBaseService {
 		Integer start = 0;
 		Integer totals = 0;
 		try{
-			conn = m_databaseService.getConnectionById(Constants.PASCLOUD_PUBLIC_DB);
+			conn = getConnectionPublic();
 			QueryRunner qRunner = new QueryRunner(); 
 			start = (pageNo - 1) * pageSize;
 			String sql = "select * from xtb_pascode where name like ? order by id desc limit ?,?";
@@ -228,7 +248,7 @@ public class PascodeService extends AbstractBaseService {
 		String sql = "";
 		Integer row = 0;
 		try {
-			conn = m_databaseService.getConnectionById(Constants.PASCLOUD_PUBLIC_DB);
+			conn = getConnectionPublic();
 			QueryRunner qRunner = new QueryRunner(); 
 			
 			sql = "INSERT INTO xtb_pascode(name,type,createTime,size)"
@@ -272,7 +292,7 @@ public class PascodeService extends AbstractBaseService {
 		Integer row = 0;
 		String filepath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_PASCODE();
 		try {
-			conn = m_databaseService.getConnectionById(Constants.PASCLOUD_PUBLIC_DB);
+			conn = getConnectionPublic();
 			QueryRunner qRunner = new QueryRunner(); 
 			
 			sql = "delete from xtb_pascode where "
@@ -395,7 +415,7 @@ public class PascodeService extends AbstractBaseService {
 			QueryRunner qRunner = new QueryRunner(); 
 			if(null!=preffix_name){
 				
-				conn = m_databaseService.getConnectionById(Constants.PASCLOUD_PUBLIC_DB);
+				conn = getConnectionPublic();
 				String sql = " update xtb_pascode set selected=0 where name like ? ";
 				log.info(sql);
 				Object[] params = {"%"+preffix_name+"%"};

@@ -89,7 +89,7 @@
         <url>/module/pascode/index.html</url>
         <pid>2000</pid>
       </tree>
-      <!--  
+        
       <tree>
         <id>2800</id>
         <text>脚本管理</text>
@@ -99,7 +99,7 @@
         <url>/module/script/index.html</url>
         <pid>2000</pid>
       </tree>
-      -->
+      
     </children>
     <iconCls>icon-application</iconCls>
     <url>#</url>

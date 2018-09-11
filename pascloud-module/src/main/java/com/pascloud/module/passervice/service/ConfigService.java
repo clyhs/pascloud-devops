@@ -244,6 +244,21 @@ public class ConfigService {
 		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
 		String url = "jdbc:mysql://"+ip+":"+port+"/pascloud";
 		p.setValueByKey("dn0.url", url, "");
+		p.setValueByKey("dn0.driverClass", "com.mysql.jdbc.Driver", "");
+		p.setValueByKey("dn0.username", "root", "");
+		p.setValueByKey("dn0.password", "root", "");
+		p.setValueByKey("dn0.type", "mysql", "");
+		p.setValueByKey("dn0.en", "gg", "");
+		p.setValueByKey("dn0.cn", "公共", "");
+		
+		/*dn0.url=jdbc\:mysql\://192.168.0.16\:3306/pascloud
+          dn0.driverClass=com.mysql.jdbc.Driver
+		  dn0.username=root
+		  dn0.password=root
+		  dn0.type=mysql
+		  dn0.en=gg
+		  dn0.cn=\u516C\u5171
+		*/
 	}
 	
 	public void setRedisConfig(String ip,Integer port,String user,String password){
