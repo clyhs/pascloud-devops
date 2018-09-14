@@ -16,9 +16,15 @@ function addPasService(){
 	div +=    '<div style="clear:both;"></div>';
 	div +='</div>';
 	
+	div +='<div style="margin:5px 0;width:100%;">';  
+	div +=    '<label for="clientIp" class="formlabel">代理ip地址:</label>';
+	div +=    '<input class="easyui-validatebox formInput" id="clientIp" name="clientIp" data-options="required:false" value=""  >';
+	div +=    '<div style="clear:both;"></div>';
+	div +='</div>';
+	
 	
 	div += createFormFooter(); 
-	createDialogDivWithSize('mainDataGrid', 'addPasService','添加云服务', '',500,200,div);
+	createDialogDivWithSize('mainDataGrid', 'addPasService','添加云服务', '',500,240,div);
 }
 
 function createFormFooter(){
@@ -43,7 +49,19 @@ function createFormFooter(){
 function submit(){
 	var ip = $("#ip").combobox('getValue');
 	var type = $("#type").combobox('getValue');
-	var param = {ip:ip,type:type};
+	var clientIp = $("#clientIp").val();
+	
+	if(type == 9){
+		var regIP= /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+		if(!regIP.test(clientIp)){
+			$.messager.alert('提示','ip格式必须为x.x.x.x x为数字');
+			return ;
+		}
+	}
+	
+	
+	
+	var param = {ip:ip,type:type,clientIp:clientIp};
 	if("" == ip || ip.length == 0 || "" == type || type.length == 0){
 		$.messager.alert('提示','IP和类型不能为空');
 		return ;

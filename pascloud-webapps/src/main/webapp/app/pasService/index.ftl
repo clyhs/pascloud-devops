@@ -24,13 +24,17 @@
 	<script type="text/javascript">
 		$(function(){
 		    initMainDataGrid();
+		    
+		    
 		});
+		
+		
 		
 	</script>
 	<style>
 	    .datagrid-btable .datagrid-cell{padding:6px 4px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}  
 	    .formlabel{width:30%;text-align:right;float:left;}
-	    .formInput{float:left;margin-left:10px;}
+	    .formInput{float:left;margin-left:0px;}
 	    .border_right{border-right:#ccc 1px solid;}
 	    .border_bottom{border-bottom:#ccc 1px solid;}
 	</style>

@@ -62,8 +62,20 @@ public class PasCloudConfig {
 	@Value("${project.xtcd}")
 	private String PASCLOUD_XTCD;
 	
+	@Value("${project.nginx}")
+	private String PASCLOUD_NGINX;
 	
 	
+	
+	
+	public String getPASCLOUD_NGINX() {
+		return PASCLOUD_NGINX;
+	}
+
+	public void setPASCLOUD_NGINX(String pASCLOUD_NGINX) {
+		PASCLOUD_NGINX = pASCLOUD_NGINX;
+	}
+
 	public String getPASCLOUD_XTCD() {
 		return PASCLOUD_XTCD;
 	}

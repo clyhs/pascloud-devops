@@ -10,7 +10,8 @@ public enum PasTypeEnum {
 	MQ(5,"pascloud_activemq"),
 	TOMCAT(6, "pascloud_tomcat"), 
 	ZK(7, "pascloud_zookeeper_admin"),
-	MYSQL(8,"pascloud_mysql");
+	MYSQL(8,"pascloud_mysql"),
+	NGINX(9,"pascloud_ngnix");
 	
 
 	private String value;

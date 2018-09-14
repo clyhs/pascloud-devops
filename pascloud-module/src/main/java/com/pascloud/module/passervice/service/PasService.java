@@ -1,7 +1,11 @@
 package com.pascloud.module.passervice.service;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -120,7 +124,8 @@ public class PasService extends AbstractBaseService {
 	 * @param service
 	 * @return
 	 */
-	public ResultCommon addPasService(String ip,Integer type,String service){
+	public ResultCommon addPasService(String ip,Integer type,String service,
+			String clientIp){
 		Boolean flag = false;
 		ResultCommon result = null;
 		switch(type){
@@ -155,6 +160,10 @@ public class PasService extends AbstractBaseService {
 		case 8:
 			log.info("添加mysql");
 			result = addMysqlContainer(ip,service);
+			break;
+		case 9:
+			log.info("添加ngnix");
+			result = addNginxContainer(ip,service,clientIp);
 			break;
 		default:
 			log.info("没有服务可以创建");
@@ -639,6 +648,140 @@ public class PasService extends AbstractBaseService {
 		return flag;
 	}
 	
+	private Boolean uploadNginxfile(Connection conn,String clientIp){
+		Boolean flag = false;
+		if(null!=conn){
+			log.info("上传nginx.conf文件");
+			String configfilepath =System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+
+					m_config.getPASCLOUD_NGINX()+File.separator+"nginx.conf";
+			log.info(configfilepath);
+			File f = new File(configfilepath);
+			
+			
+			String configfiledir = Constants.PASCLOUD_HOME+"nginx/";
+			log.info(configfiledir);
+			
+			if(!checkDirIsExist(conn,configfiledir)){
+				//return flag;
+				flag = execCommand(conn,"mkdir "+configfiledir);
+			}else{
+				flag = execCommand(conn,"rm -rf "+configfiledir+"nginx.conf");
+			}
+			
+			if(flag){
+				log.info("修改nginx:"+clientIp);
+				flag = uploadNginxfileForWrite(configfilepath,clientIp);
+			}else{
+				flag = false;
+			}
+			if(flag){
+				log.info("上传nginx:"+clientIp);
+				flag = putFileToServer(conn,configfilepath, configfiledir);
+			}else{
+				flag =false;
+			}
+			//server @@:8170 max_fails=3 weight=3 fail_timeout=30s;
+			
+			log.info("上传nginx.conf文件完成");
+		}
+		return flag;
+	}
+	
+	private Boolean uploadNginxfileForWrite(String filepath,String clientIP){
+		Boolean flag = false;
+		InputStreamReader read = null;
+		BufferedReader bufferedReader = null;
+		InputStream input = null;
+		BufferedReader bufferedReader2 = null;
+		FileOutputStream fos = null;
+		try{
+			String ip = clientIP;
+			String line="        server "+ip+":8170 max_fails=3 weight=3 fail_timeout=30s;";
+			File file = new File(filepath);
+			StringBuffer sb = new StringBuffer();
+			StringBuffer sb2 = new StringBuffer();
+			Integer start = 0;
+			Integer end = 0;
+			read = new InputStreamReader(new FileInputStream(file));
+	        bufferedReader = new BufferedReader(read);
+	        String lineTxt = null;
+	        int i=0;
+	        while ((lineTxt = bufferedReader.readLine()) != null) {
+	        	sb.append(lineTxt).append("\n");
+	        	if (lineTxt.contains("#@@#")){
+	        		if(start == 0){
+	        			start = i;
+	        		}
+	        		else{
+	        			end = i;
+	        		}
+	            }
+	        	i++;
+	        }
+	        //System.out.println(sb.toString());
+	        if(start>0 && end>start){
+	        	input = new ByteArrayInputStream(sb.toString().getBytes());
+				bufferedReader2 = new BufferedReader(new InputStreamReader(input));
+				int j=0;
+				String line1 = null;
+				while ((line1 = bufferedReader2.readLine())!=null) {
+					if(j<start || j>end){
+						sb2.append(line1).append("\n");
+					}else{
+						if(!flag){
+							sb2.append("        #@@#").append("\n")
+							.append(line).append("\n")
+							.append("        #@@#").append("\n");
+							flag = true;
+						}
+					}
+					j++;
+					
+				}
+	        }
+	        log.info(sb2.toString());
+	        //fos = new FileOutputStream(filepath);
+	        
+	        if(flag){
+	        	fos = new FileOutputStream(file);
+	            
+	            fos.write(sb2.toString().getBytes());
+	            fos.close();
+	        }
+	        
+	        
+		}catch(IOException e){
+			log.error(e.getMessage());
+		}finally{
+			try {
+				if(null!=fos){
+					fos.close();
+					fos = null;
+				}
+				if(null!=bufferedReader2){
+					bufferedReader2.close();
+					bufferedReader2 = null;
+				}
+				
+				if(null!=input){
+					input.close();
+					input = null;
+				}
+				
+				if(null!=bufferedReader){
+					bufferedReader.close();
+					bufferedReader = null;
+				}
+				if(null!=read){
+					read.close();
+					read = null;
+				}
+			} catch (IOException e) {
+			}
+		}
+		return flag;
+	}
+	
 	public Boolean uploadMycatfile(String ip){
 		Boolean flag = false;
 		Connection conn = null;
@@ -926,6 +1069,55 @@ public class PasService extends AbstractBaseService {
 				result = new ResultCommon(PasCloudCode.ERROR);
 			}
 			log.info("结束新建tomcat容器");
+		}catch(Exception e){
+			log.error(e.getMessage());
+			result = new ResultCommon(PasCloudCode.EXCEPTION);
+		}finally{
+			conn.close();
+		}
+		return result;
+	}
+	
+	public ResultCommon addNginxContainer(String ip,String service,String clientIp){
+    	//String containerName = "pascloud_tomcat";
+		Boolean flag = false;
+		ResultCommon result=null;
+		//String containerName = "pascloud_zookeeper_admin";
+		String containerName = service;
+		String bindVolumeFrom = Constants.PASCLOUD_HOME+"/nginx/nginx.conf";
+		String bindVolumeTo = "/etc/nginx/nginx.conf";
+		String id = "";
+		String[] cmd = {};
+		String imageName = "nginx";
+		if(!checkImageExist(ip,imageName)){
+			result = new ResultCommon(PasCloudCode.ERROR.getCode(),imageName+"镜像不存在");
+			return result;
+		}
+		Map<String,String> port = new HashMap<String,String>();
+		port.put("80", "80");
+		List<String> envs = new ArrayList<>();
+		Connection conn = null;
+		try{
+			ServerVo vo = m_serverService.getByIP(ip);
+			if(null!=vo){
+				conn = getScpClientConn(vo.getIp(),vo.getUsername(),vo.getPassword());
+				uploadNginxfile(conn,clientIp);
+			}
+			log.info("开始新建nginx容器");
+			
+			DefaultDockerClient client = DefaultDockerClient.builder()
+					.uri("http://"+ip+":"+defaultPort).build();
+			id = m_dockerService.addContainer(client, port, bindVolumeFrom, bindVolumeTo, imageName, containerName,cmd,envs);
+			//id = m_dockerService.addContainerWithNet(client, port, bindVolumeFrom, bindVolumeTo, imageName, containerName,cmd,envs,
+					//"host");
+			
+			if(!id.equals("")){
+				flag = true;
+				result = new ResultCommon(PasCloudCode.SUCCESS);
+			}else{
+				result = new ResultCommon(PasCloudCode.ERROR);
+			}
+			log.info("结束新建nginx容器");
 		}catch(Exception e){
 			log.error(e.getMessage());
 			result = new ResultCommon(PasCloudCode.EXCEPTION);
@@ -1380,7 +1572,63 @@ public class PasService extends AbstractBaseService {
 		
 	}
 	
-	
+	public static void main(String[] args) throws IOException{
+		String filepath = "D:/nginx.conf";
+		String ip = "192.168.0.16";
+		String line="        server "+ip+":8170 max_fails=3 weight=3 fail_timeout=30s;";
+		File file = new File(filepath);
+		StringBuffer sb = new StringBuffer();
+		StringBuffer sb2 = new StringBuffer();
+
+		Integer start = 0;
+		Integer end = 0;
+		
+		InputStreamReader read = new InputStreamReader(new FileInputStream(file));
+        BufferedReader bufferedReader = new BufferedReader(read);
+        String lineTxt = null;
+        int i=0;
+        while ((lineTxt = bufferedReader.readLine()) != null) {
+        	sb.append(lineTxt).append("\n");
+        	if (lineTxt.contains("#@@#")){
+        		if(start == 0){
+        			start = i;
+        		}
+        		else{
+        			end = i;
+        		}
+            }
+        	i++;
+        }
+        //System.out.println(sb.toString());
+        if(start>0 && end>start){
+        	InputStream in = new ByteArrayInputStream(sb.toString().getBytes());
+			BufferedReader br2 = new BufferedReader(new InputStreamReader(in));
+			int j=0;
+			Boolean flag = false;
+			String line1 = null;
+			while ((line1 = br2.readLine())!=null) {
+				if(j<start || j>end){
+					sb2.append(line1).append("\n");
+				}else{
+					if(!flag){
+						sb2.append("        #@@#").append("\n")
+						.append(line).append("\n")
+						.append("        #@@#").append("\n");
+						flag = true;
+					}
+				}
+				j++;
+				
+			}
+        }
+        //System.out.println(sb2.toString());
+        
+        FileOutputStream fos = new FileOutputStream(filepath);
+        
+        fos.write(sb2.toString().getBytes());
+        fos.close();
+        
+	}
 	
 	
 }

@@ -102,7 +102,8 @@ public class PasServiceController extends BaseController {
 	@ResponseBody
 	public ResultCommon addPasService(HttpServletRequest request,
 			@RequestParam(value="ip",defaultValue="",required=true) String ip,
-			@RequestParam(value="type",defaultValue="0",required=true) Integer type
+			@RequestParam(value="type",defaultValue="0",required=true) Integer type,
+			@RequestParam(value="clientIp",defaultValue="",required=false) String clientIp
 			){
 		ResultCommon result = null;
 		Boolean isExist = false;
@@ -146,7 +147,8 @@ public class PasServiceController extends BaseController {
 				}*/
 				if(vo.getName().contains(PasTypeEnum.DEMO.getValue()) 
 						|| vo.getName().contains(PasTypeEnum.PASPM.getValue())
-						|| vo.getName().contains(PasTypeEnum.TOMCAT.getValue())){
+						|| vo.getName().contains(PasTypeEnum.TOMCAT.getValue())
+						|| vo.getName().contains(PasTypeEnum.NGINX.getValue())){
 					
 					if(ip.equals(vo.getIp())){
 						log.info("服务已经存在");
@@ -162,7 +164,7 @@ public class PasServiceController extends BaseController {
 			return new ResultCommon(PasCloudCode.ISEXIST);
 		}else{
 			log.info("ip="+ip+",service="+service);
-			result =m_pasService.addPasService(ip, type,service);
+			result =m_pasService.addPasService(ip, type,service,clientIp);
 		}
 		return result;
 	}

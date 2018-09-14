@@ -287,6 +287,6 @@ public class GZipUtils {
 	public static void main(String[] args) throws Exception {
 		//GZipUtils.decompress("d:/gz/nginx-1.13.2.tar.gz");
 		//GZipUtils.decompress("d:/gz/nginx-1.13.2.tar.gz", false, "d:/gz/");
-		GZipUtils.compress("D:/eclipse64/devops/dockerimages/soft/tomcat_devops.tar");
+		GZipUtils.compress("D:/app/app/pascloud/tomcat_devops.tar");
 	}
 }

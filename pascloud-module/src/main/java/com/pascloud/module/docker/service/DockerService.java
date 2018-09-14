@@ -139,7 +139,7 @@ public class DockerService {
 					vo.setVirtualSize(img.virtualSize());
 					vo.setVirtualSizeM(img.virtualSize()/(1024*1024)+"m");
 					vo.setIp(dockerClient.getHost());
-					if(img.repoTags().contains(name)){
+					if(vo.getRepoTags().contains(name)){
 						result.add(vo);
 					}
 					
