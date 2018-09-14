@@ -11,16 +11,15 @@ function uploadPascodeAndRestart(){
 	var type = row.type;
 	var params = {name:name,id:id,type:type};
 	
-	MaskUtil.mask();
-	MaskUtil.mask('部署升级代码...'); 
+	EasyUILoad('mainCenter');
 	$.post("uploadPascodeAndRestart.json",params,function(data,status){
 		if(data.code == 10000){
 			reloadTableWithID();
 			$.messager.alert('提示',data.desc);
-			MaskUtil.unmask(); 
+			dispalyEasyUILoad( 'mainCenter' );
 		}else{
 			$.messager.alert('提示',data.desc);
-			MaskUtil.unmask(); 
+			dispalyEasyUILoad( 'mainCenter' );
 		}
 	});
 }

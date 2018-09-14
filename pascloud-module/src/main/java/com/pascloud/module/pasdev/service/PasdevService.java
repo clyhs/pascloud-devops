@@ -1257,7 +1257,7 @@ public class PasdevService extends AbstractBaseService {
 		String destpath = filepath+"/"+dirId;
 		//String destpath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_DEV_DIR()+"/"+dirId;
 		
-		if(FileUtils.createOrExistsDir(filepath));
+		FileUtils.createOrExistsDir(destpath);
 		
 		String filename = "";
 		String fname =  "";

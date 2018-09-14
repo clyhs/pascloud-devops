@@ -141,7 +141,7 @@ public class MycatController extends BaseController {
 					return new ResultCommon(PasCloudCode.ERROR.getCode(),"节点已经存在，不能添加重复节点");
 				}
 				if(null!=url){
-					if(n.getUrl().equals(url)){
+					if(n.getUrl().equals(url) && n.getUser().equals(user) && n.getPassword().equals(password)){
 						return new ResultCommon(PasCloudCode.ERROR.getCode(),"数据库地址已经被使用，请选其他数据库");
 					}
 				}
