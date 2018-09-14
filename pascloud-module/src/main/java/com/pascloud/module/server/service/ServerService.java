@@ -214,6 +214,19 @@ public class ServerService  {
     	return flag;
     }
     
+    public Boolean checkServerIsExist(String ip,String type){
+    	Boolean flag = false;
+    	List<ServerVo> lists= getServers();
+    	if(lists.size()>0){
+    		for(ServerVo vo:lists){
+    			if(vo.getIp().equals(ip) && vo.getType().equals(type)){
+    				flag = true;
+    			}
+    		}
+    	}
+    	return flag;
+    }
+    
     private Connection getScpClientConn(String ip,String user,String password){
 		Connection conn = null;
 		ConnectionInfo info = null;

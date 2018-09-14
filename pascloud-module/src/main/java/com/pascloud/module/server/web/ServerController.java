@@ -129,7 +129,7 @@ public class ServerController extends BaseController {
 			return result;
 		}
 		log.info("验IP是否重复");
-		if(m_serverService.checkServerIsExist(ip)){
+		if(m_serverService.checkServerIsExist(ip,typeEnum+"")){
 			result = new ResultCommon(PasCloudCode.ERROR.getCode(),"该服务器已经存在。");
 		}else{
 			ServerVo vo = new ServerVo();
