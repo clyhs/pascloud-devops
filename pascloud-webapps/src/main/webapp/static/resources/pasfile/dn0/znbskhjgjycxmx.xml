@@ -20,7 +20,7 @@
     <col id="PY" title="评语" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.znbskhjgjycxmx"> 
-    <select id="dn1.znbskhjgjycxmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.znbskhjgjycxmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select distinct fapz.khnf, case when fapz.khzq=1 then '月' when fapz.khzq=2 then '季' else '年' end as khzq, case when fapz.khzq=1 then cast(zxpffa.khqs as char(8))|| '月' when fapz.khzq=2 then '第'||cast(zxpffa.khqs as char(8) )|| '季度' else cast(zxpffa.khqs as char(8))|| '年' end as khqs, khjg.jgdh, khjg.jgmc, fapz.famc, wdmb.wdmc, khxmpz.xmmc, khpjbz.pjbz , zxpfz.pf,hy2.hydh pjrdh,hy2.hymc pjrmc,zxpffa.py from znbs_zxpffa zxpffa inner join znbs_fapz fapz on zxpffa.fabh=fapz.fabh inner join znbs_yyjg_jg yyjg on yyjg.fabh=fapz.fabh inner join khdx_jg khjg on zxpffa.khdxdh =khjg.khdxdh inner join znbs_zxpfz zxpfz on zxpfz.fabh=zxpffa.fabh and zxpfz.khqs=zxpffa.khqs and zxpfz.pjr=zxpffa.pjr and zxpfz.khdxdh=zxpffa.khdxdh inner join znbs_khxmpz khxmpz on khxmpz.fabh=zxpffa.fabh and khxmpz.xmbh=zxpfz.xmbh left join znbs_khpjbz khpjbz on khpjbz.fabh= zxpfz.fabh and zxpfz.xmbh=khpjbz.xmbh and khxmpz.pjbh = khpjbz.pjbh and khpjbz.pjbzbh=zxpfz.pjbzbh inner join znbs_wdmb wdmb on wdmb.wdbh=khxmpz.wdbh inner join khdx_hy hy2 on zxpffa.pjr = hy2.khdxdh where 1=1 
       <isNotEmpty property="khnd">and fapz.khnf=$khnd$</isNotEmpty>  
       <isNotEmpty property="khzq">and fapz.khzq=$khzq$</isNotEmpty>  
@@ -29,7 +29,7 @@
       <isNotEmpty property="jgkhdxdh">and khjg.khdxdh in ($jgkhdxdh$)</isNotEmpty> and zxpffa.khdx='1' 
       <isNotEmpty property="pjr">and zxpffa.pjr=$pjr$</isNotEmpty> order by wdmb.wdmc, khxmpz.xmmc
     </select>  
-    <select id="dn1.znbskhjgjycxmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.znbskhjgjycxmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select distinct fapz.khnf, case when fapz.khzq=1 then '月' when fapz.khzq=2 then '季' else '年' end as khzq, case when fapz.khzq=1 then cast(zxpffa.khqs as char(8))|| '月' when fapz.khzq=2 then '第'||cast(zxpffa.khqs as char(8) )|| '季度' else cast(zxpffa.khqs as char(8))|| '年' end as khqs, khjg.jgdh, khjg.jgmc, fapz.famc, wdmb.wdmc, khxmpz.xmmc, khpjbz.pjbz , zxpfz.pf,hy2.hydh pjrdh,hy2.hymc pjrmc,zxpffa.py from znbs_zxpffa zxpffa inner join znbs_fapz fapz on zxpffa.fabh=fapz.fabh inner join znbs_yyjg_jg yyjg on yyjg.fabh=fapz.fabh inner join khdx_jg khjg on zxpffa.khdxdh =khjg.khdxdh inner join znbs_zxpfz zxpfz on zxpfz.fabh=zxpffa.fabh and zxpfz.khqs=zxpffa.khqs and zxpfz.pjr=zxpffa.pjr and zxpfz.khdxdh=zxpffa.khdxdh inner join znbs_khxmpz khxmpz on khxmpz.fabh=zxpffa.fabh and khxmpz.xmbh=zxpfz.xmbh left join znbs_khpjbz khpjbz on khpjbz.fabh= zxpfz.fabh and zxpfz.xmbh=khpjbz.xmbh and khxmpz.pjbh = khpjbz.pjbh and khpjbz.pjbzbh=zxpfz.pjbzbh inner join znbs_wdmb wdmb on wdmb.wdbh=khxmpz.wdbh inner join khdx_hy hy2 on zxpffa.pjr = hy2.khdxdh where 1=1 
       <isNotEmpty property="khnd">and fapz.khnf=$khnd$</isNotEmpty>  
       <isNotEmpty property="khzq">and fapz.khzq=$khzq$</isNotEmpty>  

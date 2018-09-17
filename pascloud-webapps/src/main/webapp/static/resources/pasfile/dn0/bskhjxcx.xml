@@ -57,7 +57,7 @@
     <col id="HYGW" title="行员岗位" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.bskhjxcx"> 
-    <select id="dn1.bskhjxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.bskhjxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select $tjrq$ as tjrq,jglb.lbmc as jglb,jg.jgmc,hy.hydh,hy.hymc,hylb.lbmc as hylb,coalesce(hygw.gwmc,'') as hygw, khjx.khjxjs,khjx.khjxxs,khjx.jgkhdf,khjx.jgkhzb,khjx.bpjgkhdf,khjx.bpkhzb,khjx.hykhdf,khjx.hykhzb,khjx.khjx from jxgz_bskhjx khjx inner join KHDX_HY hy on khjx.khdxdh=hy.khdxdh inner join KHDX_JGCY cy on hy.khdxdh=cy.khdxdh 
       <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join KHDX_JG jg on cy.jgkhdxdh=jg.khdxdh inner join KHDX_JGLB jglb on jg.khdxdh=jglb.khdxdh 
       <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between jglb.qsrq and jglb.jsrq</isNotEmpty> inner join khdx_hylb hylb on hy.khdxdh=hylb.khdxdh 
@@ -67,7 +67,7 @@
       <isNotEmpty property="tjrq_ym">and khjx.tjrq=$tjrq_ym$</isNotEmpty>  
       <isNotEmpty property="lbdh">and hylb.lbdh='$lbdh$'</isNotEmpty> order by jg.jgdh,hy.hydh
     </select>  
-    <select id="dn1.bskhjxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.bskhjxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select $tjrq$ as tjrq,jglb.lbmc as jglb,jg.jgmc,hy.hydh,hy.hymc,hylb.lbmc as hylb,coalesce(hygw.gwmc,'') as hygw, khjx.khjxjs,khjx.khjxxs,khjx.jgkhdf,khjx.jgkhzb,khjx.bpjgkhdf,khjx.bpkhzb,khjx.hykhdf,khjx.hykhzb,khjx.khjx from jxgz_bskhjx khjx inner join KHDX_HY hy on khjx.khdxdh=hy.khdxdh inner join KHDX_JGCY cy on hy.khdxdh=cy.khdxdh 
       <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join KHDX_JG jg on cy.jgkhdxdh=jg.khdxdh inner join KHDX_JGLB jglb on jg.khdxdh=jglb.khdxdh 
       <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between jglb.qsrq and jglb.jsrq</isNotEmpty> inner join khdx_hylb hylb on hy.khdxdh=hylb.khdxdh 
@@ -77,7 +77,7 @@
       <isNotEmpty property="tjrq_ym">and khjx.tjrq=$tjrq_ym$</isNotEmpty>  
       <isNotEmpty property="lbdh">and hylb.lbdh='$lbdh$'</isNotEmpty> order by jg.jgdh,hy.hydh ) t
     </select>  
-    <select id="dn1.bskhjxcx_MSQL4SELECT_lbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_hylb</select> 
+    <select id="dn0.bskhjxcx_MSQL4SELECT_lbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_hylb</select> 
   </sqlMap>  
   <rels> 
     <items id="bskhjxcx_xsjy1jgj"/> 

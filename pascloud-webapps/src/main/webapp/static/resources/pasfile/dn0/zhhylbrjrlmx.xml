@@ -21,7 +21,7 @@
     <col id="LBRJRLYE" title="类别人均认领余额" align="left" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.zhhylbrjrlmx"> 
-    <select id="dn1.zhhylbrjrlmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.zhhylbrjrlmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="dxlx" compareValue="1">select jgdh,jgmc,a.lbmc,round(rlclye/jgsthyrs,2) as lbrjrlye from ( select jg.jgdh,jg.jgmc,hylb.lbmc,sum(zh.zhye*gx.zlbl*0.01) rlclye,jg.khdxdh from jxdx_ckzh zh inner join dxgx_hyyjgx_ck gx on zh.jxdxdh=gx.jxdxdh and gx.jsrq=29991231 inner join khdx_hylb hylb on gx.khdxdh=hylb.khdxdh 
         <isNotEmpty property="tjrq">and $tjrq$ between hylb.qsrq and hylb.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh=hylb.khdxdh inner join khdx_jg jg on zh.jgdh=jg.jgdh where zh.gxhslx='1' and hy.hydh not like 'XN%' 
@@ -46,7 +46,7 @@
         <isNotEmpty property="tjrq">and $tjrq$ between hylb.qsrq and hylb.jsrq</isNotEmpty> group by jgkhdxdh,lbmc ) b on a.khdxdh=b.khdxdh and a.lbmc=b.lbmc order by a.jgdh asc ,lbrjrlye desc
       </isEqual> 
     </select>  
-    <select id="dn1.zhhylbrjrlmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.zhhylbrjrlmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="dxlx" compareValue="1">select jgdh,jgmc,a.lbmc,round(rlclye/jgsthyrs,2) as lbrjrlye from ( select jg.jgdh,jg.jgmc,hylb.lbmc,sum(zh.zhye*gx.zlbl*0.01) rlclye,jg.khdxdh from jxdx_ckzh zh inner join dxgx_hyyjgx_ck gx on zh.jxdxdh=gx.jxdxdh and gx.jsrq=29991231 inner join khdx_hylb hylb on gx.khdxdh=hylb.khdxdh 
         <isNotEmpty property="tjrq">and $tjrq$ between hylb.qsrq and hylb.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh=hylb.khdxdh inner join khdx_jg jg on zh.jgdh=jg.jgdh where zh.gxhslx='1' and hy.hydh not like 'XN%' 

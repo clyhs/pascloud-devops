@@ -77,7 +77,7 @@
     </col> 
   </table>  
   <sqlMap namespace="studio.cdkqxjgmx"> 
-    <select id="dn1.cdkqxjgmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.cdkqxjgmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="ywlx" compareValue="1">select khlx,khh,khmc,hzye,qxmc,khye,qxdh from ( select khlx.dmms khlx,fx.khh,fx.khmc,hz.hzye,qx.qxmc,fx.khye,fx.qxdh, rank() OVER(ORDER BY hz.hzye DESC) AS PM from KHFX_CKQXJGMX_$tjrq$ fx inner join CSB_DMMS khlx on fx.khlx=khlx.dmz and khlx.dmmc='KHLX' inner join (select tjrq,khdxdh,khh,sum(khye) hzye from KHFX_CKQXJGMX_$tjrq$ mx where 1=1 
         <isNotEmpty property="khdxdh">and mx.khdxdh =$khdxdh$</isNotEmpty>  
@@ -104,7 +104,7 @@
         <isNotEmpty property="pm"><![CDATA[and  a.pm <= $pm$]]></isNotEmpty> 
       </isEqual> 
     </select>  
-    <select id="dn1.cdkqxjgmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.cdkqxjgmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="ywlx" compareValue="1">select khlx,khh,khmc,hzye,qxmc,khye,qxdh from ( select khlx.dmms khlx,fx.khh,fx.khmc,hz.hzye,qx.qxmc,fx.khye,fx.qxdh, rank() OVER(ORDER BY hz.hzye DESC) AS PM from KHFX_CKQXJGMX_$tjrq$ fx inner join CSB_DMMS khlx on fx.khlx=khlx.dmz and khlx.dmmc='KHLX' inner join (select tjrq,khdxdh,khh,sum(khye) hzye from KHFX_CKQXJGMX_$tjrq$ mx where 1=1 
         <isNotEmpty property="khdxdh">and mx.khdxdh =$khdxdh$</isNotEmpty>  

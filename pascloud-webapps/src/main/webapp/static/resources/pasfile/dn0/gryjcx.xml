@@ -126,7 +126,7 @@
     <col id="KHJS" title="考核基数" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.gryjcx"> 
-    <select id="dn1.gryjcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.gryjcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="jzsjy" compareValue="gjyjkhzb">select yj.tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,khzb.khzbmc,COALESCE(yj.zbz,0) zbz,coalesce(js.khjs,0) khjs from $bm$ yj inner join khfa_khzb_hy khzb on yj.zbdh=khzb.zbdh and yj.sdbs=khzb.sdbs and yj.bz=khzb.bz inner join khdx_hy hy on hy.khdxdh = yj.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
         <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join table(fn_getsjjg_java_qxhy($tjrq$,$login_khdxdh$,0)) qx on yj.khdxdh=qx.khdxdh left join yjzb_hykhjs js on js.zbdh = yj.zbdh and js.bz = yj.bz and js.sdbs = yj.sdbs and js.khdxdh = yj.khdxdh and js.tjrq = yj.tjrq where 1=1 
@@ -161,7 +161,7 @@
         <isNotEmpty property="bz">and yjzb.bz='$bz$'</isNotEmpty> order by jg.jgdh,hy.hydh,zb.zbpx
       </isEqual> 
     </select>  
-    <select id="dn1.gryjcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.gryjcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="jzsjy" compareValue="gjyjkhzb">select yj.tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,khzb.khzbmc,COALESCE(yj.zbz,0) zbz,coalesce(js.khjs,0) khjs from $bm$ yj inner join khfa_khzb_hy khzb on yj.zbdh=khzb.zbdh and yj.sdbs=khzb.sdbs and yj.bz=khzb.bz inner join khdx_hy hy on hy.khdxdh = yj.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
         <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join table(fn_getsjjg_java_qxhy($tjrq$,$login_khdxdh$,0)) qx on yj.khdxdh=qx.khdxdh left join yjzb_hykhjs js on js.zbdh = yj.zbdh and js.bz = yj.bz and js.sdbs = yj.sdbs and js.khdxdh = yj.khdxdh and js.tjrq = yj.tjrq where 1=1 

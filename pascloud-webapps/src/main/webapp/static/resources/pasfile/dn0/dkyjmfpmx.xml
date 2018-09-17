@@ -39,7 +39,7 @@
     <col id="QX" title="期限" align="left" type="hidden" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.dkyjmfpmx"> 
-    <select id="dn1.dkyjmfpmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.dkyjmfpmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="dkyjmfpcsz" compareValue="1">select * from (select zh.jgdh, jg.jgmc, zh.zhdh, zh.zhhm, zh.zhye, zh.ffrq, f_get_dqfp($jsrq$, zh.jxdxdh, zh.gxhslx, zh.khdxdh, 'dk') as fpgx, zh.kmh, bz.bzzwmc, zh.qx from jxdx_dkzh zh inner join khdx_jg jg on zh.jgdh = jg.jgdh inner join csb_bz bz on bz.bz = zh.bz left join khdx_hy hy on zh.khdxdh=hy.khdxdh 
         <isNotEmpty property="qsrq">where zh.ffrq between $qsrq$ and $jsrq$</isNotEmpty>  
@@ -52,7 +52,7 @@
         <isNotEmpty property="jgdh">and zh.jgdh = '$jgdh$'</isNotEmpty> and zh.gxhslx='0' and hy.hydh like 'XN%') a order by a.ffrq desc
       </isEqual> 
     </select>  
-    <select id="dn1.dkyjmfpmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.dkyjmfpmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="dkyjmfpcsz" compareValue="1">select * from (select zh.jgdh, jg.jgmc, zh.zhdh, zh.zhhm, zh.zhye, zh.ffrq, f_get_dqfp($jsrq$, zh.jxdxdh, zh.gxhslx, zh.khdxdh, 'dk') as fpgx, zh.kmh, bz.bzzwmc, zh.qx from jxdx_dkzh zh inner join khdx_jg jg on zh.jgdh = jg.jgdh inner join csb_bz bz on bz.bz = zh.bz left join khdx_hy hy on zh.khdxdh=hy.khdxdh 
         <isNotEmpty property="qsrq">where zh.ffrq between $qsrq$ and $jsrq$</isNotEmpty>  
@@ -65,7 +65,7 @@
         <isNotEmpty property="jgdh">and zh.jgdh = '$jgdh$'</isNotEmpty> and zh.gxhslx='0' and hy.hydh like 'XN%') a order by a.ffrq desc
       </isEqual> ) t
     </select>  
-    <select id="dn1.dkyjmfpmx_dkyjmfpmxcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='DKYJGXMS'</select> 
+    <select id="dn0.dkyjmfpmx_dkyjmfpmxcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='DKYJGXMS'</select> 
   </sqlMap>  
   <rels> 
     <items id="dkyjmfpmx_xsjy1jgj"> 

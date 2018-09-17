@@ -46,15 +46,15 @@
     </col> 
   </table>  
   <sqlMap namespace="studio.khxjflfx"> 
-    <select id="dn1.khxjflfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.khxjflfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> SELECT c.tjrq,c.jgdh,c.jgmc,c.hzkhs,c.hzzb,c.xjmc,c.khs,c.zb ,c.xjbh FROM ( SELECT a.tjrq,A.JGDH,A.JGMC,A.HZKHS AS HZKHS ,case when a.hzkhs = 0 then 0 else CAST((A.HZKHS/A.ZHKHS)*100 AS DECIMAL(21,4)) end AS HZZB ,A.XJMC AS XJMC ,a.khs, case when a.khs =0 then 0 else CAST((a.khs/A.HZKHS)*100 AS DECIMAL(21,4)) end as zb ,a.xjbh FROM ( SELECT $tjrq$ as tjrq, JG.JGDH,JG.JGMC ,CAST(SUM(FLTJ.KHS) OVER (PARTITION BY FLTJ.TJRQ,FLTJ.JGKHDXDH,FLTJ.KHLB) AS DECIMAL(21,4))AS HZKHS ,CAST(SUM(FLTJ.KHS) OVER (PARTITION BY FLTJ.TJRQ,FLTJ.KHLB)AS DECIMAL(21,4))AS ZHKHS ,FLTJ.XJBH,fltj.xjmc,fltj.khs FROM KHFX_KHXJFLTJ fltj INNER JOIN KHDX_JG JG ON JG.KHDXDH = fltj.JGKHDXDH WHERE fltj.TJRQ = (select ym from CSB_SJW where tjrq=cast(cast($tjrq$ as char(6))||'01' as integer) ) 
       <isNotEmpty property="khlb">AND fltj.KHLB = '$khlb$'</isNotEmpty> AND fltj.JGKHDXDH IN($jgkhdxdh$) )A )c order by c.xjbh
     </select>  
-    <select id="dn1.khxjflfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.khxjflfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( SELECT c.tjrq,c.jgdh,c.jgmc,c.hzkhs,c.hzzb,c.xjmc,c.khs,c.zb ,c.xjbh FROM ( SELECT a.tjrq,A.JGDH,A.JGMC,A.HZKHS AS HZKHS ,case when a.hzkhs = 0 then 0 else CAST((A.HZKHS/A.ZHKHS)*100 AS DECIMAL(21,4)) end AS HZZB ,A.XJMC AS XJMC ,a.khs, case when a.khs =0 then 0 else CAST((a.khs/A.HZKHS)*100 AS DECIMAL(21,4)) end as zb ,a.xjbh FROM ( SELECT $tjrq$ as tjrq, JG.JGDH,JG.JGMC ,CAST(SUM(FLTJ.KHS) OVER (PARTITION BY FLTJ.TJRQ,FLTJ.JGKHDXDH,FLTJ.KHLB) AS DECIMAL(21,4))AS HZKHS ,CAST(SUM(FLTJ.KHS) OVER (PARTITION BY FLTJ.TJRQ,FLTJ.KHLB)AS DECIMAL(21,4))AS ZHKHS ,FLTJ.XJBH,fltj.xjmc,fltj.khs FROM KHFX_KHXJFLTJ fltj INNER JOIN KHDX_JG JG ON JG.KHDXDH = fltj.JGKHDXDH WHERE fltj.TJRQ = (select ym from CSB_SJW where tjrq=cast(cast($tjrq$ as char(6))||'01' as integer) ) 
       <isNotEmpty property="khlb">AND fltj.KHLB = '$khlb$'</isNotEmpty> AND fltj.JGKHDXDH IN($jgkhdxdh$) )A )c order by c.xjbh ) t
     </select>  
-    <select id="dn1.khxjflfx_MSQL4SELECT_khlb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where DMMC= 'DJPDKHLB'</select> 
+    <select id="dn0.khxjflfx_MSQL4SELECT_khlb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where DMMC= 'DJPDKHLB'</select> 
   </sqlMap>  
   <rels> 
     <items id="khxjflfx_xsjy1jgj"/> 

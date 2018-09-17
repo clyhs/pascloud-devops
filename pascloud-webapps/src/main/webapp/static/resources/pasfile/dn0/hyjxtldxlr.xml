@@ -128,32 +128,32 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.hyjxtldxlr"> 
-    <select id="dn1.hyjxtldxlrList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.hyjxtldxlrList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select tl.khdxdh , tl.dxrq , jg.jgdh , jg.jgmc , hy.hydh , hy.hymc , tl.dxje from SGLR_JXTL_DXMX tl inner join khdx_hy hy on hy.khdxdh = tl.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh and tl.dxrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join table(fn_getsjjg_java_qxhy(tl.dxrq,$login_khdxdh$,0)) qx on qx.khdxdh=hy.khdxdh 
       <isNotEmpty property="khdxdh">where hy.khdxdh in ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="tjrq">and tl.dxrq = $tjrq$</isNotEmpty> 
     </select>  
-    <select id="dn1.hyjxtldxlrCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.hyjxtldxlrCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select tl.khdxdh , tl.dxrq , jg.jgdh , jg.jgmc , hy.hydh , hy.hymc , tl.dxje from SGLR_JXTL_DXMX tl inner join khdx_hy hy on hy.khdxdh = tl.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh and tl.dxrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join table(fn_getsjjg_java_qxhy(tl.dxrq,$login_khdxdh$,0)) qx on qx.khdxdh=hy.khdxdh
       <isNotEmpty property="khdxdh">where hy.khdxdh in ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="tjrq">and tl.dxrq = $tjrq$</isNotEmpty> ) t
     </select>  
-    <select id="dn1.hyjxtldxlr_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.hyjxtldxlr_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select DXRQ, KHDXDH, LRR, LRRQ, DXJE from where 1= 1 and DXRQ = $dxrq$ and KHDXDH = $khdxdh$
     </select>  
-    <select id="dn1.hyjxtldxlr_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.hyjxtldxlr_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select DXRQ, KHDXDH, LRR, LRRQ, DXJE from where 1= 1 and DXRQ = $tjrq$ and KHDXDH = $khdxdh$
     </select>  
-    <insert id="dn1.hyjxtldxlr_insert" parameterClass="java.util.Map"> 
+    <insert id="dn0.hyjxtldxlr_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into ( DXJE, KHDXDH, LRR, DXRQ, LRRQ ) values ( $dxje$,$khdxdh$,'$lrr$',$tjrq$,$lrrq$)
     </insert>  
-    <update id="dn1.hyjxtldxlr_update" parameterClass="java.util.Map"> 
+    <update id="dn0.hyjxtldxlr_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update set DXJE = $dxje$ where 1=1 and DXRQ = $tjrq$ and KHDXDH = $khdxdh$
     </update>  
-    <delete id="dn1.hyjxtldxlr_delete" parameterClass="java.util.Map"> 
+    <delete id="dn0.hyjxtldxlr_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from where 1=1 and DXRQ = $dxrq$ and KHDXDH = $khdxdh$
     </delete>  
-    <select id="dn1.hyjxtldxlr_getJe" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select coalesce(cast (fa.TJYE-cs.CSZ as decimal(17,2)),0) as value from KHFA_JXTL_HY fa inner join csb_lrcs cs on cs.csmc='JXTLDXBZCS' where fa.KHDXDH in ($khdxdh$) and fa.TJRQ=$tjrq$</select> 
+    <select id="dn0.hyjxtldxlr_getJe" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select coalesce(cast (fa.TJYE-cs.CSZ as decimal(17,2)),0) as value from KHFA_JXTL_HY fa inner join csb_lrcs cs on cs.csmc='JXTLDXBZCS' where fa.KHDXDH in ($khdxdh$) and fa.TJRQ=$tjrq$</select> 
   </sqlMap>  
   <javascript> 
     <import>parent.addTab('hyjxtldxdr','行员绩效提留兑现','../studio/impParser.do?method=visitHTML&amp;funId=hyjxtldxdr');</import>  

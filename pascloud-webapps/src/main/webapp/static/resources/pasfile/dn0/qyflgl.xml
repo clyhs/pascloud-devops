@@ -65,25 +65,25 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.qyflgl"> 
-    <select id="dn1.qyflglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.qyflglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select qydh,qymc from csb_qylb where 1=1 and qymc like '%$qymc$%' order by qydh
     </select>  
-    <select id="dn1.qyflglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.qyflglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select qydh,qymc from csb_qylb where 1=1 and qymc like '%$qymc$%' order by qydh ) t
     </select>  
-    <select id="dn1.qyflgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.qyflgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select QYMC, QYDH from CSB_QYLB where 1= 1 and QYDH = '$qydh$'
     </select>  
-    <select id="dn1.qyflgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.qyflgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select QYMC, QYDH from CSB_QYLB where 1= 1 and QYDH = '$qydh$'
     </select>  
-    <insert id="dn1.qyflgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn0.qyflgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into CSB_QYLB( QYDH, QYMC ) values ( '$qydh$','$qymc$')
     </insert>  
-    <update id="dn1.qyflgl_update" parameterClass="java.util.Map"> 
+    <update id="dn0.qyflgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_QYLB set QYMC = '$qymc$' where 1=1 and QYDH = '$qydh$'
     </update>  
-    <delete id="dn1.qyflgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn0.qyflgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from CSB_QYLB where 1=1 and QYDH = '$qydh$'
     </delete> 
   </sqlMap>  

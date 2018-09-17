@@ -16,13 +16,13 @@
     <col id="BZ" title="备注" align="left" type="string" width="500" frozen="false" format="" showDymCol="" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.khgxddfcx"> 
-    <select id="dn1.khgxddfcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.khgxddfcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> SELECT MX.TJRQ AS TJRQ, MX.KHH AS KHH, PDFA.PDMC AS PDMC, MX.WDMC AS KPWD, MX.GXXMC AS KPX, MX.BZF AS BZF, MX.GXXZ AS DF, MX.JGMS AS BZ, MX.KHZBZ khzbz FROM KHXJ_PDFA PDFA INNER JOIN $nf$ MX ON PDFA.PDBH = MX.PDBH WHERE 1=1 
       <isNotEmpty property="tjrq">and MX.TJRQ =$tjrq$</isNotEmpty>  
       <isNotEmpty property="khh">AND MX.KHH ='$khh$'</isNotEmpty>  
       <isNotEmpty property="pdbh">AND PDFA.PDBH =$pdbh$</isNotEmpty> order by mx.gxxz desc
     </select>  
-    <select id="dn1.khgxddfcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.khgxddfcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( SELECT MX.TJRQ AS TJRQ, MX.KHH AS KHH, PDFA.PDMC AS PDMC, MX.WDMC AS KPWD, MX.GXXMC AS KPX, MX.BZF AS BZF, MX.GXXZ AS DF, MX.JGMS AS BZ, MX.KHZBZ khzbz FROM KHXJ_PDFA PDFA INNER JOIN $nf$ MX ON PDFA.PDBH = MX.PDBH WHERE 1=1 
       <isNotEmpty property="tjrq">and MX.TJRQ =$tjrq$</isNotEmpty>  
       <isNotEmpty property="khh">AND MX.KHH ='$khh$'</isNotEmpty>  

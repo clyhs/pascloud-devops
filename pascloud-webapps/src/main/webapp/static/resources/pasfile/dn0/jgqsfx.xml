@@ -141,7 +141,7 @@
     <col id="ZBZ" title="指标值" align="right" type="float" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.jgqsfx"> 
-    <select id="dn1.jgqsfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.jgqsfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="jzsjy" compareValue="khzb_nfbt">select jg.jgdh,jg.jgmc,substr(cast(yjzb.tjrq as char(8)),5,4) as tjrq,yjzb.khzbmc,yjzb.zbz from khdx_jg jg inner join ( select yjzb.tjrq,yjzb.khdxdh, zb.khzbmc,zb.zbpx,yjzb.zbz from yjzb_jg_$tjnf$ yjzb inner join khfa_khzb_jg zb on zb.zbdh = yjzb.zbdh and zb.bz = yjzb.bz and zb.sdbs = yjzb.sdbs and zb.tjkj = yjzb.tjkj 
         <isNotEmpty property="qsrq">where yjzb.tjrq between $qsrq$ and cast</isNotEmpty> ($tjnf$||'1231' as integer) 
@@ -179,7 +179,7 @@
         <isNotEmpty property="jgkhdxdh">and jg.khdxdh = $jgkhdxdh$</isNotEmpty> order by yjzb.tjrq asc,zb.zbpx
       </isEqual> 
     </select>  
-    <select id="dn1.jgqsfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.jgqsfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="jzsjy" compareValue="khzb_nfbt">select jg.jgdh,jg.jgmc,substr(cast(yjzb.tjrq as char(8)),5,4) as tjrq,yjzb.khzbmc,yjzb.zbz from khdx_jg jg inner join ( select yjzb.tjrq,yjzb.khdxdh, zb.khzbmc,zb.zbpx,yjzb.zbz from yjzb_jg_$tjnf$ yjzb inner join khfa_khzb_jg zb on zb.zbdh = yjzb.zbdh and zb.bz = yjzb.bz and zb.sdbs = yjzb.sdbs and zb.tjkj = yjzb.tjkj
         <isNotEmpty property="qsrq">where yjzb.tjrq between $qsrq$ and cast</isNotEmpty> ($tjnf$||'1231' as integer) 
@@ -217,7 +217,7 @@
         <isNotEmpty property="jgkhdxdh">and jg.khdxdh = $jgkhdxdh$</isNotEmpty> order by yjzb.tjrq asc,zb.zbpx
       </isEqual> ) t
     </select>  
-    <select id="dn1.jgqsfx_MSQL4SELECT_khzb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khzbdh as KEY,khzbmc as VALUE from khfa_khzb_jg order by zbpx</select> 
+    <select id="dn0.jgqsfx_MSQL4SELECT_khzb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khzbdh as KEY,khzbmc as VALUE from khfa_khzb_jg order by zbpx</select> 
   </sqlMap>  
   <finger custPlotMth="" id="jgqsfx_khzbjgj"> 
     <plotType>line</plotType>  

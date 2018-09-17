@@ -173,7 +173,7 @@
     <col id="ZLBL4" title="分配比例4" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.clql"> 
-    <select id="dn1.clqlList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.clqlList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="clqlzzh" compareValue="1"> <![CDATA[select zhdh,zhhm,case when zhbs='1' then '对公' when zhbs='2' then '对私' end zhbs,zhye,khye,jgmc,khh,khrq,hydh1,hymc1,zlbl1,hydh2,hymc2,zlbl2,hydh3,hymc3,zlbl3,hydh4,hymc4,zlbl4
 from (select zh.zhdh,zh.zzh,zh.zhhm,zh.zhbs,zh.zhye,sum(zh.zhye) over (partition by zh.khh) as khye,jg.jgmc,zh.khh,zh.khrq
@@ -312,7 +312,7 @@ INNER JOIN khdx_jg jg ON jg.jgdh=zh.jgdh]]>
         <isNotEmpty property="zhbs">and a.zhbs='$zhbs$'</isNotEmpty> order by khye desc,zhye desc
       </isEqual> 
     </select>  
-    <select id="dn1.clqlCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.clqlCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="clqlzzh" compareValue="1"> <![CDATA[select zhdh,zhhm,case when zhbs='1' then '对公' when zhbs='2' then '对私' end zhbs,zhye,khye,jgmc,khh,khrq,hydh1,hymc1,zlbl1,hydh2,hymc2,zlbl2,hydh3,hymc3,zlbl3,hydh4,hymc4,zlbl4
 from (select zh.zhdh,zh.zzh,zh.zhhm,zh.zhbs,zh.zhye,sum(zh.zhye) over (partition by zh.khh) as khye,jg.jgmc,zh.khh,zh.khrq
@@ -451,9 +451,9 @@ INNER JOIN khdx_jg jg ON jg.jgdh=zh.jgdh]]>
         <isNotEmpty property="zhbs">and a.zhbs='$zhbs$'</isNotEmpty> order by khye desc,zhye desc
       </isEqual> ) t
     </select>  
-    <select id="dn1.clql_MSQL4SELECT_fp" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select '0' as key,'未分配' as value from pas_vt union all select '1' as key,'已分配' as value from pas_vt</select>  
-    <select id="dn1.clql_cxzzh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select xtb.csz from XTB_XTCS xtb where xtb.CSMC= (case when $dxlx$=1 then 'CKYJGXMS' when $dxlx$=2 then 'DKYJGXMS' end)</select>  
-    <select id="dn1.clql_jg" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khdxdh from khdx_jg where zxzt='N'</select> 
+    <select id="dn0.clql_MSQL4SELECT_fp" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select '0' as key,'未分配' as value from pas_vt union all select '1' as key,'已分配' as value from pas_vt</select>  
+    <select id="dn0.clql_cxzzh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select xtb.csz from XTB_XTCS xtb where xtb.CSMC= (case when $dxlx$=1 then 'CKYJGXMS' when $dxlx$=2 then 'DKYJGXMS' end)</select>  
+    <select id="dn0.clql_jg" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khdxdh from khdx_jg where zxzt='N'</select> 
   </sqlMap>  
   <rels> 
     <items id="clql_xsjy1jgj"> 
@@ -474,7 +474,15 @@ INNER JOIN khdx_jg jg ON jg.jgdh=zh.jgdh]]>
   $("#zhyeqjxx").attr("class","{required:false,decimal:[12,4]}");
   $("#zhyeqjsx").attr("class","{required:false,decimal:[12,4]}");
   PAS.di.execute('clql_jg',a);
-  PAS.di.execute('clql_cxzzh',checkZzhBack);//判断有没有子账号
+  
+  var timer = window.setInterval(function(){
+    var dxlx = $('#dxlx').val();
+    if(dxlx != null && dxlx.length > 0){
+      PAS.di.execute('clql_cxzzh',checkZzhBack);//判断有没有子账号
+      window.clearInterval(timer);
+    }
+  }, 300);
+  
   jQuery('#dxlx').executeOnEvent('change','clql_cxzzh',checkZzhBack);
 });
 

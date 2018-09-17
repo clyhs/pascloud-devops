@@ -156,7 +156,7 @@
     <col id="YEBD" title="余额变动" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.GRCDKHBD"> 
-    <select id="dn1.GRCDKHBDList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.GRCDKHBDList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="bdcsz" compareValue="1">select * from ( select $tjrq$ TJRQ,jg.KHDXDH JGKHDXDH,JG.JGMC,HY.KHDXDH,HY.HYDH,HY.HYMC,gx.KHH,gx.ZHDH,gx.ZHHM,gx.KHRQ, gx.KMH, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
         <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty> then gx.clbl when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01) as tjrye, sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
@@ -219,7 +219,7 @@
         <isNotEmpty property="yebdto"><![CDATA[and abs(rs.yebd) <= $yebdto$]]></isNotEmpty> and rs.yebd $bdfx1$ 0 ORDER BY abs(rs.YEBD) DESC
       </isEqual> 
     </select>  
-    <select id="dn1.GRCDKHBDCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.GRCDKHBDCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="bdcsz" compareValue="1">select * from ( select $tjrq$ TJRQ,jg.KHDXDH JGKHDXDH,JG.JGMC,HY.KHDXDH,HY.HYDH,HY.HYMC,gx.KHH,gx.ZHDH,gx.ZHHM,gx.KHRQ, gx.KMH, sum((case when gx.tjrq=$tjrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
         <isNotEmpty property="tjrq">and gx.tjrq=$tjrq$</isNotEmpty> then gx.clbl when gx.tjrq=$tjrq$ then gx.zlbl else 0 end)*0.01) as tjrye, sum((case when gx.tjrq=$dbrq$ then gx.zhye else 0 end )*(case when gx.gxhslx = '2' 
@@ -282,9 +282,9 @@
         <isNotEmpty property="yebdto"><![CDATA[and abs(rs.yebd) <= $yebdto$]]></isNotEmpty> and rs.yebd $bdfx1$ 0 ORDER BY abs(rs.YEBD) DESC
       </isEqual> ) t
     </select>  
-    <select id="dn1.GRCDKHBD_MSQL4SELECT_ywlb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT YWLB AS KEY,MS AS VALUE FROM CSB_YWLB WHERE MS IN('存款业务','贷款业务')</select>  
-    <select id="dn1.GRCDKHBD_MSQL4SELECT_khlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc = 'ZHBS'</select>  
-    <select id="dn1.GRCDKHBD_cdkbdcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select xtb.csz from XTB_XTCS xtb where xtb.CSMC = (case when $ywlb$ = 1 then 'CKYJGXMS' when $ywlb$ = 2 then 'DKYJGXMS' end)</select> 
+    <select id="dn0.GRCDKHBD_MSQL4SELECT_ywlb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT YWLB AS KEY,MS AS VALUE FROM CSB_YWLB WHERE MS IN('存款业务','贷款业务')</select>  
+    <select id="dn0.GRCDKHBD_MSQL4SELECT_khlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc = 'ZHBS'</select>  
+    <select id="dn0.GRCDKHBD_cdkbdcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select xtb.csz from XTB_XTCS xtb where xtb.CSMC = (case when $ywlb$ = 1 then 'CKYJGXMS' when $ywlb$ = 2 then 'DKYJGXMS' end)</select> 
   </sqlMap>  
   <rels> 
     <items id="GRCDKHBD_ckzhjgj"> 

@@ -159,50 +159,50 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.dqywcyxsgl"> 
-    <select id="dn1.dqywcyxsglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.dqywcyxsglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select cs.jglb ,cs.ywlb ,cs.qsrq,cs.jsrq,cs.cyxs ,lb.lbmc,yw.ms as ywlbmc from csb_dqywcyxs cs inner join csb_jglb lb on lb.lbdh=cs.jglb inner join csb_ywlb yw on yw.ywlb=cs.ywlb where 1=1 
       <isNotEmpty property="jglb">and cs.jglb='$jglb$'</isNotEmpty>  
       <isNotEmpty property="ywlb">and cs.ywlb='$ywlb$'</isNotEmpty> 
     </select>  
-    <select id="dn1.dqywcyxsglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.dqywcyxsglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select cs.jglb ,cs.ywlb ,cs.qsrq,cs.jsrq,cs.cyxs ,lb.lbmc,yw.ms as ywlbmc from csb_dqywcyxs cs inner join csb_jglb lb on lb.lbdh=cs.jglb inner join csb_ywlb yw on yw.ywlb=cs.ywlb where 1=1 
       <isNotEmpty property="jglb">and cs.jglb='$jglb$'</isNotEmpty>  
       <isNotEmpty property="ywlb">and cs.ywlb='$ywlb$'</isNotEmpty> ) t
     </select>  
-    <select id="dn1.dqywcyxsgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.dqywcyxsgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select CYXS, JGLB, QSRQ, JSRQ, YWLB from CSB_DQYWCYXS where 1= 1 and JGLB = '$jglb$' and QSRQ = $qsrq$ and YWLB = '$ywlb$'
     </select>  
-    <select id="dn1.dqywcyxsgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.dqywcyxsgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select CYXS, JGLB, QSRQ, JSRQ, YWLB from CSB_DQYWCYXS where 1= 1 and JGLB = '$jglb$' and QSRQ = $tjrq$ and YWLB = '$ywlb$'
     </select>  
-    <insert id="dn1.dqywcyxsgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn0.dqywcyxsgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into CSB_DQYWCYXS( CYXS, JGLB, JSRQ, QSRQ, YWLB ) values ( $cyxs$,'$jglb$',$jsrq$,$tjrq$,'$ywlb$')
     </insert>  
-    <update id="dn1.dqywcyxsgl_update" parameterClass="java.util.Map"> 
+    <update id="dn0.dqywcyxsgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_DQYWCYXS set CYXS = $cyxs$ where 1=1 and JGLB = '$jglb$' and QSRQ = $tjrq$ and YWLB = '$ywlb$'
     </update>  
-    <delete id="dn1.dqywcyxsgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn0.dqywcyxsgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from CSB_DQYWCYXS where 1=1 and JGLB = '$jglb$' and QSRQ = $qsrq$ and YWLB = '$ywlb$'
     </delete>  
-    <delete id="dn1.dqywcyxsgl_check_itemAddDel" parameterClass="java.util.Map"> 
+    <delete id="dn0.dqywcyxsgl_check_itemAddDel" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[delete from CSB_DQYWCYXS where qsrq >=$tjrq$  and JGLB = '$jglb$' and YWLB = '$ywlb$']]> 
     </delete>  
-    <update id="dn1.dqywcyxsgl_check_itemUP" parameterClass="java.util.Map"> 
+    <update id="dn0.dqywcyxsgl_check_itemUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_DQYWCYXS set jsrq=$qdate$ 
       <isNotEmpty property="tjrq">where $tjrq$ between qsrq and jsrq</isNotEmpty> and JGLB = '$jglb$' and YWLB = '$ywlb$'
     </update>  
-    <select id="dn1.dqywcyxsgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.dqywcyxsgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select max(qsrq) from CSB_DQYWCYXS where 1=1 and JGLB = '$jglb$' and YWLB = '$ywlb$'
     </select>  
-    <select id="dn1.dqywcyxsgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.dqywcyxsgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select  CYXS, JGLB, QSRQ, JSRQ, YWLB from CSB_DQYWCYXS where 1=1  and JGLB = '$jglb$' and YWLB = '$ywlb$' and $tjrq$ > $maxqsrq$]]> 
     </select>  
-    <update id="dn1.dqywcyxsgl_check_itemDELUP" parameterClass="java.util.Map"> 
+    <update id="dn0.dqywcyxsgl_check_itemDELUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_DQYWCYXS set jsrq =29991231 where 1=1 and JGLB = '$jglb$' and YWLB = '$ywlb$' and jsrq =$lastjsrq$
     </update>  
-    <select id="dn1.dqywcyxsgl_getMaxqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'</select>  
-    <select id="dn1.dqywcyxsgl_MSQL4SELECT_jglb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_jglb</select>  
-    <select id="dn1.dqywcyxsgl_MSQL4SELECT_ywlb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select ywlb as key, ms as value from csb_ywlb</select> 
+    <select id="dn0.dqywcyxsgl_getMaxqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'</select>  
+    <select id="dn0.dqywcyxsgl_MSQL4SELECT_jglb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_jglb</select>  
+    <select id="dn0.dqywcyxsgl_MSQL4SELECT_ywlb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select ywlb as key, ms as value from csb_ywlb</select> 
   </sqlMap>  
   <javascript> 
     <query>jQuery(document).ready(function () { }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; }</query>  

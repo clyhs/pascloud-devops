@@ -30,17 +30,17 @@
     <col id="MS" title="描述" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.djpdbzcx"> 
-    <select id="dn1.djpdbzcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.djpdbzcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> /**序号[等级]，级别[级别名称]，动态表头（表头显示[项目名称]，下面显示[描述]） 排序：等级[从小到大]**/ select djpd_pdxmbz.dj, djpd_pdxmbz.jbmc, djpd_pdxmbz.xmmc, djpd_pdxmbz.ms from djpd_djbz djpd_djbz inner join djpd_pdxmbz djpd_pdxmbz on djpd_pdxmbz.bh = djpd_djbz.bh where 1=1
       <isNotEmpty property="pdnf">and djpd_djbz.pdnf = $pdnf$</isNotEmpty>  
       <isNotEmpty property="djpdmc">and djpd_pdxmbz.djpdmc = '$djpdmc$'</isNotEmpty> order by djpd_pdxmbz.dj
     </select>  
-    <select id="dn1.djpdbzcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.djpdbzcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( /**序号[等级]，级别[级别名称]，动态表头（表头显示[项目名称]，下面显示[描述]） 排序：等级[从小到大]**/ select djpd_pdxmbz.dj, djpd_pdxmbz.jbmc, djpd_pdxmbz.xmmc, djpd_pdxmbz.ms from djpd_djbz djpd_djbz inner join djpd_pdxmbz djpd_pdxmbz on djpd_pdxmbz.bh = djpd_djbz.bh where 1=1
       <isNotEmpty property="pdnf">and djpd_djbz.pdnf = $pdnf$</isNotEmpty>  
       <isNotEmpty property="djpdmc">and djpd_pdxmbz.djpdmc = '$djpdmc$'</isNotEmpty> order by djpd_pdxmbz.dj ) t
     </select>  
-    <select id="dn1.djpdbzcx_MSQL4SELECT_djpdmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select djpdmc as key,djpdmc as value from djpd_djbz where pdnf = $pdnf$ and zt='1'</select> 
+    <select id="dn0.djpdbzcx_MSQL4SELECT_djpdmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select djpdmc as key,djpdmc as value from djpd_djbz where pdnf = $pdnf$ and zt='1'</select> 
   </sqlMap>  
   <rels> 
     <items id="djpdbzcx_xsjy1jgj"/> 

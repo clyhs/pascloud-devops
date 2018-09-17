@@ -152,49 +152,49 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.htgyzsxsgl"> 
-    <select id="dn1.htgyzsxsglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.htgyzsxsglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select xs.hylb,lb.lbmc,xs.tjxs,xs.qsrq,xs.jsrq from CSB_HTGYYWLXS xs inner join csb_hylb lb on lb.lbdh = xs.hylb where 1=1 
       <isNotEmpty property="hylb">and xs.hylb = '$hylb$'</isNotEmpty> order by xs.hylb,xs.qsrq desc
     </select>  
-    <select id="dn1.htgyzsxsglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.htgyzsxsglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select xs.hylb,lb.lbmc,xs.tjxs,xs.qsrq,xs.jsrq from CSB_HTGYYWLXS xs inner join csb_hylb lb on lb.lbdh = xs.hylb where 1=1 
       <isNotEmpty property="hylb">and xs.hylb = '$hylb$'</isNotEmpty> order by xs.hylb,xs.qsrq desc ) t
     </select>  
-    <select id="dn1.htgyzsxsgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.htgyzsxsgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select HYLB, TJXS, QSRQ, JSRQ from CSB_HTGYYWLXS where 1= 1 and HYLB = '$hylb$' and QSRQ = $qsrq$
     </select>  
-    <select id="dn1.htgyzsxsgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.htgyzsxsgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select HYLB, TJXS, QSRQ, JSRQ from CSB_HTGYYWLXS where 1= 1 and HYLB = '$hylb$' and QSRQ = $qsrq$
     </select>  
-    <insert id="dn1.htgyzsxsgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn0.htgyzsxsgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into CSB_HTGYYWLXS( HYLB, TJXS, QSRQ, JSRQ ) values ( '$hylb$',$tjxs$,$qsrq$,$jsrq$)
     </insert>  
-    <update id="dn1.htgyzsxsgl_update" parameterClass="java.util.Map"> 
+    <update id="dn0.htgyzsxsgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_HTGYYWLXS set TJXS = $tjxs$ where 1=1 and HYLB = '$hylb$' and QSRQ = $qsrq$
     </update>  
-    <delete id="dn1.htgyzsxsgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn0.htgyzsxsgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from CSB_HTGYYWLXS where 1=1 and HYLB = '$hylb$' and QSRQ = $qsrq$
     </delete>  
-    <delete id="dn1.htgyzsxsgl_check_itemAddDel" parameterClass="java.util.Map"> 
+    <delete id="dn0.htgyzsxsgl_check_itemAddDel" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[delete from CSB_HTGYYWLXS where qsrq >=$qsrq$  and HYLB = '$hylb$']]> 
     </delete>  
-    <update id="dn1.htgyzsxsgl_check_itemUP" parameterClass="java.util.Map"> 
+    <update id="dn0.htgyzsxsgl_check_itemUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_HTGYYWLXS set jsrq=$qdate$ 
       <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty> and HYLB = '$hylb$'
     </update>  
-    <select id="dn1.htgyzsxsgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.htgyzsxsgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select max(qsrq) from CSB_HTGYYWLXS where 1=1 and HYLB = '$hylb$'
     </select>  
-    <select id="dn1.htgyzsxsgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.htgyzsxsgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select  HYLB, TJXS, QSRQ, JSRQ from CSB_HTGYYWLXS where 1=1  and HYLB = '$hylb$' and $qsrq$ > $maxqsrq$]]> 
     </select>  
-    <update id="dn1.htgyzsxsgl_check_itemDELUP" parameterClass="java.util.Map"> 
+    <update id="dn0.htgyzsxsgl_check_itemDELUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_HTGYYWLXS set jsrq =29991231 where 1=1 and HYLB = '$hylb$' and jsrq =$lastjsrq$
     </update>  
-    <select id="dn1.htgyzsxsgl_getMaxqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'</select>  
-    <select id="dn1.htgyzsxsgl_getMaxqsrq1" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select max(xs.qsrq) as maxqsrq1 from CSB_HTGYYWLXS xs inner join csb_hylb lb on lb.lbdh = xs.hylb where xs.hylb='$dycjydm$'</select>  
-    <select id="dn1.htgyzsxsgl_getMaxqsrq2" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select max(xs.qsrq) as maxqsrq2 from CSB_HTGYYWLXS xs inner join csb_hylb lb on lb.lbdh = xs.hylb where xs.hylb='$hylb$'</select>  
-    <select id="dn1.htgyzsxsgl_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key,lbmc as value from csb_hylb</select> 
+    <select id="dn0.htgyzsxsgl_getMaxqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'</select>  
+    <select id="dn0.htgyzsxsgl_getMaxqsrq1" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select max(xs.qsrq) as maxqsrq1 from CSB_HTGYYWLXS xs inner join csb_hylb lb on lb.lbdh = xs.hylb where xs.hylb='$dycjydm$'</select>  
+    <select id="dn0.htgyzsxsgl_getMaxqsrq2" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select max(xs.qsrq) as maxqsrq2 from CSB_HTGYYWLXS xs inner join csb_hylb lb on lb.lbdh = xs.hylb where xs.hylb='$hylb$'</select>  
+    <select id="dn0.htgyzsxsgl_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key,lbmc as value from csb_hylb</select> 
   </sqlMap>  
   <javascript> 
     <query>jQuery(document).ready(function () { }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; } function customFastLink($table,row){//this 对象绑定当前行的单元格 if(row['JSRQ']=='29991231'){ var edit = $('&lt;a class="operation_edit LIST_BAR" title="编辑"&gt;编辑&lt;/a&gt;'); var del = $('&lt;a class="operation_del LIST_BAR" title="删除"&gt;删除&lt;/a&gt;'); this.append(edit); this.append(del); edit.click(function(){ showUpdateEdtiDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]); }); del.click(function(){ showDeleteDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]); }); return true; }else{ return false; } }</query>  

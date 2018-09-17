@@ -241,53 +241,53 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.ckftpgl"> 
-    <select id="dn1.ckftpglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.ckftpglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select ftp.bz,ftp.qxdh,ftp.cpdh,ftp.jgdh,jg.jgmc,ftp.qsrq,ftp.jsrq,ftp.zyjg,bz.bzzwmc,cp.ms, (case when ftp.qxdh='-1' then '全部期限' else qx.qxmc end) qxmc from csb_nbzjzydj_ck ftp inner join csb_bz bz on bz.bz = ftp.bz inner join csb_cpxz cp on cp.cplx='1' and cp.cpdh = ftp.cpdh left join CSB_QXSDB qx on qx.jxdxlx=1 and qx.qxdh = ftp.qxdh inner join khdx_jg jg on jg.jgdh = ftp.jgdh inner join table(FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,$jgkhdxdh$)) qx on jg.khdxdh=qx.khdxdh where 1=1 
       <isNotEmpty property="cpmc">and cp.ms like '%$cpmc$%'</isNotEmpty>  
       <isNotEmpty property="tjrq">and $tjrq$ between ftp.qsrq and ftp.jsrq</isNotEmpty> 
     </select>  
-    <select id="dn1.ckftpglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.ckftpglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select ftp.bz,ftp.qxdh,ftp.cpdh,ftp.jgdh,jg.jgmc,ftp.qsrq,ftp.jsrq,ftp.zyjg,bz.bzzwmc,cp.ms, (case when ftp.qxdh='-1' then '全部期限' else qx.qxmc end) qxmc from csb_nbzjzydj_ck ftp inner join csb_bz bz on bz.bz = ftp.bz inner join csb_cpxz cp on cp.cplx='1' and cp.cpdh = ftp.cpdh left join CSB_QXSDB qx on qx.jxdxlx=1 and qx.qxdh = ftp.qxdh inner join khdx_jg jg on jg.jgdh = ftp.jgdh inner join table(FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,$jgkhdxdh$)) qx on jg.khdxdh=qx.khdxdh where 1=1 
       <isNotEmpty property="cpmc">and cp.ms like '%$cpmc$%'</isNotEmpty>  
       <isNotEmpty property="tjrq">and $tjrq$ between ftp.qsrq and ftp.jsrq</isNotEmpty> ) t
     </select>  
-    <select id="dn1.ckftpgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.ckftpgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select XS, QSRQ, JGDH, FHFDJ, PLBZ, JSRQ, BZ, CPDH, QXDH, ZYJG from where 1= 1 and QSRQ = $qsrq$ and JGDH = '$jgdh$' and BZ = '$bz$' and CPDH = '$cpdh$' and QXDH = '$qxdh$'
     </select>  
-    <select id="dn1.ckftpgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.ckftpgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select XS, QSRQ, JGDH, FHFDJ, PLBZ, JSRQ, BZ, CPDH, QXDH, ZYJG from where 1= 1 and QSRQ = $qsrq$ and JGDH = '$jgdh$' and BZ = '$bz$' and CPDH = '$cpdh$' and QXDH = '$qxdh$'
     </select>  
-    <insert id="dn1.ckftpgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn0.ckftpgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into ( BZ, QSRQ, JGDH, CPDH, JSRQ, QXDH, ZYJG ) values ( '$bz$',$qsrq$,'$jgdh$','$cpdh$',$jsrq$,'$qxdh$',$zyjg$)
     </insert>  
-    <update id="dn1.ckftpgl_update" parameterClass="java.util.Map"> 
+    <update id="dn0.ckftpgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update set ZYJG = $zyjg$ where 1=1 and QSRQ = $qsrq$ and JGDH = '$jgdh$' and BZ = '$bz$' and CPDH = '$cpdh$' and QXDH = '$qxdh$'
     </update>  
-    <delete id="dn1.ckftpgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn0.ckftpgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from where 1=1 and QSRQ = $qsrq$ and JGDH = '$jgdh$' and BZ = '$bz$' and CPDH = '$cpdh$' and QXDH = '$qxdh$'
     </delete>  
-    <delete id="dn1.ckftpgl_check_itemAddDel" parameterClass="java.util.Map"> 
+    <delete id="dn0.ckftpgl_check_itemAddDel" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[delete from  where qsrq >=$qsrq$  and JGDH = '$jgdh$' and BZ = '$bz$' and CPDH = '$cpdh$' and QXDH = '$qxdh$']]> 
     </delete>  
-    <update id="dn1.ckftpgl_check_itemUP" parameterClass="java.util.Map"> 
+    <update id="dn0.ckftpgl_check_itemUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update set jsrq=$qdate$ 
       <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty> and JGDH = '$jgdh$' and BZ = '$bz$' and CPDH = '$cpdh$' and QXDH = '$qxdh$'
     </update>  
-    <select id="dn1.ckftpgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.ckftpgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select max(qsrq) from where 1=1 and JGDH = '$jgdh$' and BZ = '$bz$' and CPDH = '$cpdh$' and QXDH = '$qxdh$'
     </select>  
-    <select id="dn1.ckftpgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.ckftpgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select  XS, QSRQ, JGDH, FHFDJ, PLBZ, JSRQ, BZ, CPDH, QXDH, ZYJG from  where 1=1  and JGDH = '$jgdh$' and BZ = '$bz$' and CPDH = '$cpdh$' and QXDH = '$qxdh$' and $qsrq$ > $maxqsrq$]]> 
     </select>  
-    <update id="dn1.ckftpgl_check_itemDELUP" parameterClass="java.util.Map"> 
+    <update id="dn0.ckftpgl_check_itemDELUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update set jsrq =29991231 where 1=1 and JGDH = '$jgdh$' and BZ = '$bz$' and CPDH = '$cpdh$' and QXDH = '$qxdh$' and jsrq =$lastjsrq$
     </update>  
-    <select id="dn1.ckftpgl_getJgInfoByJgdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khdxdh as jgkhdxdh,jgdh,jgmc from khdx_jg where jgdh='$jgdh$'</select>  
-    <select id="dn1.ckftpgl_getJgInfoByKhdxdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khdxdh as jgkhdxdh,jgdh,jgmc from khdx_jg where khdxdh=$jgkhdxdh$</select>  
-    <select id="dn1.ckftpgl_getMaxqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'</select>  
-    <select id="dn1.ckftpgl_MSQL4SELECT_cpdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select cpdh as key,ms as value from csb_cpxz where cplx='1'</select>  
-    <select id="dn1.ckftpgl_MSQL4SELECT_qxdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select qxdh as key,qxmc as value from CSB_QXSDB where jxdxlx=1 union select '-1' as key,'全部期限' as value from pas_vt</select>  
-    <select id="dn1.ckftpgl_MSQL4SELECT_bz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select bz as key,bzzwmc as value from csb_bz where bz!='0A' AND bz!='0B' AND bz!='0C' AND bz!='FF'</select> 
+    <select id="dn0.ckftpgl_getJgInfoByJgdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khdxdh as jgkhdxdh,jgdh,jgmc from khdx_jg where jgdh='$jgdh$'</select>  
+    <select id="dn0.ckftpgl_getJgInfoByKhdxdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khdxdh as jgkhdxdh,jgdh,jgmc from khdx_jg where khdxdh=$jgkhdxdh$</select>  
+    <select id="dn0.ckftpgl_getMaxqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'</select>  
+    <select id="dn0.ckftpgl_MSQL4SELECT_cpdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select cpdh as key,ms as value from csb_cpxz where cplx='1'</select>  
+    <select id="dn0.ckftpgl_MSQL4SELECT_qxdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select qxdh as key,qxmc as value from CSB_QXSDB where jxdxlx=1 union select '-1' as key,'全部期限' as value from pas_vt</select>  
+    <select id="dn0.ckftpgl_MSQL4SELECT_bz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select bz as key,bzzwmc as value from csb_bz where bz!='0A' AND bz!='0B' AND bz!='0C' AND bz!='FF'</select> 
   </sqlMap>  
   <javascript> 
     <query>jQuery(document).ready(function () { //$('#jgkhdxdh_mc').attr('prevalue',''); $('#jgkhdxdh_mc').val(' '); $('#jgkhdxdh').val(0); }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; }</query>  

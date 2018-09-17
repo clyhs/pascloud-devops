@@ -125,7 +125,7 @@
     <col id="ZF" title="增幅(%)" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.hydbfx"> 
-    <select id="dn1.hydbfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.hydbfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="jzsjy" compareValue="fxzb_nfbt"> <![CDATA[SELECT 
        T.JGMC,T.JGDH,T.HYMC,T.HYDH,T.MS,T.BZ,T.SDBS,T.TJZBZ,T.DBZBZ,T.ZBMC,
@@ -184,7 +184,7 @@
         <isNotEmpty property="sysdate">AND $sysdate$ BETWEEN JGCY.QSRQ AND JGCY.JSRQ</isNotEmpty> GROUP BY JG.JGMC,JG.JGDH,HY.HYMC,HY.HYDH,YWLB.MS,yjzb.khzbmc ) T
       </isEqual> 
     </select>  
-    <select id="dn1.hydbfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.hydbfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="jzsjy" compareValue="fxzb_nfbt"> <![CDATA[SELECT 
        T.JGMC,T.JGDH,T.HYMC,T.HYDH,T.MS,T.BZ,T.SDBS,T.TJZBZ,T.DBZBZ,T.ZBMC,
@@ -243,7 +243,7 @@
         <isNotEmpty property="sysdate">AND $sysdate$ BETWEEN JGCY.QSRQ AND JGCY.JSRQ</isNotEmpty> GROUP BY JG.JGMC,JG.JGDH,HY.HYMC,HY.HYDH,YWLB.MS,yjzb.khzbmc ) T
       </isEqual> ) t
     </select>  
-    <select id="dn1.hydbfx_MSQL4SELECT_khzb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khzbdh as KEY,khzbmc as VALUE from khfa_khzb_hy order by zbpx</select> 
+    <select id="dn0.hydbfx_MSQL4SELECT_khzb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khzbdh as KEY,khzbmc as VALUE from khfa_khzb_hy order by zbpx</select> 
   </sqlMap>  
   <finger custPlotMth="" id="hydbfx_khzbjgj"> 
     <plotType>bar</plotType>  

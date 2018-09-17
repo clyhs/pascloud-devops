@@ -65,7 +65,7 @@
     <col id="HJ" title="合计" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.hylrmxb"> 
-    <select id="dn1.hylrmxbList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.hylrmxbList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="zhlx" compareValue="1">select tjrq,jgmc,hydh,hymc,ftpsr,zbjsr,tqzqlxhk,lxzc,(ftpsr+zbjsr+tqzqlxhk-lxzc) hj from( select yj.tjrq,jg.jgmc,cy.hydh,hy.hymc,jg.jgdh, sum(case when gl.pxxh=1 then yj.zbz else 0 end) ftpsr, sum(case when gl.pxxh=2 then yj.zbz else 0 end) zbjsr, sum(case when gl.pxxh=3 then yj.zbz else 0 end) tqzqlxhk, sum(case when gl.pxxh=4 then yj.zbz else 0 end) lxzc from khdx_zbbbgl gl inner join yjzb_hy_all yj on gl.zbdh=yj.zbdh and gl.bz=yj.bz inner join khdx_hy hy on yj.khdxdh=hy.khdxdh inner join khdx_jgcy cy on cy.khdxdh=hy.khdxdh and yj.tjrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join table (FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qxhy on qxhy.khdxdh=hy.khdxdh where 1=1 
         <isNotEmpty property="tjrq">and yj.tjrq=$tjrq$</isNotEmpty>  
@@ -77,7 +77,7 @@
         <isNotEmpty property="sdbs">and yj.sdbs='$sdbs$'</isNotEmpty> and hy.khdxdh in($khdxdh$) and gl.bbdh=1002 group by yj.tjrq,jg.jgdh,jg.jgmc,cy.hydh,hy.hymc order by yj.tjrq,jg.jgdh desc ) z
       </isEqual> 
     </select>  
-    <select id="dn1.hylrmxbCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.hylrmxbCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="zhlx" compareValue="1">select tjrq,jgmc,hydh,hymc,ftpsr,zbjsr,tqzqlxhk,lxzc,(ftpsr+zbjsr+tqzqlxhk-lxzc) hj from( select yj.tjrq,jg.jgmc,cy.hydh,hy.hymc,jg.jgdh, sum(case when gl.pxxh=1 then yj.zbz else 0 end) ftpsr, sum(case when gl.pxxh=2 then yj.zbz else 0 end) zbjsr, sum(case when gl.pxxh=3 then yj.zbz else 0 end) tqzqlxhk, sum(case when gl.pxxh=4 then yj.zbz else 0 end) lxzc from khdx_zbbbgl gl inner join yjzb_hy_all yj on gl.zbdh=yj.zbdh and gl.bz=yj.bz inner join khdx_hy hy on yj.khdxdh=hy.khdxdh inner join khdx_jgcy cy on cy.khdxdh=hy.khdxdh and yj.tjrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join table (FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qxhy on qxhy.khdxdh=hy.khdxdh where 1=1 
         <isNotEmpty property="tjrq">and yj.tjrq=$tjrq$</isNotEmpty>  
@@ -89,7 +89,7 @@
         <isNotEmpty property="sdbs">and yj.sdbs='$sdbs$'</isNotEmpty> and hy.khdxdh in($khdxdh$) and gl.bbdh=1002 group by yj.tjrq,jg.jgdh,jg.jgmc,cy.hydh,hy.hymc order by yj.tjrq,jg.jgdh desc ) z
       </isEqual> ) t
     </select>  
-    <select id="dn1.hylrmxb_MSQL4SELECT_sdbs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc='ZBSDBS' and dmz in('5','6','7') order by dmz</select> 
+    <select id="dn0.hylrmxb_MSQL4SELECT_sdbs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc='ZBSDBS' and dmz in('5','6','7') order by dmz</select> 
   </sqlMap>  
   <finger custPlotMth=""> 
     <plotType/>  

@@ -194,49 +194,49 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.jggzxsgl"> 
-    <select id="dn1.jggzxsglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.jggzxsglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select zb.khzbdh, zb.khzbmc, jg.jglb jglb, (case when jg.jglb='-1' then '全行' else lb.lbmc end) lbmc, jg.bzxs,jg.kfdj, jg.qsrq, jg.jsrq ,'1' as yyzlbh from csb_khzbxs_jg jg inner join khfa_khzb_jg zb on jg.khzbdh = zb.khzbdh left join csb_jglb lb on jg.jglb = lb.lbdh where 1=1 
       <isNotEmpty property="khzb">and zb.khzbdh = $khzb$</isNotEmpty>  
       <isNotEmpty property="jglb1">and jg.jglb ='$jglb1$'</isNotEmpty> and jg.yyzlbh=1
     </select>  
-    <select id="dn1.jggzxsglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.jggzxsglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select zb.khzbdh, zb.khzbmc, jg.jglb jglb, (case when jg.jglb='-1' then '全行' else lb.lbmc end) lbmc, jg.bzxs,jg.kfdj, jg.qsrq, jg.jsrq ,'1' as yyzlbh from csb_khzbxs_jg jg inner join khfa_khzb_jg zb on jg.khzbdh = zb.khzbdh left join csb_jglb lb on jg.jglb = lb.lbdh where 1=1 
       <isNotEmpty property="khzb">and zb.khzbdh = $khzb$</isNotEmpty>  
       <isNotEmpty property="jglb1">and jg.jglb ='$jglb1$'</isNotEmpty> and jg.yyzlbh=1 ) t
     </select>  
-    <select id="dn1.jggzxsgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.jggzxsgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select clzxs, cjhxs, yyzlbh, bzxs, jglb, kfdj, qsrq, khzbdh, jsrq from CSB_KHZBXS_JG where 1= 1 and yyzlbh = '$yyzlbh$' and jglb = '$jglb$' and qsrq = '$qsrq$' and khzbdh = '$khzbdh$'
     </select>  
-    <select id="dn1.jggzxsgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.jggzxsgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select clzxs, cjhxs, yyzlbh, bzxs, jglb, kfdj, qsrq, khzbdh, jsrq from CSB_KHZBXS_JG where 1= 1 and yyzlbh = '$yyzlbh$' and jglb = '$jglb$' and qsrq = '$qsrq$' and khzbdh = '$khzb$'
     </select>  
-    <insert id="dn1.jggzxsgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn0.jggzxsgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into CSB_KHZBXS_JG( cjhxs, clzxs, yyzlbh, bzxs, jglb, khzbdh, qsrq, jsrq, kfdj ) values ( $cjhxs$,$clzxs$,$yyzlbh$,$bzxs$,'$jglb$',$khzb$,$qsrq$,$jsrq$,$bzkfdj$)
     </insert>  
-    <update id="dn1.jggzxsgl_update" parameterClass="java.util.Map"> 
+    <update id="dn0.jggzxsgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_KHZBXS_JG set cjhxs = $cjhxs$,clzxs = $clzxs$,bzxs = $bzxs$,jsrq = '$jsrq$',kfdj = $bzkfdj$ where 1=1 and yyzlbh = '$yyzlbh$' and jglb = '$jglb$' and qsrq = '$qsrq$' and khzbdh = '$khzb$'
     </update>  
-    <delete id="dn1.jggzxsgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn0.jggzxsgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from CSB_KHZBXS_JG where 1=1 and yyzlbh = '$yyzlbh$' and jglb = '$jglb$' and qsrq = '$qsrq$' and khzbdh = '$khzbdh$'
     </delete>  
-    <delete id="dn1.jggzxsgl_check_itemAddDel" parameterClass="java.util.Map"> 
+    <delete id="dn0.jggzxsgl_check_itemAddDel" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[delete from CSB_KHZBXS_JG where qsrq >=$qsrq$  and yyzlbh = '$yyzlbh$' and jglb = '$jglb$' and khzbdh = '$khzb$']]> 
     </delete>  
-    <update id="dn1.jggzxsgl_check_itemUP" parameterClass="java.util.Map"> 
+    <update id="dn0.jggzxsgl_check_itemUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_KHZBXS_JG set jsrq=$qdate$ 
       <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty> and yyzlbh = '$yyzlbh$' and jglb = '$jglb$' and khzbdh = '$khzb$'
     </update>  
-    <select id="dn1.jggzxsgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.jggzxsgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select max(qsrq) from CSB_KHZBXS_JG where 1=1 and yyzlbh = '$yyzlbh$' and jglb = '$jglb$' and khzbdh = '$khzbdh$'
     </select>  
-    <select id="dn1.jggzxsgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.jggzxsgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select  clzxs, cjhxs, yyzlbh, bzxs, jglb, kfdj, qsrq, khzbdh, jsrq from CSB_KHZBXS_JG where 1=1  and yyzlbh = '$yyzlbh$' and jglb = '$jglb$' and khzbdh = '$khzb$' and $qsrq$ > $maxqsrq$]]> 
     </select>  
-    <update id="dn1.jggzxsgl_check_itemDELUP" parameterClass="java.util.Map"> 
+    <update id="dn0.jggzxsgl_check_itemDELUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_KHZBXS_JG set jsrq =29991231 where 1=1 and yyzlbh = '$yyzlbh$' and jglb = '$jglb$' and khzbdh = '$khzbdh$' and jsrq =$lastjsrq$
     </update>  
-    <select id="dn1.jggzxsgl_MSQL4SELECT_jglb1" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select key,value from (select '-1' as key,'全行' as value from xtb_xtcs where lower(csmc) = 'sys_date' union all select lbdh as key,lbmc as value from csb_jglb ) t order by key</select>  
-    <select id="dn1.jggzxsgl_MSQL4SELECT_jglb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select key,value from (select '-1' as key,'全行' as value from xtb_xtcs where lower(csmc) = 'sys_date' union all select lbdh as key,lbmc as value from csb_jglb ) t order by key</select> 
+    <select id="dn0.jggzxsgl_MSQL4SELECT_jglb1" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select key,value from (select '-1' as key,'全行' as value from xtb_xtcs where lower(csmc) = 'sys_date' union all select lbdh as key,lbmc as value from csb_jglb ) t order by key</select>  
+    <select id="dn0.jggzxsgl_MSQL4SELECT_jglb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select key,value from (select '-1' as key,'全行' as value from xtb_xtcs where lower(csmc) = 'sys_date' union all select lbdh as key,lbmc as value from csb_jglb ) t order by key</select> 
   </sqlMap>  
   <javascript> 
     <import>parent.addTab('jggzxsdr','机构工资系数管理','/module/parser/import/visitHtml/jggzxsdr');</import>  

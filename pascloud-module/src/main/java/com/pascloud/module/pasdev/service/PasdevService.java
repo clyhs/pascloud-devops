@@ -618,40 +618,48 @@ public class PasdevService extends AbstractBaseService {
 		Integer num = 0;
 		Document doc = XmlParser.getDocument(filepath);
 		Element root = doc.getRootElement();
-		Element sqlmap = (Element) root.selectNodes("sqlMap").get(0);
-		//替换SELECT的ID
-		List<Element> selectNodes = sqlmap.selectNodes("select");
-		for(Element node:selectNodes){
-			//System.out.println(node.attributeValue("id"));
-			String id = node.attributeValue("id").replaceAll("^dn[0-9]{1,}", dbSchema);
-			//System.out.println(id);
-			node.addAttribute("id", id);
-			num++;
+		
+		if(root.selectNodes("sqlMap").size()>0){
+			Element sqlmap = (Element) root.selectNodes("sqlMap").get(0);
+			
+			
+			
+			//替换SELECT的ID
+			List<Element> selectNodes = sqlmap.selectNodes("select");
+			for(Element node:selectNodes){
+				//System.out.println(node.attributeValue("id"));
+				String id = node.attributeValue("id").replaceAll("^dn[0-9]{1,}", dbSchema);
+				//System.out.println(id);
+				node.addAttribute("id", id);
+				num++;
+			}
+			
+			List<Element> insertNodes = sqlmap.selectNodes("insert");
+			for(Element node:insertNodes){
+				//System.out.println(node.attributeValue("id"));
+				String id = node.attributeValue("id").replaceAll("^dn[0-9]{1,}", dbSchema);
+				node.addAttribute("id", id);
+				num++;
+			}
+			
+			List<Element> updateNodes = sqlmap.selectNodes("update");
+			for(Element node:updateNodes){
+				//System.out.println(node.attributeValue("id"));
+				String id = node.attributeValue("id").replaceAll("^dn[0-9]{1,}", dbSchema);
+				node.addAttribute("id", id);
+				num++;
+			}
+			
+			List<Element> deleteNodes = sqlmap.selectNodes("delete");
+			for(Element node:deleteNodes){
+				//System.out.println(node.attributeValue("id"));
+				String id = node.attributeValue("id").replaceAll("^dn[0-9]{1,}", dbSchema);
+				node.addAttribute("id", id);
+				num++;
+			}
 		}
 		
-		List<Element> insertNodes = sqlmap.selectNodes("insert");
-		for(Element node:insertNodes){
-			//System.out.println(node.attributeValue("id"));
-			String id = node.attributeValue("id").replaceAll("^dn[0-9]{1,}", dbSchema);
-			node.addAttribute("id", id);
-			num++;
-		}
 		
-		List<Element> updateNodes = sqlmap.selectNodes("update");
-		for(Element node:updateNodes){
-			//System.out.println(node.attributeValue("id"));
-			String id = node.attributeValue("id").replaceAll("^dn[0-9]{1,}", dbSchema);
-			node.addAttribute("id", id);
-			num++;
-		}
-		
-		List<Element> deleteNodes = sqlmap.selectNodes("delete");
-		for(Element node:deleteNodes){
-			//System.out.println(node.attributeValue("id"));
-			String id = node.attributeValue("id").replaceAll("^dn[0-9]{1,}", dbSchema);
-			node.addAttribute("id", id);
-			num++;
-		}
 		saveDocument(filepath,doc);
 		return num;
 		
@@ -977,7 +985,7 @@ public class PasdevService extends AbstractBaseService {
 			conn = m_databaseService.getConnectionById(Constants.PASCLOUD_PUBLIC_DB);
 			QueryRunner qRunner = new QueryRunner(); 
 			
-			String sql = "select count(1) from xtb_pasfile where fhdh='dn0' and funId=? ";
+			String sql = "select count(1) from xtb_pasfile where fhdh='"+Constants.PASCLOUD_PUBLIC_DB+"' and funId=? ";
 			Object[] params = {newfunId};
 			
 			Number num = (Number)qRunner.query(conn,sql, new ScalarHandler(),params);
@@ -1745,7 +1753,15 @@ public class PasdevService extends AbstractBaseService {
 		
 		//System.out.println(files.size());
 		
+		String dest = "D:/eclipse64/workspace/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/pasfile/dn0/bgxyjfprz.xml";
 		
+		
+		Document doc = XmlParser.getDocument(dest);
+		Element root = doc.getRootElement();
+		
+		if(root.selectNodes("sqlMap").size()>0){
+			Element sqlmap = (Element) root.selectNodes("sqlMap").get(0);
+		}
 	}
 	 
 	

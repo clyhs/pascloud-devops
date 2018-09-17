@@ -15,12 +15,12 @@
     <col id="YYJG" title="绩效工资" align="right" type="float" width="75" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.jxgzmxqjhymxb"> 
-    <select id="dn1.jxgzmxqjhymxbList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.jxgzmxqjhymxbList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select sum(yyjg) yyjg , nf , cast(yf as char(3)) || '月份' , '$qjms$' qjms, jg.jgdh , jg.jgmc , hy.hydh , hy.hymc from ( select khdxdh , tjrq , sum(yyjg) yyjg , cast(substr(cast(yy.tjrq as char(8)),1,4) as integer) nf , cast(substr(cast(yy.tjrq as char(8)),5,2) as integer) yf from khfa_yyjg_hy yy inner join ( select distinct ym from csb_sjw s where cast(substr(cast(s.tjrq as char(8)),1,4) as integer) =$nf$ ) t on yy.tjrq = t.ym group by khdxdh , tjrq ) a inner join khdx_hy hy on hy.khdxdh = a.khdxdh inner join khdx_jgcy cy on cy.khdxdh = a.khdxdh and a.tjrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh where 1=1 
       <isNotEmpty property="nf">and a.nf = $nf$</isNotEmpty>  
       <isNotEmpty property="yf">and a.yf= $yf$</isNotEmpty> group by yyjg , nf , yf , jg.jgdh , jg.jgmc , hy.hydh , hy.hymc order by jg.jgdh , hy.hydh
     </select>  
-    <select id="dn1.jxgzmxqjhymxbCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.jxgzmxqjhymxbCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select sum(yyjg) yyjg , nf , cast(yf as char(3)) || '月份' , '$qjms$' qjms, jg.jgdh , jg.jgmc , hy.hydh , hy.hymc from ( select khdxdh , tjrq , sum(yyjg) yyjg , cast(substr(cast(yy.tjrq as char(8)),1,4) as integer) nf , cast(substr(cast(yy.tjrq as char(8)),5,2) as integer) yf from khfa_yyjg_hy yy inner join ( select distinct ym from csb_sjw s where cast(substr(cast(s.tjrq as char(8)),1,4) as integer) =$nf$ ) t on yy.tjrq = t.ym group by khdxdh , tjrq ) a inner join khdx_hy hy on hy.khdxdh = a.khdxdh inner join khdx_jgcy cy on cy.khdxdh = a.khdxdh and a.tjrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh where 1=1 
       <isNotEmpty property="nf">and a.nf = $nf$</isNotEmpty>  
       <isNotEmpty property="yf">and a.yf= $yf$</isNotEmpty> group by yyjg , nf , yf , jg.jgdh , jg.jgmc , hy.hydh , hy.hymc order by jg.jgdh , hy.hydh ) t

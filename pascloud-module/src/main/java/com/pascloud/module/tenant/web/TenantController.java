@@ -548,7 +548,7 @@ public class TenantController extends BaseController {
 			result = m_configService.getDBFromConfig();
 			if(result.size()>0){
 				for(DBInfo d:result){
-					if(d.getId().equals("dn0")){
+					if(d.getId().equals(Constants.PASCLOUD_PUBLIC_DB)){
 						dn0 = d;
 					}
 				}

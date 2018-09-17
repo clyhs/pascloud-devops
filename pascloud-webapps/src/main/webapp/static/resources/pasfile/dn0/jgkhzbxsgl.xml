@@ -7,9 +7,11 @@
         <attribute key="isSearch" value="true"/>  
         <attribute key="isRequired" value="false"/>  
         <attribute key="isMultiple" value="false"/>  
+        <attribute key="selectedList" value="1"/>  
         <attribute key="name" value="khzb"/>  
-        <attribute key="width" value="200px;"/>  
+        <attribute key="width" value="230px;"/>  
         <attribute key="isAll" value="true"/>  
+        <attribute key="mulShowType" value="null"/>  
         <attribute key="isEditable" value="true"/> 
       </tag>  
       <tag row="0" col="1" rowspan="1" colspan="1" name="MSQL4Select" label="机构类别" fieldName=""> 
@@ -18,10 +20,13 @@
         <attribute key="style" value="width:auto;"/>  
         <attribute key="isRequired" value="false"/>  
         <attribute key="isMultiple" value="false"/>  
+        <attribute key="selectedList" value="1"/>  
         <attribute key="name" value="jglb1"/>  
         <attribute key="width" value="120px;"/>  
         <attribute key="isAll" value="true"/>  
-        <attribute key="isEditable" value="true"/> 
+        <attribute key="mulShowType" value="null"/>  
+        <attribute key="isEditable" value="true"/>  
+        <attribute key="key_SELECTTYPE" value="Integer"/> 
       </tag> 
     </tags> 
   </conPart>  
@@ -43,27 +48,34 @@
   <addPage title="编辑页面"> 
     <tag row="0" col="0" rowspan="1" colspan="1" name="JGKhzbSelect" label="考核指标名称" fieldName="KHZBDH"> 
       <attribute key="isSearch" value="true"/>  
-      <attribute key="isRequired" value="false"/>  
+      <attribute key="isRequired" value="true"/>  
       <attribute key="isMultiple" value="false"/>  
+      <attribute key="selectedList" value="1"/>  
       <attribute key="name" value="khzb"/>  
-      <attribute key="width" value="120px;"/>  
+      <attribute key="width" value="230px;"/>  
       <attribute key="isAll" value="false"/>  
+      <attribute key="mulShowType" value="null"/>  
       <attribute key="isEditable" value="true"/> 
     </tag>  
     <tag row="1" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="机构类别" fieldName="JGLB"> 
       <attribute key="sql" value="select key,value from (select '-1' as key,'全行' as value from xtb_xtcs  where lower(csmc) = 'sys_date' union all select lbdh as key,lbmc as value from csb_jglb ) t order by key"/>  
       <attribute key="isSearch" value="false"/>  
-      <attribute key="isRequired" value="false"/>  
+      <attribute key="style" value="width:220px;"/>  
+      <attribute key="isRequired" value="true"/>  
       <attribute key="isMultiple" value="false"/>  
+      <attribute key="selectedList" value="1"/>  
       <attribute key="name" value="jglb"/>  
       <attribute key="width" value="120px;"/>  
       <attribute key="isAll" value="false"/>  
-      <attribute key="isEditable" value="true"/> 
+      <attribute key="mulShowType" value="null"/>  
+      <attribute key="isEditable" value="true"/>  
+      <attribute key="key_SELECTTYPE" value="Integer"/> 
     </tag>  
     <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="标准得分系数" fieldName="BZXS"> 
       <attribute key="min" value="0"/>  
       <attribute key="max" value="9999"/>  
       <attribute key="precision" value="2"/>  
+      <attribute key="style" value="width:220px;text-align:right;"/>  
       <attribute key="name" value="bzxs"/>  
       <attribute key="intparts" value="4"/>  
       <attribute key="readonly" value="false"/>  
@@ -73,7 +85,7 @@
       <attribute key="min" value="0"/>  
       <attribute key="max" value="9999"/>  
       <attribute key="precision" value="2"/>  
-      <attribute key="style" value="width:120px"/>  
+      <attribute key="style" value="width:220px;text-align:right;"/>  
       <attribute key="name" value="cjhxs"/>  
       <attribute key="intparts" value="4"/>  
       <attribute key="readonly" value="false"/>  
@@ -83,13 +95,14 @@
       <attribute key="min" value="0"/>  
       <attribute key="max" value="9999"/>  
       <attribute key="precision" value="2"/>  
-      <attribute key="style" value="width:120px"/>  
+      <attribute key="style" value="width:220px;text-align:right;"/>  
       <attribute key="name" value="clzxs"/>  
       <attribute key="intparts" value="4"/>  
       <attribute key="readonly" value="false"/>  
       <attribute key="editable" value="true"/> 
     </tag>  
     <tag row="5" col="0" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ"> 
+      <attribute key="style" value="width:220px;"/>  
       <attribute key="isRequired" value="true"/>  
       <attribute key="name" value="tjrq"/>  
       <attribute key="minDate" value="no"/>  
@@ -109,29 +122,36 @@
   <updatePage title="编辑页面"> 
     <tag row="0" col="0" rowspan="1" colspan="1" name="JGKhzbSelect" label="考核指标名称" fieldName="KHZBDH"> 
       <attribute key="isSearch" value="true"/>  
-      <attribute key="isRequired" value="false"/>  
+      <attribute key="isRequired" value="true"/>  
       <attribute key="isMultiple" value="false"/>  
+      <attribute key="selectedList" value="1"/>  
       <attribute key="name" value="khzb"/>  
-      <attribute key="width" value="120px;"/>  
+      <attribute key="width" value="230px;"/>  
       <attribute key="isAll" value="false"/>  
+      <attribute key="mulShowType" value="null"/>  
       <attribute key="editable" value="false"/>  
       <attribute key="isEditable" value="false"/> 
     </tag>  
     <tag row="1" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="机构类别" fieldName="JGLB"> 
-      <attribute key="sql" value="select key,value from (select '-1' as key,'全行' as value from xtb_xtcs  where lower(csmc) = 'sys_date' union all select lbdh as key,lbmc as value from csb_jglb ) t order by key"/>  
-      <attribute key="isSearch" value="false"/>  
-      <attribute key="isRequired" value="false"/>  
+      <attribute key="selectedList" value="1"/>  
       <attribute key="isMultiple" value="false"/>  
-      <attribute key="name" value="jglb"/>  
       <attribute key="width" value="120px;"/>  
-      <attribute key="isAll" value="false"/>  
+      <attribute key="mulShowType" value="null"/>  
       <attribute key="editable" value="false"/>  
+      <attribute key="key_SELECTTYPE" value="Integer"/>  
+      <attribute key="isSearch" value="false"/>  
+      <attribute key="sql" value="select key,value from (select '-1' as key,'全行' as value from xtb_xtcs  where lower(csmc) = 'sys_date' union all select lbdh as key,lbmc as value from csb_jglb ) t order by key"/>  
+      <attribute key="isRequired" value="true"/>  
+      <attribute key="style" value="width:220px;"/>  
+      <attribute key="name" value="jglb"/>  
+      <attribute key="isAll" value="false"/>  
       <attribute key="isEditable" value="false"/> 
     </tag>  
     <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="标准得分系数" fieldName="BZXS"> 
       <attribute key="min" value="0"/>  
       <attribute key="max" value="9999"/>  
       <attribute key="precision" value="2"/>  
+      <attribute key="style" value="width:220px;text-align:right;"/>  
       <attribute key="name" value="bzxs"/>  
       <attribute key="intparts" value="4"/>  
       <attribute key="readonly" value="false"/>  
@@ -141,7 +161,7 @@
       <attribute key="min" value="0"/>  
       <attribute key="max" value="9999"/>  
       <attribute key="precision" value="2"/>  
-      <attribute key="style" value="width:120px"/>  
+      <attribute key="style" value="width:220px;text-align:right;"/>  
       <attribute key="name" value="cjhxs"/>  
       <attribute key="intparts" value="4"/>  
       <attribute key="readonly" value="false"/>  
@@ -151,13 +171,14 @@
       <attribute key="min" value="0"/>  
       <attribute key="max" value="9999"/>  
       <attribute key="precision" value="2"/>  
-      <attribute key="style" value="width:120px"/>  
+      <attribute key="style" value="width:220px;text-align:right;"/>  
       <attribute key="name" value="clzxs"/>  
       <attribute key="intparts" value="4"/>  
       <attribute key="readonly" value="false"/>  
       <attribute key="editable" value="true"/> 
     </tag>  
     <tag row="5" col="0" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ"> 
+      <attribute key="style" value="width:220px;"/>  
       <attribute key="isRequired" value="true"/>  
       <attribute key="name" value="tjrq"/>  
       <attribute key="isAll" value="false"/>  
@@ -197,53 +218,53 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.jgkhzbxsgl"> 
-    <select id="dn1.jgkhzbxsglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.jgkhzbxsglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select zb.khzbdh,zb.khzbmc,jg.jglb jglb, (case when jg.jglb='-1' then '全行' else lb.lbmc end) lbmc,jg.bzxs,jg.cjhxs,jg.clzxs,jg.qsrq,jg.jsrq ,'2' as yyzlbh from csb_khzbxs_jg jg inner join khfa_khzb_jg zb on jg.khzbdh = zb.khzbdh left join csb_jglb lb on jg.jglb = lb.lbdh where 1=1 
       <isNotEmpty property="khzb">and zb.khzbdh = $khzb$</isNotEmpty>  
       <isNotEmpty property="jglb1">and jg.jglb ='$jglb1$'</isNotEmpty> and jg.yyzlbh=2
     </select>  
-    <select id="dn1.jgkhzbxsglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.jgkhzbxsglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select zb.khzbdh,zb.khzbmc,jg.jglb jglb, (case when jg.jglb='-1' then '全行' else lb.lbmc end) lbmc,jg.bzxs,jg.cjhxs,jg.clzxs,jg.qsrq,jg.jsrq ,'2' as yyzlbh from csb_khzbxs_jg jg inner join khfa_khzb_jg zb on jg.khzbdh = zb.khzbdh left join csb_jglb lb on jg.jglb = lb.lbdh where 1=1 
       <isNotEmpty property="khzb">and zb.khzbdh = $khzb$</isNotEmpty>  
       <isNotEmpty property="jglb1">and jg.jglb ='$jglb1$'</isNotEmpty> and jg.yyzlbh=2 ) t
     </select>  
-    <select id="dn1.jgkhzbxsgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.jgkhzbxsgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select BZXS, CJHXS, JGLB, YYZLBH, QSRQ, KHZBDH, JSRQ, CLZXS from CSB_KHZBXS_JG where 1= 1 and JGLB = '$jglb$' and YYZLBH = $yyzlbh$ and QSRQ = $qsrq$ and KHZBDH = $khzbdh$
     </select>  
-    <select id="dn1.jgkhzbxsgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.jgkhzbxsgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select BZXS, CJHXS, JGLB, YYZLBH, QSRQ, KHZBDH, JSRQ, CLZXS from CSB_KHZBXS_JG where 1= 1 and JGLB = '$jglb$' and YYZLBH = $yyzlbh$ and QSRQ = $tjrq$ and KHZBDH = $khzb$
     </select>  
-    <insert id="dn1.jgkhzbxsgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn0.jgkhzbxsgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into CSB_KHZBXS_JG( CLZXS, CJHXS, YYZLBH, BZXS, JGLB, KHZBDH, JSRQ, QSRQ ) values ( $clzxs$,$cjhxs$,$yyzlbh$,$bzxs$,'$jglb$',$khzb$,$jsrq$,$tjrq$)
     </insert>  
-    <update id="dn1.jgkhzbxsgl_update" parameterClass="java.util.Map"> 
+    <update id="dn0.jgkhzbxsgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_KHZBXS_JG set CLZXS = $clzxs$,CJHXS = $cjhxs$,BZXS = $bzxs$,JSRQ = $jsrq$ where 1=1 and JGLB = '$jglb$' and YYZLBH = $yyzlbh$ and QSRQ = $tjrq$ and KHZBDH = $khzb$
     </update>  
-    <delete id="dn1.jgkhzbxsgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn0.jgkhzbxsgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from CSB_KHZBXS_JG where 1=1 and JGLB = '$jglb$' and YYZLBH = $yyzlbh$ and QSRQ = $qsrq$ and KHZBDH = $khzbdh$
     </delete>  
-    <delete id="dn1.jgkhzbxsgl_check_itemAddDel" parameterClass="java.util.Map"> 
+    <delete id="dn0.jgkhzbxsgl_check_itemAddDel" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[delete from CSB_KHZBXS_JG where qsrq >=$tjrq$  and JGLB = '$jglb$' and YYZLBH = $yyzlbh$ and KHZBDH = $khzb$]]> 
     </delete>  
-    <update id="dn1.jgkhzbxsgl_check_itemUP" parameterClass="java.util.Map"> 
+    <update id="dn0.jgkhzbxsgl_check_itemUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_KHZBXS_JG set jsrq=$qdate$ 
       <isNotEmpty property="tjrq">where $tjrq$ between qsrq and jsrq</isNotEmpty> and JGLB = '$jglb$' and YYZLBH = $yyzlbh$ and KHZBDH = $khzb$
     </update>  
-    <select id="dn1.jgkhzbxsgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.jgkhzbxsgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select max(qsrq) from CSB_KHZBXS_JG where 1=1 and JGLB = '$jglb$' and YYZLBH = $yyzlbh$ and KHZBDH = $khzbdh$
     </select>  
-    <select id="dn1.jgkhzbxsgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.jgkhzbxsgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select  BZXS, CJHXS, JGLB, YYZLBH, QSRQ, KHZBDH, JSRQ, CLZXS from CSB_KHZBXS_JG where 1=1  and JGLB = '$jglb$' and YYZLBH = $yyzlbh$ and KHZBDH = $khzb$ and $tjrq$ > $maxqsrq$]]> 
     </select>  
-    <update id="dn1.jgkhzbxsgl_check_itemDELUP" parameterClass="java.util.Map"> 
+    <update id="dn0.jgkhzbxsgl_check_itemDELUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_KHZBXS_JG set jsrq =29991231 where 1=1 and JGLB = '$jglb$' and YYZLBH = $yyzlbh$ and KHZBDH = $khzbdh$ and jsrq =$lastjsrq$
     </update>  
-    <select id="dn1.jgkhzbxsgl_MSQL4SELECT_jglb1" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select key,value from (select '-1' as key,'全行' as value from xtb_xtcs where lower(csmc) = 'sys_date' union all select lbdh as key,lbmc as value from csb_jglb ) t order by key</select>  
-    <select id="dn1.jgkhzbxsgl_MSQL4SELECT_jglb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select key,value from (select '-1' as key,'全行' as value from xtb_xtcs where lower(csmc) = 'sys_date' union all select lbdh as key,lbmc as value from csb_jglb ) t order by key</select> 
+    <select id="dn0.jgkhzbxsgl_MSQL4SELECT_jglb1" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select key,value from (select '-1' as key,'全行' as value from xtb_xtcs where lower(csmc) = 'sys_date' union all select lbdh as key,lbmc as value from csb_jglb ) t order by key</select>  
+    <select id="dn0.jgkhzbxsgl_MSQL4SELECT_jglb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select key,value from (select '-1' as key,'全行' as value from xtb_xtcs where lower(csmc) = 'sys_date' union all select lbdh as key,lbmc as value from csb_jglb ) t order by key</select> 
   </sqlMap>  
   <javascript> 
     <import>parent.addTab('jgjfxsdr','机构计分系数管理','/module/parser/import/visitHtml/jgjfxsdr');</import>  
-    <query>jQuery(document).ready(function () { }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; }</query>  
+    <query>jQuery(document).ready(function () { editpage_width=650; editpage_height=350; }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; }</query>  
     <edit>jQuery(document).ready(function () { //这里的js脚本，会在页面加载完成后执行 $(".tablecolor tr").eq(3).find("td").css('width','150px') }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; }</edit> 
   </javascript> 
 </pageSetting>

@@ -56,22 +56,22 @@
     </col> 
   </table>  
   <sqlMap namespace="studio.khcdksshyfx"> 
-    <select id="dn1.khcdksshyfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.khcdksshyfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> SELECT $tjrq$ AS TJRQ, JG.JGDH AS JGDH, JG.JGMC AS JGMC, B.KHS AS HZKHS, (cast(B.KHS as decimal(25,4))/cast( SUM(SSHY.KHS) OVER(PARTITION BY SSHY.TJRQ,SSHY.JXDXLX,SSHY.KHLX)as decimal(25,4)))*100 AS HZQHZB, dmms.dmms as dmms, dmms.dmz as dmz, SSHY.KHS AS KHS, case when b.khs = 0 then 0 else (cast(SSHY.KHS as decimal(25,4))/cast( b.khs as decimal(25,4)))*100 end as zb FROM KHFX_KHSSHYTJ SSHY INNER JOIN KHDX_JG JG ON JG.KHDXDH = SSHY.JGKHDXDH INNER JOIN( select CAST(sum(a.khs)as decimal(25,4)) as khs,a.jgkhdxdh from ( SELECT SSHY1.KHS ,SSHY1.JGKHDXDH FROM KHFX_KHSSHYTJ SSHY1 where SSHY1.TJRQ =(SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) ) 
       <isNotEmpty property="ywlx">AND SSHY1.JXDXLX=$ywlx$</isNotEmpty>  
       <isNotEmpty property="khlx">AND SSHY1.KHLX='$khlx$'</isNotEmpty> AND SSHY1.JGKHDXDH IN($jgkhdxdh$) )A GROUP BY A.JGKHDXDH )B ON SSHY.JGKHDXDH = B.JGKHDXDH inner join CSB_DMMS dmms on dmms.dmmc='KHHYLB' and SSHY.KHHYLB = DMMS.DMZ WHERE SSHY.TJRQ =(SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) ) 
       <isNotEmpty property="ywlx">AND SSHY.JXDXLX=$ywlx$</isNotEmpty>  
       <isNotEmpty property="khlx">AND SSHY.KHLX='$khlx$'</isNotEmpty> AND SSHY.JGKHDXDH IN($jgkhdxdh$)
     </select>  
-    <select id="dn1.khcdksshyfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.khcdksshyfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( SELECT $tjrq$ AS TJRQ, JG.JGDH AS JGDH, JG.JGMC AS JGMC, B.KHS AS HZKHS, (cast(B.KHS as decimal(25,4))/cast( SUM(SSHY.KHS) OVER(PARTITION BY SSHY.TJRQ,SSHY.JXDXLX,SSHY.KHLX)as decimal(25,4)))*100 AS HZQHZB, dmms.dmms as dmms, dmms.dmz as dmz, SSHY.KHS AS KHS, case when b.khs = 0 then 0 else (cast(SSHY.KHS as decimal(25,4))/cast( b.khs as decimal(25,4)))*100 end as zb FROM KHFX_KHSSHYTJ SSHY INNER JOIN KHDX_JG JG ON JG.KHDXDH = SSHY.JGKHDXDH INNER JOIN( select CAST(sum(a.khs)as decimal(25,4)) as khs,a.jgkhdxdh from ( SELECT SSHY1.KHS ,SSHY1.JGKHDXDH FROM KHFX_KHSSHYTJ SSHY1 where SSHY1.TJRQ =(SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) ) 
       <isNotEmpty property="ywlx">AND SSHY1.JXDXLX=$ywlx$</isNotEmpty>  
       <isNotEmpty property="khlx">AND SSHY1.KHLX='$khlx$'</isNotEmpty> AND SSHY1.JGKHDXDH IN($jgkhdxdh$) )A GROUP BY A.JGKHDXDH )B ON SSHY.JGKHDXDH = B.JGKHDXDH inner join CSB_DMMS dmms on dmms.dmmc='KHHYLB' and SSHY.KHHYLB = DMMS.DMZ WHERE SSHY.TJRQ =(SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) ) 
       <isNotEmpty property="ywlx">AND SSHY.JXDXLX=$ywlx$</isNotEmpty>  
       <isNotEmpty property="khlx">AND SSHY.KHLX='$khlx$'</isNotEmpty> AND SSHY.JGKHDXDH IN($jgkhdxdh$) ) t
     </select>  
-    <select id="dn1.khcdksshyfx_MSQL4SELECT_ywlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where DMMC= 'ZHLX'</select>  
-    <select id="dn1.khcdksshyfx_MSQL4SELECT_khlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where DMMC= 'KHLX'</select> 
+    <select id="dn0.khcdksshyfx_MSQL4SELECT_ywlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where DMMC= 'ZHLX'</select>  
+    <select id="dn0.khcdksshyfx_MSQL4SELECT_khlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where DMMC= 'KHLX'</select> 
   </sqlMap>  
   <rels> 
     <items id="khcdksshyfx_xsjy1jgj"/> 

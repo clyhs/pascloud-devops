@@ -52,7 +52,7 @@
     <col id="LBDH" title="类别编号" align="left" type="hidden" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.hylbjxgzhz"> 
-    <select id="dn1.hylbjxgzhzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.hylbjxgzhzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select $qsrq$ qsrq,$jsrq$ jsrq,t.nf,t.lbmc,t.lbdh,t.yf,t.hys,
 case when t.hys!=0 then t.yyjg/t.hys else 0 end hypjjxgz,t.yyjg,t.zb from (
 select t.nf,t.lbmc,t.lbdh,t.YF,t.hys,
@@ -94,7 +94,7 @@ where  tjrq=ym]]>
       <isNotEmpty property="jsrq1">and $jsrq1$ between hylb.qsrq and hylb.jsrq</isNotEmpty> inner join CSB_HYLB csb on csb.LBDH=hylb.LBDH where exists(select 1 from khfa_fapz pz where yyjg.fabh=pz.fabh and pz.yyzlbh=1) group by substr(f_numtochar(yyjg.tjrq), 1, 4),substr(f_numtochar(yyjg.tjrq), 5, 2),csb.LBMC,hylb.lbdh,yyjg.khdxdh order by nf,yf,lbdh )l group by l.nf,l.lbmc,l.lbdh,l.yf )y )t where 1=1 
       <isNotEmpty property="hylb">and t.lbdh='$hylb$'</isNotEmpty> ) t group by t.nf,t.lbmc,t.lbdh ) t order by t.yf
     </select>  
-    <select id="dn1.hylbjxgzhzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.hylbjxgzhzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( <![CDATA[select $qsrq$ qsrq,$jsrq$ jsrq,t.nf,t.lbmc,t.lbdh,t.yf,t.hys,
 case when t.hys!=0 then t.yyjg/t.hys else 0 end hypjjxgz,t.yyjg,t.zb from (
 select t.nf,t.lbmc,t.lbdh,t.YF,t.hys,
@@ -136,7 +136,7 @@ where  tjrq=ym]]>
       <isNotEmpty property="jsrq1">and $jsrq1$ between hylb.qsrq and hylb.jsrq</isNotEmpty> inner join CSB_HYLB csb on csb.LBDH=hylb.LBDH where exists(select 1 from khfa_fapz pz where yyjg.fabh=pz.fabh and pz.yyzlbh=1) group by substr(f_numtochar(yyjg.tjrq), 1, 4),substr(f_numtochar(yyjg.tjrq), 5, 2),csb.LBMC,hylb.lbdh,yyjg.khdxdh order by nf,yf,lbdh )l group by l.nf,l.lbmc,l.lbdh,l.yf )y )t where 1=1 
       <isNotEmpty property="hylb">and t.lbdh='$hylb$'</isNotEmpty> ) t group by t.nf,t.lbmc,t.lbdh ) t order by t.yf ) t
     </select>  
-    <select id="dn1.hylbjxgzhz_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key,lbmc as value from csb_hylb</select> 
+    <select id="dn0.hylbjxgzhz_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key,lbmc as value from csb_hylb</select> 
   </sqlMap>  
   <rels> 
     <items id="hylbjxgzhz_xsjy1jgj"/> 

@@ -14,7 +14,7 @@
     <col id="HYMC" title="行员名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.xtwsyhyxxmx"> 
-    <select id="dn1.xtwsyhyxxmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.xtwsyhyxxmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select $qsrq$ as qsrq,$jsrq$ as jsrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,lb.lbmc
 from khdx_hy hy
 inner join khdx_jgcy jgcy on jgcy.khdxdh=hy.khdxdh and $qsrq$>=jgcy.qsrq and $jsrq$<=jgcy.jsrq
@@ -30,7 +30,7 @@ and yyrz.sjms like '%system/index%'
 and hy.hydh not like 'XN%']]>  
       <isNotEmpty property="jgdh">and jg.jgdh='$jgdh$'</isNotEmpty> and hy.hydh != 'admin' order by jg.jgdh,lb.lbmc,hy.hydh
     </select>  
-    <select id="dn1.xtwsyhyxxmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.xtwsyhyxxmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( <![CDATA[select $qsrq$ as qsrq,$jsrq$ as jsrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,lb.lbmc
 from khdx_hy hy
 inner join khdx_jgcy jgcy on jgcy.khdxdh=hy.khdxdh and $qsrq$>=jgcy.qsrq and $jsrq$<=jgcy.jsrq

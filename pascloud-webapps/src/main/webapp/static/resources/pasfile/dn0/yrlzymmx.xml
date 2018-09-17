@@ -41,7 +41,7 @@
     <col id="RLCLYE" title="认领存量余额" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.yrlzymmx"> 
-    <select id="dn1.yrlzymmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.yrlzymmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="dxlx" compareValue="1">select jgdh,jgmc,hydh,hymc,khh,zhdh,zhhm,qxsd.qxmc,case when zhbs='1' then '对公' when zhbs='2' then '对私' end zhbs,khrq,dqrq,clye,rlbl,rlclye from( select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,zh.khh,zh.zhdh,zh.zhhm,zh.qx,zh.zhbs,zh.khrq,zh.dqrq, round(zh.zhye*gx.zlbl*0.01,2) rlclye,gx.ZLBL rlbl,zh.zhye clye from jxdx_ckzh zh inner join dxgx_hyyjgx_ck gx on zh.jxdxdh=gx.jxdxdh and gx.jsrq=29991231 inner join khdx_hylb hylb on hylb.khdxdh=gx.khdxdh 
         <isNotEmpty property="tjrq">and $tjrq$ between hylb.qsrq and hylb.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh=gx.khdxdh inner join khdx_jg jg on zh.jgdh=jg.jgdh where zh.gxhslx='1' and hy.hydh not like 'XN%' 
@@ -68,7 +68,7 @@
         <isNotEmpty property="hydh">and hy.hydh='$hydh$'</isNotEmpty> ) a inner join csb_qxsdb qxsd on a.qx=qxsd.qxdh order by zhbs asc,rlclye,qx desc
       </isEqual> 
     </select>  
-    <select id="dn1.yrlzymmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.yrlzymmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="dxlx" compareValue="1">select jgdh,jgmc,hydh,hymc,khh,zhdh,zhhm,qxsd.qxmc,case when zhbs='1' then '对公' when zhbs='2' then '对私' end zhbs,khrq,dqrq,clye,rlbl,rlclye from( select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,zh.khh,zh.zhdh,zh.zhhm,zh.qx,zh.zhbs,zh.khrq,zh.dqrq, round(zh.zhye*gx.zlbl*0.01,2) rlclye,gx.ZLBL rlbl,zh.zhye clye from jxdx_ckzh zh inner join dxgx_hyyjgx_ck gx on zh.jxdxdh=gx.jxdxdh and gx.jsrq=29991231 inner join khdx_hylb hylb on hylb.khdxdh=gx.khdxdh 
         <isNotEmpty property="tjrq">and $tjrq$ between hylb.qsrq and hylb.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh=gx.khdxdh inner join khdx_jg jg on zh.jgdh=jg.jgdh where zh.gxhslx='1' and hy.hydh not like 'XN%' 

@@ -161,7 +161,7 @@
     </col> 
   </table>  
   <sqlMap namespace="studio.jgyjbb"> 
-    <select id="dn1.jgyjbbList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.jgyjbbList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="jzsjy" compareValue="jgfxzb">select s.tjrq, s.jgdh, s.jgmc, s.zbmc, s.zbsj, (s.zbsj - s.qnye) bqntq, (s.zbsj - s.ncye) bnc, (s.zbsj - s.jcye) bjc, (s.zbsj - s.ycye) byc, s.bz, s.sdbs, s.tjkj from ( select jgzb.khdxdh khdxdh, $tjrq$ tjrq, jg.jgdh jgdh,jg.jgmc jgmc, jgfxzb.zbmc zbmc, coalesce(max(case when jgzb.tjrq = $tjrq$ then jgzb.zbz end), 0) zbsj, coalesce(max(case when jgzb.tjrq = $tjrq_nc$ then jgzb.zbz end), 0) ncye, coalesce(max(case when jgzb.tjrq = $tjrq_jc$ then jgzb.zbz end), 0) jcye, coalesce(max(case when jgzb.tjrq = $tjrq_yc$ then jgzb.zbz end), 0) ycye, coalesce(max(case when jgzb.tjrq = $tjrq_sntq$ then jgzb.zbz end), 0) qnye , bz.bzzwmc as bz, dmms_sdbs.dmms as sdbs, dmms_tjkj.dmms as tjkj from khdx_zb jgfxzb inner join ( select khdxdh,tjrq,zbdh,bz,sdbs,tjkj,zbz from yjzb_jg_$tjrq_yyyy$ a 
         <isNotEmpty property="jgkhdxdh">where a.khdxdh in ($jgkhdxdh$)</isNotEmpty>  
@@ -210,7 +210,7 @@
         <isNotEmpty property="zbdh">and jgfxzb.zbdh = $zbdh$</isNotEmpty> and jgzb.tjrq in($tjrq$,$tjrq_nc$,$tjrq_jc$,$tjrq_yc$,$tjrq_sntq$) and jgzb.sjwd in('2','3') group by jgzb.khdxdh, jg.jgdh, jg.jgmc, jgfxzb.zbmc , bz.bzzwmc , dmms_sdbs.dmms, dmms_tjkj.dmms ) s order by zbsj desc,jgdh asc
       </isEqual> 
     </select>  
-    <select id="dn1.jgyjbbCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.jgyjbbCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="jzsjy" compareValue="jgfxzb">select s.tjrq, s.jgdh, s.jgmc, s.zbmc, s.zbsj, (s.zbsj - s.qnye) bqntq, (s.zbsj - s.ncye) bnc, (s.zbsj - s.jcye) bjc, (s.zbsj - s.ycye) byc, s.bz, s.sdbs, s.tjkj from ( select jgzb.khdxdh khdxdh, $tjrq$ tjrq, jg.jgdh jgdh,jg.jgmc jgmc, jgfxzb.zbmc zbmc, coalesce(max(case when jgzb.tjrq = $tjrq$ then jgzb.zbz end), 0) zbsj, coalesce(max(case when jgzb.tjrq = $tjrq_nc$ then jgzb.zbz end), 0) ncye, coalesce(max(case when jgzb.tjrq = $tjrq_jc$ then jgzb.zbz end), 0) jcye, coalesce(max(case when jgzb.tjrq = $tjrq_yc$ then jgzb.zbz end), 0) ycye, coalesce(max(case when jgzb.tjrq = $tjrq_sntq$ then jgzb.zbz end), 0) qnye , bz.bzzwmc as bz, dmms_sdbs.dmms as sdbs, dmms_tjkj.dmms as tjkj from khdx_zb jgfxzb inner join ( select khdxdh,tjrq,zbdh,bz,sdbs,tjkj,zbz from yjzb_jg_$tjrq_yyyy$ a 
         <isNotEmpty property="jgkhdxdh">where a.khdxdh in ($jgkhdxdh$)</isNotEmpty>  
@@ -259,7 +259,7 @@
         <isNotEmpty property="zbdh">and jgfxzb.zbdh = $zbdh$</isNotEmpty> and jgzb.tjrq in($tjrq$,$tjrq_nc$,$tjrq_jc$,$tjrq_yc$,$tjrq_sntq$) and jgzb.sjwd in('2','3') group by jgzb.khdxdh, jg.jgdh, jg.jgmc, jgfxzb.zbmc , bz.bzzwmc , dmms_sdbs.dmms, dmms_tjkj.dmms ) s order by zbsj desc,jgdh asc
       </isEqual> ) t
     </select>  
-    <select id="dn1.jgyjbb_MSQL4SELECT_khzb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khzbdh as KEY,khzbmc as VALUE from khfa_khzb_jg order by zbpx,zbdh</select> 
+    <select id="dn0.jgyjbb_MSQL4SELECT_khzb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khzbdh as KEY,khzbmc as VALUE from khfa_khzb_jg order by zbpx,zbdh</select> 
   </sqlMap>  
   <rels> 
     <items id="jgyjbb_xsjy1jgj"> 

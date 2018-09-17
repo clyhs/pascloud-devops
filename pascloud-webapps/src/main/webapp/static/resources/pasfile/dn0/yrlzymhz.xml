@@ -37,7 +37,7 @@
     <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.yrlzymhz"> 
-    <select id="dn1.yrlzymhzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.yrlzymhzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="dxlx" compareValue="1">select jgdh,jgmc,hydh,hymc,lbmc,sum(rlhs) rlhs,sum(rlclye) rlclye,case when sum(zhye)=0 then 0 else round(sum(rlclye)/sum(zhye)*100,2) end rlcljezb,zhbs,khrq,tjrq,khdxdh from( select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,hylb.lbmc,round(gx.zlbl*0.01,2) rlhs,round(zh.zhye*gx.zlbl*0.01,2) rlclye,zh.zhye ,'$zhbs$' zhbs,$khrq$ khrq,$tjrq$ tjrq,$jgkhdxdh$ khdxdh from jxdx_ckzh zh inner join dxgx_hyyjgx_ck gx on zh.jxdxdh=gx.jxdxdh and gx.jsrq=29991231 inner join khdx_hylb hylb on hylb.khdxdh=gx.khdxdh 
         <isNotEmpty property="tjrq">and $tjrq$ between hylb.qsrq and hylb.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh=gx.khdxdh inner join khdx_jg jg on zh.jgdh=jg.jgdh where zh.gxhslx='1' and hy.hydh not like 'XN%' 
@@ -60,7 +60,7 @@
         <isNotEmpty property="zhbs">and zh.zhbs='$zhbs$'</isNotEmpty> ) a group by jgdh,jgmc,hydh,hymc,lbmc,zhbs,khrq,tjrq,khdxdh order by jgdh,lbmc asc,rlclye desc
       </isEqual> 
     </select>  
-    <select id="dn1.yrlzymhzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.yrlzymhzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="dxlx" compareValue="1">select jgdh,jgmc,hydh,hymc,lbmc,sum(rlhs) rlhs,sum(rlclye) rlclye,case when sum(zhye)=0 then 0 else round(sum(rlclye)/sum(zhye)*100,2) end rlcljezb,zhbs,khrq,tjrq,khdxdh from( select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,hylb.lbmc,round(gx.zlbl*0.01,2) rlhs,round(zh.zhye*gx.zlbl*0.01,2) rlclye,zh.zhye ,'$zhbs$' zhbs,$khrq$ khrq,$tjrq$ tjrq,$jgkhdxdh$ khdxdh from jxdx_ckzh zh inner join dxgx_hyyjgx_ck gx on zh.jxdxdh=gx.jxdxdh and gx.jsrq=29991231 inner join khdx_hylb hylb on hylb.khdxdh=gx.khdxdh 
         <isNotEmpty property="tjrq">and $tjrq$ between hylb.qsrq and hylb.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh=gx.khdxdh inner join khdx_jg jg on zh.jgdh=jg.jgdh where zh.gxhslx='1' and hy.hydh not like 'XN%' 

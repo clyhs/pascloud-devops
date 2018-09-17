@@ -139,7 +139,7 @@
     <col id="NLR" title="模拟利润" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.dklrmxcx"> 
-    <select id="dn1.dklrmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.dklrmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="sd" compareValue="1">SELECT dkzhym.tjrq,dkzhym.ZHDH,dkzhym.KHH,dkzhym.ZHHM,jg.JGDH,jg.JGMC,dkzhym.KMH,dkzhym.QX,dkzhym.FFRQ,dkzhym.DQRQ, dkzhym.ZHYE,dkzhym.ZLBL,dkzhym.HYYE ,dkzhym.LXSR,dkzhym.FTPLXZC,dkzhym.YSWSLXXZ,dkzhym.ZCJZSS,dkzhym.LR FROM NBZZ_DKZHYM_$tjrq$ dkzhym INNER JOIN KHDX_HY hy on hy.KHDXDH = dkzhym.KHDXDH INNER JOIN KHDX_JG jg ON jg.JGDH = dkzhym.JGDH inner join csb_sjw sjw on 1=1 
         <isNotEmpty property="tjrq">and sjw.tjrq = $tjrq$01</isNotEmpty> where dkzhym.tjrq between sjw.yc and sjw.ym 
@@ -174,7 +174,7 @@
         <isNotEmpty property="zhhm">AND dkzhym.ZHHM LIKE '%$zhhm$%'</isNotEmpty> 
       </isEqual> 
     </select>  
-    <select id="dn1.dklrmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.dklrmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="sd" compareValue="1">SELECT dkzhym.tjrq,dkzhym.ZHDH,dkzhym.KHH,dkzhym.ZHHM,jg.JGDH,jg.JGMC,dkzhym.KMH,dkzhym.QX,dkzhym.FFRQ,dkzhym.DQRQ, dkzhym.ZHYE,dkzhym.ZLBL,dkzhym.HYYE ,dkzhym.LXSR,dkzhym.FTPLXZC,dkzhym.YSWSLXXZ,dkzhym.ZCJZSS,dkzhym.LR FROM NBZZ_DKZHYM_$tjrq$ dkzhym INNER JOIN KHDX_HY hy on hy.KHDXDH = dkzhym.KHDXDH INNER JOIN KHDX_JG jg ON jg.JGDH = dkzhym.JGDH inner join csb_sjw sjw on 1=1 
         <isNotEmpty property="tjrq">and sjw.tjrq = $tjrq$01</isNotEmpty> where dkzhym.tjrq between sjw.yc and sjw.ym 
@@ -209,7 +209,7 @@
         <isNotEmpty property="zhhm">AND dkzhym.ZHHM LIKE '%$zhhm$%'</isNotEmpty> 
       </isEqual> ) t
     </select>  
-    <select id="dn1.dklrmxcx_MSQL4SELECT_sd" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT dmms.DMZ AS key,dmms.DMMS AS value FROM CSB_DMMS dmms WHERE dmms.DMMC ='ZBSDBS' AND dmms.DMZ IN ('1','5','6','7')</select> 
+    <select id="dn0.dklrmxcx_MSQL4SELECT_sd" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT dmms.DMZ AS key,dmms.DMMS AS value FROM CSB_DMMS dmms WHERE dmms.DMMC ='ZBSDBS' AND dmms.DMZ IN ('1','5','6','7')</select> 
   </sqlMap>  
   <rels> 
     <items id="dklrmxcx_sdjgj"> 

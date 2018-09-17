@@ -46,12 +46,12 @@
     <col id="JSRQ" title="结束日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
     <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
     <col id="JGMC" title="机构名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYRS" title="机构人数" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="SYRS" title="使用人数" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openSYMX"/>  
-    <col id="WSYRS" title="未使用人数" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openWMX"/> 
+    <col id="HYRS" title="机构人数" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="SYRS" title="使用人数" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openSYMX"/>  
+    <col id="WSYRS" title="未使用人数" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openWMX"/> 
   </table>  
   <sqlMap namespace="studio.xtsyqktj"> 
-    <select id="dn1.xtsyqktjList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.xtsyqktjList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select $qsrq$ as qsrq,$jsrq$ as jsrq,a.jgdh,a.jgmc,a.hyrs,COALESCE(b.hyrs,0) syrs,(a.hyrs-COALESCE(b.hyrs,0)) wsyrs
 from (
   select jg.jgmc,jg.jgdh,jg.jyjgbz,count(distinct hy.hymc) hyrs from khdx_hy hy
@@ -75,9 +75,9 @@ left join
 ) b
 on a.jgmc=b.jgmc
 where a.jgdh!='1000000']]>  
-      <isNotEmpty property="jglb">and a.jyjgbz='$jglb$'</isNotEmpty> order by syrs,jgdh
+      <isNotEmpty property="jglb">and a.jyjgbz in ('$jglb$')</isNotEmpty> order by syrs,jgdh
     </select>  
-    <select id="dn1.xtsyqktjCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.xtsyqktjCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( <![CDATA[select $qsrq$ as qsrq,$jsrq$ as jsrq,a.jgdh,a.jgmc,a.hyrs,COALESCE(b.hyrs,0) syrs,(a.hyrs-COALESCE(b.hyrs,0)) wsyrs
 from (
   select jg.jgmc,jg.jgdh,jg.jyjgbz,count(distinct hy.hymc) hyrs from khdx_hy hy
@@ -101,9 +101,9 @@ left join
 ) b
 on a.jgmc=b.jgmc
 where a.jgdh!='1000000']]>  
-      <isNotEmpty property="jglb">and a.jyjgbz='$jglb$'</isNotEmpty> order by syrs,jgdh ) t
+      <isNotEmpty property="jglb">and a.jyjgbz in ('$jglb$')</isNotEmpty> order by syrs,jgdh ) t
     </select>  
-    <select id="dn1.xtsyqktj_getqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select F_CHANGE_DAYS($jsrq$,-7) qsrq from xtb_xtcs where csmc = 'SYS_STATUS'</select> 
+    <select id="dn0.xtsyqktj_getqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select F_CHANGE_DAYS($jsrq$,-7) qsrq from xtb_xtcs where csmc = 'SYS_STATUS'</select> 
   </sqlMap>  
   <rels> 
     <items id="xtsyqktj_xsjy1jgj"/> 

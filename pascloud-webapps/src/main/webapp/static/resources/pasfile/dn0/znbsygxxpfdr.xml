@@ -180,93 +180,93 @@
     </after> 
   </flow>  
   <sqlMap namespace="studio.znbsygxxpfdr"> 
-    <update parameterClass="java.util.Map" id="dn1.znbsygxxpfdr_check_khnf_0"> 
+    <update parameterClass="java.util.Map" id="dn0.znbsygxxpfdr_check_khnf_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update znbsygxxpfdr_temp t set t.error=t.error||'考核年份输入错误，格式应该是:yyyy!' where f_java_rule_date(t.khnf,'yyyy')=1 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.znbsygxxpfdr_check_khnf_1"> 
+    <update parameterClass="java.util.Map" id="dn0.znbsygxxpfdr_check_khnf_1"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update znbsygxxpfdr_temp t set t.error=t.error||'考核年份输入错误，不能为空!' where f_java_rule_length(t.khnf)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.znbsygxxpfdr_check_famc_2"> 
+    <update parameterClass="java.util.Map" id="dn0.znbsygxxpfdr_check_famc_2"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update znbsygxxpfdr_temp t set t.error=t.error||'方案名称输入错误，不能为空!' where f_java_rule_length(t.famc)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.znbsygxxpfdr_check_khzq_3"> 
+    <update parameterClass="java.util.Map" id="dn0.znbsygxxpfdr_check_khzq_3"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update znbsygxxpfdr_temp t set t.error=t.error||'考核周期输入错误，不能为空!' where f_java_rule_length(t.khzq)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.znbsygxxpfdr_check_khqs_4"> 
+    <update parameterClass="java.util.Map" id="dn0.znbsygxxpfdr_check_khqs_4"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update znbsygxxpfdr_temp t set t.error=t.error||'考核期数输入错误，不能为空!' where f_java_rule_length(t.khqs)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.znbsygxxpfdr_check_xmmc_5"> 
+    <update parameterClass="java.util.Map" id="dn0.znbsygxxpfdr_check_xmmc_5"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update znbsygxxpfdr_temp t set t.error=t.error||'项目名称输入错误，不能为空!' where f_java_rule_length(t.xmmc)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.znbsygxxpfdr_check_khdx_6"> 
+    <update parameterClass="java.util.Map" id="dn0.znbsygxxpfdr_check_khdx_6"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update znbsygxxpfdr_temp t set t.error=t.error||'考核对象输入错误，不能为空!' where f_java_rule_length(t.khdx)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.znbsygxxpfdr_checkupdate_famc_0"> 
+    <update parameterClass="java.util.Map" id="dn0.znbsygxxpfdr_checkupdate_famc_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update znbsygxxpfdr_temp t set error=error||'考核方案不存在!' where not exists ( select 1 from znbs_fapz fapz where trim(t.famc)=trim(fapz.famc) and cast(t.khnf as integer)= cast(fapz.khnf as integer)) and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.znbsygxxpfdr_checkupdate_khzq_0"> 
+    <update parameterClass="java.util.Map" id="dn0.znbsygxxpfdr_checkupdate_khzq_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update znbsygxxpfdr_temp t set error=error||'考核方案不存在!' where not exists ( select 1 from znbs_fapz fapz where trim(t.famc)=trim(fapz.famc) and cast(t.khnf as integer)= cast(fapz.khnf as integer) and fapz.khzq= (case when t.khzq = '月' then 1 else case when t.khzq = '季' then 2 else 3 end end) ) and cast(t.khdxdh as integer)=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.znbsygxxpfdr_checkupdate_khqs_0"> 
+    <update parameterClass="java.util.Map" id="dn0.znbsygxxpfdr_checkupdate_khqs_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update znbsygxxpfdr_temp t set error=error||'考核期数不合法!' where not exists ( select 1 from znbs_fapz fapz where trim(t.famc)=trim(fapz.famc) and cast(t.khnf as integer)= cast(fapz.khnf as integer) and F_IS_EXISTS_STR(fapz.khqs,t.khqs,',')=1 ) and cast(t.khdxdh as integer)=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.znbsygxxpfdr_checkupdate_khqs_1"> 
+    <update parameterClass="java.util.Map" id="dn0.znbsygxxpfdr_checkupdate_khqs_1"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update znbsygxxpfdr_temp t set error=error||'考核期数不是当前考核的期数!' where not exists ( select distinct 1 from znbs_zxpffa zxpffa,znbsygxxpfdr_temp t inner join znbs_fapz fapz on trim(t.famc)=trim(fapz.famc) where (select cast(csz as integer) rq from xtb_xtcs where csmc = 'SYS_DATE') between zxpffa.pfksrq and zxpffa.pfjsrq and zxpffa.fabh = fapz.fabh and zxpffa.khqs=cast(t.khqs as integer) ) and cast(t.khdxdh as integer)=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.znbsygxxpfdr_checkupdate_xmmc_0"> 
+    <update parameterClass="java.util.Map" id="dn0.znbsygxxpfdr_checkupdate_xmmc_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update znbsygxxpfdr_temp t set error=error||'项目名称不合法!' where not exists ( select 1 from znbs_fapz fapz,znbs_khxmpz xmpz where trim(t.famc)=trim(fapz.famc) and cast(t.khnf as integer)= cast(fapz.khnf as integer) and fapz.fabh = xmpz.fabh and trim(xmpz.xmmc) = trim(t.xmmc) ) and cast(t.khdxdh as integer)=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.znbsygxxpfdr_checkupdate_khdx_0"> 
+    <update parameterClass="java.util.Map" id="dn0.znbsygxxpfdr_checkupdate_khdx_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update znbsygxxpfdr_temp t set error=error||'考核对象不合法!' where not exists ( select 1 from znbs_fapz fapz,khdx_jgcy jgcy,khdx_hy hy,khdx_hygw hygw where trim(t.famc)=trim(fapz.famc) and cast(t.khnf as integer)= cast(fapz.khnf as integer) and cast(fapz.znbs as integer) = jgcy.jgkhdxdh and hy.khdxdh = jgcy.khdxdh and jgcy.jsrq = 29991231 and F_IS_EXISTS_STR(fapz.hygw,hygw.gwbh,',')=1 and hy.khdxdh = hygw.khdxdh and hygw.jsrq = 29991231 and trim(hy.hymc) = trim(t.khdx) ) and cast(t.khdxdh as integer)=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.znbsygxxpfdr_checkupdate_khdx_1"> 
+    <update parameterClass="java.util.Map" id="dn0.znbsygxxpfdr_checkupdate_khdx_1"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update znbsygxxpfdr_temp t set error=error||'您没有权限对考核对象该项目进行评分!' where not exists ( select 1 from znbs_fapz fapz,khdx_jgcy jgcy,khdx_hy hy,khdx_hygw hygw, znbs_khxmpz xmpz,znbs_khpjr pjr where trim(t.famc)=trim(fapz.famc) and cast(t.khnf as integer)= cast(fapz.khnf as integer) and cast(fapz.znbs as integer) = jgcy.jgkhdxdh and hy.khdxdh = jgcy.khdxdh and jgcy.jsrq = 29991231 and F_IS_EXISTS_STR(fapz.hygw,hygw.gwbh,',')=1 and hy.khdxdh = hygw.khdxdh and hygw.jsrq = 29991231 and trim(hy.hymc) = trim(t.khdx) and fapz.fabh = xmpz.fabh and xmpz.fabh = pjr.fabh and xmpz.xmbh = pjr.xmbh and pjr.pjr= $login_khdxdh$ and xmpz.xmmc = t.xmmc ) and cast(t.khdxdh as integer)=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.znbsygxxpfdr_exists_target"> 
+    <update parameterClass="java.util.Map" id="dn0.znbsygxxpfdr_exists_target"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update znbsygxxpfdr_temp t set t.error=t.error||'数据已存在!' where exists( select 1 from znbs_zxpfz tar , znbs_fapz fapz , znbs_khxmpz xmpz , khdx_hy hy where tar.fabh =fapz.fabh and tar.khqs = cast(t.khqs as integer) and tar.xmbh = xmpz.xmbh and tar.pjr = $login_khdxdh$ and tar.khdxdh = hy.khdxdh and tar.pf is not null and trim(t.famc) = trim(fapz.famc) and cast(t.khnf as integer) = fapz.khnf and fapz.fabh = xmpz.fabh and trim(t.xmmc) = trim(xmpz.xmmc) and hy.hymc = trim(t.khdx) and cast(t.khdxdh as integer)=$login_khdxdh$ and (length(t.error)=0 or t.error is null ) )
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.znbsygxxpfdr_exists_same_temp"> 
+    <update parameterClass="java.util.Map" id="dn0.znbsygxxpfdr_exists_same_temp"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update znbsygxxpfdr_temp t set t.error=error||'存在重复数据!' where 1=2 and khdxdh=$login_khdxdh$
     </update>  
-    <insert parameterClass="java.util.Map" id="dn1.znbsygxxpfdr_create_lsb"> 
+    <insert parameterClass="java.util.Map" id="dn0.znbsygxxpfdr_create_lsb"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> CREATE TABLE znbsygxxpfdr_temp ( khnf varchar(100) , famc varchar(100) , khzq varchar(100) , khqs varchar(100) , xmmc varchar(100) , xmnr varchar(2000) , khdx varchar(100) , mf varchar(100) , pf varchar(100) , khdxdh integer,error varchar(1000) )
     </insert>  
-    <delete parameterClass="java.util.Map" id="dn1.znbsygxxpfdr_delete_lsb"> 
+    <delete parameterClass="java.util.Map" id="dn0.znbsygxxpfdr_delete_lsb"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from znbsygxxpfdr_temp where khdxdh=$login_khdxdh$
     </delete>  
-    <insert parameterClass="java.util.Map" id="dn1.znbsygxxpfdr_insert_into_lsb">insert into ZNBSYGXXPFDR_TEMP (khnf,famc,khzq,khqs,xmmc,xmnr,khdx,mf,pf,khdxdh,error) values(?,?,?,?,?,?,?,?,?,?,?)</insert>  
-    <select parameterClass="java.util.Map" id="dn1.znbsygxxpfdr_exists_error_msg" resultClass="java.lang.Integer"> 
+    <insert parameterClass="java.util.Map" id="dn0.znbsygxxpfdr_insert_into_lsb">insert into ZNBSYGXXPFDR_TEMP (khnf,famc,khzq,khqs,xmmc,xmnr,khdx,mf,pf,khdxdh,error) values(?,?,?,?,?,?,?,?,?,?,?)</insert>  
+    <select parameterClass="java.util.Map" id="dn0.znbsygxxpfdr_exists_error_msg" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from znbsygxxpfdr_temp where length(error) <![CDATA[>]]> 0 and khdxdh = $login_khdxdh$
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn1.znbsygxxpfdr_exists_same_data"> 
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn0.znbsygxxpfdr_exists_same_data"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from znbsygxxpfdr_temp where length(error) <![CDATA[>]]> 0 and error != '数据已存在!' and khdxdh = $login_khdxdh$
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn1.znbsygxxpfdr_select_error_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn0.znbsygxxpfdr_select_error_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/cancel.jpg" border="0"/<![CDATA[>]]>' as zt, khnf,famc,khzq,khqs,xmmc,xmnr,khdx,mf,pf,khdxdh,error from znbsygxxpfdr_temp where khdxdh=$login_khdxdh$ and length(error)<![CDATA[>]]>0
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn1.znbsygxxpfdr_count_all_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn0.znbsygxxpfdr_count_all_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, khnf,famc,khzq,khqs,xmmc,xmnr,khdx,mf,pf,khdxdh,error from znbsygxxpfdr_temp where khdxdh=$login_khdxdh$ )a
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn1.znbsygxxpfdr_select_all_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn0.znbsygxxpfdr_select_all_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, khnf,famc,khzq,khqs,xmmc,xmnr,khdx,mf,pf,khdxdh,error from znbsygxxpfdr_temp where khdxdh=$login_khdxdh$
     </select>  
-    <delete id="dn1.znbsygxxpfdr_before_insert_0" parameterClass="java.util.Map">delete from znbs_zxpfz tar where exists ( select 1 from znbsygxxpfdr_temp t , znbs_fapz fapz , znbs_khxmpz xmpz , khdx_hy hy where (length(t.error)=0 or t.error is null or t.error ='数据已存在!') and cast(t.khdxdh as integer)=$login_khdxdh$ and tar.fabh = fapz.fabh and tar.khqs = cast(t.khqs as integer) and tar.xmbh = xmpz.xmbh and tar.pjr = $login_khdxdh$ and tar.khdxdh = hy.khdxdh and fapz.fabh = xmpz.fabh and trim(t.xmmc) = trim(xmpz.xmmc) and hy.hymc = trim(t.khdx) and trim(t.famc) = trim(fapz.famc) and cast(t.khnf as Integer) = fapz.khnf )</delete>  
-    <insert id="dn1.znbsygxxpfdr_insert_into_target" parameterClass="java.util.Map"> 
+    <delete id="dn0.znbsygxxpfdr_before_insert_0" parameterClass="java.util.Map">delete from znbs_zxpfz tar where exists ( select 1 from znbsygxxpfdr_temp t , znbs_fapz fapz , znbs_khxmpz xmpz , khdx_hy hy where (length(t.error)=0 or t.error is null or t.error ='数据已存在!') and cast(t.khdxdh as integer)=$login_khdxdh$ and tar.fabh = fapz.fabh and tar.khqs = cast(t.khqs as integer) and tar.xmbh = xmpz.xmbh and tar.pjr = $login_khdxdh$ and tar.khdxdh = hy.khdxdh and fapz.fabh = xmpz.fabh and trim(t.xmmc) = trim(xmpz.xmmc) and hy.hymc = trim(t.khdx) and trim(t.famc) = trim(fapz.famc) and cast(t.khnf as Integer) = fapz.khnf )</delete>  
+    <insert id="dn0.znbsygxxpfdr_insert_into_target" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into znbs_zxpfz(fabh,khqs,xmbh,pjr,khdxdh,wdlx,pjbzbh,pf,khzq,khdx) select fapz.fabh,cast(t.khqs as integer) khqs,xmpz.xmbh,$login_khdxdh$ pjr, hy.khdxdh,wdmb.wdlx,0 pjbzbh, cast(t.pf as decimal(25,4)) pf ,fapz.khzq,fapz.khdx from znbsygxxpfdr_temp t inner join znbs_fapz fapz on trim(t.famc) = trim(fapz.famc) and cast(t.khnf as Integer) = fapz.khnf inner join znbs_khxmpz xmpz on fapz.fabh = xmpz.fabh and trim(t.xmmc) = trim(xmpz.xmmc) inner join znbs_wdmb wdmb on xmpz.wdbh = wdmb.wdbh inner join khdx_hy hy on hy.hymc = trim(t.khdx) where cast(t.khdxdh as integer)=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null)
     </insert>  
-    <update id="dn1.znbsygxxpfdr_after_insert_0" parameterClass="java.util.Map"> 
+    <update id="dn0.znbsygxxpfdr_after_insert_0" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update znbs_zxpffa set pjsj = F_GET_SYSTIME(),pfzt = '1' where (fabh,khqs,pjr,khdxdh) in ( select distinct fapz.fabh ,cast(t.khqs as integer),$login_khdxdh$ pjr,hy.khdxdh from znbsygxxpfdr_temp t , znbs_fapz fapz,khdx_jgcy jgcy,khdx_hy hy,khdx_hygw hygw where trim(t.famc)=trim(fapz.famc) and cast(t.khnf as integer)=cast(fapz.khnf as integer) and cast(fapz.znbs as integer) = jgcy.jgkhdxdh and hy.khdxdh = jgcy.khdxdh and jgcy.jsrq = 29991231 and F_IS_EXISTS_STR(fapz.hygw,hygw.gwbh,',')=1 and hy.khdxdh = hygw.khdxdh and hygw.jsrq = 29991231 and trim(hy.hymc) = trim(t.khdx) and cast(t.khdxdh as integer)=$login_khdxdh$ )
     </update>  
-    <delete id="dn1.znbsygxxpfdr_delete_before_override" parameterClass="java.util.Map"> 
+    <delete id="dn0.znbsygxxpfdr_delete_before_override" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from znbs_zxpfz tar where exists ( select 1 from znbsygxxpfdr_temp t , znbs_fapz fapz , znbs_khxmpz xmpz , khdx_hy hy where (length(t.error)=0 or t.error is null or t.error ='数据已存在!') and cast(t.khdxdh as integer)=$login_khdxdh$ and tar.fabh = fapz.fabh and tar.khqs = cast(t.khqs as integer) and tar.xmbh = xmpz.xmbh and tar.pjr = $login_khdxdh$ and tar.khdxdh = hy.khdxdh and fapz.fabh = xmpz.fabh and trim(t.xmmc) = trim(xmpz.xmmc) and hy.hymc = trim(t.khdx) and trim(t.famc) = trim(fapz.famc) and cast(t.khnf as Integer) = fapz.khnf )
     </delete>  
-    <select id="dn1.znbsygxxpfdr_select_template_data" parameterClass="java.util.Map" remapResults="true" resultClass="java.util.LinkedHashMap"> 
+    <select id="dn0.znbsygxxpfdr_select_template_data" parameterClass="java.util.Map" remapResults="true" resultClass="java.util.LinkedHashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select distinct fapz.khnf, fapz.famc, case when fapz.khzq = 1 then '月' else case when fapz.khzq = 2 then '季' else '年' end end khzq , '' khqs,xmpz.xmmc,xmpz.khnr ,hy.hymc khdx ,xmpz.mf,'' pf from znbs_fapz fapz inner join znbs_khxmpz xmpz on fapz.fabh = xmpz.fabh left join znbs_khpjbz pjbz on xmpz.fabh = pjbz.fabh and xmpz.xmbh = pjbz.xmbh inner join (select distinct fapz.fabh,hygw.khdxdh from znbs_fapz fapz,khdx_hygw hygw where F_IS_EXISTS_STR(fapz.hygw,hygw.gwbh,',')=1 and jsrq =29991231) hygw on hygw.fabh = fapz.fabh inner join znbs_khpjr khpjr on khpjr.fabh=xmpz.fabh and khpjr.xmbh=xmpz.xmbh inner join khdx_jgcy jgcy on hygw.khdxdh = jgcy.khdxdh and jgcy.jgkhdxdh = fapz.znbs and jgcy.jsrq = 29991231 inner join khdx_hy hy on hy.khdxdh = jgcy.khdxdh where 1=1 
       <isNotEmpty property="khnf">and fapz.khnf = $khnf$</isNotEmpty>  
       <isNotEmpty property="fabh">and fapz.fabh = $fabh$</isNotEmpty>  
       <isNotEmpty property="khdhmrz">and khpjr.pjr=$khdhmrz$</isNotEmpty> order by fapz.khnf
     </select>  
-    <select id="dn1.znbsygxxpfdr_MSQL4SELECT_fabh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct fapz.fabh as key, fapz.famc as value from znbs_fapz fapz inner join znbs_khpjr khpjr on khpjr.fabh=fapz.fabh where fapz.khdx = '2' 
+    <select id="dn0.znbsygxxpfdr_MSQL4SELECT_fabh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct fapz.fabh as key, fapz.famc as value from znbs_fapz fapz inner join znbs_khpjr khpjr on khpjr.fabh=fapz.fabh where fapz.khdx = '2' 
       <isNotEmpty property="khnf">and fapz.khnf = $khnf$</isNotEmpty>  
       <isNotEmpty property="login_khdxdh">and khpjr.pjr=$login_khdxdh$</isNotEmpty> 
     </select> 

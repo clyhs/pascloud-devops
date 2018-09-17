@@ -143,7 +143,7 @@
     </col> 
   </table>  
   <sqlMap namespace="studio.hyyjbb"> 
-    <select id="dn1.hyyjbbList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.hyyjbbList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="jzsjy" compareValue="hykhzb">select a.tjrq, a.hydh, a.hymc, a.zbmc, a.zbsj, (a.zbsj-a.qnye) bqntq, (a.zbsj-a.ncye) bnc, (a.zbsj-a.jcye) bjc, (a.zbsj-a.ycye) byc from( select t2.khdxdh,t2.hydh,t2.hymc,t2.zbdh,t2.khzbmc zbmc,$tjrq$ tjrq, sum(t2.zbsj) zbsj ,sum(t2.ncye) ncye,sum(t2.jcye) jcye,sum(t2.ycye) ycye,sum(t2.qnye) qnye from ( select yj.khdxdh,hy.hydh,hy.hymc,yj.zbdh,yj.khzbmc, case when $tjrq$ = yj.tjrq then zbz else 0 end zbsj, case when $tjrq_nc$ = yj.tjrq then zbz else 0 end ncye, case when $tjrq_jc$ = yj.tjrq then zbz else 0 end jcye, case when $tjrq_yc$ = yj.tjrq then zbz else 0 end ycye, case when $tjrq_sntq$ = yj.tjrq then zbz else 0 end qnye from ( select d.khdxdh,d.tjrq,d.zbdh,zbz,khzb.khzbmc from yjzb_hy_$tjrq_yyyy$ d inner join khfa_khzb_hy khzb on d.zbdh = khzb.zbdh and d.sdbs=khzb.sdbs and d.bz = khzb.bz 
         <isNotEmpty property="khzb">and khzb.khzbdh = $khzb$</isNotEmpty>  
@@ -184,7 +184,7 @@
         <isNotEmpty property="sdbs">and yjzb.sdbs='$sdbs$'</isNotEmpty> and yjzb.tjrq in($tjrq$,$tjrq_nc$,$tjrq_jc$,$tjrq_yc$,$tjrq_sntq$) and yjzb.sjwd in('2','3') group by yjzb.khdxdh,hy.hydh,hy.hymc,khzb.zbmc,bz.bzzwmc,dmms.dmms ) a order by a.tjrq asc,a.hydh asc
       </isEqual> 
     </select>  
-    <select id="dn1.hyyjbbCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.hyyjbbCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="jzsjy" compareValue="hykhzb">select a.tjrq, a.hydh, a.hymc, a.zbmc, a.zbsj, (a.zbsj-a.qnye) bqntq, (a.zbsj-a.ncye) bnc, (a.zbsj-a.jcye) bjc, (a.zbsj-a.ycye) byc from( select t2.khdxdh,t2.hydh,t2.hymc,t2.zbdh,t2.khzbmc zbmc,$tjrq$ tjrq, sum(t2.zbsj) zbsj ,sum(t2.ncye) ncye,sum(t2.jcye) jcye,sum(t2.ycye) ycye,sum(t2.qnye) qnye from ( select yj.khdxdh,hy.hydh,hy.hymc,yj.zbdh,yj.khzbmc, case when $tjrq$ = yj.tjrq then zbz else 0 end zbsj, case when $tjrq_nc$ = yj.tjrq then zbz else 0 end ncye, case when $tjrq_jc$ = yj.tjrq then zbz else 0 end jcye, case when $tjrq_yc$ = yj.tjrq then zbz else 0 end ycye, case when $tjrq_sntq$ = yj.tjrq then zbz else 0 end qnye from ( select d.khdxdh,d.tjrq,d.zbdh,zbz,khzb.khzbmc from yjzb_hy_$tjrq_yyyy$ d inner join khfa_khzb_hy khzb on d.zbdh = khzb.zbdh and d.sdbs=khzb.sdbs and d.bz = khzb.bz 
         <isNotEmpty property="khzb">and khzb.khzbdh = $khzb$</isNotEmpty>  
@@ -225,7 +225,7 @@
         <isNotEmpty property="sdbs">and yjzb.sdbs='$sdbs$'</isNotEmpty> and yjzb.tjrq in($tjrq$,$tjrq_nc$,$tjrq_jc$,$tjrq_yc$,$tjrq_sntq$) and yjzb.sjwd in('2','3') group by yjzb.khdxdh,hy.hydh,hy.hymc,khzb.zbmc,bz.bzzwmc,dmms.dmms ) a order by a.tjrq asc,a.hydh asc
       </isEqual> ) t
     </select>  
-    <select id="dn1.hyyjbb_MSQL4SELECT_khzb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khzbdh as KEY,khzbmc as VALUE from khfa_khzb_hy order by zbpx,zbdh</select> 
+    <select id="dn0.hyyjbb_MSQL4SELECT_khzb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khzbdh as KEY,khzbmc as VALUE from khfa_khzb_hy order by zbpx,zbdh</select> 
   </sqlMap>  
   <rels> 
     <items id="hyyjbb_xsjy1jgj"> 

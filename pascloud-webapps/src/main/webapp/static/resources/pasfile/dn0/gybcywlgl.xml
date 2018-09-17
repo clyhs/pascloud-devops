@@ -45,7 +45,7 @@
       <attribute key="style" value="width:200px;"/>  
       <attribute key="isRequired" value="true"/>  
       <attribute key="name" value="tjrq"/>  
-      <attribute key="minDate" value="no"/>  
+      <attribute key="minDate" value="csdate"/>  
       <attribute key="defValType" value="sysDate"/>  
       <attribute key="dateFmt" value="yyyyMM"/>  
       <attribute key="editable" value="true"/> 
@@ -116,7 +116,7 @@
       <attribute key="style" value="width:200px;"/>  
       <attribute key="isRequired" value="true"/>  
       <attribute key="name" value="tjrq"/>  
-      <attribute key="minDate" value="no"/>  
+      <attribute key="minDate" value="csdate"/>  
       <attribute key="defValType" value="sysDate"/>  
       <attribute key="dateFmt" value="yyyyMM"/>  
       <attribute key="editable" value="true"/> 
@@ -199,37 +199,37 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.gybcywlgl"> 
-    <select id="dn1.gybcywlglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.gybcywlglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> SELECT bcywl.TJRQ,jg.JGDH,jg.JGMC,hy.KHDXDH,hy.HYDH,hy.HYMC, coalesce(round(sum(jgkh_ywl.BCYWL),2),0) as JGBCYWL,round(bcywl.BCYWL,2) as BCYWL,bcywl.BZSM, substr(bcywl.TJRQ,1,6) as tjny FROM SGDR_GYBCYWL bcywl INNER JOIN KHDX_HY hy ON hy.KHDXDH = bcywl.KHDXDH INNER JOIN KHDX_JGCY jgcy ON jgcy.KHDXDH = hy.KHDXDH 
       <isNotEmpty property="tjrq_ym">AND $tjrq_ym$ BETWEEN jgcy.QSRQ AND jgcy.JSRQ</isNotEmpty> INNER JOIN KHDX_JG jg ON jg.KHDXDH = jgcy.JGKHDXDH left JOIN NBZZ_JGKH_YWL jgkh_ywl ON jgkh_ywl.KHDXDH = jg.KHDXDH 
       <isNotEmpty property="tjrq_ym">AND jgkh_ywl.TJRQ = $tjrq_ym$</isNotEmpty> inner join table(fn_getsjjg_java_qxhy($tjrq_ym$,$login_khdxdh$,0)) qx on qx.khdxdh=hy.khdxdh 
       <isNotEmpty property="khdxdh">where hy.khdxdh in ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="tjrq_ym">and bcywl.tjrq = $tjrq_ym$</isNotEmpty> group by bcywl.TJRQ, jg.JGDH, jg.JGMC, hy.KHDXDH, hy.HYDH, hy.HYMC, bcywl.BCYWL, bcywl.BZSM
     </select>  
-    <select id="dn1.gybcywlglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.gybcywlglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( SELECT bcywl.TJRQ,jg.JGDH,jg.JGMC,hy.KHDXDH,hy.HYDH,hy.HYMC, coalesce(round(sum(jgkh_ywl.BCYWL),2),0) as JGBCYWL,round(bcywl.BCYWL,2) as BCYWL,bcywl.BZSM, substr(bcywl.TJRQ,1,6) as tjny FROM SGDR_GYBCYWL bcywl INNER JOIN KHDX_HY hy ON hy.KHDXDH = bcywl.KHDXDH INNER JOIN KHDX_JGCY jgcy ON jgcy.KHDXDH = hy.KHDXDH 
       <isNotEmpty property="tjrq_ym">AND $tjrq_ym$ BETWEEN jgcy.QSRQ AND jgcy.JSRQ</isNotEmpty> INNER JOIN KHDX_JG jg ON jg.KHDXDH = jgcy.JGKHDXDH left JOIN NBZZ_JGKH_YWL jgkh_ywl ON jgkh_ywl.KHDXDH = jg.KHDXDH 
       <isNotEmpty property="tjrq_ym">AND jgkh_ywl.TJRQ = $tjrq_ym$</isNotEmpty> inner join table(fn_getsjjg_java_qxhy($tjrq_ym$,$login_khdxdh$,0)) qx on qx.khdxdh=hy.khdxdh 
       <isNotEmpty property="khdxdh">where hy.khdxdh in ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="tjrq_ym">and bcywl.tjrq = $tjrq_ym$</isNotEmpty> group by bcywl.TJRQ, jg.JGDH, jg.JGMC, hy.KHDXDH, hy.HYDH, hy.HYMC, bcywl.BCYWL, bcywl.BZSM ) t
     </select>  
-    <select id="dn1.gybcywlgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.gybcywlgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select bcywl, khdxdh, czsj, czr, tjrq, bzsm from SGDR_GYBCYWL where 1= 1 and khdxdh = '$khdxdh$' and tjrq = '$tjrq$'
     </select>  
-    <select id="dn1.gybcywlgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.gybcywlgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select bcywl, khdxdh, czsj, czr, tjrq, bzsm from SGDR_GYBCYWL where 1= 1 and khdxdh = '$khdxdh$' and tjrq = '$tjrq_ym$'
     </select>  
-    <insert id="dn1.gybcywlgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn0.gybcywlgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into SGDR_GYBCYWL( bcywl, khdxdh, czr, tjrq, bzsm ) values ( $bcywl$,$khdxdh$,'$czr$',$tjrq_ym$,'$bzsm$')
     </insert>  
-    <update id="dn1.gybcywlgl_update" parameterClass="java.util.Map"> 
+    <update id="dn0.gybcywlgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update SGDR_GYBCYWL set bcywl = $bcywl$,bzsm = '$bzsm$' where 1=1 and khdxdh = '$khdxdh$' and tjrq = '$tjrq_ym$'
     </update>  
-    <delete id="dn1.gybcywlgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn0.gybcywlgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from SGDR_GYBCYWL where 1=1 and khdxdh = '$khdxdh$' and tjrq = '$tjrq$'
     </delete>  
-    <select id="dn1.gybcywlgl_getJgywbcl" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select round(coalesce(sum(jgkh_ywl.bcywl),0),2) as bcywl from khdx_jgcy jgcy left join nbzz_jgkh_ywl jgkh_ywl on jgkh_ywl.khdxdh=jgcy.jgkhdxdh and jgkh_ywl.tjrq=$tjrq_ym$ where jgcy.khdxdh=$khdxdh$ and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq</select>  
-    <select id="dn1.gybcywlgl_getsgdrbcywl" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select round(coalesce(sum(sg.bcywl),0),2) bcywl from khdx_jgcy jgcy inner join khdx_jgcy jgcy2 on jgcy2.jgkhdxdh=jgcy.jgkhdxdh and $tjrq_ym$ between jgcy2.qsrq and jgcy2.jsrq and jgcy2.khdxdh!=$khdxdh$ left join sgdr_gybcywl sg on sg.khdxdh=jgcy2.khdxdh and sg.tjrq=$tjrq_ym$ where jgcy.khdxdh=$khdxdh$ and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq</select> 
+    <select id="dn0.gybcywlgl_getJgywbcl" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select round(coalesce(sum(jgkh_ywl.bcywl),0),2) as bcywl from khdx_jgcy jgcy left join nbzz_jgkh_ywl jgkh_ywl on jgkh_ywl.khdxdh=jgcy.jgkhdxdh and jgkh_ywl.tjrq=$tjrq_ym$ where jgcy.khdxdh=$khdxdh$ and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq</select>  
+    <select id="dn0.gybcywlgl_getsgdrbcywl" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select round(coalesce(sum(sg.bcywl),0),2) bcywl from khdx_jgcy jgcy inner join khdx_jgcy jgcy2 on jgcy2.jgkhdxdh=jgcy.jgkhdxdh and $tjrq_ym$ between jgcy2.qsrq and jgcy2.jsrq and jgcy2.khdxdh!=$khdxdh$ left join sgdr_gybcywl sg on sg.khdxdh=jgcy2.khdxdh and sg.tjrq=$tjrq_ym$ where jgcy.khdxdh=$khdxdh$ and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq</select> 
   </sqlMap>  
   <javascript> 
     <import>parent.addTab('gybcywlgldr','柜员补偿业务量管理','/module/parser/import/visitHtml/gybcywlgldr');</import>  

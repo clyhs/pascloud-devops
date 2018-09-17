@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<pageSetting id="qjpzgl" title="区间配置管理" type="manage" version="1.0.0.0" pid="" desc="标准版"> 
+<pageSetting id="qjpzgl" title="区间配置管理" type="manage" for="true" version="1.0.0.0" pid="" desc="标准版"> 
   <conPart> 
     <tags> 
       <tag row="0" col="0" rowspan="1" colspan="1" name="Dmms" label="参数名称" fieldName=""> 
@@ -38,7 +38,7 @@
       <attribute key="editable" value="true"/> 
     </tag>  
     <tag row="0" col="1" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ"> 
-      <attribute key="style" value="width:140px;"/>  
+      <attribute key="style" value="widht:60px;"/>  
       <attribute key="isRequired" value="true"/>  
       <attribute key="name" value="qsrq"/>  
       <attribute key="minDate" value="no"/>  
@@ -50,9 +50,13 @@
       <attribute key="defVal" value="29991231"/>  
       <attribute key="name" value="jsrq"/> 
     </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="3" name="Table" label="" fieldName=""> 
+      <attribute key="muitFields" value="qjsx,qjxx,qjz"/>  
+      <attribute key="name" value="qjpzTable"/>  
+      <attribute key="editButton" value="true"/> 
+    </tag>  
     <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="区间上限" fieldName="QJSX"> 
       <attribute key="precision" value="2"/>  
-      <attribute key="style" value="width:140px;"/>  
       <attribute key="name" value="qjsx"/>  
       <attribute key="intparts" value="10"/>  
       <attribute key="readonly" value="false"/>  
@@ -60,15 +64,13 @@
     </tag>  
     <tag row="2" col="1" rowspan="1" colspan="1" name="Number" label="区间下限" fieldName="QJXX"> 
       <attribute key="precision" value="2"/>  
-      <attribute key="style" value="width:140px;"/>  
       <attribute key="name" value="qjxx"/>  
       <attribute key="intparts" value="10"/>  
       <attribute key="readonly" value="false"/>  
       <attribute key="editable" value="true"/> 
     </tag>  
-    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="区间值" fieldName="QJZ"> 
+    <tag row="2" col="2" rowspan="1" colspan="1" name="Number" label="区间值" fieldName="QJZ"> 
       <attribute key="precision" value="2"/>  
-      <attribute key="style" value="width:140px;"/>  
       <attribute key="name" value="qjz"/>  
       <attribute key="intparts" value="10"/>  
       <attribute key="readonly" value="false"/>  
@@ -89,7 +91,7 @@
       <attribute key="editable" value="false"/> 
     </tag>  
     <tag row="0" col="1" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ"> 
-      <attribute key="style" value="width:140px;"/>  
+      <attribute key="style" value="widht:60px;"/>  
       <attribute key="isRequired" value="true"/>  
       <attribute key="name" value="qsrq"/>  
       <attribute key="isAll" value="false"/>  
@@ -103,9 +105,13 @@
       <attribute key="defVal" value="29991231"/>  
       <attribute key="name" value="jsrq"/> 
     </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="3" name="Table" label="" fieldName=""> 
+      <attribute key="muitFields" value="qjsx,qjxx,qjz"/>  
+      <attribute key="name" value="qjpzTable"/>  
+      <attribute key="editButton" value="true"/> 
+    </tag>  
     <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="区间上限" fieldName="QJSX"> 
       <attribute key="precision" value="2"/>  
-      <attribute key="style" value="width:140px;"/>  
       <attribute key="name" value="qjsx"/>  
       <attribute key="intparts" value="10"/>  
       <attribute key="isAll" value="false"/>  
@@ -115,7 +121,6 @@
     </tag>  
     <tag row="2" col="1" rowspan="1" colspan="1" name="Number" label="区间下限" fieldName="QJXX"> 
       <attribute key="precision" value="2"/>  
-      <attribute key="style" value="width:140px;"/>  
       <attribute key="name" value="qjxx"/>  
       <attribute key="intparts" value="10"/>  
       <attribute key="isAll" value="false"/>  
@@ -123,9 +128,8 @@
       <attribute key="isEditable" value="false"/>  
       <attribute key="editable" value="false"/> 
     </tag>  
-    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="区间值" fieldName="QJZ"> 
+    <tag row="2" col="2" rowspan="1" colspan="1" name="Number" label="区间值" fieldName="QJZ"> 
       <attribute key="precision" value="2"/>  
-      <attribute key="style" value="width:140px;"/>  
       <attribute key="name" value="qjz"/>  
       <attribute key="intparts" value="10"/>  
       <attribute key="readonly" value="false"/>  
@@ -135,7 +139,8 @@
   <buttons> 
     <button>add</button>  
     <button>edit</button>  
-    <button>delete</button> 
+    <button>delete</button>  
+    <button>qjpzList</button> 
   </buttons>  
   <flow> 
     <insertbefore> 
@@ -152,43 +157,43 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.qjpzgl"> 
-    <select id="dn1.qjpzglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select distinct qjpz.qjmc as qjmc1,dmms.dmms,qjpz.qsrq,qjpz.jsrq from csb_qjpz qjpz inner join csb_dmms dmms on qjpz.qjmc = dmms.dmz where 1=1 
+    <select id="dn0.qjpzglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select distinct qjpz.qjmc,dmms.dmms,qjpz.qsrq,qjpz.jsrq from csb_qjpz qjpz inner join csb_dmms dmms on qjpz.qjmc = dmms.dmz where 1=1 
       <isNotEmpty property="qjmc">and qjpz.qjmc = '$qjmc$'</isNotEmpty> order by qjpz.qjmc,qjpz.qsrq ASC
     </select>  
-    <select id="dn1.qjpzglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select distinct qjpz.qjmc as qjmc1,dmms.dmms,qjpz.qsrq,qjpz.jsrq from csb_qjpz qjpz inner join csb_dmms dmms on qjpz.qjmc = dmms.dmz where 1=1
+    <select id="dn0.qjpzglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select distinct qjpz.qjmc,dmms.dmms,qjpz.qsrq,qjpz.jsrq from csb_qjpz qjpz inner join csb_dmms dmms on qjpz.qjmc = dmms.dmz where 1=1 
       <isNotEmpty property="qjmc">and qjpz.qjmc = '$qjmc$'</isNotEmpty> order by qjpz.qjmc,qjpz.qsrq ASC ) t
     </select>  
-    <select id="dn1.qjpzgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.qjpzgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select QJSX, QJMS, QJZ, QJMC, QSRQ, JSRQ, QJXX from CSB_QJPZ where 1= 1 and QJMC = '$qjmc$' and QSRQ = $qsrq$
     </select>  
-    <select id="dn1.qjpzgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select QJSX, QJMS, QJZ, QJMC, QSRQ, JSRQ, QJXX from CSB_QJPZ where 1= 1 and QJMC = '$qjcslx$' and QSRQ = $qsrq$
+    <select id="dn0.qjpzgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select QJSX, QJMS, QJZ, QJMC, QSRQ, JSRQ, QJXX from CSB_QJPZ where 1= 1 and QJSX = $qjsx$ and QJMC = '$qjcslx$' and QSRQ = $qsrq$
     </select>  
-    <insert id="dn1.qjpzgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn0.qjpzgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into CSB_QJPZ( QJMC, QJSX, QJZ, QSRQ, JSRQ, QJXX ) values ( '$qjcslx$',$qjsx$,'$qjz$',$qsrq$,$jsrq$,$qjxx$)
     </insert>  
-    <update id="dn1.qjpzgl_update" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_QJPZ set QJZ = '$qjz$' where 1=1 and QJMC = '$qjcslx$' and QSRQ = $qsrq$
+    <update id="dn0.qjpzgl_update" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_QJPZ set QJZ = '$qjz$' where 1=1 and QJSX = $qjsx$ and QJMC = '$qjcslx$' and QSRQ = $qsrq$
     </update>  
-    <delete id="dn1.qjpzgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn0.qjpzgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from CSB_QJPZ where 1=1 and QJMC = '$qjmc$' and QSRQ = $qsrq$
     </delete>  
-    <delete id="dn1.qjpzgl_check_itemAddDel" parameterClass="java.util.Map"> 
+    <delete id="dn0.qjpzgl_check_itemAddDel" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[delete from CSB_QJPZ where qsrq >=$qsrq$  and QJMC = '$qjcslx$']]> 
     </delete>  
-    <update id="dn1.qjpzgl_check_itemUP" parameterClass="java.util.Map"> 
+    <update id="dn0.qjpzgl_check_itemUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_QJPZ set jsrq=$qdate$ 
       <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty> and QJMC = '$qjcslx$'
     </update>  
-    <select id="dn1.qjpzgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.qjpzgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select max(qsrq) from CSB_QJPZ where 1=1 and QJMC = '$qjmc$'
     </select>  
-    <select id="dn1.qjpzgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.qjpzgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select  QJSX, QJMS, QJZ, QJMC, QSRQ, JSRQ, QJXX from CSB_QJPZ where 1=1  and QJMC = '$qjcslx$' and $qsrq$ > $maxqsrq$]]> 
     </select>  
-    <update id="dn1.qjpzgl_check_itemDELUP" parameterClass="java.util.Map"> 
+    <update id="dn0.qjpzgl_check_itemDELUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_QJPZ set jsrq =29991231 where 1=1 and QJMC = '$qjmc$' and jsrq =$lastjsrq$
     </update> 
   </sqlMap>  

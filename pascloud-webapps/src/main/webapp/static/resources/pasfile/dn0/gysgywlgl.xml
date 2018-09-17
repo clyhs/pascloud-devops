@@ -182,34 +182,34 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.gysgywlgl"> 
-    <select id="dn1.gysgywlglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.gysgywlglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select yw.tjrq,yw.khdxdh,yw.jydm,yw.ywl,dm.jymc,hy.hymc,substr(yw.tjrq,1,6) as tjny from sglr_hysgywl yw inner join khdx_hy hy on hy.khdxdh=yw.khdxdh inner join csb_hxjydm dm on dm.jydm=yw.jydm inner join table(fn_getsjjg_java_qxhy($tjrq_ym$,$login_khdxdh$,0)) qx on qx.khdxdh=hy.khdxdh 
       <isNotEmpty property="khdxdh">where yw.khdxdh in ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="tjrq_ym">and yw.tjrq=$tjrq_ym$</isNotEmpty>  
       <isNotEmpty property="jydm">and yw.jydm like '%$jydm$%'</isNotEmpty> 
     </select>  
-    <select id="dn1.gysgywlglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.gysgywlglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select yw.tjrq,yw.khdxdh,yw.jydm,yw.ywl,dm.jymc,hy.hymc,substr(yw.tjrq,1,6) as tjny from sglr_hysgywl yw inner join khdx_hy hy on hy.khdxdh=yw.khdxdh inner join csb_hxjydm dm on dm.jydm=yw.jydm inner join table(fn_getsjjg_java_qxhy($tjrq_ym$,$login_khdxdh$,0)) qx on qx.khdxdh=hy.khdxdh 
       <isNotEmpty property="khdxdh">where yw.khdxdh in ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="tjrq_ym">and yw.tjrq=$tjrq_ym$</isNotEmpty>  
       <isNotEmpty property="jydm">and yw.jydm like '%$jydm$%'</isNotEmpty> ) t
     </select>  
-    <select id="dn1.gysgywlgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.gysgywlgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select YWL, JYDM, KHDXDH, CZSJ, CZR, TJRQ from SGLR_HYSGYWL where 1= 1 and JYDM = '$jydm$' and KHDXDH = $khdxdh$ and TJRQ = $tjrq$
     </select>  
-    <select id="dn1.gysgywlgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.gysgywlgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select YWL, JYDM, KHDXDH, CZSJ, CZR, TJRQ from SGLR_HYSGYWL where 1= 1 and JYDM = '$jydm$' and KHDXDH = $khdxdh$ and TJRQ = $tjrq_ym$
     </select>  
-    <insert id="dn1.gysgywlgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn0.gysgywlgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into SGLR_HYSGYWL( KHDXDH, CZSJ, YWL, CZR, JYDM, TJRQ ) values ( $khdxdh$,$czsj$,$ywl$,'$czr$','$jydm$',$tjrq_ym$)
     </insert>  
-    <update id="dn1.gysgywlgl_update" parameterClass="java.util.Map"> 
+    <update id="dn0.gysgywlgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update SGLR_HYSGYWL set YWL = $ywl$ where 1=1 and JYDM = '$jydm$' and KHDXDH = $khdxdh$ and TJRQ = $tjrq_ym$
     </update>  
-    <delete id="dn1.gysgywlgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn0.gysgywlgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from SGLR_HYSGYWL where 1=1 and JYDM = '$jydm$' and KHDXDH = $khdxdh$ and TJRQ = $tjrq$
     </delete>  
-    <select id="dn1.gysgywlgl_checkJydm" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select jydm,jymc from csb_hxjydm where jydm='$jydm$'</select> 
+    <select id="dn0.gysgywlgl_checkJydm" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select jydm,jymc from csb_hxjydm where jydm='$jydm$'</select> 
   </sqlMap>  
   <javascript> 
     <import>parent.addTab('gysgywldr','柜员手工业务量管理','/module/parser/import/visitHtml/gysgywldr');</import>  

@@ -13,6 +13,7 @@ import org.dom4j.io.XMLWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.pascloud.constant.Constants;
 import com.pascloud.utils.DBUtils;
 /**
  * mcyat配置文件操作类
@@ -119,9 +120,9 @@ public class MycatXmlUtils {
 			e.addAttribute("password", password);
 			saveDocument(schemaPath,doc);
 		}else{
-			System.out.println("add dn0");
-			MycatXmlUtils.addSchemaAndNodeAndHost(schemaPath, "dn0", "mysql", ip, user, password, database, port);
-			MycatXmlUtils.addServer(serverPath, "dn0");
+			//System.out.println("add dn0");
+			MycatXmlUtils.addSchemaAndNodeAndHost(schemaPath, Constants.PASCLOUD_PUBLIC_DB, "mysql", ip, user, password, database, port);
+			MycatXmlUtils.addServer(serverPath, Constants.PASCLOUD_PUBLIC_DB);
 		}
 		
 		flag = true;

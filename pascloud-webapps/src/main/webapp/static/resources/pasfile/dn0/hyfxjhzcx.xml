@@ -36,13 +36,13 @@
     <col id="HYDH" title="行员代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.hyfxjhzcx"> 
-    <select id="dn1.hyfxjhzcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.hyfxjhzcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select substr(cast(fxjhz.tjrq as char(8)),1,6) as tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc, fxjhz.yjtfxj,fxjhz.yfhfxj,fxjhz.dfhfxj,fxjhz.dyyfhfxj from dkjx_dkfxjhz fxjhz inner join khdx_hy hy on hy.khdxdh = fxjhz.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh = hy.khdxdh 
       <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = jgcy.jgkhdxdh inner join table(FN_GETSJJG_JAVA_QXHY($tjrq_ym$,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh 
       <isNotEmpty property="khdxdh">where hy.khdxdh in ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="tjrq_ym">and fxjhz.tjrq = $tjrq_ym$</isNotEmpty> 
     </select>  
-    <select id="dn1.hyfxjhzcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.hyfxjhzcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select substr(cast(fxjhz.tjrq as char(8)),1,6) as tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc, fxjhz.yjtfxj,fxjhz.yfhfxj,fxjhz.dfhfxj,fxjhz.dyyfhfxj from dkjx_dkfxjhz fxjhz inner join khdx_hy hy on hy.khdxdh = fxjhz.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh = hy.khdxdh 
       <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = jgcy.jgkhdxdh inner join table(FN_GETSJJG_JAVA_QXHY($tjrq_ym$,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh 
       <isNotEmpty property="khdxdh">where hy.khdxdh in ($khdxdh$)</isNotEmpty>  

@@ -12,11 +12,11 @@
     <col id="JSRQ" title="结束日期" align="left" type="string" width="75" frozen="false" format=""/> 
   </table>  
   <sqlMap namespace="studio.jgjcdjmxcx"> 
-    <select id="dn1.jgjcdjmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.jgjcdjmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select jg.* from csb_khzbxs_jg jg where 1=1 
       <isNotEmpty property="khzbdh">and jg.khzbdh=$khzbdh$</isNotEmpty> order by qsrq
     </select>  
-    <select id="dn1.jgjcdjmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.jgjcdjmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select jg.* from csb_khzbxs_jg jg where 1=1 
       <isNotEmpty property="khzbdh">and jg.khzbdh=$khzbdh$</isNotEmpty> order by qsrq ) t
     </select> 

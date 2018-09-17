@@ -71,7 +71,7 @@
     <col id="ZSXS" title="折算系数" align="right" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.gyywlmxcx"> 
-    <select id="dn1.gyywlmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.gyywlmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select * from ( select f_numtochar(ywl.tjrq) as tjrq,jg.jgmc,hy.hymc,hy.hydh,ywl.jydm ,coalesce(jydm.jymc,jydm.jydm) as jymc ,round(sum(ywl.jyje),2) as jyje,round(sum(ywl.zhywlhj),2) as zhywlhj, round(sum(ywl.xtzqywl),2) as xtzqywl,round(sum(ywl.xtzhywl),2) xtzhywl,round(sum(ywl.sgzqywl),2) as sgzqywl, round(sum(ywl.sgzhywl),2) as sgzhywl,round(sum(ywl.zqxjsrl+ywl.zqxjfcl)/10000,2) as zqxjsf, round(sum(ywl.zhxjsrl+ywl.zhxjfcl),2) as zhxjsf, f_numtochar(ywl.dqcyxs) as dqcyxs, f_numtochar(ywl.zsxs) as zsxs, round(sum(ywl.bcywl),2) bcywl from khdx_jg jg inner join khdx_jgcy cy on cy.jgkhdxdh = jg.khdxdh 
       <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join table(FN_GETSJJG_JAVA_QXHY($sysdate$,$login_khdxdh$,0)) hy on hy.khdxdh = cy.khdxdh inner join nbzz_hykh_ywl ywl on ywl.khdxdh = hy.khdxdh 
       <isNotEmpty property="qsrq">and ywl.tjrq between $qsrq$ and $jsrq$</isNotEmpty> left join csb_hxjydm jydm on jydm.jydm = ywl.jydm where 1=1 
@@ -86,7 +86,7 @@
       <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="jgkhdxdh">and jg.khdxdh=$jgkhdxdh$</isNotEmpty> ) t order by jgmc desc
     </select>  
-    <select id="dn1.gyywlmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.gyywlmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select * from ( select f_numtochar(ywl.tjrq) as tjrq,jg.jgmc,hy.hymc,hy.hydh,ywl.jydm ,coalesce(jydm.jymc,jydm.jydm) as jymc ,round(sum(ywl.jyje),2) as jyje,round(sum(ywl.zhywlhj),2) as zhywlhj, round(sum(ywl.xtzqywl),2) as xtzqywl,round(sum(ywl.xtzhywl),2) xtzhywl,round(sum(ywl.sgzqywl),2) as sgzqywl, round(sum(ywl.sgzhywl),2) as sgzhywl,round(sum(ywl.zqxjsrl+ywl.zqxjfcl)/10000,2) as zqxjsf, round(sum(ywl.zhxjsrl+ywl.zhxjfcl),2) as zhxjsf, f_numtochar(ywl.dqcyxs) as dqcyxs, f_numtochar(ywl.zsxs) as zsxs, round(sum(ywl.bcywl),2) bcywl from khdx_jg jg inner join khdx_jgcy cy on cy.jgkhdxdh = jg.khdxdh 
       <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join table(FN_GETSJJG_JAVA_QXHY($sysdate$,$login_khdxdh$,0)) hy on hy.khdxdh = cy.khdxdh inner join nbzz_hykh_ywl ywl on ywl.khdxdh = hy.khdxdh 
       <isNotEmpty property="qsrq">and ywl.tjrq between $qsrq$ and $jsrq$</isNotEmpty> left join csb_hxjydm jydm on jydm.jydm = ywl.jydm where 1=1 

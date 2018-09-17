@@ -70,7 +70,7 @@
     <col id="LBDH" title="类别编号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.hyjxgzmxcx"> 
-    <select id="dn1.hyjxgzmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.hyjxgzmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select $tjrq$ as tjrq,jglb.lbmc as jglb,jg.jgmc,hy.hydh,hy.hymc,hylb.lbdh,hylb.lbmc as hylb,coalesce(hygw.gwmc,'') as gwmc,jxgz.sqqe,jxgz.yfjxgz, jxgz.sfjxgz, jxgz.jgkhjx, jxgz.jgyjjx, jxgz.gljx, jxgz.lzjx, jxgz.ckjxgz, jxgz.dkjxgz, jxgz.zjywjxgz, jxgz.dzyhjxgz, jxgz.ywljxgz, jxgz.bldkqsjl, jxgz.dktjjx, jxgz.yjkzxm1 as zhkmjx, jxgz.yjkzxm2 as zxgjywjjgz, jxgz.yjkzxm3 as fxjkh, jxgz.yjkzxm4 as ffzljx, jxgz.ggyjjxfp, jxgz.jxkzxm1 as qtjcjx, jxgz.jxkzxm2 as eckhjx, jxgz.khdxdh from JXGZ_JXGZHZ jxgz inner join khdx_hy hy on hy.khdxdh=jxgz.khdxdh inner join khdx_hylb hylb on hylb.khdxdh=hy.khdxdh 
       <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between hylb.qsrq and hylb.jsrq</isNotEmpty> left join KHDX_HYGW hygw on hy.khdxdh=hygw.khdxdh 
       <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between hygw.qsrq and hygw.jsrq</isNotEmpty> inner join khdx_jgcy cy on cy.khdxdh=hy.khdxdh 
@@ -80,7 +80,7 @@
       <isNotEmpty property="tjrq_ym">and jxgz.tjrq=$tjrq_ym$</isNotEmpty>  
       <isNotEmpty property="lbdh">and hylb.lbdh='$lbdh$'</isNotEmpty> order by jg.jgdh,hy.hydh
     </select>  
-    <select id="dn1.hyjxgzmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.hyjxgzmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select $tjrq$ as tjrq,jglb.lbmc as jglb,jg.jgmc,hy.hydh,hy.hymc,hylb.lbdh,hylb.lbmc as hylb,coalesce(hygw.gwmc,'') as gwmc,jxgz.sqqe,jxgz.yfjxgz, jxgz.sfjxgz, jxgz.jgkhjx, jxgz.jgyjjx, jxgz.gljx, jxgz.lzjx, jxgz.ckjxgz, jxgz.dkjxgz, jxgz.zjywjxgz, jxgz.dzyhjxgz, jxgz.ywljxgz, jxgz.bldkqsjl, jxgz.dktjjx, jxgz.yjkzxm1 as zhkmjx, jxgz.yjkzxm2 as zxgjywjjgz, jxgz.yjkzxm3 as fxjkh, jxgz.yjkzxm4 as ffzljx, jxgz.ggyjjxfp, jxgz.jxkzxm1 as qtjcjx, jxgz.jxkzxm2 as eckhjx, jxgz.khdxdh from JXGZ_JXGZHZ jxgz inner join khdx_hy hy on hy.khdxdh=jxgz.khdxdh inner join khdx_hylb hylb on hylb.khdxdh=hy.khdxdh 
       <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between hylb.qsrq and hylb.jsrq</isNotEmpty> left join KHDX_HYGW hygw on hy.khdxdh=hygw.khdxdh 
       <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between hygw.qsrq and hygw.jsrq</isNotEmpty> inner join khdx_jgcy cy on cy.khdxdh=hy.khdxdh 
@@ -90,7 +90,7 @@
       <isNotEmpty property="tjrq_ym">and jxgz.tjrq=$tjrq_ym$</isNotEmpty>  
       <isNotEmpty property="lbdh">and hylb.lbdh='$lbdh$'</isNotEmpty> order by jg.jgdh,hy.hydh ) t
     </select>  
-    <select id="dn1.hyjxgzmxcx_MSQL4SELECT_lbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_hylb</select> 
+    <select id="dn0.hyjxgzmxcx_MSQL4SELECT_lbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_hylb</select> 
   </sqlMap>  
   <rels> 
     <items id="hyjxgzmxcx_xsjy1jgj"/> 

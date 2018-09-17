@@ -23,7 +23,7 @@
     </col> 
   </table>  
   <sqlMap namespace="studio.hyjxgzfbfx"> 
-    <select id="dn1.hyjxgzfbfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.hyjxgzfbfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select $nf$ as nf ,  cast(substr(cast(yy.tjrq as char(8)),5,2) as integer) yf1,cast(substr(cast(yy.tjrq as char(8)),5,2) as char(3)) ||' 月份' yf
 , p.qjms, sum(yyjg) yyjg , count(khdxdh) rs
 ,case when count(khdxdh) = 0  then cast((cast(sum(coalesce(yyjg,0)) as decimal(19,2))/1) as decimal(19,2))  
@@ -50,7 +50,7 @@ group by ym,khdxdh
 )yy
 inner join CSB_QJPZ p on p.QJMC='JXGZQJ' and yy.yyjg >= p.qjxx and yy.yyjg < p.qjsx]]> and yy.tjrq between p.qsrq and p.jsrq group by p.qjms
     </select>  
-    <select id="dn1.hyjxgzfbfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.hyjxgzfbfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( <![CDATA[select $nf$ as nf ,  cast(substr(cast(yy.tjrq as char(8)),5,2) as integer) yf1,cast(substr(cast(yy.tjrq as char(8)),5,2) as char(3)) ||' 月份' yf
 , p.qjms, sum(yyjg) yyjg , count(khdxdh) rs
 ,case when count(khdxdh) = 0  then cast((cast(sum(coalesce(yyjg,0)) as decimal(19,2))/1) as decimal(19,2))  

@@ -31,6 +31,8 @@ public class Constants {
 	
 	public static String PASCLOUD_PUBLIC_DB = "dn0";
 	
+	public static String PASCLOUD_DNX = "dnx";
+	
 	public static String PASCLOUD_DEV_DEFAULT = "pasdev";
 	
 	public static String LINUX_ORACLE_HOME_SCRIPT = "/home/oracle/script";

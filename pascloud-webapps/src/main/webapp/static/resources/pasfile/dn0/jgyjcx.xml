@@ -125,7 +125,7 @@
     <col id="KHJS" title="考核基数" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.jgyjcx"> 
-    <select id="dn1.jgyjcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.jgyjcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="jzsjy" compareValue="gjyjfxzb">select yjzb.khdxdh, yjzb.bz, yjzb.sdbs, yjzb.tjrq, f_get_zbmc(zb.zbdh) zbmc, cast(yjzb.zbz as decimal(17,2)) zbz, yjzb.zbdh, jg.jgdh, jg.jgmc, zb.zbpx as ddsx, bz.bzzwmc, qxywlb.ms ywlbmc, tjkj.dmms tjkjmc, sdbs.dmms sdbsmc , coalesce(js.khjs,0) khjs from $bm$ yjzb inner join table (fn_getsjjg_java_qx($tjrq$, $login_khdxdh$, $jgkhdxdh$)) qxjg on qxjg.khdxdh=yjzb.khdxdh inner join khdx_zb zb on zb.zbdh = yjzb.zbdh and zb.sfxs='0' left join yjzb_jgkhjs js on js.zbdh = yjzb.zbdh and js.bz = yjzb.bz and js.sdbs = yjzb.sdbs and js.khdxdh = yjzb.khdxdh and js.tjrq = yjzb.tjrq and js.tjkj = yjzb.tjkj inner join csb_dmms tjkj on yjzb.tjkj=tjkj.dmz and lower(tjkj.dmmc)='tjkj' inner join csb_dmms sdbs on yjzb.sdbs=sdbs.dmz and lower(sdbs.dmmc)='zbsdbs' inner join csb_bz bz on bz.bz=yjzb.bz 
         <isNotEmpty property="tjrq">and yjzb.tjrq=$tjrq$</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = yjzb.khdxdh inner join khdx_zblb lb on zb.zbdh=lb.zbdh and yjzb.tjrq between lb.qsrq and lb.jsrq inner join table(FN_GETSJJG_JAVA_YWLB ($tjrq$,$login_khdxdh$,$jgkhdxdh$)) qxywlb on qxywlb.ywlb=lb.ywlb where 1=1 
@@ -154,7 +154,7 @@
         <isNotEmpty property="jgkhdxdh">and jg.khdxdh=$jgkhdxdh$</isNotEmpty> order by jgdh,khzb.zbpx
       </isEqual> 
     </select>  
-    <select id="dn1.jgyjcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.jgyjcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="jzsjy" compareValue="gjyjfxzb">select yjzb.khdxdh, yjzb.bz, yjzb.sdbs, yjzb.tjrq, f_get_zbmc(zb.zbdh) zbmc, cast(yjzb.zbz as decimal(17,2)) zbz, yjzb.zbdh, jg.jgdh, jg.jgmc, zb.zbpx as ddsx, bz.bzzwmc, qxywlb.ms ywlbmc, tjkj.dmms tjkjmc, sdbs.dmms sdbsmc , coalesce(js.khjs,0) khjs from $bm$ yjzb inner join table (fn_getsjjg_java_qx($tjrq$, $login_khdxdh$, $jgkhdxdh$)) qxjg on qxjg.khdxdh=yjzb.khdxdh inner join khdx_zb zb on zb.zbdh = yjzb.zbdh and zb.sfxs='0' left join yjzb_jgkhjs js on js.zbdh = yjzb.zbdh and js.bz = yjzb.bz and js.sdbs = yjzb.sdbs and js.khdxdh = yjzb.khdxdh and js.tjrq = yjzb.tjrq and js.tjkj = yjzb.tjkj inner join csb_dmms tjkj on yjzb.tjkj=tjkj.dmz and lower(tjkj.dmmc)='tjkj' inner join csb_dmms sdbs on yjzb.sdbs=sdbs.dmz and lower(sdbs.dmmc)='zbsdbs' inner join csb_bz bz on bz.bz=yjzb.bz 
         <isNotEmpty property="tjrq">and yjzb.tjrq=$tjrq$</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = yjzb.khdxdh inner join khdx_zblb lb on zb.zbdh=lb.zbdh and yjzb.tjrq between lb.qsrq and lb.jsrq inner join table(FN_GETSJJG_JAVA_YWLB ($tjrq$,$login_khdxdh$,$jgkhdxdh$)) qxywlb on qxywlb.ywlb=lb.ywlb where 1=1 

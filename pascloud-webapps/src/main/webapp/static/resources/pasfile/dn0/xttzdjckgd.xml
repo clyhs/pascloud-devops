@@ -1,64 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="xttzdjckgd" title="系统通知查看更多" type="manage" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags/> 
-  </conPart>  
-  <table page="true" id="xttzdjckgdtable"> 
-    <col id="SFZD" title="SFZD" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="TZDH" title="通知代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="TZRQ" title="通知日期" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="BT" title="标题" align="left" type="string" width="200" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" xsType="href" onclick="clickBt"/>  
-    <col id="TZFMC" title="通知方" align="left" type="string" width="160" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="SFYD" title="状态" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/> 
-  </table>  
-  <rels> 
-    <items id="xttzdjckgdtable"/> 
-  </rels>  
-  <addPage title="编辑页面"/>  
-  <updatePage title="编辑页面"/>  
-  <buttons> 
-    <button>add</button>  
-    <button>edit</button>  
-    <button>delete</button> 
-  </buttons>  
-  <flow> 
-    <insertbefore/>  
-    <insertafter/>  
-    <deletebefore/>  
-    <deleteafter/>  
-    <updatebefore/>  
-    <updateafter/> 
-  </flow>  
-  <sqlMap namespace="studio.xttzdjckgd"> 
-    <select id="dn1.xttzdjckgdList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select mx.sfzd,tz.tzdh,tz.tzrq,tz.bt,tzf.tzfmc,case when mx.sfyd='1' then '已读' else '未读' end sfyd from xtb_xttz tz inner join xtb_xttzfxxb tzf on tz.tzfid=tzf.tzfid inner join xtb_xttzmx mx on tz.tzdh=mx.tzdh where 1=1 
-      <isNotEmpty property="login_khdxdh">and mx.khdxdh=$login_khdxdh$</isNotEmpty>  <![CDATA[and tz.zt='1' and $sysdate$ >= tz.tzrq
-order by mx.sfzd desc,mx.sfyd asc,tz.tzrq desc,tz.tzdh desc]]> 
-    </select>  
-    <select id="dn1.xttzdjckgdCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select mx.sfzd,tz.tzdh,tz.tzrq,tz.bt,tzf.tzfmc,case when mx.sfyd='1' then '已读' else '未读' end sfyd from xtb_xttz tz inner join xtb_xttzfxxb tzf on tz.tzfid=tzf.tzfid inner join xtb_xttzmx mx on tz.tzdh=mx.tzdh where 1=1 
-      <isNotEmpty property="login_khdxdh">and mx.khdxdh=$login_khdxdh$</isNotEmpty>  <![CDATA[and tz.zt='1' and $sysdate$ >= tz.tzrq
+<pageSetting id="xttzdjckgd" title="系统通知查看更多" type="manage" version="1.0.0.0" desc="" pid="">
+  <conPart>
+    <tags />
+  </conPart>
+  <table page="true" id="xttzdjckgdtable">
+    <col id="SFZD" title="SFZD" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="TZDH" title="通知代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="TZRQ" title="通知日期" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="BT" title="标题" align="left" type="string" width="200" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" xsType="href" onclick="clickBt" />
+    <col id="TZFMC" title="通知方" align="left" type="string" width="160" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="SFYD" title="状态" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+  </table>
+  <rels>
+    <items id="xttzdjckgdtable" />
+  </rels>
+  <addPage title="编辑页面" />
+  <updatePage title="编辑页面" />
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+  </buttons>
+  <flow>
+    <insertbefore />
+    <insertafter />
+    <deletebefore />
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.xttzdjckgd">
+    <select id="dn0.xttzdjckgdList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select mx.sfzd,tz.tzdh,tz.tzrq,tz.bt,tzf.tzfmc,case when mx.sfyd='1' then '已读' else '未读' end sfyd
+from xtb_xttz tz   
+inner join xtb_xttzfxxb tzf on tz.tzfid=tzf.tzfid
+inner join xtb_xttzmx mx on tz.tzdh=mx.tzdh   
+where 1=1
+      <isNotEmpty property="login_khdxdh">and  mx.khdxdh=$login_khdxdh$</isNotEmpty>
+      <![CDATA[and tz.zt='1' and $sysdate$ >= tz.tzrq
+order by mx.sfzd desc,mx.sfyd asc,tz.tzrq desc,tz.tzdh desc]]>
+    </select>
+    <select id="dn0.xttzdjckgdCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select mx.sfzd,tz.tzdh,tz.tzrq,tz.bt,tzf.tzfmc,case when mx.sfyd='1' then '已读' else '未读' end sfyd
+from xtb_xttz tz   
+inner join xtb_xttzfxxb tzf on tz.tzfid=tzf.tzfid
+inner join xtb_xttzmx mx on tz.tzdh=mx.tzdh   
+where 1=1
+      <isNotEmpty property="login_khdxdh">and  mx.khdxdh=$login_khdxdh$</isNotEmpty>
+      <![CDATA[and tz.zt='1' and $sysdate$ >= tz.tzrq
 order by mx.sfzd desc,mx.sfyd asc,tz.tzrq desc,tz.tzdh desc]]> ) t
-    </select>  
-    <select id="dn1.xttzdjckgd_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select from where 1= 1
-    </select>  
-    <select id="dn1.xttzdjckgd_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select from where 1= 1
-    </select>  
-    <insert id="dn1.xttzdjckgd_insert" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into ) values ()
-    </insert>  
-    <update id="dn1.xttzdjckgd_update" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update set where 1=1
-    </update>  
-    <delete id="dn1.xttzdjckgd_delete" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from where 1=1
-    </delete> 
-  </sqlMap>  
-  <javascript> 
-    <query>jQuery(document).ready(function () { }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; } function clickBt(sel){ var tzdh=sel['TZDH']; var url='/module/xttzgl/toMx?tzdh='+tzdh; var width=700; var height=550; var title='系统通知明细'; var id='xttz_xttzdjckgd'; window.parent.custom_window.call(window,url,width,height,title,id); } function customFastLink($table,row){//this 对象绑定当前行的单元格 var zd = $('&lt;a class="operation_edit LIST_BAR" title="置顶"&gt;置顶&lt;/a&gt;'); var nozd = $('&lt;a class="operation_edit LIST_BAR" title="取消置顶"&gt;取消置顶&lt;/a&gt;'); var result=$(""); if(row['SFZD']==1){ result=nozd; }else{ result=zd; } this.append(result); result.click(function(){ var sel=$table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]; var tzdh=sel['TZDH']; var sfzd=sel['SFZD']=='1'?'0':'1'; var params=new Object(); params.tzdh=tzdh; params.sfzd=sfzd; $.post('/module/xttzgl/setSfzd',params,function(back){ loadData(); if(typeof noWiting == 'function') noWiting(); }).error(function(){ if(typeof noWiting == 'function') noWiting(); custom_alert("发生内部错误，无法保存！"); }); }); return true; }</query>  
-    <edit>jQuery(document).ready(function () { //这里的js脚本，会在页面加载完成后执行 }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; }</edit> 
-  </javascript> 
+    </select>
+    <select id="dn0.xttzdjckgd_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  from  where 1= 1
+    </select>
+    <select id="dn0.xttzdjckgd_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  from  where 1= 1
+    </select>
+    <insert id="dn0.xttzdjckgd_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into  ) values ()
+    </insert>
+    <update id="dn0.xttzdjckgd_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  set where 1=1
+    </update>
+    <delete id="dn0.xttzdjckgd_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from  where 1=1
+    </delete>
+  </sqlMap>
+  <javascript>
+    <query>jQuery(document).ready(function () {
+  $(document.body).append("&lt;div id='word-cal' style='width:120px;position:absolute;visibility:hidden'&gt;&lt;/div&gt;")
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}
+
+function clickBt(sel){
+    var tzdh=sel['TZDH'];
+    var url='/module/xttzgl/toMx?tzdh='+tzdh;
+    var width=700;
+    var height=550;
+    var title='系统通知明细';
+    var id='xttz_xttzdjckgd';
+    window.parent.custom_window.call(window,url,width,height,title,id);
+}
+
+function customFastLink($table,row){//this 对象绑定当前行的单元格
+        var zd = $('&lt;a class="operation_edit LIST_BAR" title="置顶"&gt;置顶&lt;/a&gt;');
+        var nozd = $('&lt;a class="operation_edit LIST_BAR" title="取消置顶"&gt;取消置顶&lt;/a&gt;');
+        var result=$("");
+        if(row['SFZD']==1){
+            result=nozd;
+        }else{
+            result=zd;
+        }
+        this.append(result);
+        result.click(function(){
+            var sel=$table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")];
+            var tzdh=sel['TZDH'];
+            var sfzd=sel['SFZD']=='1'?'0':'1';
+            var params=new Object();
+            params.tzdh=tzdh;
+            params.sfzd=sfzd;
+            $.post('/module/xttzgl/setSfzd',params,function(back){
+                loadData();
+                if(typeof noWiting == 'function') noWiting(); 
+            }).error(function(){
+                if(typeof noWiting == 'function') noWiting(); 
+                    custom_alert("发生内部错误，无法保存！");
+             });
+        });
+        return true;
+}</query>
+    <edit>jQuery(document).ready(function () {
+//这里的js脚本，会在页面加载完成后执行
+
+});
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}</edit>
+  </javascript>
 </pageSetting>
+

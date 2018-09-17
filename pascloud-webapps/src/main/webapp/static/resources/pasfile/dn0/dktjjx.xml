@@ -71,7 +71,7 @@
     <col id="JXDXDH" title="绩效对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.dktjjx"> 
-    <select id="dn1.dktjjxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.dktjjxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select $tjrq$ as tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,lb.lbmc,dk.zhdh,dk.zhhm,ms.dmms as zhbs,dk.ffrq,dk.dkje, gz.jcdj as jcbz, js.dmms as dkjs, gz.fpbl, gz.jlje, gz.khdxdh, gz.jxdxdh from JXGZ_TJFDJXMX gz inner join jxdx_dkzh dk on gz.jxdxdh=dk.jxdxdh inner join khdx_hy hy on gz.khdxdh=hy.KHDXDH inner join khdx_hylb lb on hy.KHDXDH=lb.khdxdh 
       <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between lb.qsrq and lb.JSRQ</isNotEmpty> inner join khdx_jgcy cy on hy.khdxdh=cy.KHDXDH 
       <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between cy.qsrq and cy.JSRQ</isNotEmpty> inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh left join csb_dmms ms on dk.zhbs=ms.dmz and ms.DMMC='ZHBS' left join csb_dmms js on gz.fpjs=js.dmz and js.dmmc='DKJS' inner join table(FN_GETSJJG_JAVA_QXHY($tjrq_ym$, $login_khdxdh$, 0)) hyqx on hy.khdxdh = hyqx.khdxdh 
@@ -80,7 +80,7 @@
       <isNotEmpty property="tjrq_ym">and gz.tjrq=$tjrq_ym$</isNotEmpty>  
       <isNotEmpty property="zhbs">and dk.zhbs=$zhbs$</isNotEmpty> order by jg.jgdh,hy.hydh,gz.jxdxdh
     </select>  
-    <select id="dn1.dktjjxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.dktjjxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select $tjrq$ as tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,lb.lbmc,dk.zhdh,dk.zhhm,ms.dmms as zhbs,dk.ffrq,dk.dkje, gz.jcdj as jcbz, js.dmms as dkjs, gz.fpbl, gz.jlje, gz.khdxdh, gz.jxdxdh from JXGZ_TJFDJXMX gz inner join jxdx_dkzh dk on gz.jxdxdh=dk.jxdxdh inner join khdx_hy hy on gz.khdxdh=hy.KHDXDH inner join khdx_hylb lb on hy.KHDXDH=lb.khdxdh 
       <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between lb.qsrq and lb.JSRQ</isNotEmpty> inner join khdx_jgcy cy on hy.khdxdh=cy.KHDXDH 
       <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between cy.qsrq and cy.JSRQ</isNotEmpty> inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh left join csb_dmms ms on dk.zhbs=ms.dmz and ms.DMMC='ZHBS' left join csb_dmms js on gz.fpjs=js.dmz and js.dmmc='DKJS' inner join table(FN_GETSJJG_JAVA_QXHY($tjrq_ym$, $login_khdxdh$, 0)) hyqx on hy.khdxdh = hyqx.khdxdh
@@ -89,8 +89,8 @@
       <isNotEmpty property="tjrq_ym">and gz.tjrq=$tjrq_ym$</isNotEmpty>  
       <isNotEmpty property="zhbs">and dk.zhbs=$zhbs$</isNotEmpty> order by jg.jgdh,hy.hydh,gz.jxdxdh ) t
     </select>  
-    <select id="dn1.dktjjx_MSQL4SELECT_dkjs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where dmmc='DKJS'</select>  
-    <select id="dn1.dktjjx_MSQL4SELECT_zhbs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where dmmc='ZHBS'</select> 
+    <select id="dn0.dktjjx_MSQL4SELECT_dkjs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where dmmc='DKJS'</select>  
+    <select id="dn0.dktjjx_MSQL4SELECT_zhbs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where dmmc='ZHBS'</select> 
   </sqlMap>  
   <rels> 
     <items id="dktjjx_xsjy1jgj"/> 

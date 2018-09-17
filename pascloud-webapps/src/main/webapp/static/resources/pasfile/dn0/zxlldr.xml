@@ -132,79 +132,79 @@
     <after/> 
   </flow>  
   <sqlMap namespace="studio.zxlldr"> 
-    <update parameterClass="java.util.Map" id="dn1.zxlldr_check_jxdxlx_0"> 
+    <update parameterClass="java.util.Map" id="dn0.zxlldr_check_jxdxlx_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update zxlldr_temp t set t.error=t.error||'对象类型输入错误，不能为空!' where f_java_rule_length(t.jxdxlx)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.zxlldr_check_qxmc_1"> 
+    <update parameterClass="java.util.Map" id="dn0.zxlldr_check_qxmc_1"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update zxlldr_temp t set t.error=t.error||'期限名称输入错误，不能为空!' where f_java_rule_length(t.qxmc)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.zxlldr_check_ywlx_2"> 
+    <update parameterClass="java.util.Map" id="dn0.zxlldr_check_ywlx_2"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update zxlldr_temp t set t.error=t.error||'业务类型输入错误，不能为空!' where f_java_rule_length(t.ywlx)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.zxlldr_check_zxll_3"> 
+    <update parameterClass="java.util.Map" id="dn0.zxlldr_check_zxll_3"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update zxlldr_temp t set t.error=t.error||'执行利率输入错误，只能输入:15位整数,6位小数!' where f_java_rule_length(t.zxll)&gt;0 and f_java_rule_number(t.zxll,15,6)=1 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.zxlldr_check_zxll_4"> 
+    <update parameterClass="java.util.Map" id="dn0.zxlldr_check_zxll_4"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update zxlldr_temp t set t.error=t.error||'执行利率输入错误，不能为空!' where f_java_rule_length(t.zxll)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.zxlldr_check_qsrq_5"> 
+    <update parameterClass="java.util.Map" id="dn0.zxlldr_check_qsrq_5"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update zxlldr_temp t set t.error=t.error||'统计日期输入错误，格式应该是:yyyyMMdd!' where f_java_rule_date(t.qsrq,'yyyyMMdd')=1 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.zxlldr_check_cpdh_6"> 
+    <update parameterClass="java.util.Map" id="dn0.zxlldr_check_cpdh_6"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update zxlldr_temp t set t.error=t.error||'产品名称输入错误，不能为空!' where f_java_rule_length(t.cpdh)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.zxlldr_checkupdate_jxdxlx_0"> 
+    <update parameterClass="java.util.Map" id="dn0.zxlldr_checkupdate_jxdxlx_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update zxlldr_temp t set error=error||'对象类型不存在！' where not exists ( select 1 from CSB_DMMS dmms2 WHERE dmms2.DMMC='ZHLX' AND dmms2.DMMS = t.jxdxlx) and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.zxlldr_checkupdate_qxmc_0"> 
+    <update parameterClass="java.util.Map" id="dn0.zxlldr_checkupdate_qxmc_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update zxlldr_temp t set error=error||'期限名称不存在！' where not exists ( select 1 from CSB_QXSDB qx INNER JOIN CSB_DMMS dm ON dm.DMMC='ZHLX' AND qx.JXDXLX = CAST(dm.DMZ AS INTEGER) where (qx.QXMC = t.qxmc or '无' = t.qxmc) AND dm.DMMS=t.jxdxlx ) and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.zxlldr_checkupdate_ywlx_0"> 
+    <update parameterClass="java.util.Map" id="dn0.zxlldr_checkupdate_ywlx_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update zxlldr_temp t set error=error||'业务类型不存在！' where not exists ( select 1 from CSB_DMMS dm2 WHERE dm2.DMMC='YWLX' AND dm2.DMMS=t.ywlx) and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.zxlldr_checkupdate_cpdh_0"> 
+    <update parameterClass="java.util.Map" id="dn0.zxlldr_checkupdate_cpdh_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update zxlldr_temp t set error=error||'产品名称不存在！' where not exists( select 1 from csb_cpxz cp inner join csb_dmms dm on dm.dmmc='ZHLX' and cp.jxdxlx=cast(dm.dmz as integer) inner join csb_dmms dm2 on dm2.dmmc='YWLX' and cp.ywlx=dm2.dmz where cp.cpmc=t.cpdh and dm.dmms=t.jxdxlx and dm2.dmms=t.ywlx ) and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.zxlldr_exists_target"> 
+    <update parameterClass="java.util.Map" id="dn0.zxlldr_exists_target"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update zxlldr_temp t set t.error=error||'数据已存在!' where exists( select 1 from ( select qxmc, dm.DMZ AS jxdxlx, dm2.DMZ as ywlx,cpdh,qsrq from zxlldr_temp dr INNER JOIN CSB_DMMS dm ON dm.DMMC='ZHLX' AND dm.DMMS=dr.jxdxlx INNER JOIN CSB_DMMS dm2 ON dm2.DMMC='YWLX' AND dm2.DMMS=dr.ywlx where khdxdh=$login_khdxdh$ group by qxmc,dm.DMZ,dm2.DMZ,cpdh,qsrq having count(1)<![CDATA[>]]>1 ) dr where 1=1 and t.qxmc=dr.qxmc and t.jxdxlx= dr.jxdxlx and t.ywlx=dr.ywlx and t.cpdh=dr.cpdh and t.qsrq=dr.qsrq) and khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.zxlldr_exists_same_temp"> 
+    <update parameterClass="java.util.Map" id="dn0.zxlldr_exists_same_temp"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update zxlldr_temp t set t.error=error||'存在重复数据!' where exists( select 1 from (select qxmc,jxdxlx,ywlx,cpdh from zxlldr_temp dr where khdxdh=$login_khdxdh$ group by qxmc,jxdxlx,ywlx,cpdh having count(1)<![CDATA[>]]>1 ) dr where 1=1 and t.qxmc=dr.qxmc and t.jxdxlx=dr.jxdxlx and t.ywlx=dr.ywlx and t.cpdh=dr.cpdh) and khdxdh=$login_khdxdh$
     </update>  
-    <insert parameterClass="java.util.Map" id="dn1.zxlldr_create_lsb"> 
+    <insert parameterClass="java.util.Map" id="dn0.zxlldr_create_lsb"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> CREATE TABLE zxlldr_temp ( qsrq varchar(100) , jxdxlx varchar(100) , qxmc varchar(100) , ywlx varchar(100) , cpdh varchar(100) , zxll varchar(100) , khdxdh integer,error varchar(1000) )
     </insert>  
-    <delete parameterClass="java.util.Map" id="dn1.zxlldr_delete_lsb"> 
+    <delete parameterClass="java.util.Map" id="dn0.zxlldr_delete_lsb"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from zxlldr_temp where khdxdh=$login_khdxdh$
     </delete>  
-    <insert parameterClass="java.util.Map" id="dn1.zxlldr_insert_into_lsb"> 
+    <insert parameterClass="java.util.Map" id="dn0.zxlldr_insert_into_lsb"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into ZXLLDR_TEMP (qsrq,jxdxlx,qxmc,ywlx,cpdh,zxll,khdxdh,error) values(?,?,?,?,?,?,?,?)
     </insert>  
-    <select parameterClass="java.util.Map" id="dn1.zxlldr_exists_error_msg" resultClass="java.lang.Integer"> 
+    <select parameterClass="java.util.Map" id="dn0.zxlldr_exists_error_msg" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from zxlldr_temp where length(error) <![CDATA[>]]> 0 and khdxdh = $login_khdxdh$
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn1.zxlldr_exists_same_data"> 
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn0.zxlldr_exists_same_data"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from zxlldr_temp where length(error) <![CDATA[>]]> 0 and error != '数据已存在!' and khdxdh = $login_khdxdh$
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn1.zxlldr_select_error_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn0.zxlldr_select_error_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/cancel.jpg" border="0"/<![CDATA[>]]>' as zt, qsrq,jxdxlx,qxmc,ywlx,cpdh,zxll,khdxdh,error from zxlldr_temp where khdxdh=$login_khdxdh$ and length(error)<![CDATA[>]]>0
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn1.zxlldr_count_all_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn0.zxlldr_count_all_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, qsrq,jxdxlx,qxmc,ywlx,cpdh,zxll,khdxdh,error from zxlldr_temp where khdxdh=$login_khdxdh$ )a
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn1.zxlldr_select_all_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn0.zxlldr_select_all_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, qsrq,jxdxlx,qxmc,ywlx,cpdh,zxll,khdxdh,error from zxlldr_temp where khdxdh=$login_khdxdh$
     </select>  
-    <delete id="dn1.zxlldr_before_insert_delqsrqAndCover" parameterClass="java.util.Map"> 
+    <delete id="dn0.zxlldr_before_insert_delqsrqAndCover" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from CSB_ZXLL tar where exists (select 1 from zxlldr_temp t, CSB_QXSDB CSB_QXSDB0, CSB_CPXZ CSB_CPXZ1,CSB_DMMS dm ,CSB_DMMS dm2 where (length(t.error) = 0 or t.error is null or t.error = '数据已存在!') and t.khdxdh = $login_khdxdh$ and (cast(t.qxmc as VARCHAR(200)) = CSB_QXSDB0.QXMC and CSB_QXSDB0.QXDH = tar.QXDH or t.qxmc = '无') AND dm.DMMC='ZHLX' AND dm.DMMS=t.JXDXLX and cast(dm.DMZ as INTEGER) = tar.JXDXLX AND dm2.DMMC='YWLX' AND dm2.DMMS=t.ywlx and cast(dm2.DMZ as VARCHAR(2)) = tar.YWLX and cast(t.cpdh as VARCHAR(30)) = CSB_CPXZ1.CPMC and CSB_CPXZ1.CPDH = tar.CPDH and tar.qsrq <![CDATA[>]]>=cast(t.qsrq as integer) )
     </delete>  
-    <update id="dn1.zxlldr_before_insert_cutqsrq" parameterClass="java.util.Map"> 
+    <update id="dn0.zxlldr_before_insert_cutqsrq" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_ZXLL tar set jsrq = (select F_Change_Days(cast(dr.qsrq as Integer), -1) from zxlldr_temp dr, CSB_QXSDB CSB_QXSDB0, CSB_CPXZ CSB_CPXZ1,CSB_DMMS dm ,CSB_DMMS dm2 where 1 = 1 and (cast(dr.qxmc as VARCHAR(200)) = CSB_QXSDB0.QXMC and CSB_QXSDB0.QXDH = tar.QXDH or dr.qxmc='无') AND dm.DMMC='ZHLX' AND dm.DMMS=dr.jxdxlx and cast(dm.DMZ as INTEGER) = tar.JXDXLX AND dm2.DMMC='YWLX' AND dm2.DMMS=dr.ywlx and cast(dm2.DMZ as VARCHAR(2)) = tar.YWLX and cast(dr.cpdh as VARCHAR(30)) = CSB_CPXZ1.CPMC and CSB_CPXZ1.CPDH = tar.CPDH and (length(dr.error) = 0 or dr.error is null or dr.error = '数据已存在!') and dr.khdxdh = $login_khdxdh$) where exists (select 1 from zxlldr_temp t, CSB_QXSDB CSB_QXSDB0, CSB_CPXZ CSB_CPXZ1,CSB_DMMS dm ,CSB_DMMS dm2 where 1 = 1 and (cast(t.qxmc as VARCHAR(200)) = CSB_QXSDB0.QXMC and CSB_QXSDB0.QXDH = tar.QXDH or t.qxmc='无') AND dm.DMMC='ZHLX' AND dm.DMMS=t.jxdxlx and cast(dm.DMZ as INTEGER) = tar.JXDXLX AND dm2.DMMC='YWLX' AND dm2.DMMS=t.ywlx and cast(dm2.DMZ as VARCHAR(2)) = tar.YWLX and cast(t.cpdh as VARCHAR(30)) = CSB_CPXZ1.CPMC and CSB_CPXZ1.CPDH = tar.CPDH and (length(t.error) = 0 or t.error is null or t.error = '数据已存在!') and t.khdxdh = $login_khdxdh$ and tar.jsrq <![CDATA[>]]>= F_Change_Days(cast(t.qsrq as Integer), -1))
     </update>  
-    <insert id="dn1.zxlldr_insert_into_target" parameterClass="java.util.Map"> 
+    <insert id="dn0.zxlldr_insert_into_target" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert INTO CSB_ZXLL(qxdh,jxdxlx,ywlx,cpdh,qsrq,jsrq,zxll) SELECT qx.QXDH ,CAST(dmms.DMZ AS INTEGER), dmms2.DMZ,cp.CPDH,CAST(t.qsrq AS INTEGER),29991231,CAST(t.zxll AS DECIMAL(15,7)) FROM zxlldr_temp t INNER JOIN CSB_DMMS dmms ON dmms.DMMS = t.jxdxlx AND dmms.DMMC='ZHLX' INNER JOIN CSB_QXSDB qx ON CAST(dmms.DMZ AS INTEGER)=qx.JXDXLX AND qx.QXMC= t.qxmc INNER JOIN CSB_DMMS dmms2 ON dmms2.DMMS = t.ywlx AND dmms2.DMMC='YWLX' INNER JOIN CSB_CPXZ cp ON cp.CPMC= t.cpdh AND cp.JXDXLX = CAST(dmms.DMZ AS INTEGER) AND cp.YWLX = dmms2.DMZ and t.khdxdh = $login_khdxdh$ union all SELECT '-1' as QXDH ,CAST(dmms.DMZ AS INTEGER), dmms2.DMZ,cp.CPDH,CAST(t.qsrq AS INTEGER),29991231,CAST(t.zxll AS DECIMAL(15,7)) FROM zxlldr_temp t INNER JOIN CSB_DMMS dmms ON dmms.DMMS = t.jxdxlx AND dmms.DMMC='ZHLX' INNER JOIN CSB_DMMS dmms2 ON dmms2.DMMS = t.ywlx AND dmms2.DMMC='YWLX' INNER JOIN CSB_CPXZ cp ON cp.CPMC= t.cpdh AND cp.JXDXLX = CAST(dmms.DMZ AS INTEGER) AND cp.YWLX = dmms2.DMZ and t.qxmc='无' and t.khdxdh = $login_khdxdh$
     </insert>  
-    <select id="dn1.zxlldr_select_template_data" parameterClass="java.util.Map" remapResults="true" resultClass="java.util.LinkedHashMap"> 
+    <select id="dn0.zxlldr_select_template_data" parameterClass="java.util.Map" remapResults="true" resultClass="java.util.LinkedHashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select c.tjrq,c.jxdxlx,c.qxmc,c.ywlx,c.cpdh,c.zxll from ( SELECT $tjrq$ AS tjrq ,dm.DMMS AS jxdxlx,qxsd.qxmc,dm2.DMMS AS ywlx, cp.CPMC AS cpdh,CAST(round(coalesce(ll.ZXLL,0) ,6) AS DECIMAL(15,6)) AS zxll FROM CSB_CPXZ cp INNER JOIN CSB_CPXZKM cpkm ON cp.CPDH = cpkm.CPDH AND cp.QSRQ BETWEEN cpkm.QSRQ AND cpkm.JSRQ INNER JOIN CSB_KMQXDZB qx ON qx.KMH = cpkm.KMH 
       <isNotEmpty property="tjrq">AND $tjrq$ BETWEEN qx.QSRQ AND qx.JSRQ</isNotEmpty>  
       <isNotEmpty property="zhlx">AND qx.JXDXLX = $zhlx$</isNotEmpty> INNER JOIN CSB_QXSDB qxsd ON 1=1 

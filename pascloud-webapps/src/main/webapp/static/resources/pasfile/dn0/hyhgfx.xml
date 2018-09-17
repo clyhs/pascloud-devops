@@ -118,11 +118,11 @@
     <col id="ZB" title="占比(%)" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.hyhgfx"> 
-    <select id="dn1.hyhgfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.hyhgfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
-      <isEqual property="yjlx" compareValue="fxzb">select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,fxzb.zbmc,yjzb.zbz, case when (sum(yjzb.zbz) over(partition by fxzb.zbmc))=0 then 100 else cast (yjzb.zbz/(sum(yjzb.zbz) over(partition by fxzb.zbmc))*100 as decimal(19,2)) end as zb , bz.bzzwmc as bz, dmms_sdbs.dmms as sdbs from khdx_hy hy inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,$jgkhdxdh$)) qx on hy.khdxdh=qx.khdxdh inner join khdx_hylb lb on hy.khdxdh=lb.khdxdh 
+      <isEqual property="yjlx" compareValue="fxzb">select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,fxzb.zbmc,yjzb.zbz, case when (sum(yjzb.zbz) over(partition by fxzb.zbmc))=0 then 100 else cast (yjzb.zbz/(sum(yjzb.zbz) over(partition by fxzb.zbmc))*100 as decimal(19,2)) end as zb , bz.bzzwmc as bz, dmms_sdbs.dmms as sdbs from khdx_hy hy inner join khdx_hylb lb on hy.khdxdh=lb.khdxdh 
         <isNotEmpty property="tjrq">and $tjrq$ between lb.qsrq and lb.jsrq</isNotEmpty> inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join khdx_zb fxzb on 1=1 
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join table(FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,$jgkhdxdh$)) qx on jg.khdxdh=qx.khdxdh inner join khdx_zb fxzb on 1=1 
         <isNotEmpty property="zbdh">and fxzb.zbdh = $zbdh$</isNotEmpty> inner join yjzb_hy_$tjnf$ yjzb on yjzb.zbdh = fxzb.zbdh 
         <isNotEmpty property="bz">and yjzb.bz = '$bz$'</isNotEmpty>  
         <isNotEmpty property="sdbs">and yjzb.sdbs = '$sdbs$'</isNotEmpty> and hy.khdxdh = yjzb.khdxdh inner join csb_dmms dmms_sdbs on dmms_sdbs.dmz = yjzb.sdbs and dmms_sdbs.dmmc = 'ZBSDBS' inner join csb_bz bz on bz.bz = yjzb.bz inner join khdx_zblb zblb on zblb.zbdh=fxzb.zbdh and zblb.jsrq=29991231 
@@ -130,19 +130,19 @@
         <isNotEmpty property="tjrq">and yjzb.tjrq = $tjrq$</isNotEmpty>  
         <isNotEmpty property="hylb">and lb.lbdh='$hylb$'</isNotEmpty> order by yjzb.zbz desc,fxzb.zbpx
       </isEqual>  
-      <isEqual property="yjlx" compareValue="khzb">select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,khzb.khzbmc,yjzb.zbz, case when (sum(yjzb.zbz) over(partition by khzb.khzbmc))=0 then 100 else cast (yjzb.zbz/(sum(yjzb.zbz) over(partition by khzb.khzbmc))*100 as decimal(19,2)) end as zb from khdx_hy hy inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,$jgkhdxdh$)) qx on hy.khdxdh=qx.khdxdh inner join khdx_hylb lb on hy.khdxdh=lb.khdxdh 
+      <isEqual property="yjlx" compareValue="khzb">select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,khzb.khzbmc,yjzb.zbz, case when (sum(yjzb.zbz) over(partition by khzb.khzbmc))=0 then 100 else cast (yjzb.zbz/(sum(yjzb.zbz) over(partition by khzb.khzbmc))*100 as decimal(19,2)) end as zb from khdx_hy hy inner join khdx_hylb lb on hy.khdxdh=lb.khdxdh 
         <isNotEmpty property="tjrq">and $tjrq$ between lb.qsrq and lb.jsrq</isNotEmpty> inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join khfa_khzb_hy khzb on 1=1 
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join table(FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,$jgkhdxdh$)) qx on jg.khdxdh=qx.khdxdh inner join khfa_khzb_hy khzb on 1=1 
         <isNotEmpty property="khzb">and khzb.khzbdh = $khzb$</isNotEmpty> inner join yjzb_hy_$tjnf$ yjzb on yjzb.zbdh = khzb.zbdh and yjzb.bz = khzb.bz and yjzb.sdbs = khzb.sdbs and hy.khdxdh = yjzb.khdxdh where 1=1 
         <isNotEmpty property="tjrq">and yjzb.tjrq = $tjrq$</isNotEmpty>  
         <isNotEmpty property="hylb">and lb.lbdh='$hylb$'</isNotEmpty> order by yjzb.zbz desc,khzb.zbpx
       </isEqual> 
     </select>  
-    <select id="dn1.hyhgfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.hyhgfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
-      <isEqual property="yjlx" compareValue="fxzb">select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,fxzb.zbmc,yjzb.zbz, case when (sum(yjzb.zbz) over(partition by fxzb.zbmc))=0 then 100 else cast (yjzb.zbz/(sum(yjzb.zbz) over(partition by fxzb.zbmc))*100 as decimal(19,2)) end as zb , bz.bzzwmc as bz, dmms_sdbs.dmms as sdbs from khdx_hy hy inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,$jgkhdxdh$)) qx on hy.khdxdh=qx.khdxdh inner join khdx_hylb lb on hy.khdxdh=lb.khdxdh 
+      <isEqual property="yjlx" compareValue="fxzb">select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,fxzb.zbmc,yjzb.zbz, case when (sum(yjzb.zbz) over(partition by fxzb.zbmc))=0 then 100 else cast (yjzb.zbz/(sum(yjzb.zbz) over(partition by fxzb.zbmc))*100 as decimal(19,2)) end as zb , bz.bzzwmc as bz, dmms_sdbs.dmms as sdbs from khdx_hy hy inner join khdx_hylb lb on hy.khdxdh=lb.khdxdh 
         <isNotEmpty property="tjrq">and $tjrq$ between lb.qsrq and lb.jsrq</isNotEmpty> inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join khdx_zb fxzb on 1=1 
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join table(FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,$jgkhdxdh$)) qx on jg.khdxdh=qx.khdxdh inner join khdx_zb fxzb on 1=1 
         <isNotEmpty property="zbdh">and fxzb.zbdh = $zbdh$</isNotEmpty> inner join yjzb_hy_$tjnf$ yjzb on yjzb.zbdh = fxzb.zbdh 
         <isNotEmpty property="bz">and yjzb.bz = '$bz$'</isNotEmpty>  
         <isNotEmpty property="sdbs">and yjzb.sdbs = '$sdbs$'</isNotEmpty> and hy.khdxdh = yjzb.khdxdh inner join csb_dmms dmms_sdbs on dmms_sdbs.dmz = yjzb.sdbs and dmms_sdbs.dmmc = 'ZBSDBS' inner join csb_bz bz on bz.bz = yjzb.bz inner join khdx_zblb zblb on zblb.zbdh=fxzb.zbdh and zblb.jsrq=29991231 
@@ -150,16 +150,16 @@
         <isNotEmpty property="tjrq">and yjzb.tjrq = $tjrq$</isNotEmpty>  
         <isNotEmpty property="hylb">and lb.lbdh='$hylb$'</isNotEmpty> order by yjzb.zbz desc,fxzb.zbpx
       </isEqual>  
-      <isEqual property="yjlx" compareValue="khzb">select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,khzb.khzbmc,yjzb.zbz, case when (sum(yjzb.zbz) over(partition by khzb.khzbmc))=0 then 100 else cast (yjzb.zbz/(sum(yjzb.zbz) over(partition by khzb.khzbmc))*100 as decimal(19,2)) end as zb from khdx_hy hy inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,$jgkhdxdh$)) qx on hy.khdxdh=qx.khdxdh inner join khdx_hylb lb on hy.khdxdh=lb.khdxdh 
+      <isEqual property="yjlx" compareValue="khzb">select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,khzb.khzbmc,yjzb.zbz, case when (sum(yjzb.zbz) over(partition by khzb.khzbmc))=0 then 100 else cast (yjzb.zbz/(sum(yjzb.zbz) over(partition by khzb.khzbmc))*100 as decimal(19,2)) end as zb from khdx_hy hy inner join khdx_hylb lb on hy.khdxdh=lb.khdxdh 
         <isNotEmpty property="tjrq">and $tjrq$ between lb.qsrq and lb.jsrq</isNotEmpty> inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join khfa_khzb_hy khzb on 1=1 
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join table(FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,$jgkhdxdh$)) qx on jg.khdxdh=qx.khdxdh inner join khfa_khzb_hy khzb on 1=1 
         <isNotEmpty property="khzb">and khzb.khzbdh = $khzb$</isNotEmpty> inner join yjzb_hy_$tjnf$ yjzb on yjzb.zbdh = khzb.zbdh and yjzb.bz = khzb.bz and yjzb.sdbs = khzb.sdbs and hy.khdxdh = yjzb.khdxdh where 1=1 
         <isNotEmpty property="tjrq">and yjzb.tjrq = $tjrq$</isNotEmpty>  
         <isNotEmpty property="hylb">and lb.lbdh='$hylb$'</isNotEmpty> order by yjzb.zbz desc,khzb.zbpx
       </isEqual> ) t
     </select>  
-    <select id="dn1.hyhgfx_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_hylb order by 1</select>  
-    <select id="dn1.hyhgfx_MSQL4SELECT_khzb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khzbdh as KEY,khzbmc as VALUE from khfa_khzb_hy order by zbpx</select> 
+    <select id="dn0.hyhgfx_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_hylb order by 1</select>  
+    <select id="dn0.hyhgfx_MSQL4SELECT_khzb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khzbdh as KEY,khzbmc as VALUE from khfa_khzb_hy order by zbpx</select> 
   </sqlMap>  
   <finger custPlotMth="" id="hyhgfx_khzbjgj"> 
     <plotType>pie</plotType>  

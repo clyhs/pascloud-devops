@@ -66,19 +66,19 @@
     <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.hydkjxgz"> 
-    <select id="dn1.hydkjxgzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.hydkjxgzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select substr(cast(jxgz.tjrq as char(8)),1,6) as tjrq, jglb.lbmc,jg.jgmc,hy.hydh,hy.hymc,hylb.lbmc as hylb, hygw.gwmc as hygw,jxgz.sqqe,jxgz.yfdkjxgz,jxgz.sfdkjxgz, jxgz.lxsrjx, jxgz.khgljx, jxgz.dkffjx, jxgz.dkmnlrjx, jxgz.dkyjkzxm1, jxgz.dkyjkzxm2, jxgz.dkyjkzxm3, jxgz.fyjdkkf, jxgz.fyjdkkffh, jxgz.dqdkshljq, jxgz.dkkfkzxm1, jxgz.dkkfkzxm2, jxgz.dkkfkzxm3, jxgz.kzxs1, jxgz.kzxs2, jxgz.kzxs3, jxgz.sqqe, jxgz.yfdkjxgz, jxgz.sfdkjxgz, jxgz.khdxdh from jxgz_dkjxgz jxgz inner join khdx_hy hy on jxgz.khdxdh=hy.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh=hy.khdxdh and jxgz.tjrq between jgcy.qsrq and jgcy.jsrq inner join khdx_jg jg on jg.khdxdh=jgcy.jgkhdxdh inner join khdx_hylb hylb on hylb.khdxdh=hy.khdxdh and jxgz.tjrq between hylb.qsrq and hylb.jsrq inner join khdx_jglb jglb on jglb.khdxdh=jg.khdxdh and jxgz.tjrq between jglb.qsrq and jglb.jsrq left join khdx_hygw hygw on hygw.khdxdh=hy.khdxdh and jxgz.tjrq between hygw.qsrq and hygw.jsrq inner join table(FN_GETSJJG_JAVA_QXHY($tjrq_ym$,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh where 1=1 
       <isNotEmpty property="tjrq_ym">and jxgz.tjrq=$tjrq_ym$</isNotEmpty>  
       <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="hylb">and hylb.lbdh='$hylb$'</isNotEmpty> order by jg.jgdh,hy.hydh
     </select>  
-    <select id="dn1.hydkjxgzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.hydkjxgzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select substr(cast(jxgz.tjrq as char(8)),1,6) as tjrq, jglb.lbmc,jg.jgmc,hy.hydh,hy.hymc,hylb.lbmc as hylb, hygw.gwmc as hygw,jxgz.sqqe,jxgz.yfdkjxgz,jxgz.sfdkjxgz, jxgz.lxsrjx, jxgz.khgljx, jxgz.dkffjx, jxgz.dkmnlrjx, jxgz.dkyjkzxm1, jxgz.dkyjkzxm2, jxgz.dkyjkzxm3, jxgz.fyjdkkf, jxgz.fyjdkkffh, jxgz.dqdkshljq, jxgz.dkkfkzxm1, jxgz.dkkfkzxm2, jxgz.dkkfkzxm3, jxgz.kzxs1, jxgz.kzxs2, jxgz.kzxs3, jxgz.sqqe, jxgz.yfdkjxgz, jxgz.sfdkjxgz, jxgz.khdxdh from jxgz_dkjxgz jxgz inner join khdx_hy hy on jxgz.khdxdh=hy.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh=hy.khdxdh and jxgz.tjrq between jgcy.qsrq and jgcy.jsrq inner join khdx_jg jg on jg.khdxdh=jgcy.jgkhdxdh inner join khdx_hylb hylb on hylb.khdxdh=hy.khdxdh and jxgz.tjrq between hylb.qsrq and hylb.jsrq inner join khdx_jglb jglb on jglb.khdxdh=jg.khdxdh and jxgz.tjrq between jglb.qsrq and jglb.jsrq left join khdx_hygw hygw on hygw.khdxdh=hy.khdxdh and jxgz.tjrq between hygw.qsrq and hygw.jsrq inner join table(FN_GETSJJG_JAVA_QXHY($tjrq_ym$,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh where 1=1 
       <isNotEmpty property="tjrq_ym">and jxgz.tjrq=$tjrq_ym$</isNotEmpty>  
       <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="hylb">and hylb.lbdh='$hylb$'</isNotEmpty> order by jg.jgdh,hy.hydh ) t
     </select>  
-    <select id="dn1.hydkjxgz_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_hylb</select> 
+    <select id="dn0.hydkjxgz_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_hylb</select> 
   </sqlMap>  
   <rels> 
     <items id="hydkjxgz_xsjy1jgj"/> 

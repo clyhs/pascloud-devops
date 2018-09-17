@@ -144,8 +144,10 @@ public class ConfigService {
 				}else{
 					vo.setDbType(p.getValueByKey(id+".type"));
 				}
-				if(id.equals("dn0")){
-					vo.setDesc("公共数据库实例");
+				if(id.equals(Constants.PASCLOUD_PUBLIC_DB)){
+					vo.setDesc("公共运维数据库实例");
+				}else if(id.equals(Constants.PASCLOUD_DNX)){
+					vo.setDesc("公共租户数据库实例");
 				}else{
 					vo.setDesc("租户数据库实例");
 				}
@@ -160,7 +162,12 @@ public class ConfigService {
                 return i;  
             }
             private Integer getValue(DBInfo o){
-            	return Integer.valueOf(o.getId().replace("dn", ""));
+            	if(o.getId().equals(Constants.PASCLOUD_DNX)){
+            		return -1;
+            	}else{
+            		return Integer.valueOf(o.getId().replace("dn", ""));
+            	}
+            	
             }
         });  
 		
@@ -192,8 +199,10 @@ public class ConfigService {
 					}else{
 						vo.setDbType(p.getValueByKey(id+".type"));
 					}
-					if(id.equals("dn0")){
+					if(id.equals(Constants.PASCLOUD_PUBLIC_DB)){
 						vo.setDesc("公共数据库实例");
+					}else if(id.equals(Constants.PASCLOUD_DNX)){
+						vo.setDesc("公共租户数据库实例");
 					}else{
 						vo.setDesc("租户数据库实例");
 					}
@@ -243,13 +252,13 @@ public class ConfigService {
 		PropertiesUtil p =new PropertiesUtil();
 		p.load(System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+m_config.getPASCLOUD_SERVICE_DIR()+this.m_db_file);
 		String url = "jdbc:mysql://"+ip+":"+port+"/pascloud";
-		p.setValueByKey("dn0.url", url, "");
-		p.setValueByKey("dn0.driverClass", "com.mysql.jdbc.Driver", "");
-		p.setValueByKey("dn0.username", "root", "");
-		p.setValueByKey("dn0.password", "root", "");
-		p.setValueByKey("dn0.type", "mysql", "");
-		p.setValueByKey("dn0.en", "gg", "");
-		p.setValueByKey("dn0.cn", "公共", "");
+		p.setValueByKey(Constants.PASCLOUD_PUBLIC_DB+".url", url, "");
+		p.setValueByKey(Constants.PASCLOUD_PUBLIC_DB+".driverClass", "com.mysql.jdbc.Driver", "");
+		p.setValueByKey(Constants.PASCLOUD_PUBLIC_DB+".username", "root", "");
+		p.setValueByKey(Constants.PASCLOUD_PUBLIC_DB+".password", "root", "");
+		p.setValueByKey(Constants.PASCLOUD_PUBLIC_DB+".type", "mysql", "");
+		p.setValueByKey(Constants.PASCLOUD_PUBLIC_DB+".en", "gg", "");
+		p.setValueByKey(Constants.PASCLOUD_PUBLIC_DB+".cn", "公共", "");
 		
 		/*dn0.url=jdbc\:mysql\://192.168.0.16\:3306/pascloud
           dn0.driverClass=com.mysql.jdbc.Driver

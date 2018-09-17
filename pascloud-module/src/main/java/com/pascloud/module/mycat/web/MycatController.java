@@ -255,7 +255,7 @@ public class MycatController extends BaseController {
 			return new ResultCommon(PasCloudCode.ERROR.getCode(),"你删除的数据库没有配置到MYCAT中");
 		}
 
-		if(name.equals("dn0")){
+		if(name.equals(Constants.PASCLOUD_PUBLIC_DB)){
 			return new ResultCommon(PasCloudCode.ERROR);
 		}else{
 			if(m_mycatService.delDatanode(name)){
@@ -290,7 +290,7 @@ public class MycatController extends BaseController {
 			}
 		}
 		
-		if(name.equals("dn0")){
+		if(name.equals(Constants.PASCLOUD_PUBLIC_DB)){
 			return new ResultCommon(PasCloudCode.ERROR);
 		}else{
 			if(m_mycatService.delDatanode(name)){

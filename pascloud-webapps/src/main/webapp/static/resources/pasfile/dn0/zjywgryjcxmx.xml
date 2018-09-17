@@ -74,7 +74,7 @@
     <col id="BZZWMC" title="币种中文名称" align="left" type="string" width="120" frozen="false" format="" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.zjywgryjcxmx"> 
-    <select id="dn1.zjywgryjcxmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.zjywgryjcxmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="ywlx" compareValue="1">select dmms.dmms as ywlx, jxdx.hth, jxdx.khh, mx.lsh jyls, mx.jyrq, jxdx.khmc, jg1.jgdh, jg1.jgmc, hy.hydh, hy.hymc, '百分比:'||'100' as fpgx, bz.bzzwmc, mx.jyje, mx.sxf from jxdx_sjyhqy jxdx left join jxdx_sjyhjyls mx on mx.hth=jxdx.hth inner join khdx_hy hy on hy.khdxdh = jxdx.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh = hy.khdxdh and coalesce(mx.jyrq,$sysdate$) between jgcy.qsrq and jgcy.jsrq inner join khdx_jg jg1 on jg1.khdxdh = jgcy.jgkhdxdh left join csb_dmms dmms on 1=1
         <isNotEmpty property="ywlx">and dmms.dmz='$ywlx$'</isNotEmpty> and dmms.dmmc='ZJYW' left join csb_bz bz on bz.bz = mx.bz where coalesce(mx.jyrq,$sysdate$) between $qsrq$ and $jsrq$ 
@@ -95,7 +95,7 @@
         <isNotEmpty property="qyh">and jxdx.hth='$qyh$'</isNotEmpty> 
       </isEqual> 
     </select>  
-    <select id="dn1.zjywgryjcxmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.zjywgryjcxmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="ywlx" compareValue="1">select dmms.dmms as ywlx, jxdx.hth, jxdx.khh, mx.lsh jyls, mx.jyrq, jxdx.khmc, jg1.jgdh, jg1.jgmc, hy.hydh, hy.hymc, '百分比:'||'100' as fpgx, bz.bzzwmc, mx.jyje, mx.sxf from jxdx_sjyhqy jxdx left join jxdx_sjyhjyls mx on mx.hth=jxdx.hth inner join khdx_hy hy on hy.khdxdh = jxdx.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh = hy.khdxdh and coalesce(mx.jyrq,$sysdate$) between jgcy.qsrq and jgcy.jsrq inner join khdx_jg jg1 on jg1.khdxdh = jgcy.jgkhdxdh left join csb_dmms dmms on 1=1 
         <isNotEmpty property="ywlx">and dmms.dmz='$ywlx$'</isNotEmpty> and dmms.dmmc='ZJYW' left join csb_bz bz on bz.bz = mx.bz where coalesce(mx.jyrq,$sysdate$) between $qsrq$ and $jsrq$ 

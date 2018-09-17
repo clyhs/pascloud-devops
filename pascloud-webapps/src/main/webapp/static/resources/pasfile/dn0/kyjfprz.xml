@@ -77,7 +77,7 @@
     <col id="JSRQ" title="结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.kyjfprz"> 
-    <select id="dn1.kyjfprzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.kyjfprzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="cxfs" compareValue="1">select zh.khh,czy.hymc as xgry, zh.kh as zhdh,jg.jgdh,jg.jgmc jgmc,hy.hydh, hy.hymc, gxjl.zlbl, gxjl.qsrq, gxjl.jsrq, czlxms.dmms as czlx, F_TIMETOCHAR(gxrz.jlsj,'yyyy/mm/dd hh24:mi:ss') jlsj, case when gxjl.ggbz='0' then '旧数据' else '修改后' end as ggbz from xtb_hykgxrz gxrz inner join xtb_hykgxjl gxjl on gxrz.jldh = gxjl.jldh inner join khdx_jgcy jgcy on jgcy.khdxdh = gxjl.khdxdh inner join khdx_jg jg on jgcy.jgkhdxdh = jg.khdxdh inner join jxdx_kzl zh on zh.jxdxdh = gxrz.jxdxdh 
         <isNotEmpty property="accid">and zh.kh like '%$accid$%'</isNotEmpty> inner join khdx_hy hy on hy.khdxdh = gxjl.khdxdh inner join khdx_hy czy on czy.khdxdh = gxrz.xgrdh inner join csb_dmms czlxms on lower(czlxms.dmmc)='rzczlx' and gxrz.czlx=czlxms.dmz where 1=1
@@ -91,7 +91,7 @@
         <isNotEmpty property="khdxdh">and gxjl.khdxdh=$khdxdh$</isNotEmpty> and gxrz.jlsj between F_INTTOTIME($qsrq$,1) and F_INTTOTIME($jsrq$,2) AND F_TIMETOINT(GXRZ.JLSJ,'yyyymmdd') BETWEEN JGCY.QSRQ AND JGCY.JSRQ order by gxrz.jlsj desc,zh.kh, gxjl.jldh, gxjl.ggbz asc
       </isEqual> 
     </select>  
-    <select id="dn1.kyjfprzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.kyjfprzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="cxfs" compareValue="1">select zh.khh,czy.hymc as xgry, zh.kh as zhdh,jg.jgdh,jg.jgmc jgmc,hy.hydh, hy.hymc, gxjl.zlbl, gxjl.qsrq, gxjl.jsrq, czlxms.dmms as czlx, F_TIMETOCHAR(gxrz.jlsj,'yyyy/mm/dd hh24:mi:ss') jlsj, case when gxjl.ggbz='0' then '旧数据' else '修改后' end as ggbz from xtb_hykgxrz gxrz inner join xtb_hykgxjl gxjl on gxrz.jldh = gxjl.jldh inner join khdx_jgcy jgcy on jgcy.khdxdh = gxjl.khdxdh inner join khdx_jg jg on jgcy.jgkhdxdh = jg.khdxdh inner join jxdx_kzl zh on zh.jxdxdh = gxrz.jxdxdh 
         <isNotEmpty property="accid">and zh.kh like '%$accid$%'</isNotEmpty> inner join khdx_hy hy on hy.khdxdh = gxjl.khdxdh inner join khdx_hy czy on czy.khdxdh = gxrz.xgrdh inner join csb_dmms czlxms on lower(czlxms.dmmc)='rzczlx' and gxrz.czlx=czlxms.dmz where 1=1 

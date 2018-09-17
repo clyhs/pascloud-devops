@@ -54,7 +54,7 @@
     <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName=""> 
       <attribute key="isRequired" value="true"/>  
       <attribute key="name" value="tjrq"/>  
-      <attribute key="minDate" value="no"/>  
+      <attribute key="minDate" value="csdate"/>  
       <attribute key="defValType" value="sysDate"/>  
       <attribute key="dateFmt" value="yyyyMM"/>  
       <attribute key="editable" value="true"/> 
@@ -122,7 +122,7 @@
     <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName=""> 
       <attribute key="isRequired" value="true"/>  
       <attribute key="name" value="tjrq"/>  
-      <attribute key="minDate" value="no"/>  
+      <attribute key="minDate" value="csdate"/>  
       <attribute key="defValType" value="sysDate"/>  
       <attribute key="dateFmt" value="yyyyMM"/>  
       <attribute key="editable" value="true"/> 
@@ -204,35 +204,35 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.jgfygl"> 
-    <select id="dn1.jgfyglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.jgfyglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select $tjrq$ tjny,jg.jgdh,jg.jgmc,fy.fyzl,ms.dmms fyzlmc,fy.kmh,km.kmmc,fy.je,jg.khdxdh,fy.tjrq,fy.bzsm from sglr_jgfy fy inner join khdx_jg jg on jg.khdxdh=fy.khdxdh left join csb_dmms ms on ms.dmmc='FYZL' and ms.dmz=fy.fyzl left join csb_km km on km.kmh=fy.kmh inner join table(fn_getsjjg_java_qx($tjrq_ym$,$login_khdxdh$,0)) qx on qx.khdxdh=jg.khdxdh 
       <isNotEmpty property="jgkhdxdh">where fy.khdxdh in ($jgkhdxdh$)</isNotEmpty>  
       <isNotEmpty property="fyzl">and fy.fyzl='$fyzl$'</isNotEmpty>  
       <isNotEmpty property="tjrq_ym">and fy.tjrq=$tjrq_ym$</isNotEmpty> 
     </select>  
-    <select id="dn1.jgfyglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.jgfyglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select $tjrq$ tjny,jg.jgdh,jg.jgmc,fy.fyzl,ms.dmms fyzlmc,fy.kmh,km.kmmc,fy.je,jg.khdxdh,fy.tjrq,fy.bzsm from sglr_jgfy fy inner join khdx_jg jg on jg.khdxdh=fy.khdxdh left join csb_dmms ms on ms.dmmc='FYZL' and ms.dmz=fy.fyzl left join csb_km km on km.kmh=fy.kmh inner join table(fn_getsjjg_java_qx($tjrq_ym$,$login_khdxdh$,0)) qx on qx.khdxdh=jg.khdxdh 
       <isNotEmpty property="jgkhdxdh">where fy.khdxdh in ($jgkhdxdh$)</isNotEmpty>  
       <isNotEmpty property="fyzl">and fy.fyzl='$fyzl$'</isNotEmpty>  
       <isNotEmpty property="tjrq_ym">and fy.tjrq=$tjrq_ym$</isNotEmpty> ) t
     </select>  
-    <select id="dn1.jgfygl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.jgfygl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select KMH, FYZL, KHDXDH, BZSM, JE,F_TIMETOCHAR(CZSJ,'yyyy-mm-dd hh24:mi:ss') as CZSJ, CZR, BZ, TJRQ from SGLR_JGFY where 1= 1 and FYZL = '$fyzl$' and KHDXDH = $khdxdh$ and TJRQ = $tjrq$
     </select>  
-    <select id="dn1.jgfygl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.jgfygl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select KMH, FYZL, KHDXDH, BZSM, JE,F_TIMETOCHAR(CZSJ,'yyyy-mm-dd hh24:mi:ss') as CZSJ, CZR, BZ, TJRQ from SGLR_JGFY where 1= 1 and FYZL = '$fyzl$' and KHDXDH = $khdxdh$ and TJRQ = $tjrq_ym$
     </select>  
-    <insert id="dn1.jgfygl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn0.jgfygl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into SGLR_JGFY( FYZL, JE, BZ, KHDXDH, CZSJ, CZR, TJRQ, KMH, BZSM ) values ( '$fyzl$',$je$,'$bz$',$khdxdh$,f_get_timestamp('$czsj$'),'$czr$',$tjrq_ym$,'$kmzl$','$bzsm$')
     </insert>  
-    <update id="dn1.jgfygl_update" parameterClass="java.util.Map"> 
+    <update id="dn0.jgfygl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update SGLR_JGFY set JE = $je$,KMH = '$kmzl$',BZSM = '$bzsm$' where 1=1 and FYZL = '$fyzl$' and KHDXDH = $khdxdh$ and TJRQ = $tjrq_ym$
     </update>  
-    <delete id="dn1.jgfygl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn0.jgfygl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from SGLR_JGFY where 1=1 and FYZL = '$fyzl$' and KHDXDH = $khdxdh$ and TJRQ = $tjrq$
     </delete>  
-    <select id="dn1.jgfygl_MSQL4SELECT_fyzl" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where upper(dmmc)='FYZL'</select>  
-    <select id="dn1.jgfygl_MSQL4SELECT_kmzl" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select kmh as key, kmmc as value from csb_km</select> 
+    <select id="dn0.jgfygl_MSQL4SELECT_fyzl" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where upper(dmmc)='FYZL'</select>  
+    <select id="dn0.jgfygl_MSQL4SELECT_kmzl" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select kmh as key, kmmc as value from csb_km</select> 
   </sqlMap>  
   <javascript> 
     <import>parent.addTab('jgfydr','机构费用管理','/module/parser/import/visitHtml/jgfydr');</import>  

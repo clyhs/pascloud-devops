@@ -95,70 +95,70 @@
     </after> 
   </flow>  
   <sqlMap namespace="studio.eckhjxfpdr"> 
-    <update parameterClass="java.util.Map" id="dn1.eckhjxfpdr_check_tjrq_0"> 
+    <update parameterClass="java.util.Map" id="dn0.eckhjxfpdr_check_tjrq_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update eckhjxfpdr_temp t set t.error=t.error||'统计日期输入错误，格式应该是:yyyyMM!' where f_java_rule_date(t.tjrq,'yyyyMM')=1 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.eckhjxfpdr_check_tjrq_1"> 
+    <update parameterClass="java.util.Map" id="dn0.eckhjxfpdr_check_tjrq_1"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update eckhjxfpdr_temp t set t.error=t.error||'统计日期输入错误，不能为空!' where f_java_rule_length(t.tjrq)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.eckhjxfpdr_check_hydh_2"> 
+    <update parameterClass="java.util.Map" id="dn0.eckhjxfpdr_check_hydh_2"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update eckhjxfpdr_temp t set t.error=t.error||'行员代号输入错误，不能为空!' where f_java_rule_length(t.hydh)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.eckhjxfpdr_check_hydh_3"> 
+    <update parameterClass="java.util.Map" id="dn0.eckhjxfpdr_check_hydh_3"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update eckhjxfpdr_temp t set t.error=t.error||'行员代号不存在!' where not exists(select 1 from khdx_hy h where rtrim(t.hydh)=rtrim(h.hydh)) and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.eckhjxfpdr_check_bzsm_4"> 
+    <update parameterClass="java.util.Map" id="dn0.eckhjxfpdr_check_bzsm_4"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update eckhjxfpdr_temp t set t.error=t.error||'备注说明输入错误，长度不能超过:100!' where f_java_rule_length(t.bzsm)&gt;100 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.eckhjxfpdr_checkupdate_tjrq_0"> 
+    <update parameterClass="java.util.Map" id="dn0.eckhjxfpdr_checkupdate_tjrq_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> UPDATE eckhjxfpdr_temp t SET t.error = (SELECT t.error || '分配日期不能小于(系统日期-重跑天数)' || cast ( f_change_days (cast (rq.csz AS INTEGER), -cast (cs.csz AS INTEGER)) AS CHAR (8)) || '!' AS error FROM xtb_xtcs rq, xtb_xtcs cs WHERE rq.csmc = 'SYS_DATE' AND cs.csmc = 'SYS_CSTS') WHERE (select ym from csb_sjw where tjrq=cast(t.tjrq||'01' AS INTEGER)) &lt; (SELECT f_change_days (cast (rq.csz AS INTEGER), -cast (cs.csz AS INTEGER)) FROM xtb_xtcs rq, xtb_xtcs cs WHERE rq.csmc = 'SYS_DATE' AND cs.csmc = 'SYS_CSTS') AND (error = '' OR error IS NULL) AND khdxdh = $login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.eckhjxfpdr_checkupdate_hymc_0"> 
+    <update parameterClass="java.util.Map" id="dn0.eckhjxfpdr_checkupdate_hymc_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update eckhjxfpdr_temp t set error=error||'行员代号和名称必须一致' where not exists ( select 1 from khdx_hy hy where t.hydh=hy.hydh and hy.hymc=t.hymc) and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.eckhjxfpdr_checkupdate_fpjx_0"> 
+    <update parameterClass="java.util.Map" id="dn0.eckhjxfpdr_checkupdate_fpjx_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update eckhjxfpdr_temp t set error=error||'分配绩效按机构汇总不能大于机构二次考核绩效包!' where exists ( select 1 from ( select b.jgkhdxdh,b.yyjg,a.fpjx from ( select cy.jgkhdxdh ,yyjg.yyjg from khfa_yyjg_jg yyjg inner join khfa_fapz fapz on yyjg.fabh = fapz.fabh and fapz.famc like '%二次考核绩效包%' and fapz.khdx = '1' and fapz.yyzlbh = 1 inner join khdx_jgcy cy on yyjg.khdxdh = cy.jgkhdxdh and yyjg.tjrq between cy.qsrq and cy.jsrq where yyjg.tjrq in (select ym from csb_sjw where tjrq in(select distinct cast (tjrq||'01' AS integer) from eckhjxfpdr_temp))) b left join ( select a.jgkhdxdh,sum(a.fpjx) as fpjx from ( select jgcy.jgkhdxdh, sum (cast (a.fpjx as decimal (25, 4)))fpjx from eckhjxfpdr_temp a inner join khdx_hy hy on a.hydh = hy.hydh inner join csb_sjw sjw on sjw.tjrq= cast(a.tjrq||'01' as integer) inner join khdx_jgcy jgcy on jgcy.khdxdh = hy.khdxdh and sjw.ym between jgcy.qsrq and jgcy.jsrq group by jgcy.jgkhdxdh union all select b.jgkhdxdh,sum(a.fpjx) as fpjx from sgdr_eckhjxfp a inner join khdx_jgcy b on a.khdxdh=b.khdxdh and a.tjrq between b.qsrq and b.jsrq where a.tjrq in(select ym from csb_sjw where tjrq in (select distinct cast (tjrq||'01' AS integer) from eckhjxfpdr_temp)) and not exists(select 1 from eckhjxfpdr_temp c,csb_sjw d where b.hydh=c.hydh and d.tjrq=cast (c.tjrq||'01' AS integer) and d.ym=a.tjrq) group by b.jgkhdxdh ) a group by a.jgkhdxdh) a on a.jgkhdxdh=b.jgkhdxdh where a.fpjx &gt; b.yyjg )a where (select cy.jgkhdxdh from khdx_jgcy cy where cy.hydh=t.hydh and cast(trim(t.tjrq)||'01' as integer) between cy.qsrq and cy.jsrq)=a.jgkhdxdh ) and t.khdxdh=$login_khdxdh$ and (length(t.error)=0 or t.error is null )
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.eckhjxfpdr_exists_target"> 
+    <update parameterClass="java.util.Map" id="dn0.eckhjxfpdr_exists_target"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update eckhjxfpdr_temp t set t.error=t.error||'数据已存在!' where exists(select 1 from SGDR_ECKHJXFP tar ,CSB_SJW CSB_SJW0,KHDX_HY KHDX_HY1 where 1=1 and cast(t.tjrq||'01' as INTEGER)=CSB_SJW0.TJRQ and CSB_SJW0.YM=tar.TJRQ and t.hydh=KHDX_HY1.HYDH and KHDX_HY1.KHDXDH=tar.KHDXDH and t.khdxdh=$login_khdxdh$ and (length(t.error)=0 or t.error is null ))
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.eckhjxfpdr_exists_same_temp"> 
+    <update parameterClass="java.util.Map" id="dn0.eckhjxfpdr_exists_same_temp"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update eckhjxfpdr_temp t set t.error=error||'存在重复数据!' where exists( select 1 from (select tjrq,hydh from eckhjxfpdr_temp dr where khdxdh=$login_khdxdh$ group by tjrq,hydh having count(1)<![CDATA[>]]>1 ) dr where 1=1 and t.tjrq=dr.tjrq and t.hydh=dr.hydh) and khdxdh=$login_khdxdh$
     </update>  
-    <insert parameterClass="java.util.Map" id="dn1.eckhjxfpdr_create_lsb"> 
+    <insert parameterClass="java.util.Map" id="dn0.eckhjxfpdr_create_lsb"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> CREATE TABLE eckhjxfpdr_temp ( tjrq varchar(100) , hydh varchar(100) , hymc varchar(100) , fpjx varchar(100) , bzsm varchar(100) , khdxdh integer,error varchar(1000) )
     </insert>  
-    <delete parameterClass="java.util.Map" id="dn1.eckhjxfpdr_delete_lsb"> 
+    <delete parameterClass="java.util.Map" id="dn0.eckhjxfpdr_delete_lsb"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from eckhjxfpdr_temp where khdxdh=$login_khdxdh$
     </delete>  
-    <insert parameterClass="java.util.Map" id="dn1.eckhjxfpdr_insert_into_lsb"> 
+    <insert parameterClass="java.util.Map" id="dn0.eckhjxfpdr_insert_into_lsb"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into ECKHJXFPDR_TEMP (tjrq,hydh,hymc,fpjx,bzsm,khdxdh,error) values(?,?,?,?,?,?,?)
     </insert>  
-    <select parameterClass="java.util.Map" id="dn1.eckhjxfpdr_exists_error_msg" resultClass="java.lang.Integer"> 
+    <select parameterClass="java.util.Map" id="dn0.eckhjxfpdr_exists_error_msg" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from eckhjxfpdr_temp where length(error) <![CDATA[>]]> 0 and khdxdh = $login_khdxdh$
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn1.eckhjxfpdr_exists_same_data"> 
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn0.eckhjxfpdr_exists_same_data"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from eckhjxfpdr_temp where length(error) <![CDATA[>]]> 0 and error != '数据已存在!' and khdxdh = $login_khdxdh$
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn1.eckhjxfpdr_select_error_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn0.eckhjxfpdr_select_error_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/cancel.jpg" border="0"/<![CDATA[>]]>' as zt, tjrq,hydh,hymc,fpjx,bzsm,khdxdh,error from eckhjxfpdr_temp where khdxdh=$login_khdxdh$ and length(error)<![CDATA[>]]>0
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn1.eckhjxfpdr_count_all_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn0.eckhjxfpdr_count_all_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, tjrq,hydh,hymc,fpjx,bzsm,khdxdh,error from eckhjxfpdr_temp where khdxdh=$login_khdxdh$ )a
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn1.eckhjxfpdr_select_all_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn0.eckhjxfpdr_select_all_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, tjrq,hydh,hymc,fpjx,bzsm,khdxdh,error from eckhjxfpdr_temp where khdxdh=$login_khdxdh$
     </select>  
-    <update id="dn1.eckhjxfpdr_before_insert_0" parameterClass="java.util.Map"> 
+    <update id="dn0.eckhjxfpdr_before_insert_0" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update eckhjxfpdr_temp t set t.tjrq=tjrq||'01'
     </update>  
-    <insert parameterClass="java.util.Map" id="dn1.eckhjxfpdr_insert_into_target"> 
+    <insert parameterClass="java.util.Map" id="dn0.eckhjxfpdr_insert_into_target"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into SGDR_ECKHJXFP(TJRQ,KHDXDH,FPJX,BZSM,CZR,CZSJ) select CSB_SJW0.YM,KHDX_HY1.KHDXDH,cast (t.fpjx as DECIMAL(25,4)), t.bzsm ,$login_khdxdh$,F_GET_SYSTIME() from eckhjxfpdr_temp t ,CSB_SJW CSB_SJW0,KHDX_HY KHDX_HY1 where t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null) and CSB_SJW0.TJRQ=cast (t.tjrq as INTEGER) and KHDX_HY1.HYDH=cast (t.hydh as VARCHAR(20))
     </insert>  
-    <update id="dn1.eckhjxfpdr_after_insert_0" parameterClass="java.util.Map"> 
+    <update id="dn0.eckhjxfpdr_after_insert_0" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update eckhjxfpdr_temp t set t.error=t.error||'数据已存在!' where exists( select 1 from SGDR_ECKHJXFP tar ,CSB_SJW CSB_SJW0,KHDX_HY KHDX_HY1 where 1=1 and cast(t.tjrq as INTEGER)=CSB_SJW0.TJRQ and CSB_SJW0.YM=tar.TJRQ and t.hydh=KHDX_HY1.HYDH and KHDX_HY1.KHDXDH=tar.KHDXDH and t.khdxdh=$login_khdxdh$ and (length(t.error)=0 or t.error is null ))
     </update>  
-    <delete parameterClass="java.util.Map" id="dn1.eckhjxfpdr_delete_before_override"> 
+    <delete parameterClass="java.util.Map" id="dn0.eckhjxfpdr_delete_before_override"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from SGDR_ECKHJXFP tar where exists(select 1 from eckhjxfpdr_temp t ,CSB_SJW CSB_SJW0,KHDX_HY KHDX_HY1 where 1=1 and cast(t.tjrq as INTEGER)=CSB_SJW0.TJRQ and CSB_SJW0.YM=tar.TJRQ and t.hydh=KHDX_HY1.HYDH and KHDX_HY1.KHDXDH=tar.KHDXDH and t.khdxdh=$login_khdxdh$ )
     </delete> 
   </sqlMap> 

@@ -106,48 +106,48 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.wgjfxmfl"> 
-    <select id="dn1.wgjfxmflList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.wgjfxmflList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select fl.wgxlb,fl.wgxmc,fl.qsrq,fl.jsrq from wgjf_wgxmfl fl where 1 = 1 
       <isNotEmpty property="flmc">and fl.wgxmc like '%$flmc$%'</isNotEmpty>  
       <isNotEmpty property="sysdate">and $sysdate$ between fl.qsrq and fl.jsrq</isNotEmpty> 
     </select>  
-    <select id="dn1.wgjfxmflCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.wgjfxmflCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select fl.wgxlb,fl.wgxmc,fl.qsrq,fl.jsrq from wgjf_wgxmfl fl where 1 = 1 
       <isNotEmpty property="flmc">and fl.wgxmc like '%$flmc$%'</isNotEmpty>  
       <isNotEmpty property="sysdate">and $sysdate$ between fl.qsrq and fl.jsrq</isNotEmpty> ) t
     </select>  
-    <select id="dn1.wgjfxmfl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.wgjfxmfl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select WGXMC, QSRQ, WGXLB, JSRQ from WGJF_WGXMFL where 1= 1 and QSRQ = $qsrq$ and WGXLB = '$wgxlb$'
     </select>  
-    <select id="dn1.wgjfxmfl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.wgjfxmfl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select WGXMC, QSRQ, WGXLB, JSRQ from WGJF_WGXMFL where 1= 1 and QSRQ = $qsrq$ and WGXLB = '$wgxlb$'
     </select>  
-    <insert id="dn1.wgjfxmfl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn0.wgjfxmfl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into WGJF_WGXMFL( QSRQ, JSRQ, WGXMC, WGXLB ) values ( $qsrq$,$jsrq$,'$wgxmc$','$wgxlb$')
     </insert>  
-    <update id="dn1.wgjfxmfl_update" parameterClass="java.util.Map"> 
+    <update id="dn0.wgjfxmfl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update WGJF_WGXMFL set WGXMC = '$wgxmc$' where 1=1 and QSRQ = $qsrq$ and WGXLB = '$wgxlb$'
     </update>  
-    <delete id="dn1.wgjfxmfl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn0.wgjfxmfl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from WGJF_WGXMFL where 1=1 and QSRQ = $qsrq$ and WGXLB = '$wgxlb$'
     </delete>  
-    <delete id="dn1.wgjfxmfl_check_itemAddDel" parameterClass="java.util.Map"> 
+    <delete id="dn0.wgjfxmfl_check_itemAddDel" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[delete from WGJF_WGXMFL where qsrq >=$qsrq$  and WGXLB = '$wgxlb$']]> 
     </delete>  
-    <update id="dn1.wgjfxmfl_check_itemUP" parameterClass="java.util.Map"> 
+    <update id="dn0.wgjfxmfl_check_itemUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update WGJF_WGXMFL set jsrq=$qdate$ 
       <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty> and WGXLB = '$wgxlb$'
     </update>  
-    <select id="dn1.wgjfxmfl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.wgjfxmfl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select max(qsrq) from WGJF_WGXMFL where 1=1 and WGXLB = '$wgxlb$'
     </select>  
-    <select id="dn1.wgjfxmfl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.wgjfxmfl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select  WGXMC, QSRQ, WGXLB, JSRQ from WGJF_WGXMFL where 1=1  and WGXLB = '$wgxlb$' and $qsrq$ > $maxqsrq$]]> 
     </select>  
-    <update id="dn1.wgjfxmfl_check_itemDELUP" parameterClass="java.util.Map"> 
+    <update id="dn0.wgjfxmfl_check_itemDELUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update WGJF_WGXMFL set jsrq =29991231 where 1=1 and WGXLB = '$wgxlb$' and jsrq =$lastjsrq$
     </update>  
-    <select id="dn1.wgjfxmfl_checkDelete" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select wgxlb from wgjf_wgxm where wgxlb='$wgxlb$'</select> 
+    <select id="dn0.wgjfxmfl_checkDelete" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select wgxlb from wgjf_wgxm where wgxlb='$wgxlb$'</select> 
   </sqlMap>  
   <javascript> 
     <query>jQuery(document).ready(function () { }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; } function showDeleteDialog(sel){ var wgxmdh = sel["WGXMDH"]; jQuery('#wgxmdh').val(wgxmdh); var jsrq=sel["JSRQ"]; if(null!=jsrq){ if(jsrq!='29991231') { custom_alert("只能删除结束日期为29991231的记录，请重新操作!"); return ; } } var wgxlb=sel["WGXLB"]; $("#wgxlb").val(wgxlb); PAS.di.execute("wgjfxmfl_checkDelete",function(obj){ if(obj.data.length&gt;0){ parent.custom_alert("该分类已被使用,不能删除"); }else { custom_confirm('你确定要删除所选记录吗？','提示',function(){ var colIds="WGXLB,WGXMC,QSRQ,JSRQ,WGXMDH"; var colId=colIds.split(",");//所有的主键名 var params="&amp;"; //URL的参数 for(var i=0;i&lt;colId.length;i++){ params+=colId[i].toLowerCase()+"="+sel[colId[i]]+"&amp;"; } params=encodeURI(params.substring(0,params.length-1)); //alert(params); $.post('/module/parser/manage/deleteData/wgjfxmfl?funId=wgjfxmfl'+params,{},function(cb){ custom_alert(cb); loadData(); }).error(function(){ custom_alert("发生内部错误，无法删除所选记录！"); }); }); } }); }/ /*PAS.di.execute("wgjfxmfl_checkDelete",function(obj){ if(obj.data.length&gt;0){ parent.custom_alert("该分类已被使用,不能删除"); }/*else { custom_confirm('你确定要删除所选记录吗？','提示',function(){ var colIds="WGXLB,WGXMC,QSRQ,JSRQ,WGXMDH"; var colId=colIds.split(",");//所有的主键名 var params="&amp;"; //URL的参数 for(var i=0;i&lt;colId.length;i++){ params+=colId[i].toLowerCase()+"="+sel[colId[i]]+"&amp;"; } params=encodeURI(params.substring(0,params.length-1)); //alert(params); $.post('manageParser.do?method=deleteData&amp;funId=wgjfxmfl'+params,{},function(cb){ custom_alert(cb); loadData(); }).error(function(){ custom_alert("发生内部错误，无法删除所选记录！"); }); }); }*/ /*if(wgxmdh!=null&amp;&amp;wgxmdh!=''){ //alert(jQuery('#wgxmdh').val()); // custom_alert("分类已被使用,不能删除");*/ /*custom_confirm('分类已被使用,您确定要删除所选信息吗？','提示',function(){ PAS.di.execute('wgjfxmfl_deleteWgxm',deleteWgxm); var colIds="WGXLB,WGXMC,QSRQ,JSRQ,WGXMDH"; var colId=colIds.split(",");//所有的主键名 var params="&amp;"; //URL的参数 for(var i=0;i&lt;colId.length;i++){ params+=colId[i].toLowerCase()+"="+sel[colId[i]]+"&amp;"; } params=encodeURI(params.substring(0,params.length-1)); //alert(params); $.post('manageParser.do?method=deleteData&amp;funId=wgjfxmfl'+params,{},function(cb){ custom_alert(cb); loadData(); }).error(function(){ custom_alert("发生内部错误，无法删除所选记录！"); }); });*/ /*function deleteWgxm(obj){ custom_alert("操作成功！"); //loadData(); }*/</query>  

@@ -111,27 +111,27 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.jsjsfapz"> 
-    <select id="dn1.jsjsfapzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.jsjsfapzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select js.khnf,ms.dmms as jsfa,js.jsts from XTB_JSCS js inner join csb_dmms ms on ms.dmmc='JSFALX' and js.jsfa=ms.dmz where 1=1 
       <isNotEmpty property="khnf">and js.khnf=$khnf$</isNotEmpty> 
     </select>  
-    <select id="dn1.jsjsfapzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.jsjsfapzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select js.khnf,ms.dmms as jsfa,js.jsts from XTB_JSCS js inner join csb_dmms ms on ms.dmmc='JSFALX' and js.jsfa=ms.dmz where 1=1 
       <isNotEmpty property="khnf">and js.khnf=$khnf$</isNotEmpty> ) t
     </select>  
-    <select id="dn1.jsjsfapz_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.jsjsfapz_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select KHNF, JSTS, SCBZ, JSFA from XTB_JSCS where 1= 1 and KHNF = $khnf$
     </select>  
-    <select id="dn1.jsjsfapz_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.jsjsfapz_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select KHNF, JSTS, SCBZ, JSFA from XTB_JSCS where 1= 1 and KHNF = $khnf$
     </select>  
-    <insert id="dn1.jsjsfapz_insert" parameterClass="java.util.Map"> 
+    <insert id="dn0.jsjsfapz_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into XTB_JSCS( JSTS, SCBZ, KHNF, JSFA ) values ( '$jsts$','$scbz$',$khnf$,'$jsfa$')
     </insert>  
-    <update id="dn1.jsjsfapz_update" parameterClass="java.util.Map"> 
+    <update id="dn0.jsjsfapz_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update XTB_JSCS set JSTS = '$jsts$',SCBZ = '$scbz$',JSFA = '$jsfa$' where 1=1 and KHNF = $khnf$
     </update>  
-    <delete id="dn1.jsjsfapz_delete" parameterClass="java.util.Map"> 
+    <delete id="dn0.jsjsfapz_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from XTB_JSCS where 1=1 and KHNF = $khnf$
     </delete> 
   </sqlMap>  

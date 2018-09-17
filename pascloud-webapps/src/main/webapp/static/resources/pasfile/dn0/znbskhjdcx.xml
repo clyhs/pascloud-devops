@@ -87,7 +87,7 @@
     <col id="PFZT" title="评分状态" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.znbskhjdcx"> 
-    <select id="dn1.znbskhjdcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.znbskhjdcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select a.khnf, a.fabh, a.famc, a.khzq, a.khzqmc, a.khqs, a.znbs, a.znbsmc, case when a.khzt='0' then '未开始' when a.khzt = '1' then '正在进行' else '已完成' end khzt, case when a.pfzt=0 then '未完成' else '已完成' end as pfzt 
 from ( 
     select a.khnf, a.fabh, a.famc, a.khzq, a.dmms as khzqmc, a.khqs, a.znbs, a.jgmc as znbsmc, a.khzt , case when sum(case when a.pfzt='1' then 0 else 1 end )>0 then 0 else 1 end as pfzt 
@@ -105,7 +105,7 @@ from (
       <isNotEmpty property="khzt">and pffa.khzt = '$khzt$'</isNotEmpty> group by fapz.khnf, fapz.fabh, fapz.famc, fapz.khzq, dmms.dmms , pffa.khqs, fapz.znbs, jg.jgmc, pffa.khzt, pffa.pfzt )a group by a.khnf, a.fabh, a.famc, a.khzq, a.dmms , a.khqs, a.znbs, a.jgmc, a.khzt )a where 1=1 
       <isNotEmpty property="pfzt">and a.pfzt=$pfzt$</isNotEmpty> order by a.khnf, a.khzq, a.khqs
     </select>  
-    <select id="dn1.znbskhjdcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.znbskhjdcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( <![CDATA[select a.khnf, a.fabh, a.famc, a.khzq, a.khzqmc, a.khqs, a.znbs, a.znbsmc, case when a.khzt='0' then '未开始' when a.khzt = '1' then '正在进行' else '已完成' end khzt, case when a.pfzt=0 then '未完成' else '已完成' end as pfzt 
 from ( 
     select a.khnf, a.fabh, a.famc, a.khzq, a.dmms as khzqmc, a.khqs, a.znbs, a.jgmc as znbsmc, a.khzt , case when sum(case when a.pfzt='1' then 0 else 1 end )>0 then 0 else 1 end as pfzt 
@@ -123,11 +123,11 @@ from (
       <isNotEmpty property="khzt">and pffa.khzt = '$khzt$'</isNotEmpty> group by fapz.khnf, fapz.fabh, fapz.famc, fapz.khzq, dmms.dmms , pffa.khqs, fapz.znbs, jg.jgmc, pffa.khzt, pffa.pfzt )a group by a.khnf, a.fabh, a.famc, a.khzq, a.dmms , a.khqs, a.znbs, a.jgmc, a.khzt )a where 1=1 
       <isNotEmpty property="pfzt">and a.pfzt=$pfzt$</isNotEmpty> order by a.khnf, a.khzq, a.khqs ) t
     </select>  
-    <select id="dn1.znbskhjdcx_MSQL4SELECT_khqs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where 1=2</select>  
-    <select id="dn1.znbskhjdcx_MSQL4SELECT_fabh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ <![CDATA[select fabh as key, famc as value from znbs_fapz where khnf=$khnf$ and khzq=$khzq$ and 'test'<>'test$khzq$' and khdx = '1']]></select>  
-    <select id="dn1.znbskhjdcx_MSQL4SELECT_khzt" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where 1=2</select>  
-    <select id="dn1.znbskhjdcx_MSQL4SELECT_pfzt" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where 1=2</select>  
-    <select id="dn1.znbskhjdcx_khqsmr" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct pffa.KHQS from znbs_zxpffa pffa inner join znbs_fapz fapz on pffa.fabh = fapz.fabh where fapz.khnf = $khnf$ and pffa.khzt = '1' and fapz.KHZQ=$khzq$</select> 
+    <select id="dn0.znbskhjdcx_MSQL4SELECT_khqs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where 1=2</select>  
+    <select id="dn0.znbskhjdcx_MSQL4SELECT_fabh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ <![CDATA[select fabh as key, famc as value from znbs_fapz where khnf=$khnf$ and khzq=$khzq$ and 'test'<>'test$khzq$' and khdx = '1']]></select>  
+    <select id="dn0.znbskhjdcx_MSQL4SELECT_khzt" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where 1=2</select>  
+    <select id="dn0.znbskhjdcx_MSQL4SELECT_pfzt" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where 1=2</select>  
+    <select id="dn0.znbskhjdcx_khqsmr" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct pffa.KHQS from znbs_zxpffa pffa inner join znbs_fapz fapz on pffa.fabh = fapz.fabh where fapz.khnf = $khnf$ and pffa.khzt = '1' and fapz.KHZQ=$khzq$</select> 
   </sqlMap>  
   <rels> 
     <items id="znbskhjdcx_xsjy1jgj"/> 

@@ -35,7 +35,7 @@
     <col id="BZSM" title="备注" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.eckhjxcx"> 
-    <select id="dn1.eckhjxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.eckhjxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select jxfp.tjrq ,jg.jgmc ,hy.hydh ,hy.hymc ,hylb.LBMC ,yyjg.yyjg ,jxfp.fpjx ,jxfp.bzsm from SGDR_ECKHJXFP jxfp left join khdx_jgcy cy on jxfp.khdxdh = cy.khdxdh 
       <isNotEmpty property="tjny_ym">and $tjny_ym$ between cy.qsrq and cy.jsrq</isNotEmpty> left join khdx_jg jg on cy.jgkhdxdh = jg.khdxdh left join khdx_hy hy on jxfp.khdxdh = hy.khdxdh left join khdx_hylb hylb on jxfp.khdxdh = hylb.khdxdh 
       <isNotEmpty property="tjny_ym">and $tjny_ym$ between hylb.qsrq and hylb.jsrq</isNotEmpty> left join KHFA_YYJG_JG yyjg on 1=1 
@@ -43,7 +43,7 @@
       <isNotEmpty property="khdxdh">and jxfp.khdxdh in ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="tjny">and jxfp.tjrq between $tjny$01 and $tjny_ym$</isNotEmpty> order by jg.jgdh,hy.hydh
     </select>  
-    <select id="dn1.eckhjxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.eckhjxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select jxfp.tjrq ,jg.jgmc ,hy.hydh ,hy.hymc ,hylb.LBMC ,yyjg.yyjg ,jxfp.fpjx ,jxfp.bzsm from SGDR_ECKHJXFP jxfp left join khdx_jgcy cy on jxfp.khdxdh = cy.khdxdh 
       <isNotEmpty property="tjny_ym">and $tjny_ym$ between cy.qsrq and cy.jsrq</isNotEmpty> left join khdx_jg jg on cy.jgkhdxdh = jg.khdxdh left join khdx_hy hy on jxfp.khdxdh = hy.khdxdh left join khdx_hylb hylb on jxfp.khdxdh = hylb.khdxdh 
       <isNotEmpty property="tjny_ym">and $tjny_ym$ between hylb.qsrq and hylb.jsrq</isNotEmpty> left join KHFA_YYJG_JG yyjg on 1=1 

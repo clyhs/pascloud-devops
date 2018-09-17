@@ -76,7 +76,7 @@
     <col id="QYRQ" title="签约日期" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.posshyjfprz"> 
-    <select id="dn1.posshyjfprzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.posshyjfprzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="cxfs" compareValue="1">SELECT F_TIMETOCHAR(RZ.JLSJ,'yyyy/mm/dd hh24:mi:ss') JLSJ, czy.hymc as xgry, case when jl.ggbz='0' then '旧数据' else '修改后' end as jlbz , jxdx.shdh, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, jl.qsrq, jl.jsrq, '百分比:' || f_numtochar(jl.zlbl) as fpbl, jg1.jgmc as qyjg, jxdx.qyrq, CASE WHEN rz.czlx = '01' THEN '新增' WHEN rz.czlx = '02' THEN '修改' ELSE '删除' END AS czlx from xtb_hygxrz_pos rz inner join xtb_hygxjl_pos jl on rz.jldh=jl.jldh inner join khdx_hy hy on hy.khdxdh=jl.khdxdh inner join khdx_jgcy cy on cy.khdxdh=hy.khdxdh 
         <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh=cy.jgkhdxdh 
@@ -91,7 +91,7 @@
         <isNotEmpty property="shdh">AND jxdx.shdh LIKE '%$shdh$%'</isNotEmpty> ORDER BY RZ.JLSJ DESC
       </isEqual> 
     </select>  
-    <select id="dn1.posshyjfprzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.posshyjfprzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="cxfs" compareValue="1">SELECT F_TIMETOCHAR(RZ.JLSJ,'yyyy/mm/dd hh24:mi:ss') JLSJ, czy.hymc as xgry, case when jl.ggbz='0' then '旧数据' else '修改后' end as jlbz , jxdx.shdh, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, jl.qsrq, jl.jsrq, '百分比:' || f_numtochar(jl.zlbl) as fpbl, jg1.jgmc as qyjg, jxdx.qyrq, CASE WHEN rz.czlx = '01' THEN '新增' WHEN rz.czlx = '02' THEN '修改' ELSE '删除' END AS czlx from xtb_hygxrz_pos rz inner join xtb_hygxjl_pos jl on rz.jldh=jl.jldh inner join khdx_hy hy on hy.khdxdh=jl.khdxdh inner join khdx_jgcy cy on cy.khdxdh=hy.khdxdh 
         <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh=cy.jgkhdxdh 

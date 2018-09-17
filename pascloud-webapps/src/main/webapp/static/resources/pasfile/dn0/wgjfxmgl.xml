@@ -176,51 +176,51 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.wgjfxmgl"> 
-    <select id="dn1.wgjfxmglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.wgjfxmglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select xmflb.wgxmc, xmb.wgxmdh, xmb.xmmc, xmb.xmnr, xmb.qsrq, xmb.jsrq, xmb.kfbz from wgjf_wgxm xmb inner join wgjf_wgxmfl xmflb on xmb.wgxlb=xmflb.wgxlb 
       <isNotEmpty property="sysdate">and $sysdate$ between xmflb.qsrq and xmflb.jsrq</isNotEmpty> where 1=1 
       <isNotEmpty property="xmmc">and xmb.xmmc like '%$xmmc$%'</isNotEmpty> order by xmflb.wgxmc, xmb.wgxmdh, xmb.qsrq desc
     </select>  
-    <select id="dn1.wgjfxmglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.wgjfxmglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select xmflb.wgxmc, xmb.wgxmdh, xmb.xmmc, xmb.xmnr, xmb.qsrq, xmb.jsrq, xmb.kfbz from wgjf_wgxm xmb inner join wgjf_wgxmfl xmflb on xmb.wgxlb=xmflb.wgxlb 
       <isNotEmpty property="sysdate">and $sysdate$ between xmflb.qsrq and xmflb.jsrq</isNotEmpty> where 1=1 
       <isNotEmpty property="xmmc">and xmb.xmmc like '%$xmmc$%'</isNotEmpty> order by xmflb.wgxmc, xmb.wgxmdh, xmb.qsrq desc ) t
     </select>  
-    <select id="dn1.wgjfxmgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.wgjfxmgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select WGXMDH, XMNR, XMMC, KFBZ, WGXLB, QSRQ, JSRQ from WGJF_WGXM where 1= 1 and WGXMDH = '$wgxmdh$' and QSRQ = $qsrq$
     </select>  
-    <select id="dn1.wgjfxmgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.wgjfxmgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select WGXMDH, XMNR, XMMC, KFBZ, WGXLB, QSRQ, JSRQ from WGJF_WGXM where 1= 1 and WGXMDH = '$wgxmdh$' and QSRQ = $qsrq$
     </select>  
-    <insert id="dn1.wgjfxmgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn0.wgjfxmgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into WGJF_WGXM( WGXMDH, KFBZ, XMMC, XMNR, QSRQ, WGXLB, JSRQ ) values ( '$wgxmdh$',$kfbz$,'$xmmc$','$xmnr$',$qsrq$,'$wglb$',$jsrq$)
     </insert>  
-    <update id="dn1.wgjfxmgl_update" parameterClass="java.util.Map"> 
+    <update id="dn0.wgjfxmgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update WGJF_WGXM set KFBZ = $kfbz$,XMMC = '$xmmc$',XMNR = '$xmnr$' where 1=1 and WGXMDH = '$wgxmdh$' and QSRQ = $qsrq$
     </update>  
-    <delete id="dn1.wgjfxmgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn0.wgjfxmgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from WGJF_WGXM where 1=1 and WGXMDH = '$wgxmdh$' and QSRQ = $qsrq$
     </delete>  
-    <delete id="dn1.wgjfxmgl_check_itemAddDel" parameterClass="java.util.Map"> 
+    <delete id="dn0.wgjfxmgl_check_itemAddDel" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[delete from WGJF_WGXM where qsrq >=$qsrq$  and WGXMDH = '$wgxmdh$']]> 
     </delete>  
-    <update id="dn1.wgjfxmgl_check_itemUP" parameterClass="java.util.Map"> 
+    <update id="dn0.wgjfxmgl_check_itemUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update WGJF_WGXM set jsrq=$qdate$ 
       <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty> and WGXMDH = '$wgxmdh$'
     </update>  
-    <select id="dn1.wgjfxmgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.wgjfxmgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select max(qsrq) from WGJF_WGXM where 1=1 and WGXMDH = '$wgxmdh$'
     </select>  
-    <select id="dn1.wgjfxmgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.wgjfxmgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select  WGXMDH, XMNR, XMMC, KFBZ, WGXLB, QSRQ, JSRQ from WGJF_WGXM where 1=1  and WGXMDH = '$wgxmdh$' and $qsrq$ > $maxqsrq$]]> 
     </select>  
-    <update id="dn1.wgjfxmgl_check_itemDELUP" parameterClass="java.util.Map"> 
+    <update id="dn0.wgjfxmgl_check_itemDELUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update WGJF_WGXM set jsrq =29991231 where 1=1 and WGXMDH = '$wgxmdh$' and jsrq =$lastjsrq$
     </update>  
-    <delete id="dn1.wgjfxmgl_deleteWgjfxmgl" parameterClass="java.util.Map">/**!mycat:datanode=$db$**/ delete from wgjf_wgxm where wgxmdh= '$wgxmdh$'</delete>  
-    <select id="dn1.wgjfxmgl_checkDelete" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select WGXMDH from WGJF_WGSJDJ where WGXMDH='$wgxmdh$' union select WGXMDH from WGJF_YJSJDJ where WGXMDH='$wgxmdh$'</select>  
-    <select id="dn1.wgjfxmgl_getMaxqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'</select>  
-    <select id="dn1.wgjfxmgl_MSQL4SELECT_wglb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select xmfl.wgxlb as key,xmfl.wgxmc as value from wgjf_wgxmfl xmfl 
+    <delete id="dn0.wgjfxmgl_deleteWgjfxmgl" parameterClass="java.util.Map">/**!mycat:datanode=$db$**/ delete from wgjf_wgxm where wgxmdh= '$wgxmdh$'</delete>  
+    <select id="dn0.wgjfxmgl_checkDelete" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select WGXMDH from WGJF_WGSJDJ where WGXMDH='$wgxmdh$' union select WGXMDH from WGJF_YJSJDJ where WGXMDH='$wgxmdh$'</select>  
+    <select id="dn0.wgjfxmgl_getMaxqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'</select>  
+    <select id="dn0.wgjfxmgl_MSQL4SELECT_wglb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select xmfl.wgxlb as key,xmfl.wgxmc as value from wgjf_wgxmfl xmfl 
       <isNotEmpty property="sysdate">where $sysdate$ between xmfl.qsrq and xmfl.jsrq</isNotEmpty> 
     </select> 
   </sqlMap>  

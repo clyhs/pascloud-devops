@@ -32,12 +32,12 @@
     <col id="TLYE" title="绩效提留余额" align="right" type="float" width="120" frozen="false" format="" mergeCells="false" footerCells="false" xsType="href" onclick="hyjxtlmx"/> 
   </table>  
   <sqlMap namespace="studio.hyjxtlcx"> 
-    <select id="dn1.hyjxtlcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.hyjxtlcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select jg.khdxdh jgkhdxdh , hy.khdxdh ,jgmc , jg.jgdh , hy.hydh , hy.hymc , tjrq, h.tlje tlje , tjye tlye, '绩效提留余额' ms from khfa_jxtl_hy h inner join khdx_hy hy on hy.khdxdh = h.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
       <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh where hy.khdxdh in($khdxdh$) 
       <isNotEmpty property="tjrq">and h.tjrq = $tjrq$</isNotEmpty> 
     </select>  
-    <select id="dn1.hyjxtlcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.hyjxtlcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select jg.khdxdh jgkhdxdh , hy.khdxdh ,jgmc , jg.jgdh , hy.hydh , hy.hymc , tjrq, h.tlje tlje , tjye tlye, '绩效提留余额' ms from khfa_jxtl_hy h inner join khdx_hy hy on hy.khdxdh = h.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
       <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh INNER JOIN table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh = hy.khdxdh where hy.khdxdh in($khdxdh$) 
       <isNotEmpty property="tjrq">and h.tjrq = $tjrq$</isNotEmpty> ) t

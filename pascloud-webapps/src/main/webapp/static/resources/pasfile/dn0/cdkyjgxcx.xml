@@ -77,7 +77,7 @@
     <col id="ZLBL4" title="分配比例4" align="right" type="float" width="120" frozen="false" format="###" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.cdkyjgxcx"> 
-    <select id="dn1.cdkyjgxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.cdkyjgxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="dxlx" compareValue="1">select a.zhdh,a.zhhm,a.zhye,a.khrq ,max(hydh1) as hydh1, sum(zlbl1) as zlbl1 ,max(hydh2) as hydh2, sum(zlbl2) as zlbl2 ,max(hydh3) as hydh3, sum(zlbl3) as zlbl3 ,max(hydh4) as hydh4, sum(zlbl4) as zlbl4 from ( select a.zhdh,a.zhhm,a.zhye,a.khrq ,case when a.px=1 then a.hydh else ' ' end as hydh1 ,case when a.px=1 then a.zlbl else 0 end as zlbl1 ,case when a.px=2 then a.hydh else ' ' end as hydh2 ,case when a.px=2 then a.zlbl else 0 end as zlbl2 ,case when a.px=3 then a.hydh else ' ' end as hydh3 ,case when a.px=3 then a.zlbl else 0 end as zlbl3 ,case when a.px=4 then a.hydh else ' ' end as hydh4 ,case when a.px=4 then a.zlbl else 0 end as zlbl4 from ( select ckzh.zhdh, ckzh.zhhm, ckzh.zhye, ckzh.khrq, hy.hydh,ck.zlbl ,row_number() over(partition by ckzh.zhdh, ckzh.zhhm, ckzh.zhye, ckzh.khrq order by hy.hydh,ck.zlbl asc ) px from jxdx_ckzh ckzh inner join dxgx_hyyjgx_ck ck on ck.jxdxdh=ckzh.jxdxdh inner join khdx_hy hy on hy.khdxdh=ck.khdxdh inner join khdx_jg jg on jg.jgdh=ckzh.jgdh 
         <isNotEmpty property="zhyeqjxx">where ckzh.zhye between $zhyeqjxx$ and $zhyeqjsx$</isNotEmpty>  
@@ -90,7 +90,7 @@
         <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty> ) a )a group by a.zhdh, a.zhhm, a.zhye, a.ffrq
       </isEqual> 
     </select>  
-    <select id="dn1.cdkyjgxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.cdkyjgxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="dxlx" compareValue="1">select a.zhdh,a.zhhm,a.zhye,a.khrq ,max(hydh1) as hydh1, sum(zlbl1) as zlbl1 ,max(hydh2) as hydh2, sum(zlbl2) as zlbl2 ,max(hydh3) as hydh3, sum(zlbl3) as zlbl3 ,max(hydh4) as hydh4, sum(zlbl4) as zlbl4 from ( select a.zhdh,a.zhhm,a.zhye,a.khrq ,case when a.px=1 then a.hydh else ' ' end as hydh1 ,case when a.px=1 then a.zlbl else 0 end as zlbl1 ,case when a.px=2 then a.hydh else ' ' end as hydh2 ,case when a.px=2 then a.zlbl else 0 end as zlbl2 ,case when a.px=3 then a.hydh else ' ' end as hydh3 ,case when a.px=3 then a.zlbl else 0 end as zlbl3 ,case when a.px=4 then a.hydh else ' ' end as hydh4 ,case when a.px=4 then a.zlbl else 0 end as zlbl4 from ( select ckzh.zhdh, ckzh.zhhm, ckzh.zhye, ckzh.khrq, hy.hydh,ck.zlbl ,row_number() over(partition by ckzh.zhdh, ckzh.zhhm, ckzh.zhye, ckzh.khrq order by hy.hydh,ck.zlbl asc ) px from jxdx_ckzh ckzh inner join dxgx_hyyjgx_ck ck on ck.jxdxdh=ckzh.jxdxdh inner join khdx_hy hy on hy.khdxdh=ck.khdxdh inner join khdx_jg jg on jg.jgdh=ckzh.jgdh 
         <isNotEmpty property="zhyeqjxx">where ckzh.zhye between $zhyeqjxx$ and $zhyeqjsx$</isNotEmpty>  

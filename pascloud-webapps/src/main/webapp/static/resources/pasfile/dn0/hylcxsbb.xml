@@ -65,7 +65,7 @@
     </col> 
   </table>  
   <sqlMap namespace="studio.hylcxsbb"> 
-    <select id="dn1.hylcxsbbList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.hylcxsbbList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> SELECT $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, a.HZXSE, a.hzxsbs, BB.CPMC, BB.CPDM, BB.XSE, BB.XSBS FROM KHFX_HYLCXSBB BB INNER JOIN KHDX_JGCY JGCY ON JGCY.KHDXDH = BB.KHDXDH AND BB.TJRQ BETWEEN JGCY.QSRQ AND JGCY.JSRQ INNER JOIN KHDX_JG JG ON JG.KHDXDH = JGCY.jgkhdxdh INNER JOIN KHDX_HY HY ON HY.KHDXDH = BB.KHDXDH inner join ( SELECT B.KHDXDH, SUM(XSE) AS HZXSE,SUM(xsbs) AS hzxsbs FROM ( SELECT HZBB.XSE AS XSE, HZBB.XSBS as XSBS, HZBB.KHDXDH FROM KHFX_HYLCXSBB HZBB INNER JOIN KHDX_JGCY JGCY ON JGCY.KHDXDH = HZBB.KHDXDH AND HZBB.TJRQ BETWEEN JGCY.QSRQ AND JGCY.JSRQ where HZBB.TJRQ = (SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) ) 
       <isNotEmpty property="khdxdh">AND JGCY.KHDXDH IN ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="khlx">AND HZBB.KHLX ='$khlx$'</isNotEmpty>  <![CDATA[and F_IS_EXISTS_STR('$select_box_hdn$',HZBB.cpdm,',')>0
@@ -76,7 +76,7 @@ WHERE BB.TJRQ = (SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))|
       <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="khlx">and bb.khlx ='$khlx$'</isNotEmpty>  <![CDATA[and F_IS_EXISTS_STR('$select_box_hdn$',bb.cpdm,',')>0]]> 
     </select>  
-    <select id="dn1.hylcxsbbCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.hylcxsbbCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( SELECT $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, a.HZXSE, a.hzxsbs, BB.CPMC, BB.CPDM, BB.XSE, BB.XSBS FROM KHFX_HYLCXSBB BB INNER JOIN KHDX_JGCY JGCY ON JGCY.KHDXDH = BB.KHDXDH AND BB.TJRQ BETWEEN JGCY.QSRQ AND JGCY.JSRQ INNER JOIN KHDX_JG JG ON JG.KHDXDH = JGCY.jgkhdxdh INNER JOIN KHDX_HY HY ON HY.KHDXDH = BB.KHDXDH inner join ( SELECT B.KHDXDH, SUM(XSE) AS HZXSE,SUM(xsbs) AS hzxsbs FROM ( SELECT HZBB.XSE AS XSE, HZBB.XSBS as XSBS, HZBB.KHDXDH FROM KHFX_HYLCXSBB HZBB INNER JOIN KHDX_JGCY JGCY ON JGCY.KHDXDH = HZBB.KHDXDH AND HZBB.TJRQ BETWEEN JGCY.QSRQ AND JGCY.JSRQ where HZBB.TJRQ = (SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))||'01' AS INTEGER) ) 
       <isNotEmpty property="khdxdh">AND JGCY.KHDXDH IN ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="khlx">AND HZBB.KHLX ='$khlx$'</isNotEmpty>  <![CDATA[and F_IS_EXISTS_STR('$select_box_hdn$',HZBB.cpdm,',')>0
@@ -87,11 +87,11 @@ WHERE BB.TJRQ = (SELECT YM FROM CSB_SJW WHERE TJRQ=CAST(cast($tjrq$ as char(6))|
       <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
       <isNotEmpty property="khlx">and bb.khlx ='$khlx$'</isNotEmpty>  <![CDATA[and F_IS_EXISTS_STR('$select_box_hdn$',bb.cpdm,',')>0]]> ) t
     </select>  
-    <select id="dn1.hylcxsbb_MSQL4SELECT_khlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where DMMC= 'KHLX'</select>  
-    <select id="dn1.hylcxsbb_MSQL4SELECT_cxcpmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT cp.cpdm as key ,CP.CPMC as value FROM JXDX_LCCPXX CP INNER JOIN ( SELECT JY.cpdm FROM JXDX_LCJYLS JY WHERE JY.JYRQ BETWEEN CAST(CAST($tjrq$ AS CHAR(6))||'01' AS INTEGER) and (select ym from csb_sjw where tjrq=cast(cast($tjrq$ as char(6))||'01' as integer)) 
+    <select id="dn0.hylcxsbb_MSQL4SELECT_khlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where DMMC= 'KHLX'</select>  
+    <select id="dn0.hylcxsbb_MSQL4SELECT_cxcpmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT cp.cpdm as key ,CP.CPMC as value FROM JXDX_LCCPXX CP INNER JOIN ( SELECT JY.cpdm FROM JXDX_LCJYLS JY WHERE JY.JYRQ BETWEEN CAST(CAST($tjrq$ AS CHAR(6))||'01' AS INTEGER) and (select ym from csb_sjw where tjrq=cast(cast($tjrq$ as char(6))||'01' as integer)) 
       <isNotEmpty property="khlx">and jy.khlx = '$khlx$'</isNotEmpty> GROUP BY JY.CPDM)JY on jy.cpdm = cp.cpdm order by CP.CPMC
     </select>  
-    <select id="dn1.hylcxsbb_cpmcxx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT cp.cpdm ,CP.CPMC FROM JXDX_LCCPXX CP INNER JOIN ( SELECT JY.cpdm FROM JXDX_LCJYLS JY WHERE JY.JYRQ BETWEEN CAST(CAST($tjrq$ AS CHAR(6))||'01' AS INTEGER) and (select ym from csb_sjw where tjrq=cast(cast($tjrq$ as char(6))||'01' as integer)) and jy.khlx = '$khlx$' GROUP BY JY.CPDM)JY on jy.cpdm = cp.cpdm order by CP.CPMC</select> 
+    <select id="dn0.hylcxsbb_cpmcxx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT cp.cpdm ,CP.CPMC FROM JXDX_LCCPXX CP INNER JOIN ( SELECT JY.cpdm FROM JXDX_LCJYLS JY WHERE JY.JYRQ BETWEEN CAST(CAST($tjrq$ AS CHAR(6))||'01' AS INTEGER) and (select ym from csb_sjw where tjrq=cast(cast($tjrq$ as char(6))||'01' as integer)) and jy.khlx = '$khlx$' GROUP BY JY.CPDM)JY on jy.cpdm = cp.cpdm order by CP.CPMC</select> 
   </sqlMap>  
   <finger custPlotMth=""> 
     <plotType/>  

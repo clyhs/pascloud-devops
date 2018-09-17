@@ -50,13 +50,13 @@
     </col> 
   </table>  
   <sqlMap namespace="studio.cdkqxjgfx"> 
-    <select id="dn1.cdkqxjgfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.cdkqxjgfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select $tjrq$ as tjrq,jg.jgdh,jg.jgmc,qx.qxmc,fx.khye,qx.qxdh from KHFX_CDKQXJGTJ fx inner join csb_sjw sjw on sjw.tjrq=cast((cast($tjrq$ as char(6))||'01') as integer) and sjw.ym=fx.tjrq inner join khdx_jg jg on jg.khdxdh=fx.jgkhdxdh inner join csb_qxsdb qx on fx.qxdh=qx.qxdh and qx.jxdxlx=fx.jxdxlx inner join TABLE(FN_GETSJJG_JAVA_QX(fx.tjrq,$login_khdxdh$, 0)) a on a.khdxdh = fx.jgkhdxdh 
       <isNotEmpty property="jgkhdxdh">where jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>  
       <isNotEmpty property="khlx">and fx.khlx = '$khlx$'</isNotEmpty>  
       <isNotEmpty property="ywlx">and fx.jxdxlx=$ywlx$</isNotEmpty> 
     </select>  
-    <select id="dn1.cdkqxjgfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.cdkqxjgfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select $tjrq$ as tjrq,jg.jgdh,jg.jgmc,qx.qxmc,fx.khye,qx.qxdh from KHFX_CDKQXJGTJ fx inner join csb_sjw sjw on sjw.tjrq=cast((cast($tjrq$ as char(6))||'01') as integer) and sjw.ym=fx.tjrq inner join khdx_jg jg on jg.khdxdh=fx.jgkhdxdh inner join csb_qxsdb qx on fx.qxdh=qx.qxdh and qx.jxdxlx=fx.jxdxlx inner join TABLE(FN_GETSJJG_JAVA_QX(fx.tjrq,$login_khdxdh$, 0)) a on a.khdxdh = fx.jgkhdxdh 
       <isNotEmpty property="jgkhdxdh">where jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>  
       <isNotEmpty property="khlx">and fx.khlx = '$khlx$'</isNotEmpty>  

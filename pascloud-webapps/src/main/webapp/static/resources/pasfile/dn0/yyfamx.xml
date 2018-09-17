@@ -25,7 +25,7 @@
     <col id="KHQS" title="考核期数" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.yyfamx"> 
-    <select id="dn1.yyfamxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.yyfamxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="khdx" compareValue="1">select * from ( select fapz.khnf,fapz.famc,case when fapz.yyzlbh=1 then '产品营销计价' else '计分卡' end as fazl,'机构' khdx, case when fapz.khzq = 1 then '月' else case when fapz.khzq = 2 then '季' else '年' end end khzq, fapz.khqs from khfa_fapz fapz inner join khfa_khzbpz zbpz on fapz.fabh=zbpz.fabh where fapz.khdx='1' 
         <isNotEmpty property="khzbdh">and zbpz.khzbdh =$khzbdh$</isNotEmpty> union all select znfapz.khnf,znfapz.famc,'职能部室' as fazl,'机构' khdx, case when znfapz.khzq = 1 then '月' else case when znfapz.khzq = 2 then '季' else '年' end end khzq, znfapz.khqs from znbs_fapz znfapz inner join znbs_khxmpz xmpz on znfapz.fabh=xmpz.fabh where znfapz.khdx='1' 
@@ -36,7 +36,7 @@
         <isNotEmpty property="khzbdh">and xmpz.xmbh=$khzbdh$</isNotEmpty> ) t order by t.khnf,t.fazl,t.famc
       </isEqual> 
     </select>  
-    <select id="dn1.yyfamxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.yyfamxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="khdx" compareValue="1">select * from ( select fapz.khnf,fapz.famc,case when fapz.yyzlbh=1 then '产品营销计价' else '计分卡' end as fazl,'机构' khdx, case when fapz.khzq = 1 then '月' else case when fapz.khzq = 2 then '季' else '年' end end khzq, fapz.khqs from khfa_fapz fapz inner join khfa_khzbpz zbpz on fapz.fabh=zbpz.fabh where fapz.khdx='1' 
         <isNotEmpty property="khzbdh">and zbpz.khzbdh =$khzbdh$</isNotEmpty> union all select znfapz.khnf,znfapz.famc,'职能部室' as fazl,'机构' khdx, case when znfapz.khzq = 1 then '月' else case when znfapz.khzq = 2 then '季' else '年' end end khzq, znfapz.khqs from znbs_fapz znfapz inner join znbs_khxmpz xmpz on znfapz.fabh=xmpz.fabh where znfapz.khdx='1' 

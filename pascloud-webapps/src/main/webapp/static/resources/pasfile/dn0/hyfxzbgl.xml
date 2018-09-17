@@ -205,33 +205,33 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.hyfxzbgl"> 
-    <select id="dn1.hyfxzbglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.hyfxzbglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select fxzb.fxzbdh,fxzb.fxzbmc,fxzb.zbdh as jczbdh,zb.zbmc as jczbmc,fxzb.sdbs, dmms1.dmms as sdbsmc,fxzb.bz,bz.bzzwmc,fxzb.tjkj,fxzb.zbpx from khfa_fxzb_hy fxzb inner join khdx_zblb zblb on zblb.zbdh=fxzb.zbdh and zblb.jsrq=29991231 inner join khdx_zb zb on zb.zbdh=zblb.zbdh left join csb_dmms dmms1 on lower(dmms1.dmmc)='zbsdbs' and dmms1.dmz=fxzb.sdbs left join csb_bz bz on fxzb.bz = bz.bz where 1=1 
       <isNotEmpty property="fxzbmc">and fxzb.fxzbmc like '%$fxzbmc$%'</isNotEmpty>  
       <isNotEmpty property="ywlb">and zblb.ywlb='$ywlb$'</isNotEmpty> order by zbpx
     </select>  
-    <select id="dn1.hyfxzbglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.hyfxzbglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select fxzb.fxzbdh,fxzb.fxzbmc,fxzb.zbdh as jczbdh,zb.zbmc as jczbmc,fxzb.sdbs, dmms1.dmms as sdbsmc,fxzb.bz,bz.bzzwmc,fxzb.tjkj,fxzb.zbpx from khfa_fxzb_hy fxzb inner join khdx_zblb zblb on zblb.zbdh=fxzb.zbdh and zblb.jsrq=29991231 inner join khdx_zb zb on zb.zbdh=zblb.zbdh left join csb_dmms dmms1 on lower(dmms1.dmmc)='zbsdbs' and dmms1.dmz=fxzb.sdbs left join csb_bz bz on fxzb.bz = bz.bz where 1=1 
       <isNotEmpty property="fxzbmc">and fxzb.fxzbmc like '%$fxzbmc$%'</isNotEmpty>  
       <isNotEmpty property="ywlb">and zblb.ywlb='$ywlb$'</isNotEmpty> order by zbpx ) t
     </select>  
-    <select id="dn1.hyfxzbgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.hyfxzbgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select FXZBMC, ZBPX, ZBDH, FXZBDH, TJKJ, SDBS, BZ from KHFA_FXZB_HY where 1= 1 and FXZBDH = $fxzbdh$
     </select>  
-    <select id="dn1.hyfxzbgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.hyfxzbgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select FXZBMC, ZBPX, ZBDH, FXZBDH, TJKJ, SDBS, BZ from KHFA_FXZB_HY where 1= 1 and FXZBDH = $fxzbdh$
     </select>  
-    <insert id="dn1.hyfxzbgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn0.hyfxzbgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into KHFA_FXZB_HY( FXZBMC, BZ, FXZBDH, ZBPX, ZBDH, TJKJ, SDBS ) values ( '$fxzbmc$','$bz$',$fxzbdh$,$zbpx$,$zbdh$,'$tjkj$','$sdbs$')
     </insert>  
-    <update id="dn1.hyfxzbgl_update" parameterClass="java.util.Map"> 
+    <update id="dn0.hyfxzbgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update KHFA_FXZB_HY set FXZBMC = '$fxzbmc$',BZ = '$bz$',ZBPX = $zbpx$,ZBDH = $zbdh$,SDBS = '$sdbs$' where 1=1 and FXZBDH = $fxzbdh$
     </update>  
-    <delete id="dn1.hyfxzbgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn0.hyfxzbgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from KHFA_FXZB_HY where 1=1 and FXZBDH = $fxzbdh$
     </delete>  
-    <select id="dn1.hyfxzbgl_checkFxzbmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select fxzbdh from khfa_fxzb_hy where fxzbmc ='$fxzbmc$'</select>  
-    <select id="dn1.hyfxzbgl_getFxzbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select coalesce(max(fxzbdh),0)+1 as ID from khfa_fxzb_hy</select> 
+    <select id="dn0.hyfxzbgl_checkFxzbmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select fxzbdh from khfa_fxzb_hy where fxzbmc ='$fxzbmc$'</select>  
+    <select id="dn0.hyfxzbgl_getFxzbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select coalesce(max(fxzbdh),0)+1 as ID from khfa_fxzb_hy</select> 
   </sqlMap>  
   <javascript> 
     <query>jQuery(document).ready(function () { }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; }</query>  

@@ -82,12 +82,12 @@
     <col id="YQYH" title="YQYH" align="center" type="hidden" width="120" frozen="false" format="" mergeCells="false"/> 
   </table>  
   <sqlMap namespace="studio.zjywgrmxcx"> 
-    <select id="dn1.zjywgrmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.zjywgrmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="ywlx" compareValue="1">select '明细' mx, jxdx.hth as qyh,jxdx.hth as yqyh, jxdx.khh, jxdx.khmc, jxdx.qyrq, jg1.jgdh, jg1.jgmc, hy.hydh, hy.hymc, '百分比:' || f_numtochar (gx.zlbl) as fpgx, jg.jgmc qyjg, jxdx.jyzh, jxdx.cxrq as zxrq, $ywlx$ ywlx from jxdx_sjyhqy jxdx inner join dxgx_yjgx_dzyh gx on gx.hth=jxdx.hth 
         <isNotEmpty property="ywlx">and gx.jxdxlx=$ywlx$</isNotEmpty> inner join khdx_jg jg on jg.jgdh=jxdx.jgdh inner join khdx_hy hy on hy.khdxdh=gx.khdxdh 
         <isNotEmpty property="khdxdh">and gx.khdxdh=$khdxdh$</isNotEmpty> inner join khdx_jgcy jgcy on jgcy.khdxdh=hy.khdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty> inner join khdx_jg jg1 on jg1.khdxdh=jgcy.jgkhdxdh 
+        <isNotEmpty property="tjrq">and $tjrq$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty> inner join khdx_jg jg1 on jg1.khdxdh=jgcy.jgkhdxdh
         <isNotEmpty property="tjrq">where $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty> 
       </isEqual>  
       <isEqual property="ywlx" compareValue="3">select '明细' mx, jxdx.shdh as qyh, jxdx.shdh as yqyh, jxdx.qyrq, jg1.jgdh, jg1.jgmc, hy.hydh, hy.hymc, '百分比:' || f_numtochar (gx.zlbl) as fpgx, jg.jgmc qyjg, jxdx.jyzh, jxdx.cxrq as zxrq, $ywlx$ ywlx from jxdx_posshdjb jxdx inner join dxgx_yjgx_dzyh gx on gx.hth=jxdx.shdh 
@@ -103,7 +103,7 @@
         <isNotEmpty property="tjrq">where $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty> 
       </isEqual> 
     </select>  
-    <select id="dn1.zjywgrmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.zjywgrmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="ywlx" compareValue="1">select '明细' mx, jxdx.hth as qyh,jxdx.hth as yqyh, jxdx.khh, jxdx.khmc, jxdx.qyrq, jg1.jgdh, jg1.jgmc, hy.hydh, hy.hymc, '百分比:' || f_numtochar (gx.zlbl) as fpgx, jg.jgmc qyjg, jxdx.jyzh, jxdx.cxrq as zxrq, $ywlx$ ywlx from jxdx_sjyhqy jxdx inner join dxgx_yjgx_dzyh gx on gx.hth=jxdx.hth 
         <isNotEmpty property="ywlx">and gx.jxdxlx=$ywlx$</isNotEmpty> inner join khdx_jg jg on jg.jgdh=jxdx.jgdh inner join khdx_hy hy on hy.khdxdh=gx.khdxdh 
@@ -124,7 +124,7 @@
         <isNotEmpty property="tjrq">where $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty> 
       </isEqual> ) t
     </select>  
-    <select id="dn1.zjywgrmxcx_MSQL4SELECT_ywlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where dmmc='ZJYW'</select> 
+    <select id="dn0.zjywgrmxcx_MSQL4SELECT_ywlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where dmmc='ZJYW'</select> 
   </sqlMap>  
   <rels> 
     <items id="zjywgrmxcx_xsjy1jgj"> 

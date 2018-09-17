@@ -42,7 +42,7 @@
     <col id="JSRQ" title="结束日期" align="left" type="hidden" width="75" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.qhjxgzhzbb"> 
-    <select id="dn1.qhjxgzhzbbList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.qhjxgzhzbbList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select nf,yf,yyjg,$qsrq$ qsrq,$jsrq$ jsrq from (
 select substr(f_numtochar(yyjg.tjrq), 1, 4) nf,
     case when cast(F_NUMTOCHAR(cast(substr(f_numtochar(yyjg.tjrq), 5, 2) as integer)) as integer)  < 10 then '0'||F_NUMTOCHAR(cast(substr(f_numtochar(yyjg.tjrq), 5, 2) as integer))||'月份' else F_NUMTOCHAR(cast(substr(f_numtochar(yyjg.tjrq), 5, 2) as integer))||'月份' end yf,    
@@ -78,7 +78,7 @@ from csb_sjw
 where ym=tjrq]]>  
       <isNotEmpty property="qsrq1">and tjrq between $qsrq1$ and $jsrq1$</isNotEmpty> ) sjw on sjw.YM=yyjg.TJRQ where exists(select 1 from khfa_fapz pz where yyjg.fabh=pz.fabh and pz.yyzlbh=1) group by substr(f_numtochar(yyjg.tjrq), 1, 4),substr(f_numtochar(yyjg.tjrq), 5, 2) ) t group by nf ) a order by yf
     </select>  
-    <select id="dn1.qhjxgzhzbbCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.qhjxgzhzbbCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( <![CDATA[select nf,yf,yyjg,$qsrq$ qsrq,$jsrq$ jsrq from (
 select substr(f_numtochar(yyjg.tjrq), 1, 4) nf,
     case when cast(F_NUMTOCHAR(cast(substr(f_numtochar(yyjg.tjrq), 5, 2) as integer)) as integer)  < 10 then '0'||F_NUMTOCHAR(cast(substr(f_numtochar(yyjg.tjrq), 5, 2) as integer))||'月份' else F_NUMTOCHAR(cast(substr(f_numtochar(yyjg.tjrq), 5, 2) as integer))||'月份' end yf,    

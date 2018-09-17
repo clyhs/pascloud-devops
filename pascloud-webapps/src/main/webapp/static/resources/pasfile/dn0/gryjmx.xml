@@ -187,7 +187,7 @@
     <col id="JXDXDH" title="绩效对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.gryjmx"> 
-    <select id="dn1.gryjmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.gryjmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="sjypdzd" compareValue="01_2">select a.tjrq, a.jgdh, a.jgmc, a.hydh, a.hymc, a.khh, a.zhdh, a.zzh,a.zhhm, a.zhye, a.hyye, a.zhjs*a.zlbl*0.01 zhjs, a.gxfp, a.kmh, a.qx, a.qxmc, a.khrq, a.xhrq, a.qsrq, a.jsrq ,a.jxdxdh from ( select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh,zh.zzh, zh.zhhm, mx.zhye,mx.zhye as hyye, jszh.zhjs zhjs , '百分比:100' as gxfp, zh.kmh, zh.qx, cqx.qxmc, zh.khrq, '$zhlx$' zhlx, 100 as zlbl, zh.xhrq, zh.khrq as qsrq, zh.xhrq as jsrq,zh.jxdxdh from jxdx_ckzh zh inner join jxdx_ckzhmx_$tjrq_yyyy$ mx on mx.jxdxdh = zh.jxdxdh
         <isNotEmpty property="tjrq">and $tjrq$ between mx.qsrq and mx.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh = zh.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
@@ -306,7 +306,7 @@
         <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty> )a order by a.qsrq desc
       </isEqual> 
     </select>  
-    <select id="dn1.gryjmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.gryjmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="sjypdzd" compareValue="01_2">select a.tjrq, a.jgdh, a.jgmc, a.hydh, a.hymc, a.khh, a.zhdh, a.zzh,a.zhhm, a.zhye, a.hyye, a.zhjs*a.zlbl*0.01 zhjs, a.gxfp, a.kmh, a.qx, a.qxmc, a.khrq, a.xhrq, a.qsrq, a.jsrq ,a.jxdxdh from ( select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh,zh.zzh, zh.zhhm, mx.zhye,mx.zhye as hyye, jszh.zhjs zhjs , '百分比:100' as gxfp, zh.kmh, zh.qx, cqx.qxmc, zh.khrq, '$zhlx$' zhlx, 100 as zlbl, zh.xhrq, zh.khrq as qsrq, zh.xhrq as jsrq,zh.jxdxdh from jxdx_ckzh zh inner join jxdx_ckzhmx_$tjrq_yyyy$ mx on mx.jxdxdh = zh.jxdxdh 
         <isNotEmpty property="tjrq">and $tjrq$ between mx.qsrq and mx.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh = zh.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
@@ -425,9 +425,9 @@
         <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty> )a order by a.qsrq desc
       </isEqual> ) t
     </select>  
-    <select id="dn1.gryjmx_MSQL4SELECT_ywlb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select ywlb as key,ms as value from csb_ywlb where ywlb in ('01','02')</select>  
-    <select id="dn1.gryjmx_dkyjmxcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='DKYJGXMS'</select>  
-    <select id="dn1.gryjmx_ckyjmxcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='CKYJGXMS'</select> 
+    <select id="dn0.gryjmx_MSQL4SELECT_ywlb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select ywlb as key,ms as value from csb_ywlb where ywlb in ('01','02')</select>  
+    <select id="dn0.gryjmx_dkyjmxcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='DKYJGXMS'</select>  
+    <select id="dn0.gryjmx_ckyjmxcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='CKYJGXMS'</select> 
   </sqlMap>  
   <rels> 
     <items id="gryjmx_xsjy1jgj"> 

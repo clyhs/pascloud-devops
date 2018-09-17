@@ -213,7 +213,7 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.hysgzbgl"> 
-    <select id="dn1.hysgzbglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.hysgzbglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select * from( select $tjrq$ tjrq, jg.jgdh, jg.jgmc, qx.hydh, qx.hymc, zb.zbdh, zb.zbmc, bz.bzzwmc, dmms.dmms, sgzb.zbz , case when sgzb.zbdh is null then '0' else '1' end as drzt ,qx.khdxdh,zbsd.sdbs,zbbz.bz from khdx_zb zb inner join khdx_zbsd zbsd on zbsd.zbdh=zb.zbdh inner join khdx_zbbz zbbz on zbbz.zbdh=zb.zbdh inner join csb_bz bz on bz.bz=zbbz.bz inner join csb_dmms dmms on dmms.dmz=zbsd.sdbs and dmms.dmmc='ZBSDBS' inner join table(fn_getsjjg_java_qxhy($tjrq$, $login_khdxdh$, 0)) qx on 1=1 inner join khdx_jgcy jgcy on jgcy.khdxdh=qx.khdxdh 
       <isNotEmpty property="tjrq">and $tjrq$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh=jgcy.jgkhdxdh left join yjzb_hysgzb sgzb on sgzb.zbdh=zb.zbdh and sgzb.khdxdh=qx.khdxdh and zbbz.bz=sgzb.bz and sgzb.sdbs=zbsd.sdbs 
       <isNotEmpty property="tjrq">and sgzb.tjrq=$tjrq$</isNotEmpty> where zb.whfs='2' 
@@ -221,7 +221,7 @@
       <isNotEmpty property="zbdh">and zb.zbdh=$zbdh$</isNotEmpty> )a where 1=1 
       <isNotEmpty property="drzt">and a.drzt='$drzt$'</isNotEmpty> 
     </select>  
-    <select id="dn1.hysgzbglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.hysgzbglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select * from( select $tjrq$ tjrq, jg.jgdh, jg.jgmc, qx.hydh, qx.hymc, zb.zbdh, zb.zbmc, bz.bzzwmc, dmms.dmms, sgzb.zbz , case when sgzb.zbdh is null then '0' else '1' end as drzt ,qx.khdxdh,zbsd.sdbs,zbbz.bz from khdx_zb zb inner join khdx_zbsd zbsd on zbsd.zbdh=zb.zbdh inner join khdx_zbbz zbbz on zbbz.zbdh=zb.zbdh inner join csb_bz bz on bz.bz=zbbz.bz inner join csb_dmms dmms on dmms.dmz=zbsd.sdbs and dmms.dmmc='ZBSDBS' inner join table(fn_getsjjg_java_qxhy($tjrq$, $login_khdxdh$, 0)) qx on 1=1 inner join khdx_jgcy jgcy on jgcy.khdxdh=qx.khdxdh 
       <isNotEmpty property="tjrq">and $tjrq$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh=jgcy.jgkhdxdh left join yjzb_hysgzb sgzb on sgzb.zbdh=zb.zbdh and sgzb.khdxdh=qx.khdxdh and zbbz.bz=sgzb.bz and sgzb.sdbs=zbsd.sdbs 
       <isNotEmpty property="tjrq">and sgzb.tjrq=$tjrq$</isNotEmpty> where zb.whfs='2' 
@@ -229,26 +229,26 @@
       <isNotEmpty property="zbdh">and zb.zbdh=$zbdh$</isNotEmpty> )a where 1=1 
       <isNotEmpty property="drzt">and a.drzt='$drzt$'</isNotEmpty> ) t
     </select>  
-    <select id="dn1.hysgzbgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.hysgzbgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select ZBZ, ZBDH, KHDXDH, SDBS, TJRQ, BZ from YJZB_HYSGZB where 1= 1 and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and SDBS = '$sdbs$' and TJRQ = $tjrq$ and BZ = '$bz$'
     </select>  
-    <select id="dn1.hysgzbgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.hysgzbgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select ZBZ, ZBDH, KHDXDH, SDBS, TJRQ, BZ from YJZB_HYSGZB where 1= 1 and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and SDBS = '$sdbs$' and TJRQ = $tjrq$ and BZ = '$bz$'
     </select>  
-    <insert id="dn1.hysgzbgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn0.hysgzbgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into YJZB_HYSGZB( BZ, ZBDH, KHDXDH, ZBZ, SDBS, TJRQ ) values ( '$bz$',$zbdh$,$khdxdh$,$zbz$,'$sdbs$',$tjrq$)
     </insert>  
-    <update id="dn1.hysgzbgl_update" parameterClass="java.util.Map"> 
+    <update id="dn0.hysgzbgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update YJZB_HYSGZB set ZBZ = $zbz$ where 1=1 and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and SDBS = '$sdbs$' and TJRQ = $tjrq$ and BZ = '$bz$'
     </update>  
-    <delete id="dn1.hysgzbgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn0.hysgzbgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from YJZB_HYSGZB where 1=1 and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and SDBS = '$sdbs$' and TJRQ = $tjrq$ and BZ = '$bz$'
     </delete>  
-    <select id="dn1.hysgzbgl_MSQL4SELECT_zbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select zbdh as key, zbmc as value from khdx_zb where whfs='2' order by zbpx</select>  
-    <select id="dn1.hysgzbgl_MSQL4SELECT_bz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct dmms.dmz as key ,dmms.dmms as value from khdx_zbbz zbbz inner join csb_dmms dmms on dmms.dmmc='ZBBZ' and dmms.dmz=zbbz.bz where 1=1 
+    <select id="dn0.hysgzbgl_MSQL4SELECT_zbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select zbdh as key, zbmc as value from khdx_zb where whfs='2' order by zbpx</select>  
+    <select id="dn0.hysgzbgl_MSQL4SELECT_bz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct dmms.dmz as key ,dmms.dmms as value from khdx_zbbz zbbz inner join csb_dmms dmms on dmms.dmmc='ZBBZ' and dmms.dmz=zbbz.bz where 1=1 
       <isNotEmpty property="zbdh">and zbbz.zbdh=$zbdh$</isNotEmpty> 
     </select>  
-    <select id="dn1.hysgzbgl_MSQL4SELECT_sdbs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ <![CDATA[select dmms.dmz as key, dmms.dmms as value from khdx_zbsd zbsd inner join csb_dmms dmms on dmms.dmmc='ZBSDBS' and dmms.dmz=zbsd.sdbs where 1=1 and 'test'<>'test$zbdh$']]>  
+    <select id="dn0.hysgzbgl_MSQL4SELECT_sdbs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ <![CDATA[select dmms.dmz as key, dmms.dmms as value from khdx_zbsd zbsd inner join csb_dmms dmms on dmms.dmmc='ZBSDBS' and dmms.dmz=zbsd.sdbs where 1=1 and 'test'<>'test$zbdh$']]>  
       <isNotEmpty property="zbdh">and zbsd.zbdh=$zbdh$</isNotEmpty> 
     </select> 
   </sqlMap>  

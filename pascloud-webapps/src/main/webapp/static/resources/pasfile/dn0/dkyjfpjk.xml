@@ -49,14 +49,14 @@
     <col id="YFP" title="已分配账户数" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" xsType="href" onclick="openYFPMx"/> 
   </table>  
   <sqlMap namespace="studio.dkyjfpjk"> 
-    <select id="dn1.dkyjfpjkList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.dkyjfpjkList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select /*+ append parallel(zh,8) */ zh.jgdh,max(jg.jgmc) as jgmc,$qsrq$ as qsrq,$jsrq$ as jsrq,$zhye$ as zhye, sum(case when zh.gxhslx='0' and hy.hydh like 'XN%' then 1 else 0 end) as mfp, sum(case when zh.gxhslx='0' and hy.hydh like 'XN%' then 0 else 1 end) as yfp from jxdx_dkzh zh left join khdx_hy hy on zh.khdxdh=hy.khdxdh inner join khdx_jg jg on jg.jgdh=zh.jgdh inner join xtb_jggxst st on st.jgkhdxdh=jg.khdxdh 
       <isNotEmpty property="jgkhdxdh">and st.sjjgkhdxdh=$jgkhdxdh$</isNotEmpty>  
       <isNotEmpty property="jsrq">and $jsrq$ between st.qsrq and st.jsrq</isNotEmpty>  
       <isNotEmpty property="qsrq">where zh.ffrq between $qsrq$ and $jsrq$</isNotEmpty>  
       <isNotEmpty property="zhye"><![CDATA[and zh.zhye>$zhye$]]></isNotEmpty> group by zh.jgdh
     </select>  
-    <select id="dn1.dkyjfpjkCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.dkyjfpjkCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select /*+ append parallel(zh,8) */ zh.jgdh,max(jg.jgmc) as jgmc,$qsrq$ as qsrq,$jsrq$ as jsrq,$zhye$ as zhye, sum(case when zh.gxhslx='0' and hy.hydh like 'XN%' then 1 else 0 end) as mfp, sum(case when zh.gxhslx='0' and hy.hydh like 'XN%' then 0 else 1 end) as yfp from jxdx_dkzh zh left join khdx_hy hy on zh.khdxdh=hy.khdxdh inner join khdx_jg jg on jg.jgdh=zh.jgdh inner join xtb_jggxst st on st.jgkhdxdh=jg.khdxdh 
       <isNotEmpty property="jgkhdxdh">and st.sjjgkhdxdh=$jgkhdxdh$</isNotEmpty>  
       <isNotEmpty property="jsrq">and $jsrq$ between st.qsrq and st.jsrq</isNotEmpty>  

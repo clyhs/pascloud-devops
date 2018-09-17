@@ -78,7 +78,7 @@
     <col id="QYRQ" title="签约日期" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.dsfcgyjfprz"> 
-    <select id="dn1.dsfcgyjfprzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.dsfcgyjfprzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="cxfs" compareValue="1">SELECT F_TIMETOCHAR(GXRZ.JLSJ,'yyyy/mm/dd hh24:mi:ss') JLSJ, czy.hymc as xgry, case when gxjl.ggbz='0' then '旧数据' else '修改后' end as jlbz , case when gxrz.czlx='01' then '新增'when gxrz.czlx='02' then '修改' else '删除' end as czlx, jxdx.khh, jxdx.khmc, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, gxjl.QSRQ, gxjl.jsrq, '分配比例:' || F_NumToChar(gxjl.zlbl) as fpgx, jg1.jgmc as qyjg, jxdx.qyrq from xtb_hygxrz_dsfcg gxrz inner join xtb_hygxjl_dsfcg gxjl on gxrz.jldh=gxjl.jldh inner join khdx_hy hy on hy.khdxdh=gxjl.KHDXDH inner join khdx_jgcy cy on cy.khdxdh=hy.khdxdh
         <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh=cy.jgkhdxdh INNER JOIN JXDX_DSFCGQY JXDX ON JXDX.QYKEY=GXRZ.QYKEY inner join pas.khdx_hy czy on czy.khdxdh = gxrz.xgrdh inner join khdx_jg jg1 on jg1.JGDH=jxdx.JGDH where 1=1 
@@ -91,7 +91,7 @@
         <isNotEmpty property="khh">and jxdx.KHH like '%$khh$%'</isNotEmpty> order by gxrz.jlsj desc,jxdx.KHH, gxjl.jldh, gxjl.ggbz asc
       </isEqual> 
     </select>  
-    <select id="dn1.dsfcgyjfprzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.dsfcgyjfprzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="cxfs" compareValue="1">SELECT F_TIMETOCHAR(GXRZ.JLSJ,'yyyy/mm/dd hh24:mi:ss') JLSJ, czy.hymc as xgry, case when gxjl.ggbz='0' then '旧数据' else '修改后' end as jlbz , case when gxrz.czlx='01' then '新增'when gxrz.czlx='02' then '修改' else '删除' end as czlx, jxdx.khh, jxdx.khmc, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, gxjl.QSRQ, gxjl.jsrq, '分配比例:' || F_NumToChar(gxjl.zlbl) as fpgx, jg1.jgmc as qyjg, jxdx.qyrq from xtb_hygxrz_dsfcg gxrz inner join xtb_hygxjl_dsfcg gxjl on gxrz.jldh=gxjl.jldh inner join khdx_hy hy on hy.khdxdh=gxjl.KHDXDH inner join khdx_jgcy cy on cy.khdxdh=hy.khdxdh 
         <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh=cy.jgkhdxdh INNER JOIN JXDX_DSFCGQY JXDX ON JXDX.QYKEY=GXRZ.QYKEY inner join pas.khdx_hy czy on czy.khdxdh = gxrz.xgrdh inner join khdx_jg jg1 on jg1.JGDH=jxdx.JGDH where 1=1 

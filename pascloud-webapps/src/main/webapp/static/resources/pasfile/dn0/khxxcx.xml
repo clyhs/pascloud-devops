@@ -83,7 +83,7 @@
     <col id="ZCZB" title="注册资本" align="right" type="float" width="120" frozen="false" format="" showDymCol="" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.khxxcx"> 
-    <select id="dn1.khxxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.khxxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
       <isEqual property="khlx" compareValue="2">SELECT KH.KHH AS KHH, KH.KHMC AS KHMC, DMMS.DMMS AS KHLX, DMMS1.DMMS AS SSHY, CASE when KH.ZJLB='00' THEN '其他' when KH.ZJLB='01' THEN '身份证' when KH.ZJLB='02' THEN '护照' WHEN KH.ZJLB='03' THEN '军官证' else '' end as zjlb, KH.ZJHM AS ZJHM, jg.jgmc as khjg, KH.KHRQ AS KHRQ, KH.CSRQ AS CSRQ, kh.txdz as lxdz FROM KHDX_KH KH left JOIN CSB_DMMS DMMS ON DMMS.DMMC='KHLX' AND DMMS.DMZ = KH.KHLX left JOIN CSB_DMMS DMMS1 ON DMMS1.DMMC='KHHYLB' AND DMMS1.DMZ = KH.KHHYLB INNER JOIN KHDX_JG JG ON JG.JGDH = KH.JGDH inner join (select khh,khdxdh from lsb_hykhgx group by khh,khdxdh)b on b.khh = kh.khh 
         <isNotEmpty property="jgkhdxdh">WHERE JG.KHDXDH IN ($jgkhdxdh$)</isNotEmpty>  
@@ -102,7 +102,7 @@
         <isNotEmpty property="khlx">and kh.khlx = '$khlx$'</isNotEmpty> 
       </isEqual> 
     </select>  
-    <select id="dn1.khxxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.khxxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
       <isEqual property="khlx" compareValue="2">SELECT KH.KHH AS KHH, KH.KHMC AS KHMC, DMMS.DMMS AS KHLX, DMMS1.DMMS AS SSHY, CASE when KH.ZJLB='00' THEN '其他' when KH.ZJLB='01' THEN '身份证' when KH.ZJLB='02' THEN '护照' WHEN KH.ZJLB='03' THEN '军官证' else '' end as zjlb, KH.ZJHM AS ZJHM, jg.jgmc as khjg, KH.KHRQ AS KHRQ, KH.CSRQ AS CSRQ, kh.txdz as lxdz FROM KHDX_KH KH left JOIN CSB_DMMS DMMS ON DMMS.DMMC='KHLX' AND DMMS.DMZ = KH.KHLX left JOIN CSB_DMMS DMMS1 ON DMMS1.DMMC='KHHYLB' AND DMMS1.DMZ = KH.KHHYLB INNER JOIN KHDX_JG JG ON JG.JGDH = KH.JGDH inner join (select khh,khdxdh from lsb_hykhgx group by khh,khdxdh)b on b.khh = kh.khh 
         <isNotEmpty property="jgkhdxdh">WHERE JG.KHDXDH IN ($jgkhdxdh$)</isNotEmpty>  
@@ -121,7 +121,7 @@
         <isNotEmpty property="khlx">and kh.khlx = '$khlx$'</isNotEmpty> 
       </isEqual> ) t
     </select>  
-    <select id="dn1.khxxcx_MSQL4SELECT_khlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where DMMC= 'KHLX'</select> 
+    <select id="dn0.khxxcx_MSQL4SELECT_khlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where DMMC= 'KHLX'</select> 
   </sqlMap>  
   <rels> 
     <items id="khxxcx_xsjy1jgj"> 

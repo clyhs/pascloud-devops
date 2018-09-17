@@ -3,77 +3,85 @@
 <pageSetting id="hydkjxgzhzcx" title="行员贷款绩效工资查询" type="query" version="1.0.0.0" pid="" desc="标准版"> 
   <conPart> 
     <tags> 
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="起始年月"> 
-        <attribute key="dateFmt" value="yyyyMM"/>  
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期"> 
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
         <attribute key="defValType" value="sysDate"/>  
         <attribute key="editable" value="true"/>  
         <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="qsny"/>  
+        <attribute key="name" value="tjrq"/>  
         <attribute key="minDate" value="no"/> 
       </tag>  
-      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="结束年月"> 
-        <attribute key="dateFmt" value="yyyyMM"/>  
-        <attribute key="defValType" value="sysDate"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="jsny"/>  
-        <attribute key="minDate" value="no"/> 
-      </tag>  
-      <tag row="0" col="2" colspan="1" rowspan="1" name="NewMultipleHy" label="行员"> 
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员"> 
         <attribute key="isDisplayXN" value="true"/>  
         <attribute key="editable" value="true"/>  
-        <attribute key="style" value="width:100px;"/>  
         <attribute key="isRequired" value="false"/>  
         <attribute key="jgckbz" value="jg_ckhy"/>  
         <attribute key="name" value="khdxdh"/>  
         <attribute key="multiple" value="true"/> 
       </tag>  
-      <tag row="0" col="3" colspan="1" rowspan="1" name="Hidden" label=""> 
-        <attribute key="name" value="qsny_yc"/> 
-      </tag>  
-      <tag row="0" col="4" colspan="1" rowspan="1" name="Hidden" label=""> 
-        <attribute key="name" value="jsny_ym"/> 
+      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="行员类别"> 
+        <attribute key="selectedList" value="1"/>  
+        <attribute key="isMultiple" value="false"/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="mulShowType" value="null"/>  
+        <attribute key="key_SELECTTYPE" value="Integer"/>  
+        <attribute key="isSearch" value="false"/>  
+        <attribute key="sql" value="select lbdh as key, lbmc as value from csb_hylb "/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="name" value="hylb"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="isEditable" value="true"/> 
       </tag> 
     </tags> 
   </conPart>  
   <table id="hydkjxgzhzcx_xsjy1jgj" title="新数据源1结果集" page="true"> 
-    <col id="TJRQ" title="统计年月" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
-    <col id="JGDH" title="机构代号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGMC" title="机构名称" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYDH" title="行员代号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYMC" title="行员名称" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DKYJJL" title="贷款业绩奖励" align="right" type="float" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DKZLKF" title="贷款质量绩效" align="right" type="float" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="BLDKQSJL" title="不良贷款清收奖励" align="right" type="float" width="115" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="YFJXGZ" title="应发贷款绩效工资" align="right" type="float" width="115" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="LXSRJX" title="利息收入绩效" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHGLJX" title="客户管理绩效" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DKFFJX" title="贷款发放绩效" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="FYJDKKF" title="新增不良贷款扣罚" align="left" type="string" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="xzbldkkfmxcx"/>  
-    <col id="FYJDKKFFH" title="新增不良贷款扣罚返还" align="left" type="string" width="140" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DKYJKZXM1" title="贷款客户数绩效工资" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DKYJKZXM2" title="贷款新增客户绩效" align="left" type="string" width="115" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DKYJKZXM3" title="贷款议价奖励工资" align="left" type="string" width="115" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DKKFKZXM1" title="应收未收利息扣罚或返还" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DKKFKZXM2" title="非应计贷款压降奖惩" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="true" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYDH" title="行员代号" align="left" type="string" width="110" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="HYMC" title="行员名称" align="left" type="string" width="120" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="LBMC" title="类别名称" align="left" type="string" width="120" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="GWMC" title="岗位名称" align="left" type="string" width="120" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="DKYJ" title="贷款业绩" align="center" type="string" width="480" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
+      <col id="LXSRJL" title="实发贷款利息收入绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openLXSR"/>  
+      <col id="KHGLJL" title="实发贷款管户管理绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openGLKH"/>  
+      <col id="DKTFJL" title="实发贷款投放绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openDKTF"/>  
+      <col id="DKMNLRJL" title="实发贷款模拟利润绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openMNLR"/> 
+    </col>  
+    <col id="DKZL" title="贷款质量" align="center" type="string" width="720" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
+      <col id="DQSHLWDBKF" title="到期收回未达标扣罚" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openDQSH"/>  
+      <col id="QXKF" title="利息未收回扣罚" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openQXKF"/>  
+      <col id="BLDKKF" title="不良贷款余额扣罚" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openBLDK"/>  
+      <col id="WNBLYJKF" title="往年不良贷款压降" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openWNBL"/>  
+      <col id="DKCSSSXKF" title="贷款超诉讼时效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openCSSSX"/>  
+      <col id="DNXZBLDKKF" title="当年新增不良贷款扣罚与返还" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openDNXZBL"/> 
+    </col>  
+    <col id="DKFXJJT" title="实计风险金" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openFXJJT"/>  
+    <col id="DKFXJFH" title="实返风险金" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openFXJFH"/>  
+    <col id="YFGZ" title="应发贷款绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="SFGZ" title="实发贷款绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="false" zsy="false" showDymCol="" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.hydkjxgzhzcx"> 
-    <select id="dn1.hydkjxgzhzcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select substr(cast(gzhz.tjrq as char(8)),1,6) as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, gzhz.dkyjjl, gzhz.dkzlkf, gzhz.bldkqsjl, gzhz.yfjxgz,jxgz.LXSRJX,jxgz.KHGLJX,jxgz.DKFFJX,jxgz.FYJDKKF,jxgz.FYJDKKFFH,jxgz.DKYJKZXM1, jxgz.DKYJKZXM2,jxgz.DKYJKZXM3,jxgz.DKKFKZXM1,jxgz.DKKFKZXM2 from dkjx_dkjxgzhz gzhz inner join khdx_hy hy on hy.khdxdh = gzhz.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh = gzhz.khdxdh and gzhz.tjrq between jgcy.qsrq and jgcy.jsrq inner join khdx_jg jg on jg.khdxdh = jgcy.jgkhdxdh INNER JOIN JXGZ_DKJXGZ jxgz ON hy.KHDXDH = jxgz.KHDXDH inner join table(FN_GETSJJG_JAVA_QXHY($jsny_ym$,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh 
-      <isNotEmpty property="khdxdh">where hy.khdxdh in ($khdxdh$)</isNotEmpty>  
-      <isNotEmpty property="qsny">and gzhz.tjrq between $qsny$01 and $jsny_ym$</isNotEmpty> 
+    <select id="dn0.hydkjxgzhzcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select gzhz.tjrq as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc,hl.lbmc,gw.gwmc,gzhz.lxsrjl,gzhz.khgljl,gzhz.dktfjl,gzhz.dkmnlrjl, gzhz.dqshlwdbkf,gzhz.qxkf,gzhz.bldkkf,gzhz.dnxzbldkkf,gzhz.wnblyjkf,gzhz.dkcsssxkf,gzhz.dkfxjjt,gzhz.dkfxjfh,gzhz.yfgz,gzhz.sfgz, 1 as dkyj,2 as dkzl,gzhz.khdxdh from dkjx_dkjxgzhz gzhz inner join khdx_hy hy on hy.khdxdh = gzhz.khdxdh inner join csb_hylb hl on gzhz.hylb=hl.lbdh inner join csb_hygw gw on gzhz.hygw=gw.gwbh inner join khdx_jg jg on jg.jgdh = gzhz.jgdh inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh where 1=1 
+      <isNotEmpty property="tjrq">and gzhz.tjrq =$tjrq$</isNotEmpty>  
+      <isNotEmpty property="hylb">and gzhz.hylb='$hylb$'</isNotEmpty>  
+      <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty> 
     </select>  
-    <select id="dn1.hydkjxgzhzcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select substr(cast(gzhz.tjrq as char(8)),1,6) as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, gzhz.dkyjjl, gzhz.dkzlkf, gzhz.bldkqsjl, gzhz.yfjxgz,jxgz.LXSRJX,jxgz.KHGLJX,jxgz.DKFFJX,jxgz.FYJDKKF,jxgz.FYJDKKFFH,jxgz.DKYJKZXM1, jxgz.DKYJKZXM2,jxgz.DKYJKZXM3,jxgz.DKKFKZXM1,jxgz.DKKFKZXM2 from dkjx_dkjxgzhz gzhz inner join khdx_hy hy on hy.khdxdh = gzhz.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh = gzhz.khdxdh and gzhz.tjrq between jgcy.qsrq and jgcy.jsrq inner join khdx_jg jg on jg.khdxdh = jgcy.jgkhdxdh INNER JOIN JXGZ_DKJXGZ jxgz ON hy.KHDXDH = jxgz.KHDXDH inner join table(FN_GETSJJG_JAVA_QXHY($jsny_ym$,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh 
-      <isNotEmpty property="khdxdh">where hy.khdxdh in ($khdxdh$)</isNotEmpty>  
-      <isNotEmpty property="qsny">and gzhz.tjrq between $qsny$01 and $jsny_ym$</isNotEmpty> ) t
-    </select> 
+    <select id="dn0.hydkjxgzhzcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select gzhz.tjrq as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc,hl.lbmc,gw.gwmc,gzhz.lxsrjl,gzhz.khgljl,gzhz.dktfjl,gzhz.dkmnlrjl, gzhz.dqshlwdbkf,gzhz.qxkf,gzhz.bldkkf,gzhz.dnxzbldkkf,gzhz.wnblyjkf,gzhz.dkcsssxkf,gzhz.dkfxjjt,gzhz.dkfxjfh,gzhz.yfgz,gzhz.sfgz, 1 as dkyj,2 as dkzl,gzhz.khdxdh from dkjx_dkjxgzhz gzhz inner join khdx_hy hy on hy.khdxdh = gzhz.khdxdh inner join csb_hylb hl on gzhz.hylb=hl.lbdh inner join csb_hygw gw on gzhz.hygw=gw.gwbh inner join khdx_jg jg on jg.jgdh = gzhz.jgdh inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh where 1=1 
+      <isNotEmpty property="tjrq">and gzhz.tjrq =$tjrq$</isNotEmpty>  
+      <isNotEmpty property="hylb">and gzhz.hylb='$hylb$'</isNotEmpty>  
+      <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty> ) t
+    </select>  
+    <select id="dn0.hydkjxgzhzcx_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_hylb</select> 
   </sqlMap>  
   <rels> 
     <items id="hydkjxgzhzcx_xsjy1jgj"/> 
   </rels>  
   <javascript><![CDATA[jQuery(document).ready(function () { 
-  var date = new Date();
+  /*var date = new Date();
   var qsny_num = $("#qsny").val();
   date.setYear(qsny_num.substring(0,4));
   var month_num = qsny_num.substring(4,5)=='0'?qsny_num.substring(5,6):qsny_num.substring(4,6);
@@ -81,74 +89,106 @@
   date.setMonth(date.getMonth()-1);
   tempMonth = date.getMonth() < 9 ? '0'+(date.getMonth()+1):(date.getMonth()+1);
   $("#qsny").val(date.getFullYear()+""+tempMonth);
+  */
 
 });
 
 //自定义验证，在提交时执行。通过返回true，否则返回false
 function customValidate(){
- var qsny_num = parseInt($("#qsny").val());
- var jsny_num = parseInt($("#jsny").val());
- if(jsny_num < qsny_num){
-   parent.custom_alert("结束年月必须大于起始年月");
-   return false;
- }
- 
- var qsny_temp = createTimeObj($("#qsny").val());
+  /*var qsrq = jQuery('#qsrq').val();
+  var jsrq = jQuery('#jsrq').val();
+  if (qsrq>jsrq) {
+  $('#qsrq').val(jsrq);
+  $('#jsrq').val(qsrq);
+  }*/
+/* var qsny_temp = createTimeObj($("#qsny").val());
  $("#qsny_yc").val(qsny_temp.yc);
  var jsny_temp = createTimeObj($("#jsny").val());
  $("#jsny_ym").val(jsny_temp.ym);
  //console.log($("#qsny_yc").val() + " " + $("#jsny_ym").val());
+ */
  return true;
 }
 
-function getDateStr(date){
+/*function getDateStr(date){
   var year  = date.getFullYear();
   var month = date.getMonth()+1;
   var day   = date.getDate();
   if(month<10){month=0+""+month;}
   if(day<10){day=0+""+day;}
   return year+""+month+""+day;
-}
+}*/
 
-
-function xzbldkkfmxcx(obj){
-var params="{tjrq:'"+obj['TJRQ']+"',khdxdh:'"+obj['KHDXDH']+"'}";
-          
-  querySubQuery(params,'xzbldkkfmxcx','45','30','tag');
-
-}
-
-function xzbldkkffhcx(obj){
-var params="{tjrq:'"+obj['TJRQ']+"',khdxdh:'"+obj['KHDXDH']+"'}";
-          
-  querySubQuery(params,'xzbldkkffhcx','45','30','tag');
+function openLXSR(obj){  
+    var pars = "{khdxdh:'"+obj['KHDXDH']+"',tjrq:'"+obj['TJRQ']+"'}";
+    //alert(pars);
+    querySubQuery(pars,'dklxsrmxcx','45','30','tag');
 
 }
-function dkffjxmxcx(obj){
-var params="{tjrq:'"+obj['TJRQ']+"',khdxdh:'"+obj['KHDXDH']+"'}";
-          
-  querySubQuery(params,'dkffjxmxcx','45','30','tag');
+function openGLKH(obj){  
+    var pars = "{khdxdh:'"+obj['KHDXDH']+"',tjrq:'"+obj['TJRQ']+"'}";
+    //alert(pars);
+    querySubQuery(pars,'dkkhglmxcx','45','30','tag');
 
 }
-
-function yswslxkfjfhcx(obj){
-var params="{tjrq:'"+obj['TJRQ']+"',khdxdh:'"+obj['KHDXDH']+"'}";
-          
-  querySubQuery(params,'yswslxkfjfhcx','45','30','tag');
-
-}
-
-function dklxsrmxcx(obj){
-var params="{tjrq:'"+obj['TJRQ']+"',khdxdh:'"+obj['KHDXDH']+"'}";
-          
-  querySubQuery(params,'dklxsrmxcx','45','30','tag');
+function openDKTF(obj){  
+    var pars = "{khdxdh:'"+obj['KHDXDH']+"',tjrq:'"+obj['TJRQ']+"'}";
+    //alert(pars);
+    querySubQuery(pars,'dktfmxcx','45','30','tag');
 
 }
+function openMNLR(obj){  
+    var pars = "{khdxdh:'"+obj['KHDXDH']+"',tjrq:'"+obj['TJRQ']+"'}";
+    //alert(pars);
+    querySubQuery(pars,'dkmnlrjxmxcx','45','30','tag');
 
-function dkkhglmxcx(obj){
-var params="{tjrq:'"+obj['TJRQ']+"',khdxdh:'"+obj['KHDXDH']+"'}";
-          
-  querySubQuery(params,'dkkhglmxcx','45','30','tag');
+}
+function openDQSH(obj){  
+    var pars = "{khdxdh:'"+obj['KHDXDH']+"',tjrq:'"+obj['TJRQ']+"'}";
+    //alert(pars);
+    querySubQuery(pars,'dqshwdbkf','45','30','tag');
+
+}
+function openQXKF(obj){  
+    var pars = "{khdxdh:'"+obj['KHDXDH']+"',tjrq:'"+obj['TJRQ']+"'}";
+    //alert(pars);
+    querySubQuery(pars,'dkqxkfmxcx','45','30','tag');
+
+}
+function openBLDK(obj){  
+    var pars = "{khdxdh:'"+obj['KHDXDH']+"',tjrq:'"+obj['TJRQ']+"'}";
+    //alert(pars);
+    querySubQuery(pars,'bldkkfmxcx','45','30','tag');
+
+}
+function openWNBL(obj){  
+    var pars = "{khdxdh:'"+obj['KHDXDH']+"',tjrq:'"+obj['TJRQ']+"'}";
+    //alert(pars);
+    querySubQuery(pars,'wnbldkyj','45','30','tag');
+
+}
+function openCSSSX(obj){  
+    var pars = "{khdxdh:'"+obj['KHDXDH']+"',tjrq:'"+obj['TJRQ']+"'}";
+    //alert(pars);
+    querySubQuery(pars,'dkcsssx','45','30','tag');
+
+}
+function openDNXZBL(obj){  
+    var pars = "{khdxdh:'"+obj['KHDXDH']+"',tjrq:'"+obj['TJRQ']+"'}";
+    //alert(pars);
+    querySubQuery(pars,'dnxzbldkkfyfh','45','30','tag');
+
+}
+function openFXJJT(obj){  
+    var pars = "{khdxdh:'"+obj['KHDXDH']+"',tjrq:'"+obj['TJRQ']+"'}";
+    //alert(pars);
+    querySubQuery(pars,'hyfxjjtmxcx','45','30','tag');
+
+}
+function openFXJFH(obj){  
+    var pars = "{khdxdh:'"+obj['KHDXDH']+"',tjrq:'"+obj['TJRQ']+"'}";
+    //alert(pars);
+    querySubQuery(pars,'hyfxjfhmxcx','45','30','tag');
 
 }]]></javascript> 
 </pageSetting>

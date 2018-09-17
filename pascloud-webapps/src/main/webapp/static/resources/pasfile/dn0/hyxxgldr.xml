@@ -90,59 +90,59 @@
     <after/> 
   </flow>  
   <sqlMap namespace="studio.hyxxgldr"> 
-    <update parameterClass="java.util.Map" id="dn1.hyxxgldr_check_hydh_0"> 
+    <update parameterClass="java.util.Map" id="dn0.hyxxgldr_check_hydh_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyxxgldr_temp t set t.error=t.error||'行员代号不存在!' where not exists(select 1 from khdx_hy h where rtrim(t.hydh)=rtrim(h.hydh)) and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.hyxxgldr_check_hydh_1"> 
+    <update parameterClass="java.util.Map" id="dn0.hyxxgldr_check_hydh_1"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyxxgldr_temp t set t.error=t.error||'行员代号输入错误，不能为空!' where f_java_rule_length(t.hydh)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.hyxxgldr_check_hymc_2"> 
+    <update parameterClass="java.util.Map" id="dn0.hyxxgldr_check_hymc_2"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyxxgldr_temp t set t.error=t.error||'行员名称输入错误，不能为空!' where f_java_rule_length(t.hymc)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.hyxxgldr_check_sjhm_3"> 
+    <update parameterClass="java.util.Map" id="dn0.hyxxgldr_check_sjhm_3"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyxxgldr_temp t set t.error=t.error||'手机号码输入错误，只能输入:11位整数,0位小数!' where f_java_rule_length(t.sjhm)&gt;0 and f_java_rule_number(t.sjhm,11,0)=1 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.hyxxgldr_check_yjdz_4"> 
+    <update parameterClass="java.util.Map" id="dn0.hyxxgldr_check_yjdz_4"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyxxgldr_temp t set t.error=t.error||'行员代号输入错误，不能为空!' where f_java_rule_length(t.yjdz)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.hyxxgldr_check_wxh_5"> 
+    <update parameterClass="java.util.Map" id="dn0.hyxxgldr_check_wxh_5"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyxxgldr_temp t set t.error=t.error||'行员代号输入错误，不能为空!' where f_java_rule_length(t.wxh)=0 and t.khdxdh=$login_khdxdh$
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.hyxxgldr_checkupdate_hymc_0"> 
+    <update parameterClass="java.util.Map" id="dn0.hyxxgldr_checkupdate_hymc_0"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyxxgldr_temp t set error=error||'行员代号和名称必须一致' where not exists ( select 1 from khdx_hy hy where t.hydh=hy.hydh and hy.hymc=t.hymc)
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.hyxxgldr_exists_target"> 
+    <update parameterClass="java.util.Map" id="dn0.hyxxgldr_exists_target"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyxxgldr_temp t set t.error=t.error||'数据已存在!' where exists( select 1 from MPAS_HYXX tar where 1=1 and t.hydh =tar.hydh )
     </update>  
-    <update parameterClass="java.util.Map" id="dn1.hyxxgldr_exists_same_temp"> 
+    <update parameterClass="java.util.Map" id="dn0.hyxxgldr_exists_same_temp"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hyxxgldr_temp t set t.error=error||'存在重复数据!' where exists( select 1 from (select hydh,yjdz from hyxxgldr_temp dr where khdxdh=$login_khdxdh$ group by hydh,yjdz having count(1)<![CDATA[>]]>1 ) dr where 1=1 and t.hydh=dr.hydh and t.yjdz=dr.yjdz) and khdxdh=$login_khdxdh$
     </update>  
-    <insert parameterClass="java.util.Map" id="dn1.hyxxgldr_create_lsb"> 
+    <insert parameterClass="java.util.Map" id="dn0.hyxxgldr_create_lsb"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> CREATE TABLE hyxxgldr_temp ( hydh varchar(100) , hymc varchar(100) , sjhm varchar(100) , yjdz varchar(100) , wxh varchar(100) , khdxdh integer,error varchar(1000) )
     </insert>  
-    <delete parameterClass="java.util.Map" id="dn1.hyxxgldr_delete_lsb"> 
+    <delete parameterClass="java.util.Map" id="dn0.hyxxgldr_delete_lsb"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from hyxxgldr_temp where khdxdh=$login_khdxdh$
     </delete>  
-    <insert parameterClass="java.util.Map" id="dn1.hyxxgldr_insert_into_lsb">insert into HYXXGLDR_TEMP (hydh,hymc,sjhm,yjdz,wxh,khdxdh,error) values(?,?,?,?,?,?,?)</insert>  
-    <select parameterClass="java.util.Map" id="dn1.hyxxgldr_exists_error_msg" resultClass="java.lang.Integer"> 
+    <insert parameterClass="java.util.Map" id="dn0.hyxxgldr_insert_into_lsb">insert into HYXXGLDR_TEMP (hydh,hymc,sjhm,yjdz,wxh,khdxdh,error) values(?,?,?,?,?,?,?)</insert>  
+    <select parameterClass="java.util.Map" id="dn0.hyxxgldr_exists_error_msg" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from hyxxgldr_temp where length(error) <![CDATA[>]]> 0 and khdxdh = $login_khdxdh$
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn1.hyxxgldr_exists_same_data"> 
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn0.hyxxgldr_exists_same_data"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from hyxxgldr_temp where length(error) <![CDATA[>]]> 0 and error != '数据已存在!' and khdxdh = $login_khdxdh$
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn1.hyxxgldr_select_error_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn0.hyxxgldr_select_error_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/cancel.jpg" border="0"/<![CDATA[>]]>' as zt, hydh,hymc,sjhm,yjdz,wxh,khdxdh,error from hyxxgldr_temp where khdxdh=$login_khdxdh$ and length(error)<![CDATA[>]]>0
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn1.hyxxgldr_count_all_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn0.hyxxgldr_count_all_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, hydh,hymc,sjhm,yjdz,wxh,khdxdh,error from hyxxgldr_temp where khdxdh=$login_khdxdh$ )a
     </select>  
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn1.hyxxgldr_select_all_msg"> 
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn0.hyxxgldr_select_all_msg"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, hydh,hymc,sjhm,yjdz,wxh,khdxdh,error from hyxxgldr_temp where khdxdh=$login_khdxdh$
     </select>  
-    <insert parameterClass="java.util.Map" id="dn1.hyxxgldr_insert_into_target"> 
+    <insert parameterClass="java.util.Map" id="dn0.hyxxgldr_insert_into_target"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into MPAS_HYXX(HYDH,SJHM,YJDZ,WXH) select t.hydh ,cast (t.sjhm as CHAR(11)), t.yjdz , t.wxh from hyxxgldr_temp t where t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null)
     </insert>  
-    <delete parameterClass="java.util.Map" id="dn1.hyxxgldr_delete_before_override"> 
+    <delete parameterClass="java.util.Map" id="dn0.hyxxgldr_delete_before_override"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from MPAS_HYXX tar where exists(select 1 from hyxxgldr_temp t where 1=1 and t.hydh=tar.HYDH and t.yjdz=tar.YJDZ and t.khdxdh=$login_khdxdh$ )
     </delete> 
   </sqlMap> 

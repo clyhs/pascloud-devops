@@ -165,47 +165,47 @@
     <updateafter/> 
   </flow>  
   <sqlMap namespace="studio.yxbldkzhgl"> 
-    <select id="dn1.yxbldkzhglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.yxbldkzhglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select a.zhdh,zh.zhhm,a.zhkzsx, case a.sxz when '0' then '否' when '1' then '是' else '' end as sfyxbl, a.qsrq,a.jsrq,a.bzsm,a.sxz from sglr_dkzhkzsx a inner join jxdx_dkzh zh on zh.zhdh=a.zhdh where a.zhkzsx='YX' 
       <isNotEmpty property="zhdh">and a.zhdh like '%$zhdh$%'</isNotEmpty> order by a.zhdh
     </select>  
-    <select id="dn1.yxbldkzhglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.yxbldkzhglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select a.zhdh,zh.zhhm,a.zhkzsx, case a.sxz when '0' then '否' when '1' then '是' else '' end as sfyxbl, a.qsrq,a.jsrq,a.bzsm,a.sxz from sglr_dkzhkzsx a inner join jxdx_dkzh zh on zh.zhdh=a.zhdh where a.zhkzsx='YX' 
       <isNotEmpty property="zhdh">and a.zhdh like '%$zhdh$%'</isNotEmpty> order by a.zhdh ) t
     </select>  
-    <select id="dn1.yxbldkzhgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.yxbldkzhgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select czsj, sxz, qsrq, czr, jsrq, zhdh, bzsm, zhkzsx from SGLR_DKZHKZSX where 1= 1 and qsrq = '$qsrq$' and zhdh = '$zhdh$' and zhkzsx = '$zhkzsx$'
     </select>  
-    <select id="dn1.yxbldkzhgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.yxbldkzhgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select czsj, sxz, qsrq, czr, jsrq, zhdh, bzsm, zhkzsx from SGLR_DKZHKZSX where 1= 1 and qsrq = '$qsrq$' and zhdh = '$zhdh$' and zhkzsx = '$zhkzsx$'
     </select>  
-    <insert id="dn1.yxbldkzhgl_insert" parameterClass="java.util.Map"> 
+    <insert id="dn0.yxbldkzhgl_insert" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into SGLR_DKZHKZSX( czsj, qsrq, sxz, czr, jsrq, zhdh, zhkzsx, bzsm ) values ( $czsj$,$qsrq$,'$sxz$','$czr$',$jsrq$,'$zhdh$','$zhkzsx$','$bzsm$')
     </insert>  
-    <update id="dn1.yxbldkzhgl_update" parameterClass="java.util.Map"> 
+    <update id="dn0.yxbldkzhgl_update" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update SGLR_DKZHKZSX set sxz = '$sxz$',bzsm = '$bzsm$' where 1=1 and qsrq = '$qsrq$' and zhdh = '$zhdh$' and zhkzsx = '$zhkzsx$'
     </update>  
-    <delete id="dn1.yxbldkzhgl_delete" parameterClass="java.util.Map"> 
+    <delete id="dn0.yxbldkzhgl_delete" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from SGLR_DKZHKZSX where 1=1 and qsrq = '$qsrq$' and zhdh = '$zhdh$' and zhkzsx = '$zhkzsx$'
     </delete>  
-    <delete id="dn1.yxbldkzhgl_check_itemAddDel" parameterClass="java.util.Map"> 
+    <delete id="dn0.yxbldkzhgl_check_itemAddDel" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[delete from SGLR_DKZHKZSX where qsrq >=$qsrq$  and zhdh = '$zhdh$' and zhkzsx = '$zhkzsx$']]> 
     </delete>  
-    <update id="dn1.yxbldkzhgl_check_itemUP" parameterClass="java.util.Map"> 
+    <update id="dn0.yxbldkzhgl_check_itemUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update SGLR_DKZHKZSX set jsrq=$qdate$ 
       <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty> and zhdh = '$zhdh$' and zhkzsx = '$zhkzsx$'
     </update>  
-    <select id="dn1.yxbldkzhgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.yxbldkzhgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select max(qsrq) from SGLR_DKZHKZSX where 1=1 and zhdh = '$zhdh$' and zhkzsx = '$zhkzsx$'
     </select>  
-    <select id="dn1.yxbldkzhgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+    <select id="dn0.yxbldkzhgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select  czsj, sxz, qsrq, czr, jsrq, zhdh, bzsm, zhkzsx from SGLR_DKZHKZSX where 1=1  and zhdh = '$zhdh$' and zhkzsx = '$zhkzsx$' and $qsrq$ > $maxqsrq$]]> 
     </select>  
-    <update id="dn1.yxbldkzhgl_check_itemDELUP" parameterClass="java.util.Map"> 
+    <update id="dn0.yxbldkzhgl_check_itemDELUP" parameterClass="java.util.Map"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update SGLR_DKZHKZSX set jsrq =29991231 where 1=1 and zhdh = '$zhdh$' and zhkzsx = '$zhkzsx$' and jsrq =$lastjsrq$
     </update>  
-    <select id="dn1.yxbldkzhgl_checkZhdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select 1 from jxdx_dkzh zh where zh.zhdh='$zhdh$'</select>  
-    <select id="dn1.yxbldkzhgl_MSQL4SELECT_sxz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select 1 as key,'是' as value from pas_vt union all select 0 as key,'否' as value from pas_vt</select> 
+    <select id="dn0.yxbldkzhgl_checkZhdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select 1 from jxdx_dkzh zh where zh.zhdh='$zhdh$'</select>  
+    <select id="dn0.yxbldkzhgl_MSQL4SELECT_sxz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select 1 as key,'是' as value from pas_vt union all select 0 as key,'否' as value from pas_vt</select> 
   </sqlMap>  
   <javascript> 
     <import>parent.addTab('yxbldkzhdr','隐性不良贷款账户管理','/module/parser/import/visitHtml/yxbldkzhdr');</import>  

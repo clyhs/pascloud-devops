@@ -70,22 +70,22 @@
     <col id="BXYWBLBS" title="保险业务办理笔数" align="right" type="float" width="140" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
   </table>  
   <sqlMap namespace="studio.khywzkfx"> 
-    <select id="dn1.khywzkfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+    <select id="dn0.khywzkfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> SELECT dmms.dmms AS KHLX, khyw.KHH as khh, khyw.KHMC as khmc, khyw.CKYE as ckye, khyw.CKNRJ as cknrj, khyw.DKYE as dkye, khyw.DKNRJ as dknrj, khyw.KKS as kks, khyw.XYKZS as xykzs, khyw.WYKhS as wykhs, khyw.SJYHKhS as sjyhkhs, khyw.DXTKhS as dxtkhs, khyw.LCCPCYS as lccpcys, khyw.BXYWBLBS as bxywblbs from KHFX_KHYWZKTJ_$tjrq$ khyw left join CSB_DMMS dmms on dmms.dmmc='KHLX' and khyw.KHLX = DMMS.DMZ WHERE khyw.TJRQ = (select ym from CSB_SJW where tjrq=cast(cast($tjrq$ as char(6))||'01' as integer) ) 
       <isNotEmpty property="khdxdh">and khyw.KHDXDH = $khdxdh$</isNotEmpty>  
       <isNotEmpty property="khlx">and khyw.KHLX= '$khlx$'</isNotEmpty>  
       <isNotEmpty property="khh">and khyw.khh like '%$khh$%'</isNotEmpty>  
       <isNotEmpty property="khmc">and khyw.khmc like '%$khmc$%'</isNotEmpty> order by khyw.cknrj desc
     </select>  
-    <select id="dn1.khywzkfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+    <select id="dn0.khywzkfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( SELECT dmms.dmms AS KHLX, khyw.KHH as khh, khyw.KHMC as khmc, khyw.CKYE as ckye, khyw.CKNRJ as cknrj, khyw.DKYE as dkye, khyw.DKNRJ as dknrj, khyw.KKS as kks, khyw.XYKZS as xykzs, khyw.WYKhS as wykhs, khyw.SJYHKhS as sjyhkhs, khyw.DXTKhS as dxtkhs, khyw.LCCPCYS as lccpcys, khyw.BXYWBLBS as bxywblbs from KHFX_KHYWZKTJ_$tjrq$ khyw left join CSB_DMMS dmms on dmms.dmmc='KHLX' and khyw.KHLX = DMMS.DMZ WHERE khyw.TJRQ = (select ym from CSB_SJW where tjrq=cast(cast($tjrq$ as char(6))||'01' as integer) ) 
       <isNotEmpty property="khdxdh">and khyw.KHDXDH = $khdxdh$</isNotEmpty>  
       <isNotEmpty property="khlx">and khyw.KHLX= '$khlx$'</isNotEmpty>  
       <isNotEmpty property="khh">and khyw.khh like '%$khh$%'</isNotEmpty>  
       <isNotEmpty property="khmc">and khyw.khmc like '%$khmc$%'</isNotEmpty> order by khyw.cknrj desc ) t
     </select>  
-    <select id="dn1.khywzkfx_MSQL4SELECT_khlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where DMMC= 'KHLX'</select>  
-    <select id="dn1.khywzkfx_sym" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select sym from CSB_SJW where tjrq=cast($tjrq$ as integer)</select> 
+    <select id="dn0.khywzkfx_MSQL4SELECT_khlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where DMMC= 'KHLX'</select>  
+    <select id="dn0.khywzkfx_sym" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select sym from CSB_SJW where tjrq=cast($tjrq$ as integer)</select> 
   </sqlMap>  
   <finger custPlotMth=""> 
     <plotType/>  
