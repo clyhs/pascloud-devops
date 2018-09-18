@@ -1,210 +1,305 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="gyywlzsxsgl" title="业务量折算系数管理" type="manage" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="交易代码" fieldName="">
+        <attribute key="name" value="jydm" />
+        <attribute key="readonly" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="1" rowspan="1" colspan="1" name="Text" label="交易名称" fieldName="">
+        <attribute key="name" value="jymc" />
+        <attribute key="readonly" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="gyywlzsxsgltable">
+    <col id="JYDM" title="交易代码" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JYMC" title="交易名称" align="left" type="string" width="250" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="ZSXS" title="折算系数" align="right" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="QSRQ" title="起始日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+  </table>
+  <rels>
+    <items id="gyywlzsxsgltable" />
+  </rels>
+  <addPage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="交易名称" fieldName="JYDM">
+      <attribute key="sql" value="select jydm as key , jydm||'-'||jymc as value from csb_hxjydm" />
+      <attribute key="isSearch" value="true" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="jydm" />
+      <attribute key="width" value="155px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="true" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="dycjydm" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ">
+      <attribute key="style" value="170px;" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="qsrq" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c  where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'" />
+      <attribute key="name" value="getMaxqsrq" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="折算系数" fieldName="ZSXS">
+      <attribute key="precision" value="2" />
+      <attribute key="style" value="170px;" />
+      <attribute key="name" value="zsxs" />
+      <attribute key="intparts" value="17" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select max(xs.qsrq) as maxqsrq1 from csb_gyywlzsxs xs inner join csb_hxjydm hx on hx.jydm = xs.jydm where  xs.jydm='$dycjydm$'" />
+      <attribute key="name" value="getMaxqsrq1" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ">
+      <attribute key="defVal" value="29991231" />
+      <attribute key="name" value="jsrq" />
+    </tag>
+    <tag row="3" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select max(xs.qsrq) as maxqsrq2 from csb_gyywlzsxs xs inner join csb_hxjydm hx on hx.jydm = xs.jydm where  xs.jydm='$jydm$'" />
+      <attribute key="name" value="getMaxqsrq2" />
+    </tag>
+  </addPage>
+  <updatePage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="交易名称" fieldName="JYDM">
+      <attribute key="sql" value="select jydm as key , jydm||'-'||jymc as value from csb_hxjydm" />
+      <attribute key="isSearch" value="true" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="jydm" />
+      <attribute key="width" value="155px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="dycjydm" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ">
+      <attribute key="style" value="170px;" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="qsrq" />
+      <attribute key="isAll" value="false" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="readonly" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c  where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'" />
+      <attribute key="name" value="getMaxqsrq" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="折算系数" fieldName="ZSXS">
+      <attribute key="precision" value="2" />
+      <attribute key="style" value="170px;" />
+      <attribute key="name" value="zsxs" />
+      <attribute key="intparts" value="17" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select max(xs.qsrq) as maxqsrq1 from csb_gyywlzsxs xs inner join csb_hxjydm hx on hx.jydm = xs.jydm where  xs.jydm='$dycjydm$'" />
+      <attribute key="name" value="getMaxqsrq1" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ">
+      <attribute key="defVal" value="29991231" />
+      <attribute key="name" value="jsrq" />
+    </tag>
+    <tag row="3" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select max(xs.qsrq) as maxqsrq2 from csb_gyywlzsxs xs inner join csb_hxjydm hx on hx.jydm = xs.jydm where  xs.jydm='$jydm$'" />
+      <attribute key="name" value="getMaxqsrq2" />
+    </tag>
+  </updatePage>
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+    <button>import</button>
+  </buttons>
+  <flow>
+    <insertbefore>
+      <sql type="delete">gyywlzsxsgl_check_itemAddDel</sql>
+      <sql type="update">gyywlzsxsgl_check_itemUP</sql>
+    </insertbefore>
+    <insertafter />
+    <deletebefore>
+      <sql type="selectmaxqsrq">gyywlzsxsgl_check_itemMAX_del</sql>
+      <sql type="update">gyywlzsxsgl_check_itemDELUP</sql>
+    </deletebefore>
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.gyywlzsxsgl">
+    <select id="dn0.gyywlzsxsglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select xs.jydm,hx.jymc,xs.zsxs,xs.qsrq,xs.jsrq  from csb_gyywlzsxs xs inner join csb_hxjydm hx on hx.jydm = xs.jydm where 1=1
+      <isNotEmpty property="jydm">and  xs.jydm like '%$jydm$%'</isNotEmpty>
+      <isNotEmpty property="jymc">and hx.jymc like '%$jymc$%'</isNotEmpty>
+      order by xs.jydm
+    </select>
+    <select id="dn0.gyywlzsxsglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select xs.jydm,hx.jymc,xs.zsxs,xs.qsrq,xs.jsrq  from csb_gyywlzsxs xs inner join csb_hxjydm hx on hx.jydm = xs.jydm where 1=1
+      <isNotEmpty property="jydm">and  xs.jydm like '%$jydm$%'</isNotEmpty>
+      <isNotEmpty property="jymc">and hx.jymc like '%$jymc$%'</isNotEmpty>
+      order by xs.jydm ) t
+    </select>
+    <select id="dn0.gyywlzsxsgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  ZSXS, JYDM, QSRQ, JSRQ  from CSB_GYYWLZSXS where 1= 1  and JYDM = '$jydm$' and QSRQ = $qsrq$
+    </select>
+    <select id="dn0.gyywlzsxsgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  ZSXS, JYDM, QSRQ, JSRQ  from CSB_GYYWLZSXS where 1= 1  and JYDM = '$jydm$' and QSRQ = $qsrq$
+    </select>
+    <insert id="dn0.gyywlzsxsgl_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into CSB_GYYWLZSXS( ZSXS, QSRQ, JYDM, JSRQ ) values ( $zsxs$,$qsrq$,'$jydm$',$jsrq$)
+    </insert>
+    <update id="dn0.gyywlzsxsgl_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update CSB_GYYWLZSXS set ZSXS = $zsxs$ where 1=1  and JYDM = '$jydm$' and QSRQ = $qsrq$
+    </update>
+    <delete id="dn0.gyywlzsxsgl_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from CSB_GYYWLZSXS where 1=1  and JYDM = '$jydm$' and QSRQ = $qsrq$
+    </delete>
+    <delete id="dn0.gyywlzsxsgl_check_itemAddDel" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[delete from CSB_GYYWLZSXS where qsrq >=$qsrq$  and JYDM = '$jydm$']]>
+    </delete>
+    <update id="dn0.gyywlzsxsgl_check_itemUP" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update CSB_GYYWLZSXS set jsrq=$qdate$
+      <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty>
+      and JYDM = '$jydm$'
+    </update>
+    <select id="dn0.gyywlzsxsgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select max(qsrq) from CSB_GYYWLZSXS where 1=1  and JYDM = '$jydm$'
+    </select>
+    <select id="dn0.gyywlzsxsgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[select  ZSXS, JYDM, QSRQ, JSRQ from CSB_GYYWLZSXS where 1=1  and JYDM = '$jydm$' and $qsrq$ > $maxqsrq$]]>
+    </select>
+    <update id="dn0.gyywlzsxsgl_check_itemDELUP" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update CSB_GYYWLZSXS set jsrq =29991231 where 1=1 and JYDM = '$jydm$' and jsrq =$lastjsrq$
+    </update>
+    <select id="dn0.gyywlzsxsgl_getMaxqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c 
+where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'</select>
+    <select id="dn0.gyywlzsxsgl_getMaxqsrq1" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select max(xs.qsrq) as maxqsrq1 from csb_gyywlzsxs xs inner join csb_hxjydm hx on hx.jydm = xs.jydm where  xs.jydm='$dycjydm$'</select>
+    <select id="dn0.gyywlzsxsgl_getMaxqsrq2" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select max(xs.qsrq) as maxqsrq2 from csb_gyywlzsxs xs inner join csb_hxjydm hx on hx.jydm = xs.jydm where  xs.jydm='$jydm$'</select>
+    <select id="dn0.gyywlzsxsgl_MSQL4SELECT_jydm" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select jydm as key , jydm||'-'||jymc as value from csb_hxjydm</select>
+  </sqlMap>
+  <javascript>
+    <import>parent.addTab('gyywlzsxsgldr','业务量折算系数管理','/module/parser/import/visitHtml/gyywlzsxsgldr');</import>
+    <query>jQuery(document).ready(function () {
 
-<pageSetting id="gyywlzsxsgl" title="业务量折算系数管理" type="manage" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags> 
-      <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="交易代码" fieldName=""> 
-        <attribute key="name" value="jydm"/>  
-        <attribute key="readonly" value="false"/>  
-        <attribute key="editable" value="true"/> 
-      </tag>  
-      <tag row="0" col="1" rowspan="1" colspan="1" name="Text" label="交易名称" fieldName=""> 
-        <attribute key="name" value="jymc"/>  
-        <attribute key="readonly" value="false"/>  
-        <attribute key="editable" value="true"/> 
-      </tag> 
-    </tags> 
-  </conPart>  
-  <table page="true" id="gyywlzsxsgltable"> 
-    <col id="JYDM" title="交易代码" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="JYMC" title="交易名称" align="left" type="string" width="250" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="ZSXS" title="折算系数" align="right" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="QSRQ" title="起始日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/> 
-  </table>  
-  <rels> 
-    <items id="gyywlzsxsgltable"/> 
-  </rels>  
-  <addPage title="编辑页面"> 
-    <tag row="0" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="交易名称" fieldName="JYDM"> 
-      <attribute key="sql" value="select jydm as key , jydm||'-'||jymc as value from csb_hxjydm"/>  
-      <attribute key="isSearch" value="true"/>  
-      <attribute key="isRequired" value="true"/>  
-      <attribute key="isMultiple" value="false"/>  
-      <attribute key="name" value="jydm"/>  
-      <attribute key="width" value="155px;"/>  
-      <attribute key="isAll" value="false"/>  
-      <attribute key="multiple" value="false"/>  
-      <attribute key="isEditable" value="true"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="0" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
-      <attribute key="name" value="dycjydm"/> 
-    </tag>  
-    <tag row="1" col="0" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ"> 
-      <attribute key="style" value="170px;"/>  
-      <attribute key="isRequired" value="true"/>  
-      <attribute key="name" value="qsrq"/>  
-      <attribute key="minDate" value="no"/>  
-      <attribute key="defValType" value="sysDate"/>  
-      <attribute key="dateFmt" value="yyyyMMdd"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="1" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
-      <attribute key="dataType" value="select"/>  
-      <attribute key="sql" value="select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c  where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'"/>  
-      <attribute key="name" value="getMaxqsrq"/> 
-    </tag>  
-    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="折算系数" fieldName="ZSXS"> 
-      <attribute key="precision" value="2"/>  
-      <attribute key="style" value="170px;"/>  
-      <attribute key="name" value="zsxs"/>  
-      <attribute key="intparts" value="17"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="2" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
-      <attribute key="dataType" value="select"/>  
-      <attribute key="sql" value="select max(xs.qsrq) as maxqsrq1 from csb_gyywlzsxs xs inner join csb_hxjydm hx on hx.jydm = xs.jydm where  xs.jydm='$dycjydm$'"/>  
-      <attribute key="name" value="getMaxqsrq1"/> 
-    </tag>  
-    <tag row="3" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ"> 
-      <attribute key="defVal" value="29991231"/>  
-      <attribute key="name" value="jsrq"/> 
-    </tag>  
-    <tag row="3" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
-      <attribute key="dataType" value="select"/>  
-      <attribute key="sql" value="select max(xs.qsrq) as maxqsrq2 from csb_gyywlzsxs xs inner join csb_hxjydm hx on hx.jydm = xs.jydm where  xs.jydm='$jydm$'"/>  
-      <attribute key="name" value="getMaxqsrq2"/> 
-    </tag> 
-  </addPage>  
-  <updatePage title="编辑页面"> 
-    <tag row="0" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="交易名称" fieldName="JYDM"> 
-      <attribute key="sql" value="select jydm as key , jydm||'-'||jymc as value from csb_hxjydm"/>  
-      <attribute key="isSearch" value="true"/>  
-      <attribute key="isRequired" value="true"/>  
-      <attribute key="isMultiple" value="false"/>  
-      <attribute key="name" value="jydm"/>  
-      <attribute key="width" value="155px;"/>  
-      <attribute key="isAll" value="false"/>  
-      <attribute key="multiple" value="false"/>  
-      <attribute key="isEditable" value="false"/>  
-      <attribute key="editable" value="false"/> 
-    </tag>  
-    <tag row="0" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
-      <attribute key="name" value="dycjydm"/> 
-    </tag>  
-    <tag row="1" col="0" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ"> 
-      <attribute key="style" value="170px;"/>  
-      <attribute key="isRequired" value="true"/>  
-      <attribute key="name" value="qsrq"/>  
-      <attribute key="isAll" value="false"/>  
-      <attribute key="minDate" value="no"/>  
-      <attribute key="defValType" value="sysDate"/>  
-      <attribute key="dateFmt" value="yyyyMMdd"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="isEditable" value="false"/>  
-      <attribute key="editable" value="false"/> 
-    </tag>  
-    <tag row="1" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
-      <attribute key="dataType" value="select"/>  
-      <attribute key="sql" value="select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c  where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'"/>  
-      <attribute key="name" value="getMaxqsrq"/> 
-    </tag>  
-    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="折算系数" fieldName="ZSXS"> 
-      <attribute key="precision" value="2"/>  
-      <attribute key="style" value="170px;"/>  
-      <attribute key="name" value="zsxs"/>  
-      <attribute key="intparts" value="17"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="2" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
-      <attribute key="dataType" value="select"/>  
-      <attribute key="sql" value="select max(xs.qsrq) as maxqsrq1 from csb_gyywlzsxs xs inner join csb_hxjydm hx on hx.jydm = xs.jydm where  xs.jydm='$dycjydm$'"/>  
-      <attribute key="name" value="getMaxqsrq1"/> 
-    </tag>  
-    <tag row="3" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ"> 
-      <attribute key="defVal" value="29991231"/>  
-      <attribute key="name" value="jsrq"/> 
-    </tag>  
-    <tag row="3" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
-      <attribute key="dataType" value="select"/>  
-      <attribute key="sql" value="select max(xs.qsrq) as maxqsrq2 from csb_gyywlzsxs xs inner join csb_hxjydm hx on hx.jydm = xs.jydm where  xs.jydm='$jydm$'"/>  
-      <attribute key="name" value="getMaxqsrq2"/> 
-    </tag> 
-  </updatePage>  
-  <buttons> 
-    <button>add</button>  
-    <button>edit</button>  
-    <button>delete</button>  
-    <button>import</button> 
-  </buttons>  
-  <flow> 
-    <insertbefore> 
-      <sql type="delete">gyywlzsxsgl_check_itemAddDel</sql>  
-      <sql type="update">gyywlzsxsgl_check_itemUP</sql> 
-    </insertbefore>  
-    <insertafter/>  
-    <deletebefore> 
-      <sql type="selectmaxqsrq">gyywlzsxsgl_check_itemMAX_del</sql>  
-      <sql type="update">gyywlzsxsgl_check_itemDELUP</sql> 
-    </deletebefore>  
-    <deleteafter/>  
-    <updatebefore/>  
-    <updateafter/> 
-  </flow>  
-  <sqlMap namespace="studio.gyywlzsxsgl"> 
-    <select id="dn0.gyywlzsxsglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select xs.jydm,hx.jymc,xs.zsxs,xs.qsrq,xs.jsrq from csb_gyywlzsxs xs inner join csb_hxjydm hx on hx.jydm = xs.jydm where 1=1 
-      <isNotEmpty property="jydm">and xs.jydm like '%$jydm$%'</isNotEmpty>  
-      <isNotEmpty property="jymc">and hx.jymc like '%$jymc$%'</isNotEmpty> order by xs.jydm
-    </select>  
-    <select id="dn0.gyywlzsxsglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select xs.jydm,hx.jymc,xs.zsxs,xs.qsrq,xs.jsrq from csb_gyywlzsxs xs inner join csb_hxjydm hx on hx.jydm = xs.jydm where 1=1 
-      <isNotEmpty property="jydm">and xs.jydm like '%$jydm$%'</isNotEmpty>  
-      <isNotEmpty property="jymc">and hx.jymc like '%$jymc$%'</isNotEmpty> order by xs.jydm ) t
-    </select>  
-    <select id="dn0.gyywlzsxsgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select ZSXS, JYDM, QSRQ, JSRQ from CSB_GYYWLZSXS where 1= 1 and JYDM = '$jydm$' and QSRQ = $qsrq$
-    </select>  
-    <select id="dn0.gyywlzsxsgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select ZSXS, JYDM, QSRQ, JSRQ from CSB_GYYWLZSXS where 1= 1 and JYDM = '$jydm$' and QSRQ = $qsrq$
-    </select>  
-    <insert id="dn0.gyywlzsxsgl_insert" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into CSB_GYYWLZSXS( ZSXS, QSRQ, JYDM, JSRQ ) values ( $zsxs$,$qsrq$,'$jydm$',$jsrq$)
-    </insert>  
-    <update id="dn0.gyywlzsxsgl_update" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_GYYWLZSXS set ZSXS = $zsxs$ where 1=1 and JYDM = '$jydm$' and QSRQ = $qsrq$
-    </update>  
-    <delete id="dn0.gyywlzsxsgl_delete" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from CSB_GYYWLZSXS where 1=1 and JYDM = '$jydm$' and QSRQ = $qsrq$
-    </delete>  
-    <delete id="dn0.gyywlzsxsgl_check_itemAddDel" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[delete from CSB_GYYWLZSXS where qsrq >=$qsrq$  and JYDM = '$jydm$']]> 
-    </delete>  
-    <update id="dn0.gyywlzsxsgl_check_itemUP" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_GYYWLZSXS set jsrq=$qdate$ 
-      <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty> and JYDM = '$jydm$'
-    </update>  
-    <select id="dn0.gyywlzsxsgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select max(qsrq) from CSB_GYYWLZSXS where 1=1 and JYDM = '$jydm$'
-    </select>  
-    <select id="dn0.gyywlzsxsgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select  ZSXS, JYDM, QSRQ, JSRQ from CSB_GYYWLZSXS where 1=1  and JYDM = '$jydm$' and $qsrq$ > $maxqsrq$]]> 
-    </select>  
-    <update id="dn0.gyywlzsxsgl_check_itemDELUP" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update CSB_GYYWLZSXS set jsrq =29991231 where 1=1 and JYDM = '$jydm$' and jsrq =$lastjsrq$
-    </update>  
-    <select id="dn0.gyywlzsxsgl_getMaxqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'</select>  
-    <select id="dn0.gyywlzsxsgl_getMaxqsrq1" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select max(xs.qsrq) as maxqsrq1 from csb_gyywlzsxs xs inner join csb_hxjydm hx on hx.jydm = xs.jydm where xs.jydm='$dycjydm$'</select>  
-    <select id="dn0.gyywlzsxsgl_getMaxqsrq2" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select max(xs.qsrq) as maxqsrq2 from csb_gyywlzsxs xs inner join csb_hxjydm hx on hx.jydm = xs.jydm where xs.jydm='$jydm$'</select>  
-    <select id="dn0.gyywlzsxsgl_MSQL4SELECT_jydm" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select jydm as key , jydm||'-'||jymc as value from csb_hxjydm</select> 
-  </sqlMap>  
-  <javascript> 
-    <import>parent.addTab('gyywlzsxsgldr','业务量折算系数管理','/module/parser/import/visitHtml/gyywlzsxsgldr');</import>  
-    <query>jQuery(document).ready(function () { }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; } function customFastLink($table,row){//this 对象绑定当前行的单元格 if(row['JSRQ']=='29991231'){ var edit = $('&lt;a class="operation_edit LIST_BAR" title="编辑"&gt;编辑&lt;/a&gt;'); var del = $('&lt;a class="operation_del LIST_BAR" title="删除"&gt;删除&lt;/a&gt;'); this.append(edit); this.append(del); edit.click(function(){ showUpdateEdtiDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]); }); del.click(function(){ showDeleteDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]); }); return true; }else{ return false; } }</query>  
-    <edit>jQuery(document).ready(function () { //这里的js脚本，会在页面加载完成后执行 init_jydm().pipe(function(){ var a =$('#jydm').val(); $('#dycjydm').val(a); PAS.di.execute('gyywlzsxsgl_getMaxqsrq',getMaxqsrqBack);//加载最大的起始日期 PAS.di.execute('gyywlzsxsgl_getMaxqsrq1',getMaxqsrqBack1); }); jQuery('#jydm').executeOnEvent('change','gyywlzsxsgl_getMaxqsrq2',getMaxqsrqBack2); }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ if(maxqsrq&gt;parseInt($('#qsrq').val())){ parent.custom_alert('由于重算天数的限制，起始日期最小只能是：'+maxqsrq); return false; } if($('#jydm').val()!=$('#dycjydm').val()){ if(maxqsrq2&gt;parseInt($('#qsrq').val())){ parent.custom_alert('由于重算天数的限制，起始日期最小只能是：'+maxqsrq2); return false; }else{ return true; } } if(maxqsrq1&gt;parseInt($('#qsrq').val())){ parent.custom_alert('由于重算天数的限制，起始日期最小只能是：'+maxqsrq1); return false; } return true; } function getMaxqsrqBack(obj){ if(obj.data.length&gt;0){ maxqsrq = obj.data[0].MAXQSRQ; PAS.di.setDone(obj.sqlid); } } function getMaxqsrqBack1(obj){ if(obj.data.length&gt;0){ maxqsrq1 = obj.data[0].MAXQSRQ1; PAS.di.setDone(obj.sqlid); } } function getMaxqsrqBack2(obj){ if(obj.data.length&gt;0){ if(obj.data[0].MAXQSRQ2&gt;parseInt($('#qsrq').val()) ){ maxqsrq2 = obj.data[0].MAXQSRQ2; }else{ maxqsrq2 = obj.data[0].MAXQSRQ2; PAS.di.setDone(obj.sqlid); } } }</edit> 
-  </javascript> 
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}
+function customFastLink($table,row){//this 对象绑定当前行的单元格
+    if(row['JSRQ']=='29991231'){
+        var edit = $('&lt;a class="operation_edit LIST_BAR" title="编辑"&gt;编辑&lt;/a&gt;');
+        var del = $('&lt;a class="operation_del LIST_BAR" title="删除"&gt;删除&lt;/a&gt;');
+        this.append(edit);
+        this.append(del);
+        edit.click(function(){
+            showUpdateEdtiDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]);
+        });
+        del.click(function(){
+            showDeleteDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]);
+        });
+        return true;
+    }else{
+        return false;
+    }
+}</query>
+    <edit>jQuery(document).ready(function () {
+//这里的js脚本，会在页面加载完成后执行
+ init_jydm().pipe(function(){
+     var a =$('#jydm').val();
+     $('#dycjydm').val(a);
+     PAS.di.execute('gyywlzsxsgl_getMaxqsrq',getMaxqsrqBack);//加载最大的起始日期
+     PAS.di.execute('gyywlzsxsgl_getMaxqsrq1',getMaxqsrqBack1);
+   });
+   jQuery('#jydm').executeOnEvent('change','gyywlzsxsgl_getMaxqsrq2',getMaxqsrqBack2);
+});
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+if(maxqsrq&gt;parseInt($('#qsrq').val())){
+      parent.custom_alert('由于重算天数的限制，起始日期最小只能是：'+maxqsrq);
+      return false;
+    }
+if($('#jydm').val()!=$('#dycjydm').val()){
+  if(maxqsrq2&gt;parseInt($('#qsrq').val())){
+    parent.custom_alert('由于重算天数的限制，起始日期最小只能是：'+maxqsrq2);
+    return false;
+  }else{
+    return true;
+  }
+}
+if(maxqsrq1&gt;parseInt($('#qsrq').val())){
+  parent.custom_alert('由于重算天数的限制，起始日期最小只能是：'+maxqsrq1);
+  return false;
+}
+
+ return true;
+}
+
+function getMaxqsrqBack(obj){
+  if(obj.data.length&gt;0){
+        maxqsrq = obj.data[0].MAXQSRQ;
+        PAS.di.setDone(obj.sqlid);
+  }
+}
+
+function getMaxqsrqBack1(obj){
+  if(obj.data.length&gt;0){
+        maxqsrq1 = obj.data[0].MAXQSRQ1;
+        PAS.di.setDone(obj.sqlid);
+  }
+}
+
+function getMaxqsrqBack2(obj){
+  if(obj.data.length&gt;0){
+    if(obj.data[0].MAXQSRQ2&gt;parseInt($('#qsrq').val())  ){
+      maxqsrq2 = obj.data[0].MAXQSRQ2;
+    }else{
+       maxqsrq2 = obj.data[0].MAXQSRQ2;
+       PAS.di.setDone(obj.sqlid);
+    }   
+  }
+}</edit>
+  </javascript>
 </pageSetting>
+

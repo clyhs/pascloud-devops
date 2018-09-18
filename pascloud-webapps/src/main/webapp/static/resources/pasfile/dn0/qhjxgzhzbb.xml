@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="qhjxgzhzbb" title="全行绩效工资汇总报表" type="query" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags> 
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="起始日期"> 
-        <attribute key="dateFmt" value="yyyyMM"/>  
-        <attribute key="defValType" value="yc"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="qsrq"/>  
-        <attribute key="minDate" value="no"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="结束日期"> 
-        <attribute key="dateFmt" value="yyyyMM"/>  
-        <attribute key="defValType" value="ym"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="jsrq"/>  
-        <attribute key="minDate" value="no"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="0" col="2" colspan="1" rowspan="1" name="Hidden" label=""> 
-        <attribute key="name" value="qsrq1"/> 
-      </tag>  
-      <tag row="0" col="2" colspan="1" rowspan="1" name="Hidden" label=""> 
-        <attribute key="name" value="jsrq1"/> 
-      </tag>  
-      <tag row="0" col="2" colspan="1" rowspan="1" name="Hidden" label=""> 
-        <attribute key="defVal" value="$sysdate$"/>  
-        <attribute key="name" value="nf"/> 
-      </tag> 
-    </tags> 
-  </conPart>  
-  <table id="qhjxgzhzbb_xsjy1jgj" title="新数据源1结果集" page="noCount" isDym="true"> 
-    <col id="NF" title="年份" align="left" type="string" width="90" frozen="true" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="$yf$" title="YF" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" dym="true"> 
-      <col id="YYJG" title="工资(元)" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-    </col>  
-    <col id="QSRQ" title="起始日期" align="left" type="hidden" width="75" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
-    <col id="JSRQ" title="结束日期" align="left" type="hidden" width="75" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <sqlMap namespace="studio.qhjxgzhzbb"> 
-    <select id="dn0.qhjxgzhzbbList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select nf,yf,yyjg,$qsrq$ qsrq,$jsrq$ jsrq from (
+<pageSetting id="qhjxgzhzbb" title="全行绩效工资汇总报表" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="起始日期">
+        <attribute key="dateFmt" value="yyyyMM" />
+        <attribute key="defValType" value="yc" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="qsrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="结束日期">
+        <attribute key="dateFmt" value="yyyyMM" />
+        <attribute key="defValType" value="ym" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="jsrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="qsrq1" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="jsrq1" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="defVal" value="$sysdate$" />
+        <attribute key="name" value="nf" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="qhjxgzhzbb_xsjy1jgj" title="新数据源1结果集" page="noCount" isDym="true">
+    <col id="NF" title="年份" align="left" type="string" width="90" frozen="true" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="$yf$" title="YF" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" dym="true">
+      <col id="YYJG" title="工资(元)" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    </col>
+    <col id="QSRQ" title="起始日期" align="left" type="hidden" width="75" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false" />
+    <col id="JSRQ" title="结束日期" align="left" type="hidden" width="75" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.qhjxgzhzbb">
+    <select id="dn0.qhjxgzhzbbList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[select nf,yf,yyjg,$qsrq$ qsrq,$jsrq$ jsrq from (
 select substr(f_numtochar(yyjg.tjrq), 1, 4) nf,
     case when cast(F_NUMTOCHAR(cast(substr(f_numtochar(yyjg.tjrq), 5, 2) as integer)) as integer)  < 10 then '0'||F_NUMTOCHAR(cast(substr(f_numtochar(yyjg.tjrq), 5, 2) as integer))||'月份' else F_NUMTOCHAR(cast(substr(f_numtochar(yyjg.tjrq), 5, 2) as integer))||'月份' end yf,    
     sum(yyjg.yyjg) yyjg
@@ -54,8 +54,9 @@ select case when ym<$sysdate$ then ym
         else ym
 end as ym
 from csb_sjw 
-where ym=tjrq]]>  
-      <isNotEmpty property="qsrq1">and tjrq between $qsrq1$ and $jsrq1$</isNotEmpty>  <![CDATA[) sjw on sjw.YM=yyjg.TJRQ
+where ym=tjrq]]>
+      <isNotEmpty property="qsrq1">and tjrq between $qsrq1$ and $jsrq1$</isNotEmpty>
+      <![CDATA[) sjw on sjw.YM=yyjg.TJRQ
 where exists(select 1 from khfa_fapz pz where yyjg.fabh=pz.fabh and pz.yyzlbh=1)
 group by substr(f_numtochar(yyjg.tjrq), 1, 4),substr(f_numtochar(yyjg.tjrq), 5, 2)
 
@@ -75,11 +76,13 @@ select case when ym<$sysdate$ then ym
         else ym
 end as ym
 from csb_sjw 
-where ym=tjrq]]>  
-      <isNotEmpty property="qsrq1">and tjrq between $qsrq1$ and $jsrq1$</isNotEmpty> ) sjw on sjw.YM=yyjg.TJRQ where exists(select 1 from khfa_fapz pz where yyjg.fabh=pz.fabh and pz.yyzlbh=1) group by substr(f_numtochar(yyjg.tjrq), 1, 4),substr(f_numtochar(yyjg.tjrq), 5, 2) ) t group by nf ) a order by yf
-    </select>  
-    <select id="dn0.qhjxgzhzbbCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( <![CDATA[select nf,yf,yyjg,$qsrq$ qsrq,$jsrq$ jsrq from (
+where ym=tjrq]]>
+      <isNotEmpty property="qsrq1">and tjrq between $qsrq1$ and $jsrq1$</isNotEmpty>
+      ) sjw on sjw.YM=yyjg.TJRQ where exists(select 1 from khfa_fapz pz where yyjg.fabh=pz.fabh and pz.yyzlbh=1) group by substr(f_numtochar(yyjg.tjrq), 1, 4),substr(f_numtochar(yyjg.tjrq), 5, 2)  ) t  group by nf    ) a  order by yf
+    </select>
+    <select id="dn0.qhjxgzhzbbCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( <![CDATA[select nf,yf,yyjg,$qsrq$ qsrq,$jsrq$ jsrq from (
 select substr(f_numtochar(yyjg.tjrq), 1, 4) nf,
     case when cast(F_NUMTOCHAR(cast(substr(f_numtochar(yyjg.tjrq), 5, 2) as integer)) as integer)  < 10 then '0'||F_NUMTOCHAR(cast(substr(f_numtochar(yyjg.tjrq), 5, 2) as integer))||'月份' else F_NUMTOCHAR(cast(substr(f_numtochar(yyjg.tjrq), 5, 2) as integer))||'月份' end yf,    
     sum(yyjg.yyjg) yyjg
@@ -90,8 +93,9 @@ select case when ym<$sysdate$ then ym
         else ym
 end as ym
 from csb_sjw 
-where ym=tjrq]]>  
-      <isNotEmpty property="qsrq1">and tjrq between $qsrq1$ and $jsrq1$</isNotEmpty>  <![CDATA[) sjw on sjw.YM=yyjg.TJRQ
+where ym=tjrq]]>
+      <isNotEmpty property="qsrq1">and tjrq between $qsrq1$ and $jsrq1$</isNotEmpty>
+      <![CDATA[) sjw on sjw.YM=yyjg.TJRQ
 where exists(select 1 from khfa_fapz pz where yyjg.fabh=pz.fabh and pz.yyzlbh=1)
 group by substr(f_numtochar(yyjg.tjrq), 1, 4),substr(f_numtochar(yyjg.tjrq), 5, 2)
 
@@ -111,22 +115,23 @@ select case when ym<$sysdate$ then ym
         else ym
 end as ym
 from csb_sjw 
-where ym=tjrq]]>  
-      <isNotEmpty property="qsrq1">and tjrq between $qsrq1$ and $jsrq1$</isNotEmpty> ) sjw on sjw.YM=yyjg.TJRQ where exists(select 1 from khfa_fapz pz where yyjg.fabh=pz.fabh and pz.yyzlbh=1) group by substr(f_numtochar(yyjg.tjrq), 1, 4),substr(f_numtochar(yyjg.tjrq), 5, 2) ) t group by nf ) a order by yf ) t
-    </select> 
-  </sqlMap>  
-  <finger custPlotMth=""> 
-    <plotType>bar</plotType>  
-    <needPlot>false</needPlot>  
-    <plotTitle>1</plotTitle>  
-    <xLabel>月份</xLabel>  
-    <xSeries>YF</xSeries>  
-    <yLabel>YYJG</yLabel>  
-    <ySeries/> 
-  </finger>  
-  <rels> 
-    <items id="qhjxgzhzbb_xsjy1jgj"/> 
-  </rels>  
+where ym=tjrq]]>
+      <isNotEmpty property="qsrq1">and tjrq between $qsrq1$ and $jsrq1$</isNotEmpty>
+      ) sjw on sjw.YM=yyjg.TJRQ where exists(select 1 from khfa_fapz pz where yyjg.fabh=pz.fabh and pz.yyzlbh=1) group by substr(f_numtochar(yyjg.tjrq), 1, 4),substr(f_numtochar(yyjg.tjrq), 5, 2)  ) t  group by nf    ) a  order by yf ) t
+    </select>
+  </sqlMap>
+  <finger custPlotMth="">
+    <plotType>bar</plotType>
+    <needPlot>false</needPlot>
+    <plotTitle>1</plotTitle>
+    <xLabel>月份</xLabel>
+    <xSeries>YF</xSeries>
+    <yLabel>YYJG</yLabel>
+    <ySeries />
+  </finger>
+  <rels>
+    <items id="qhjxgzhzbb_xsjy1jgj" />
+  </rels>
   <javascript><![CDATA[jQuery(document).ready(function () {
 
 });
@@ -227,5 +232,6 @@ function customOnLoadSuccess(data){
                   +'</div></td>');
     }
   }
-}]]></javascript> 
+}]]></javascript>
 </pageSetting>
+

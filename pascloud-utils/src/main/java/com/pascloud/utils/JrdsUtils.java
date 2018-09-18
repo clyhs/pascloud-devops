@@ -9,10 +9,16 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 
 public class JrdsUtils {
+	
+	private static Logger log = LoggerFactory.getLogger(JrdsUtils.class);
 
 	private volatile static JrdsUtils jrdsUtils = null;
 
@@ -36,7 +42,10 @@ public class JrdsUtils {
 			String packageName = this.getClass().getPackage().getName();
 			String packagePath = packageName.replace('.', '/');
 			ClassLoader classLoader = this.getClass().getClassLoader();
+			
+			log.info(packagePath + templateFile);
 			inputstate = classLoader.getResourceAsStream(packagePath + templateFile);
+			//inputstate = classLoader.getResourceAsStream(templateFile);
 			Template tempState = new Template("", new InputStreamReader(inputstate), new Configuration());
 			tempState.setEncoding("UTF-8");
 

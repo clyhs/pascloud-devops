@@ -37,6 +37,10 @@ import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
+import org.jdom.JDOMException;
+import org.jdom.input.SAXBuilder;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -666,27 +670,51 @@ public class PasdevService extends AbstractBaseService {
 	}
 	//保存文件
 	private synchronized void saveDocument(String schemaPath,Document doc){
-		OutputFormat format = OutputFormat.createPrettyPrint();
-		XMLWriter writer = null;
+		//OutputFormat format = OutputFormat.createPrettyPrint();
+		//format.setEncoding("utf-8");// 设置XML文件的编码格式  
+        //format.setLineSeparator("\n");  
+        //format.setTrimText(false);  
+        //format.setIndent("  "); 
+		//XMLWriter writer = null;
+		ByteArrayInputStream bis = null;
+		OutputStream cos = null;
 		try {
-			writer = new XMLWriter(new FileOutputStream(schemaPath),format);
-			writer.write(doc);
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
-		} catch (IOException e) {
+			Format format = Format.getPrettyFormat();
+			format.setEncoding("UTF-8");
+			String content = doc.asXML();
+			bis = new ByteArrayInputStream(content.getBytes("UTF-8"));
+			//org.jdom.Document doc2 = (new SAXBuilder()).build(bis);
+			org.jdom.Document newdoc = (new SAXBuilder()).build(bis);
+			
+			XMLOutputter xmlout = new XMLOutputter(format);
+			cos = new FileOutputStream(schemaPath);
+			xmlout.output(newdoc,cos);
+			
+			//writer = new XMLWriter(new FileOutputStream(schemaPath),format);
+			//writer.write(doc);
+		} catch (JDOMException | IOException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 		}finally{
 			try {
-				writer.close();
+				if(null!=cos){
+					cos.close();
+					cos = null;
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
 			}
+			try {
+				if(null!=bis){
+					bis.close();
+					bis = null;
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+			
 		}
 	}
 	
@@ -1578,10 +1606,10 @@ public class PasdevService extends AbstractBaseService {
 	
 	
 	
-	public static void main(String[] args) throws IOException, ClassNotFoundException{
-		/*
-		String path = "D:/eclipse64/workspace/pas-cloud-parent/pas-cloud-service/pas-cloud-service-demo/src/main/assembly/data/pasplus/config/dn28";
+	public static void main(String[] args) throws IOException, ClassNotFoundException, JDOMException{
 		
+		//String path = "D:/eclipse64/workspace/pas-cloud-parent/pas-cloud-service/pas-cloud-service-demo/src/main/assembly/data/pasplus/config/dn28";
+		String path = "D:/dn12/dn3";
 		List<File> files = new ArrayList<File>();
 		files = FileUtils.listFilesInDirWithFilter(path, ".para", false);
 		//System.out.println(m_config.getPASCLOUD_DEV_DIR());
@@ -1660,13 +1688,37 @@ public class PasdevService extends AbstractBaseService {
 				
 				System.out.println(title);
 				
-				OutputFormat format = OutputFormat.createPrettyPrint();
+				//OutputFormat format = OutputFormat.createPrettyPrint();
+				//format.setEncoding("utf-8");// 设置XML文件的编码格式  
+                //format.setLineSeparator("\n");  
+        		//format.setTrimText(false);  
+        		//format.setIndent("  "); 
 				
-				XMLWriter writer =writer = new XMLWriter(new FileOutputStream(f2.getAbsolutePath()),format);
-				writer.write(doc);
+				//XMLWriter writer =writer = new XMLWriter(new FileOutputStream(f2.getAbsolutePath()),format);
+				//writer.write(doc);
+				String content = doc.asXML();
+				ByteArrayInputStream bis = new ByteArrayInputStream(content.getBytes("UTF-8"));
+				//org.jdom.Document doc2 = (new SAXBuilder()).build(bis);
+				org.jdom.Document doc2 = (new SAXBuilder()).build(bis);
+				
+				Format format = Format.getPrettyFormat();
+				format.setEncoding("UTF-8");
+				XMLOutputter xmlout = new XMLOutputter(format);
+				OutputStream cos = new FileOutputStream(f2.getAbsolutePath());
+				xmlout.output(doc2,cos);
 			}
 		}
+		/*
+		ByteArrayInputStream bis = new ByteArrayInputStream(runtimeContent.getBytes("UTF-8"));
+		org.jdom.Document doc = (new SAXBuilder()).build(bis);
+		
+		Format format = Format.getPrettyFormat();
+		format.setEncoding("UTF-8");
+		XMLOutputter xmlout = new XMLOutputter(format);
+		OutputStream cos = new FileOutputStream(contentFile);
+		xmlout.output(doc,cos);
 		*/
+		
 		/*
 		String dest = "D:/eclipse64/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/upload/pasfile/dn0/testhydr/testhydr.xml";
 

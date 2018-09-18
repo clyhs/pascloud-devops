@@ -26,6 +26,7 @@ import com.pascloud.module.config.PasCloudConfig;
 import com.pascloud.module.database.service.MysqlService;
 import com.pascloud.module.docker.service.ContainerService;
 import com.pascloud.module.docker.service.DockerService;
+import com.pascloud.module.mycat.service.MycatJrdsThread;
 import com.pascloud.module.mycat.service.MycatService;
 import com.pascloud.module.pasdev.service.PasdevService;
 import com.pascloud.module.server.service.ServerService;
@@ -790,6 +791,9 @@ public class PasService extends AbstractBaseService {
 			if(null!=vo){
 				conn = getScpClientConn(vo.getIp(),vo.getUsername(),vo.getPassword());
 				flag = uploadMycatConfig(conn);
+				MycatJrdsThread t = new MycatJrdsThread(vo.getIp(),m_config);
+				t.start();
+				
 			}
 		}catch(Exception e){
 			log.error(e.getMessage());

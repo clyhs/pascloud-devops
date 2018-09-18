@@ -1,323 +1,598 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="xnhyfpjxgzgl" title="虚拟行员绩效工资分配" type="manage" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName="">
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjny" />
+        <attribute key="minDate" value="no" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="dateFmt" value="yyyyMM" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="1" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="">
+        <attribute key="isRequired" value="false" />
+        <attribute key="isDisplayXN" value="true" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="true" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+        <attribute key="name" value="tjny_ym" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+        <attribute key="name" value="jzbz" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+        <attribute key="dataType" value="select" />
+        <attribute key="sql" value="select csz from xtb_xtcs  where csmc='XNHYJXJZBZ'" />
+        <attribute key="name" value="cxjzbz" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+        <attribute key="dataType" value="select" />
+        <attribute key="sql" value="select coalesce(cast(css.csz as integer),0) as csrq from xtb_xtcs  css where csmc='XNHYJZQSRQ'" />
+        <attribute key="name" value="getcsrq" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+        <attribute key="name" value="csrq" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="xnhyfpjxgzgltable">
+    <col id="TJNY" title="统计年月" align="left" type="string" width="100" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="FPJX" title="行员已分配绩效" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="XNHYJX" title="虚拟行员绩效" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="TJRQ" title="统计日期" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="BZSM" title="备注说明" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" />
+  </table>
+  <rels>
+    <items id="xnhyfpjxgzgltable" />
+  </rels>
+  <addPage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName="">
+      <attribute key="style" value="width:200px;" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="tjrq" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMM" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select 1                            from (                                  select b.jgkhdxdh,sum(zjx) as zjx                                 from(                                      SELECT cy.jgkhdxdh, sum (yyjg.yyjg) AS zjx                                      from   khfa_yyjg_hy yyjg                                      inner join khfa_fapz pz on yyjg.fabh = pz.fabh and pz.yyzlbh = 1                                      inner join khdx_hy hy  on yyjg.khdxdh = hy.khdxdh and hy.hydh like 'XN%'                                      inner join  khdx_jgcy cy  on hy.khdxdh = cy.khdxdh  and yyjg.tjrq  between cy.qsrq and  cy.jsrq                                      where yyjg.tjrq  in(select ym from csb_sjw where tjrq=CAST('$tjrq$'||'01' AS INTEGER))                                         AND cy.jgkhdxdh IN(SELECT jgkhdxdh FROM KHDX_JGCY CY WHERE CY.KHDXDH=$khdxdh$ AND CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ )                                     group by cy.jgkhdxdh                                     union all                                     select cy.jgkhdxdh as jgkhdxdh,0 as zjx                                     from khdx_jgcy cy                                     where cy.khdxdh=$khdxdh$ and CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ                                     )b                                  group by b.jgkhdxdh                             )b                             inner join                              (                                 select a.jgkhdxdh,sum(a.fpjx) as fpjx                                 from(                                         select cy.jgkhdxdh as jgkhdxdh,$fpjx$ as fpjx                                         from khdx_jgcy cy                                         where cy.khdxdh=$khdxdh$ and CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ                                        union all                                        select b.jgkhdxdh,sum(a.fpjx) as fpjx                                        from sgdr_xnhyfpjx a                                        inner join khdx_jgcy b on a.khdxdh=b.khdxdh and a.tjrq between b.qsrq and b.jsrq                                        where a.tjrq in(select ym from csb_sjw where tjrq=CAST('$tjrq$'||'01' AS INTEGER))                                             and b.jgkhdxdh in(SELECT jgkhdxdh FROM KHDX_JGCY CY WHERE CY.KHDXDH=$khdxdh$ AND CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ)                                             AND a.khdxdh!=$khdxdh$                                       group by b.jgkhdxdh                                )a group by a.jgkhdxdh                             )a on a.jgkhdxdh=b.jgkhdxdh                             where a.fpjx&gt;b.zjx" />
+      <attribute key="name" value="selectXnhyjx2" />
+    </tag>
+    <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="defVal" value="$csdate$" />
+      <attribute key="name" value="csdate" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="KHDXDH">
+      <attribute key="isRequired" value="true" />
+      <attribute key="style" value="width:180px;" />
+      <attribute key="isDisplayXN" value="true" />
+      <attribute key="jgckbz" value="jg_ckhy" />
+      <attribute key="name" value="khdxdh" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="defVal" value="0" />
+      <attribute key="name" value="hyjx" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="虚拟行员绩效" fieldName="">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="width:200px;" />
+      <attribute key="name" value="xnhyjx" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="true" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select cast(sum(zjx) as decimal(19,2)) as zjx   from (SELECT cy.jgkhdxdh, sum(yyjg.yyjg) AS zjx  from khfa_yyjg_hy yyjg          inner join khfa_fapz pz on yyjg.fabh = pz.fabh and pz.yyzlbh = 1          inner join khdx_hy hy on yyjg.khdxdh = hy.khdxdh and hy.hydh like 'XN%'          inner join khdx_jgcy cy on hy.khdxdh = cy.khdxdh and yyjg.tjrq between cy.qsrq and cy.jsrq          INNER JOIN  csb_sjw sjw ON  sjw.TJRQ=  cast ('$tjrq$'||'01' AS integer)          inner join  xtb_xtcs css on  css.csmc='XNHYJZQSRQ'          where  yyjg.TJRQ in (select ym from csb_sjw where tjrq&lt;![CDATA[&lt;=]]&gt;(select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER)) and ym=tjrq          AND           yyjg.TJRQ &lt;![CDATA[&gt;=]]&gt;(CASE WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='0' THEN              (select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER))                       WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='1' THEN                        (select nc from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER))                       WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='2' THEN                        (select ym from csb_sjw where tjrq=(select cast(css.csz as integer) from xtb_xtcs where csmc='XNHYJZQSRQ'))                       end))            AND cy.jgkhdxdh IN (SELECT jgkhdxdh                                  FROM KHDX_JGCY CY                                  inner join csb_sjw sjw  on sjw.tjrq = CAST('$tjrq$' || '01' AS INTEGER)                                   and sjw.ym BETWEEN CY.QSRQ AND CY.JSRQ                                 WHERE CY.KHDXDH = $khdxdh$)          group by cy.jgkhdxdh         union all         select cy.jgkhdxdh as jgkhdxdh, 0 as zjx from khdx_jgcy cy          inner join csb_sjw sjw2 on sjw2.tjrq = CAST('$tjrq$' || '01' AS INTEGER)and sjw2.ym BETWEEN CY.QSRQ AND CY.JSRQ          where cy.khdxdh = $khdxdh$) b  group by b.jgkhdxdh" />
+      <attribute key="name" value="selectXnhyjx" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="可分配绩效" fieldName="">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="width:200px;" />
+      <attribute key="name" value="kfpjx" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="true" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select coalesce(sum(a.fpjx), 0) as fpjx   from sgdr_xnhyfpjx a  inner join khdx_jgcy b on a.khdxdh = b.khdxdh and a.tjrq between b.qsrq and b.jsrq   inner join  xtb_xtcs css on  css.csmc='XNHYJZQSRQ'  where a.tjrq in        (select ym from csb_sjw where tjrq&lt;![CDATA[&lt;=]]&gt;(select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER)) and ym=tjrq          AND           a.TJRQ &lt;![CDATA[&gt;=]]&gt;(CASE WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='0' THEN              (select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER))                       WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='1' THEN                        (select nc from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER))                       WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='2' THEN                        (select ym from csb_sjw where tjrq=(select cast(css.csz as integer) from xtb_xtcs where csmc='XNHYJZQSRQ'))                       end))    and b.jgkhdxdh in        (SELECT jgkhdxdh           FROM KHDX_JGCY CY           inner join csb_sjw w on w.tjrq = CAST('$tjrq$' || '01' AS INTEGER)          WHERE CY.KHDXDH = $khdxdh$            AND w.ym BETWEEN CY.QSRQ AND CY.JSRQ)  group by b.jgkhdxdh" />
+      <attribute key="name" value="selectKfpjx" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="分配绩效" fieldName="FPJX">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="width:200px;" />
+      <attribute key="name" value="fpjx" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZR">
+      <attribute key="defVal" value="$login_hydh$" />
+      <attribute key="name" value="czr" />
+    </tag>
+    <tag row="4" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select csz from xtb_xtcs  where csmc='XNHYJXJZBZ'" />
+      <attribute key="name" value="cxjzbz2" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Textarea" label="备注说明" fieldName="BZSM">
+      <attribute key="cols" value="14" />
+      <attribute key="style" value="width:200px;" />
+      <attribute key="name" value="bzsm" />
+      <attribute key="styleClass" value="{maxlength:200}" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+      <attribute key="rows" value="5" />
+    </tag>
+    <tag row="5" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="jzbz" />
+    </tag>
+    <tag row="5" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select csz from xtb_xtcs  where csmc='XNHYJZQSRQ'" />
+      <attribute key="name" value="xnhyjzqsrq" />
+    </tag>
+    <tag row="6" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZSJ">
+      <attribute key="defVal" value="systime" />
+      <attribute key="name" value="czsj" />
+    </tag>
+    <tag row="6" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="xnhyqsrq" />
+    </tag>
+    <tag row="7" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="TJRQ">
+      <attribute key="name" value="tjrq_ym" />
+    </tag>
+  </addPage>
+  <updatePage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName="">
+      <attribute key="style" value="width:200px;" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="tjrq" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMM" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select 1                            from (                                  select b.jgkhdxdh,sum(zjx) as zjx                                 from(                                      SELECT cy.jgkhdxdh, sum (yyjg.yyjg) AS zjx                                      from   khfa_yyjg_hy yyjg                                      inner join khfa_fapz pz on yyjg.fabh = pz.fabh and pz.yyzlbh = 1                                      inner join khdx_hy hy  on yyjg.khdxdh = hy.khdxdh and hy.hydh like 'XN%'                                      inner join  khdx_jgcy cy  on hy.khdxdh = cy.khdxdh  and yyjg.tjrq  between cy.qsrq and  cy.jsrq                                      where yyjg.tjrq  in(select ym from csb_sjw where tjrq=CAST('$tjrq$'||'01' AS INTEGER))                                         AND cy.jgkhdxdh IN(SELECT jgkhdxdh FROM KHDX_JGCY CY WHERE CY.KHDXDH=$khdxdh$ AND CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ )                                     group by cy.jgkhdxdh                                     union all                                     select cy.jgkhdxdh as jgkhdxdh,0 as zjx                                     from khdx_jgcy cy                                     where cy.khdxdh=$khdxdh$ and CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ                                     )b                                  group by b.jgkhdxdh                             )b                             inner join                              (                                 select a.jgkhdxdh,sum(a.fpjx) as fpjx                                 from(                                         select cy.jgkhdxdh as jgkhdxdh,$fpjx$ as fpjx                                         from khdx_jgcy cy                                         where cy.khdxdh=$khdxdh$ and CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ                                        union all                                        select b.jgkhdxdh,sum(a.fpjx) as fpjx                                        from sgdr_xnhyfpjx a                                        inner join khdx_jgcy b on a.khdxdh=b.khdxdh and a.tjrq between b.qsrq and b.jsrq                                        where a.tjrq in(select ym from csb_sjw where tjrq=CAST('$tjrq$'||'01' AS INTEGER))                                             and b.jgkhdxdh in(SELECT jgkhdxdh FROM KHDX_JGCY CY WHERE CY.KHDXDH=$khdxdh$ AND CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ)                                             AND a.khdxdh!=$khdxdh$                                       group by b.jgkhdxdh                                )a group by a.jgkhdxdh                             )a on a.jgkhdxdh=b.jgkhdxdh                             where a.fpjx&gt;b.zjx" />
+      <attribute key="name" value="selectXnhyjx2" />
+    </tag>
+    <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="defVal" value="$csdate$" />
+      <attribute key="name" value="csdate" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="KHDXDH">
+      <attribute key="isRequired" value="true" />
+      <attribute key="style" value="width:180px;" />
+      <attribute key="isDisplayXN" value="true" />
+      <attribute key="jgckbz" value="jg_ckhy" />
+      <attribute key="name" value="khdxdh" />
+      <attribute key="isAll" value="false" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="1" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="defVal" value="0" />
+      <attribute key="name" value="hyjx" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="虚拟行员绩效" fieldName="">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="width:200px;" />
+      <attribute key="name" value="xnhyjx" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="true" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select cast(sum(zjx) as decimal(19,2)) as zjx   from (SELECT cy.jgkhdxdh, sum(yyjg.yyjg) AS zjx  from khfa_yyjg_hy yyjg          inner join khfa_fapz pz on yyjg.fabh = pz.fabh and pz.yyzlbh = 1          inner join khdx_hy hy on yyjg.khdxdh = hy.khdxdh and hy.hydh like 'XN%'          inner join khdx_jgcy cy on hy.khdxdh = cy.khdxdh and yyjg.tjrq between cy.qsrq and cy.jsrq          INNER JOIN  csb_sjw sjw ON  sjw.TJRQ=  cast ('$tjrq$'||'01' AS integer)          inner join  xtb_xtcs css on  css.csmc='XNHYJZQSRQ'          where  yyjg.TJRQ in (select ym from csb_sjw where tjrq&lt;![CDATA[&lt;=]]&gt;(select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER)) and ym=tjrq          AND           yyjg.TJRQ &lt;![CDATA[&gt;=]]&gt;(CASE WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='0' THEN              (select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER))                       WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='1' THEN                        (select nc from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER))                       WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='2' THEN                        (select ym from csb_sjw where tjrq=(select cast(css.csz as integer) from xtb_xtcs where csmc='XNHYJZQSRQ'))                       end))            AND cy.jgkhdxdh IN (SELECT jgkhdxdh                                  FROM KHDX_JGCY CY                                  inner join csb_sjw sjw  on sjw.tjrq = CAST('$tjrq$' || '01' AS INTEGER)                                   and sjw.ym BETWEEN CY.QSRQ AND CY.JSRQ                                 WHERE CY.KHDXDH = $khdxdh$)          group by cy.jgkhdxdh         union all         select cy.jgkhdxdh as jgkhdxdh, 0 as zjx from khdx_jgcy cy          inner join csb_sjw sjw2 on sjw2.tjrq = CAST('$tjrq$' || '01' AS INTEGER)and sjw2.ym BETWEEN CY.QSRQ AND CY.JSRQ          where cy.khdxdh = $khdxdh$) b  group by b.jgkhdxdh" />
+      <attribute key="name" value="selectXnhyjx" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="可分配绩效" fieldName="">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="width:200px;" />
+      <attribute key="name" value="kfpjx" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="true" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select coalesce(sum(a.fpjx), 0) as fpjx   from sgdr_xnhyfpjx a  inner join khdx_jgcy b on a.khdxdh = b.khdxdh and a.tjrq between b.qsrq and b.jsrq   inner join  xtb_xtcs css on  css.csmc='XNHYJZQSRQ'  where a.tjrq in        (select ym from csb_sjw where tjrq&lt;![CDATA[&lt;=]]&gt;(select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER)) and ym=tjrq          AND           a.TJRQ &lt;![CDATA[&gt;=]]&gt;(CASE WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='0' THEN              (select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER))                       WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='1' THEN                        (select nc from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER))                       WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='2' THEN                        (select ym from csb_sjw where tjrq=(select cast(css.csz as integer) from xtb_xtcs where csmc='XNHYJZQSRQ'))                       end))    and b.jgkhdxdh in        (SELECT jgkhdxdh           FROM KHDX_JGCY CY           inner join csb_sjw w on w.tjrq = CAST('$tjrq$' || '01' AS INTEGER)          WHERE CY.KHDXDH = $khdxdh$            AND w.ym BETWEEN CY.QSRQ AND CY.JSRQ)  group by b.jgkhdxdh" />
+      <attribute key="name" value="selectKfpjx" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="分配绩效" fieldName="FPJX">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="width:200px;" />
+      <attribute key="name" value="fpjx" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZR">
+      <attribute key="defVal" value="$login_hydh$" />
+      <attribute key="name" value="czr" />
+    </tag>
+    <tag row="4" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select csz from xtb_xtcs  where csmc='XNHYJXJZBZ'" />
+      <attribute key="name" value="cxjzbz2" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Textarea" label="备注说明" fieldName="BZSM">
+      <attribute key="cols" value="14" />
+      <attribute key="style" value="width:200px;" />
+      <attribute key="name" value="bzsm" />
+      <attribute key="styleClass" value="{maxlength:200}" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+      <attribute key="rows" value="5" />
+    </tag>
+    <tag row="5" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="jzbz" />
+    </tag>
+    <tag row="5" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select csz from xtb_xtcs  where csmc='XNHYJZQSRQ'" />
+      <attribute key="name" value="xnhyjzqsrq" />
+    </tag>
+    <tag row="6" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZSJ">
+      <attribute key="defVal" value="systime" />
+      <attribute key="name" value="czsj" />
+    </tag>
+    <tag row="6" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="xnhyqsrq" />
+    </tag>
+    <tag row="7" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="TJRQ">
+      <attribute key="name" value="tjrq_ym" />
+    </tag>
+  </updatePage>
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+    <button>import</button>
+  </buttons>
+  <flow>
+    <insertbefore />
+    <insertafter />
+    <deletebefore />
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.xnhyfpjxgzgl">
+    <select id="dn0.xnhyfpjxgzglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select $tjny$ as tjny, jx.khdxdh,jx.tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc, cast(jx.fpjx as decimal(19,2)) as fpjx, cast(COALESCE(a.yyjg,0) as decimal(19,2))as xnhyjx,jx.bzsm from  sgdr_xnhyfpjx jx inner join khdx_hy hy on jx.khdxdh=hy.khdxdh  inner join khdx_jgcy cy on hy.khdxdh=cy.khdxdh
+      <isNotEmpty property="tjny_ym">and  $tjny_ym$   between cy.qsrq and cy.jsrq</isNotEmpty>
+      inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh left join (   select sum(yyjg) as yyjg,jg.khdxdh from khfa_yyjg_hy yyjg     inner join khfa_fapz pz  on yyjg.fabh = pz.fabh and pz.yyzlbh =1      inner join khdx_hy hy on yyjg.khdxdh = hy.khdxdh and hy.hydh  like 'XN%'     inner join khdx_jgcy cy on hy.khdxdh=cy.khdxdh
+      <isNotEmpty property="tjny_ym">and  $tjny_ym$   between cy.qsrq and cy.jsrq</isNotEmpty>
+      inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh     inner join csb_sjw sjw on sjw.ym = yyjg.tjrq   where $jzbz$   group by jg.khdxdh  )a on  jg.khdxdh = a.khdxdh   where 1=1
+      <isNotEmpty property="khdxdh">and jx.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="tjny_ym">and jx.tjrq =  $tjny_ym$</isNotEmpty>
+    </select>
+    <select id="dn0.xnhyfpjxgzglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select $tjny$ as tjny, jx.khdxdh,jx.tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc, cast(jx.fpjx as decimal(19,2)) as fpjx, cast(COALESCE(a.yyjg,0) as decimal(19,2))as xnhyjx,jx.bzsm from  sgdr_xnhyfpjx jx inner join khdx_hy hy on jx.khdxdh=hy.khdxdh  inner join khdx_jgcy cy on hy.khdxdh=cy.khdxdh
+      <isNotEmpty property="tjny_ym">and  $tjny_ym$   between cy.qsrq and cy.jsrq</isNotEmpty>
+      inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh left join (   select sum(yyjg) as yyjg,jg.khdxdh from khfa_yyjg_hy yyjg     inner join khfa_fapz pz  on yyjg.fabh = pz.fabh and pz.yyzlbh =1      inner join khdx_hy hy on yyjg.khdxdh = hy.khdxdh and hy.hydh  like 'XN%'     inner join khdx_jgcy cy on hy.khdxdh=cy.khdxdh
+      <isNotEmpty property="tjny_ym">and  $tjny_ym$   between cy.qsrq and cy.jsrq</isNotEmpty>
+      inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh     inner join csb_sjw sjw on sjw.ym = yyjg.tjrq   where $jzbz$   group by jg.khdxdh  )a on  jg.khdxdh = a.khdxdh   where 1=1
+      <isNotEmpty property="khdxdh">and jx.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="tjny_ym">and jx.tjrq =  $tjny_ym$</isNotEmpty>
+      ) t
+    </select>
+    <select id="dn0.xnhyfpjxgzgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  KHDXDH, BZSM, FPJX,F_TIMETOCHAR(CZSJ,'yyyy-mm-dd hh24:mi:ss') as CZSJ, CZR, TJRQ  from SGDR_XNHYFPJX where 1= 1  and KHDXDH = $khdxdh$ and TJRQ = $tjrq$
+    </select>
+    <select id="dn0.xnhyfpjxgzgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  KHDXDH, BZSM, FPJX,F_TIMETOCHAR(CZSJ,'yyyy-mm-dd hh24:mi:ss') as CZSJ, CZR, TJRQ  from SGDR_XNHYFPJX where 1= 1  and KHDXDH = $khdxdh$ and TJRQ = $tjrq_ym$
+    </select>
+    <insert id="dn0.xnhyfpjxgzgl_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into SGDR_XNHYFPJX( KHDXDH, CZSJ, CZR, TJRQ, FPJX, BZSM ) values ( $khdxdh$,f_get_timestamp('$czsj$'),'$czr$',$tjrq_ym$,$fpjx$,'$bzsm$')
+    </insert>
+    <update id="dn0.xnhyfpjxgzgl_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update SGDR_XNHYFPJX set FPJX = $fpjx$,BZSM = '$bzsm$' where 1=1  and KHDXDH = $khdxdh$ and TJRQ = $tjrq_ym$
+    </update>
+    <delete id="dn0.xnhyfpjxgzgl_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from SGDR_XNHYFPJX where 1=1  and KHDXDH = $khdxdh$ and TJRQ = $tjrq$
+    </delete>
+    <select id="dn0.xnhyfpjxgzgl_cxjzbz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs  where csmc='XNHYJXJZBZ'</select>
+    <select id="dn0.xnhyfpjxgzgl_getcsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select coalesce(cast(css.csz as integer),0) as csrq from xtb_xtcs  css where csmc='XNHYJZQSRQ'</select>
+    <select id="dn0.xnhyfpjxgzgl_selectXnhyjx2" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select 1
+                           from ( 
+                                select b.jgkhdxdh,sum(zjx) as zjx
+                                from(
+                                     SELECT cy.jgkhdxdh, sum (yyjg.yyjg) AS zjx
+                                     from   khfa_yyjg_hy yyjg
+                                     inner join khfa_fapz pz on yyjg.fabh = pz.fabh and pz.yyzlbh = 1
+                                     inner join khdx_hy hy  on yyjg.khdxdh = hy.khdxdh and hy.hydh like 'XN%'
+                                     inner join  khdx_jgcy cy  on hy.khdxdh = cy.khdxdh  and yyjg.tjrq  between cy.qsrq and  cy.jsrq
+                                     where yyjg.tjrq  in(select ym from csb_sjw where tjrq=CAST('$tjrq$'||'01' AS INTEGER))
+                                        AND cy.jgkhdxdh IN(SELECT jgkhdxdh FROM KHDX_JGCY CY WHERE CY.KHDXDH=$khdxdh$ AND CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ )
+                                    group by cy.jgkhdxdh
+                                    union all
+                                    select cy.jgkhdxdh as jgkhdxdh,0 as zjx
+                                    from khdx_jgcy cy
+                                    where cy.khdxdh=$khdxdh$ and CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ
+                                    )b 
+                                group by b.jgkhdxdh
+                            )b
+                            inner join 
+                            (
+                                select a.jgkhdxdh,sum(a.fpjx) as fpjx
+                                from(
+                                        select cy.jgkhdxdh as jgkhdxdh,$fpjx$ as fpjx
+                                        from khdx_jgcy cy
+                                        where cy.khdxdh=$khdxdh$ and CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ
+                                       union all
+                                       select b.jgkhdxdh,sum(a.fpjx) as fpjx
+                                       from sgdr_xnhyfpjx a
+                                       inner join khdx_jgcy b on a.khdxdh=b.khdxdh and a.tjrq between b.qsrq and b.jsrq
+                                       where a.tjrq in(select ym from csb_sjw where tjrq=CAST('$tjrq$'||'01' AS INTEGER))
+                                            and b.jgkhdxdh in(SELECT jgkhdxdh FROM KHDX_JGCY CY WHERE CY.KHDXDH=$khdxdh$ AND CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ)
+                                            AND a.khdxdh!=$khdxdh$
+                                      group by b.jgkhdxdh
+                               )a group by a.jgkhdxdh 
+                           )a on a.jgkhdxdh=b.jgkhdxdh 
+                           where a.fpjx&gt;b.zjx</select>
+    <select id="dn0.xnhyfpjxgzgl_selectXnhyjx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select cast(sum(zjx) as decimal(19,2)) as zjx
+  from (SELECT cy.jgkhdxdh, sum(yyjg.yyjg) AS zjx  from khfa_yyjg_hy yyjg
+         inner join khfa_fapz pz on yyjg.fabh = pz.fabh and pz.yyzlbh = 1
+         inner join khdx_hy hy on yyjg.khdxdh = hy.khdxdh and hy.hydh like 'XN%'
+         inner join khdx_jgcy cy on hy.khdxdh = cy.khdxdh and yyjg.tjrq between cy.qsrq and cy.jsrq
+         INNER JOIN  csb_sjw sjw ON  sjw.TJRQ=  cast ('$tjrq$'||'01' AS integer)
+         inner join  xtb_xtcs css on  css.csmc='XNHYJZQSRQ'
+         where  yyjg.TJRQ in (select ym from csb_sjw where tjrq<![CDATA[<=]]>(select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER)) and ym=tjrq
+         AND
+          yyjg.TJRQ <![CDATA[>=]]>(CASE WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='0' THEN 
+            (select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER))
+                      WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='1' THEN 
+                      (select nc from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER))
+                      WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='2' THEN 
+                      (select ym from csb_sjw where tjrq=(select cast(css.csz as integer) from xtb_xtcs where csmc='XNHYJZQSRQ'))
+                      end))
+           AND cy.jgkhdxdh IN (SELECT jgkhdxdh
+                                 FROM KHDX_JGCY CY
+                                 inner join csb_sjw sjw  on sjw.tjrq = CAST('$tjrq$' || '01' AS INTEGER) 
+                                 and sjw.ym BETWEEN CY.QSRQ AND CY.JSRQ
+                                WHERE CY.KHDXDH = $khdxdh$)
+         group by cy.jgkhdxdh
+        union all
+        select cy.jgkhdxdh as jgkhdxdh, 0 as zjx from khdx_jgcy cy
+         inner join csb_sjw sjw2 on sjw2.tjrq = CAST('$tjrq$' || '01' AS INTEGER)and sjw2.ym BETWEEN CY.QSRQ AND CY.JSRQ
+         where cy.khdxdh = $khdxdh$) b
+ group by b.jgkhdxdh</select>
+    <select id="dn0.xnhyfpjxgzgl_selectKfpjx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select coalesce(sum(a.fpjx), 0) as fpjx
+  from sgdr_xnhyfpjx a
+ inner join khdx_jgcy b on a.khdxdh = b.khdxdh and a.tjrq between b.qsrq and b.jsrq 
+ inner join  xtb_xtcs css on  css.csmc='XNHYJZQSRQ'
+ where a.tjrq in
+       (select ym from csb_sjw where tjrq<![CDATA[<=]]>(select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER)) and ym=tjrq
+         AND
+          a.TJRQ <![CDATA[>=]]>(CASE WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='0' THEN 
+            (select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER))
+                      WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='1' THEN 
+                      (select nc from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER))
+                      WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='2' THEN 
+                      (select ym from csb_sjw where tjrq=(select cast(css.csz as integer) from xtb_xtcs where csmc='XNHYJZQSRQ'))
+                      end))
+   and b.jgkhdxdh in
+       (SELECT jgkhdxdh
+          FROM KHDX_JGCY CY
+          inner join csb_sjw w on w.tjrq = CAST('$tjrq$' || '01' AS INTEGER)
+         WHERE CY.KHDXDH = $khdxdh$
+           AND w.ym BETWEEN CY.QSRQ AND CY.JSRQ)
+ group by b.jgkhdxdh</select>
+    <select id="dn0.xnhyfpjxgzgl_cxjzbz2" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs  where csmc='XNHYJXJZBZ'</select>
+    <select id="dn0.xnhyfpjxgzgl_xnhyjzqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs  where csmc='XNHYJZQSRQ'</select>
+  </sqlMap>
+  <javascript>
+    <import>parent.addTab('xnhyfpjxdr','虚拟行员绩效工资分配','/module/parser/import/visitHtml/xnhyfpjxdr');</import>
+    <query>jQuery(document).ready(function () {
+    editpage_height=450;
+    editpage_width=500;
+  jQuery('#tjny').blur(function(){
+    getYm();
+  }).trigger('blur');
+   
+    PAS.di.execute('xnhyfpjxgzgl_cxjzbz',checkCxJzbz);//结转标志
+    PAS.di.execute('xnhyfpjxgzgl_getcsrq',getCsrq);//参数日期
+    $("#tjny").executeOnEvent('blur','xnhyfpjxgzgl_cxjzbz',checkCxJzbz);
+});
 
-<pageSetting id="xnhyfpjxgzgl" title="虚拟行员绩效工资分配" type="manage" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags> 
-      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName=""> 
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="tjny"/>  
-        <attribute key="minDate" value="no"/>  
-        <attribute key="defValType" value="sysDate"/>  
-        <attribute key="dateFmt" value="yyyyMM"/>  
-        <attribute key="editable" value="true"/> 
-      </tag>  
-      <tag row="0" col="1" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName=""> 
-        <attribute key="isRequired" value="false"/>  
-        <attribute key="isDisplayXN" value="true"/>  
-        <attribute key="jgckbz" value="jg_ckhy"/>  
-        <attribute key="name" value="khdxdh"/>  
-        <attribute key="multiple" value="true"/>  
-        <attribute key="editable" value="true"/> 
-      </tag>  
-      <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
-        <attribute key="name" value="tjny_ym"/> 
-      </tag>  
-      <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
-        <attribute key="name" value="jzbz"/> 
-      </tag>  
-      <tag row="0" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
-        <attribute key="dataType" value="select"/>  
-        <attribute key="sql" value="select csz from xtb_xtcs  where csmc='XNHYJXJZBZ'"/>  
-        <attribute key="name" value="cxjzbz"/> 
-      </tag>  
-      <tag row="0" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
-        <attribute key="dataType" value="select"/>  
-        <attribute key="sql" value="select coalesce(cast(css.csz as integer),0) as csrq from xtb_xtcs  css where csmc='XNHYJZQSRQ'"/>  
-        <attribute key="name" value="getcsrq"/> 
-      </tag>  
-      <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
-        <attribute key="name" value="csrq"/> 
-      </tag> 
-    </tags> 
-  </conPart>  
-  <table page="true" id="xnhyfpjxgzgltable"> 
-    <col id="TJNY" title="统计年月" align="left" type="string" width="100" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true"/>  
-    <col id="FPJX" title="行员已分配绩效" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="XNHYJX" title="虚拟行员绩效" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true"/>  
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="HYDH" title="行员代号" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="HYMC" title="行员名称" align="left" type="string" width="90" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true"/>  
-    <col id="TJRQ" title="统计日期" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true"/>  
-    <col id="BZSM" title="备注说明" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true"/> 
-  </table>  
-  <rels> 
-    <items id="xnhyfpjxgzgltable"/> 
-  </rels>  
-  <addPage title="编辑页面"> 
-    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName=""> 
-      <attribute key="style" value="width:200px;"/>  
-      <attribute key="isRequired" value="true"/>  
-      <attribute key="name" value="tjrq"/>  
-      <attribute key="minDate" value="no"/>  
-      <attribute key="defValType" value="sysDate"/>  
-      <attribute key="dateFmt" value="yyyyMM"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="0" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
-      <attribute key="dataType" value="select"/>  
-      <attribute key="sql" value="select 1                            from (                                  select b.jgkhdxdh,sum(zjx) as zjx                                 from(                                      SELECT cy.jgkhdxdh, sum (yyjg.yyjg) AS zjx                                      from   khfa_yyjg_hy yyjg                                      inner join khfa_fapz pz on yyjg.fabh = pz.fabh and pz.yyzlbh = 1                                      inner join khdx_hy hy  on yyjg.khdxdh = hy.khdxdh and hy.hydh like 'XN%'                                      inner join  khdx_jgcy cy  on hy.khdxdh = cy.khdxdh  and yyjg.tjrq  between cy.qsrq and  cy.jsrq                                      where yyjg.tjrq  in(select ym from csb_sjw where tjrq=CAST('$tjrq$'||'01' AS INTEGER))                                         AND cy.jgkhdxdh IN(SELECT jgkhdxdh FROM KHDX_JGCY CY WHERE CY.KHDXDH=$khdxdh$ AND CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ )                                     group by cy.jgkhdxdh                                     union all                                     select cy.jgkhdxdh as jgkhdxdh,0 as zjx                                     from khdx_jgcy cy                                     where cy.khdxdh=$khdxdh$ and CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ                                     )b                                  group by b.jgkhdxdh                             )b                             inner join                              (                                 select a.jgkhdxdh,sum(a.fpjx) as fpjx                                 from(                                         select cy.jgkhdxdh as jgkhdxdh,$fpjx$ as fpjx                                         from khdx_jgcy cy                                         where cy.khdxdh=$khdxdh$ and CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ                                        union all                                        select b.jgkhdxdh,sum(a.fpjx) as fpjx                                        from sgdr_xnhyfpjx a                                        inner join khdx_jgcy b on a.khdxdh=b.khdxdh and a.tjrq between b.qsrq and b.jsrq                                        where a.tjrq in(select ym from csb_sjw where tjrq=CAST('$tjrq$'||'01' AS INTEGER))                                             and b.jgkhdxdh in(SELECT jgkhdxdh FROM KHDX_JGCY CY WHERE CY.KHDXDH=$khdxdh$ AND CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ)                                             AND a.khdxdh!=$khdxdh$                                       group by b.jgkhdxdh                                )a group by a.jgkhdxdh                             )a on a.jgkhdxdh=b.jgkhdxdh                             where a.fpjx&gt;b.zjx"/>  
-      <attribute key="name" value="selectXnhyjx2"/> 
-    </tag>  
-    <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
-      <attribute key="defVal" value="$csdate$"/>  
-      <attribute key="name" value="csdate"/> 
-    </tag>  
-    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="KHDXDH"> 
-      <attribute key="isRequired" value="true"/>  
-      <attribute key="style" value="width:180px;"/>  
-      <attribute key="isDisplayXN" value="true"/>  
-      <attribute key="jgckbz" value="jg_ckhy"/>  
-      <attribute key="name" value="khdxdh"/>  
-      <attribute key="multiple" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="1" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
-      <attribute key="defVal" value="0"/>  
-      <attribute key="name" value="hyjx"/> 
-    </tag>  
-    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="虚拟行员绩效" fieldName=""> 
-      <attribute key="precision" value="4"/>  
-      <attribute key="style" value="width:200px;"/>  
-      <attribute key="name" value="xnhyjx"/>  
-      <attribute key="intparts" value="21"/>  
-      <attribute key="readonly" value="true"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="2" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
-      <attribute key="dataType" value="select"/>  
-      <attribute key="sql" value="select cast(sum(zjx) as decimal(19,2)) as zjx   from (SELECT cy.jgkhdxdh, sum(yyjg.yyjg) AS zjx  from khfa_yyjg_hy yyjg          inner join khfa_fapz pz on yyjg.fabh = pz.fabh and pz.yyzlbh = 1          inner join khdx_hy hy on yyjg.khdxdh = hy.khdxdh and hy.hydh like 'XN%'          inner join khdx_jgcy cy on hy.khdxdh = cy.khdxdh and yyjg.tjrq between cy.qsrq and cy.jsrq          INNER JOIN  csb_sjw sjw ON  sjw.TJRQ=  cast ('$tjrq$'||'01' AS integer)          inner join  xtb_xtcs css on  css.csmc='XNHYJZQSRQ'          where  yyjg.TJRQ in (select ym from csb_sjw where tjrq&lt;![CDATA[&lt;=]]&gt;(select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER)) and ym=tjrq          AND           yyjg.TJRQ &lt;![CDATA[&gt;=]]&gt;(CASE WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='0' THEN              (select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER))                       WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='1' THEN                        (select nc from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER))                       WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='2' THEN                        (select ym from csb_sjw where tjrq=(select cast(css.csz as integer) from xtb_xtcs where csmc='XNHYJZQSRQ'))                       end))            AND cy.jgkhdxdh IN (SELECT jgkhdxdh                                  FROM KHDX_JGCY CY                                  inner join csb_sjw sjw  on sjw.tjrq = CAST('$tjrq$' || '01' AS INTEGER)                                   and sjw.ym BETWEEN CY.QSRQ AND CY.JSRQ                                 WHERE CY.KHDXDH = $khdxdh$)          group by cy.jgkhdxdh         union all         select cy.jgkhdxdh as jgkhdxdh, 0 as zjx from khdx_jgcy cy          inner join csb_sjw sjw2 on sjw2.tjrq = CAST('$tjrq$' || '01' AS INTEGER)and sjw2.ym BETWEEN CY.QSRQ AND CY.JSRQ          where cy.khdxdh = $khdxdh$) b  group by b.jgkhdxdh"/>  
-      <attribute key="name" value="selectXnhyjx"/> 
-    </tag>  
-    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="可分配绩效" fieldName=""> 
-      <attribute key="precision" value="4"/>  
-      <attribute key="style" value="width:200px;"/>  
-      <attribute key="name" value="kfpjx"/>  
-      <attribute key="intparts" value="21"/>  
-      <attribute key="readonly" value="true"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="3" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
-      <attribute key="dataType" value="select"/>  
-      <attribute key="sql" value="select coalesce(sum(a.fpjx), 0) as fpjx   from sgdr_xnhyfpjx a  inner join khdx_jgcy b on a.khdxdh = b.khdxdh and a.tjrq between b.qsrq and b.jsrq   inner join  xtb_xtcs css on  css.csmc='XNHYJZQSRQ'  where a.tjrq in        (select ym from csb_sjw where tjrq&lt;![CDATA[&lt;=]]&gt;(select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER)) and ym=tjrq          AND           a.TJRQ &lt;![CDATA[&gt;=]]&gt;(CASE WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='0' THEN              (select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER))                       WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='1' THEN                        (select nc from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER))                       WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='2' THEN                        (select ym from csb_sjw where tjrq=(select cast(css.csz as integer) from xtb_xtcs where csmc='XNHYJZQSRQ'))                       end))    and b.jgkhdxdh in        (SELECT jgkhdxdh           FROM KHDX_JGCY CY           inner join csb_sjw w on w.tjrq = CAST('$tjrq$' || '01' AS INTEGER)          WHERE CY.KHDXDH = $khdxdh$            AND w.ym BETWEEN CY.QSRQ AND CY.JSRQ)  group by b.jgkhdxdh"/>  
-      <attribute key="name" value="selectKfpjx"/> 
-    </tag>  
-    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="分配绩效" fieldName="FPJX"> 
-      <attribute key="precision" value="4"/>  
-      <attribute key="style" value="width:200px;"/>  
-      <attribute key="name" value="fpjx"/>  
-      <attribute key="intparts" value="21"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="4" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZR"> 
-      <attribute key="defVal" value="$login_hydh$"/>  
-      <attribute key="name" value="czr"/> 
-    </tag>  
-    <tag row="4" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
-      <attribute key="dataType" value="select"/>  
-      <attribute key="sql" value="select csz from xtb_xtcs  where csmc='XNHYJXJZBZ'"/>  
-      <attribute key="name" value="cxjzbz2"/> 
-    </tag>  
-    <tag row="5" col="0" rowspan="1" colspan="1" name="Textarea" label="备注说明" fieldName="BZSM"> 
-      <attribute key="cols" value="14"/>  
-      <attribute key="style" value="width:200px;"/>  
-      <attribute key="name" value="bzsm"/>  
-      <attribute key="styleClass" value="{maxlength:200}"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/>  
-      <attribute key="rows" value="5"/> 
-    </tag>  
-    <tag row="5" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
-      <attribute key="name" value="jzbz"/> 
-    </tag>  
-    <tag row="5" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
-      <attribute key="dataType" value="select"/>  
-      <attribute key="sql" value="select csz from xtb_xtcs  where csmc='XNHYJZQSRQ'"/>  
-      <attribute key="name" value="xnhyjzqsrq"/> 
-    </tag>  
-    <tag row="6" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZSJ"> 
-      <attribute key="defVal" value="systime"/>  
-      <attribute key="name" value="czsj"/> 
-    </tag>  
-    <tag row="6" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
-      <attribute key="name" value="xnhyqsrq"/> 
-    </tag>  
-    <tag row="7" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="TJRQ"> 
-      <attribute key="name" value="tjrq_ym"/> 
-    </tag> 
-  </addPage>  
-  <updatePage title="编辑页面"> 
-    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName=""> 
-      <attribute key="style" value="width:200px;"/>  
-      <attribute key="isRequired" value="true"/>  
-      <attribute key="name" value="tjrq"/>  
-      <attribute key="minDate" value="no"/>  
-      <attribute key="defValType" value="sysDate"/>  
-      <attribute key="dateFmt" value="yyyyMM"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="0" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
-      <attribute key="dataType" value="select"/>  
-      <attribute key="sql" value="select 1                            from (                                  select b.jgkhdxdh,sum(zjx) as zjx                                 from(                                      SELECT cy.jgkhdxdh, sum (yyjg.yyjg) AS zjx                                      from   khfa_yyjg_hy yyjg                                      inner join khfa_fapz pz on yyjg.fabh = pz.fabh and pz.yyzlbh = 1                                      inner join khdx_hy hy  on yyjg.khdxdh = hy.khdxdh and hy.hydh like 'XN%'                                      inner join  khdx_jgcy cy  on hy.khdxdh = cy.khdxdh  and yyjg.tjrq  between cy.qsrq and  cy.jsrq                                      where yyjg.tjrq  in(select ym from csb_sjw where tjrq=CAST('$tjrq$'||'01' AS INTEGER))                                         AND cy.jgkhdxdh IN(SELECT jgkhdxdh FROM KHDX_JGCY CY WHERE CY.KHDXDH=$khdxdh$ AND CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ )                                     group by cy.jgkhdxdh                                     union all                                     select cy.jgkhdxdh as jgkhdxdh,0 as zjx                                     from khdx_jgcy cy                                     where cy.khdxdh=$khdxdh$ and CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ                                     )b                                  group by b.jgkhdxdh                             )b                             inner join                              (                                 select a.jgkhdxdh,sum(a.fpjx) as fpjx                                 from(                                         select cy.jgkhdxdh as jgkhdxdh,$fpjx$ as fpjx                                         from khdx_jgcy cy                                         where cy.khdxdh=$khdxdh$ and CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ                                        union all                                        select b.jgkhdxdh,sum(a.fpjx) as fpjx                                        from sgdr_xnhyfpjx a                                        inner join khdx_jgcy b on a.khdxdh=b.khdxdh and a.tjrq between b.qsrq and b.jsrq                                        where a.tjrq in(select ym from csb_sjw where tjrq=CAST('$tjrq$'||'01' AS INTEGER))                                             and b.jgkhdxdh in(SELECT jgkhdxdh FROM KHDX_JGCY CY WHERE CY.KHDXDH=$khdxdh$ AND CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ)                                             AND a.khdxdh!=$khdxdh$                                       group by b.jgkhdxdh                                )a group by a.jgkhdxdh                             )a on a.jgkhdxdh=b.jgkhdxdh                             where a.fpjx&gt;b.zjx"/>  
-      <attribute key="name" value="selectXnhyjx2"/> 
-    </tag>  
-    <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
-      <attribute key="defVal" value="$csdate$"/>  
-      <attribute key="name" value="csdate"/> 
-    </tag>  
-    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="KHDXDH"> 
-      <attribute key="isRequired" value="true"/>  
-      <attribute key="style" value="width:180px;"/>  
-      <attribute key="isDisplayXN" value="true"/>  
-      <attribute key="jgckbz" value="jg_ckhy"/>  
-      <attribute key="name" value="khdxdh"/>  
-      <attribute key="isAll" value="false"/>  
-      <attribute key="multiple" value="false"/>  
-      <attribute key="isEditable" value="false"/>  
-      <attribute key="editable" value="false"/> 
-    </tag>  
-    <tag row="1" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
-      <attribute key="defVal" value="0"/>  
-      <attribute key="name" value="hyjx"/> 
-    </tag>  
-    <tag row="2" col="0" rowspan="1" colspan="1" name="Number" label="虚拟行员绩效" fieldName=""> 
-      <attribute key="precision" value="4"/>  
-      <attribute key="style" value="width:200px;"/>  
-      <attribute key="name" value="xnhyjx"/>  
-      <attribute key="intparts" value="21"/>  
-      <attribute key="readonly" value="true"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="2" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
-      <attribute key="dataType" value="select"/>  
-      <attribute key="sql" value="select cast(sum(zjx) as decimal(19,2)) as zjx   from (SELECT cy.jgkhdxdh, sum(yyjg.yyjg) AS zjx  from khfa_yyjg_hy yyjg          inner join khfa_fapz pz on yyjg.fabh = pz.fabh and pz.yyzlbh = 1          inner join khdx_hy hy on yyjg.khdxdh = hy.khdxdh and hy.hydh like 'XN%'          inner join khdx_jgcy cy on hy.khdxdh = cy.khdxdh and yyjg.tjrq between cy.qsrq and cy.jsrq          INNER JOIN  csb_sjw sjw ON  sjw.TJRQ=  cast ('$tjrq$'||'01' AS integer)          inner join  xtb_xtcs css on  css.csmc='XNHYJZQSRQ'          where  yyjg.TJRQ in (select ym from csb_sjw where tjrq&lt;![CDATA[&lt;=]]&gt;(select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER)) and ym=tjrq          AND           yyjg.TJRQ &lt;![CDATA[&gt;=]]&gt;(CASE WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='0' THEN              (select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER))                       WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='1' THEN                        (select nc from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER))                       WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='2' THEN                        (select ym from csb_sjw where tjrq=(select cast(css.csz as integer) from xtb_xtcs where csmc='XNHYJZQSRQ'))                       end))            AND cy.jgkhdxdh IN (SELECT jgkhdxdh                                  FROM KHDX_JGCY CY                                  inner join csb_sjw sjw  on sjw.tjrq = CAST('$tjrq$' || '01' AS INTEGER)                                   and sjw.ym BETWEEN CY.QSRQ AND CY.JSRQ                                 WHERE CY.KHDXDH = $khdxdh$)          group by cy.jgkhdxdh         union all         select cy.jgkhdxdh as jgkhdxdh, 0 as zjx from khdx_jgcy cy          inner join csb_sjw sjw2 on sjw2.tjrq = CAST('$tjrq$' || '01' AS INTEGER)and sjw2.ym BETWEEN CY.QSRQ AND CY.JSRQ          where cy.khdxdh = $khdxdh$) b  group by b.jgkhdxdh"/>  
-      <attribute key="name" value="selectXnhyjx"/> 
-    </tag>  
-    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="可分配绩效" fieldName=""> 
-      <attribute key="precision" value="4"/>  
-      <attribute key="style" value="width:200px;"/>  
-      <attribute key="name" value="kfpjx"/>  
-      <attribute key="intparts" value="21"/>  
-      <attribute key="readonly" value="true"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="3" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
-      <attribute key="dataType" value="select"/>  
-      <attribute key="sql" value="select coalesce(sum(a.fpjx), 0) as fpjx   from sgdr_xnhyfpjx a  inner join khdx_jgcy b on a.khdxdh = b.khdxdh and a.tjrq between b.qsrq and b.jsrq   inner join  xtb_xtcs css on  css.csmc='XNHYJZQSRQ'  where a.tjrq in        (select ym from csb_sjw where tjrq&lt;![CDATA[&lt;=]]&gt;(select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER)) and ym=tjrq          AND           a.TJRQ &lt;![CDATA[&gt;=]]&gt;(CASE WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='0' THEN              (select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER))                       WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='1' THEN                        (select nc from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER))                       WHEN (select csz from xtb_xtcs  where csmc='XNHYJXJZBZ')='2' THEN                        (select ym from csb_sjw where tjrq=(select cast(css.csz as integer) from xtb_xtcs where csmc='XNHYJZQSRQ'))                       end))    and b.jgkhdxdh in        (SELECT jgkhdxdh           FROM KHDX_JGCY CY           inner join csb_sjw w on w.tjrq = CAST('$tjrq$' || '01' AS INTEGER)          WHERE CY.KHDXDH = $khdxdh$            AND w.ym BETWEEN CY.QSRQ AND CY.JSRQ)  group by b.jgkhdxdh"/>  
-      <attribute key="name" value="selectKfpjx"/> 
-    </tag>  
-    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="分配绩效" fieldName="FPJX"> 
-      <attribute key="precision" value="4"/>  
-      <attribute key="style" value="width:200px;"/>  
-      <attribute key="name" value="fpjx"/>  
-      <attribute key="intparts" value="21"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="4" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZR"> 
-      <attribute key="defVal" value="$login_hydh$"/>  
-      <attribute key="name" value="czr"/> 
-    </tag>  
-    <tag row="4" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
-      <attribute key="dataType" value="select"/>  
-      <attribute key="sql" value="select csz from xtb_xtcs  where csmc='XNHYJXJZBZ'"/>  
-      <attribute key="name" value="cxjzbz2"/> 
-    </tag>  
-    <tag row="5" col="0" rowspan="1" colspan="1" name="Textarea" label="备注说明" fieldName="BZSM"> 
-      <attribute key="cols" value="14"/>  
-      <attribute key="style" value="width:200px;"/>  
-      <attribute key="name" value="bzsm"/>  
-      <attribute key="styleClass" value="{maxlength:200}"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/>  
-      <attribute key="rows" value="5"/> 
-    </tag>  
-    <tag row="5" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
-      <attribute key="name" value="jzbz"/> 
-    </tag>  
-    <tag row="5" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName=""> 
-      <attribute key="dataType" value="select"/>  
-      <attribute key="sql" value="select csz from xtb_xtcs  where csmc='XNHYJZQSRQ'"/>  
-      <attribute key="name" value="xnhyjzqsrq"/> 
-    </tag>  
-    <tag row="6" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZSJ"> 
-      <attribute key="defVal" value="systime"/>  
-      <attribute key="name" value="czsj"/> 
-    </tag>  
-    <tag row="6" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
-      <attribute key="name" value="xnhyqsrq"/> 
-    </tag>  
-    <tag row="7" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="TJRQ"> 
-      <attribute key="name" value="tjrq_ym"/> 
-    </tag> 
-  </updatePage>  
-  <buttons> 
-    <button>add</button>  
-    <button>edit</button>  
-    <button>delete</button>  
-    <button>import</button> 
-  </buttons>  
-  <flow> 
-    <insertbefore/>  
-    <insertafter/>  
-    <deletebefore/>  
-    <deleteafter/>  
-    <updatebefore/>  
-    <updateafter/> 
-  </flow>  
-  <sqlMap namespace="studio.xnhyfpjxgzgl"> 
-    <select id="dn0.xnhyfpjxgzglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select $tjny$ as tjny, jx.khdxdh,jx.tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc, cast(jx.fpjx as decimal(19,2)) as fpjx, cast(COALESCE(a.yyjg,0) as decimal(19,2))as xnhyjx,jx.bzsm from sgdr_xnhyfpjx jx inner join khdx_hy hy on jx.khdxdh=hy.khdxdh inner join khdx_jgcy cy on hy.khdxdh=cy.khdxdh 
-      <isNotEmpty property="tjny_ym">and $tjny_ym$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh left join ( select sum(yyjg) as yyjg,jg.khdxdh from khfa_yyjg_hy yyjg inner join khfa_fapz pz on yyjg.fabh = pz.fabh and pz.yyzlbh =1 inner join khdx_hy hy on yyjg.khdxdh = hy.khdxdh and hy.hydh like 'XN%' inner join khdx_jgcy cy on hy.khdxdh=cy.khdxdh 
-      <isNotEmpty property="tjny_ym">and $tjny_ym$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh inner join csb_sjw sjw on sjw.ym = yyjg.tjrq where $jzbz$ group by jg.khdxdh )a on jg.khdxdh = a.khdxdh where 1=1 
-      <isNotEmpty property="khdxdh">and jx.khdxdh in ($khdxdh$)</isNotEmpty>  
-      <isNotEmpty property="tjny_ym">and jx.tjrq = $tjny_ym$</isNotEmpty> 
-    </select>  
-    <select id="dn0.xnhyfpjxgzglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select $tjny$ as tjny, jx.khdxdh,jx.tjrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc, cast(jx.fpjx as decimal(19,2)) as fpjx, cast(COALESCE(a.yyjg,0) as decimal(19,2))as xnhyjx,jx.bzsm from sgdr_xnhyfpjx jx inner join khdx_hy hy on jx.khdxdh=hy.khdxdh inner join khdx_jgcy cy on hy.khdxdh=cy.khdxdh 
-      <isNotEmpty property="tjny_ym">and $tjny_ym$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh left join ( select sum(yyjg) as yyjg,jg.khdxdh from khfa_yyjg_hy yyjg inner join khfa_fapz pz on yyjg.fabh = pz.fabh and pz.yyzlbh =1 inner join khdx_hy hy on yyjg.khdxdh = hy.khdxdh and hy.hydh like 'XN%' inner join khdx_jgcy cy on hy.khdxdh=cy.khdxdh 
-      <isNotEmpty property="tjny_ym">and $tjny_ym$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh inner join csb_sjw sjw on sjw.ym = yyjg.tjrq where $jzbz$ group by jg.khdxdh )a on jg.khdxdh = a.khdxdh where 1=1 
-      <isNotEmpty property="khdxdh">and jx.khdxdh in ($khdxdh$)</isNotEmpty>  
-      <isNotEmpty property="tjny_ym">and jx.tjrq = $tjny_ym$</isNotEmpty> ) t
-    </select>  
-    <select id="dn0.xnhyfpjxgzgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select KHDXDH, BZSM, FPJX,F_TIMETOCHAR(CZSJ,'yyyy-mm-dd hh24:mi:ss') as CZSJ, CZR, TJRQ from SGDR_XNHYFPJX where 1= 1 and KHDXDH = $khdxdh$ and TJRQ = $tjrq$
-    </select>  
-    <select id="dn0.xnhyfpjxgzgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select KHDXDH, BZSM, FPJX,F_TIMETOCHAR(CZSJ,'yyyy-mm-dd hh24:mi:ss') as CZSJ, CZR, TJRQ from SGDR_XNHYFPJX where 1= 1 and KHDXDH = $khdxdh$ and TJRQ = $tjrq_ym$
-    </select>  
-    <insert id="dn0.xnhyfpjxgzgl_insert" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into SGDR_XNHYFPJX( KHDXDH, CZSJ, CZR, TJRQ, FPJX, BZSM ) values ( $khdxdh$,f_get_timestamp('$czsj$'),'$czr$',$tjrq_ym$,$fpjx$,'$bzsm$')
-    </insert>  
-    <update id="dn0.xnhyfpjxgzgl_update" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update SGDR_XNHYFPJX set FPJX = $fpjx$,BZSM = '$bzsm$' where 1=1 and KHDXDH = $khdxdh$ and TJRQ = $tjrq_ym$
-    </update>  
-    <delete id="dn0.xnhyfpjxgzgl_delete" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from SGDR_XNHYFPJX where 1=1 and KHDXDH = $khdxdh$ and TJRQ = $tjrq$
-    </delete>  
-    <select id="dn0.xnhyfpjxgzgl_cxjzbz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='XNHYJXJZBZ'</select>  
-    <select id="dn0.xnhyfpjxgzgl_getcsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select coalesce(cast(css.csz as integer),0) as csrq from xtb_xtcs css where csmc='XNHYJZQSRQ'</select>  
-    <select id="dn0.xnhyfpjxgzgl_selectXnhyjx2" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select 1 from ( select b.jgkhdxdh,sum(zjx) as zjx from( SELECT cy.jgkhdxdh, sum (yyjg.yyjg) AS zjx from khfa_yyjg_hy yyjg inner join khfa_fapz pz on yyjg.fabh = pz.fabh and pz.yyzlbh = 1 inner join khdx_hy hy on yyjg.khdxdh = hy.khdxdh and hy.hydh like 'XN%' inner join khdx_jgcy cy on hy.khdxdh = cy.khdxdh and yyjg.tjrq between cy.qsrq and cy.jsrq where yyjg.tjrq in(select ym from csb_sjw where tjrq=CAST('$tjrq$'||'01' AS INTEGER)) AND cy.jgkhdxdh IN(SELECT jgkhdxdh FROM KHDX_JGCY CY WHERE CY.KHDXDH=$khdxdh$ AND CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ ) group by cy.jgkhdxdh union all select cy.jgkhdxdh as jgkhdxdh,0 as zjx from khdx_jgcy cy where cy.khdxdh=$khdxdh$ and CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ )b group by b.jgkhdxdh )b inner join ( select a.jgkhdxdh,sum(a.fpjx) as fpjx from( select cy.jgkhdxdh as jgkhdxdh,$fpjx$ as fpjx from khdx_jgcy cy where cy.khdxdh=$khdxdh$ and CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ union all select b.jgkhdxdh,sum(a.fpjx) as fpjx from sgdr_xnhyfpjx a inner join khdx_jgcy b on a.khdxdh=b.khdxdh and a.tjrq between b.qsrq and b.jsrq where a.tjrq in(select ym from csb_sjw where tjrq=CAST('$tjrq$'||'01' AS INTEGER)) and b.jgkhdxdh in(SELECT jgkhdxdh FROM KHDX_JGCY CY WHERE CY.KHDXDH=$khdxdh$ AND CAST('$tjrq$'||'01' AS INTEGER) BETWEEN CY.QSRQ AND CY.JSRQ) AND a.khdxdh!=$khdxdh$ group by b.jgkhdxdh )a group by a.jgkhdxdh )a on a.jgkhdxdh=b.jgkhdxdh where a.fpjx&gt;b.zjx</select>  
-    <select id="dn0.xnhyfpjxgzgl_selectXnhyjx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select cast(sum(zjx) as decimal(19,2)) as zjx from (SELECT cy.jgkhdxdh, sum(yyjg.yyjg) AS zjx from khfa_yyjg_hy yyjg inner join khfa_fapz pz on yyjg.fabh = pz.fabh and pz.yyzlbh = 1 inner join khdx_hy hy on yyjg.khdxdh = hy.khdxdh and hy.hydh like 'XN%' inner join khdx_jgcy cy on hy.khdxdh = cy.khdxdh and yyjg.tjrq between cy.qsrq and cy.jsrq INNER JOIN csb_sjw sjw ON sjw.TJRQ= cast ('$tjrq$'||'01' AS integer) inner join xtb_xtcs css on css.csmc='XNHYJZQSRQ' where yyjg.TJRQ in (select ym from csb_sjw where tjrq<![CDATA[<=]]>(select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER)) and ym=tjrq AND yyjg.TJRQ<![CDATA[>=]]>(CASE WHEN (select csz from xtb_xtcs where csmc='XNHYJXJZBZ')='0' THEN (select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER)) WHEN (select csz from xtb_xtcs where csmc='XNHYJXJZBZ')='1' THEN (select nc from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER)) WHEN (select csz from xtb_xtcs where csmc='XNHYJXJZBZ')='2' THEN (select ym from csb_sjw where tjrq=(select cast(css.csz as integer) from xtb_xtcs where csmc='XNHYJZQSRQ')) end)) AND cy.jgkhdxdh IN (SELECT jgkhdxdh FROM KHDX_JGCY CY inner join csb_sjw sjw on sjw.tjrq = CAST('$tjrq$' || '01' AS INTEGER) and sjw.ym BETWEEN CY.QSRQ AND CY.JSRQ WHERE CY.KHDXDH = $khdxdh$) group by cy.jgkhdxdh union all select cy.jgkhdxdh as jgkhdxdh, 0 as zjx from khdx_jgcy cy inner join csb_sjw sjw2 on sjw2.tjrq = CAST('$tjrq$' || '01' AS INTEGER)and sjw2.ym BETWEEN CY.QSRQ AND CY.JSRQ where cy.khdxdh = $khdxdh$) b group by b.jgkhdxdh</select>  
-    <select id="dn0.xnhyfpjxgzgl_selectKfpjx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select coalesce(sum(a.fpjx), 0) as fpjx from sgdr_xnhyfpjx a inner join khdx_jgcy b on a.khdxdh = b.khdxdh and a.tjrq between b.qsrq and b.jsrq inner join xtb_xtcs css on css.csmc='XNHYJZQSRQ' where a.tjrq in (select ym from csb_sjw where tjrq<![CDATA[<=]]>(select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER)) and ym=tjrq AND a.TJRQ<![CDATA[>=]]>(CASE WHEN (select csz from xtb_xtcs where csmc='XNHYJXJZBZ')='0' THEN (select ym from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER)) WHEN (select csz from xtb_xtcs where csmc='XNHYJXJZBZ')='1' THEN (select nc from csb_sjw where tjrq=cast('$tjrq$' || '01' AS INTEGER)) WHEN (select csz from xtb_xtcs where csmc='XNHYJXJZBZ')='2' THEN (select ym from csb_sjw where tjrq=(select cast(css.csz as integer) from xtb_xtcs where csmc='XNHYJZQSRQ')) end)) and b.jgkhdxdh in (SELECT jgkhdxdh FROM KHDX_JGCY CY inner join csb_sjw w on w.tjrq = CAST('$tjrq$' || '01' AS INTEGER) WHERE CY.KHDXDH = $khdxdh$ AND w.ym BETWEEN CY.QSRQ AND CY.JSRQ) group by b.jgkhdxdh</select>  
-    <select id="dn0.xnhyfpjxgzgl_cxjzbz2" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='XNHYJXJZBZ'</select>  
-    <select id="dn0.xnhyfpjxgzgl_xnhyjzqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='XNHYJZQSRQ'</select> 
-  </sqlMap>  
-  <javascript> 
-    <import>parent.addTab('xnhyfpjxdr','虚拟行员绩效工资分配','/module/parser/import/visitHtml/xnhyfpjxdr');</import>  
-    <query>jQuery(document).ready(function () { editpage_height=450; editpage_width=500; jQuery('#tjny').blur(function(){ getYm(); }).trigger('blur'); PAS.di.execute('xnhyfpjxgzgl_cxjzbz',checkCxJzbz);//结转标志 PAS.di.execute('xnhyfpjxgzgl_getcsrq',getCsrq);//参数日期 $("#tjny").executeOnEvent('blur','xnhyfpjxgzgl_cxjzbz',checkCxJzbz); }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; } function getYm(){ var o_qsrq = createTimeObj(jQuery('#tjny').val()); jQuery('#tjny_ym').val(o_qsrq.ym); } function showAddEditDialog(){ var width = editpage_width||800; var height = editpage_height||550; custom_window('/module/parser/manage/getById/xnhyfpjxgzgl?operate=add',width,height,'虚拟行员绩效工资分配编辑'); } function checkCxJzbz(obj){ var tjrq = jQuery('#tjny').val(); if(obj.data.length&gt;0){ if(obj.data[0].CSZ=='0'){ //var b= tjrq+'01'; var b=jQuery('#tjny_ym').val(); $('#jzbz').val('sjw.tjrq ='+b); } if(obj.data[0].CSZ=='1'){ //var dqrq= tjrq+'01'; var dqrq=jQuery('#tjny_ym').val(); var dnnc = tjrq.substring(0,4)+'0101' $('#jzbz').val('sjw.tjrq in(select ym from csb_sjw where tjrq=ym and tjrq between '+dnnc+' and '+dqrq+')'); } if(obj.data[0].CSZ=='2'){ //var dqrq= tjrq+'01'; var dqrq=jQuery('#tjny_ym').val(); var csrq= $('#csrq').val(); $('#jzbz').val('sjw.tjrq in(select ym from csb_sjw where tjrq=ym and tjrq between '+csrq+' and '+dqrq+')'); } } } function getCsrq(obj){ jQuery('#csrq').val(obj.data[0].CSRQ); }</query>  
-    <edit>jQuery(document).ready(function () { //这里的js脚本，会在页面加载完成后执行 $("#myForm").css('margin-left','-75px'); //PAS.di.execute('xnhyfpjxgzgl_xnhyjzqsrq',checkXnhyjzqsrq); PAS.di.execute('xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx); $("#tjrq").executeOnEvent('blur','xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx); $("#khdxdh").executeOnEvent('change','xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx); if($("#page_operate").val()=='add'){ jQuery($("#tjrq").removeAttr("disabled")); var o_qsrq = createTimeObj(jQuery('#tjrq').val()); jQuery('#tjrq_ym').val(o_qsrq.ym); $("#tjrq").blur(function(){ var o_qsrq = createTimeObj(jQuery('#tjrq').val()); jQuery('#tjrq_ym').val(o_qsrq.ym); }); }else{ jQuery('#hyjx').val(jQuery('#fpjx').val()); PAS.di.execute('xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx); PAS.di.execute('xnhyfpjxgzgl_selectKfpjx',selectKfpjx); jQuery($("#tjrq").attr("disabled","disabled")); $("#tjrq").val( jQuery('#tjrq_ym').val().substring(0,6)); } }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ var kfpjx = $("#kfpjx").val(); var fpjx = $("#fpjx").val(); if(parseFloat(fpjx)&gt;parseFloat(kfpjx)){ custom_alert('分配绩效必须小于等于可分配绩效!'); return false; } if($("#tjrq_ym").val() &lt; $("#csdate").val()) { custom_alert('统计日期不能小于：'+$("#csdate").val().substr(0,6)); return false; } if(fucCheckLength($('#bzsm').val())&gt;200){ custom_alert('备注超长！'); return false; } return true; } function selectXnhyjx(obj){ if(obj.data.length&gt;0){ $("#xnhyjx").val(obj.data[0].ZJX); }else{ $("#xnhyjx").val("0"); } if($("#page_operate").val()=='add'){ PAS.di.execute('xnhyfpjxgzgl_selectKfpjx',selectKfpjx); $("#tjrq").executeOnEvent('blur','xnhyfpjxgzgl_selectKfpjx',selectKfpjx); $("#khdxdh").executeOnEvent('change','xnhyfpjxgzgl_selectKfpjx',selectKfpjx); } } function selectKfpjx(obj){ if(obj.data.length&gt;0){ var kfpjx = obj.data[0].FPJX; var zjx = $("#xnhyjx").val(); var hyjx= $("#hyjx").val(); var jx =parseFloat(zjx)-parseFloat(kfpjx)+parseFloat(hyjx); $("#kfpjx").val(jx.toFixed(2)); }else{ $("#kfpjx").val($("#xnhyjx").val()); PAS.di.setDone(obj.sqlid); } } function fucCheckLength(strTemp) { var i,sum; sum=0; for(i=0;i&lt;strTemp.length;i++) { if ((strTemp.charCodeAt(i)&gt;=0) &amp;&amp; (strTemp.charCodeAt(i)&lt;=255)) sum=sum+1; else sum=sum+2; } return sum; } function checkXnhyjzqsrq(obj){ if(obj.data.length&gt;0){ $('#xnhyqsrq').val(obj.data[0].CSZ); PAS.di.execute('xnhyfpjxgzgl_cxjzbz2',checkCxJzbz);//结转标志 } PAS.di.setDone(obj.sqlid); } function checkCxJzbz(obj){ var tjrq = jQuery('#tjrq').val(); if(obj.data.length&gt;0){ if(obj.data[0].CSZ=='0'){ var b= tjrq+'01'; $('#jzbz').val('yyjg.tjrq in(select ym from csb_sjw where tjrq=CAST('+b+' AS INTEGER))'); PAS.di.execute('xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx); // PAS.di.execute('xnhyfpjxgzgl_selectKfpjx',selectKfpjx); $("#tjrq").executeOnEvent('blur','xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx); $("#tjrq").executeOnEvent('blur','xnhyfpjxgzgl_cxjzbz2',checkCxJzbz); $("#khdxdh").executeOnEvent('change','xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx); $("#khdxdh").executeOnEvent('change','xnhyfpjxgzgl_cxjzbz2',checkCxJzbz); } if(obj.data[0].CSZ=='1'){ var dqrq= tjrq+'01'; var dnnc = tjrq.substring(0,4)+'0101' $('#jzbz').val('yyjg.tjrq in(select distinct ym from csb_sjw where tjrq between '+dnnc+' and '+dqrq+')'); PAS.di.execute('xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx); // PAS.di.execute('xnhyfpjxgzgl_selectKfpjx',selectKfpjx); $("#tjrq").executeOnEvent('blur','xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx); $("#tjrq").executeOnEvent('blur','xnhyfpjxgzgl_cxjzbz2',checkCxJzbz); $("#khdxdh").executeOnEvent('change','xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx); $("#khdxdh").executeOnEvent('change','xnhyfpjxgzgl_cxjzbz2',checkCxJzbz); } if(obj.data[0].CSZ=='2'){ var dqrq= tjrq+'01'; var xnhyqsrq = $('#xnhyqsrq').val(); $('#jzbz').val('yyjg.tjrq in(select distinct ym from csb_sjw where tjrq &lt;='+dqrq+' and tjrq &gt;= '+xnhyqsrq+')'); PAS.di.execute('xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx); $("#tjrq").executeOnEvent('blur','xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx); $("#khdxdh").executeOnEvent('change','xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx); $("#tjrq").executeOnEvent('blur','xnhyfpjxgzgl_cxjzbz2',checkCxJzbz); $("#khdxdh").executeOnEvent('change','xnhyfpjxgzgl_cxjzbz2',checkCxJzbz); } } PAS.di.setDone(obj.sqlid); }</edit> 
-  </javascript> 
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}
+function getYm(){
+ var o_qsrq = createTimeObj(jQuery('#tjny').val()); 
+ jQuery('#tjny_ym').val(o_qsrq.ym);
+}
+function showAddEditDialog(){
+        var width = editpage_width||800;    
+        var height = editpage_height||550;    
+        custom_window('/module/parser/manage/getById/xnhyfpjxgzgl?operate=add',width,height,'虚拟行员绩效工资分配编辑');
+}
+
+function checkCxJzbz(obj){
+  var tjrq = jQuery('#tjny').val(); 
+
+  if(obj.data.length&gt;0){
+      if(obj.data[0].CSZ=='0'){
+          //var b= tjrq+'01';
+           var b=jQuery('#tjny_ym').val();
+         $('#jzbz').val('sjw.tjrq ='+b);
+      }
+      if(obj.data[0].CSZ=='1'){
+         //var dqrq= tjrq+'01';
+          var dqrq=jQuery('#tjny_ym').val();
+         var dnnc = tjrq.substring(0,4)+'0101'
+         $('#jzbz').val('sjw.tjrq in(select   ym from csb_sjw where tjrq=ym and tjrq between '+dnnc+'  and '+dqrq+')');
+      }
+      if(obj.data[0].CSZ=='2'){
+         //var dqrq= tjrq+'01';
+         var dqrq=jQuery('#tjny_ym').val();
+         var csrq= $('#csrq').val();
+         $('#jzbz').val('sjw.tjrq in(select  ym from csb_sjw where tjrq=ym and tjrq between '+csrq+' and '+dqrq+')');
+      
+      }
+  }
+}
+function getCsrq(obj){
+jQuery('#csrq').val(obj.data[0].CSRQ);
+}</query>
+    <edit>jQuery(document).ready(function () {
+//这里的js脚本，会在页面加载完成后执行
+    $("#myForm").css('margin-left','-75px');
+   //PAS.di.execute('xnhyfpjxgzgl_xnhyjzqsrq',checkXnhyjzqsrq);
+   PAS.di.execute('xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx);
+  $("#tjrq").executeOnEvent('blur','xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx); 
+  $("#khdxdh").executeOnEvent('change','xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx);
+  if($("#page_operate").val()=='add'){
+       jQuery($("#tjrq").removeAttr("disabled"));
+        var o_qsrq = createTimeObj(jQuery('#tjrq').val()); 
+       jQuery('#tjrq_ym').val(o_qsrq.ym);
+        $("#tjrq").blur(function(){
+       var o_qsrq = createTimeObj(jQuery('#tjrq').val()); 
+       jQuery('#tjrq_ym').val(o_qsrq.ym);
+    }); 
+  }else{
+     jQuery('#hyjx').val(jQuery('#fpjx').val());
+     PAS.di.execute('xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx); 
+     PAS.di.execute('xnhyfpjxgzgl_selectKfpjx',selectKfpjx);
+     jQuery($("#tjrq").attr("disabled","disabled"));
+      $("#tjrq").val( jQuery('#tjrq_ym').val().substring(0,6));
+  }
+});
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+   var kfpjx = $("#kfpjx").val();
+   var fpjx = $("#fpjx").val();
+   if(parseFloat(fpjx)&gt;parseFloat(kfpjx)){
+    custom_alert('分配绩效必须小于等于可分配绩效!');
+      return false;
+   }
+   if($("#tjrq_ym").val() &lt; $("#csdate").val())
+   {
+      custom_alert('统计日期不能小于：'+$("#csdate").val().substr(0,6));
+      return false;
+   }
+  
+   if(fucCheckLength($('#bzsm').val())&gt;200){
+        custom_alert('备注超长！');
+        return false;
+    }
+  return true;
+}
+
+function selectXnhyjx(obj){
+
+   if(obj.data.length&gt;0){
+      $("#xnhyjx").val(obj.data[0].ZJX); 
+   }else{
+      $("#xnhyjx").val("0"); 
+   }
+   if($("#page_operate").val()=='add'){
+   PAS.di.execute('xnhyfpjxgzgl_selectKfpjx',selectKfpjx);
+   $("#tjrq").executeOnEvent('blur','xnhyfpjxgzgl_selectKfpjx',selectKfpjx);
+    $("#khdxdh").executeOnEvent('change','xnhyfpjxgzgl_selectKfpjx',selectKfpjx);
+    }
+}
+
+function selectKfpjx(obj){
+   if(obj.data.length&gt;0){
+     var kfpjx = obj.data[0].FPJX;
+     var zjx = $("#xnhyjx").val();
+     var hyjx= $("#hyjx").val();
+     var jx =parseFloat(zjx)-parseFloat(kfpjx)+parseFloat(hyjx);
+      $("#kfpjx").val(jx.toFixed(2)); 
+   }else{
+     $("#kfpjx").val($("#xnhyjx").val()); 
+     PAS.di.setDone(obj.sqlid);
+   }
+}
+
+function fucCheckLength(strTemp) {  
+ var i,sum;  
+ sum=0;  
+ for(i=0;i&lt;strTemp.length;i++)  
+ {  
+  if ((strTemp.charCodeAt(i)&gt;=0) &amp;&amp; (strTemp.charCodeAt(i)&lt;=255))  
+   sum=sum+1;  
+  else  
+   sum=sum+2;  
+ }  
+ return sum;  
+} 
+
+function checkXnhyjzqsrq(obj){
+  if(obj.data.length&gt;0){
+    $('#xnhyqsrq').val(obj.data[0].CSZ);
+    PAS.di.execute('xnhyfpjxgzgl_cxjzbz2',checkCxJzbz);//结转标志
+  }
+  PAS.di.setDone(obj.sqlid);
+}
+
+function checkCxJzbz(obj){
+  var tjrq = jQuery('#tjrq').val();
+  if(obj.data.length&gt;0){
+      if(obj.data[0].CSZ=='0'){
+          var b= tjrq+'01';
+        $('#jzbz').val('yyjg.tjrq  in(select ym from csb_sjw where tjrq=CAST('+b+' AS INTEGER))');
+        PAS.di.execute('xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx); 
+      //  PAS.di.execute('xnhyfpjxgzgl_selectKfpjx',selectKfpjx);
+        $("#tjrq").executeOnEvent('blur','xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx);
+        $("#tjrq").executeOnEvent('blur','xnhyfpjxgzgl_cxjzbz2',checkCxJzbz);
+        $("#khdxdh").executeOnEvent('change','xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx);
+        $("#khdxdh").executeOnEvent('change','xnhyfpjxgzgl_cxjzbz2',checkCxJzbz);
+       }
+      if(obj.data[0].CSZ=='1'){
+         var dqrq= tjrq+'01';
+         var dnnc = tjrq.substring(0,4)+'0101'
+        $('#jzbz').val('yyjg.tjrq in(select distinct ym from csb_sjw where tjrq between '+dnnc+'  and '+dqrq+')');
+        PAS.di.execute('xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx); 
+      //  PAS.di.execute('xnhyfpjxgzgl_selectKfpjx',selectKfpjx);
+        $("#tjrq").executeOnEvent('blur','xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx);
+        $("#tjrq").executeOnEvent('blur','xnhyfpjxgzgl_cxjzbz2',checkCxJzbz);
+        $("#khdxdh").executeOnEvent('change','xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx);
+        $("#khdxdh").executeOnEvent('change','xnhyfpjxgzgl_cxjzbz2',checkCxJzbz);
+     }
+      if(obj.data[0].CSZ=='2'){
+         var dqrq= tjrq+'01';
+         var xnhyqsrq = $('#xnhyqsrq').val();
+        $('#jzbz').val('yyjg.tjrq in(select distinct ym from csb_sjw where tjrq &lt;='+dqrq+' and tjrq &gt;= '+xnhyqsrq+')');
+        PAS.di.execute('xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx); 
+        $("#tjrq").executeOnEvent('blur','xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx);
+        $("#khdxdh").executeOnEvent('change','xnhyfpjxgzgl_selectXnhyjx',selectXnhyjx);
+        
+        $("#tjrq").executeOnEvent('blur','xnhyfpjxgzgl_cxjzbz2',checkCxJzbz);
+        $("#khdxdh").executeOnEvent('change','xnhyfpjxgzgl_cxjzbz2',checkCxJzbz);
+      }
+  }
+  PAS.di.setDone(obj.sqlid);
+}</edit>
+  </javascript>
 </pageSetting>
+

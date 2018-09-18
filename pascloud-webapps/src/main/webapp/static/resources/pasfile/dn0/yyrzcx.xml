@@ -1,69 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="yyrzcx" title="应用日志查询" type="query" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags> 
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期"> 
-        <attribute key="dateFmt" value="yyyyMMdd"/>  
-        <attribute key="defValType" value="srvDate"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="tjrq"/>  
-        <attribute key="minDate" value="no"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员"> 
-        <attribute key="isDisplayXN" value="false"/>  
-        <attribute key="hyckbz" value="hy_jg"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="false"/>  
-        <attribute key="jgckbz" value="jg_ckhy"/>  
-        <attribute key="name" value="khdxdh"/>  
-        <attribute key="multiple" value="true"/> 
-      </tag>  
-      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="排序"> 
-        <attribute key="defVal" value="SJSJ"/>  
-        <attribute key="width" value="120px;"/>  
-        <attribute key="dmmc" value="yyrzpx"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="px"/>  
-        <attribute key="isAll" value="false"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag>  
-      <tag row="0" col="3" colspan="1" rowspan="1" name="Dmms" label=""> 
-        <attribute key="defVal" value="DESC"/>  
-        <attribute key="width" value="120px;"/>  
-        <attribute key="dmmc" value="orderbytype"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="pxgz"/>  
-        <attribute key="isAll" value="false"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag> 
-    </tags> 
-  </conPart>  
-  <table id="yyrzcx_xsjy1jgj" title="新数据源1结果集" page="true"> 
-    <col id="SJSJ" title="事件时间" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="XMMC" title="项目名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <sqlMap namespace="studio.yyrzcx"> 
-    <select id="dn0.yyrzcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select F_TimeToChar(yyrz.sjsj,'yyyy-mm-dd hh24:mi:ss') sjsj, xtcd.xmmc,jg.jgmc, jgcy.jgdh,hy.hymc,yyrz.hydh from xtb_yyrz yyrz inner join xtb_xtcd xtcd on yyrz.xmdh = xtcd.xmdh inner join table(FN_GETSJJG_JAVA_QXHY($sysdate$,$login_khdxdh$,0)) hy on yyrz.hydh = hy.hydh inner join khdx_jgcy jgcy on hy.khdxdh=jgcy.khdxdh inner join khdx_jg jg on jgcy.jgkhdxdh = jg.khdxdh 
-      <isNotEmpty property="tjrq">where $tjrq$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty> and sjsj between F_INTTOTIME($tjrq$,1) and F_INTTOTIME($tjrq$,2) 
-      <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty> order by $px$ $pxgz$
-    </select>  
-    <select id="dn0.yyrzcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select F_TimeToChar(yyrz.sjsj,'yyyy-mm-dd hh24:mi:ss') sjsj, xtcd.xmmc,jg.jgmc, jgcy.jgdh,hy.hymc,yyrz.hydh from xtb_yyrz yyrz inner join xtb_xtcd xtcd on yyrz.xmdh = xtcd.xmdh inner join table(FN_GETSJJG_JAVA_QXHY($sysdate$,$login_khdxdh$,0)) hy on yyrz.hydh = hy.hydh inner join khdx_jgcy jgcy on hy.khdxdh=jgcy.khdxdh inner join khdx_jg jg on jgcy.jgkhdxdh = jg.khdxdh 
-      <isNotEmpty property="tjrq">where $tjrq$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty> and sjsj between F_INTTOTIME($tjrq$,1) and F_INTTOTIME($tjrq$,2) 
-      <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty> order by $px$ $pxgz$ ) t
-    </select> 
-  </sqlMap>  
-  <rels> 
-    <items id="yyrzcx_xsjy1jgj"/> 
-  </rels>  
+<pageSetting id="yyrzcx" title="应用日志查询" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期">
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="defValType" value="srvDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员">
+        <attribute key="isDisplayXN" value="false" />
+        <attribute key="hyckbz" value="hy_jg" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="true" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="排序">
+        <attribute key="defVal" value="SJSJ" />
+        <attribute key="width" value="120px;" />
+        <attribute key="dmmc" value="yyrzpx" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="px" />
+        <attribute key="isAll" value="false" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Dmms" label="">
+        <attribute key="defVal" value="DESC" />
+        <attribute key="width" value="120px;" />
+        <attribute key="dmmc" value="orderbytype" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="pxgz" />
+        <attribute key="isAll" value="false" />
+        <attribute key="multiple" value="false" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="yyrzcx_xsjy1jgj" title="新数据源1结果集" page="true">
+    <col id="SJSJ" title="事件时间" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="XMMC" title="项目名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.yyrzcx">
+    <select id="dn0.yyrzcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  F_TimeToChar(yyrz.sjsj,'yyyy-mm-dd hh24:mi:ss') sjsj, xtcd.xmmc,jg.jgmc, jgcy.jgdh,hy.hymc,yyrz.hydh  from xtb_yyrz yyrz inner join xtb_xtcd  xtcd on yyrz.xmdh = xtcd.xmdh   inner join table(FN_GETSJJG_JAVA_QXHY($sysdate$,$login_khdxdh$,0)) hy on yyrz.hydh = hy.hydh inner join khdx_jgcy jgcy on hy.khdxdh=jgcy.khdxdh   inner join khdx_jg jg on jgcy.jgkhdxdh = jg.khdxdh
+      <isNotEmpty property="tjrq">where $tjrq$ between jgcy.qsrq  and jgcy.jsrq</isNotEmpty>
+      and sjsj between F_INTTOTIME($tjrq$,1) and F_INTTOTIME($tjrq$,2)
+      <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
+      order by $px$ $pxgz$
+    </select>
+    <select id="dn0.yyrzcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select  F_TimeToChar(yyrz.sjsj,'yyyy-mm-dd hh24:mi:ss') sjsj, xtcd.xmmc,jg.jgmc, jgcy.jgdh,hy.hymc,yyrz.hydh  from xtb_yyrz yyrz inner join xtb_xtcd  xtcd on yyrz.xmdh = xtcd.xmdh   inner join table(FN_GETSJJG_JAVA_QXHY($sysdate$,$login_khdxdh$,0)) hy on yyrz.hydh = hy.hydh inner join khdx_jgcy jgcy on hy.khdxdh=jgcy.khdxdh   inner join khdx_jg jg on jgcy.jgkhdxdh = jg.khdxdh
+      <isNotEmpty property="tjrq">where $tjrq$ between jgcy.qsrq  and jgcy.jsrq</isNotEmpty>
+      and sjsj between F_INTTOTIME($tjrq$,1) and F_INTTOTIME($tjrq$,2)
+      <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
+      order by $px$ $pxgz$ ) t
+    </select>
+  </sqlMap>
+  <rels>
+    <items id="yyrzcx_xsjy1jgj" />
+  </rels>
   <javascript><![CDATA[jQuery(document).ready(function () {
 //这里的js脚本，会在页面加载完成后执行
 
@@ -71,5 +76,6 @@
 //自定义验证，在提交时执行。通过返回true，否则返回false
 function customValidate(){
  return true;
-}]]></javascript> 
+}]]></javascript>
 </pageSetting>
+

@@ -1,57 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="jgjxtlmxcx" title="机构绩效提留明细查询" type="query" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags> 
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="查询日期"> 
-        <attribute key="dateFmt" value="yyyyMMdd"/>  
-        <attribute key="defValType" value="yc"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="qsrq"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="至"> 
-        <attribute key="dateFmt" value="yyyyMMdd"/>  
-        <attribute key="defValType" value="sysDate"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="jsrq"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="0" col="2" colspan="1" rowspan="1" name="NewJg" label="机构"> 
-        <attribute key="editable" value="true"/>  
-        <attribute key="ckbz" value="jg_ckhy"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="jgkhdxdh"/>  
-        <attribute key="multiple" value="true"/> 
-      </tag> 
-    </tags> 
-  </conPart>  
-  <table id="jgjxtlmxcx_xsjy1jgj" title="新数据源1结果集" page="false"> 
-    <col id="TJRQ" title="操作日期" align="left" type="string" width="75" frozen="false" format="" mergeCells="false" footerCells="false"/>  
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" mergeCells="false" footerCells="false"/>  
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" mergeCells="false" footerCells="false"/>  
-    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" mergeCells="false" footerCells="false"/>  
-    <col id="LJLZJE" title="提留金额" align="left" type="float" width="100" frozen="false" format="" mergeCells="false" footerCells="true"/>  
-    <col id="DXJE" title="兑现金额" align="left" type="float" width="100" frozen="false" format="" mergeCells="false" footerCells="true"/>  
-    <col id="LJTLYE" title="提留余额" align="left" type="float" width="110" frozen="false" format="" mergeCells="false" footerCells="false" xsType="href" onclick="hyjxtlmx"/> 
-  </table>  
-  <sqlMap namespace="studio.jgjxtlmxcx"> 
-    <select id="dn0.jgjxtlmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select jg.khdxdh ,jg.jgmc , jg.jgdh , tjrq, tjye ljtlye ,dxje ,tlje ljlzje from khfa_jxtl_jg h inner join khdx_jg jg on jg.khdxdh = h.khdxdh inner join table(FN_GETSJJG_JAVA_QX(h.tjrq,$login_khdxdh$ ,0)) qx on jg.khdxdh = qx.khdxdh 
-      <isNotEmpty property="qsrq">where h.tjrq between $qsrq$ and $jsrq$</isNotEmpty>  
-      <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty> 
-    </select>  
-    <select id="dn0.jgjxtlmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select jg.khdxdh ,jg.jgmc , jg.jgdh , tjrq, tjye ljtlye ,dxje ,tlje ljlzje from khfa_jxtl_jg h inner join khdx_jg jg on jg.khdxdh = h.khdxdh inner join table(FN_GETSJJG_JAVA_QX(h.tjrq,$login_khdxdh$ ,0)) qx on jg.khdxdh = qx.khdxdh 
-      <isNotEmpty property="qsrq">where h.tjrq between $qsrq$ and $jsrq$</isNotEmpty>  
-      <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty> ) t
-    </select> 
-  </sqlMap>  
-  <rels> 
-    <items id="jgjxtlmxcx_xsjy1jgj"/> 
-  </rels>  
+<pageSetting id="jgjxtlmxcx" title="机构绩效提留明细查询" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="查询日期">
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="defValType" value="yc" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="qsrq" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="至">
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="jsrq" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="NewJg" label="机构">
+        <attribute key="editable" value="true" />
+        <attribute key="ckbz" value="jg_ckhy" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="jgkhdxdh" />
+        <attribute key="multiple" value="true" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="jgjxtlmxcx_xsjy1jgj" title="新数据源1结果集" page="false">
+    <col id="TJRQ" title="操作日期" align="left" type="string" width="75" frozen="false" format="" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" mergeCells="false" footerCells="false" />
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" mergeCells="false" footerCells="false" />
+    <col id="LJLZJE" title="提留金额" align="left" type="float" width="100" frozen="false" format="" mergeCells="false" footerCells="true" />
+    <col id="DXJE" title="兑现金额" align="left" type="float" width="100" frozen="false" format="" mergeCells="false" footerCells="true" />
+    <col id="LJTLYE" title="提留余额" align="left" type="float" width="110" frozen="false" format="" mergeCells="false" footerCells="false" xsType="href" onclick="hyjxtlmx" />
+  </table>
+  <sqlMap namespace="studio.jgjxtlmxcx">
+    <select id="dn0.jgjxtlmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select jg.khdxdh  ,jg.jgmc , jg.jgdh , tjrq, tjye ljtlye ,dxje ,tlje  ljlzje    from khfa_jxtl_jg h   inner join khdx_jg jg on jg.khdxdh = h.khdxdh    inner join table(FN_GETSJJG_JAVA_QX(h.tjrq,$login_khdxdh$ ,0)) qx      on jg.khdxdh = qx.khdxdh
+      <isNotEmpty property="qsrq">where h.tjrq between $qsrq$ and $jsrq$</isNotEmpty>
+      <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
+    </select>
+    <select id="dn0.jgjxtlmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select jg.khdxdh  ,jg.jgmc , jg.jgdh , tjrq, tjye ljtlye ,dxje ,tlje  ljlzje    from khfa_jxtl_jg h   inner join khdx_jg jg on jg.khdxdh = h.khdxdh    inner join table(FN_GETSJJG_JAVA_QX(h.tjrq,$login_khdxdh$ ,0)) qx      on jg.khdxdh = qx.khdxdh
+      <isNotEmpty property="qsrq">where h.tjrq between $qsrq$ and $jsrq$</isNotEmpty>
+      <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
+      ) t
+    </select>
+  </sqlMap>
+  <rels>
+    <items id="jgjxtlmxcx_xsjy1jgj" />
+  </rels>
   <javascript><![CDATA[jQuery(document).ready(function () {
 
 });
@@ -86,5 +88,6 @@ function hyjxtlmx(obj) {
 
  querySubQuery(paramsJsonString,"hyjxtlmxcx","45","30","tag");
    
-}]]></javascript> 
+}]]></javascript>
 </pageSetting>
+

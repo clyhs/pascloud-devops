@@ -1,99 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="znbsygkhjdcx" title="职能部室员工考核进度查询" type="query" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags> 
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="考核年份"> 
-        <attribute key="dateFmt" value="yyyy"/>  
-        <attribute key="defValType" value="sysDate"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="khnf"/>  
-        <attribute key="minDate" value="no"/> 
-      </tag>  
-      <tag row="0" col="1" colspan="1" rowspan="1" name="Dmms" label="考核周期"> 
-        <attribute key="width" value="120px;"/>  
-        <attribute key="dmmc" value="khzq"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="khzq"/>  
-        <attribute key="isAll" value="false"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag>  
-      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="考核期数"> 
-        <attribute key="isMultiple" value="false"/>  
-        <attribute key="width" value="120px;"/>  
-        <attribute key="isSearch" value="false"/>  
-        <attribute key="sql" value="select dmz as key, dmms as value from csb_dmms where 1=2"/>  
-        <attribute key="isRequired" value="false"/>  
-        <attribute key="name" value="khqs"/>  
-        <attribute key="isAll" value="false"/>  
-        <attribute key="isEditable" value="true"/> 
-      </tag>  
-      <tag row="0" col="3" colspan="1" rowspan="1" name="MSQL4Select" label="考核方案"> 
-        <attribute key="parents" value="khzq"/>  
-        <attribute key="isMultiple" value="false"/>  
-        <attribute key="width" value="120px;"/>  
-        <attribute key="isSearch" value="true"/>  
-        <attribute key="sql" value="select fabh as key, famc as value from znbs_fapz where khnf=$khnf$ and khzq=$khzq$ and 'test'&lt;&gt;'test$khzq$' and khdx = '2'"/>  
-        <attribute key="isRequired" value="false"/>  
-        <attribute key="name" value="fabh"/>  
-        <attribute key="isAll" value="true"/>  
-        <attribute key="isEditable" value="true"/> 
-      </tag>  
-      <tag row="0" col="4" colspan="1" rowspan="1" name="DataInterface" label="null"> 
-        <attribute key="dataType" value="select"/>  
-        <attribute key="sql" value="select distinct pffa.KHQS from znbs_zxpffa pffa  inner join znbs_fapz fapz on pffa.fabh = fapz.fabh where  fapz.khnf = $khnf$ and pffa.khzt = '1' and fapz.KHZQ=$khzq$"/>  
-        <attribute key="name" value="ygkhqsmr"/> 
-      </tag>  
-      <tag row="1" col="0" colspan="1" rowspan="1" name="MSQL4Select" label="考核状态"> 
-        <attribute key="isMultiple" value="false"/>  
-        <attribute key="width" value="120px;"/>  
-        <attribute key="isSearch" value="false"/>  
-        <attribute key="sql" value="select dmz as key, dmms as value from csb_dmms where 1=2"/>  
-        <attribute key="isRequired" value="false"/>  
-        <attribute key="name" value="khzt"/>  
-        <attribute key="isAll" value="true"/>  
-        <attribute key="isEditable" value="true"/> 
-      </tag>  
-      <tag row="1" col="1" colspan="1" rowspan="1" name="MSQL4Select" label="评分状态"> 
-        <attribute key="isMultiple" value="false"/>  
-        <attribute key="width" value="120px;"/>  
-        <attribute key="isSearch" value="false"/>  
-        <attribute key="sql" value="select dmz as key, dmms as value from csb_dmms where 1=2"/>  
-        <attribute key="isRequired" value="false"/>  
-        <attribute key="name" value="pfzt"/>  
-        <attribute key="isAll" value="false"/>  
-        <attribute key="isEditable" value="true"/> 
-      </tag>  
-      <tag row="1" col="2" colspan="1" rowspan="1" name="NewMultipleHy" label="行员"> 
-        <attribute key="isDisplayXN" value="true"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="false"/>  
-        <attribute key="jgckbz" value="jg_znbs"/>  
-        <attribute key="name" value="khdxdh"/>  
-        <attribute key="multiple" value="true"/> 
-      </tag> 
-    </tags> 
-  </conPart>  
-  <table id="znbsygkhjdcx_xsjy1jgj" title="新数据源1结果集" page="true"> 
-    <col id="KHNF" title="考核年份" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false"/>  
-    <col id="KHZQMC" title="考核周期" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false"/>  
-    <col id="KHQS" title="考核期数" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false"/>  
-    <col id="FAMC" title="方案名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false"/>  
-    <col id="ZNBSMC" title="职能部室" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false"/>  
-    <col id="BKHHYGW" title="被考核行员岗位" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false"/>  
-    <col id="BKHHYDH" title="被考核行员代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false"/>  
-    <col id="BKHHYMC" title="被考核行员名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false"/>  
-    <col id="KHZT" title="考核状态" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
-    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
-    <col id="FABH" title="方案编号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="PFZT" title="评分状态" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
-    <col id="KHZQ" title="考核周期" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false"/>  
-    <col id="ZNBS" title="职能部室" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <sqlMap namespace="studio.znbsygkhjdcx"> 
-    <select id="dn0.znbsygkhjdcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select a.khnf, a.fabh, a.famc, a.khzq, a.khzqmc , a.khqs, a.znbs, a.znbsmc , a.bkhhygw , a.khdxdh , a.bkhhydh , a.bkhhymc , case when a.khzt='0' then '未开始' when a.khzt = '1' then '正在进行' else '已完成' end khzt , case when a.pfzt=0 then '未完成' else '已完成' end pfzt 
+<pageSetting id="znbsygkhjdcx" title="职能部室员工考核进度查询" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="考核年份">
+        <attribute key="dateFmt" value="yyyy" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="khnf" />
+        <attribute key="minDate" value="no" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Dmms" label="考核周期">
+        <attribute key="width" value="120px;" />
+        <attribute key="dmmc" value="khzq" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="khzq" />
+        <attribute key="isAll" value="false" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="考核期数">
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isSearch" value="false" />
+        <attribute key="sql" value="select dmz as key, dmms as value from csb_dmms where 1=2" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="khqs" />
+        <attribute key="isAll" value="false" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="MSQL4Select" label="考核方案">
+        <attribute key="parents" value="khzq" />
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isSearch" value="true" />
+        <attribute key="sql" value="select fabh as key, famc as value from znbs_fapz where khnf=$khnf$ and khzq=$khzq$ and 'test'&lt;&gt;'test$khzq$' and khdx = '2'" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="fabh" />
+        <attribute key="isAll" value="true" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+      <tag row="0" col="4" colspan="1" rowspan="1" name="DataInterface" label="null">
+        <attribute key="dataType" value="select" />
+        <attribute key="sql" value="select distinct pffa.KHQS from znbs_zxpffa pffa  inner join znbs_fapz fapz on pffa.fabh = fapz.fabh where  fapz.khnf = $khnf$ and pffa.khzt = '1' and fapz.KHZQ=$khzq$" />
+        <attribute key="name" value="ygkhqsmr" />
+      </tag>
+      <tag row="1" col="0" colspan="1" rowspan="1" name="MSQL4Select" label="考核状态">
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isSearch" value="false" />
+        <attribute key="sql" value="select dmz as key, dmms as value from csb_dmms where 1=2" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="khzt" />
+        <attribute key="isAll" value="true" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+      <tag row="1" col="1" colspan="1" rowspan="1" name="MSQL4Select" label="评分状态">
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isSearch" value="false" />
+        <attribute key="sql" value="select dmz as key, dmms as value from csb_dmms where 1=2" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="pfzt" />
+        <attribute key="isAll" value="false" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+      <tag row="1" col="2" colspan="1" rowspan="1" name="NewMultipleHy" label="行员">
+        <attribute key="isDisplayXN" value="true" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="jgckbz" value="jg_znbs" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="true" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="znbsygkhjdcx_xsjy1jgj" title="新数据源1结果集" page="true">
+    <col id="KHNF" title="考核年份" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="KHZQMC" title="考核周期" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="KHQS" title="考核期数" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="FAMC" title="方案名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="ZNBSMC" title="职能部室" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="BKHHYGW" title="被考核行员岗位" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="BKHHYDH" title="被考核行员代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="BKHHYMC" title="被考核行员名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="KHZT" title="考核状态" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false" />
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false" />
+    <col id="FABH" title="方案编号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="PFZT" title="评分状态" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false" />
+    <col id="KHZQ" title="考核周期" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="ZNBS" title="职能部室" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.znbsygkhjdcx">
+    <select id="dn0.znbsygkhjdcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[select a.khnf, a.fabh, a.famc, a.khzq, a.khzqmc , a.khqs, a.znbs, a.znbsmc , a.bkhhygw , a.khdxdh , a.bkhhydh , a.bkhhymc , case when a.khzt='0' then '未开始' when a.khzt = '1' then '正在进行' else '已完成' end khzt , case when a.pfzt=0 then '未完成' else '已完成' end pfzt 
 from ( 
     select a.khnf, a.fabh, a.famc, a.khzq, a.khzqmc , a.khqs, a.znbs, a.znbsmc , a.bkhhygw , a.khdxdh , a.bkhhydh , a.bkhhymc , a.khzt , case when sum(case when a.pfzt='1' then 0 else 1 end )>0 then 0 else 1 end as pfzt 
     from( 
@@ -104,17 +104,20 @@ from (
         inner join csb_dmms dmms on lower(dmms.dmmc) = 'khzq' and cast(dmms.dmz as integer) = cast(fapz.khzq as integer) 
         inner join khdx_hy bkhhy on bkhhy.khdxdh = pffa.khdxdh 
         inner join khdx_hygw bkhhygw on bkhhygw.khdxdh = bkhhy.khdxdh and bkhhygw.jsrq = 29991231 
-        where fapz.khdx='2']]>  
-      <isNotEmpty property="fabh">and pffa.fabh = $fabh$</isNotEmpty>  
-      <isNotEmpty property="khzq">and fapz.khzq = $khzq$</isNotEmpty>  
-      <isNotEmpty property="khnf">and fapz.khnf = $khnf$</isNotEmpty>  
-      <isNotEmpty property="khqs">and pffa.khqs = $khqs$</isNotEmpty>  
-      <isNotEmpty property="khzt">and pffa.khzt = '$khzt$'</isNotEmpty>  
-      <isNotEmpty property="khdxdh">and bkhhy.khdxdh in ($khdxdh$)</isNotEmpty> group by fapz.khnf, fapz.fabh, fapz.famc, fapz.khzq, dmms.dmms , pffa.khqs, fapz.znbs, jg.jgmc , bkhhygw.gwmc , bkhhy.khdxdh , bkhhy.hydh , bkhhy.hymc , pffa.khzt, pffa.pfzt )a group by a.khnf, a.fabh, a.famc, a.khzq, a.khzqmc , a.khqs, a.znbs, a.znbsmc , a.bkhhygw , a.khdxdh , a.bkhhydh , a.bkhhymc , a.khzt )a where 1=1 
-      <isNotEmpty property="pfzt">and a.pfzt = $pfzt$</isNotEmpty> order by a.khnf, a.khzq, a.khqs
-    </select>  
-    <select id="dn0.znbsygkhjdcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( <![CDATA[select a.khnf, a.fabh, a.famc, a.khzq, a.khzqmc , a.khqs, a.znbs, a.znbsmc , a.bkhhygw , a.khdxdh , a.bkhhydh , a.bkhhymc , case when a.khzt='0' then '未开始' when a.khzt = '1' then '正在进行' else '已完成' end khzt , case when a.pfzt=0 then '未完成' else '已完成' end pfzt 
+        where fapz.khdx='2']]>
+      <isNotEmpty property="fabh">and pffa.fabh = $fabh$</isNotEmpty>
+      <isNotEmpty property="khzq">and fapz.khzq = $khzq$</isNotEmpty>
+      <isNotEmpty property="khnf">and fapz.khnf = $khnf$</isNotEmpty>
+      <isNotEmpty property="khqs">and pffa.khqs = $khqs$</isNotEmpty>
+      <isNotEmpty property="khzt">and pffa.khzt = '$khzt$'</isNotEmpty>
+      <isNotEmpty property="khdxdh">and bkhhy.khdxdh in ($khdxdh$)</isNotEmpty>
+      group by fapz.khnf, fapz.fabh, fapz.famc, fapz.khzq, dmms.dmms , pffa.khqs, fapz.znbs, jg.jgmc , bkhhygw.gwmc , bkhhy.khdxdh , bkhhy.hydh , bkhhy.hymc , pffa.khzt, pffa.pfzt      )a      group by a.khnf, a.fabh, a.famc, a.khzq, a.khzqmc , a.khqs, a.znbs, a.znbsmc , a.bkhhygw , a.khdxdh , a.bkhhydh , a.bkhhymc , a.khzt  )a  where 1=1
+      <isNotEmpty property="pfzt">and a.pfzt = $pfzt$</isNotEmpty>
+      order by a.khnf, a.khzq, a.khqs
+    </select>
+    <select id="dn0.znbsygkhjdcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( <![CDATA[select a.khnf, a.fabh, a.famc, a.khzq, a.khzqmc , a.khqs, a.znbs, a.znbsmc , a.bkhhygw , a.khdxdh , a.bkhhydh , a.bkhhymc , case when a.khzt='0' then '未开始' when a.khzt = '1' then '正在进行' else '已完成' end khzt , case when a.pfzt=0 then '未完成' else '已完成' end pfzt 
 from ( 
     select a.khnf, a.fabh, a.famc, a.khzq, a.khzqmc , a.khqs, a.znbs, a.znbsmc , a.bkhhygw , a.khdxdh , a.bkhhydh , a.bkhhymc , a.khzt , case when sum(case when a.pfzt='1' then 0 else 1 end )>0 then 0 else 1 end as pfzt 
     from( 
@@ -125,24 +128,28 @@ from (
         inner join csb_dmms dmms on lower(dmms.dmmc) = 'khzq' and cast(dmms.dmz as integer) = cast(fapz.khzq as integer) 
         inner join khdx_hy bkhhy on bkhhy.khdxdh = pffa.khdxdh 
         inner join khdx_hygw bkhhygw on bkhhygw.khdxdh = bkhhy.khdxdh and bkhhygw.jsrq = 29991231 
-        where fapz.khdx='2']]>  
-      <isNotEmpty property="fabh">and pffa.fabh = $fabh$</isNotEmpty>  
-      <isNotEmpty property="khzq">and fapz.khzq = $khzq$</isNotEmpty>  
-      <isNotEmpty property="khnf">and fapz.khnf = $khnf$</isNotEmpty>  
-      <isNotEmpty property="khqs">and pffa.khqs = $khqs$</isNotEmpty>  
-      <isNotEmpty property="khzt">and pffa.khzt = '$khzt$'</isNotEmpty>  
-      <isNotEmpty property="khdxdh">and bkhhy.khdxdh in ($khdxdh$)</isNotEmpty> group by fapz.khnf, fapz.fabh, fapz.famc, fapz.khzq, dmms.dmms , pffa.khqs, fapz.znbs, jg.jgmc , bkhhygw.gwmc , bkhhy.khdxdh , bkhhy.hydh , bkhhy.hymc , pffa.khzt, pffa.pfzt )a group by a.khnf, a.fabh, a.famc, a.khzq, a.khzqmc , a.khqs, a.znbs, a.znbsmc , a.bkhhygw , a.khdxdh , a.bkhhydh , a.bkhhymc , a.khzt )a where 1=1 
-      <isNotEmpty property="pfzt">and a.pfzt = $pfzt$</isNotEmpty> order by a.khnf, a.khzq, a.khqs ) t
-    </select>  
-    <select id="dn0.znbsygkhjdcx_MSQL4SELECT_khqs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where 1=2</select>  
-    <select id="dn0.znbsygkhjdcx_MSQL4SELECT_fabh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ <![CDATA[select fabh as key, famc as value from znbs_fapz where khnf=$khnf$ and khzq=$khzq$ and 'test'<>'test$khzq$' and khdx = '2']]></select>  
-    <select id="dn0.znbsygkhjdcx_MSQL4SELECT_khzt" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where 1=2</select>  
-    <select id="dn0.znbsygkhjdcx_MSQL4SELECT_pfzt" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where 1=2</select>  
-    <select id="dn0.znbsygkhjdcx_ygkhqsmr" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct pffa.KHQS from znbs_zxpffa pffa inner join znbs_fapz fapz on pffa.fabh = fapz.fabh where fapz.khnf = $khnf$ and pffa.khzt = '1' and fapz.KHZQ=$khzq$</select> 
-  </sqlMap>  
-  <rels> 
-    <items id="znbsygkhjdcx_xsjy1jgj"/> 
-  </rels>  
+        where fapz.khdx='2']]>
+      <isNotEmpty property="fabh">and pffa.fabh = $fabh$</isNotEmpty>
+      <isNotEmpty property="khzq">and fapz.khzq = $khzq$</isNotEmpty>
+      <isNotEmpty property="khnf">and fapz.khnf = $khnf$</isNotEmpty>
+      <isNotEmpty property="khqs">and pffa.khqs = $khqs$</isNotEmpty>
+      <isNotEmpty property="khzt">and pffa.khzt = '$khzt$'</isNotEmpty>
+      <isNotEmpty property="khdxdh">and bkhhy.khdxdh in ($khdxdh$)</isNotEmpty>
+      group by fapz.khnf, fapz.fabh, fapz.famc, fapz.khzq, dmms.dmms , pffa.khqs, fapz.znbs, jg.jgmc , bkhhygw.gwmc , bkhhy.khdxdh , bkhhy.hydh , bkhhy.hymc , pffa.khzt, pffa.pfzt      )a      group by a.khnf, a.fabh, a.famc, a.khzq, a.khzqmc , a.khqs, a.znbs, a.znbsmc , a.bkhhygw , a.khdxdh , a.bkhhydh , a.bkhhymc , a.khzt  )a  where 1=1
+      <isNotEmpty property="pfzt">and a.pfzt = $pfzt$</isNotEmpty>
+      order by a.khnf, a.khzq, a.khqs ) t
+    </select>
+    <select id="dn0.znbsygkhjdcx_MSQL4SELECT_khqs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where 1=2</select>
+    <select id="dn0.znbsygkhjdcx_MSQL4SELECT_fabh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ <![CDATA[select fabh as key, famc as value from znbs_fapz where khnf=$khnf$ and khzq=$khzq$ and 'test'<>'test$khzq$' and khdx = '2']]></select>
+    <select id="dn0.znbsygkhjdcx_MSQL4SELECT_khzt" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where 1=2</select>
+    <select id="dn0.znbsygkhjdcx_MSQL4SELECT_pfzt" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms where 1=2</select>
+    <select id="dn0.znbsygkhjdcx_ygkhqsmr" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct pffa.KHQS from znbs_zxpffa pffa 
+inner join znbs_fapz fapz on pffa.fabh = fapz.fabh
+where  fapz.khnf = $khnf$ and pffa.khzt = '1' and fapz.KHZQ=$khzq$</select>
+  </sqlMap>
+  <rels>
+    <items id="znbsygkhjdcx_xsjy1jgj" />
+  </rels>
   <javascript><![CDATA[jQuery(document).ready(function () {
 BindParent('fabh','khnf','blur');
 BindParent('fabh','khzq','change');
@@ -250,5 +257,6 @@ function customOnLoadSuccess(data){
                   +'</div></td>');
     }
   }
-}]]></javascript> 
+}]]></javascript>
 </pageSetting>
+

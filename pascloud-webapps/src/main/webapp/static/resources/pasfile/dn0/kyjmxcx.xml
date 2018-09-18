@@ -1,112 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="kyjmxcx" title="卡业绩明细" type="query" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags> 
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期"> 
-        <attribute key="dateFmt" value="yyyyMMdd"/>  
-        <attribute key="defValType" value="sysDate"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="tjrq"/>  
-        <attribute key="minDate" value="no"/> 
-      </tag>  
-      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员"> 
-        <attribute key="isDisplayXN" value="true"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="jgckbz" value="jg_ckhy"/>  
-        <attribute key="name" value="khdxdh"/>  
-        <attribute key="multiple" value="true"/> 
-      </tag>  
-      <tag row="0" col="2" colspan="1" rowspan="1" name="Date" label="发卡日期"> 
-        <attribute key="dateFmt" value="yyyyMMdd"/>  
-        <attribute key="defValType" value="yc"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="fkqsrq"/>  
-        <attribute key="minDate" value="no"/> 
-      </tag>  
-      <tag row="0" col="3" colspan="1" rowspan="1" name="Date" label="至"> 
-        <attribute key="dateFmt" value="yyyyMMdd"/>  
-        <attribute key="defValType" value="sysDate"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="fkjsrq"/>  
-        <attribute key="minDate" value="no"/> 
-      </tag>  
-      <tag row="1" col="0" colspan="1" rowspan="1" name="Dmms" label="卡类"> 
-        <attribute key="width" value="120px;"/>  
-        <attribute key="dmmc" value="kl"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="kl"/>  
-        <attribute key="isAll" value="true"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag>  
-      <tag row="1" col="1" colspan="1" rowspan="1" name="Dmms" label="卡等级"> 
-        <attribute key="width" value="120px;"/>  
-        <attribute key="dmmc" value="kdj"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="kdj"/>  
-        <attribute key="isAll" value="true"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag>  
-      <tag row="1" col="2" colspan="1" rowspan="1" name="Text" label="卡号"> 
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="kh"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag> 
-    </tags> 
-  </conPart>  
-  <table id="kyjmxcx_xsjy1jgj" title="新数据源1结果集" page="noCount"> 
-    <col id="KH" title="卡号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
-    <col id="FKRQ" title="发卡日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
-    <col id="KL" title="卡类" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
-    <col id="KDJ" title="卡等级" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGMC" title="开卡机构" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
-    <col id="JXDXDH" title="绩效对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
-    <col id="JGDH" title="机构代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
-    <col id="1444887653398" title="业绩关系" align="left" type="string" width="555" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
-      <col id="HYGSJG" title="行员归属机构" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="HYDH" title="行员代号" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="HYMC" title="行员名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="ZLBL" title="分配比例" align="right" type="float" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
-      <col id="QSRQ" title="起始日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="JSRQ" title="结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-    </col> 
-  </table>  
-  <sqlMap namespace="studio.kyjmxcx"> 
-    <select id="dn0.kyjmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select jxdxdh,kh,jg.jgdh,jg.jgmc,zh, (case when kl.dmms is not null then kl.dmms else k.kl end) kl, (case when kdj.dmms is not null then kdj.dmms else k.kdj end) kdj, fkrq,hyjg.jgmc as hygsjg,hy.hydh,hy.hymc,k.qsrq,k.jsrq,zlbl from (select kzl.jxdxdh,kzl.kh,kzl.jgdh,kzl.zh,kzl.kl,kzl.kdj,kzl.fkrq,gx.khdxdh,gx.qsrq,gx.jsrq,gx.zlbl from jxdx_kzl kzl inner join dxgx_kyjgx gx on kzl.jxdxdh=gx.jxdxdh 
-      <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty> where kzl.gxhslx='1' and gx.khdxdh in($khdxdh$) 
-      <isNotEmpty property="fkqsrq">and kzl.fkrq between $fkqsrq$ and $fkjsrq$</isNotEmpty>  
-      <isNotEmpty property="kl">and kzl.kl='$kl$'</isNotEmpty>  
-      <isNotEmpty property="kdj">and kzl.kdj='$kdj$'</isNotEmpty>  
-      <isNotEmpty property="kh">and kzl.kh like '%$kh$%'</isNotEmpty> union all select kzl.jxdxdh,kzl.kh,kzl.jgdh,kzl.zh,kzl.kl,kzl.kdj,kzl.fkrq,kzl.khdxdh,kzl.fkrq qsrq,29991231 jsrq,100 zlbl from jxdx_kzl kzl where kzl.gxhslx='0' and kzl.khdxdh in($khdxdh$) 
-      <isNotEmpty property="fkqsrq">and kzl.fkrq between $fkqsrq$ and $fkjsrq$</isNotEmpty>  
-      <isNotEmpty property="kl">and kzl.kl='$kl$'</isNotEmpty>  
-      <isNotEmpty property="kdj">and kzl.kdj='$kdj$'</isNotEmpty>  
-      <isNotEmpty property="kh">and kzl.kh like '%$kh$%'</isNotEmpty> ) k inner join khdx_jg jg on k.jgdh=jg.jgdh inner join khdx_hy hy on k.khdxdh=hy.khdxdh inner join khdx_jgcy cy on hy.khdxdh=cy.khdxdh 
-      <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg hyjg on hyjg.khdxdh=cy.jgkhdxdh left join csb_dmms kl on k.kl=kl.dmz and kl.dmmc='KL' left join csb_dmms kdj on k.kdj=kdj.dmz and kdj.dmmc='KDJ' inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$, $login_khdxdh$, 0)) hyqx on k.khdxdh = hyqx.khdxdh order by hy.hydh,fkrq,qsrq
-    </select>  
-    <select id="dn0.kyjmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select jxdxdh,kh,jg.jgdh,jg.jgmc,zh, (case when kl.dmms is not null then kl.dmms else k.kl end) kl, (case when kdj.dmms is not null then kdj.dmms else k.kdj end) kdj, fkrq,hyjg.jgmc as hygsjg,hy.hydh,hy.hymc,k.qsrq,k.jsrq,zlbl from (select kzl.jxdxdh,kzl.kh,kzl.jgdh,kzl.zh,kzl.kl,kzl.kdj,kzl.fkrq,gx.khdxdh,gx.qsrq,gx.jsrq,gx.zlbl from jxdx_kzl kzl inner join dxgx_kyjgx gx on kzl.jxdxdh=gx.jxdxdh
-      <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty> where kzl.gxhslx='1' and gx.khdxdh in($khdxdh$) 
-      <isNotEmpty property="fkqsrq">and kzl.fkrq between $fkqsrq$ and $fkjsrq$</isNotEmpty>  
-      <isNotEmpty property="kl">and kzl.kl='$kl$'</isNotEmpty>  
-      <isNotEmpty property="kdj">and kzl.kdj='$kdj$'</isNotEmpty>  
-      <isNotEmpty property="kh">and kzl.kh like '%$kh$%'</isNotEmpty> union all select kzl.jxdxdh,kzl.kh,kzl.jgdh,kzl.zh,kzl.kl,kzl.kdj,kzl.fkrq,kzl.khdxdh,kzl.fkrq qsrq,29991231 jsrq,100 zlbl from jxdx_kzl kzl where kzl.gxhslx='0' and kzl.khdxdh in($khdxdh$) 
-      <isNotEmpty property="fkqsrq">and kzl.fkrq between $fkqsrq$ and $fkjsrq$</isNotEmpty>  
-      <isNotEmpty property="kl">and kzl.kl='$kl$'</isNotEmpty>  
-      <isNotEmpty property="kdj">and kzl.kdj='$kdj$'</isNotEmpty>  
-      <isNotEmpty property="kh">and kzl.kh like '%$kh$%'</isNotEmpty> ) k inner join khdx_jg jg on k.jgdh=jg.jgdh inner join khdx_hy hy on k.khdxdh=hy.khdxdh inner join khdx_jgcy cy on hy.khdxdh=cy.khdxdh 
-      <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg hyjg on hyjg.khdxdh=cy.jgkhdxdh left join csb_dmms kl on k.kl=kl.dmz and kl.dmmc='KL' left join csb_dmms kdj on k.kdj=kdj.dmz and kdj.dmmc='KDJ' inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$, $login_khdxdh$, 0)) hyqx on k.khdxdh = hyqx.khdxdh order by hy.hydh,fkrq,qsrq ) t
-    </select> 
-  </sqlMap>  
-  <rels> 
-    <items id="kyjmxcx_xsjy1jgj"/> 
-  </rels>  
+<pageSetting id="kyjmxcx" title="卡业绩明细" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期">
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="no" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员">
+        <attribute key="isDisplayXN" value="true" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="true" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="kyjmxcx_xsjy1jgj" title="新数据源1结果集" page="noCount">
+    <col id="KH" title="卡号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" />
+    <col id="FKRQ" title="发卡日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" />
+    <col id="KL" title="卡类" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="开卡机构" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" />
+    <col id="JXDXDH" title="绩效对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" />
+    <col id="1444887653398" title="业绩关系" align="left" type="string" width="435" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
+      <col id="HYDH" title="行员代号" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="HYMC" title="行员名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="ZLBL" title="分配比例" align="right" type="float" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" />
+      <col id="QSRQ" title="起始日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="JSRQ" title="结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    </col>
+  </table>
+  <sqlMap namespace="studio.kyjmxcx">
+    <select id="dn0.kyjmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select jxdxdh,kh,jg.jgdh,jg.jgmc,zh,        (case when kl.dmms is not null then kl.dmms else k.kl end) kl,        fkrq,hy.hydh,hy.hymc,qsrq,jsrq,zlbl from (select kzl.jxdxdh,kzl.kh,kzl.jgdh,kzl.zh,kzl.kl,kzl.fkrq,gx.khdxdh,gx.qsrq,gx.jsrq,gx.zlbl       from jxdx_kzl kzl       inner join dxgx_kyjgx gx on kzl.jxdxdh=gx.jxdxdh
+      <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty>
+      where kzl.gxhslx='1' and gx.khdxdh in($khdxdh$)       union all       select kzl.jxdxdh,kzl.kh,kzl.jgdh,kzl.zh,kzl.kl,kzl.fkrq,kzl.khdxdh,kzl.fkrq qsrq,29991231 jsrq,100 zlbl       from jxdx_kzl kzl       where kzl.gxhslx='0' and kzl.khdxdh in($khdxdh$)) k inner join khdx_jg jg on k.jgdh=jg.jgdh inner join khdx_hy hy on k.khdxdh=hy.khdxdh left join csb_dmms kl on k.kl=kl.dmz and kl.dmmc='KL' inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$, $login_khdxdh$, 0)) hyqx  on k.khdxdh = hyqx.khdxdh  order by qsrq
+    </select>
+    <select id="dn0.kyjmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select jxdxdh,kh,jg.jgdh,jg.jgmc,zh,        (case when kl.dmms is not null then kl.dmms else k.kl end) kl,        fkrq,hy.hydh,hy.hymc,qsrq,jsrq,zlbl from (select kzl.jxdxdh,kzl.kh,kzl.jgdh,kzl.zh,kzl.kl,kzl.fkrq,gx.khdxdh,gx.qsrq,gx.jsrq,gx.zlbl       from jxdx_kzl kzl       inner join dxgx_kyjgx gx on kzl.jxdxdh=gx.jxdxdh
+      <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty>
+      where kzl.gxhslx='1' and gx.khdxdh in($khdxdh$)       union all       select kzl.jxdxdh,kzl.kh,kzl.jgdh,kzl.zh,kzl.kl,kzl.fkrq,kzl.khdxdh,kzl.fkrq qsrq,29991231 jsrq,100 zlbl       from jxdx_kzl kzl       where kzl.gxhslx='0' and kzl.khdxdh in($khdxdh$)) k inner join khdx_jg jg on k.jgdh=jg.jgdh inner join khdx_hy hy on k.khdxdh=hy.khdxdh left join csb_dmms kl on k.kl=kl.dmz and kl.dmmc='KL' inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$, $login_khdxdh$, 0)) hyqx  on k.khdxdh = hyqx.khdxdh  order by qsrq ) t
+    </select>
+  </sqlMap>
+  <rels>
+    <items id="kyjmxcx_xsjy1jgj" />
+  </rels>
   <javascript><![CDATA[jQuery(document).ready(function () {
 
 });
@@ -114,5 +60,6 @@
 //自定义验证，在提交时执行。通过返回true，否则返回false
 function customValidate(){
  return true;
-}]]></javascript> 
+}]]></javascript>
 </pageSetting>
+

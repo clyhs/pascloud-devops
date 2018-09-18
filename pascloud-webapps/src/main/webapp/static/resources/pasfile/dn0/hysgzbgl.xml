@@ -1,260 +1,313 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="hysgzbgl" title="行员手工指标管理" type="manage" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName="">
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="readonly" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="1" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="">
+        <attribute key="isRequired" value="true" />
+        <attribute key="hyckbz" value="hy_jg" />
+        <attribute key="isDisplayXN" value="false" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="true" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="MSQL4Select" label="指标名称" fieldName="">
+        <attribute key="sql" value="select zbdh as key, zbmc as value from khdx_zb where whfs='2' order by zbpx" />
+        <attribute key="isSearch" value="true" />
+        <attribute key="style" value="width:220px" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="isMultiple" value="false" />
+        <attribute key="name" value="zbdh" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isAll" value="true" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+      <tag row="0" col="3" rowspan="1" colspan="1" name="Dmms" label="导入状态" fieldName="">
+        <attribute key="defVal" value="1" />
+        <attribute key="name" value="drzt" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isAll" value="true" />
+        <attribute key="dmmc" value="drzt" />
+        <attribute key="multiple" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="hysgzbgltable">
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="180" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="ZBDH" title="指标代号" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="ZBMC" title="指标名称" align="left" type="string" width="180" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="BZZWMC" title="币种" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="DMMS" title="时段标识" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="DRZT" title="drzt" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="SDBS" title="时段标识" align="left" type="hidden" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="BZ" title="币种" align="left" type="hidden" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="ZBZ" title="指标值" align="right" type="float" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+  </table>
+  <rels>
+    <items id="hysgzbgltable" />
+  </rels>
+  <addPage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName="TJRQ">
+      <attribute key="style" value="width:150px;" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="tjrq" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="KHDXDH">
+      <attribute key="isRequired" value="true" />
+      <attribute key="style" value="width:150px;" />
+      <attribute key="hyckbz" value="hy_jg" />
+      <attribute key="isDisplayXN" value="false" />
+      <attribute key="jgckbz" value="jg_ckhy" />
+      <attribute key="name" value="khdxdh" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="指标名称" fieldName="ZBDH">
+      <attribute key="sql" value="select zbdh as key, zbmc as value from khdx_zb where whfs='2' order by zbpx" />
+      <attribute key="isSearch" value="true" />
+      <attribute key="style" value="150px;" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="zbdh" />
+      <attribute key="width" value="150px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="evenName" value="change" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="true" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="币种" fieldName="BZ">
+      <attribute key="parents" value="zbdh" />
+      <attribute key="sql" value="select  distinct   dmms.dmz as key ,dmms.dmms as value from khdx_zbbz zbbz inner join csb_dmms dmms on dmms.dmmc='ZBBZ' and dmms.dmz=zbbz.bz where 1=1 and zbbz.zbdh=$zbdh$" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="bz" />
+      <attribute key="width" value="150px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="isEditable" value="true" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="时段标识" fieldName="SDBS">
+      <attribute key="parents" value="zbdh" />
+      <attribute key="sql" value="select dmms.dmz as key, dmms.dmms as value from khdx_zbsd zbsd inner join csb_dmms dmms on dmms.dmmc='ZBSDBS' and dmms.dmz=zbsd.sdbs where 1=1 and 'test'&lt;&gt;'test$zbdh$' and zbsd.zbdh=$zbdh$" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="sdbs" />
+      <attribute key="width" value="150px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="isEditable" value="true" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Text" label="指标值" fieldName="ZBZ">
+      <attribute key="style" value="width:150px;" />
+      <attribute key="name" value="zbz" />
+      <attribute key="styleClass" value="{required:true,number:true,decimal:[17,2]}" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+  </addPage>
+  <updatePage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName="TJRQ">
+      <attribute key="style" value="width:150px;" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="tjrq" />
+      <attribute key="isAll" value="false" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="readonly" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="KHDXDH">
+      <attribute key="isRequired" value="true" />
+      <attribute key="style" value="width:150px;" />
+      <attribute key="hyckbz" value="hy_jg" />
+      <attribute key="isDisplayXN" value="false" />
+      <attribute key="jgckbz" value="jg_ckhy" />
+      <attribute key="name" value="khdxdh" />
+      <attribute key="isAll" value="false" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="指标名称" fieldName="ZBDH">
+      <attribute key="sql" value="select zbdh as key, zbmc as value from khdx_zb where whfs='2' order by zbpx" />
+      <attribute key="isSearch" value="true" />
+      <attribute key="style" value="150px;" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="zbdh" />
+      <attribute key="width" value="150px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="evenName" value="change" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="币种" fieldName="BZ">
+      <attribute key="parents" value="zbdh" />
+      <attribute key="sql" value="select  distinct   dmms.dmz as key ,dmms.dmms as value from khdx_zbbz zbbz inner join csb_dmms dmms on dmms.dmmc='ZBBZ' and dmms.dmz=zbbz.bz where 1=1 and zbbz.zbdh=$zbdh$" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="bz" />
+      <attribute key="width" value="150px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="editable" value="false" />
+      <attribute key="isEditable" value="false" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="时段标识" fieldName="SDBS">
+      <attribute key="parents" value="zbdh" />
+      <attribute key="sql" value="select dmms.dmz as key, dmms.dmms as value from khdx_zbsd zbsd inner join csb_dmms dmms on dmms.dmmc='ZBSDBS' and dmms.dmz=zbsd.sdbs where 1=1 and 'test'&lt;&gt;'test$zbdh$' and zbsd.zbdh=$zbdh$" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="sdbs" />
+      <attribute key="width" value="150px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="editable" value="false" />
+      <attribute key="isEditable" value="false" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Text" label="指标值" fieldName="ZBZ">
+      <attribute key="style" value="width:150px;" />
+      <attribute key="name" value="zbz" />
+      <attribute key="styleClass" value="{required:true,number:true,decimal:[17,2]}" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+  </updatePage>
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+    <button>import</button>
+  </buttons>
+  <flow>
+    <insertbefore />
+    <insertafter />
+    <deletebefore />
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.hysgzbgl">
+    <select id="dn0.hysgzbglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select *  from(      select $tjrq$ tjrq, jg.jgdh, jg.jgmc, qx.hydh, qx.hymc, zb.zbdh, zb.zbmc, bz.bzzwmc, dmms.dmms, sgzb.zbz , case when sgzb.zbdh is null then '0' else '1' end as drzt      ,qx.khdxdh,zbsd.sdbs,zbbz.bz     from khdx_zb zb      inner join khdx_zbsd zbsd on zbsd.zbdh=zb.zbdh      inner join khdx_zbbz zbbz on zbbz.zbdh=zb.zbdh      inner join csb_bz bz on bz.bz=zbbz.bz      inner join csb_dmms dmms on dmms.dmz=zbsd.sdbs and dmms.dmmc='ZBSDBS'     inner join table(fn_getsjjg_java_qxhy($tjrq$, $login_khdxdh$, 0)) qx on 1=1      inner join khdx_jgcy jgcy on jgcy.khdxdh=qx.khdxdh
+      <isNotEmpty property="tjrq">and $tjrq$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty>
+      inner join khdx_jg jg on jg.khdxdh=jgcy.jgkhdxdh      left join yjzb_hysgzb sgzb on sgzb.zbdh=zb.zbdh and sgzb.khdxdh=qx.khdxdh and zbbz.bz=sgzb.bz and sgzb.sdbs=zbsd.sdbs
+      <isNotEmpty property="tjrq">and sgzb.tjrq=$tjrq$</isNotEmpty>
+      where zb.whfs='2'
+      <isNotEmpty property="khdxdh">and jgcy.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="zbdh">and zb.zbdh=$zbdh$</isNotEmpty>
+      )a  where 1=1
+      <isNotEmpty property="drzt">and  a.drzt='$drzt$'</isNotEmpty>
+    </select>
+    <select id="dn0.hysgzbglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select *  from(      select $tjrq$ tjrq, jg.jgdh, jg.jgmc, qx.hydh, qx.hymc, zb.zbdh, zb.zbmc, bz.bzzwmc, dmms.dmms, sgzb.zbz , case when sgzb.zbdh is null then '0' else '1' end as drzt      ,qx.khdxdh,zbsd.sdbs,zbbz.bz     from khdx_zb zb      inner join khdx_zbsd zbsd on zbsd.zbdh=zb.zbdh      inner join khdx_zbbz zbbz on zbbz.zbdh=zb.zbdh      inner join csb_bz bz on bz.bz=zbbz.bz      inner join csb_dmms dmms on dmms.dmz=zbsd.sdbs and dmms.dmmc='ZBSDBS'     inner join table(fn_getsjjg_java_qxhy($tjrq$, $login_khdxdh$, 0)) qx on 1=1      inner join khdx_jgcy jgcy on jgcy.khdxdh=qx.khdxdh
+      <isNotEmpty property="tjrq">and $tjrq$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty>
+      inner join khdx_jg jg on jg.khdxdh=jgcy.jgkhdxdh      left join yjzb_hysgzb sgzb on sgzb.zbdh=zb.zbdh and sgzb.khdxdh=qx.khdxdh and zbbz.bz=sgzb.bz and sgzb.sdbs=zbsd.sdbs
+      <isNotEmpty property="tjrq">and sgzb.tjrq=$tjrq$</isNotEmpty>
+      where zb.whfs='2'
+      <isNotEmpty property="khdxdh">and jgcy.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="zbdh">and zb.zbdh=$zbdh$</isNotEmpty>
+      )a  where 1=1
+      <isNotEmpty property="drzt">and  a.drzt='$drzt$'</isNotEmpty>
+      ) t
+    </select>
+    <select id="dn0.hysgzbgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  ZBZ, ZBDH, KHDXDH, SDBS, TJRQ, BZ  from YJZB_HYSGZB where 1= 1  and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and SDBS = '$sdbs$' and TJRQ = $tjrq$ and BZ = '$bz$'
+    </select>
+    <select id="dn0.hysgzbgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  ZBZ, ZBDH, KHDXDH, SDBS, TJRQ, BZ  from YJZB_HYSGZB where 1= 1  and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and SDBS = '$sdbs$' and TJRQ = $tjrq$ and BZ = '$bz$'
+    </select>
+    <insert id="dn0.hysgzbgl_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into YJZB_HYSGZB( BZ, ZBDH, KHDXDH, ZBZ, SDBS, TJRQ ) values ( '$bz$',$zbdh$,$khdxdh$,$zbz$,'$sdbs$',$tjrq$)
+    </insert>
+    <update id="dn0.hysgzbgl_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update YJZB_HYSGZB set ZBZ = $zbz$ where 1=1  and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and SDBS = '$sdbs$' and TJRQ = $tjrq$ and BZ = '$bz$'
+    </update>
+    <delete id="dn0.hysgzbgl_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from YJZB_HYSGZB where 1=1  and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and SDBS = '$sdbs$' and TJRQ = $tjrq$ and BZ = '$bz$'
+    </delete>
+    <select id="dn0.hysgzbgl_MSQL4SELECT_zbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select zbdh as key, zbmc as value from khdx_zb where whfs='2' order by zbpx</select>
+    <select id="dn0.hysgzbgl_MSQL4SELECT_bz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      /**!mycat:datanode=$db$**/ select  distinct   dmms.dmz as key ,dmms.dmms as value from khdx_zbbz zbbz inner join csb_dmms dmms on dmms.dmmc='ZBBZ' and dmms.dmz=zbbz.bz where 1=1
+      <isNotEmpty property="zbdh">and zbbz.zbdh=$zbdh$</isNotEmpty>
+    </select>
+    <select id="dn0.hysgzbgl_MSQL4SELECT_sdbs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      /**!mycat:datanode=$db$**/ <![CDATA[select dmms.dmz as key, dmms.dmms as value from khdx_zbsd zbsd inner join csb_dmms dmms on dmms.dmmc='ZBSDBS' and dmms.dmz=zbsd.sdbs where 1=1 and 'test'<>'test$zbdh$']]>
+      <isNotEmpty property="zbdh">and zbsd.zbdh=$zbdh$</isNotEmpty>
+    </select>
+  </sqlMap>
+  <javascript>
+    <import>parent.addTab('hysgzbdr','行员手工指标管理','/module/parser/import/visitHtml/hysgzbdr');</import>
+    <query>jQuery(document).ready(function () {
+  $("#tool_bar").append('&lt;input type="button" value="导 出" class="operation cbutton cbutton_bg_70" onClick="hysgzbdc()" /&gt;');
+});
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}
 
-<pageSetting id="hysgzbgl" title="行员手工指标管理" type="manage" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags> 
-      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName=""> 
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="tjrq"/>  
-        <attribute key="minDate" value="no"/>  
-        <attribute key="defValType" value="sysDate"/>  
-        <attribute key="dateFmt" value="yyyyMMdd"/>  
-        <attribute key="readonly" value="false"/>  
-        <attribute key="editable" value="true"/> 
-      </tag>  
-      <tag row="0" col="1" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName=""> 
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="hyckbz" value="hy_jg"/>  
-        <attribute key="isDisplayXN" value="false"/>  
-        <attribute key="jgckbz" value="jg_ckhy"/>  
-        <attribute key="name" value="khdxdh"/>  
-        <attribute key="multiple" value="true"/>  
-        <attribute key="editable" value="true"/> 
-      </tag>  
-      <tag row="0" col="2" rowspan="1" colspan="1" name="MSQL4Select" label="指标名称" fieldName=""> 
-        <attribute key="sql" value="select zbdh as key, zbmc as value from khdx_zb where whfs='2' order by zbpx"/>  
-        <attribute key="isSearch" value="true"/>  
-        <attribute key="style" value="width:220px"/>  
-        <attribute key="isRequired" value="false"/>  
-        <attribute key="isMultiple" value="false"/>  
-        <attribute key="name" value="zbdh"/>  
-        <attribute key="width" value="120px;"/>  
-        <attribute key="isAll" value="true"/>  
-        <attribute key="isEditable" value="true"/> 
-      </tag>  
-      <tag row="0" col="3" rowspan="1" colspan="1" name="Dmms" label="导入状态" fieldName=""> 
-        <attribute key="defVal" value="1"/>  
-        <attribute key="name" value="drzt"/>  
-        <attribute key="width" value="120px;"/>  
-        <attribute key="isAll" value="true"/>  
-        <attribute key="dmmc" value="drzt"/>  
-        <attribute key="multiple" value="false"/>  
-        <attribute key="editable" value="true"/> 
-      </tag> 
-    </tags> 
-  </conPart>  
-  <table page="true" id="hysgzbgltable"> 
-    <col id="TJRQ" title="统计日期" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="JGDH" title="机构代号" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="JGMC" title="机构名称" align="left" type="string" width="180" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="HYDH" title="行员代号" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="HYMC" title="行员名称" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="ZBDH" title="指标代号" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="ZBMC" title="指标名称" align="left" type="string" width="180" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="BZZWMC" title="币种" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="DMMS" title="时段标识" align="left" type="string" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="DRZT" title="drzt" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="SDBS" title="时段标识" align="left" type="hidden" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="BZ" title="币种" align="left" type="hidden" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="ZBZ" title="指标值" align="right" type="float" width="80" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/> 
-  </table>  
-  <rels> 
-    <items id="hysgzbgltable"/> 
-  </rels>  
-  <addPage title="编辑页面"> 
-    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName="TJRQ"> 
-      <attribute key="style" value="width:150px;"/>  
-      <attribute key="isRequired" value="true"/>  
-      <attribute key="name" value="tjrq"/>  
-      <attribute key="minDate" value="no"/>  
-      <attribute key="defValType" value="sysDate"/>  
-      <attribute key="dateFmt" value="yyyyMMdd"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="KHDXDH"> 
-      <attribute key="isRequired" value="true"/>  
-      <attribute key="style" value="width:150px;"/>  
-      <attribute key="hyckbz" value="hy_jg"/>  
-      <attribute key="isDisplayXN" value="false"/>  
-      <attribute key="jgckbz" value="jg_ckhy"/>  
-      <attribute key="name" value="khdxdh"/>  
-      <attribute key="multiple" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="2" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="指标名称" fieldName="ZBDH"> 
-      <attribute key="sql" value="select zbdh as key, zbmc as value from khdx_zb where whfs='2' order by zbpx"/>  
-      <attribute key="isSearch" value="true"/>  
-      <attribute key="style" value="150px;"/>  
-      <attribute key="isRequired" value="true"/>  
-      <attribute key="isMultiple" value="false"/>  
-      <attribute key="name" value="zbdh"/>  
-      <attribute key="width" value="150px;"/>  
-      <attribute key="isAll" value="false"/>  
-      <attribute key="evenName" value="change"/>  
-      <attribute key="multiple" value="false"/>  
-      <attribute key="isEditable" value="true"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="3" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="币种" fieldName="BZ"> 
-      <attribute key="parents" value="zbdh"/>  
-      <attribute key="sql" value="select  distinct   dmms.dmz as key ,dmms.dmms as value from khdx_zbbz zbbz inner join csb_dmms dmms on dmms.dmmc='ZBBZ' and dmms.dmz=zbbz.bz where 1=1 and zbbz.zbdh=$zbdh$"/>  
-      <attribute key="isSearch" value="false"/>  
-      <attribute key="isRequired" value="true"/>  
-      <attribute key="isMultiple" value="false"/>  
-      <attribute key="name" value="bz"/>  
-      <attribute key="width" value="150px;"/>  
-      <attribute key="isAll" value="false"/>  
-      <attribute key="isEditable" value="true"/> 
-    </tag>  
-    <tag row="4" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="时段标识" fieldName="SDBS"> 
-      <attribute key="parents" value="zbdh"/>  
-      <attribute key="sql" value="select dmms.dmz as key, dmms.dmms as value from khdx_zbsd zbsd inner join csb_dmms dmms on dmms.dmmc='ZBSDBS' and dmms.dmz=zbsd.sdbs where 1=1 and 'test'&lt;&gt;'test$zbdh$' and zbsd.zbdh=$zbdh$"/>  
-      <attribute key="isSearch" value="false"/>  
-      <attribute key="isRequired" value="true"/>  
-      <attribute key="isMultiple" value="false"/>  
-      <attribute key="name" value="sdbs"/>  
-      <attribute key="width" value="150px;"/>  
-      <attribute key="isAll" value="false"/>  
-      <attribute key="isEditable" value="true"/> 
-    </tag>  
-    <tag row="5" col="0" rowspan="1" colspan="1" name="Text" label="指标值" fieldName="ZBZ"> 
-      <attribute key="style" value="width:150px;"/>  
-      <attribute key="name" value="zbz"/>  
-      <attribute key="styleClass" value="{required:true,number:true,decimal:[17,2]}"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag> 
-  </addPage>  
-  <updatePage title="编辑页面"> 
-    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName="TJRQ"> 
-      <attribute key="style" value="width:150px;"/>  
-      <attribute key="isRequired" value="true"/>  
-      <attribute key="name" value="tjrq"/>  
-      <attribute key="isAll" value="false"/>  
-      <attribute key="minDate" value="no"/>  
-      <attribute key="defValType" value="sysDate"/>  
-      <attribute key="dateFmt" value="yyyyMMdd"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="isEditable" value="false"/>  
-      <attribute key="editable" value="false"/> 
-    </tag>  
-    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="KHDXDH"> 
-      <attribute key="isRequired" value="true"/>  
-      <attribute key="style" value="width:150px;"/>  
-      <attribute key="hyckbz" value="hy_jg"/>  
-      <attribute key="isDisplayXN" value="false"/>  
-      <attribute key="jgckbz" value="jg_ckhy"/>  
-      <attribute key="name" value="khdxdh"/>  
-      <attribute key="isAll" value="false"/>  
-      <attribute key="multiple" value="false"/>  
-      <attribute key="isEditable" value="false"/>  
-      <attribute key="editable" value="false"/> 
-    </tag>  
-    <tag row="2" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="指标名称" fieldName="ZBDH"> 
-      <attribute key="sql" value="select zbdh as key, zbmc as value from khdx_zb where whfs='2' order by zbpx"/>  
-      <attribute key="isSearch" value="true"/>  
-      <attribute key="style" value="150px;"/>  
-      <attribute key="isRequired" value="true"/>  
-      <attribute key="isMultiple" value="false"/>  
-      <attribute key="name" value="zbdh"/>  
-      <attribute key="width" value="150px;"/>  
-      <attribute key="isAll" value="false"/>  
-      <attribute key="evenName" value="change"/>  
-      <attribute key="multiple" value="false"/>  
-      <attribute key="isEditable" value="false"/>  
-      <attribute key="editable" value="false"/> 
-    </tag>  
-    <tag row="3" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="币种" fieldName="BZ"> 
-      <attribute key="parents" value="zbdh"/>  
-      <attribute key="sql" value="select  distinct   dmms.dmz as key ,dmms.dmms as value from khdx_zbbz zbbz inner join csb_dmms dmms on dmms.dmmc='ZBBZ' and dmms.dmz=zbbz.bz where 1=1 and zbbz.zbdh=$zbdh$"/>  
-      <attribute key="isSearch" value="false"/>  
-      <attribute key="isRequired" value="true"/>  
-      <attribute key="isMultiple" value="false"/>  
-      <attribute key="name" value="bz"/>  
-      <attribute key="width" value="150px;"/>  
-      <attribute key="isAll" value="false"/>  
-      <attribute key="editable" value="false"/>  
-      <attribute key="isEditable" value="false"/> 
-    </tag>  
-    <tag row="4" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="时段标识" fieldName="SDBS"> 
-      <attribute key="parents" value="zbdh"/>  
-      <attribute key="sql" value="select dmms.dmz as key, dmms.dmms as value from khdx_zbsd zbsd inner join csb_dmms dmms on dmms.dmmc='ZBSDBS' and dmms.dmz=zbsd.sdbs where 1=1 and 'test'&lt;&gt;'test$zbdh$' and zbsd.zbdh=$zbdh$"/>  
-      <attribute key="isSearch" value="false"/>  
-      <attribute key="isRequired" value="true"/>  
-      <attribute key="isMultiple" value="false"/>  
-      <attribute key="name" value="sdbs"/>  
-      <attribute key="width" value="150px;"/>  
-      <attribute key="isAll" value="false"/>  
-      <attribute key="editable" value="false"/>  
-      <attribute key="isEditable" value="false"/> 
-    </tag>  
-    <tag row="5" col="0" rowspan="1" colspan="1" name="Text" label="指标值" fieldName="ZBZ"> 
-      <attribute key="style" value="width:150px;"/>  
-      <attribute key="name" value="zbz"/>  
-      <attribute key="styleClass" value="{required:true,number:true,decimal:[17,2]}"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag> 
-  </updatePage>  
-  <buttons> 
-    <button>add</button>  
-    <button>edit</button>  
-    <button>delete</button>  
-    <button>import</button> 
-  </buttons>  
-  <flow> 
-    <insertbefore/>  
-    <insertafter/>  
-    <deletebefore/>  
-    <deleteafter/>  
-    <updatebefore/>  
-    <updateafter/> 
-  </flow>  
-  <sqlMap namespace="studio.hysgzbgl"> 
-    <select id="dn0.hysgzbglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select * from( select $tjrq$ tjrq, jg.jgdh, jg.jgmc, qx.hydh, qx.hymc, zb.zbdh, zb.zbmc, bz.bzzwmc, dmms.dmms, sgzb.zbz , case when sgzb.zbdh is null then '0' else '1' end as drzt ,qx.khdxdh,zbsd.sdbs,zbbz.bz from khdx_zb zb inner join khdx_zbsd zbsd on zbsd.zbdh=zb.zbdh inner join khdx_zbbz zbbz on zbbz.zbdh=zb.zbdh inner join csb_bz bz on bz.bz=zbbz.bz inner join csb_dmms dmms on dmms.dmz=zbsd.sdbs and dmms.dmmc='ZBSDBS' inner join table(fn_getsjjg_java_qxhy($tjrq$, $login_khdxdh$, 0)) qx on 1=1 inner join khdx_jgcy jgcy on jgcy.khdxdh=qx.khdxdh 
-      <isNotEmpty property="tjrq">and $tjrq$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh=jgcy.jgkhdxdh left join yjzb_hysgzb sgzb on sgzb.zbdh=zb.zbdh and sgzb.khdxdh=qx.khdxdh and zbbz.bz=sgzb.bz and sgzb.sdbs=zbsd.sdbs 
-      <isNotEmpty property="tjrq">and sgzb.tjrq=$tjrq$</isNotEmpty> where zb.whfs='2' 
-      <isNotEmpty property="khdxdh">and jgcy.khdxdh in ($khdxdh$)</isNotEmpty>  
-      <isNotEmpty property="zbdh">and zb.zbdh=$zbdh$</isNotEmpty> )a where 1=1 
-      <isNotEmpty property="drzt">and a.drzt='$drzt$'</isNotEmpty> 
-    </select>  
-    <select id="dn0.hysgzbglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select * from( select $tjrq$ tjrq, jg.jgdh, jg.jgmc, qx.hydh, qx.hymc, zb.zbdh, zb.zbmc, bz.bzzwmc, dmms.dmms, sgzb.zbz , case when sgzb.zbdh is null then '0' else '1' end as drzt ,qx.khdxdh,zbsd.sdbs,zbbz.bz from khdx_zb zb inner join khdx_zbsd zbsd on zbsd.zbdh=zb.zbdh inner join khdx_zbbz zbbz on zbbz.zbdh=zb.zbdh inner join csb_bz bz on bz.bz=zbbz.bz inner join csb_dmms dmms on dmms.dmz=zbsd.sdbs and dmms.dmmc='ZBSDBS' inner join table(fn_getsjjg_java_qxhy($tjrq$, $login_khdxdh$, 0)) qx on 1=1 inner join khdx_jgcy jgcy on jgcy.khdxdh=qx.khdxdh 
-      <isNotEmpty property="tjrq">and $tjrq$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh=jgcy.jgkhdxdh left join yjzb_hysgzb sgzb on sgzb.zbdh=zb.zbdh and sgzb.khdxdh=qx.khdxdh and zbbz.bz=sgzb.bz and sgzb.sdbs=zbsd.sdbs 
-      <isNotEmpty property="tjrq">and sgzb.tjrq=$tjrq$</isNotEmpty> where zb.whfs='2' 
-      <isNotEmpty property="khdxdh">and jgcy.khdxdh in ($khdxdh$)</isNotEmpty>  
-      <isNotEmpty property="zbdh">and zb.zbdh=$zbdh$</isNotEmpty> )a where 1=1 
-      <isNotEmpty property="drzt">and a.drzt='$drzt$'</isNotEmpty> ) t
-    </select>  
-    <select id="dn0.hysgzbgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select ZBZ, ZBDH, KHDXDH, SDBS, TJRQ, BZ from YJZB_HYSGZB where 1= 1 and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and SDBS = '$sdbs$' and TJRQ = $tjrq$ and BZ = '$bz$'
-    </select>  
-    <select id="dn0.hysgzbgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select ZBZ, ZBDH, KHDXDH, SDBS, TJRQ, BZ from YJZB_HYSGZB where 1= 1 and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and SDBS = '$sdbs$' and TJRQ = $tjrq$ and BZ = '$bz$'
-    </select>  
-    <insert id="dn0.hysgzbgl_insert" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into YJZB_HYSGZB( BZ, ZBDH, KHDXDH, ZBZ, SDBS, TJRQ ) values ( '$bz$',$zbdh$,$khdxdh$,$zbz$,'$sdbs$',$tjrq$)
-    </insert>  
-    <update id="dn0.hysgzbgl_update" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update YJZB_HYSGZB set ZBZ = $zbz$ where 1=1 and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and SDBS = '$sdbs$' and TJRQ = $tjrq$ and BZ = '$bz$'
-    </update>  
-    <delete id="dn0.hysgzbgl_delete" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from YJZB_HYSGZB where 1=1 and ZBDH = $zbdh$ and KHDXDH = $khdxdh$ and SDBS = '$sdbs$' and TJRQ = $tjrq$ and BZ = '$bz$'
-    </delete>  
-    <select id="dn0.hysgzbgl_MSQL4SELECT_zbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select zbdh as key, zbmc as value from khdx_zb where whfs='2' order by zbpx</select>  
-    <select id="dn0.hysgzbgl_MSQL4SELECT_bz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct dmms.dmz as key ,dmms.dmms as value from khdx_zbbz zbbz inner join csb_dmms dmms on dmms.dmmc='ZBBZ' and dmms.dmz=zbbz.bz where 1=1 
-      <isNotEmpty property="zbdh">and zbbz.zbdh=$zbdh$</isNotEmpty> 
-    </select>  
-    <select id="dn0.hysgzbgl_MSQL4SELECT_sdbs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ <![CDATA[select dmms.dmz as key, dmms.dmms as value from khdx_zbsd zbsd inner join csb_dmms dmms on dmms.dmmc='ZBSDBS' and dmms.dmz=zbsd.sdbs where 1=1 and 'test'<>'test$zbdh$']]>  
-      <isNotEmpty property="zbdh">and zbsd.zbdh=$zbdh$</isNotEmpty> 
-    </select> 
-  </sqlMap>  
-  <javascript> 
-    <import>parent.addTab('hysgzbdr','行员手工指标管理','/module/parser/import/visitHtml/hysgzbdr');</import>  
-    <query>jQuery(document).ready(function () { $("#tool_bar").append('&lt;input type="button" value="导 出" class="operation cbutton cbutton_bg_70" onClick="hysgzbdc()" /&gt;'); }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; } function hysgzbdc(){ myForm.action="/module/jghydc/hysgzbgldc?tjrq="+$('#tjrq').val()+"&amp;khdxdh="+$('#khdxdh').val()+"&amp;zbdh="+$('#zbdh option:selected').val()+"&amp;drzt="+$('#drzt option:selected').val(); myForm.submit(); } function customFastLink($table,row){//this 对象绑定当前行的单元格 if(row['ZBZ']=='' || row['ZBZ']==null){ return true }else{ var edit = $('&lt;a class="operation_edit LIST_BAR" title="编辑"&gt;编辑&lt;/a&gt;'); var del = $('&lt;a class="operation_del LIST_BAR" title="删除"&gt;删除&lt;/a&gt;'); this.append(edit); this.append(del); edit.click(function(){ showUpdateEdtiDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]); }); del.click(function(){ showDeleteDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]); }); return true } }</query>  
-    <edit>jQuery(document).ready(function () { //这里的js脚本，会在页面加载完成后执行 }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; }</edit> 
-  </javascript> 
+function hysgzbdc(){
+  myForm.action="/module/jghydc/hysgzbgldc?tjrq="+$('#tjrq').val()+"&amp;khdxdh="+$('#khdxdh').val()+"&amp;zbdh="+$('#zbdh option:selected').val()+"&amp;drzt="+$('#drzt option:selected').val();
+  myForm.submit();
+}
+
+function customFastLink($table,row){//this 对象绑定当前行的单元格
+  if(row['ZBZ']=='' || row['ZBZ']==null){
+    return true
+  }else{
+    var edit = $('&lt;a class="operation_edit LIST_BAR" title="编辑"&gt;编辑&lt;/a&gt;');
+    var del = $('&lt;a class="operation_del LIST_BAR" title="删除"&gt;删除&lt;/a&gt;');
+    this.append(edit);
+    this.append(del);
+    edit.click(function(){
+      showUpdateEdtiDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]);
+    });
+    del.click(function(){
+      showDeleteDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]);
+    });
+    return true
+  }
+}</query>
+    <edit>jQuery(document).ready(function () {
+//这里的js脚本，会在页面加载完成后执行
+ 
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+  return true;
+}</edit>
+  </javascript>
 </pageSetting>
+

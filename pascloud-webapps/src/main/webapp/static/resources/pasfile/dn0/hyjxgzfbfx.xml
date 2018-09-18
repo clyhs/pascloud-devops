@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="hyjxgzfbfx" title="行员绩效工资分布分析" type="query" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags> 
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="年份"> 
-        <attribute key="dateFmt" value="yyyy"/>  
-        <attribute key="defValType" value="nc"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="nf"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag> 
-    </tags> 
-  </conPart>  
-  <table id="hyjxgzfbfx_xsjy1jgj" title="新数据源1结果集" page="true" isDym="true"> 
-    <col id="NF" title="年份" align="left" type="string" width="75" frozen="false" format="" showDymCol="false" mergeCells="true" footerCells="false"/>  
-    <col id="QJMS" title="绩效工资区间" align="left" type="string" width="180" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="$yf$" title="YF" align="left" type="string" width="315" frozen="false" format="" showDymCol="false" refcolumn="yf1" mergeCells="false" footerCells="false" dym="true"> 
-      <col id="YYJG" title="总绩效工资(元)" align="right" type="float" width="120" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"/>  
-      <col id="RS" title="人数" align="right" type="string" width="75" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"/>  
-      <col id="PJGZ" title="平均工资(元)" align="right" type="float" width="120" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false"/> 
-    </col> 
-  </table>  
-  <sqlMap namespace="studio.hyjxgzfbfx"> 
-    <select id="dn0.hyjxgzfbfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select $nf$ as nf ,  cast(substr(cast(yy.tjrq as char(8)),5,2) as integer) yf1,cast(substr(cast(yy.tjrq as char(8)),5,2) as char(3)) ||' 月份' yf
+<pageSetting id="hyjxgzfbfx" title="行员绩效工资分布分析" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="年份">
+        <attribute key="dateFmt" value="yyyy" />
+        <attribute key="defValType" value="nc" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="nf" />
+        <attribute key="readonly" value="false" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="hyjxgzfbfx_xsjy1jgj" title="新数据源1结果集" page="true" isDym="true">
+    <col id="NF" title="年份" align="left" type="string" width="75" frozen="false" format="" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="QJMS" title="绩效工资区间" align="left" type="string" width="180" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="$yf$" title="YF" align="left" type="string" width="315" frozen="false" format="" showDymCol="false" refcolumn="yf1" mergeCells="false" footerCells="false" dym="true">
+      <col id="YYJG" title="总绩效工资(元)" align="right" type="float" width="120" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false" />
+      <col id="RS" title="人数" align="right" type="string" width="75" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false" />
+      <col id="PJGZ" title="平均工资(元)" align="right" type="float" width="120" frozen="false" format="" showDymCol="true" mergeCells="false" footerCells="false" />
+    </col>
+  </table>
+  <sqlMap namespace="studio.hyjxgzfbfx">
+    <select id="dn0.hyjxgzfbfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[select $nf$ as nf ,  cast(substr(cast(yy.tjrq as char(8)),5,2) as integer) yf1,cast(substr(cast(yy.tjrq as char(8)),5,2) as char(3)) ||' 月份' yf
 , p.qjms, sum(yyjg) yyjg , count(khdxdh) rs
 ,case when count(khdxdh) = 0  then cast((cast(sum(coalesce(yyjg,0)) as decimal(19,2))/1) as decimal(19,2))  
 else cast((cast(sum(coalesce(yyjg,0)) as decimal(19,2))/cast(count(khdxdh) as decimal(19,2))) as decimal(19,2)) end pjgz  
@@ -49,9 +49,10 @@ where  exists(select 1 from khfa_fapz pz where yy.fabh=pz.fabh and pz.yyzlbh=1)
 group by ym,khdxdh
 )yy
 inner join CSB_QJPZ p on p.QJMC='JXGZQJ' and yy.yyjg >= p.qjxx and yy.yyjg < p.qjsx]]> and yy.tjrq between p.qsrq and p.jsrq group by p.qjms
-    </select>  
-    <select id="dn0.hyjxgzfbfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( <![CDATA[select $nf$ as nf ,  cast(substr(cast(yy.tjrq as char(8)),5,2) as integer) yf1,cast(substr(cast(yy.tjrq as char(8)),5,2) as char(3)) ||' 月份' yf
+    </select>
+    <select id="dn0.hyjxgzfbfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( <![CDATA[select $nf$ as nf ,  cast(substr(cast(yy.tjrq as char(8)),5,2) as integer) yf1,cast(substr(cast(yy.tjrq as char(8)),5,2) as char(3)) ||' 月份' yf
 , p.qjms, sum(yyjg) yyjg , count(khdxdh) rs
 ,case when count(khdxdh) = 0  then cast((cast(sum(coalesce(yyjg,0)) as decimal(19,2))/1) as decimal(19,2))  
 else cast((cast(sum(coalesce(yyjg,0)) as decimal(19,2))/cast(count(khdxdh) as decimal(19,2))) as decimal(19,2)) end pjgz  
@@ -76,11 +77,11 @@ where  exists(select 1 from khfa_fapz pz where yy.fabh=pz.fabh and pz.yyzlbh=1)
 group by ym,khdxdh
 )yy
 inner join CSB_QJPZ p on p.QJMC='JXGZQJ' and yy.yyjg >= p.qjxx and yy.yyjg < p.qjsx]]> and yy.tjrq between p.qsrq and p.jsrq group by p.qjms ) t
-    </select> 
-  </sqlMap>  
-  <rels> 
-    <items id="hyjxgzfbfx_xsjy1jgj"/> 
-  </rels>  
+    </select>
+  </sqlMap>
+  <rels>
+    <items id="hyjxgzfbfx_xsjy1jgj" />
+  </rels>
   <javascript><![CDATA[jQuery(document).ready(function () {
 
 $('#hyjxgzfbfxList').datagrid({
@@ -125,5 +126,6 @@ function jxgzqj(obj) {
   // var paramsJsonString="{"+"nf:'"+obj['NF']+"',yf:'"+ obj['YF']+"',qjms:'"+ obj['QJMS'] +"'}";
    //alert(paramsJsonString);
    //querySubQuery(paramsJsonString,"jxgzmxqjhymxb","45","30","moda");
-  }]]></javascript> 
+  }]]></javascript>
 </pageSetting>
+

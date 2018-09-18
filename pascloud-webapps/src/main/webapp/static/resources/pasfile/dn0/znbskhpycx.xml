@@ -1,39 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="znbskhpycx" title="职能部室考核评语查询" type="query" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags/> 
-  </conPart>  
-  <table id="znbskhpycx_xsjy1jgj" title="新数据源1结果集" page="true"> 
-    <col id="KHNF" title="考核年份" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHZQ" title="考核周期" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHQS" title="考核期数" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="FAMC" title="方案名称" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="PY" title="评语" align="left" type="string" width="120" frozen="false" format="" showDymCol="" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <sqlMap namespace="studio.znbskhpycx"> 
-    <select id="dn0.znbskhpycxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select distinct fapz.khnf, case when fapz.khzq=1 then '月' when fapz.khzq=2 then '季' else '年' end as khzq, case when fapz.khzq=1 then cast(zxpffa.khqs as char(8))|| '月' when fapz.khzq=2 then '第'||cast(zxpffa.khqs as char(8) )|| '季度' else cast(zxpffa.khqs as char(8))|| '年' end as khqs, khjg.jgdh, khjg.jgmc, fapz.famc,zxpffa.py from znbs_zxpffa zxpffa inner join znbs_fapz fapz on zxpffa.fabh=fapz.fabh inner join khdx_jg khjg on zxpffa.khdxdh =khjg.khdxdh inner join khdx_hy hy2 on zxpffa.pjr = hy2.khdxdh where 1=1 
-      <isNotEmpty property="khnd">and fapz.khnf=$khnd$</isNotEmpty>  
-      <isNotEmpty property="khzq">and fapz.khzq=$khzq$</isNotEmpty>  
-      <isNotEmpty property="khqs">and zxpffa.khqs=$khqs$</isNotEmpty>  
-      <isNotEmpty property="fabh">and fapz.fabh =$fabh$</isNotEmpty>  
-      <isNotEmpty property="jgkhdxdh">and khjg.khdxdh in ($jgkhdxdh$)</isNotEmpty> and zxpffa.khdx='1'
-    </select>  
-    <select id="dn0.znbskhpycxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select distinct fapz.khnf, case when fapz.khzq=1 then '月' when fapz.khzq=2 then '季' else '年' end as khzq, case when fapz.khzq=1 then cast(zxpffa.khqs as char(8))|| '月' when fapz.khzq=2 then '第'||cast(zxpffa.khqs as char(8) )|| '季度' else cast(zxpffa.khqs as char(8))|| '年' end as khqs, khjg.jgdh, khjg.jgmc, fapz.famc,zxpffa.py from znbs_zxpffa zxpffa inner join znbs_fapz fapz on zxpffa.fabh=fapz.fabh inner join khdx_jg khjg on zxpffa.khdxdh =khjg.khdxdh inner join khdx_hy hy2 on zxpffa.pjr = hy2.khdxdh where 1=1 
-      <isNotEmpty property="khnd">and fapz.khnf=$khnd$</isNotEmpty>  
-      <isNotEmpty property="khzq">and fapz.khzq=$khzq$</isNotEmpty>  
-      <isNotEmpty property="khqs">and zxpffa.khqs=$khqs$</isNotEmpty>  
-      <isNotEmpty property="fabh">and fapz.fabh =$fabh$</isNotEmpty>  
-      <isNotEmpty property="jgkhdxdh">and khjg.khdxdh in ($jgkhdxdh$)</isNotEmpty> and zxpffa.khdx='1' ) t
-    </select> 
-  </sqlMap>  
-  <rels> 
-    <items id="znbskhpycx_xsjy1jgj"/> 
-  </rels>  
+<pageSetting id="znbskhpycx" title="职能部室考核评语查询" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags />
+  </conPart>
+  <table id="znbskhpycx_xsjy1jgj" title="新数据源1结果集" page="true">
+    <col id="KHNF" title="考核年份" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHZQ" title="考核周期" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHQS" title="考核期数" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FAMC" title="方案名称" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="PY" title="评语" align="left" type="string" width="120" frozen="false" format="" showDymCol="" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.znbskhpycx">
+    <select id="dn0.znbskhpycxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select distinct fapz.khnf, case when fapz.khzq=1 then '月' when fapz.khzq=2 then '季' else '年' end as khzq, case when fapz.khzq=1 then cast(zxpffa.khqs as char(8))|| '月' when fapz.khzq=2 then '第'||cast(zxpffa.khqs as char(8)  )|| '季度' else cast(zxpffa.khqs as char(8))|| '年' end as khqs, khjg.jgdh, khjg.jgmc, fapz.famc,zxpffa.py from znbs_zxpffa zxpffa  inner join znbs_fapz fapz on zxpffa.fabh=fapz.fabh   inner join khdx_jg khjg on zxpffa.khdxdh =khjg.khdxdh  inner join khdx_hy hy2 on zxpffa.pjr = hy2.khdxdh where 1=1
+      <isNotEmpty property="khnd">and  fapz.khnf=$khnd$</isNotEmpty>
+      <isNotEmpty property="khzq">and fapz.khzq=$khzq$</isNotEmpty>
+      <isNotEmpty property="khqs">and zxpffa.khqs=$khqs$</isNotEmpty>
+      <isNotEmpty property="fabh">and fapz.fabh =$fabh$</isNotEmpty>
+      <isNotEmpty property="jgkhdxdh">and khjg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
+      and zxpffa.khdx='1'
+    </select>
+    <select id="dn0.znbskhpycxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select distinct fapz.khnf, case when fapz.khzq=1 then '月' when fapz.khzq=2 then '季' else '年' end as khzq, case when fapz.khzq=1 then cast(zxpffa.khqs as char(8))|| '月' when fapz.khzq=2 then '第'||cast(zxpffa.khqs as char(8)  )|| '季度' else cast(zxpffa.khqs as char(8))|| '年' end as khqs, khjg.jgdh, khjg.jgmc, fapz.famc,zxpffa.py from znbs_zxpffa zxpffa  inner join znbs_fapz fapz on zxpffa.fabh=fapz.fabh   inner join khdx_jg khjg on zxpffa.khdxdh =khjg.khdxdh  inner join khdx_hy hy2 on zxpffa.pjr = hy2.khdxdh where 1=1
+      <isNotEmpty property="khnd">and  fapz.khnf=$khnd$</isNotEmpty>
+      <isNotEmpty property="khzq">and fapz.khzq=$khzq$</isNotEmpty>
+      <isNotEmpty property="khqs">and zxpffa.khqs=$khqs$</isNotEmpty>
+      <isNotEmpty property="fabh">and fapz.fabh =$fabh$</isNotEmpty>
+      <isNotEmpty property="jgkhdxdh">and khjg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
+      and zxpffa.khdx='1' ) t
+    </select>
+  </sqlMap>
+  <rels>
+    <items id="znbskhpycx_xsjy1jgj" />
+  </rels>
   <javascript><![CDATA[jQuery(document).ready(function () {
 $('#query_conn_panel').hide();
 });
@@ -41,5 +44,6 @@ $('#query_conn_panel').hide();
 //自定义验证，在提交时执行。通过返回true，否则返回false
 function customValidate(){
  return true;
-}]]></javascript> 
+}]]></javascript>
 </pageSetting>
+

@@ -189,6 +189,9 @@ public class DBServerService extends AbstractBaseService {
 			if (null != ip) {
 				ServerVo vo = m_serverService.getByIP(ip);
 				conn = getScpClientConn(ip, vo.getUsername(), vo.getPassword());
+				
+				
+				
 				if(!checkDirIsExist(conn, m_config.getORACLE_DBHOME())){
 					result = new ResultCommon(PasCloudCode.ERROR.getCode(),m_config.getORACLE_DBHOME()+"目录不存在");
 					return result;

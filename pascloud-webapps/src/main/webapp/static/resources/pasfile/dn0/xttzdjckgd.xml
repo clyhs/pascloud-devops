@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="xttzdjckgd" title="系统通知查看更多" type="manage" version="1.0.0.0" desc="" pid="">
+<pageSetting id="xttzdjckgd" title="系统通知查看更多" type="manage" version="1.0.0.0" pid="" desc="标准版">
   <conPart>
     <tags />
   </conPart>
@@ -75,7 +75,7 @@ order by mx.sfzd desc,mx.sfyd asc,tz.tzrq desc,tz.tzdh desc]]> ) t
   </sqlMap>
   <javascript>
     <query>jQuery(document).ready(function () {
-  $(document.body).append("&lt;div id='word-cal' style='width:120px;position:absolute;visibility:hidden'&gt;&lt;/div&gt;")
+
 });
 
 //自定义验证，在提交时执行。通过返回true，否则返回false

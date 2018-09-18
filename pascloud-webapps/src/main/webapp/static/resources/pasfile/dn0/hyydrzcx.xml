@@ -1,52 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="hyydrzcx" title="行员异动日志查询" type="query" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags> 
-      <tag row="0" col="0" colspan="1" rowspan="1" name="NewJg" label="更改机构"> 
-        <attribute key="cascadeCheck" value="true"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="ckbz" value="jg_ckhy"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="jgkhdxdh"/>  
-        <attribute key="multiple" value="true"/> 
-      </tag>  
-      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员"> 
-        <attribute key="isDisplayXN" value="true"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="false"/>  
-        <attribute key="jgckbz" value="jg_ckhy"/>  
-        <attribute key="name" value="khdxdh"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag> 
-    </tags> 
-  </conPart>  
-  <table id="hyydrzcx_xsjy1jgj" title="新数据源1结果集" page="true"> 
-    <col id="JLDH" title="记录代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JLSJ" title="记录时间" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="XGQJGMC" title="修改前机构名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="XGHJGMC" title="修改后机构名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="XGQSXRQ" title="修改前生效日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="XGHSXRQ" title="修改后生效日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="CZLX" title="操作类型" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="XGRMC" title="操作人名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <sqlMap namespace="studio.hyydrzcx"> 
-    <select id="dn0.hyydrzcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select rz.jldh,f_timetoint(rz.jlsj,'yyyymmdd') as jlsj,hy.hymc,jg1.jgmc as xgqjgmc,jg2.jgmc as xghjgmc ,rz.xgqsxrq,rz.xghsxrq,case when rz.czlx = '01' then '新增' when rz.czlx='02' then '修改' end as czlx , hy2.hymc as xgrmc from xtb_jgcyxgrz rz inner join khdx_jg jg1 on jg1.khdxdh = rz.xgqssjg inner join khdx_jg jg2 on jg2.khdxdh = rz.xghssjg inner join khdx_hy hy on hy.khdxdh = rz.khdxdh inner join khdx_hy hy2 on hy2.khdxdh = rz.xgrdh inner join table(fn_getsjjg_java_qxhy($sysdate$,$login_khdxdh$,0)) hyqx on hyqx.khdxdh=hy.khdxdh where 1=1 
-      <isNotEmpty property="jgkhdxdh">and rz.xghssjg in ($jgkhdxdh$)</isNotEmpty>  
-      <isNotEmpty property="khdxdh">and rz.khdxdh in ($khdxdh$)</isNotEmpty> order by jldh
-    </select>  
-    <select id="dn0.hyydrzcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select rz.jldh,f_timetoint(rz.jlsj,'yyyymmdd') as jlsj,hy.hymc,jg1.jgmc as xgqjgmc,jg2.jgmc as xghjgmc ,rz.xgqsxrq,rz.xghsxrq,case when rz.czlx = '01' then '新增' when rz.czlx='02' then '修改' end as czlx , hy2.hymc as xgrmc from xtb_jgcyxgrz rz inner join khdx_jg jg1 on jg1.khdxdh = rz.xgqssjg inner join khdx_jg jg2 on jg2.khdxdh = rz.xghssjg inner join khdx_hy hy on hy.khdxdh = rz.khdxdh inner join khdx_hy hy2 on hy2.khdxdh = rz.xgrdh inner join table(fn_getsjjg_java_qxhy($sysdate$,$login_khdxdh$,0)) hyqx on hyqx.khdxdh=hy.khdxdh where 1=1 
-      <isNotEmpty property="jgkhdxdh">and rz.xghssjg in ($jgkhdxdh$)</isNotEmpty>  
-      <isNotEmpty property="khdxdh">and rz.khdxdh in ($khdxdh$)</isNotEmpty> order by jldh ) t
-    </select> 
-  </sqlMap>  
-  <rels> 
-    <items id="hyydrzcx_xsjy1jgj"/> 
-  </rels>  
+<pageSetting id="hyydrzcx" title="行员异动日志查询" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="NewJg" label="更改机构">
+        <attribute key="cascadeCheck" value="true" />
+        <attribute key="editable" value="true" />
+        <attribute key="ckbz" value="jg_ckhy" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="jgkhdxdh" />
+        <attribute key="multiple" value="true" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员">
+        <attribute key="isDisplayXN" value="true" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="false" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="hyydrzcx_xsjy1jgj" title="新数据源1结果集" page="true">
+    <col id="JLDH" title="记录代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JLSJ" title="记录时间" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="XGQJGMC" title="修改前机构名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="XGHJGMC" title="修改后机构名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="XGQSXRQ" title="修改前生效日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="XGHSXRQ" title="修改后生效日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="CZLX" title="操作类型" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="XGRMC" title="操作人名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.hyydrzcx">
+    <select id="dn0.hyydrzcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select rz.jldh,f_timetoint(rz.jlsj,'yyyymmdd') as jlsj,hy.hymc,jg1.jgmc as xgqjgmc,jg2.jgmc as xghjgmc ,rz.xgqsxrq,rz.xghsxrq,case when rz.czlx = '01' then '新增'  when rz.czlx='02' then '修改' end as czlx , hy2.hymc as xgrmc   from xtb_jgcyxgrz rz inner join khdx_jg jg1 on jg1.khdxdh =  rz.xgqssjg inner join khdx_jg jg2 on jg2.khdxdh  = rz.xghssjg inner join khdx_hy hy on hy.khdxdh = rz.khdxdh inner join khdx_hy hy2 on hy2.khdxdh = rz.xgrdh inner join table(fn_getsjjg_java_qxhy($sysdate$,$login_khdxdh$,0)) hyqx on hyqx.khdxdh=hy.khdxdh where 1=1
+      <isNotEmpty property="jgkhdxdh">and rz.xghssjg in ($jgkhdxdh$)</isNotEmpty>
+      <isNotEmpty property="khdxdh">and rz.khdxdh in ($khdxdh$)</isNotEmpty>
+      order by jldh
+    </select>
+    <select id="dn0.hyydrzcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select rz.jldh,f_timetoint(rz.jlsj,'yyyymmdd') as jlsj,hy.hymc,jg1.jgmc as xgqjgmc,jg2.jgmc as xghjgmc ,rz.xgqsxrq,rz.xghsxrq,case when rz.czlx = '01' then '新增'  when rz.czlx='02' then '修改' end as czlx , hy2.hymc as xgrmc   from xtb_jgcyxgrz rz inner join khdx_jg jg1 on jg1.khdxdh =  rz.xgqssjg inner join khdx_jg jg2 on jg2.khdxdh  = rz.xghssjg inner join khdx_hy hy on hy.khdxdh = rz.khdxdh inner join khdx_hy hy2 on hy2.khdxdh = rz.xgrdh inner join table(fn_getsjjg_java_qxhy($sysdate$,$login_khdxdh$,0)) hyqx on hyqx.khdxdh=hy.khdxdh where 1=1
+      <isNotEmpty property="jgkhdxdh">and rz.xghssjg in ($jgkhdxdh$)</isNotEmpty>
+      <isNotEmpty property="khdxdh">and rz.khdxdh in ($khdxdh$)</isNotEmpty>
+      order by jldh ) t
+    </select>
+  </sqlMap>
+  <rels>
+    <items id="hyydrzcx_xsjy1jgj" />
+  </rels>
   <javascript><![CDATA[jQuery(document).ready(function () {
 
 });
@@ -54,5 +57,6 @@
 //自定义验证，在提交时执行。通过返回true，否则返回false
 function customValidate(){
  return true;
-}]]></javascript> 
+}]]></javascript>
 </pageSetting>
+

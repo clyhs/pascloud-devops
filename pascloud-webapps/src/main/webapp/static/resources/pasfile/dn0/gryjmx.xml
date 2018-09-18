@@ -1,201 +1,205 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="gryjmx" title="个人存贷款业绩明细" type="query" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags> 
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期"> 
-        <attribute key="dateFmt" value="yyyyMMdd"/>  
-        <attribute key="defValType" value="sysDate"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="tjrq"/>  
-        <attribute key="minDate" value="no"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员"> 
-        <attribute key="isDisplayXN" value="true"/>  
-        <attribute key="hyckbz" value="hy_jg"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="jgckbz" value="jg_ckhy"/>  
-        <attribute key="name" value="khdxdh"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag>  
-      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="业务类别"> 
-        <attribute key="isMultiple" value="false"/>  
-        <attribute key="width" value="120px;"/>  
-        <attribute key="evenName" value="change"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isSearch" value="false"/>  
-        <attribute key="sql" value="select ywlb as key,ms as value from csb_ywlb where ywlb in ('01','02')"/>  
-        <attribute key="isRequired" value="false"/>  
-        <attribute key="name" value="ywlb"/>  
-        <attribute key="isAll" value="false"/>  
-        <attribute key="multiple" value="false"/>  
-        <attribute key="isEditable" value="true"/> 
-      </tag>  
-      <tag row="0" col="3" colspan="1" rowspan="1" name="Dmms" label="账户类型"> 
-        <attribute key="width" value="120px;"/>  
-        <attribute key="dmmc" value="jszhlx"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="zhlx"/>  
-        <attribute key="isAll" value="false"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag>  
-      <tag row="0" col="3" colspan="1" rowspan="1" name="DataInterface" label="null"> 
-        <attribute key="dataType" value="select"/>  
-        <attribute key="sql" value="select csz from xtb_xtcs where csmc='DKYJGXMS'"/>  
-        <attribute key="name" value="dkyjmxcsz"/> 
-      </tag>  
-      <tag row="0" col="3" colspan="1" rowspan="1" name="Hidden" label=""> 
-        <attribute key="name" value="dkcsz"/> 
-      </tag>  
-      <tag row="1" col="0" colspan="1" rowspan="1" name="Text" label="账号"> 
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="zhqy"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="1" col="0" colspan="1" rowspan="1" name="Hidden" label=""> 
-        <attribute key="name" value="sjypdzd"/> 
-      </tag>  
-      <tag row="1" col="0" colspan="1" rowspan="1" name="DataInterface" label="null"> 
-        <attribute key="dataType" value="select"/>  
-        <attribute key="sql" value="select csz from xtb_xtcs where csmc='CKYJGXMS'"/>  
-        <attribute key="name" value="ckyjmxcsz"/> 
-      </tag>  
-      <tag row="1" col="0" colspan="1" rowspan="1" name="Hidden" label=""> 
-        <attribute key="name" value="ckcsz"/> 
-      </tag> 
-    </tags> 
-  </conPart>  
-  <table id="gryjmx_xsjy1jgj" title="新数据源1结果集" page="true"> 
-    <col id="TJRQ" title="统计日期" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHDH" title="账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHRQ" title="开户日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHYE" title="时点余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="showCkZhye"/>  
-    <col id="HYYE" title="行员余额" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHJS" title="基数" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="1464259237634" title="业绩关系" align="center" type="string" width="720" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
-      <col id="HYDH" title="行员代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="HYMC" title="行员名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="GXFP" title="关系分配" align="left" type="string" width="300" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="QSRQ" title="关系起始日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="JSRQ" title="关系结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-    </col>  
-    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="QX" title="期限代号" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
-    <col id="QXMC" title="期限名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
-    <col id="XHRQ" title="销户日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JXDXDH" title="绩效对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <table id="gryjmx_dkjgj" title="贷款结果集" page="true"> 
-    <col id="TJRQ" title="统计日期" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHDH" title="账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHYE" title="时点余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="showDkZhye"/>  
-    <col id="HYYE" title="行员余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZCYE" title="正常余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="YQYE" title="逾期余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DAIZHIYE" title="呆滞余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DAIZHANGYE" title="呆账余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHJS" title="基数" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="1464259329464" title="业绩关系" align="center" type="string" width="750" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
-      <col id="HYDH" title="行员代号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="HYMC" title="行员名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="GXFP" title="关系分配" align="left" type="string" width="300" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="QSRQ" title="关系起始日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="JSRQ" title="关系结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-    </col>  
-    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="YQKM" title="逾期科目" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DAIZHIKM" title="呆滞科目" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DAIZHANGKM" title="呆账科目" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="QX" title="期限代号" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
-    <col id="QXMC" title="期限名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
-    <col id="KHRQ" title="开户日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="FFRQ" title="发放日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DQRQ" title="到期日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="XHRQ" title="销户日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="WJFL" title="五级分类" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JXDXDH" title="绩效对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <table id="gryjmx_ck-qbzhjgj" title="存款-全部账户结果集" page="true"> 
-    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHRQ" title="开户日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHYE" title="时点余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="showCkZhye"/>  
-    <col id="HYYE" title="行员余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="1464259398998" title="业绩关系" align="center" type="string" width="750" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
-      <col id="HYDH" title="行员代号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="HYMC" title="行员名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="GXFP" title="关系分配" align="left" type="string" width="300" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="QSRQ" title="关系起始日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="JSRQ" title="关系结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-    </col>  
-    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="QX" title="期限代号" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="QXMC" title="期限名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="XHRQ" title="销户日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JXDXDH" title="绩效对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <table id="gryjmx_dk-qbzhjgj" title="贷款-全部账户结果集" page="true"> 
-    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHDH" title="账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="false" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHYE" title="时点余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="showDkZhye"/>  
-    <col id="HYYE" title="行员余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZCYE" title="正常余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="YQYE" title="逾期余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DAIZHIYE" title="呆滞余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DAIZHANGYE" title="呆账余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="1464259532831" title="业绩关系" align="center" type="string" width="750" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
-      <col id="HYDH" title="行员代号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="HYMC" title="行员名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="GXFP" title="关系分配" align="left" type="string" width="300" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="QSRQ" title="起始日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="JSRQ" title="结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-    </col>  
-    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="YQKM" title="逾期科目" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DAIZHIKM" title="呆滞科目" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DAIZHANGKM" title="呆账科目" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="QX" title="期限" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="QXMC" title="期限名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHRQ" title="开户日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="FFRQ" title="发放日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DQRQ" title="到期日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="XHRQ" title="销户日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="WJFL" title="五级分类" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JXDXDH" title="绩效对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <sqlMap namespace="studio.gryjmx"> 
-    <select id="dn0.gryjmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
-      <isEqual property="sjypdzd" compareValue="01_2">select a.tjrq, a.jgdh, a.jgmc, a.hydh, a.hymc, a.khh, a.zhdh, a.zzh,a.zhhm, a.zhye, a.hyye, a.zhjs*a.zlbl*0.01 zhjs, a.gxfp, a.kmh, a.qx, a.qxmc, a.khrq, a.xhrq, a.qsrq, a.jsrq ,a.jxdxdh from ( select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh,zh.zzh, zh.zhhm, mx.zhye,mx.zhye as hyye, jszh.zhjs zhjs , '百分比:100' as gxfp, zh.kmh, zh.qx, cqx.qxmc, zh.khrq, '$zhlx$' zhlx, 100 as zlbl, zh.xhrq, zh.khrq as qsrq, zh.xhrq as jsrq,zh.jxdxdh from jxdx_ckzh zh inner join jxdx_ckzhmx_$tjrq_yyyy$ mx on mx.jxdxdh = zh.jxdxdh
-        <isNotEmpty property="tjrq">and $tjrq$ between mx.qsrq and mx.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh = zh.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join jxdx_ckjszh_$tjrq_yyyy$ jszh on jszh.jxdxdh = zh.jxdxdh 
-        <isNotEmpty property="tjrq_yyyy">and jszh.tjrq = $tjrq_yyyy$0101</isNotEmpty> left join csb_qxsdb cqx on cqx.jxdxlx=1 and zh.qx between cqx.qsqx and cqx.jsqx where zh.gxhslx='0' 
-        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
-        <isNotEmpty property="zhqy">and zh.zhdh like '$zhqy$%'</isNotEmpty>  
-        <isNotEmpty property="tjrq">and $tjrq$ between zh.khrq and zh.xhrq</isNotEmpty>  <![CDATA[union all 
+<pageSetting id="gryjmx" title="个人存贷款业绩明细" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期">
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员">
+        <attribute key="isDisplayXN" value="true" />
+        <attribute key="hyckbz" value="hy_jg" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="业务类别">
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="120px;" />
+        <attribute key="evenName" value="change" />
+        <attribute key="editable" value="true" />
+        <attribute key="isSearch" value="false" />
+        <attribute key="sql" value="select ywlb as key,ms as value from csb_ywlb where ywlb in ('01','02')" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="ywlb" />
+        <attribute key="isAll" value="false" />
+        <attribute key="multiple" value="false" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Dmms" label="账户类型">
+        <attribute key="width" value="120px;" />
+        <attribute key="dmmc" value="jszhlx" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="zhlx" />
+        <attribute key="isAll" value="false" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="DataInterface" label="null">
+        <attribute key="dataType" value="select" />
+        <attribute key="sql" value="select csz from xtb_xtcs where csmc='DKYJGXMS'" />
+        <attribute key="name" value="dkyjmxcsz" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="dkcsz" />
+      </tag>
+      <tag row="1" col="0" colspan="1" rowspan="1" name="Text" label="账号">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="zhqy" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="1" col="0" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="sjypdzd" />
+      </tag>
+      <tag row="1" col="0" colspan="1" rowspan="1" name="DataInterface" label="null">
+        <attribute key="dataType" value="select" />
+        <attribute key="sql" value="select csz from xtb_xtcs where csmc='CKYJGXMS'" />
+        <attribute key="name" value="ckyjmxcsz" />
+      </tag>
+      <tag row="1" col="0" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="ckcsz" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="gryjmx_xsjy1jgj" title="新数据源1结果集" page="true">
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHDH" title="账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHRQ" title="开户日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHYE" title="时点余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="showCkZhye" />
+    <col id="HYYE" title="行员余额" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHJS" title="基数" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="1464259237634" title="业绩关系" align="center" type="string" width="720" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
+      <col id="HYDH" title="行员代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="HYMC" title="行员名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="GXFP" title="关系分配" align="left" type="string" width="300" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="QSRQ" title="关系起始日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="JSRQ" title="关系结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    </col>
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QX" title="期限代号" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" />
+    <col id="QXMC" title="期限名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" />
+    <col id="XHRQ" title="销户日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JXDXDH" title="绩效对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false" />
+  </table>
+  <table id="gryjmx_dkjgj" title="贷款结果集" page="true">
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHDH" title="账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHYE" title="时点余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="showDkZhye" />
+    <col id="HYYE" title="行员余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZCYE" title="正常余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="YQYE" title="逾期余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DAIZHIYE" title="呆滞余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DAIZHANGYE" title="呆账余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHJS" title="基数" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="1464259329464" title="业绩关系" align="center" type="string" width="750" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
+      <col id="HYDH" title="行员代号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="HYMC" title="行员名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="GXFP" title="关系分配" align="left" type="string" width="300" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="QSRQ" title="关系起始日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="JSRQ" title="关系结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    </col>
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="YQKM" title="逾期科目" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DAIZHIKM" title="呆滞科目" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DAIZHANGKM" title="呆账科目" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QX" title="期限代号" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" />
+    <col id="QXMC" title="期限名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" />
+    <col id="KHRQ" title="开户日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FFRQ" title="发放日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DQRQ" title="到期日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="XHRQ" title="销户日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="WJFL" title="五级分类" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JXDXDH" title="绩效对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <table id="gryjmx_ck-qbzhjgj" title="存款-全部账户结果集" page="true">
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHRQ" title="开户日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHYE" title="时点余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="showCkZhye" />
+    <col id="HYYE" title="行员余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="1464259398998" title="业绩关系" align="center" type="string" width="750" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
+      <col id="HYDH" title="行员代号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="HYMC" title="行员名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="GXFP" title="关系分配" align="left" type="string" width="300" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="QSRQ" title="关系起始日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="JSRQ" title="关系结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    </col>
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QX" title="期限代号" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QXMC" title="期限名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="XHRQ" title="销户日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JXDXDH" title="绩效对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <table id="gryjmx_dk-qbzhjgj" title="贷款-全部账户结果集" page="true">
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHDH" title="账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="false" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHYE" title="时点余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="showDkZhye" />
+    <col id="HYYE" title="行员余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZCYE" title="正常余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="YQYE" title="逾期余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DAIZHIYE" title="呆滞余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DAIZHANGYE" title="呆账余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="1464259532831" title="业绩关系" align="center" type="string" width="750" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
+      <col id="HYDH" title="行员代号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="HYMC" title="行员名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="GXFP" title="关系分配" align="left" type="string" width="300" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="QSRQ" title="起始日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="JSRQ" title="结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    </col>
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="YQKM" title="逾期科目" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DAIZHIKM" title="呆滞科目" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DAIZHANGKM" title="呆账科目" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QX" title="期限" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QXMC" title="期限名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHRQ" title="开户日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FFRQ" title="发放日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DQRQ" title="到期日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="XHRQ" title="销户日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="WJFL" title="五级分类" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JXDXDH" title="绩效对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.gryjmx">
+    <select id="dn0.gryjmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <isEqual property="sjypdzd" compareValue="01_2">
+        select a.tjrq, a.jgdh, a.jgmc, a.hydh, a.hymc, a.khh, a.zhdh, a.zzh,a.zhhm, a.zhye, a.hyye, a.zhjs*a.zlbl*0.01 zhjs, a.gxfp, a.kmh, a.qx, a.qxmc, a.khrq, a.xhrq, a.qsrq, a.jsrq ,a.jxdxdh from (      select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh,zh.zzh, zh.zhhm, mx.zhye,mx.zhye as hyye,     jszh.zhjs zhjs , '百分比:100' as gxfp, zh.kmh, zh.qx,      cqx.qxmc,     zh.khrq, '$zhlx$' zhlx, 100 as zlbl, zh.xhrq, zh.khrq as qsrq, zh.xhrq as jsrq,zh.jxdxdh     from jxdx_ckzh zh      inner join jxdx_ckzhmx_$tjrq_yyyy$ mx on mx.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between mx.qsrq and mx.jsrq</isNotEmpty>
+        inner join khdx_hy hy on hy.khdxdh = zh.khdxdh      inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh      inner join jxdx_ckjszh_$tjrq_yyyy$ jszh on jszh.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq_yyyy">and jszh.tjrq = $tjrq_yyyy$0101</isNotEmpty>
+        left join csb_qxsdb cqx on cqx.jxdxlx=1 and zh.qx between cqx.qsqx and cqx.jsqx where zh.gxhslx='0'
+        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
+        <isNotEmpty property="zhqy">and zh.zhdh like '$zhqy$%'</isNotEmpty>
+        <isNotEmpty property="tjrq">and $tjrq$ between zh.khrq and zh.xhrq</isNotEmpty>
+        <![CDATA[union all 
     select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh, zh.zzh,zh.zhhm, mx.zhye,
     case when gx.gxhslx ='1' then mx.zhye*gx.zlbl*0.01
      when gx.gxhslx='2' and gx.yz>=mx.zhye then mx.zhye*gx.clbl*0.01
@@ -209,21 +213,32 @@
         cqx.qxmc,
         zh.khrq, '$zhlx$' zhlx, gx.zlbl, zh.xhrq, gx.qsrq, gx.jsrq ,zh.jxdxdh
         from jxdx_ckzh zh 
-        inner join jxdx_ckzhmx_$tjrq_yyyy$ mx on mx.jxdxdh = zh.jxdxdh]]>  
-        <isNotEmpty property="tjrq">and $tjrq$ between mx.qsrq and mx.jsrq</isNotEmpty> inner join dxgx_hyyjgx_ck gx on gx.jxdxdh = zh.jxdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh = gx.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join jxdx_ckjszh_$tjrq_yyyy$ jszh on jszh.jxdxdh = zh.jxdxdh 
-        <isNotEmpty property="tjrq_yyyy">and jszh.tjrq = $tjrq_yyyy$0101</isNotEmpty> left join csb_qxsdb cqx on cqx.jxdxlx=1 and zh.qx between cqx.qsqx and cqx.jsqx where zh.gxhslx='1' 
-        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
-        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty> )a order by a.qsrq desc
-      </isEqual>  
-      <isEqual property="sjypdzd" compareValue="02_2">select tjrq, jgdh, jgmc, hydh, hymc,khh,zhdh,zzh,zhhm,zhye,hyye,zcye,yqye, daizhiye,daizhangye,gxfp,kmh,yqkm,daizhikm,daizhangkm,qx, qxmc,khrq,ffrq,dqrq,xhrq,qsrq,jsrq,wjfl,jxdxdh,zhjs from ( select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh,zh.zzh, zh.zhhm, (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0)) zhye, (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0)) hyye, yemx.zcye,yemx.yqye,yemx.daizhiye,yemx.daizhangye, '百分比:100' as gxfp, zh.kmh,zh.yqkm,zh.daizhikm,zh.daizhangkm,zh.qx, cqx.qxmc, zh.khrq, zh.ffrq, zh.dqrq,zh.xhrq, zh.khrq qsrq, zh.xhrq jsrq, case when coalesce(cdmms.dmms,'0.0') ='0.0' then '正常' else cdmms.dmms end wjfl,zh.jxdxdh ,'$zhlx$' zhlx,jszh.zhjs zhjs from jxdx_dkzh zh inner join jxdx_dkzhyemx_$tjrq_yyyy$ yemx on yemx.jxdxdh = zh.jxdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between yemx.qsrq and yemx.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh = zh.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join jxdx_dkjszh_$tjrq_yyyy$ jszh on jszh.jxdxdh = zh.jxdxdh 
-        <isNotEmpty property="tjrq_yyyy">and jszh.tjrq = $tjrq_yyyy$0101</isNotEmpty> left join csb_qxsdb cqx on cqx.jxdxlx=2 and zh.qx between cqx.qsqx and cqx.jsqx left join jxdx_wjflmx_$tjrq_yyyy$ wjfl on wjfl.jxdxdh=zh.jxdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between wjfl.qsrq and wjfl.jsrq</isNotEmpty> left join csb_dmms cdmms on cdmms.dmz=wjfl.wjfl and cdmms.dmmc='DKWJFL' where zh.gxhslx='0' 
-        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
-        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty>  <![CDATA[union all 
+        inner join jxdx_ckzhmx_$tjrq_yyyy$ mx on mx.jxdxdh = zh.jxdxdh]]>
+        <isNotEmpty property="tjrq">and $tjrq$ between mx.qsrq and mx.jsrq</isNotEmpty>
+        inner join dxgx_hyyjgx_ck gx on gx.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty>
+        inner join khdx_hy hy on hy.khdxdh = gx.khdxdh          inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh          inner join jxdx_ckjszh_$tjrq_yyyy$ jszh on jszh.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq_yyyy">and jszh.tjrq = $tjrq_yyyy$0101</isNotEmpty>
+        left join csb_qxsdb cqx on cqx.jxdxlx=1 and zh.qx between cqx.qsqx and cqx.jsqx where zh.gxhslx='1'
+        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
+        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty>
+        )a      order by a.qsrq desc
+      </isEqual>
+      <isEqual property="sjypdzd" compareValue="02_2">
+        select tjrq, jgdh, jgmc, hydh, hymc,khh,zhdh,zzh,zhhm,zhye,hyye,zcye,yqye,     daizhiye,daizhangye,gxfp,kmh,yqkm,daizhikm,daizhangkm,qx,      qxmc,khrq,ffrq,dqrq,xhrq,qsrq,jsrq,wjfl,jxdxdh,zhjs from (      select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh,zh.zzh, zh.zhhm,     (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0)) zhye,     (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0)) hyye,     yemx.zcye,yemx.yqye,yemx.daizhiye,yemx.daizhangye, '百分比:100' as gxfp, zh.kmh,zh.yqkm,zh.daizhikm,zh.daizhangkm,zh.qx,      cqx.qxmc,     zh.khrq, zh.ffrq, zh.dqrq,zh.xhrq,      zh.khrq qsrq, zh.xhrq jsrq, case when coalesce(cdmms.dmms,'0.0') ='0.0' then '正常' else cdmms.dmms end wjfl,zh.jxdxdh     ,'$zhlx$' zhlx,jszh.zhjs zhjs     from jxdx_dkzh zh      inner join jxdx_dkzhyemx_$tjrq_yyyy$ yemx on yemx.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between yemx.qsrq and yemx.jsrq</isNotEmpty>
+        inner join khdx_hy hy on hy.khdxdh = zh.khdxdh      inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh      inner join jxdx_dkjszh_$tjrq_yyyy$ jszh on jszh.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq_yyyy">and jszh.tjrq = $tjrq_yyyy$0101</isNotEmpty>
+        left join csb_qxsdb cqx on cqx.jxdxlx=2 and zh.qx between cqx.qsqx and cqx.jsqx left join jxdx_wjflmx_$tjrq_yyyy$ wjfl on wjfl.jxdxdh=zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between wjfl.qsrq and wjfl.jsrq</isNotEmpty>
+        left join csb_dmms cdmms on cdmms.dmz=wjfl.wjfl and cdmms.dmmc='DKWJFL'     where zh.gxhslx='0'
+        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
+        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty>
+        <![CDATA[union all 
     select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh, zh.zzh,zh.zhhm,
     (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0)) as zhye, 
     case when gx.gxhslx ='1' then (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0))*gx.zlbl*0.01
@@ -241,21 +256,31 @@
         zh.khrq, zh.ffrq,zh.dqrq,zh.xhrq, gx.qsrq, gx.jsrq, case when coalesce(cdmms.dmms,'0.0') ='0.0' then '正常' else cdmms.dmms end wjfl,zh.jxdxdh
         ,'$zhlx$' zhlx,jszh.zhjs zhjs
         from jxdx_dkzh zh 
-        inner join jxdx_dkzhyemx_$tjrq_yyyy$ yemx on yemx.jxdxdh = zh.jxdxdh]]>  
-        <isNotEmpty property="tjrq">and $tjrq$ between yemx.qsrq and yemx.jsrq</isNotEmpty> inner join dxgx_hyyjgx_dk gx on gx.jxdxdh = zh.jxdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh = gx.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join jxdx_dkjszh_$tjrq_yyyy$ jszh on jszh.jxdxdh = zh.jxdxdh 
-        <isNotEmpty property="tjrq_yyyy">and jszh.tjrq = $tjrq_yyyy$0101</isNotEmpty> left join csb_qxsdb cqx on cqx.jxdxlx=2 and zh.qx between cqx.qsqx and cqx.jsqx left join jxdx_wjflmx_$tjrq_yyyy$ wjfl on wjfl.jxdxdh=zh.jxdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between wjfl.qsrq and wjfl.jsrq</isNotEmpty> left join csb_dmms cdmms on cdmms.dmz=wjfl.wjfl and cdmms.dmmc='DKWJFL' where zh.gxhslx='1' 
-        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
-        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty> )a order by a.qsrq desc
-      </isEqual>  
-      <isEqual property="sjypdzd" compareValue="01_1">select a.tjrq, a.jgdh, a.jgmc, a.hydh, a.hymc, a.khh, a.zhdh, a.zhhm,a.zzh, a.zhye, a.hyye, a.gxfp, a.kmh, a.qx, a.qxmc, a.khrq, a.xhrq, a.qsrq, a.jsrq ,a.jxdxdh from ( select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh,zh.zzh, zh.zhhm, mx.zhye,mx.zhye as hyye, '百分比:100' as gxfp, zh.kmh, zh.qx, cqx.qxmc, zh.khrq, '$zhlx$' zhlx, 100 as zlbl, zh.xhrq, zh.khrq as qsrq, zh.xhrq as jsrq,zh.jxdxdh from jxdx_ckzh zh inner join jxdx_ckzhmx_$tjrq_yyyy$ mx on mx.jxdxdh = zh.jxdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between mx.qsrq and mx.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh = zh.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh left join csb_qxsdb cqx on cqx.jxdxlx=1 and zh.qx between cqx.qsqx and cqx.jsqx where zh.gxhslx='0' 
-        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
-        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty>  
-        <isNotEmpty property="tjrq">and $tjrq$ between zh.khrq and zh.xhrq</isNotEmpty>  <![CDATA[union all 
+        inner join jxdx_dkzhyemx_$tjrq_yyyy$ yemx on yemx.jxdxdh = zh.jxdxdh]]>
+        <isNotEmpty property="tjrq">and $tjrq$ between yemx.qsrq and yemx.jsrq</isNotEmpty>
+        inner join dxgx_hyyjgx_dk gx on gx.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty>
+        inner join khdx_hy hy on hy.khdxdh = gx.khdxdh          inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh          inner join jxdx_dkjszh_$tjrq_yyyy$ jszh on jszh.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq_yyyy">and jszh.tjrq = $tjrq_yyyy$0101</isNotEmpty>
+        left join csb_qxsdb cqx on cqx.jxdxlx=2 and zh.qx between cqx.qsqx and cqx.jsqx left join jxdx_wjflmx_$tjrq_yyyy$ wjfl on wjfl.jxdxdh=zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between wjfl.qsrq and wjfl.jsrq</isNotEmpty>
+        left join csb_dmms cdmms on cdmms.dmz=wjfl.wjfl and cdmms.dmmc='DKWJFL'         where zh.gxhslx='1'
+        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
+        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty>
+        )a      order by a.qsrq desc
+      </isEqual>
+      <isEqual property="sjypdzd" compareValue="01_1">
+        select a.tjrq, a.jgdh, a.jgmc, a.hydh, a.hymc, a.khh, a.zhdh, a.zhhm,a.zzh, a.zhye, a.hyye, a.gxfp, a.kmh, a.qx, a.qxmc, a.khrq, a.xhrq, a.qsrq, a.jsrq ,a.jxdxdh from (      select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh,zh.zzh, zh.zhhm, mx.zhye,mx.zhye as hyye, '百分比:100' as gxfp, zh.kmh, zh.qx,      cqx.qxmc,     zh.khrq, '$zhlx$' zhlx, 100 as zlbl, zh.xhrq, zh.khrq as qsrq, zh.xhrq as jsrq,zh.jxdxdh     from jxdx_ckzh zh      inner join jxdx_ckzhmx_$tjrq_yyyy$ mx on mx.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between mx.qsrq and mx.jsrq</isNotEmpty>
+        inner join khdx_hy hy on hy.khdxdh = zh.khdxdh      inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh      left join csb_qxsdb cqx on cqx.jxdxlx=1 and zh.qx between cqx.qsqx and cqx.jsqx where zh.gxhslx='0'
+        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
+        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty>
+        <isNotEmpty property="tjrq">and $tjrq$ between zh.khrq and zh.xhrq</isNotEmpty>
+        <![CDATA[union all 
     select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh, zh.zzh,zh.zhhm, mx.zhye, 
     case when gx.gxhslx ='1' then mx.zhye*gx.zlbl*0.01
      when gx.gxhslx='2' and gx.yz>=mx.zhye then mx.zhye*gx.clbl*0.01
@@ -269,19 +294,28 @@
         cqx.qxmc,
         zh.khrq, '$zhlx$' zhlx, gx.zlbl, zh.xhrq, gx.qsrq, gx.jsrq ,zh.jxdxdh
         from jxdx_ckzh zh 
-        inner join jxdx_ckzhmx_$tjrq_yyyy$ mx on mx.jxdxdh = zh.jxdxdh]]>  
-        <isNotEmpty property="tjrq">and $tjrq$ between mx.qsrq and mx.jsrq</isNotEmpty> inner join dxgx_hyyjgx_ck gx on gx.jxdxdh = zh.jxdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh = gx.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh left join csb_qxsdb cqx on cqx.jxdxlx=1 and zh.qx between cqx.qsqx and cqx.jsqx where zh.gxhslx='1' 
-        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
-        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty> )a order by a.qsrq desc
-      </isEqual>  
-      <isEqual property="sjypdzd" compareValue="02_1">select tjrq, jgdh, jgmc, hydh, hymc,khh,zhdh,zhhm, zzh , zhye,hyye,zcye,yqye, daizhiye,daizhangye,gxfp,kmh,yqkm,daizhikm,daizhangkm,qx, qxmc,khrq,ffrq,dqrq,xhrq,qsrq,jsrq,wjfl,jxdxdh from ( select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh,zh.zzh, zh.zhhm, (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0)) zhye, (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0)) hyye, yemx.zcye,yemx.yqye,yemx.daizhiye,yemx.daizhangye, '百分比:100' as gxfp, zh.kmh,zh.yqkm,zh.daizhikm,zh.daizhangkm,zh.qx, cqx.qxmc, zh.khrq, zh.ffrq, zh.dqrq,zh.xhrq, zh.khrq qsrq, zh.xhrq jsrq, case when coalesce(cdmms.dmms,'0.0') ='0.0' then '正常' else cdmms.dmms end wjfl,zh.jxdxdh from jxdx_dkzh zh inner join jxdx_dkzhyemx_$tjrq_yyyy$ yemx on yemx.jxdxdh = zh.jxdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between yemx.qsrq and yemx.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh = zh.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh left join csb_qxsdb cqx on cqx.jxdxlx=2 and zh.qx between cqx.qsqx and cqx.jsqx left join jxdx_wjflmx_$tjrq_yyyy$ wjfl on wjfl.jxdxdh=zh.jxdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between wjfl.qsrq and wjfl.jsrq</isNotEmpty> left join csb_dmms cdmms on cdmms.dmz=wjfl.wjfl and cdmms.dmmc='DKWJFL' where zh.gxhslx='0' 
-        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
-        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty>  <![CDATA[union all 
+        inner join jxdx_ckzhmx_$tjrq_yyyy$ mx on mx.jxdxdh = zh.jxdxdh]]>
+        <isNotEmpty property="tjrq">and $tjrq$ between mx.qsrq and mx.jsrq</isNotEmpty>
+        inner join dxgx_hyyjgx_ck gx on gx.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty>
+        inner join khdx_hy hy on hy.khdxdh = gx.khdxdh          inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh          left join csb_qxsdb cqx on cqx.jxdxlx=1 and zh.qx between cqx.qsqx and cqx.jsqx where zh.gxhslx='1'
+        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
+        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty>
+        )a      order by a.qsrq desc
+      </isEqual>
+      <isEqual property="sjypdzd" compareValue="02_1">
+        select tjrq, jgdh, jgmc, hydh, hymc,khh,zhdh,zhhm, zzh , zhye,hyye,zcye,yqye,     daizhiye,daizhangye,gxfp,kmh,yqkm,daizhikm,daizhangkm,qx,      qxmc,khrq,ffrq,dqrq,xhrq,qsrq,jsrq,wjfl,jxdxdh from (      select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh,zh.zzh, zh.zhhm,     (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0)) zhye,     (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0)) hyye,     yemx.zcye,yemx.yqye,yemx.daizhiye,yemx.daizhangye, '百分比:100' as gxfp, zh.kmh,zh.yqkm,zh.daizhikm,zh.daizhangkm,zh.qx,      cqx.qxmc,     zh.khrq, zh.ffrq, zh.dqrq,zh.xhrq,      zh.khrq qsrq, zh.xhrq jsrq, case when coalesce(cdmms.dmms,'0.0') ='0.0' then '正常' else cdmms.dmms end wjfl,zh.jxdxdh     from jxdx_dkzh zh      inner join jxdx_dkzhyemx_$tjrq_yyyy$ yemx on yemx.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between yemx.qsrq and yemx.jsrq</isNotEmpty>
+        inner join khdx_hy hy on hy.khdxdh = zh.khdxdh      inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh      left join csb_qxsdb cqx on cqx.jxdxlx=2 and zh.qx between cqx.qsqx and cqx.jsqx left join jxdx_wjflmx_$tjrq_yyyy$ wjfl on wjfl.jxdxdh=zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between wjfl.qsrq and wjfl.jsrq</isNotEmpty>
+        left join csb_dmms cdmms on cdmms.dmz=wjfl.wjfl and cdmms.dmmc='DKWJFL'     where zh.gxhslx='0'
+        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
+        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty>
+        <![CDATA[union all 
     select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh,zh.zzh, zh.zhhm, 
     (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0)) as zhye,
     case when gx.gxhslx ='1' then (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0))*gx.zlbl*0.01
@@ -297,24 +331,35 @@
         cqx.qxmc,
         zh.khrq, zh.ffrq,zh.dqrq,zh.xhrq, gx.qsrq, gx.jsrq, case when coalesce(cdmms.dmms,'0.0') ='0.0' then '正常' else cdmms.dmms end wjfl,zh.jxdxdh
         from jxdx_dkzh zh 
-        inner join jxdx_dkzhyemx_$tjrq_yyyy$ yemx on yemx.jxdxdh = zh.jxdxdh]]>  
-        <isNotEmpty property="tjrq">and $tjrq$ between yemx.qsrq and yemx.jsrq</isNotEmpty> inner join dxgx_hyyjgx_dk gx on gx.jxdxdh = zh.jxdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh = gx.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh left join csb_qxsdb cqx on cqx.jxdxlx=2 and zh.qx between cqx.qsqx and cqx.jsqx left join jxdx_wjflmx_$tjrq_yyyy$ wjfl on wjfl.jxdxdh=zh.jxdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between wjfl.qsrq and wjfl.jsrq</isNotEmpty> left join csb_dmms cdmms on cdmms.dmz=wjfl.wjfl and cdmms.dmmc='DKWJFL' where zh.gxhslx='1' 
-        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
-        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty> )a order by a.qsrq desc
-      </isEqual> 
-    </select>  
-    <select id="dn0.gryjmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
-      <isEqual property="sjypdzd" compareValue="01_2">select a.tjrq, a.jgdh, a.jgmc, a.hydh, a.hymc, a.khh, a.zhdh, a.zzh,a.zhhm, a.zhye, a.hyye, a.zhjs*a.zlbl*0.01 zhjs, a.gxfp, a.kmh, a.qx, a.qxmc, a.khrq, a.xhrq, a.qsrq, a.jsrq ,a.jxdxdh from ( select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh,zh.zzh, zh.zhhm, mx.zhye,mx.zhye as hyye, jszh.zhjs zhjs , '百分比:100' as gxfp, zh.kmh, zh.qx, cqx.qxmc, zh.khrq, '$zhlx$' zhlx, 100 as zlbl, zh.xhrq, zh.khrq as qsrq, zh.xhrq as jsrq,zh.jxdxdh from jxdx_ckzh zh inner join jxdx_ckzhmx_$tjrq_yyyy$ mx on mx.jxdxdh = zh.jxdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between mx.qsrq and mx.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh = zh.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join jxdx_ckjszh_$tjrq_yyyy$ jszh on jszh.jxdxdh = zh.jxdxdh 
-        <isNotEmpty property="tjrq_yyyy">and jszh.tjrq = $tjrq_yyyy$0101</isNotEmpty> left join csb_qxsdb cqx on cqx.jxdxlx=1 and zh.qx between cqx.qsqx and cqx.jsqx where zh.gxhslx='0' 
-        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
-        <isNotEmpty property="zhqy">and zh.zhdh like '$zhqy$%'</isNotEmpty>  
-        <isNotEmpty property="tjrq">and $tjrq$ between zh.khrq and zh.xhrq</isNotEmpty>  <![CDATA[union all 
+        inner join jxdx_dkzhyemx_$tjrq_yyyy$ yemx on yemx.jxdxdh = zh.jxdxdh]]>
+        <isNotEmpty property="tjrq">and $tjrq$ between yemx.qsrq and yemx.jsrq</isNotEmpty>
+        inner join dxgx_hyyjgx_dk gx on gx.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty>
+        inner join khdx_hy hy on hy.khdxdh = gx.khdxdh          inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh          left join csb_qxsdb cqx on cqx.jxdxlx=2 and zh.qx between cqx.qsqx and cqx.jsqx left join jxdx_wjflmx_$tjrq_yyyy$ wjfl on wjfl.jxdxdh=zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between wjfl.qsrq and wjfl.jsrq</isNotEmpty>
+        left join csb_dmms cdmms on cdmms.dmz=wjfl.wjfl and cdmms.dmmc='DKWJFL'         where zh.gxhslx='1'
+        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
+        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty>
+        )a      order by a.qsrq desc
+      </isEqual>
+    </select>
+    <select id="dn0.gryjmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from (
+      <isEqual property="sjypdzd" compareValue="01_2">
+        select a.tjrq, a.jgdh, a.jgmc, a.hydh, a.hymc, a.khh, a.zhdh, a.zzh,a.zhhm, a.zhye, a.hyye, a.zhjs*a.zlbl*0.01 zhjs, a.gxfp, a.kmh, a.qx, a.qxmc, a.khrq, a.xhrq, a.qsrq, a.jsrq ,a.jxdxdh from (      select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh,zh.zzh, zh.zhhm, mx.zhye,mx.zhye as hyye,     jszh.zhjs zhjs , '百分比:100' as gxfp, zh.kmh, zh.qx,      cqx.qxmc,     zh.khrq, '$zhlx$' zhlx, 100 as zlbl, zh.xhrq, zh.khrq as qsrq, zh.xhrq as jsrq,zh.jxdxdh     from jxdx_ckzh zh      inner join jxdx_ckzhmx_$tjrq_yyyy$ mx on mx.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between mx.qsrq and mx.jsrq</isNotEmpty>
+        inner join khdx_hy hy on hy.khdxdh = zh.khdxdh      inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh      inner join jxdx_ckjszh_$tjrq_yyyy$ jszh on jszh.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq_yyyy">and jszh.tjrq = $tjrq_yyyy$0101</isNotEmpty>
+        left join csb_qxsdb cqx on cqx.jxdxlx=1 and zh.qx between cqx.qsqx and cqx.jsqx where zh.gxhslx='0'
+        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
+        <isNotEmpty property="zhqy">and zh.zhdh like '$zhqy$%'</isNotEmpty>
+        <isNotEmpty property="tjrq">and $tjrq$ between zh.khrq and zh.xhrq</isNotEmpty>
+        <![CDATA[union all 
     select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh, zh.zzh,zh.zhhm, mx.zhye,
     case when gx.gxhslx ='1' then mx.zhye*gx.zlbl*0.01
      when gx.gxhslx='2' and gx.yz>=mx.zhye then mx.zhye*gx.clbl*0.01
@@ -328,21 +373,32 @@
         cqx.qxmc,
         zh.khrq, '$zhlx$' zhlx, gx.zlbl, zh.xhrq, gx.qsrq, gx.jsrq ,zh.jxdxdh
         from jxdx_ckzh zh 
-        inner join jxdx_ckzhmx_$tjrq_yyyy$ mx on mx.jxdxdh = zh.jxdxdh]]>  
-        <isNotEmpty property="tjrq">and $tjrq$ between mx.qsrq and mx.jsrq</isNotEmpty> inner join dxgx_hyyjgx_ck gx on gx.jxdxdh = zh.jxdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh = gx.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join jxdx_ckjszh_$tjrq_yyyy$ jszh on jszh.jxdxdh = zh.jxdxdh 
-        <isNotEmpty property="tjrq_yyyy">and jszh.tjrq = $tjrq_yyyy$0101</isNotEmpty> left join csb_qxsdb cqx on cqx.jxdxlx=1 and zh.qx between cqx.qsqx and cqx.jsqx where zh.gxhslx='1' 
-        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
-        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty> )a order by a.qsrq desc
-      </isEqual>  
-      <isEqual property="sjypdzd" compareValue="02_2">select tjrq, jgdh, jgmc, hydh, hymc,khh,zhdh,zzh,zhhm,zhye,hyye,zcye,yqye, daizhiye,daizhangye,gxfp,kmh,yqkm,daizhikm,daizhangkm,qx, qxmc,khrq,ffrq,dqrq,xhrq,qsrq,jsrq,wjfl,jxdxdh,zhjs from ( select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh,zh.zzh, zh.zhhm, (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0)) zhye, (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0)) hyye, yemx.zcye,yemx.yqye,yemx.daizhiye,yemx.daizhangye, '百分比:100' as gxfp, zh.kmh,zh.yqkm,zh.daizhikm,zh.daizhangkm,zh.qx, cqx.qxmc, zh.khrq, zh.ffrq, zh.dqrq,zh.xhrq, zh.khrq qsrq, zh.xhrq jsrq, case when coalesce(cdmms.dmms,'0.0') ='0.0' then '正常' else cdmms.dmms end wjfl,zh.jxdxdh ,'$zhlx$' zhlx,jszh.zhjs zhjs from jxdx_dkzh zh inner join jxdx_dkzhyemx_$tjrq_yyyy$ yemx on yemx.jxdxdh = zh.jxdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between yemx.qsrq and yemx.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh = zh.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join jxdx_dkjszh_$tjrq_yyyy$ jszh on jszh.jxdxdh = zh.jxdxdh 
-        <isNotEmpty property="tjrq_yyyy">and jszh.tjrq = $tjrq_yyyy$0101</isNotEmpty> left join csb_qxsdb cqx on cqx.jxdxlx=2 and zh.qx between cqx.qsqx and cqx.jsqx left join jxdx_wjflmx_$tjrq_yyyy$ wjfl on wjfl.jxdxdh=zh.jxdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between wjfl.qsrq and wjfl.jsrq</isNotEmpty> left join csb_dmms cdmms on cdmms.dmz=wjfl.wjfl and cdmms.dmmc='DKWJFL' where zh.gxhslx='0' 
-        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
-        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty>  <![CDATA[union all 
+        inner join jxdx_ckzhmx_$tjrq_yyyy$ mx on mx.jxdxdh = zh.jxdxdh]]>
+        <isNotEmpty property="tjrq">and $tjrq$ between mx.qsrq and mx.jsrq</isNotEmpty>
+        inner join dxgx_hyyjgx_ck gx on gx.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty>
+        inner join khdx_hy hy on hy.khdxdh = gx.khdxdh          inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh          inner join jxdx_ckjszh_$tjrq_yyyy$ jszh on jszh.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq_yyyy">and jszh.tjrq = $tjrq_yyyy$0101</isNotEmpty>
+        left join csb_qxsdb cqx on cqx.jxdxlx=1 and zh.qx between cqx.qsqx and cqx.jsqx where zh.gxhslx='1'
+        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
+        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty>
+        )a      order by a.qsrq desc
+      </isEqual>
+      <isEqual property="sjypdzd" compareValue="02_2">
+        select tjrq, jgdh, jgmc, hydh, hymc,khh,zhdh,zzh,zhhm,zhye,hyye,zcye,yqye,     daizhiye,daizhangye,gxfp,kmh,yqkm,daizhikm,daizhangkm,qx,      qxmc,khrq,ffrq,dqrq,xhrq,qsrq,jsrq,wjfl,jxdxdh,zhjs from (      select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh,zh.zzh, zh.zhhm,     (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0)) zhye,     (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0)) hyye,     yemx.zcye,yemx.yqye,yemx.daizhiye,yemx.daizhangye, '百分比:100' as gxfp, zh.kmh,zh.yqkm,zh.daizhikm,zh.daizhangkm,zh.qx,      cqx.qxmc,     zh.khrq, zh.ffrq, zh.dqrq,zh.xhrq,      zh.khrq qsrq, zh.xhrq jsrq, case when coalesce(cdmms.dmms,'0.0') ='0.0' then '正常' else cdmms.dmms end wjfl,zh.jxdxdh     ,'$zhlx$' zhlx,jszh.zhjs zhjs     from jxdx_dkzh zh      inner join jxdx_dkzhyemx_$tjrq_yyyy$ yemx on yemx.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between yemx.qsrq and yemx.jsrq</isNotEmpty>
+        inner join khdx_hy hy on hy.khdxdh = zh.khdxdh      inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh      inner join jxdx_dkjszh_$tjrq_yyyy$ jszh on jszh.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq_yyyy">and jszh.tjrq = $tjrq_yyyy$0101</isNotEmpty>
+        left join csb_qxsdb cqx on cqx.jxdxlx=2 and zh.qx between cqx.qsqx and cqx.jsqx left join jxdx_wjflmx_$tjrq_yyyy$ wjfl on wjfl.jxdxdh=zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between wjfl.qsrq and wjfl.jsrq</isNotEmpty>
+        left join csb_dmms cdmms on cdmms.dmz=wjfl.wjfl and cdmms.dmmc='DKWJFL'     where zh.gxhslx='0'
+        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
+        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty>
+        <![CDATA[union all 
     select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh, zh.zzh,zh.zhhm,
     (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0)) as zhye, 
     case when gx.gxhslx ='1' then (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0))*gx.zlbl*0.01
@@ -360,21 +416,31 @@
         zh.khrq, zh.ffrq,zh.dqrq,zh.xhrq, gx.qsrq, gx.jsrq, case when coalesce(cdmms.dmms,'0.0') ='0.0' then '正常' else cdmms.dmms end wjfl,zh.jxdxdh
         ,'$zhlx$' zhlx,jszh.zhjs zhjs
         from jxdx_dkzh zh 
-        inner join jxdx_dkzhyemx_$tjrq_yyyy$ yemx on yemx.jxdxdh = zh.jxdxdh]]>  
-        <isNotEmpty property="tjrq">and $tjrq$ between yemx.qsrq and yemx.jsrq</isNotEmpty> inner join dxgx_hyyjgx_dk gx on gx.jxdxdh = zh.jxdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh = gx.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join jxdx_dkjszh_$tjrq_yyyy$ jszh on jszh.jxdxdh = zh.jxdxdh 
-        <isNotEmpty property="tjrq_yyyy">and jszh.tjrq = $tjrq_yyyy$0101</isNotEmpty> left join csb_qxsdb cqx on cqx.jxdxlx=2 and zh.qx between cqx.qsqx and cqx.jsqx left join jxdx_wjflmx_$tjrq_yyyy$ wjfl on wjfl.jxdxdh=zh.jxdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between wjfl.qsrq and wjfl.jsrq</isNotEmpty> left join csb_dmms cdmms on cdmms.dmz=wjfl.wjfl and cdmms.dmmc='DKWJFL' where zh.gxhslx='1' 
-        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
-        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty> )a order by a.qsrq desc
-      </isEqual>  
-      <isEqual property="sjypdzd" compareValue="01_1">select a.tjrq, a.jgdh, a.jgmc, a.hydh, a.hymc, a.khh, a.zhdh, a.zhhm,a.zzh, a.zhye, a.hyye, a.gxfp, a.kmh, a.qx, a.qxmc, a.khrq, a.xhrq, a.qsrq, a.jsrq ,a.jxdxdh from ( select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh,zh.zzh, zh.zhhm, mx.zhye,mx.zhye as hyye, '百分比:100' as gxfp, zh.kmh, zh.qx, cqx.qxmc, zh.khrq, '$zhlx$' zhlx, 100 as zlbl, zh.xhrq, zh.khrq as qsrq, zh.xhrq as jsrq,zh.jxdxdh from jxdx_ckzh zh inner join jxdx_ckzhmx_$tjrq_yyyy$ mx on mx.jxdxdh = zh.jxdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between mx.qsrq and mx.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh = zh.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh left join csb_qxsdb cqx on cqx.jxdxlx=1 and zh.qx between cqx.qsqx and cqx.jsqx where zh.gxhslx='0' 
-        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
-        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty>  
-        <isNotEmpty property="tjrq">and $tjrq$ between zh.khrq and zh.xhrq</isNotEmpty>  <![CDATA[union all 
+        inner join jxdx_dkzhyemx_$tjrq_yyyy$ yemx on yemx.jxdxdh = zh.jxdxdh]]>
+        <isNotEmpty property="tjrq">and $tjrq$ between yemx.qsrq and yemx.jsrq</isNotEmpty>
+        inner join dxgx_hyyjgx_dk gx on gx.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty>
+        inner join khdx_hy hy on hy.khdxdh = gx.khdxdh          inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh          inner join jxdx_dkjszh_$tjrq_yyyy$ jszh on jszh.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq_yyyy">and jszh.tjrq = $tjrq_yyyy$0101</isNotEmpty>
+        left join csb_qxsdb cqx on cqx.jxdxlx=2 and zh.qx between cqx.qsqx and cqx.jsqx left join jxdx_wjflmx_$tjrq_yyyy$ wjfl on wjfl.jxdxdh=zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between wjfl.qsrq and wjfl.jsrq</isNotEmpty>
+        left join csb_dmms cdmms on cdmms.dmz=wjfl.wjfl and cdmms.dmmc='DKWJFL'         where zh.gxhslx='1'
+        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
+        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty>
+        )a      order by a.qsrq desc
+      </isEqual>
+      <isEqual property="sjypdzd" compareValue="01_1">
+        select a.tjrq, a.jgdh, a.jgmc, a.hydh, a.hymc, a.khh, a.zhdh, a.zhhm,a.zzh, a.zhye, a.hyye, a.gxfp, a.kmh, a.qx, a.qxmc, a.khrq, a.xhrq, a.qsrq, a.jsrq ,a.jxdxdh from (      select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh,zh.zzh, zh.zhhm, mx.zhye,mx.zhye as hyye, '百分比:100' as gxfp, zh.kmh, zh.qx,      cqx.qxmc,     zh.khrq, '$zhlx$' zhlx, 100 as zlbl, zh.xhrq, zh.khrq as qsrq, zh.xhrq as jsrq,zh.jxdxdh     from jxdx_ckzh zh      inner join jxdx_ckzhmx_$tjrq_yyyy$ mx on mx.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between mx.qsrq and mx.jsrq</isNotEmpty>
+        inner join khdx_hy hy on hy.khdxdh = zh.khdxdh      inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh      left join csb_qxsdb cqx on cqx.jxdxlx=1 and zh.qx between cqx.qsqx and cqx.jsqx where zh.gxhslx='0'
+        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
+        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty>
+        <isNotEmpty property="tjrq">and $tjrq$ between zh.khrq and zh.xhrq</isNotEmpty>
+        <![CDATA[union all 
     select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh, zh.zzh,zh.zhhm, mx.zhye, 
     case when gx.gxhslx ='1' then mx.zhye*gx.zlbl*0.01
      when gx.gxhslx='2' and gx.yz>=mx.zhye then mx.zhye*gx.clbl*0.01
@@ -388,19 +454,28 @@
         cqx.qxmc,
         zh.khrq, '$zhlx$' zhlx, gx.zlbl, zh.xhrq, gx.qsrq, gx.jsrq ,zh.jxdxdh
         from jxdx_ckzh zh 
-        inner join jxdx_ckzhmx_$tjrq_yyyy$ mx on mx.jxdxdh = zh.jxdxdh]]>  
-        <isNotEmpty property="tjrq">and $tjrq$ between mx.qsrq and mx.jsrq</isNotEmpty> inner join dxgx_hyyjgx_ck gx on gx.jxdxdh = zh.jxdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh = gx.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh left join csb_qxsdb cqx on cqx.jxdxlx=1 and zh.qx between cqx.qsqx and cqx.jsqx where zh.gxhslx='1' 
-        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
-        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty> )a order by a.qsrq desc
-      </isEqual>  
-      <isEqual property="sjypdzd" compareValue="02_1">select tjrq, jgdh, jgmc, hydh, hymc,khh,zhdh,zhhm, zzh , zhye,hyye,zcye,yqye, daizhiye,daizhangye,gxfp,kmh,yqkm,daizhikm,daizhangkm,qx, qxmc,khrq,ffrq,dqrq,xhrq,qsrq,jsrq,wjfl,jxdxdh from ( select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh,zh.zzh, zh.zhhm, (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0)) zhye, (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0)) hyye, yemx.zcye,yemx.yqye,yemx.daizhiye,yemx.daizhangye, '百分比:100' as gxfp, zh.kmh,zh.yqkm,zh.daizhikm,zh.daizhangkm,zh.qx, cqx.qxmc, zh.khrq, zh.ffrq, zh.dqrq,zh.xhrq, zh.khrq qsrq, zh.xhrq jsrq, case when coalesce(cdmms.dmms,'0.0') ='0.0' then '正常' else cdmms.dmms end wjfl,zh.jxdxdh from jxdx_dkzh zh inner join jxdx_dkzhyemx_$tjrq_yyyy$ yemx on yemx.jxdxdh = zh.jxdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between yemx.qsrq and yemx.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh = zh.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh left join csb_qxsdb cqx on cqx.jxdxlx=2 and zh.qx between cqx.qsqx and cqx.jsqx left join jxdx_wjflmx_$tjrq_yyyy$ wjfl on wjfl.jxdxdh=zh.jxdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between wjfl.qsrq and wjfl.jsrq</isNotEmpty> left join csb_dmms cdmms on cdmms.dmz=wjfl.wjfl and cdmms.dmmc='DKWJFL' where zh.gxhslx='0' 
-        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
-        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty>  <![CDATA[union all 
+        inner join jxdx_ckzhmx_$tjrq_yyyy$ mx on mx.jxdxdh = zh.jxdxdh]]>
+        <isNotEmpty property="tjrq">and $tjrq$ between mx.qsrq and mx.jsrq</isNotEmpty>
+        inner join dxgx_hyyjgx_ck gx on gx.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty>
+        inner join khdx_hy hy on hy.khdxdh = gx.khdxdh          inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh          left join csb_qxsdb cqx on cqx.jxdxlx=1 and zh.qx between cqx.qsqx and cqx.jsqx where zh.gxhslx='1'
+        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
+        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty>
+        )a      order by a.qsrq desc
+      </isEqual>
+      <isEqual property="sjypdzd" compareValue="02_1">
+        select tjrq, jgdh, jgmc, hydh, hymc,khh,zhdh,zhhm, zzh , zhye,hyye,zcye,yqye,     daizhiye,daizhangye,gxfp,kmh,yqkm,daizhikm,daizhangkm,qx,      qxmc,khrq,ffrq,dqrq,xhrq,qsrq,jsrq,wjfl,jxdxdh from (      select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh,zh.zzh, zh.zhhm,     (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0)) zhye,     (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0)) hyye,     yemx.zcye,yemx.yqye,yemx.daizhiye,yemx.daizhangye, '百分比:100' as gxfp, zh.kmh,zh.yqkm,zh.daizhikm,zh.daizhangkm,zh.qx,      cqx.qxmc,     zh.khrq, zh.ffrq, zh.dqrq,zh.xhrq,      zh.khrq qsrq, zh.xhrq jsrq, case when coalesce(cdmms.dmms,'0.0') ='0.0' then '正常' else cdmms.dmms end wjfl,zh.jxdxdh     from jxdx_dkzh zh      inner join jxdx_dkzhyemx_$tjrq_yyyy$ yemx on yemx.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between yemx.qsrq and yemx.jsrq</isNotEmpty>
+        inner join khdx_hy hy on hy.khdxdh = zh.khdxdh      inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh      left join csb_qxsdb cqx on cqx.jxdxlx=2 and zh.qx between cqx.qsqx and cqx.jsqx left join jxdx_wjflmx_$tjrq_yyyy$ wjfl on wjfl.jxdxdh=zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between wjfl.qsrq and wjfl.jsrq</isNotEmpty>
+        left join csb_dmms cdmms on cdmms.dmz=wjfl.wjfl and cdmms.dmmc='DKWJFL'     where zh.gxhslx='0'
+        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
+        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty>
+        <![CDATA[union all 
     select $tjrq$ as tjrq, jg.jgdh, jg.jgmc, hy.hydh, hy.hymc, zh.khh, zh.zhdh,zh.zzh, zh.zhhm, 
     (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0)) as zhye,
     case when gx.gxhslx ='1' then (coalesce(yemx.zcye,0)+coalesce(yemx.yqye,0)+coalesce(yemx.daizhiye,0)+coalesce(yemx.daizhangye,0))*gx.zlbl*0.01
@@ -416,33 +491,39 @@
         cqx.qxmc,
         zh.khrq, zh.ffrq,zh.dqrq,zh.xhrq, gx.qsrq, gx.jsrq, case when coalesce(cdmms.dmms,'0.0') ='0.0' then '正常' else cdmms.dmms end wjfl,zh.jxdxdh
         from jxdx_dkzh zh 
-        inner join jxdx_dkzhyemx_$tjrq_yyyy$ yemx on yemx.jxdxdh = zh.jxdxdh]]>  
-        <isNotEmpty property="tjrq">and $tjrq$ between yemx.qsrq and yemx.jsrq</isNotEmpty> inner join dxgx_hyyjgx_dk gx on gx.jxdxdh = zh.jxdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty> inner join khdx_hy hy on hy.khdxdh = gx.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh left join csb_qxsdb cqx on cqx.jxdxlx=2 and zh.qx between cqx.qsqx and cqx.jsqx left join jxdx_wjflmx_$tjrq_yyyy$ wjfl on wjfl.jxdxdh=zh.jxdxdh 
-        <isNotEmpty property="tjrq">and $tjrq$ between wjfl.qsrq and wjfl.jsrq</isNotEmpty> left join csb_dmms cdmms on cdmms.dmz=wjfl.wjfl and cdmms.dmmc='DKWJFL' where zh.gxhslx='1' 
-        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>  
-        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty> )a order by a.qsrq desc
-      </isEqual> ) t
-    </select>  
-    <select id="dn0.gryjmx_MSQL4SELECT_ywlb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select ywlb as key,ms as value from csb_ywlb where ywlb in ('01','02')</select>  
-    <select id="dn0.gryjmx_dkyjmxcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='DKYJGXMS'</select>  
-    <select id="dn0.gryjmx_ckyjmxcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='CKYJGXMS'</select> 
-  </sqlMap>  
-  <rels> 
-    <items id="gryjmx_xsjy1jgj"> 
-      <item name="sjypdzd" compareValue="01_2" operate="isEqual"/> 
-    </items>  
-    <items id="gryjmx_dkjgj"> 
-      <item name="sjypdzd" compareValue="02_2" operate="isEqual"/> 
-    </items>  
-    <items id="gryjmx_ck-qbzhjgj"> 
-      <item name="sjypdzd" compareValue="01_1" operate="isEqual"/> 
-    </items>  
-    <items id="gryjmx_dk-qbzhjgj"> 
-      <item name="sjypdzd" compareValue="02_1" operate="isEqual"/> 
-    </items> 
-  </rels>  
+        inner join jxdx_dkzhyemx_$tjrq_yyyy$ yemx on yemx.jxdxdh = zh.jxdxdh]]>
+        <isNotEmpty property="tjrq">and $tjrq$ between yemx.qsrq and yemx.jsrq</isNotEmpty>
+        inner join dxgx_hyyjgx_dk gx on gx.jxdxdh = zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between gx.qsrq and gx.jsrq</isNotEmpty>
+        inner join khdx_hy hy on hy.khdxdh = gx.khdxdh          inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh          left join csb_qxsdb cqx on cqx.jxdxlx=2 and zh.qx between cqx.qsqx and cqx.jsqx left join jxdx_wjflmx_$tjrq_yyyy$ wjfl on wjfl.jxdxdh=zh.jxdxdh
+        <isNotEmpty property="tjrq">and $tjrq$ between wjfl.qsrq and wjfl.jsrq</isNotEmpty>
+        left join csb_dmms cdmms on cdmms.dmz=wjfl.wjfl and cdmms.dmmc='DKWJFL'         where zh.gxhslx='1'
+        <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
+        <isNotEmpty property="zhqy">and zh.zhdh like '%$zhqy$%'</isNotEmpty>
+        )a      order by a.qsrq desc
+      </isEqual>
+      ) t
+    </select>
+    <select id="dn0.gryjmx_MSQL4SELECT_ywlb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select ywlb as key,ms as value from csb_ywlb where ywlb in ('01','02')</select>
+    <select id="dn0.gryjmx_dkyjmxcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='DKYJGXMS'</select>
+    <select id="dn0.gryjmx_ckyjmxcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='CKYJGXMS'</select>
+  </sqlMap>
+  <rels>
+    <items id="gryjmx_xsjy1jgj">
+      <item name="sjypdzd" compareValue="01_2" operate="isEqual" />
+    </items>
+    <items id="gryjmx_dkjgj">
+      <item name="sjypdzd" compareValue="02_2" operate="isEqual" />
+    </items>
+    <items id="gryjmx_ck-qbzhjgj">
+      <item name="sjypdzd" compareValue="01_1" operate="isEqual" />
+    </items>
+    <items id="gryjmx_dk-qbzhjgj">
+      <item name="sjypdzd" compareValue="02_1" operate="isEqual" />
+    </items>
+  </rels>
   <javascript><![CDATA[jQuery(document).ready(function () {
    jQuery('#ywlb').bind('change',setSjypdzd).trigger('change');
    jQuery('#zhlx').bind('change',setSjypdzd).trigger('change');
@@ -509,5 +590,6 @@ function showCkZhye(obj){
   //var paramsJasonString = "{"+"'tjrq':'"+$("#tjrq").val().substr(0,4)+"','jxdxdh':'"+obj['JXDXDH']+"','ywlb':'2'}";
   //querySubQuery(paramsJasonString,"zhyebdmx",'80','40','tag'); 
   custom_window('/module/gryjmx/index.html?tjrq='+$("#tjrq").val()+'&jxdxdh='+obj['JXDXDH']+'&showimg=true&ywlb=1',700,500,'余额变动明细');
-}]]></javascript> 
+}]]></javascript>
 </pageSetting>
+

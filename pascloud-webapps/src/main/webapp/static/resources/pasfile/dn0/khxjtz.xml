@@ -1,281 +1,344 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="khxjtz" title="客户星级调整管理" type="manage" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName="">
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="1" rowspan="1" colspan="1" name="NewJg" label="开户机构" fieldName="">
+        <attribute key="ckbz" value="jg_ckhy" />
+        <attribute key="cascadeCheck" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="jgkhdxdh" />
+        <attribute key="multiple" value="true" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="Text" label="客户号" fieldName="">
+        <attribute key="name" value="khh" />
+        <attribute key="readonly" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="3" rowspan="1" colspan="1" name="Text" label="客户名称" fieldName="">
+        <attribute key="name" value="khmc" />
+        <attribute key="readonly" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="1" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="评定方案" fieldName="">
+        <attribute key="sql" value="SELECT FA.PDBH AS KEY, FA.PDMC AS VALUE FROM KHXJ_PDFA FA  WHERE FA.PDNF=cast(SUBSTR('$tjrq$',1,4) as integer) order by FA.PDBH" />
+        <attribute key="isSearch" value="false" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="isMultiple" value="false" />
+        <attribute key="name" value="pdfabh" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isAll" value="false" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+      <tag row="1" col="1" rowspan="1" colspan="1" name="MSQL4Select" label="星级名称" fieldName="">
+        <attribute key="parents" value="pdfabh" />
+        <attribute key="sql" value="select distinct max(xj.xjbh) as key, xj.xjmc as value from khxj_pdxj xj  where xj.pdbh=$pdfabh$  group by xj.xjmc  order by key" />
+        <attribute key="isSearch" value="false" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="isMultiple" value="false" />
+        <attribute key="name" value="xjmc" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isAll" value="true" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="khxjtztable">
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false" />
+    <col id="JGMC" title="开户机构" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false" />
+    <col id="KHH" title="客户号" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false" />
+    <col id="KHMC" title="客户名称" align="left" type="string" width="220" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false" />
+    <col id="KHLB" title="客户类别编号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false" />
+    <col id="DMMS" title="客户类别" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false" />
+    <col id="PDMC" title="评定方案" align="left" type="string" width="160" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false" />
+    <col id="XJMC" title="星级名称" align="left" type="string" width="160" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false" />
+    <col id="PDBZMS" title="评定标准" align="left" type="string" width="400" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false" />
+    <col id="PDBH" title="评定编号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false" />
+    <col id="XJBH" title="星级编号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false" />
+    <col id="JGDH" title="机构代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false" />
+  </table>
+  <rels>
+    <items id="khxjtztable" />
+  </rels>
+  <addPage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="评定方案" fieldName="">
+      <attribute key="name" value="PDMC" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="PDBH">
+      <attribute key="name" value="pdbh" />
+    </tag>
+    <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHLB">
+      <attribute key="name" value="KHLB" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Text" label="客户号" fieldName="KHH">
+      <attribute key="name" value="khh" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="XJMC">
+      <attribute key="name" value="tzhxjmc" />
+    </tag>
+    <tag row="1" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="XTXJMC">
+      <attribute key="name" value="contXjmc" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName="TJRQ">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="tjrq" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="2" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="ms" />
+    </tag>
+    <tag row="2" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="XTXJBH">
+      <attribute key="name" value="contXjbh" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Text" label="评定星级" fieldName="">
+      <attribute key="name" value="XJMC" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="3" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="PDBZMS">
+      <attribute key="name" value="contMs" />
+    </tag>
+    <tag row="3" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="xjbh" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="调整星级" fieldName="XJBH">
+      <attribute key="sql" value="SELECT  xjbh AS KEY ,XJMC AS VALUE  FROM KHXJ_PDXJ WHERE XJMC !='$XJMC$'  and pdbh = $pdbh$" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="tzxj" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="isEditable" value="true" />
+    </tag>
+    <tag row="4" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHMC">
+      <attribute key="name" value="khmc" />
+    </tag>
+    <tag row="4" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="pdbzms" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Textarea" label="调整原因" fieldName="">
+      <attribute key="cols" value="14" />
+      <attribute key="name" value="tzyy" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+      <attribute key="rows" value="5" />
+    </tag>
+    <tag row="5" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JGKHDXDH">
+      <attribute key="name" value="JGDH" />
+    </tag>
+  </addPage>
+  <updatePage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="评定方案" fieldName="">
+      <attribute key="name" value="PDMC" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="0" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="PDBH">
+      <attribute key="name" value="pdbh" />
+    </tag>
+    <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHLB">
+      <attribute key="name" value="KHLB" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Text" label="客户号" fieldName="KHH">
+      <attribute key="name" value="khh" />
+      <attribute key="isAll" value="false" />
+      <attribute key="readonly" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="XJMC">
+      <attribute key="name" value="tzhxjmc" />
+    </tag>
+    <tag row="1" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="XTXJMC">
+      <attribute key="name" value="contXjmc" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName="TJRQ">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="tjrq" />
+      <attribute key="isAll" value="false" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="2" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="ms" />
+    </tag>
+    <tag row="2" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="XTXJBH">
+      <attribute key="name" value="contXjbh" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Text" label="评定星级" fieldName="">
+      <attribute key="name" value="XJMC" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="3" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="PDBZMS">
+      <attribute key="name" value="contMs" />
+    </tag>
+    <tag row="3" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="xjbh" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="调整星级" fieldName="XJBH">
+      <attribute key="sql" value="SELECT  xjbh AS KEY ,XJMC AS VALUE  FROM KHXJ_PDXJ WHERE XJMC !='$XJMC$'  and pdbh = $pdbh$" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="tzxj" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="isEditable" value="true" />
+    </tag>
+    <tag row="4" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHMC">
+      <attribute key="name" value="khmc" />
+    </tag>
+    <tag row="4" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="pdbzms" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Textarea" label="调整原因" fieldName="">
+      <attribute key="cols" value="14" />
+      <attribute key="name" value="tzyy" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+      <attribute key="rows" value="5" />
+    </tag>
+    <tag row="5" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JGKHDXDH">
+      <attribute key="name" value="JGDH" />
+    </tag>
+  </updatePage>
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+  </buttons>
+  <flow>
+    <insertbefore />
+    <insertafter />
+    <deletebefore />
+    <deleteafter />
+    <updatebefore />
+    <updateafter>
+      <sql type="insert">khxjtz_update_after_item0</sql>
+    </updateafter>
+  </flow>
+  <sqlMap namespace="studio.khxjtz">
+    <select id="dn0.khxjtzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      SELECT PDJG.TJRQ, jg.jgdh,jg.jgmc, PDJG.KHH,PDJG.KHMC,dmms.dmms,PDFA.PDMC,PDJG.Xjmc,pdjg.pdbzms,PDFA.PDBH,PDXJ.xjbh ,PDJG.khlb FROM KHXJ_PDJG PDJG INNER JOIN KHDX_JG JG ON JG.KHDXDH = PDJG.JGKHDXDH INNER JOIN CSB_DMMS DMMS ON DMMC='DJPDKHLB' AND PDJG.KHLB = DMMS.DMZ INNER JOIN KHXJ_PDFA PDFA ON PDFA.PDBH = PDJG.PDBH inner join KHXJ_PDXJ pdxj on pdxj.pdbh=PDJG.PDBH and pdxj.xjmc = pdjg.xjmc where 1=1
+      <isNotEmpty property="tjrq">and  PDJG.tjrq=$tjrq$</isNotEmpty>
+      and jg.KHDXDH in($jgkhdxdh$)
+      <isNotEmpty property="khh">and pdjg.khh like '%$khh$%'</isNotEmpty>
+      <isNotEmpty property="khmc">and pdjg.khmc like '%$khmc$%'</isNotEmpty>
+      <isNotEmpty property="pdfabh">and pdjg.pdbh = $pdfabh$</isNotEmpty>
+      <isNotEmpty property="xjmc">and pdjg.xjbh = '$xjmc$'</isNotEmpty>
+      order by jg.jgdh desc ,pdfa.pdbh desc ,pdxj.xjbh desc
+    </select>
+    <select id="dn0.khxjtzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( SELECT PDJG.TJRQ, jg.jgdh,jg.jgmc, PDJG.KHH,PDJG.KHMC,dmms.dmms,PDFA.PDMC,PDJG.Xjmc,pdjg.pdbzms,PDFA.PDBH,PDXJ.xjbh ,PDJG.khlb FROM KHXJ_PDJG PDJG INNER JOIN KHDX_JG JG ON JG.KHDXDH = PDJG.JGKHDXDH INNER JOIN CSB_DMMS DMMS ON DMMC='DJPDKHLB' AND PDJG.KHLB = DMMS.DMZ INNER JOIN KHXJ_PDFA PDFA ON PDFA.PDBH = PDJG.PDBH inner join KHXJ_PDXJ pdxj on pdxj.pdbh=PDJG.PDBH and pdxj.xjmc = pdjg.xjmc where 1=1
+      <isNotEmpty property="tjrq">and  PDJG.tjrq=$tjrq$</isNotEmpty>
+      and jg.KHDXDH in($jgkhdxdh$)
+      <isNotEmpty property="khh">and pdjg.khh like '%$khh$%'</isNotEmpty>
+      <isNotEmpty property="khmc">and pdjg.khmc like '%$khmc$%'</isNotEmpty>
+      <isNotEmpty property="pdfabh">and pdjg.pdbh = $pdfabh$</isNotEmpty>
+      <isNotEmpty property="xjmc">and pdjg.xjbh = '$xjmc$'</isNotEmpty>
+      order by jg.jgdh desc ,pdfa.pdbh desc ,pdxj.xjbh desc ) t
+    </select>
+    <select id="dn0.khxjtz_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  JGKHDXDH, KHMC, XTXJMC, XJBH, KHLB, XJMC, KHH, PDBH, XTXJBH, PDBZMS, TJRQ  from KHXJ_PDJG where 1= 1  and KHH = '$khh$' and PDBH = $pdbh$ and TJRQ = $tjrq$
+    </select>
+    <select id="dn0.khxjtz_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  JGKHDXDH, KHMC, XTXJMC, XJBH, KHLB, XJMC, KHH, PDBH, XTXJBH, PDBZMS, TJRQ  from KHXJ_PDJG where 1= 1  and KHH = '$khh$' and PDBH = $pdbh$ and TJRQ = $tjrq$
+    </select>
+    <insert id="dn0.khxjtz_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into KHXJ_PDJG( KHLB, PDBH, KHH, XTXJBH, XTXJMC, JGKHDXDH, XJMC, KHMC, XJBH, PDBZMS, TJRQ ) values ( '$KHLB$',$pdbh$,'$khh$',$contXjbh$,'$contXjmc$',$JGDH$,'$tzhxjmc$','$khmc$',$tzxj$,'$contMs$',$tjrq$)
+    </insert>
+    <update id="dn0.khxjtz_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update KHXJ_PDJG set XJMC = '$tzhxjmc$',XJBH = $tzxj$,PDBZMS = '$contMs$' where 1=1  and KHH = '$khh$' and PDBH = $pdbh$ and TJRQ = $tjrq$
+    </update>
+    <delete id="dn0.khxjtz_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from KHXJ_PDJG where 1=1  and KHH = '$khh$' and PDBH = $pdbh$ and TJRQ = $tjrq$
+    </delete>
+    <insert id="dn0.khxjtz_update_after_item0" parameterClass="java.util.Map">INSERT  INTO  KHXJ_PDJGSGTZ  (CZSJ,TZRQ,KHH,PDBH,KHMC,KHLB  ,TZQXJBH,TZQXJMC,TZHXJBH,TZHXJMC,CZRDH,TZYY)  VALUES  (F_GET_SYSTIME(),$tjrq$,'$khh$',$pdbh$,'$khmc$','$KHLB$'  ,$xjbh$,'$XJMC$',$tzxj$,'$tzhxjmc$','$login_khdxdh$','$tzyy$'  )</insert>
+    <select id="dn0.khxjtz_MSQL4SELECT_pdfabh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT FA.PDBH AS KEY, FA.PDMC AS VALUE FROM KHXJ_PDFA FA 
+WHERE FA.PDNF=cast(SUBSTR('$tjrq$',1,4) as integer)
+order by FA.PDBH</select>
+    <select id="dn0.khxjtz_MSQL4SELECT_xjmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      /**!mycat:datanode=$db$**/ select distinct max(xj.xjbh) as key, xj.xjmc as value from khxj_pdxj xj 
+where 1=1
+      <isNotEmpty property="pdfabh">and  xj.pdbh=$pdfabh$</isNotEmpty>
+      group by xj.xjmc  order by key
+    </select>
+    <select id="dn0.khxjtz_MSQL4SELECT_tzxj" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT  xjbh AS KEY ,XJMC AS VALUE  FROM KHXJ_PDXJ WHERE XJMC !='$XJMC$' 
+and pdbh = $pdbh$</select>
+  </sqlMap>
+  <javascript>
+    <query>jQuery(document).ready(function () {
+$("#tool_bar").hide();
+BindParent('pdfabh','tjrq','blur');
+});
 
-<pageSetting id="khxjtz" title="客户星级调整管理" type="manage" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags> 
-      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName=""> 
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="tjrq"/>  
-        <attribute key="defValType" value="sysDate"/>  
-        <attribute key="dateFmt" value="yyyyMMdd"/>  
-        <attribute key="editable" value="true"/> 
-      </tag>  
-      <tag row="0" col="1" rowspan="1" colspan="1" name="NewJg" label="开户机构" fieldName=""> 
-        <attribute key="ckbz" value="jg_ckhy"/>  
-        <attribute key="cascadeCheck" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="jgkhdxdh"/>  
-        <attribute key="multiple" value="true"/>  
-        <attribute key="editable" value="true"/> 
-      </tag>  
-      <tag row="0" col="2" rowspan="1" colspan="1" name="Text" label="客户号" fieldName=""> 
-        <attribute key="name" value="khh"/>  
-        <attribute key="readonly" value="false"/>  
-        <attribute key="editable" value="true"/> 
-      </tag>  
-      <tag row="0" col="3" rowspan="1" colspan="1" name="Text" label="客户名称" fieldName=""> 
-        <attribute key="name" value="khmc"/>  
-        <attribute key="readonly" value="false"/>  
-        <attribute key="editable" value="true"/> 
-      </tag>  
-      <tag row="1" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="评定方案" fieldName=""> 
-        <attribute key="sql" value="SELECT FA.PDBH AS KEY, FA.PDMC AS VALUE FROM KHXJ_PDFA FA  WHERE FA.PDNF=cast(SUBSTR('$tjrq$',1,4) as integer) order by FA.PDBH"/>  
-        <attribute key="isSearch" value="false"/>  
-        <attribute key="isRequired" value="false"/>  
-        <attribute key="isMultiple" value="false"/>  
-        <attribute key="name" value="pdfabh"/>  
-        <attribute key="width" value="120px;"/>  
-        <attribute key="isAll" value="false"/>  
-        <attribute key="isEditable" value="true"/> 
-      </tag>  
-      <tag row="1" col="1" rowspan="1" colspan="1" name="MSQL4Select" label="星级名称" fieldName=""> 
-        <attribute key="parents" value="pdfabh"/>  
-        <attribute key="sql" value="select distinct max(xj.xjbh) as key, xj.xjmc as value from khxj_pdxj xj  where xj.pdbh=$pdfabh$  group by xj.xjmc  order by key"/>  
-        <attribute key="isSearch" value="false"/>  
-        <attribute key="isRequired" value="false"/>  
-        <attribute key="isMultiple" value="false"/>  
-        <attribute key="name" value="xjmc"/>  
-        <attribute key="width" value="120px;"/>  
-        <attribute key="isAll" value="true"/>  
-        <attribute key="isEditable" value="true"/> 
-      </tag> 
-    </tags> 
-  </conPart>  
-  <table page="true" id="khxjtztable"> 
-    <col id="TJRQ" title="统计日期" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false"/>  
-    <col id="JGMC" title="开户机构" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false"/>  
-    <col id="KHH" title="客户号" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false"/>  
-    <col id="KHMC" title="客户名称" align="left" type="string" width="220" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false"/>  
-    <col id="KHLB" title="客户类别编号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false"/>  
-    <col id="DMMS" title="客户类别" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false"/>  
-    <col id="PDMC" title="评定方案" align="left" type="string" width="160" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false"/>  
-    <col id="XJMC" title="星级名称" align="left" type="string" width="160" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false"/>  
-    <col id="PDBZMS" title="评定标准" align="left" type="string" width="400" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false"/>  
-    <col id="PDBH" title="评定编号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false"/>  
-    <col id="XJBH" title="星级编号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false"/>  
-    <col id="JGDH" title="机构代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="" zsy="" showDymCol="false"/> 
-  </table>  
-  <rels> 
-    <items id="khxjtztable"/> 
-  </rels>  
-  <addPage title="编辑页面"> 
-    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="评定方案" fieldName=""> 
-      <attribute key="name" value="PDMC"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="false"/> 
-    </tag>  
-    <tag row="0" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="PDBH"> 
-      <attribute key="name" value="pdbh"/> 
-    </tag>  
-    <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHLB"> 
-      <attribute key="name" value="KHLB"/> 
-    </tag>  
-    <tag row="1" col="0" rowspan="1" colspan="1" name="Text" label="客户号" fieldName="KHH"> 
-      <attribute key="name" value="khh"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="false"/> 
-    </tag>  
-    <tag row="1" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="XJMC"> 
-      <attribute key="name" value="tzhxjmc"/> 
-    </tag>  
-    <tag row="1" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="XTXJMC"> 
-      <attribute key="name" value="contXjmc"/> 
-    </tag>  
-    <tag row="2" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName="TJRQ"> 
-      <attribute key="isRequired" value="true"/>  
-      <attribute key="name" value="tjrq"/>  
-      <attribute key="defValType" value="sysDate"/>  
-      <attribute key="dateFmt" value="yyyyMMdd"/>  
-      <attribute key="editable" value="false"/> 
-    </tag>  
-    <tag row="2" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
-      <attribute key="name" value="ms"/> 
-    </tag>  
-    <tag row="2" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="XTXJBH"> 
-      <attribute key="name" value="contXjbh"/> 
-    </tag>  
-    <tag row="3" col="0" rowspan="1" colspan="1" name="Text" label="评定星级" fieldName=""> 
-      <attribute key="name" value="XJMC"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="false"/> 
-    </tag>  
-    <tag row="3" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="PDBZMS"> 
-      <attribute key="name" value="contMs"/> 
-    </tag>  
-    <tag row="3" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
-      <attribute key="name" value="xjbh"/> 
-    </tag>  
-    <tag row="4" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="调整星级" fieldName="XJBH"> 
-      <attribute key="sql" value="SELECT  xjbh AS KEY ,XJMC AS VALUE  FROM KHXJ_PDXJ WHERE XJMC !='$XJMC$'  and pdbh = $pdbh$"/>  
-      <attribute key="isSearch" value="false"/>  
-      <attribute key="isRequired" value="false"/>  
-      <attribute key="isMultiple" value="false"/>  
-      <attribute key="name" value="tzxj"/>  
-      <attribute key="width" value="120px;"/>  
-      <attribute key="isAll" value="false"/>  
-      <attribute key="isEditable" value="true"/> 
-    </tag>  
-    <tag row="4" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHMC"> 
-      <attribute key="name" value="khmc"/> 
-    </tag>  
-    <tag row="4" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
-      <attribute key="name" value="pdbzms"/> 
-    </tag>  
-    <tag row="5" col="0" rowspan="1" colspan="1" name="Textarea" label="调整原因" fieldName=""> 
-      <attribute key="cols" value="14"/>  
-      <attribute key="name" value="tzyy"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/>  
-      <attribute key="rows" value="5"/> 
-    </tag>  
-    <tag row="5" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JGKHDXDH"> 
-      <attribute key="name" value="JGDH"/> 
-    </tag> 
-  </addPage>  
-  <updatePage title="编辑页面"> 
-    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="评定方案" fieldName=""> 
-      <attribute key="name" value="PDMC"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="false"/> 
-    </tag>  
-    <tag row="0" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="PDBH"> 
-      <attribute key="name" value="pdbh"/> 
-    </tag>  
-    <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHLB"> 
-      <attribute key="name" value="KHLB"/> 
-    </tag>  
-    <tag row="1" col="0" rowspan="1" colspan="1" name="Text" label="客户号" fieldName="KHH"> 
-      <attribute key="name" value="khh"/>  
-      <attribute key="isAll" value="false"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="isEditable" value="false"/>  
-      <attribute key="editable" value="false"/> 
-    </tag>  
-    <tag row="1" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="XJMC"> 
-      <attribute key="name" value="tzhxjmc"/> 
-    </tag>  
-    <tag row="1" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="XTXJMC"> 
-      <attribute key="name" value="contXjmc"/> 
-    </tag>  
-    <tag row="2" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName="TJRQ"> 
-      <attribute key="isRequired" value="true"/>  
-      <attribute key="name" value="tjrq"/>  
-      <attribute key="isAll" value="false"/>  
-      <attribute key="defValType" value="sysDate"/>  
-      <attribute key="dateFmt" value="yyyyMMdd"/>  
-      <attribute key="isEditable" value="false"/>  
-      <attribute key="editable" value="false"/> 
-    </tag>  
-    <tag row="2" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
-      <attribute key="name" value="ms"/> 
-    </tag>  
-    <tag row="2" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="XTXJBH"> 
-      <attribute key="name" value="contXjbh"/> 
-    </tag>  
-    <tag row="3" col="0" rowspan="1" colspan="1" name="Text" label="评定星级" fieldName=""> 
-      <attribute key="name" value="XJMC"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="false"/> 
-    </tag>  
-    <tag row="3" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="PDBZMS"> 
-      <attribute key="name" value="contMs"/> 
-    </tag>  
-    <tag row="3" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
-      <attribute key="name" value="xjbh"/> 
-    </tag>  
-    <tag row="4" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="调整星级" fieldName="XJBH"> 
-      <attribute key="sql" value="SELECT  xjbh AS KEY ,XJMC AS VALUE  FROM KHXJ_PDXJ WHERE XJMC !='$XJMC$'  and pdbh = $pdbh$"/>  
-      <attribute key="isSearch" value="false"/>  
-      <attribute key="isRequired" value="false"/>  
-      <attribute key="isMultiple" value="false"/>  
-      <attribute key="name" value="tzxj"/>  
-      <attribute key="width" value="120px;"/>  
-      <attribute key="isAll" value="false"/>  
-      <attribute key="isEditable" value="true"/> 
-    </tag>  
-    <tag row="4" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHMC"> 
-      <attribute key="name" value="khmc"/> 
-    </tag>  
-    <tag row="4" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName=""> 
-      <attribute key="name" value="pdbzms"/> 
-    </tag>  
-    <tag row="5" col="0" rowspan="1" colspan="1" name="Textarea" label="调整原因" fieldName=""> 
-      <attribute key="cols" value="14"/>  
-      <attribute key="name" value="tzyy"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/>  
-      <attribute key="rows" value="5"/> 
-    </tag>  
-    <tag row="5" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JGKHDXDH"> 
-      <attribute key="name" value="JGDH"/> 
-    </tag> 
-  </updatePage>  
-  <buttons> 
-    <button>add</button>  
-    <button>edit</button>  
-    <button>delete</button> 
-  </buttons>  
-  <flow> 
-    <insertbefore/>  
-    <insertafter/>  
-    <deletebefore/>  
-    <deleteafter/>  
-    <updatebefore/>  
-    <updateafter> 
-      <sql type="insert">khxjtz_update_after_item0</sql> 
-    </updateafter> 
-  </flow>  
-  <sqlMap namespace="studio.khxjtz"> 
-    <select id="dn0.khxjtzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> SELECT PDJG.TJRQ, jg.jgdh,jg.jgmc, PDJG.KHH,PDJG.KHMC,dmms.dmms,PDFA.PDMC,PDJG.Xjmc,pdjg.pdbzms,PDFA.PDBH,PDXJ.xjbh ,PDJG.khlb FROM KHXJ_PDJG PDJG INNER JOIN KHDX_JG JG ON JG.KHDXDH = PDJG.JGKHDXDH INNER JOIN CSB_DMMS DMMS ON DMMC='DJPDKHLB' AND PDJG.KHLB = DMMS.DMZ INNER JOIN KHXJ_PDFA PDFA ON PDFA.PDBH = PDJG.PDBH inner join KHXJ_PDXJ pdxj on pdxj.pdbh=PDJG.PDBH and pdxj.xjmc = pdjg.xjmc where 1=1 
-      <isNotEmpty property="tjrq">and PDJG.tjrq=$tjrq$</isNotEmpty> and jg.KHDXDH in($jgkhdxdh$) 
-      <isNotEmpty property="khh">and pdjg.khh like '%$khh$%'</isNotEmpty>  
-      <isNotEmpty property="khmc">and pdjg.khmc like '%$khmc$%'</isNotEmpty>  
-      <isNotEmpty property="pdfabh">and pdjg.pdbh = $pdfabh$</isNotEmpty>  
-      <isNotEmpty property="xjmc">and pdjg.xjbh = '$xjmc$'</isNotEmpty> order by jg.jgdh desc ,pdfa.pdbh desc ,pdxj.xjbh desc
-    </select>  
-    <select id="dn0.khxjtzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( SELECT PDJG.TJRQ, jg.jgdh,jg.jgmc, PDJG.KHH,PDJG.KHMC,dmms.dmms,PDFA.PDMC,PDJG.Xjmc,pdjg.pdbzms,PDFA.PDBH,PDXJ.xjbh ,PDJG.khlb FROM KHXJ_PDJG PDJG INNER JOIN KHDX_JG JG ON JG.KHDXDH = PDJG.JGKHDXDH INNER JOIN CSB_DMMS DMMS ON DMMC='DJPDKHLB' AND PDJG.KHLB = DMMS.DMZ INNER JOIN KHXJ_PDFA PDFA ON PDFA.PDBH = PDJG.PDBH inner join KHXJ_PDXJ pdxj on pdxj.pdbh=PDJG.PDBH and pdxj.xjmc = pdjg.xjmc where 1=1 
-      <isNotEmpty property="tjrq">and PDJG.tjrq=$tjrq$</isNotEmpty> and jg.KHDXDH in($jgkhdxdh$) 
-      <isNotEmpty property="khh">and pdjg.khh like '%$khh$%'</isNotEmpty>  
-      <isNotEmpty property="khmc">and pdjg.khmc like '%$khmc$%'</isNotEmpty>  
-      <isNotEmpty property="pdfabh">and pdjg.pdbh = $pdfabh$</isNotEmpty>  
-      <isNotEmpty property="xjmc">and pdjg.xjbh = '$xjmc$'</isNotEmpty> order by jg.jgdh desc ,pdfa.pdbh desc ,pdxj.xjbh desc ) t
-    </select>  
-    <select id="dn0.khxjtz_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select JGKHDXDH, KHMC, XTXJMC, XJBH, KHLB, XJMC, KHH, PDBH, XTXJBH, PDBZMS, TJRQ from KHXJ_PDJG where 1= 1 and KHH = '$khh$' and PDBH = $pdbh$ and TJRQ = $tjrq$
-    </select>  
-    <select id="dn0.khxjtz_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select JGKHDXDH, KHMC, XTXJMC, XJBH, KHLB, XJMC, KHH, PDBH, XTXJBH, PDBZMS, TJRQ from KHXJ_PDJG where 1= 1 and KHH = '$khh$' and PDBH = $pdbh$ and TJRQ = $tjrq$
-    </select>  
-    <insert id="dn0.khxjtz_insert" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into KHXJ_PDJG( KHLB, PDBH, KHH, XTXJBH, XTXJMC, JGKHDXDH, XJMC, KHMC, XJBH, PDBZMS, TJRQ ) values ( '$KHLB$',$pdbh$,'$khh$',$contXjbh$,'$contXjmc$',$JGDH$,'$tzhxjmc$','$khmc$',$tzxj$,'$contMs$',$tjrq$)
-    </insert>  
-    <update id="dn0.khxjtz_update" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update KHXJ_PDJG set XJMC = '$tzhxjmc$',XJBH = $tzxj$,PDBZMS = '$contMs$' where 1=1 and KHH = '$khh$' and PDBH = $pdbh$ and TJRQ = $tjrq$
-    </update>  
-    <delete id="dn0.khxjtz_delete" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from KHXJ_PDJG where 1=1 and KHH = '$khh$' and PDBH = $pdbh$ and TJRQ = $tjrq$
-    </delete>  
-    <insert id="dn0.khxjtz_update_after_item0" parameterClass="java.util.Map">INSERT INTO KHXJ_PDJGSGTZ (CZSJ,TZRQ,KHH,PDBH,KHMC,KHLB ,TZQXJBH,TZQXJMC,TZHXJBH,TZHXJMC,CZRDH,TZYY) VALUES (F_GET_SYSTIME(),$tjrq$,'$khh$',$pdbh$,'$khmc$','$KHLB$' ,$xjbh$,'$XJMC$',$tzxj$,'$tzhxjmc$','$login_khdxdh$','$tzyy$' )</insert>  
-    <select id="dn0.khxjtz_MSQL4SELECT_pdfabh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT FA.PDBH AS KEY, FA.PDMC AS VALUE FROM KHXJ_PDFA FA WHERE FA.PDNF=cast(SUBSTR('$tjrq$',1,4) as integer) order by FA.PDBH</select>  
-    <select id="dn0.khxjtz_MSQL4SELECT_xjmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select distinct max(xj.xjbh) as key, xj.xjmc as value from khxj_pdxj xj where 1=1 
-      <isNotEmpty property="pdfabh">and xj.pdbh=$pdfabh$</isNotEmpty> group by xj.xjmc order by key
-    </select>  
-    <select id="dn0.khxjtz_MSQL4SELECT_tzxj" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT xjbh AS KEY ,XJMC AS VALUE FROM KHXJ_PDXJ WHERE XJMC !='$XJMC$' and pdbh = $pdbh$</select> 
-  </sqlMap>  
-  <javascript> 
-    <query>jQuery(document).ready(function () { $("#tool_bar").hide(); BindParent('pdfabh','tjrq','blur'); }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; } // 只显示调整按钮 function customFastLink($table,row){//this 对象绑定当前行的单元格 var edit = $('&lt;a class="operation_edit LIST_BAR" title="调整"&gt;调整&lt;/a&gt;'); this.append(edit)/**.append(' ').append(del)**/; edit.click(function(){ showUpdateEdtiDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]); }); /**var del = $('&lt;a class="operation_del LIST_BAR" title="删除"&gt;删除&lt;/a&gt;'); del.click(function(){ showDeleteDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]); });**/ return true; }</query>  
-    <edit>jQuery(document).ready(function () { //这里的js脚本，会在页面加载完成后执行 }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ var oldxjmc=$("#XJMC").val(); var xjmc=$("#tzxj").find("option:selected").text(); var newTzyy = $('#tzyy').val(); var pdbzms = $('#pdbzms').val(); var newMs = ""; if(pdbzms != null) { newMs = pdbzms+"手工调整：从"+oldxjmc+"调整到"+xjmc+"，原因是"+newTzyy+";"; } else { newMs = "手工调整：从"+oldxjmc+"调整到"+xjmc+"，原因是"+newTzyy+";"; } $("#contMs").val(newMs); $('#tzhxjmc').val(xjmc); return true; }</edit> 
-  </javascript> 
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}
+
+// 只显示调整按钮
+function customFastLink($table,row){//this 对象绑定当前行的单元格
+    var edit = $('&lt;a class="operation_edit LIST_BAR" title="调整"&gt;调整&lt;/a&gt;');
+    this.append(edit)/**.append(' ').append(del)**/;
+    edit.click(function(){
+        showUpdateEdtiDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]);
+    });
+    /**var del = $('&lt;a class="operation_del LIST_BAR" title="删除"&gt;删除&lt;/a&gt;');
+    del.click(function(){
+        showDeleteDialog($table.datagrid("getRows")[$(this).parent().parent().parent().attr("datagrid-row-index")]);
+    });**/
+    return true;
+}</query>
+    <edit>jQuery(document).ready(function () {
+//这里的js脚本，会在页面加载完成后执行
+
+});
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ var oldxjmc=$("#XJMC").val();
+  var xjmc=$("#tzxj").find("option:selected").text();
+  var newTzyy = $('#tzyy').val();
+  var pdbzms = $('#pdbzms').val();
+  var newMs = "";
+  if(pdbzms != null)
+  {
+     newMs = pdbzms+"手工调整：从"+oldxjmc+"调整到"+xjmc+"，原因是"+newTzyy+";";
+  }
+  else
+  {
+     newMs = "手工调整：从"+oldxjmc+"调整到"+xjmc+"，原因是"+newTzyy+";";
+  }
+  
+ $("#contMs").val(newMs); 
+ $('#tzhxjmc').val(xjmc);  
+ 
+ return true;
+}</edit>
+  </javascript>
 </pageSetting>
+

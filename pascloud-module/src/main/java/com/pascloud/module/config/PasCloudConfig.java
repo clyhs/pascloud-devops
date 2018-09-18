@@ -65,9 +65,19 @@ public class PasCloudConfig {
 	@Value("${project.nginx}")
 	private String PASCLOUD_NGINX;
 	
+	@Value("${project.mycat}")
+	private String PASCLOUD_MYCAT;
 	
 	
 	
+	public String getPASCLOUD_MYCAT() {
+		return PASCLOUD_MYCAT;
+	}
+
+	public void setPASCLOUD_MYCAT(String pASCLOUD_MYCAT) {
+		PASCLOUD_MYCAT = pASCLOUD_MYCAT;
+	}
+
 	public String getPASCLOUD_NGINX() {
 		return PASCLOUD_NGINX;
 	}

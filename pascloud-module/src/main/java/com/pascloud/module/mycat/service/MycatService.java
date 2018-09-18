@@ -4,6 +4,7 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -18,6 +19,7 @@ import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.Node;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,8 @@ import com.pascloud.module.docker.service.ContainerService;
 import com.pascloud.module.docker.service.DockerService;
 import com.pascloud.module.passervice.service.PasService;
 import com.pascloud.module.server.service.ServerService;
+import com.pascloud.utils.FileUtils;
+import com.pascloud.utils.JrdsUtils;
 import com.pascloud.utils.PasCloudCode;
 import com.pascloud.utils.ScpClientUtils;
 import com.pascloud.utils.db.DataSourceUtils;
@@ -445,6 +449,46 @@ public class MycatService extends AbstractBaseService {
 		}
 		return ds;
 	}
+	
+	/**
+	 * 
+	 * @param ip
+	 * @return
+	 */
+	public Boolean createMycatJrds(String ip){
+		
+		Boolean flag = false;
+		try {
+
+			Map<String, Object> jdbc = new HashMap<>();
+			jdbc.put("mangerPort", "9066");
+			jdbc.put("ip", ip);
+			jdbc.put("username", "root");
+			jdbc.put("password", "root");
+			jdbc.put("dbName", "alldb");
+			
+			String jrdsconfg = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT) + "/WEB-INF/jrdsconf/hosts/";
+			
+			List<File> files = FileUtils.listFilesInDirWithFilter(jrdsconfg, ".xml", false);
+			if(null!=files && files.size()>0){
+				for(File f:files){
+					log.info("删除文件："+f.getAbsolutePath());
+					FileUtils.deleteFile(f.getAbsolutePath());
+				}
+			}
+			jrdsconfg = jrdsconfg + "D_" + ip + "_" + jdbc.get("mangerPort") + ".xml";
+			log.info("createMycatJrds:"+jrdsconfg);
+			String templatepath = System.getProperty(Constants.WEB_APP_ROOT_DEFAULT)+
+					m_config.getPASCLOUD_MYCAT()+"/template/mycatjrds.ftl";
+			flag = JrdsUtils.getInstance().newJrdsFile(templatepath, jrdsconfg, jdbc);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
+		return flag;
+	}
+	
+	
+	
 	
 	public static void main(String[] args ){
 		

@@ -1,127 +1,148 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="dxtyjfprz" title="短信通业绩分配日志" type="query" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags> 
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="起始日期"> 
-        <attribute key="dateFmt" value="yyyyMMdd"/>  
-        <attribute key="defValType" value="yc"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="qsrq"/>  
-        <attribute key="minDate" value="no"/> 
-      </tag>  
-      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="结束日期"> 
-        <attribute key="dateFmt" value="yyyyMMdd"/>  
-        <attribute key="defValType" value="srvDate"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="jsrq"/>  
-        <attribute key="minDate" value="no"/> 
-      </tag>  
-      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="查询方式"> 
-        <attribute key="defVal" value="1"/>  
-        <attribute key="width" value="120px;"/>  
-        <attribute key="dmmc" value="cxfs"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="cxfs"/>  
-        <attribute key="isAll" value="false"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag>  
-      <tag row="1" col="0" colspan="1" rowspan="1" name="NewMultipleHy" label="行员"> 
-        <attribute key="isDisplayXN" value="true"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="jgckbz" value="jg_ckhy"/>  
-        <attribute key="name" value="khdxdh"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag>  
-      <tag row="1" col="1" colspan="1" rowspan="1" name="Text" label="客户号"> 
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="khh"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag> 
-    </tags> 
-  </conPart>  
-  <table id="dxtyjfprz_ahycxjgj" title="按行员查询结果集" page="noCount"> 
-    <col id="JLSJ" title="记录时间" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="XGRY" title="操作员" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="GGBZ" title="更改标志" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
-    <col id="CZLX" title="操作类型" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
-    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHMC" title="客户名称" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="QSRQ" title="起始日期" align="left" type="string" width="75" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="FPBL" title="分配比例" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="QYJG" title="签约机构" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="QYRQ" title="签约日期" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <table id="dxtyjfprz_aczyzxjgj" title="按操作员查询结果集" page="noCount"> 
-    <col id="JLSJ" title="记录时间" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="XGRY" title="操作员" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="GGBZ" title="更改标志" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
-    <col id="CZLX" title="操作类型" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false"/>  
-    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHMC" title="客户名称" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="QSRQ" title="起始日期" align="left" type="string" width="75" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="FPBL" title="分配比例" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="QYJG" title="签约机构" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="QYRQ" title="签约日期" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <sqlMap namespace="studio.dxtyjfprz"> 
-    <select id="dn0.dxtyjfprzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
-      <isEqual property="cxfs" compareValue="2">SELECT F_TIMETOCHAR(RZ.JLSJ,'yyyy/mm/dd hh24:mi:ss') AS JLSJ ,czy.hymc as xgry,qy.khh,czlxms.dmms as czlx,qy.khmc,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,jl.qsrq,jl.jsrq, '分配比例:' || F_NumToChar(jl.zlbl) as fpbl,jg1.jgmc as qyjg,qy.qyrq, case when jl.ggbz='0' then '旧数据' else '修改后' end as ggbz from xtb_hygxrz_dxt rz inner join xtb_hygxjl_dxt jl on rz.jldh = jl.jldh inner join jxdx_dxtqy qy on qy.qykey = rz.qykey inner join khdx_hy hy on hy.khdxdh = jl.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
-        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh 
-        <isNotEmpty property="jsrq"><![CDATA[and jg.zxrq>=$jsrq$]]></isNotEmpty> inner join khdx_jg jg1 on jg1.jgdh = qy.jgdh INNER JOIN CSB_DMMS CZLXMS ON LOWER(CZLXMS.DMMC)='rzczlx' AND RZ.CZLX=CZLXMS.DMZ inner join pas.khdx_hy czy on czy.khdxdh = rz.xgrdh where 1=1 
-        <isNotEmpty property="khdxdh">and jl.khdxdh = $khdxdh$</isNotEmpty> and rz.jlsj between F_INTTOTIME($qsrq$,1) and F_INTTOTIME($jsrq$,2) 
-        <isNotEmpty property="khh">AND QY.KHH LIKE '%$khh$%'</isNotEmpty> order by rz.jlsj desc,qy.khh, jl.jldh
-      </isEqual>  
-      <isEqual property="cxfs" compareValue="1">SELECT F_TIMETOCHAR(RZ.JLSJ,'yyyy/mm/dd hh24:mi:ss') AS JLSJ ,czy.hymc as xgry,qy.khh,czlxms.dmms as czlx,qy.khmc,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,jl.qsrq,jl.jsrq, '分配比例:' || F_NumToChar(jl.zlbl) as fpbl,jg1.jgmc as qyjg,qy.qyrq, case when jl.ggbz='0' then '旧数据' else '修改后' end as ggbz from xtb_hygxrz_dxt rz inner join xtb_hygxjl_dxt jl on rz.jldh = jl.jldh inner join jxdx_dxtqy qy on qy.qykey = rz.qykey inner join khdx_hy hy on hy.khdxdh = jl.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh 
-        <isNotEmpty property="jsrq"><![CDATA[and jg.zxrq>=$jsrq$]]></isNotEmpty> inner join khdx_jg jg1 on jg1.jgdh = qy.jgdh INNER JOIN CSB_DMMS CZLXMS ON LOWER(CZLXMS.DMMC)='rzczlx' AND RZ.CZLX=CZLXMS.DMZ inner join pas.khdx_hy czy on czy.khdxdh = rz.xgrdh where 1=1 
-        <isNotEmpty property="khdxdh">and rz.xgrdh = $khdxdh$</isNotEmpty> and rz.jlsj between F_INTTOTIME($qsrq$,1) and F_INTTOTIME($jsrq$,2) 
-        <isNotEmpty property="khh">AND QY.KHH LIKE '%$khh$%'</isNotEmpty> order by rz.jlsj desc,qy.khh, jl.jldh
-      </isEqual> 
-    </select>  
-    <select id="dn0.dxtyjfprzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
-      <isEqual property="cxfs" compareValue="2">SELECT F_TIMETOCHAR(RZ.JLSJ,'yyyy/mm/dd hh24:mi:ss') AS JLSJ ,czy.hymc as xgry,qy.khh,czlxms.dmms as czlx,qy.khmc,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,jl.qsrq,jl.jsrq, '分配比例:' || F_NumToChar(jl.zlbl) as fpbl,jg1.jgmc as qyjg,qy.qyrq, case when jl.ggbz='0' then '旧数据' else '修改后' end as ggbz from xtb_hygxrz_dxt rz inner join xtb_hygxjl_dxt jl on rz.jldh = jl.jldh inner join jxdx_dxtqy qy on qy.qykey = rz.qykey inner join khdx_hy hy on hy.khdxdh = jl.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh 
-        <isNotEmpty property="jsrq"><![CDATA[and jg.zxrq>=$jsrq$]]></isNotEmpty> inner join khdx_jg jg1 on jg1.jgdh = qy.jgdh INNER JOIN CSB_DMMS CZLXMS ON LOWER(CZLXMS.DMMC)='rzczlx' AND RZ.CZLX=CZLXMS.DMZ inner join pas.khdx_hy czy on czy.khdxdh = rz.xgrdh where 1=1 
-        <isNotEmpty property="khdxdh">and jl.khdxdh = $khdxdh$</isNotEmpty> and rz.jlsj between F_INTTOTIME($qsrq$,1) and F_INTTOTIME($jsrq$,2) 
-        <isNotEmpty property="khh">AND QY.KHH LIKE '%$khh$%'</isNotEmpty> order by rz.jlsj desc,qy.khh, jl.jldh
-      </isEqual>  
-      <isEqual property="cxfs" compareValue="1">SELECT F_TIMETOCHAR(RZ.JLSJ,'yyyy/mm/dd hh24:mi:ss') AS JLSJ ,czy.hymc as xgry,qy.khh,czlxms.dmms as czlx,qy.khmc,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,jl.qsrq,jl.jsrq, '分配比例:' || F_NumToChar(jl.zlbl) as fpbl,jg1.jgmc as qyjg,qy.qyrq, case when jl.ggbz='0' then '旧数据' else '修改后' end as ggbz from xtb_hygxrz_dxt rz inner join xtb_hygxjl_dxt jl on rz.jldh = jl.jldh inner join jxdx_dxtqy qy on qy.qykey = rz.qykey inner join khdx_hy hy on hy.khdxdh = jl.khdxdh inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh 
-        <isNotEmpty property="jsrq"><![CDATA[and jg.zxrq>=$jsrq$]]></isNotEmpty> inner join khdx_jg jg1 on jg1.jgdh = qy.jgdh INNER JOIN CSB_DMMS CZLXMS ON LOWER(CZLXMS.DMMC)='rzczlx' AND RZ.CZLX=CZLXMS.DMZ inner join pas.khdx_hy czy on czy.khdxdh = rz.xgrdh where 1=1 
-        <isNotEmpty property="khdxdh">and rz.xgrdh = $khdxdh$</isNotEmpty> and rz.jlsj between F_INTTOTIME($qsrq$,1) and F_INTTOTIME($jsrq$,2) 
-        <isNotEmpty property="khh">AND QY.KHH LIKE '%$khh$%'</isNotEmpty> order by rz.jlsj desc,qy.khh, jl.jldh
-      </isEqual> ) t
-    </select> 
-  </sqlMap>  
-  <finger custPlotMth=""> 
-    <plotType/>  
-    <needPlot>false</needPlot>  
-    <plotTitle/> 
-  </finger>  
-  <rels> 
-    <items id="dxtyjfprz_ahycxjgj"> 
-      <item name="cxfs" compareValue="2" operate="isEqual"/> 
-    </items>  
-    <items id="dxtyjfprz_aczyzxjgj"> 
-      <item name="cxfs" compareValue="1" operate="isEqual"/> 
-    </items> 
-  </rels>  
+<pageSetting id="dxtyjfprz" title="短信通业绩分配日志" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="起始日期">
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="defValType" value="yc" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="qsrq" />
+        <attribute key="minDate" value="no" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="结束日期">
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="defValType" value="srvDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="jsrq" />
+        <attribute key="minDate" value="no" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="查询方式">
+        <attribute key="defVal" value="1" />
+        <attribute key="width" value="120px;" />
+        <attribute key="dmmc" value="cxfs" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="cxfs" />
+        <attribute key="isAll" value="false" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="1" col="0" colspan="1" rowspan="1" name="NewMultipleHy" label="行员">
+        <attribute key="isDisplayXN" value="true" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="1" col="1" colspan="1" rowspan="1" name="Text" label="客户号">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="khh" />
+        <attribute key="readonly" value="false" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="dxtyjfprz_ahycxjgj" title="按行员查询结果集" page="noCount">
+    <col id="JLSJ" title="记录时间" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="XGRY" title="操作员" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="GGBZ" title="更改标志" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false" />
+    <col id="CZLX" title="操作类型" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false" />
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHMC" title="客户名称" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QSRQ" title="起始日期" align="left" type="string" width="75" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FPBL" title="分配比例" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QYJG" title="签约机构" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QYRQ" title="签约日期" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <table id="dxtyjfprz_aczyzxjgj" title="按操作员查询结果集" page="noCount">
+    <col id="JLSJ" title="记录时间" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="XGRY" title="操作员" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="GGBZ" title="更改标志" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false" />
+    <col id="CZLX" title="操作类型" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false" />
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHMC" title="客户名称" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QSRQ" title="起始日期" align="left" type="string" width="75" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FPBL" title="分配比例" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QYJG" title="签约机构" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QYRQ" title="签约日期" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.dxtyjfprz">
+    <select id="dn0.dxtyjfprzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <isEqual property="cxfs" compareValue="2">
+        SELECT  F_TIMETOCHAR(RZ.JLSJ,'yyyy/mm/dd hh24:mi:ss') AS JLSJ      ,czy.hymc as xgry,qy.khh,czlxms.dmms as czlx,qy.khmc,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,jl.qsrq,jl.jsrq, '分配比例:' || F_NumToChar(jl.zlbl) as fpbl,jg1.jgmc as qyjg,qy.qyrq, case when jl.ggbz='0' then '旧数据' else '修改后' end as ggbz  from xtb_hygxrz_dxt rz  inner join xtb_hygxjl_dxt jl on rz.jldh = jl.jldh  inner join jxdx_dxtqy qy on qy.qykey = rz.qykey  inner join khdx_hy hy on hy.khdxdh = jl.khdxdh  inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh
+        <isNotEmpty property="jsrq"><![CDATA[and jg.zxrq>=$jsrq$]]></isNotEmpty>
+        inner join khdx_jg jg1 on jg1.jgdh = qy.jgdh INNER JOIN CSB_DMMS CZLXMS ON LOWER(CZLXMS.DMMC)='rzczlx' AND RZ.CZLX=CZLXMS.DMZ inner join pas.khdx_hy czy on czy.khdxdh = rz.xgrdh  where 1=1
+        <isNotEmpty property="khdxdh">and jl.khdxdh = $khdxdh$</isNotEmpty>
+        and rz.jlsj between F_INTTOTIME($qsrq$,1) and F_INTTOTIME($jsrq$,2)
+        <isNotEmpty property="khh">AND QY.KHH LIKE '%$khh$%'</isNotEmpty>
+        order by rz.jlsj desc,qy.khh, jl.jldh
+      </isEqual>
+      <isEqual property="cxfs" compareValue="1">
+        SELECT F_TIMETOCHAR(RZ.JLSJ,'yyyy/mm/dd hh24:mi:ss') AS JLSJ      ,czy.hymc as xgry,qy.khh,czlxms.dmms as czlx,qy.khmc,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,jl.qsrq,jl.jsrq, '分配比例:' || F_NumToChar(jl.zlbl) as fpbl,jg1.jgmc as qyjg,qy.qyrq, case when jl.ggbz='0' then '旧数据' else '修改后' end as ggbz from xtb_hygxrz_dxt rz  inner join xtb_hygxjl_dxt jl on rz.jldh = jl.jldh  inner join jxdx_dxtqy qy on qy.qykey = rz.qykey  inner join khdx_hy hy on hy.khdxdh = jl.khdxdh  inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh
+        <isNotEmpty property="jsrq"><![CDATA[and jg.zxrq>=$jsrq$]]></isNotEmpty>
+        inner join khdx_jg jg1 on jg1.jgdh = qy.jgdh INNER JOIN CSB_DMMS CZLXMS ON LOWER(CZLXMS.DMMC)='rzczlx' AND RZ.CZLX=CZLXMS.DMZ inner join pas.khdx_hy czy on czy.khdxdh = rz.xgrdh   where 1=1
+        <isNotEmpty property="khdxdh">and rz.xgrdh = $khdxdh$</isNotEmpty>
+        and rz.jlsj between F_INTTOTIME($qsrq$,1) and F_INTTOTIME($jsrq$,2)
+        <isNotEmpty property="khh">AND QY.KHH LIKE '%$khh$%'</isNotEmpty>
+        order by rz.jlsj desc,qy.khh, jl.jldh
+      </isEqual>
+    </select>
+    <select id="dn0.dxtyjfprzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from (
+      <isEqual property="cxfs" compareValue="2">
+        SELECT  F_TIMETOCHAR(RZ.JLSJ,'yyyy/mm/dd hh24:mi:ss') AS JLSJ      ,czy.hymc as xgry,qy.khh,czlxms.dmms as czlx,qy.khmc,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,jl.qsrq,jl.jsrq, '分配比例:' || F_NumToChar(jl.zlbl) as fpbl,jg1.jgmc as qyjg,qy.qyrq, case when jl.ggbz='0' then '旧数据' else '修改后' end as ggbz  from xtb_hygxrz_dxt rz  inner join xtb_hygxjl_dxt jl on rz.jldh = jl.jldh  inner join jxdx_dxtqy qy on qy.qykey = rz.qykey  inner join khdx_hy hy on hy.khdxdh = jl.khdxdh  inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh
+        <isNotEmpty property="jsrq"><![CDATA[and jg.zxrq>=$jsrq$]]></isNotEmpty>
+        inner join khdx_jg jg1 on jg1.jgdh = qy.jgdh INNER JOIN CSB_DMMS CZLXMS ON LOWER(CZLXMS.DMMC)='rzczlx' AND RZ.CZLX=CZLXMS.DMZ inner join pas.khdx_hy czy on czy.khdxdh = rz.xgrdh  where 1=1
+        <isNotEmpty property="khdxdh">and jl.khdxdh = $khdxdh$</isNotEmpty>
+        and rz.jlsj between F_INTTOTIME($qsrq$,1) and F_INTTOTIME($jsrq$,2)
+        <isNotEmpty property="khh">AND QY.KHH LIKE '%$khh$%'</isNotEmpty>
+        order by rz.jlsj desc,qy.khh, jl.jldh
+      </isEqual>
+      <isEqual property="cxfs" compareValue="1">
+        SELECT F_TIMETOCHAR(RZ.JLSJ,'yyyy/mm/dd hh24:mi:ss') AS JLSJ      ,czy.hymc as xgry,qy.khh,czlxms.dmms as czlx,qy.khmc,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,jl.qsrq,jl.jsrq, '分配比例:' || F_NumToChar(jl.zlbl) as fpbl,jg1.jgmc as qyjg,qy.qyrq, case when jl.ggbz='0' then '旧数据' else '修改后' end as ggbz from xtb_hygxrz_dxt rz  inner join xtb_hygxjl_dxt jl on rz.jldh = jl.jldh  inner join jxdx_dxtqy qy on qy.qykey = rz.qykey  inner join khdx_hy hy on hy.khdxdh = jl.khdxdh  inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh
+        <isNotEmpty property="jsrq"><![CDATA[and jg.zxrq>=$jsrq$]]></isNotEmpty>
+        inner join khdx_jg jg1 on jg1.jgdh = qy.jgdh INNER JOIN CSB_DMMS CZLXMS ON LOWER(CZLXMS.DMMC)='rzczlx' AND RZ.CZLX=CZLXMS.DMZ inner join pas.khdx_hy czy on czy.khdxdh = rz.xgrdh   where 1=1
+        <isNotEmpty property="khdxdh">and rz.xgrdh = $khdxdh$</isNotEmpty>
+        and rz.jlsj between F_INTTOTIME($qsrq$,1) and F_INTTOTIME($jsrq$,2)
+        <isNotEmpty property="khh">AND QY.KHH LIKE '%$khh$%'</isNotEmpty>
+        order by rz.jlsj desc,qy.khh, jl.jldh
+      </isEqual>
+      ) t
+    </select>
+  </sqlMap>
+  <finger custPlotMth="">
+    <plotType />
+    <needPlot>false</needPlot>
+    <plotTitle />
+  </finger>
+  <rels>
+    <items id="dxtyjfprz_ahycxjgj">
+      <item name="cxfs" compareValue="2" operate="isEqual" />
+    </items>
+    <items id="dxtyjfprz_aczyzxjgj">
+      <item name="cxfs" compareValue="1" operate="isEqual" />
+    </items>
+  </rels>
   <javascript><![CDATA[jQuery(document).ready(function () {
   $('#cxfs').change(function(){
     var cxfs = $(this).val();
@@ -143,5 +164,6 @@ document.getElementById('qsrq').value=qsrq;
 //自定义验证，在提交时执行。通过返回true，否则返回false
 function customValidate(){
  return true;
-}]]></javascript> 
+}]]></javascript>
 </pageSetting>
+

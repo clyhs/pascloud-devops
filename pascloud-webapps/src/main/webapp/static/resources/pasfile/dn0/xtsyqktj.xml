@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="xtsyqktj" title="系统使用情况分析" type="query" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags> 
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="起始日期"> 
-        <attribute key="dateFmt" value="yyyyMMdd"/>  
-        <attribute key="defValType" value="sysDate"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="qsrq"/>  
-        <attribute key="minDate" value="no"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="结束日期"> 
-        <attribute key="dateFmt" value="yyyyMMdd"/>  
-        <attribute key="defValType" value="srvDate"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="jsrq"/>  
-        <attribute key="minDate" value="no"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="机构类别"> 
-        <attribute key="defVal" value="Y"/>  
-        <attribute key="width" value="120px;"/>  
-        <attribute key="dmmc" value="jyjgbz"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="jglb"/>  
-        <attribute key="isAll" value="true"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag>  
-      <tag row="0" col="3" colspan="1" rowspan="1" name="Hidden" label=""> 
-        <attribute key="defVal" value="$sysdate$"/>  
-        <attribute key="name" value="sysdateforJs"/> 
-      </tag>  
-      <tag row="0" col="4" colspan="1" rowspan="1" name="DataInterface" label="null"> 
-        <attribute key="dataType" value="select"/>  
-        <attribute key="sql" value="select F_CHANGE_DAYS($jsrq$,-7)  qsrq from xtb_xtcs where csmc = 'SYS_STATUS'"/>  
-        <attribute key="name" value="getqsrq"/> 
-      </tag> 
-    </tags> 
-  </conPart>  
-  <table id="xtsyqktj_xsjy1jgj" title="新数据源1结果集" page="true"> 
-    <col id="QSRQ" title="起始日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JSRQ" title="结束日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGMC" title="机构名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYRS" title="机构人数" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="SYRS" title="使用人数" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openSYMX"/>  
-    <col id="WSYRS" title="未使用人数" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openWMX"/> 
-  </table>  
-  <sqlMap namespace="studio.xtsyqktj"> 
-    <select id="dn0.xtsyqktjList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select $qsrq$ as qsrq,$jsrq$ as jsrq,a.jgdh,a.jgmc,a.hyrs,COALESCE(b.hyrs,0) syrs,(a.hyrs-COALESCE(b.hyrs,0)) wsyrs
+<pageSetting id="xtsyqktj" title="系统使用情况分析" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="起始日期">
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="qsrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="结束日期">
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="defValType" value="srvDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="jsrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="机构类别">
+        <attribute key="defVal" value="Y" />
+        <attribute key="width" value="120px;" />
+        <attribute key="dmmc" value="jyjgbz" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="jglb" />
+        <attribute key="isAll" value="true" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="defVal" value="$sysdate$" />
+        <attribute key="name" value="sysdateforJs" />
+      </tag>
+      <tag row="0" col="4" colspan="1" rowspan="1" name="DataInterface" label="null">
+        <attribute key="dataType" value="select" />
+        <attribute key="sql" value="select F_CHANGE_DAYS($jsrq$,-7)  qsrq from xtb_xtcs where csmc = 'SYS_STATUS'" />
+        <attribute key="name" value="getqsrq" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="xtsyqktj_xsjy1jgj" title="新数据源1结果集" page="true">
+    <col id="QSRQ" title="起始日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JSRQ" title="结束日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYRS" title="机构人数" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="SYRS" title="使用人数" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openSYMX" />
+    <col id="WSYRS" title="未使用人数" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openWMX" />
+  </table>
+  <sqlMap namespace="studio.xtsyqktj">
+    <select id="dn0.xtsyqktjList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[select $qsrq$ as qsrq,$jsrq$ as jsrq,a.jgdh,a.jgmc,a.hyrs,COALESCE(b.hyrs,0) syrs,(a.hyrs-COALESCE(b.hyrs,0)) wsyrs
 from (
   select jg.jgmc,jg.jgdh,jg.jyjgbz,count(distinct hy.hymc) hyrs from khdx_hy hy
   inner join khdx_jgcy jgcy on jgcy.khdxdh=hy.khdxdh and $qsrq$>=jgcy.qsrq and $jsrq$<=jgcy.jsrq
@@ -74,11 +74,13 @@ left join
 
 ) b
 on a.jgmc=b.jgmc
-where a.jgdh!='1000000']]>  
-      <isNotEmpty property="jglb">and a.jyjgbz in ('$jglb$')</isNotEmpty> order by syrs,jgdh
-    </select>  
-    <select id="dn0.xtsyqktjCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( <![CDATA[select $qsrq$ as qsrq,$jsrq$ as jsrq,a.jgdh,a.jgmc,a.hyrs,COALESCE(b.hyrs,0) syrs,(a.hyrs-COALESCE(b.hyrs,0)) wsyrs
+where a.jgdh!='1000000']]>
+      <isNotEmpty property="jglb">and a.jyjgbz in ('$jglb$')</isNotEmpty>
+      order by syrs,jgdh
+    </select>
+    <select id="dn0.xtsyqktjCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( <![CDATA[select $qsrq$ as qsrq,$jsrq$ as jsrq,a.jgdh,a.jgmc,a.hyrs,COALESCE(b.hyrs,0) syrs,(a.hyrs-COALESCE(b.hyrs,0)) wsyrs
 from (
   select jg.jgmc,jg.jgdh,jg.jyjgbz,count(distinct hy.hymc) hyrs from khdx_hy hy
   inner join khdx_jgcy jgcy on jgcy.khdxdh=hy.khdxdh and $qsrq$>=jgcy.qsrq and $jsrq$<=jgcy.jsrq
@@ -100,14 +102,15 @@ left join
 
 ) b
 on a.jgmc=b.jgmc
-where a.jgdh!='1000000']]>  
-      <isNotEmpty property="jglb">and a.jyjgbz in ('$jglb$')</isNotEmpty> order by syrs,jgdh ) t
-    </select>  
-    <select id="dn0.xtsyqktj_getqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select F_CHANGE_DAYS($jsrq$,-7) qsrq from xtb_xtcs where csmc = 'SYS_STATUS'</select> 
-  </sqlMap>  
-  <rels> 
-    <items id="xtsyqktj_xsjy1jgj"/> 
-  </rels>  
+where a.jgdh!='1000000']]>
+      <isNotEmpty property="jglb">and a.jyjgbz in ('$jglb$')</isNotEmpty>
+      order by syrs,jgdh ) t
+    </select>
+    <select id="dn0.xtsyqktj_getqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select F_CHANGE_DAYS($jsrq$,-7)  qsrq from xtb_xtcs where csmc = 'SYS_STATUS'</select>
+  </sqlMap>
+  <rels>
+    <items id="xtsyqktj_xsjy1jgj" />
+  </rels>
   <javascript><![CDATA[jQuery(document).ready(function () {
 
  var str = $('#jsrq').val();
@@ -147,5 +150,6 @@ function openSYMX(obj){
     var pars = "{qsrq:'"+obj['QSRQ']+"',jsrq:'"+obj['JSRQ']+"',jgdh:'"+obj['JGDH']+"'}";
     //alert(pars);
     querySubQuery(pars,'xtdlhyxxmx','45','30','tag');
-}]]></javascript> 
+}]]></javascript>
 </pageSetting>
+

@@ -1,283 +1,320 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="hyqsfx" title="行员趋势分析" type="query" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags> 
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="起始日期"> 
-        <attribute key="dateFmt" value="yyyyMMdd"/>  
-        <attribute key="defValType" value="yc"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="qsrq"/>  
-        <attribute key="minDate" value="no"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="结束日期"> 
-        <attribute key="dateFmt" value="yyyyMMdd"/>  
-        <attribute key="defValType" value="sysDate"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="jsrq"/>  
-        <attribute key="minDate" value="no"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="0" col="2" colspan="1" rowspan="1" name="NewMultipleHy" label="行员"> 
-        <attribute key="isDisplayXN" value="false"/>  
-        <attribute key="hyckbz" value="hy_jg"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="jgckbz" value="jg_ckhy"/>  
-        <attribute key="name" value="khdxdh"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag>  
-      <tag row="0" col="3" colspan="1" rowspan="1" name="Dmms" label="指标类型"> 
-        <attribute key="width" value="120px;"/>  
-        <attribute key="dmmc" value="yjlx"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="yjlx"/>  
-        <attribute key="isAll" value="false"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag>  
-      <tag row="1" col="0" colspan="2" rowspan="1" name="MSQL4Select" label="指标"> 
-        <attribute key="isMultiple" value="false"/>  
-        <attribute key="width" value="250px;"/>  
-        <attribute key="evenName" value="change"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isSearch" value="true"/>  
-        <attribute key="sql" value="select khzbdh as KEY,khzbmc as VALUE from khfa_khzb_hy order by zbpx"/>  
-        <attribute key="isRequired" value="false"/>  
-        <attribute key="name" value="khzb"/>  
-        <attribute key="isAll" value="false"/>  
-        <attribute key="multiple" value="false"/>  
-        <attribute key="isEditable" value="true"/> 
-      </tag>  
-      <tag row="2" col="0" colspan="1" rowspan="1" name="Qxyw" label="业务类别"> 
-        <attribute key="width" value="120px;"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="ywlb"/>  
-        <attribute key="isAll" value="false"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag>  
-      <tag row="2" col="1" colspan="1" rowspan="1" name="Zb" label="指标"> 
-        <attribute key="parents" value="ywlb"/>  
-        <attribute key="isMultiple" value="false"/>  
-        <attribute key="width" value="120px;"/>  
-        <attribute key="isSearch" value="true"/>  
-        <attribute key="isRequired" value="false"/>  
-        <attribute key="name" value="zbdh"/>  
-        <attribute key="isAll" value="false"/>  
-        <attribute key="isEditable" value="true"/> 
-      </tag>  
-      <tag row="2" col="2" colspan="1" rowspan="1" name="ZbParam" label="币种"> 
-        <attribute key="parents" value="zbdh"/>  
-        <attribute key="isMultiple" value="false"/>  
-        <attribute key="width" value="120px;"/>  
-        <attribute key="isRequired" value="false"/>  
-        <attribute key="name" value="bz"/>  
-        <attribute key="isAll" value="false"/>  
-        <attribute key="isEditable" value="true"/>  
-        <attribute key="paramType" value="bz"/> 
-      </tag>  
-      <tag row="2" col="3" colspan="1" rowspan="1" name="ZbParam" label="时段标识"> 
-        <attribute key="parents" value="zbdh"/>  
-        <attribute key="isMultiple" value="false"/>  
-        <attribute key="width" value="120px;"/>  
-        <attribute key="isRequired" value="false"/>  
-        <attribute key="name" value="sdbs"/>  
-        <attribute key="isAll" value="false"/>  
-        <attribute key="isEditable" value="true"/>  
-        <attribute key="paramType" value="sdbs"/> 
-      </tag>  
-      <tag row="2" col="3" colspan="1" rowspan="1" name="Hidden" label=""> 
-        <attribute key="name" value="jzsjy"/> 
-      </tag>  
-      <tag row="2" col="3" colspan="1" rowspan="1" name="Hidden" label=""> 
-        <attribute key="name" value="tjnf"/> 
-      </tag>  
-      <tag row="2" col="3" colspan="1" rowspan="1" name="Hidden" label=""> 
-        <attribute key="name" value="dbnf"/> 
-      </tag>  
-      <tag row="2" col="3" colspan="1" rowspan="1" name="Hidden" label=""> 
-        <attribute key="defVal" value="$sysDate$"/>  
-        <attribute key="name" value="sysDate"/> 
-      </tag> 
-    </tags> 
-  </conPart>  
-  <table id="hyqsfx_khzbjgj" title="考核指标结果集" page="true"> 
-    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHZBMC" title="指标名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZBZ" title="指标值" align="right" type="float" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <table id="hyqsfx_fxzbjgj" title="分析指标结果集" page="true"> 
-    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZBMC" title="指标名称" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZBZ" title="指标值" align="right" type="float" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="SDBS" title="时段标识" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/>  
-    <col id="BZ" title="币种" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <table id="hyqsfx_khzb_sjxtjgj" title="考核指标_时间相同结果集" page="true"> 
-    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHZBMC" title="指标名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZBZ" title="指标值" align="right" type="float" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <table id="hyqsfx_fxzb_sjxtjgj" title="分析指标_时间相同结果集" page="true"> 
-    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZBMC" title="指标名称" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZBZ" title="指标值" align="right" type="float" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="SDBS" title="时段标识" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="BZ" title="币种" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <sqlMap namespace="studio.hyqsfx"> 
-    <select id="dn0.hyqsfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
-      <isEqual property="jzsjy" compareValue="khzb_nfbt">select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,substr(cast(yjzb.tjrq as char(8)),5,4) as tjrq,yjzb.zbz,yjzb.khzbmc from khdx_hy hy inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join ( select yjzb.tjrq,yjzb.khdxdh,yjzb.zbz,zb.khzbmc,zb.zbpx from yjzb_hy_$tjnf$ yjzb inner join khfa_khzb_hy zb on zb.zbdh = yjzb.zbdh and zb.bz = yjzb.bz and zb.sdbs = yjzb.sdbs 
-        <isNotEmpty property="qsrq">where yjzb.tjrq between $qsrq$ and cast</isNotEmpty> ($tjnf$||'1231' as integer) 
-        <isNotEmpty property="khdxdh">and yjzb.khdxdh = $khdxdh$</isNotEmpty>  
-        <isNotEmpty property="khzb">and zb.khzbdh = $khzb$</isNotEmpty> union all select yjzb.tjrq,yjzb.khdxdh,yjzb.zbz,zb.khzbmc,zb.zbpx from yjzb_hy_$dbnf$ yjzb inner join khfa_khzb_hy zb on zb.zbdh = yjzb.zbdh and zb.bz = yjzb.bz and zb.sdbs = yjzb.sdbs where yjzb.tjrq between cast($dbnf$||'0101' as integer) and $jsrq$ 
-        <isNotEmpty property="khdxdh">and yjzb.khdxdh = $khdxdh$</isNotEmpty>  
-        <isNotEmpty property="khzb">and zb.khzbdh = $khzb$</isNotEmpty> )yjzb on yjzb.khdxdh = hy.khdxdh order by yjzb.tjrq,yjzb.zbpx
-      </isEqual>  
-      <isEqual property="jzsjy" compareValue="fxzb_nfbt">select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,substr(cast(yjzb.tjrq as char(8)),5,4) as tjrq,yjzb.zbz, bz.bzzwmc as bz,dmms.dmms as sdbs,zb.zbmc from khdx_hy hy inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join ( select a.tjrq,a.zbdh,a.sdbs,a.bz,a.khdxdh,a.zbz from yjzb_hy_$tjnf$ a 
-        <isNotEmpty property="qsrq">where a.tjrq between $qsrq$ and cast</isNotEmpty> ($tjnf$||'1231' as integer) 
-        <isNotEmpty property="bz">and a.bz='$bz$'</isNotEmpty>  
-        <isNotEmpty property="sdbs">and a.sdbs='$sdbs$'</isNotEmpty>  
-        <isNotEmpty property="zbdh">and a.zbdh = $zbdh$</isNotEmpty>  
-        <isNotEmpty property="khdxdh">and a.khdxdh = $khdxdh$</isNotEmpty> union all select b.tjrq,b.zbdh,b.sdbs,b.bz,b.khdxdh,b.zbz from yjzb_hy_$dbnf$ b where b.tjrq between cast($dbnf$||'0101' as integer) and $jsrq$ 
-        <isNotEmpty property="bz">and b.bz='$bz$'</isNotEmpty>  
-        <isNotEmpty property="sdbs">and b.sdbs='$sdbs$'</isNotEmpty>  
-        <isNotEmpty property="zbdh">and b.zbdh = $zbdh$</isNotEmpty>  
-        <isNotEmpty property="khdxdh">and b.khdxdh = $khdxdh$</isNotEmpty> ) yjzb on yjzb.khdxdh = hy.khdxdh inner join khdx_zb zb on zb.zbdh = yjzb.zbdh inner join csb_bz bz on bz.bz = yjzb.bz inner join CSB_DMMS dmms on dmms.dmmc = 'ZBSDBS' and dmms.dmz = yjzb.sdbs inner join khdx_zblb zblb on zblb.zbdh=zb.zbdh and zblb.jsrq=29991231 
-        <isNotEmpty property="ywlb">and zblb.ywlb='$ywlb$'</isNotEmpty> order by yjzb.tjrq,zb.zbpx
-      </isEqual>  
-      <isEqual property="jzsjy" compareValue="khzb_nfxt">select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,substr(cast(yjzb.tjrq as char(8)),5,4) as tjrq,yjzb.zbz,zb.khzbmc from khdx_hy hy inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join yjzb_hy_$tjnf$ yjzb on yjzb.khdxdh = hy.khdxdh inner join khfa_khzb_hy zb on zb.zbdh = yjzb.zbdh and zb.bz = yjzb.bz and zb.sdbs = yjzb.sdbs 
-        <isNotEmpty property="khzb">and zb.khzbdh = $khzb$</isNotEmpty>  
-        <isNotEmpty property="qsrq">where yjzb.tjrq between $qsrq$ and $jsrq$</isNotEmpty>  
-        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty> order by yjzb.tjrq,zb.zbpx
-      </isEqual>  
-      <isEqual property="jzsjy" compareValue="fxzb_nfxt">select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,substr(cast(yjzb.tjrq as char(8)),5,4) as tjrq,yjzb.zbz, bz.bzzwmc as bz,dmms.dmms as sdbs,zb.zbmc from khdx_hy hy inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join yjzb_hy_$tjnf$ yjzb on yjzb.khdxdh = hy.khdxdh inner join khdx_zb zb on zb.zbdh = yjzb.zbdh 
-        <isNotEmpty property="bz">and yjzb.bz='$bz$'</isNotEmpty>  
-        <isNotEmpty property="sdbs">and yjzb.sdbs='$sdbs$'</isNotEmpty>  
-        <isNotEmpty property="zbdh">and yjzb.zbdh = $zbdh$</isNotEmpty> inner join csb_bz bz on bz.bz = yjzb.bz inner join CSB_DMMS dmms on dmms.dmmc = 'ZBSDBS' and dmms.dmz = yjzb.sdbs inner join khdx_zblb zblb on zblb.zbdh=zb.zbdh and zblb.jsrq=29991231 
-        <isNotEmpty property="ywlb">and zblb.ywlb='$ywlb$'</isNotEmpty>  
-        <isNotEmpty property="qsrq">where yjzb.tjrq between $qsrq$ and $jsrq$</isNotEmpty>  
-        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty> order by yjzb.tjrq,zb.zbpx
-      </isEqual> 
-    </select>  
-    <select id="dn0.hyqsfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
-      <isEqual property="jzsjy" compareValue="khzb_nfbt">select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,substr(cast(yjzb.tjrq as char(8)),5,4) as tjrq,yjzb.zbz,yjzb.khzbmc from khdx_hy hy inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join ( select yjzb.tjrq,yjzb.khdxdh,yjzb.zbz,zb.khzbmc,zb.zbpx from yjzb_hy_$tjnf$ yjzb inner join khfa_khzb_hy zb on zb.zbdh = yjzb.zbdh and zb.bz = yjzb.bz and zb.sdbs = yjzb.sdbs 
-        <isNotEmpty property="qsrq">where yjzb.tjrq between $qsrq$ and cast</isNotEmpty> ($tjnf$||'1231' as integer) 
-        <isNotEmpty property="khdxdh">and yjzb.khdxdh = $khdxdh$</isNotEmpty>  
-        <isNotEmpty property="khzb">and zb.khzbdh = $khzb$</isNotEmpty> union all select yjzb.tjrq,yjzb.khdxdh,yjzb.zbz,zb.khzbmc,zb.zbpx from yjzb_hy_$dbnf$ yjzb inner join khfa_khzb_hy zb on zb.zbdh = yjzb.zbdh and zb.bz = yjzb.bz and zb.sdbs = yjzb.sdbs where yjzb.tjrq between cast($dbnf$||'0101' as integer) and $jsrq$ 
-        <isNotEmpty property="khdxdh">and yjzb.khdxdh = $khdxdh$</isNotEmpty>  
-        <isNotEmpty property="khzb">and zb.khzbdh = $khzb$</isNotEmpty> )yjzb on yjzb.khdxdh = hy.khdxdh order by yjzb.tjrq,yjzb.zbpx
-      </isEqual>  
-      <isEqual property="jzsjy" compareValue="fxzb_nfbt">select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,substr(cast(yjzb.tjrq as char(8)),5,4) as tjrq,yjzb.zbz, bz.bzzwmc as bz,dmms.dmms as sdbs,zb.zbmc from khdx_hy hy inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join ( select a.tjrq,a.zbdh,a.sdbs,a.bz,a.khdxdh,a.zbz from yjzb_hy_$tjnf$ a 
-        <isNotEmpty property="qsrq">where a.tjrq between $qsrq$ and cast</isNotEmpty> ($tjnf$||'1231' as integer) 
-        <isNotEmpty property="bz">and a.bz='$bz$'</isNotEmpty>  
-        <isNotEmpty property="sdbs">and a.sdbs='$sdbs$'</isNotEmpty>  
-        <isNotEmpty property="zbdh">and a.zbdh = $zbdh$</isNotEmpty>  
-        <isNotEmpty property="khdxdh">and a.khdxdh = $khdxdh$</isNotEmpty> union all select b.tjrq,b.zbdh,b.sdbs,b.bz,b.khdxdh,b.zbz from yjzb_hy_$dbnf$ b where b.tjrq between cast($dbnf$||'0101' as integer) and $jsrq$ 
-        <isNotEmpty property="bz">and b.bz='$bz$'</isNotEmpty>  
-        <isNotEmpty property="sdbs">and b.sdbs='$sdbs$'</isNotEmpty>  
-        <isNotEmpty property="zbdh">and b.zbdh = $zbdh$</isNotEmpty>  
-        <isNotEmpty property="khdxdh">and b.khdxdh = $khdxdh$</isNotEmpty> ) yjzb on yjzb.khdxdh = hy.khdxdh inner join khdx_zb zb on zb.zbdh = yjzb.zbdh inner join csb_bz bz on bz.bz = yjzb.bz inner join CSB_DMMS dmms on dmms.dmmc = 'ZBSDBS' and dmms.dmz = yjzb.sdbs inner join khdx_zblb zblb on zblb.zbdh=zb.zbdh and zblb.jsrq=29991231 
-        <isNotEmpty property="ywlb">and zblb.ywlb='$ywlb$'</isNotEmpty> order by yjzb.tjrq,zb.zbpx
-      </isEqual>  
-      <isEqual property="jzsjy" compareValue="khzb_nfxt">select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,substr(cast(yjzb.tjrq as char(8)),5,4) as tjrq,yjzb.zbz,zb.khzbmc from khdx_hy hy inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join yjzb_hy_$tjnf$ yjzb on yjzb.khdxdh = hy.khdxdh inner join khfa_khzb_hy zb on zb.zbdh = yjzb.zbdh and zb.bz = yjzb.bz and zb.sdbs = yjzb.sdbs 
-        <isNotEmpty property="khzb">and zb.khzbdh = $khzb$</isNotEmpty>  
-        <isNotEmpty property="qsrq">where yjzb.tjrq between $qsrq$ and $jsrq$</isNotEmpty>  
-        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty> order by yjzb.tjrq,zb.zbpx
-      </isEqual>  
-      <isEqual property="jzsjy" compareValue="fxzb_nfxt">select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,substr(cast(yjzb.tjrq as char(8)),5,4) as tjrq,yjzb.zbz, bz.bzzwmc as bz,dmms.dmms as sdbs,zb.zbmc from khdx_hy hy inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh 
-        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join yjzb_hy_$tjnf$ yjzb on yjzb.khdxdh = hy.khdxdh inner join khdx_zb zb on zb.zbdh = yjzb.zbdh 
-        <isNotEmpty property="bz">and yjzb.bz='$bz$'</isNotEmpty>  
-        <isNotEmpty property="sdbs">and yjzb.sdbs='$sdbs$'</isNotEmpty>  
-        <isNotEmpty property="zbdh">and yjzb.zbdh = $zbdh$</isNotEmpty> inner join csb_bz bz on bz.bz = yjzb.bz inner join CSB_DMMS dmms on dmms.dmmc = 'ZBSDBS' and dmms.dmz = yjzb.sdbs inner join khdx_zblb zblb on zblb.zbdh=zb.zbdh and zblb.jsrq=29991231 
-        <isNotEmpty property="ywlb">and zblb.ywlb='$ywlb$'</isNotEmpty>  
-        <isNotEmpty property="qsrq">where yjzb.tjrq between $qsrq$ and $jsrq$</isNotEmpty>  
-        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty> order by yjzb.tjrq,zb.zbpx
-      </isEqual> ) t
-    </select>  
-    <select id="dn0.hyqsfx_MSQL4SELECT_khzb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khzbdh as KEY,khzbmc as VALUE from khfa_khzb_hy order by zbpx</select> 
-  </sqlMap>  
-  <finger custPlotMth="" id="hyqsfx_khzbjgj"> 
-    <plotType>line</plotType>  
-    <needPlot>true</needPlot>  
-    <plotTitle>行员趋势分析图</plotTitle>  
-    <xLabel>统计日期</xLabel>  
-    <xSeries>TJRQ</xSeries>  
-    <yLabel>指标值</yLabel>  
-    <ySeries>ZBZ</ySeries>  
-    <ySeriesDesc>指标值</ySeriesDesc> 
-  </finger>  
-  <finger custPlotMth="" id="hyqsfx_fxzbjgj"> 
-    <plotType>line</plotType>  
-    <needPlot>true</needPlot>  
-    <plotTitle>行员趋势分析图</plotTitle>  
-    <xLabel>统计日期</xLabel>  
-    <xSeries>TJRQ</xSeries>  
-    <yLabel>指标值</yLabel>  
-    <ySeries>ZBZ</ySeries>  
-    <ySeriesDesc>指标值</ySeriesDesc> 
-  </finger>  
-  <finger custPlotMth="" id="hyqsfx_khzb_sjxtjgj"> 
-    <plotType>line</plotType>  
-    <needPlot>true</needPlot>  
-    <plotTitle>行员趋势分析图</plotTitle>  
-    <xLabel>统计日期</xLabel>  
-    <xSeries>TJRQ</xSeries>  
-    <yLabel>指标值</yLabel>  
-    <ySeries>ZBZ</ySeries>  
-    <ySeriesDesc>指标值</ySeriesDesc> 
-  </finger>  
-  <finger custPlotMth="" id="hyqsfx_fxzb_sjxtjgj"> 
-    <plotType>line</plotType>  
-    <needPlot>true</needPlot>  
-    <plotTitle>行员趋势分析图</plotTitle>  
-    <xLabel>统计日期</xLabel>  
-    <xSeries>TJRQ</xSeries>  
-    <yLabel>指标值</yLabel>  
-    <ySeries>ZBZ</ySeries>  
-    <ySeriesDesc>指标值</ySeriesDesc> 
-  </finger>  
-  <rels> 
-    <items id="hyqsfx_khzbjgj"> 
-      <item name="jzsjy" compareValue="khzb_nfbt" operate="isEqual"/> 
-    </items>  
-    <items id="hyqsfx_fxzbjgj"> 
-      <item name="jzsjy" compareValue="fxzb_nfbt" operate="isEqual"/> 
-    </items>  
-    <items id="hyqsfx_khzb_sjxtjgj"> 
-      <item name="jzsjy" compareValue="khzb_nfxt" operate="isEqual"/> 
-    </items>  
-    <items id="hyqsfx_fxzb_sjxtjgj"> 
-      <item name="jzsjy" compareValue="fxzb_nfxt" operate="isEqual"/> 
-    </items> 
-  </rels>  
+<pageSetting id="hyqsfx" title="行员趋势分析" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="起始日期">
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="defValType" value="yc" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="qsrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="结束日期">
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="jsrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="NewMultipleHy" label="行员">
+        <attribute key="isDisplayXN" value="false" />
+        <attribute key="hyckbz" value="hy_jg" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Dmms" label="指标类型">
+        <attribute key="width" value="120px;" />
+        <attribute key="dmmc" value="yjlx" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="yjlx" />
+        <attribute key="isAll" value="false" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="1" col="0" colspan="2" rowspan="1" name="MSQL4Select" label="指标">
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="250px;" />
+        <attribute key="evenName" value="change" />
+        <attribute key="editable" value="true" />
+        <attribute key="isSearch" value="true" />
+        <attribute key="sql" value="select khzbdh as KEY,khzbmc as VALUE from khfa_khzb_hy order by zbpx" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="khzb" />
+        <attribute key="isAll" value="false" />
+        <attribute key="multiple" value="false" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+      <tag row="2" col="0" colspan="1" rowspan="1" name="Qxyw" label="业务类别">
+        <attribute key="width" value="120px;" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="ywlb" />
+        <attribute key="isAll" value="false" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="2" col="1" colspan="1" rowspan="1" name="Zb" label="指标">
+        <attribute key="parents" value="ywlb" />
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isSearch" value="true" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="zbdh" />
+        <attribute key="isAll" value="false" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+      <tag row="2" col="2" colspan="1" rowspan="1" name="ZbParam" label="币种">
+        <attribute key="parents" value="zbdh" />
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="bz" />
+        <attribute key="isAll" value="false" />
+        <attribute key="isEditable" value="true" />
+        <attribute key="paramType" value="bz" />
+      </tag>
+      <tag row="2" col="3" colspan="1" rowspan="1" name="ZbParam" label="时段标识">
+        <attribute key="parents" value="zbdh" />
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="sdbs" />
+        <attribute key="isAll" value="false" />
+        <attribute key="isEditable" value="true" />
+        <attribute key="paramType" value="sdbs" />
+      </tag>
+      <tag row="2" col="3" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="jzsjy" />
+      </tag>
+      <tag row="2" col="3" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="tjnf" />
+      </tag>
+      <tag row="2" col="3" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="dbnf" />
+      </tag>
+      <tag row="2" col="3" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="defVal" value="$sysDate$" />
+        <attribute key="name" value="sysDate" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="hyqsfx_khzbjgj" title="考核指标结果集" page="true">
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHZBMC" title="指标名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZBZ" title="指标值" align="right" type="float" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <table id="hyqsfx_fxzbjgj" title="分析指标结果集" page="true">
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZBMC" title="指标名称" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZBZ" title="指标值" align="right" type="float" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="SDBS" title="时段标识" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false" />
+    <col id="BZ" title="币种" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false" />
+  </table>
+  <table id="hyqsfx_khzb_sjxtjgj" title="考核指标_时间相同结果集" page="true">
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHZBMC" title="指标名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZBZ" title="指标值" align="right" type="float" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <table id="hyqsfx_fxzb_sjxtjgj" title="分析指标_时间相同结果集" page="true">
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZBMC" title="指标名称" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZBZ" title="指标值" align="right" type="float" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="SDBS" title="时段标识" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="BZ" title="币种" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.hyqsfx">
+    <select id="dn0.hyqsfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <isEqual property="jzsjy" compareValue="khzb_nfbt">
+        select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,substr(cast(yjzb.tjrq as char(8)),5,4) as tjrq,yjzb.zbz,yjzb.khzbmc from khdx_hy hy inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join (   select yjzb.tjrq,yjzb.khdxdh,yjzb.zbz,zb.khzbmc,zb.zbpx   from yjzb_hy_$tjnf$ yjzb   inner join khfa_khzb_hy zb on zb.zbdh = yjzb.zbdh and zb.bz = yjzb.bz and zb.sdbs = yjzb.sdbs
+        <isNotEmpty property="qsrq">where yjzb.tjrq between $qsrq$ and cast</isNotEmpty>
+        ($tjnf$||'1231' as integer)
+        <isNotEmpty property="khdxdh">and yjzb.khdxdh = $khdxdh$</isNotEmpty>
+        <isNotEmpty property="khzb">and zb.khzbdh = $khzb$</isNotEmpty>
+        union all   select yjzb.tjrq,yjzb.khdxdh,yjzb.zbz,zb.khzbmc,zb.zbpx    from yjzb_hy_$dbnf$ yjzb    inner join khfa_khzb_hy zb on zb.zbdh = yjzb.zbdh and zb.bz = yjzb.bz and zb.sdbs = yjzb.sdbs    where yjzb.tjrq between cast($dbnf$||'0101' as integer) and $jsrq$
+        <isNotEmpty property="khdxdh">and yjzb.khdxdh = $khdxdh$</isNotEmpty>
+        <isNotEmpty property="khzb">and zb.khzbdh = $khzb$</isNotEmpty>
+        )yjzb on yjzb.khdxdh = hy.khdxdh order by yjzb.tjrq,yjzb.zbpx
+      </isEqual>
+      <isEqual property="jzsjy" compareValue="fxzb_nfbt">
+        select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,substr(cast(yjzb.tjrq as char(8)),5,4) as tjrq,yjzb.zbz, bz.bzzwmc as bz,dmms.dmms as sdbs,zb.zbmc from khdx_hy hy inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join (   select a.tjrq,a.zbdh,a.sdbs,a.bz,a.khdxdh,a.zbz   from yjzb_hy_$tjnf$ a
+        <isNotEmpty property="qsrq">where a.tjrq between $qsrq$ and cast</isNotEmpty>
+        ($tjnf$||'1231' as integer)
+        <isNotEmpty property="bz">and a.bz='$bz$'</isNotEmpty>
+        <isNotEmpty property="sdbs">and a.sdbs='$sdbs$'</isNotEmpty>
+        <isNotEmpty property="zbdh">and a.zbdh = $zbdh$</isNotEmpty>
+        <isNotEmpty property="khdxdh">and a.khdxdh = $khdxdh$</isNotEmpty>
+        union all   select b.tjrq,b.zbdh,b.sdbs,b.bz,b.khdxdh,b.zbz   from yjzb_hy_$dbnf$ b    where b.tjrq between cast($dbnf$||'0101' as integer) and $jsrq$
+        <isNotEmpty property="bz">and b.bz='$bz$'</isNotEmpty>
+        <isNotEmpty property="sdbs">and b.sdbs='$sdbs$'</isNotEmpty>
+        <isNotEmpty property="zbdh">and b.zbdh = $zbdh$</isNotEmpty>
+        <isNotEmpty property="khdxdh">and b.khdxdh = $khdxdh$</isNotEmpty>
+        ) yjzb on yjzb.khdxdh = hy.khdxdh inner join khdx_zb zb on zb.zbdh = yjzb.zbdh  inner join csb_bz bz on bz.bz = yjzb.bz inner join CSB_DMMS dmms on dmms.dmmc = 'ZBSDBS' and dmms.dmz = yjzb.sdbs inner join khdx_zblb zblb on zblb.zbdh=zb.zbdh and zblb.jsrq=29991231
+        <isNotEmpty property="ywlb">and zblb.ywlb='$ywlb$'</isNotEmpty>
+        order by yjzb.tjrq,zb.zbpx
+      </isEqual>
+      <isEqual property="jzsjy" compareValue="khzb_nfxt">
+        select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,substr(cast(yjzb.tjrq as char(8)),5,4) as tjrq,yjzb.zbz,zb.khzbmc from khdx_hy hy inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join yjzb_hy_$tjnf$ yjzb on yjzb.khdxdh = hy.khdxdh inner join khfa_khzb_hy zb on zb.zbdh = yjzb.zbdh and zb.bz = yjzb.bz and zb.sdbs = yjzb.sdbs
+        <isNotEmpty property="khzb">and zb.khzbdh = $khzb$</isNotEmpty>
+        <isNotEmpty property="qsrq">where yjzb.tjrq between $qsrq$ and $jsrq$</isNotEmpty>
+        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty>
+        order by yjzb.tjrq,zb.zbpx
+      </isEqual>
+      <isEqual property="jzsjy" compareValue="fxzb_nfxt">
+        select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,substr(cast(yjzb.tjrq as char(8)),5,4) as tjrq,yjzb.zbz, bz.bzzwmc as bz,dmms.dmms as sdbs,zb.zbmc from khdx_hy hy inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join yjzb_hy_$tjnf$ yjzb on yjzb.khdxdh = hy.khdxdh inner join khdx_zb zb on zb.zbdh = yjzb.zbdh
+        <isNotEmpty property="bz">and yjzb.bz='$bz$'</isNotEmpty>
+        <isNotEmpty property="sdbs">and yjzb.sdbs='$sdbs$'</isNotEmpty>
+        <isNotEmpty property="zbdh">and yjzb.zbdh = $zbdh$</isNotEmpty>
+        inner join csb_bz bz on bz.bz = yjzb.bz inner join CSB_DMMS dmms on dmms.dmmc = 'ZBSDBS' and dmms.dmz = yjzb.sdbs inner join khdx_zblb zblb on zblb.zbdh=zb.zbdh and zblb.jsrq=29991231
+        <isNotEmpty property="ywlb">and zblb.ywlb='$ywlb$'</isNotEmpty>
+        <isNotEmpty property="qsrq">where yjzb.tjrq between $qsrq$ and $jsrq$</isNotEmpty>
+        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty>
+        order by yjzb.tjrq,zb.zbpx
+      </isEqual>
+    </select>
+    <select id="dn0.hyqsfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from (
+      <isEqual property="jzsjy" compareValue="khzb_nfbt">
+        select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,substr(cast(yjzb.tjrq as char(8)),5,4) as tjrq,yjzb.zbz,yjzb.khzbmc from khdx_hy hy inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join (   select yjzb.tjrq,yjzb.khdxdh,yjzb.zbz,zb.khzbmc,zb.zbpx   from yjzb_hy_$tjnf$ yjzb   inner join khfa_khzb_hy zb on zb.zbdh = yjzb.zbdh and zb.bz = yjzb.bz and zb.sdbs = yjzb.sdbs
+        <isNotEmpty property="qsrq">where yjzb.tjrq between $qsrq$ and cast</isNotEmpty>
+        ($tjnf$||'1231' as integer)
+        <isNotEmpty property="khdxdh">and yjzb.khdxdh = $khdxdh$</isNotEmpty>
+        <isNotEmpty property="khzb">and zb.khzbdh = $khzb$</isNotEmpty>
+        union all   select yjzb.tjrq,yjzb.khdxdh,yjzb.zbz,zb.khzbmc,zb.zbpx    from yjzb_hy_$dbnf$ yjzb    inner join khfa_khzb_hy zb on zb.zbdh = yjzb.zbdh and zb.bz = yjzb.bz and zb.sdbs = yjzb.sdbs    where yjzb.tjrq between cast($dbnf$||'0101' as integer) and $jsrq$
+        <isNotEmpty property="khdxdh">and yjzb.khdxdh = $khdxdh$</isNotEmpty>
+        <isNotEmpty property="khzb">and zb.khzbdh = $khzb$</isNotEmpty>
+        )yjzb on yjzb.khdxdh = hy.khdxdh order by yjzb.tjrq,yjzb.zbpx
+      </isEqual>
+      <isEqual property="jzsjy" compareValue="fxzb_nfbt">
+        select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,substr(cast(yjzb.tjrq as char(8)),5,4) as tjrq,yjzb.zbz, bz.bzzwmc as bz,dmms.dmms as sdbs,zb.zbmc from khdx_hy hy inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join (   select a.tjrq,a.zbdh,a.sdbs,a.bz,a.khdxdh,a.zbz   from yjzb_hy_$tjnf$ a
+        <isNotEmpty property="qsrq">where a.tjrq between $qsrq$ and cast</isNotEmpty>
+        ($tjnf$||'1231' as integer)
+        <isNotEmpty property="bz">and a.bz='$bz$'</isNotEmpty>
+        <isNotEmpty property="sdbs">and a.sdbs='$sdbs$'</isNotEmpty>
+        <isNotEmpty property="zbdh">and a.zbdh = $zbdh$</isNotEmpty>
+        <isNotEmpty property="khdxdh">and a.khdxdh = $khdxdh$</isNotEmpty>
+        union all   select b.tjrq,b.zbdh,b.sdbs,b.bz,b.khdxdh,b.zbz   from yjzb_hy_$dbnf$ b    where b.tjrq between cast($dbnf$||'0101' as integer) and $jsrq$
+        <isNotEmpty property="bz">and b.bz='$bz$'</isNotEmpty>
+        <isNotEmpty property="sdbs">and b.sdbs='$sdbs$'</isNotEmpty>
+        <isNotEmpty property="zbdh">and b.zbdh = $zbdh$</isNotEmpty>
+        <isNotEmpty property="khdxdh">and b.khdxdh = $khdxdh$</isNotEmpty>
+        ) yjzb on yjzb.khdxdh = hy.khdxdh inner join khdx_zb zb on zb.zbdh = yjzb.zbdh  inner join csb_bz bz on bz.bz = yjzb.bz inner join CSB_DMMS dmms on dmms.dmmc = 'ZBSDBS' and dmms.dmz = yjzb.sdbs inner join khdx_zblb zblb on zblb.zbdh=zb.zbdh and zblb.jsrq=29991231
+        <isNotEmpty property="ywlb">and zblb.ywlb='$ywlb$'</isNotEmpty>
+        order by yjzb.tjrq,zb.zbpx
+      </isEqual>
+      <isEqual property="jzsjy" compareValue="khzb_nfxt">
+        select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,substr(cast(yjzb.tjrq as char(8)),5,4) as tjrq,yjzb.zbz,zb.khzbmc from khdx_hy hy inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join yjzb_hy_$tjnf$ yjzb on yjzb.khdxdh = hy.khdxdh inner join khfa_khzb_hy zb on zb.zbdh = yjzb.zbdh and zb.bz = yjzb.bz and zb.sdbs = yjzb.sdbs
+        <isNotEmpty property="khzb">and zb.khzbdh = $khzb$</isNotEmpty>
+        <isNotEmpty property="qsrq">where yjzb.tjrq between $qsrq$ and $jsrq$</isNotEmpty>
+        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty>
+        order by yjzb.tjrq,zb.zbpx
+      </isEqual>
+      <isEqual property="jzsjy" compareValue="fxzb_nfxt">
+        select jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,substr(cast(yjzb.tjrq as char(8)),5,4) as tjrq,yjzb.zbz, bz.bzzwmc as bz,dmms.dmms as sdbs,zb.zbmc from khdx_hy hy inner join khdx_jgcy cy on cy.khdxdh = hy.khdxdh
+        <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+        inner join khdx_jg jg on jg.khdxdh = cy.jgkhdxdh inner join yjzb_hy_$tjnf$ yjzb on yjzb.khdxdh = hy.khdxdh inner join khdx_zb zb on zb.zbdh = yjzb.zbdh
+        <isNotEmpty property="bz">and yjzb.bz='$bz$'</isNotEmpty>
+        <isNotEmpty property="sdbs">and yjzb.sdbs='$sdbs$'</isNotEmpty>
+        <isNotEmpty property="zbdh">and yjzb.zbdh = $zbdh$</isNotEmpty>
+        inner join csb_bz bz on bz.bz = yjzb.bz inner join CSB_DMMS dmms on dmms.dmmc = 'ZBSDBS' and dmms.dmz = yjzb.sdbs inner join khdx_zblb zblb on zblb.zbdh=zb.zbdh and zblb.jsrq=29991231
+        <isNotEmpty property="ywlb">and zblb.ywlb='$ywlb$'</isNotEmpty>
+        <isNotEmpty property="qsrq">where yjzb.tjrq between $qsrq$ and $jsrq$</isNotEmpty>
+        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty>
+        order by yjzb.tjrq,zb.zbpx
+      </isEqual>
+      ) t
+    </select>
+    <select id="dn0.hyqsfx_MSQL4SELECT_khzb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khzbdh as KEY,khzbmc as VALUE from khfa_khzb_hy order by zbpx</select>
+  </sqlMap>
+  <finger custPlotMth="" id="hyqsfx_khzbjgj">
+    <plotType>line</plotType>
+    <needPlot>true</needPlot>
+    <plotTitle>行员趋势分析图</plotTitle>
+    <xLabel>统计日期</xLabel>
+    <xSeries>TJRQ</xSeries>
+    <yLabel>指标值</yLabel>
+    <ySeries>ZBZ</ySeries>
+    <ySeriesDesc>指标值</ySeriesDesc>
+  </finger>
+  <finger custPlotMth="" id="hyqsfx_fxzbjgj">
+    <plotType>line</plotType>
+    <needPlot>true</needPlot>
+    <plotTitle>行员趋势分析图</plotTitle>
+    <xLabel>统计日期</xLabel>
+    <xSeries>TJRQ</xSeries>
+    <yLabel>指标值</yLabel>
+    <ySeries>ZBZ</ySeries>
+    <ySeriesDesc>指标值</ySeriesDesc>
+  </finger>
+  <finger custPlotMth="" id="hyqsfx_khzb_sjxtjgj">
+    <plotType>line</plotType>
+    <needPlot>true</needPlot>
+    <plotTitle>行员趋势分析图</plotTitle>
+    <xLabel>统计日期</xLabel>
+    <xSeries>TJRQ</xSeries>
+    <yLabel>指标值</yLabel>
+    <ySeries>ZBZ</ySeries>
+    <ySeriesDesc>指标值</ySeriesDesc>
+  </finger>
+  <finger custPlotMth="" id="hyqsfx_fxzb_sjxtjgj">
+    <plotType>line</plotType>
+    <needPlot>true</needPlot>
+    <plotTitle>行员趋势分析图</plotTitle>
+    <xLabel>统计日期</xLabel>
+    <xSeries>TJRQ</xSeries>
+    <yLabel>指标值</yLabel>
+    <ySeries>ZBZ</ySeries>
+    <ySeriesDesc>指标值</ySeriesDesc>
+  </finger>
+  <rels>
+    <items id="hyqsfx_khzbjgj">
+      <item name="jzsjy" compareValue="khzb_nfbt" operate="isEqual" />
+    </items>
+    <items id="hyqsfx_fxzbjgj">
+      <item name="jzsjy" compareValue="fxzb_nfbt" operate="isEqual" />
+    </items>
+    <items id="hyqsfx_khzb_sjxtjgj">
+      <item name="jzsjy" compareValue="khzb_nfxt" operate="isEqual" />
+    </items>
+    <items id="hyqsfx_fxzb_sjxtjgj">
+      <item name="jzsjy" compareValue="fxzb_nfxt" operate="isEqual" />
+    </items>
+  </rels>
   <javascript><![CDATA[jQuery(document).ready(function () {
 //这里的js脚本，会在页面加载完成后执行
  init_yjlx().pipe(function(){
@@ -391,5 +428,6 @@ var khzb = jQuery('#khzb');
     $("#main table tr").eq(3).hide();
     
   }
-}]]></javascript> 
+}]]></javascript>
 </pageSetting>
+

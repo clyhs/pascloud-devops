@@ -1,102 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="cdkkhlrfx" title="存贷款客户利润分析" type="query" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags> 
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月"> 
-        <attribute key="dateFmt" value="yyyyMM"/>  
-        <attribute key="defValType" value="sysDate"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="tjny"/>  
-        <attribute key="minDate" value="no"/> 
-      </tag>  
-      <tag row="0" col="1" colspan="1" rowspan="1" name="NewJg" label="机构"> 
-        <attribute key="cascadeCheck" value="true"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="ckbz" value="jg_ckhy"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="jgkhdxdh"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag>  
-      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="时段"> 
-        <attribute key="defVal" value="3"/>  
-        <attribute key="width" value="120px;"/>  
-        <attribute key="dmmc" value="lrsdbs"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="sd"/>  
-        <attribute key="isAll" value="false"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag>  
-      <tag row="0" col="3" colspan="1" rowspan="1" name="Dmms" label="客户类型"> 
-        <attribute key="width" value="120px;"/>  
-        <attribute key="dmmc" value="khlx"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="khlx"/>  
-        <attribute key="isAll" value="true"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag>  
-      <tag row="1" col="0" colspan="1" rowspan="1" name="Text" label="客户号"> 
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="khh"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="1" col="1" colspan="1" rowspan="1" name="Text" label="客户名称"> 
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="khmc"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="1" col="2" colspan="1" rowspan="1" name="Dmms" label="排序项"> 
-        <attribute key="defVal" value="rs.hjlr"/>  
-        <attribute key="width" value="120px;"/>  
-        <attribute key="dmmc" value="khgxdcxpx"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="orderkey"/>  
-        <attribute key="isAll" value="false"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag>  
-      <tag row="1" col="3" colspan="1" rowspan="1" name="Number" label="前"> 
-        <attribute key="precision" value="0"/>  
-        <attribute key="defVal" value="20"/>  
-        <attribute key="intparts" value="10"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="pm"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="1" col="4" colspan="1" rowspan="1" name="Hidden" label="名"> 
-        <attribute key="name" value="ming"/> 
-      </tag> 
-    </tags> 
-  </conPart>  
-  <table id="cdkkhlrfx_xsjy1jgj" title="新数据源1结果集" page="true"> 
-    <col id="TJNY" title="统计年月" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHLX" title="客户类型" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHMC" title="客户名称" align="left" type="string" width="250" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="1450834267439" title="存款" align="left" type="string" width="870" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
-      <col id="CKDQYE" title="当前余额(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="CKRJYE" title="日均余额(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="CKFTPLXSR" title="FTP利息收入(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="CKZBJSR" title="准备金收入(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="CKTQLXZCKH" title="提前利息支出扣回(万元)" align="right" type="float" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="CKLXZC" title="利息支出(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="CKMNLR" title="存款模拟利润(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-    </col>  
-    <col id="1450834445528" title="贷款" align="left" type="string" width="870" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
-      <col id="DKDQYE" title="当前余额(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="DKRJYE" title="日均余额(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="DKLXSR" title="利息收入(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="DKFTPLXZC" title="FTP利息支出(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="DKZCJZZB" title="资产减值准备(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="DKYSWSLXXZ" title="应收未收利息新增(万元)" align="right" type="float" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-      <col id="DKMNLR" title="贷款模拟利润(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-    </col>  
-    <col id="HJLR" title="合计利润(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="PM" title="排名" align="right" type="string" width="50" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <sqlMap namespace="studio.cdkkhlrfx"> 
-    <select id="dn0.cdkkhlrfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select * from(
+<pageSetting id="cdkkhlrfx" title="存贷款客户利润分析" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月">
+        <attribute key="dateFmt" value="yyyyMM" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjny" />
+        <attribute key="minDate" value="no" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewJg" label="机构">
+        <attribute key="cascadeCheck" value="true" />
+        <attribute key="editable" value="true" />
+        <attribute key="ckbz" value="jg_ckhy" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="jgkhdxdh" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="时段">
+        <attribute key="defVal" value="3" />
+        <attribute key="width" value="120px;" />
+        <attribute key="dmmc" value="lrsdbs" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="sd" />
+        <attribute key="isAll" value="false" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Dmms" label="客户类型">
+        <attribute key="width" value="120px;" />
+        <attribute key="dmmc" value="khlx" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="khlx" />
+        <attribute key="isAll" value="true" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="1" col="0" colspan="1" rowspan="1" name="Text" label="客户号">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="khh" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="1" col="1" colspan="1" rowspan="1" name="Text" label="客户名称">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="khmc" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="1" col="2" colspan="1" rowspan="1" name="Dmms" label="排序项">
+        <attribute key="defVal" value="rs.hjlr" />
+        <attribute key="width" value="120px;" />
+        <attribute key="dmmc" value="khgxdcxpx" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="orderkey" />
+        <attribute key="isAll" value="false" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="1" col="3" colspan="1" rowspan="1" name="Number" label="前">
+        <attribute key="precision" value="0" />
+        <attribute key="defVal" value="20" />
+        <attribute key="intparts" value="10" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="pm" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="1" col="4" colspan="1" rowspan="1" name="Hidden" label="名">
+        <attribute key="name" value="ming" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="cdkkhlrfx_xsjy1jgj" title="新数据源1结果集" page="true">
+    <col id="TJNY" title="统计年月" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHLX" title="客户类型" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHMC" title="客户名称" align="left" type="string" width="250" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="1450834267439" title="存款" align="left" type="string" width="870" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
+      <col id="CKDQYE" title="当前余额(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="CKRJYE" title="日均余额(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="CKFTPLXSR" title="FTP利息收入(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="CKZBJSR" title="准备金收入(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="CKTQLXZCKH" title="提前利息支出扣回(万元)" align="right" type="float" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="CKLXZC" title="利息支出(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="CKMNLR" title="存款模拟利润(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    </col>
+    <col id="1450834445528" title="贷款" align="left" type="string" width="870" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
+      <col id="DKDQYE" title="当前余额(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="DKRJYE" title="日均余额(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="DKLXSR" title="利息收入(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="DKFTPLXZC" title="FTP利息支出(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="DKZCJZZB" title="资产减值准备(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="DKYSWSLXXZ" title="应收未收利息新增(万元)" align="right" type="float" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="DKMNLR" title="贷款模拟利润(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    </col>
+    <col id="HJLR" title="合计利润(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="PM" title="排名" align="right" type="string" width="50" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.cdkkhlrfx">
+    <select id="dn0.cdkkhlrfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[select * from(
 select rs.tjny, rs.khlx, rs.khh, rs.khmc, 
           rs.cksd/cast(10000 as float) as ckdqye, rs.cknrj/cast(10000 as float) as ckrjye, rs.ckftplxsr/cast(10000 as float) as ckftplxsr, 
           rs.ckzbjsr/cast(10000 as float) as ckzbjsr, rs.cktqlxzckh/cast(10000 as float) as cktqlxzckh, rs.cklxzc/cast(10000 as float) as cklxzc,
@@ -133,14 +133,16 @@ from (
              and mx.khzq =(case when $sd$ = 1 then  1
                                              when $sd$ = 2 then  2
                                              when $sd$ = 3 then  3  end )                                   
-             and mx.cdklr <>0]]>  
-      <isNotEmpty property="khlx">and mx.khlx = '$khlx$'</isNotEmpty>  
-      <isNotEmpty property="khh">and mx.khh like '%$khh$%'</isNotEmpty>  
-      <isNotEmpty property="khmc">and mx.khmc like '%$khmc$%'</isNotEmpty> group by dm.dmms, mx.khh, mx.khmc) rs ) t where 1=1 
-      <isNotEmpty property="pm"><![CDATA[and t.pm <=$pm$]]></isNotEmpty> 
-    </select>  
-    <select id="dn0.cdkkhlrfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( <![CDATA[select * from(
+             and mx.cdklr <>0]]>
+      <isNotEmpty property="khlx">and mx.khlx = '$khlx$'</isNotEmpty>
+      <isNotEmpty property="khh">and mx.khh    like '%$khh$%'</isNotEmpty>
+      <isNotEmpty property="khmc">and mx.khmc like '%$khmc$%'</isNotEmpty>
+      group by  dm.dmms,                           mx.khh,                           mx.khmc) rs ) t  where 1=1
+      <isNotEmpty property="pm"><![CDATA[and t.pm <=$pm$]]></isNotEmpty>
+    </select>
+    <select id="dn0.cdkkhlrfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( <![CDATA[select * from(
 select rs.tjny, rs.khlx, rs.khh, rs.khmc, 
           rs.cksd/cast(10000 as float) as ckdqye, rs.cknrj/cast(10000 as float) as ckrjye, rs.ckftplxsr/cast(10000 as float) as ckftplxsr, 
           rs.ckzbjsr/cast(10000 as float) as ckzbjsr, rs.cktqlxzckh/cast(10000 as float) as cktqlxzckh, rs.cklxzc/cast(10000 as float) as cklxzc,
@@ -177,16 +179,18 @@ from (
              and mx.khzq =(case when $sd$ = 1 then  1
                                              when $sd$ = 2 then  2
                                              when $sd$ = 3 then  3  end )                                   
-             and mx.cdklr <>0]]>  
-      <isNotEmpty property="khlx">and mx.khlx = '$khlx$'</isNotEmpty>  
-      <isNotEmpty property="khh">and mx.khh like '%$khh$%'</isNotEmpty>  
-      <isNotEmpty property="khmc">and mx.khmc like '%$khmc$%'</isNotEmpty> group by dm.dmms, mx.khh, mx.khmc) rs ) t where 1=1 
-      <isNotEmpty property="pm"><![CDATA[and t.pm <=$pm$]]></isNotEmpty> ) t
-    </select> 
-  </sqlMap>  
-  <rels> 
-    <items id="cdkkhlrfx_xsjy1jgj"/> 
-  </rels>  
+             and mx.cdklr <>0]]>
+      <isNotEmpty property="khlx">and mx.khlx = '$khlx$'</isNotEmpty>
+      <isNotEmpty property="khh">and mx.khh    like '%$khh$%'</isNotEmpty>
+      <isNotEmpty property="khmc">and mx.khmc like '%$khmc$%'</isNotEmpty>
+      group by  dm.dmms,                           mx.khh,                           mx.khmc) rs ) t  where 1=1
+      <isNotEmpty property="pm"><![CDATA[and t.pm <=$pm$]]></isNotEmpty>
+      ) t
+    </select>
+  </sqlMap>
+  <rels>
+    <items id="cdkkhlrfx_xsjy1jgj" />
+  </rels>
   <javascript><![CDATA[jQuery(document).ready(function () {
 
 });
@@ -194,5 +198,6 @@ from (
 //自定义验证，在提交时执行。通过返回true，否则返回false
 function customValidate(){
  return true;
-}]]></javascript> 
+}]]></javascript>
 </pageSetting>
+

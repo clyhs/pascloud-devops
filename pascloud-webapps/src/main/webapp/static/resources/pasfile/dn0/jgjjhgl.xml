@@ -1,296 +1,330 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="jgjjhgl" title="机构季计划管理" type="manage" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="日期" fieldName="">
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="khnf" />
+        <attribute key="minDate" value="no" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="dateFmt" value="yyyy" />
+        <attribute key="readonly" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="1" rowspan="1" colspan="1" name="NewJg" label="机构" fieldName="">
+        <attribute key="ckbz" value="jg" />
+        <attribute key="cascadeCheck" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="style" value="width:160px" />
+        <attribute key="name" value="jgkhdxdh" />
+        <attribute key="multiple" value="true" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="2" name="JGKhzbSelect" label="考核指标" fieldName="">
+        <attribute key="isSearch" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="isMultiple" value="false" />
+        <attribute key="name" value="khzbdh" />
+        <attribute key="width" value="250px" />
+        <attribute key="isAll" value="true" />
+        <attribute key="multiple" value="false" />
+        <attribute key="isEditable" value="true" />
+        <attribute key="editable" value="true" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="jgjjhgltable">
+    <col id="KHNF" title="年份" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="KHZBMC" title="考核指标名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="KHZBDH" title="KHZBDH" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="" title="1季" align="left" type="string" width="240" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false">
+      <col id="JHZ1" title="计划值" align="right" type="float" width="120" format="##0.00" frozen="" mergeCells="" footerCells="" exp="true" zsy="true" showDymCol="false" />
+      <col id="LZZ1" title="力争值" align="right" type="float" width="120" format="##0.00" frozen="" mergeCells="" footerCells="" exp="true" zsy="true" showDymCol="false" />
+    </col>
+    <col id="" title="2季" align="left" type="string" width="240" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false">
+      <col id="JHZ2" title="计划值" align="right" type="float" width="120" format="##0.00" frozen="" mergeCells="" footerCells="" exp="true" zsy="true" showDymCol="false" />
+      <col id="LZZ2" title="力争值" align="right" type="float" width="120" format="##0.00" frozen="" mergeCells="" footerCells="" exp="true" zsy="true" showDymCol="false" />
+    </col>
+    <col id="" title="3季" align="left" type="string" width="240" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false">
+      <col id="JHZ3" title="计划值" align="right" type="float" width="120" format="##0.00" frozen="" mergeCells="" footerCells="" exp="true" zsy="true" showDymCol="false" />
+      <col id="LZZ3" title="力争值" align="right" type="float" width="120" format="##0.00" frozen="" mergeCells="" footerCells="" exp="true" zsy="true" showDymCol="false" />
+    </col>
+    <col id="" title="4季" align="left" type="string" width="240" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false">
+      <col id="JHZ4" title="计划值" align="right" type="float" width="120" format="##0.00" frozen="" mergeCells="" footerCells="" exp="true" zsy="true" showDymCol="false" />
+      <col id="LZZ4" title="力争值" align="right" type="float" width="120" format="##0.00" frozen="" mergeCells="" footerCells="" exp="true" zsy="true" showDymCol="false" />
+    </col>
+  </table>
+  <rels>
+    <items id="jgjjhgltable" />
+  </rels>
+  <addPage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="年份" fieldName="KHNF">
+      <attribute key="style" value="160px;" />
+      <attribute key="name" value="jgjjh_nf" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewJg" label="机构" fieldName="KHDXDH">
+      <attribute key="ckbz" value="jg_ckhy" />
+      <attribute key="cascadeCheck" value="true" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="style" value="160px;" />
+      <attribute key="name" value="jgkhdxdh" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Text" label="考核指标" fieldName="">
+      <attribute key="style" value="160px;" />
+      <attribute key="name" value="khzbmc" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="2" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHZBDH">
+      <attribute key="name" value="KHZBDH" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="1季度  计划值" fieldName="JHZ1">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="160px;text-align:right;" />
+      <attribute key="name" value="jgjjh_jhz1" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="1" rowspan="1" colspan="1" name="Number" label="力争值" fieldName="LZZ1">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="160px;text-align:right;" />
+      <attribute key="name" value="jgjjh_lzz1" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="2季度  计划值" fieldName="JHZ2">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="160px;text-align:right;" />
+      <attribute key="name" value="jgjjh_jhz2" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="1" rowspan="1" colspan="1" name="Number" label="力争值" fieldName="LZZ2">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="160px;text-align:right;" />
+      <attribute key="name" value="jgjjh_lzz2" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Number" label="3季度  计划值" fieldName="JHZ3">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="160px;text-align:right;" />
+      <attribute key="name" value="jgjjh_jhz3" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="5" col="1" rowspan="1" colspan="1" name="Number" label="力争值" fieldName="LZZ3">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="160px;text-align:right;" />
+      <attribute key="name" value="jgjjh_lzz3" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="6" col="0" rowspan="1" colspan="1" name="Number" label="4季度  计划值" fieldName="JHZ4">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="160px;text-align:right;" />
+      <attribute key="name" value="jgjjh_jhz4" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="6" col="1" rowspan="1" colspan="1" name="Number" label="力争值" fieldName="LZZ4">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="160px;text-align:right;" />
+      <attribute key="name" value="jgjjh_lzz4" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+  </addPage>
+  <updatePage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="年份" fieldName="KHNF">
+      <attribute key="style" value="160px;" />
+      <attribute key="name" value="jgjjh_nf" />
+      <attribute key="isAll" value="false" />
+      <attribute key="readonly" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewJg" label="机构" fieldName="KHDXDH">
+      <attribute key="ckbz" value="jg_ckhy" />
+      <attribute key="cascadeCheck" value="true" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="style" value="160px;" />
+      <attribute key="name" value="jgkhdxdh" />
+      <attribute key="isAll" value="false" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Text" label="考核指标" fieldName="">
+      <attribute key="style" value="160px;" />
+      <attribute key="name" value="khzbmc" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="2" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHZBDH">
+      <attribute key="name" value="KHZBDH" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="1季度  计划值" fieldName="JHZ1">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="160px;text-align:right;" />
+      <attribute key="name" value="jgjjh_jhz1" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="1" rowspan="1" colspan="1" name="Number" label="力争值" fieldName="LZZ1">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="160px;text-align:right;" />
+      <attribute key="name" value="jgjjh_lzz1" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="2季度  计划值" fieldName="JHZ2">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="160px;text-align:right;" />
+      <attribute key="name" value="jgjjh_jhz2" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="1" rowspan="1" colspan="1" name="Number" label="力争值" fieldName="LZZ2">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="160px;text-align:right;" />
+      <attribute key="name" value="jgjjh_lzz2" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Number" label="3季度  计划值" fieldName="JHZ3">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="160px;text-align:right;" />
+      <attribute key="name" value="jgjjh_jhz3" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="5" col="1" rowspan="1" colspan="1" name="Number" label="力争值" fieldName="LZZ3">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="160px;text-align:right;" />
+      <attribute key="name" value="jgjjh_lzz3" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="6" col="0" rowspan="1" colspan="1" name="Number" label="4季度  计划值" fieldName="JHZ4">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="160px;text-align:right;" />
+      <attribute key="name" value="jgjjh_jhz4" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="6" col="1" rowspan="1" colspan="1" name="Number" label="力争值" fieldName="LZZ4">
+      <attribute key="precision" value="4" />
+      <attribute key="style" value="160px;text-align:right;" />
+      <attribute key="name" value="jgjjh_lzz4" />
+      <attribute key="intparts" value="21" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+  </updatePage>
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+    <button>import</button>
+  </buttons>
+  <flow>
+    <insertbefore />
+    <insertafter />
+    <deletebefore />
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.jgjjhgl">
+    <select id="dn0.jgjjhglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select jjh.khnf,jjh.khdxdh,jg.jgdh,jg.jgmc,khjg.khzbmc,1,2,3,4, jjh.jhz1,jjh.lzz1,jjh.jhz2,jjh.lzz2,jjh.jhz3,jjh.lzz3,jjh.jhz4,jjh.lzz4,khjg.khzbdh from khfa_khzb_jg khjg  inner join yjzb_jgjjh jjh on khjg.khzbdh=jjh.khzbdh inner join khdx_jg jg on jg.khdxdh=jjh.khdxdh  inner join table(fn_getsjjg_java_qx($sysdate$,$login_khdxdh$,0)) qx on qx.khdxdh=jg.khdxdh    where 1=1
+      <isNotEmpty property="khnf">and  jjh.khnf=$khnf$</isNotEmpty>
+      <isNotEmpty property="khzbdh">and khjg.khzbdh=$khzbdh$</isNotEmpty>
+      <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
+      order by khjg.zbpx
+    </select>
+    <select id="dn0.jgjjhglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select jjh.khnf,jjh.khdxdh,jg.jgdh,jg.jgmc,khjg.khzbmc,1,2,3,4, jjh.jhz1,jjh.lzz1,jjh.jhz2,jjh.lzz2,jjh.jhz3,jjh.lzz3,jjh.jhz4,jjh.lzz4,khjg.khzbdh from khfa_khzb_jg khjg  inner join yjzb_jgjjh jjh on khjg.khzbdh=jjh.khzbdh inner join khdx_jg jg on jg.khdxdh=jjh.khdxdh  inner join table(fn_getsjjg_java_qx($sysdate$,$login_khdxdh$,0)) qx on qx.khdxdh=jg.khdxdh    where 1=1
+      <isNotEmpty property="khnf">and  jjh.khnf=$khnf$</isNotEmpty>
+      <isNotEmpty property="khzbdh">and khjg.khzbdh=$khzbdh$</isNotEmpty>
+      <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
+      order by khjg.zbpx ) t
+    </select>
+    <select id="dn0.jgjjhgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  KHNF, LZZ4, JHZ4, KHDXDH, KHZBDH, LZZ3, JHZ3, LZZ2, JHZ2, LZZ1, JHZ1  from YJZB_JGJJH where 1= 1  and KHNF = $khnf$ and KHDXDH = $khdxdh$ and KHZBDH = $khzbdh$
+    </select>
+    <select id="dn0.jgjjhgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  KHNF, LZZ4, JHZ4, KHDXDH, KHZBDH, LZZ3, JHZ3, LZZ2, JHZ2, LZZ1, JHZ1  from YJZB_JGJJH where 1= 1  and KHNF = $jgjjh_nf$ and KHDXDH = $jgkhdxdh$ and KHZBDH = $KHZBDH$
+    </select>
+    <insert id="dn0.jgjjhgl_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into YJZB_JGJJH( JHZ3, KHNF, LZZ4, JHZ2, JHZ1, KHZBDH, LZZ1, LZZ3, JHZ4, LZZ2, KHDXDH ) values ( $jgjjh_jhz3$,$jgjjh_nf$,$jgjjh_lzz4$,$jgjjh_jhz2$,$jgjjh_jhz1$,$KHZBDH$,$jgjjh_lzz1$,$jgjjh_lzz3$,$jgjjh_jhz4$,$jgjjh_lzz2$,$jgkhdxdh$)
+    </insert>
+    <update id="dn0.jgjjhgl_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update YJZB_JGJJH set JHZ3 = $jgjjh_jhz3$,LZZ4 = $jgjjh_lzz4$,JHZ2 = $jgjjh_jhz2$,JHZ1 = $jgjjh_jhz1$,LZZ1 = $jgjjh_lzz1$,LZZ3 = $jgjjh_lzz3$,JHZ4 = $jgjjh_jhz4$,LZZ2 = $jgjjh_lzz2$ where 1=1  and KHNF = $jgjjh_nf$ and KHDXDH = $jgkhdxdh$ and KHZBDH = $KHZBDH$
+    </update>
+    <delete id="dn0.jgjjhgl_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from YJZB_JGJJH where 1=1  and KHNF = $khnf$ and KHDXDH = $khdxdh$ and KHZBDH = $khzbdh$
+    </delete>
+  </sqlMap>
+  <javascript>
+    <import>parent.addTab('jgjjhgldr','机构季计划管理','/module/parser/import/visitHtml/jgjjhgldr');</import>
+    <query>jQuery(document).ready(function () {
+  jQuery("input[value='添 加']").hide();
+  jQuery("#exportBtn").show();
+});
 
-<pageSetting id="jgjjhgl" title="机构季计划管理" type="manage" version="1.0.0.0" desc="标准版" pid=""> 
-  <conPart> 
-    <tags> 
-      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="日期" fieldName=""> 
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="tjrq"/>  
-        <attribute key="minDate" value="no"/>  
-        <attribute key="defValType" value="sysDate"/>  
-        <attribute key="dateFmt" value="yyyy"/>  
-        <attribute key="readonly" value="false"/>  
-        <attribute key="editable" value="true"/> 
-      </tag>  
-      <tag row="0" col="1" rowspan="1" colspan="1" name="NewJg" label="机构" fieldName=""> 
-        <attribute key="ckbz" value="jg"/>  
-        <attribute key="cascadeCheck" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="style" value="width:160px"/>  
-        <attribute key="name" value="jgkhdxdh"/>  
-        <attribute key="multiple" value="true"/>  
-        <attribute key="editable" value="true"/> 
-      </tag>  
-      <tag row="0" col="2" rowspan="1" colspan="2" name="JGKhzbSelect" label="考核指标" fieldName=""> 
-        <attribute key="isSearch" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="isMultiple" value="false"/>  
-        <attribute key="name" value="khzbdh"/>  
-        <attribute key="width" value="250px"/>  
-        <attribute key="isAll" value="true"/>  
-        <attribute key="multiple" value="false"/>  
-        <attribute key="isEditable" value="true"/>  
-        <attribute key="editable" value="true"/> 
-      </tag> 
-    </tags> 
-  </conPart>  
-  <table page="true" id="jgjjhgltable"> 
-    <col id="KHNF" title="年份" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="KHZBMC" title="考核指标名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="KHZBDH" title="KHZBDH" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
-    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true"/>  
-    <col id="" title="1季" align="left" type="string" width="240" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"> 
-      <col id="JHZ1" title="计划值" align="right" type="float" width="120" format="##0.00" frozen="" mergeCells="" footerCells="" exp="true" zsy="true" showDymCol="false"/>  
-      <col id="LZZ1" title="力争值" align="right" type="float" width="120" format="##0.00" frozen="" mergeCells="" footerCells="" exp="true" zsy="true" showDymCol="false"/> 
-    </col>  
-    <col id="" title="2季" align="left" type="string" width="240" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"> 
-      <col id="JHZ2" title="计划值" align="right" type="float" width="120" format="##0.00" frozen="" mergeCells="" footerCells="" exp="true" zsy="true" showDymCol="false"/>  
-      <col id="LZZ2" title="力争值" align="right" type="float" width="120" format="##0.00" frozen="" mergeCells="" footerCells="" exp="true" zsy="true" showDymCol="false"/> 
-    </col>  
-    <col id="" title="3季" align="left" type="string" width="240" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"> 
-      <col id="JHZ3" title="计划值" align="right" type="float" width="120" format="##0.00" frozen="" mergeCells="" footerCells="" exp="true" zsy="true" showDymCol="false"/>  
-      <col id="LZZ3" title="力争值" align="right" type="float" width="120" format="##0.00" frozen="" mergeCells="" footerCells="" exp="true" zsy="true" showDymCol="false"/> 
-    </col>  
-    <col id="" title="4季" align="left" type="string" width="240" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"> 
-      <col id="JHZ4" title="计划值" align="right" type="float" width="120" format="##0.00" frozen="" mergeCells="" footerCells="" exp="true" zsy="true" showDymCol="false"/>  
-      <col id="LZZ4" title="力争值" align="right" type="float" width="120" format="##0.00" frozen="" mergeCells="" footerCells="" exp="true" zsy="true" showDymCol="false"/> 
-    </col> 
-  </table>  
-  <rels> 
-    <items id="jgjjhgltable"/> 
-  </rels>  
-  <addPage title="编辑页面"> 
-    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="年份" fieldName="KHNF"> 
-      <attribute key="style" value="160px;"/>  
-      <attribute key="name" value="jgjjh_nf"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="1" col="0" rowspan="1" colspan="1" name="NewJg" label="机构" fieldName="KHDXDH"> 
-      <attribute key="ckbz" value="jg_ckhy"/>  
-      <attribute key="cascadeCheck" value="true"/>  
-      <attribute key="isRequired" value="true"/>  
-      <attribute key="style" value="160px;"/>  
-      <attribute key="name" value="jgkhdxdh"/>  
-      <attribute key="multiple" value="false"/>  
-      <attribute key="editable" value="false"/> 
-    </tag>  
-    <tag row="2" col="0" rowspan="1" colspan="1" name="Text" label="考核指标" fieldName=""> 
-      <attribute key="style" value="160px;"/>  
-      <attribute key="name" value="khzbmc"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="false"/> 
-    </tag>  
-    <tag row="2" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHZBDH"> 
-      <attribute key="name" value="KHZBDH"/> 
-    </tag>  
-    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="1季度  计划值" fieldName="JHZ1"> 
-      <attribute key="precision" value="4"/>  
-      <attribute key="style" value="160px;text-align:right;"/>  
-      <attribute key="name" value="jgjjh_jhz1"/>  
-      <attribute key="intparts" value="21"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="3" col="1" rowspan="1" colspan="1" name="Number" label="力争值" fieldName="LZZ1"> 
-      <attribute key="precision" value="4"/>  
-      <attribute key="style" value="160px;text-align:right;"/>  
-      <attribute key="name" value="jgjjh_lzz1"/>  
-      <attribute key="intparts" value="21"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="2季度  计划值" fieldName="JHZ2"> 
-      <attribute key="precision" value="4"/>  
-      <attribute key="style" value="160px;text-align:right;"/>  
-      <attribute key="name" value="jgjjh_jhz2"/>  
-      <attribute key="intparts" value="21"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="4" col="1" rowspan="1" colspan="1" name="Number" label="力争值" fieldName="LZZ2"> 
-      <attribute key="precision" value="4"/>  
-      <attribute key="style" value="160px;text-align:right;"/>  
-      <attribute key="name" value="jgjjh_lzz2"/>  
-      <attribute key="intparts" value="21"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="5" col="0" rowspan="1" colspan="1" name="Number" label="3季度  计划值" fieldName="JHZ3"> 
-      <attribute key="precision" value="4"/>  
-      <attribute key="style" value="160px;text-align:right;"/>  
-      <attribute key="name" value="jgjjh_jhz3"/>  
-      <attribute key="intparts" value="21"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="5" col="1" rowspan="1" colspan="1" name="Number" label="力争值" fieldName="LZZ3"> 
-      <attribute key="precision" value="4"/>  
-      <attribute key="style" value="160px;text-align:right;"/>  
-      <attribute key="name" value="jgjjh_lzz3"/>  
-      <attribute key="intparts" value="21"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="6" col="0" rowspan="1" colspan="1" name="Number" label="4季度  计划值" fieldName="JHZ4"> 
-      <attribute key="precision" value="4"/>  
-      <attribute key="style" value="160px;text-align:right;"/>  
-      <attribute key="name" value="jgjjh_jhz4"/>  
-      <attribute key="intparts" value="21"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="6" col="1" rowspan="1" colspan="1" name="Number" label="力争值" fieldName="LZZ4"> 
-      <attribute key="precision" value="4"/>  
-      <attribute key="style" value="160px;text-align:right;"/>  
-      <attribute key="name" value="jgjjh_lzz4"/>  
-      <attribute key="intparts" value="21"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag> 
-  </addPage>  
-  <updatePage title="编辑页面"> 
-    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="年份" fieldName="KHNF"> 
-      <attribute key="style" value="160px;"/>  
-      <attribute key="name" value="jgjjh_nf"/>  
-      <attribute key="isAll" value="false"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="isEditable" value="false"/>  
-      <attribute key="editable" value="false"/> 
-    </tag>  
-    <tag row="1" col="0" rowspan="1" colspan="1" name="NewJg" label="机构" fieldName="KHDXDH"> 
-      <attribute key="ckbz" value="jg_ckhy"/>  
-      <attribute key="cascadeCheck" value="true"/>  
-      <attribute key="isRequired" value="true"/>  
-      <attribute key="style" value="160px;"/>  
-      <attribute key="name" value="jgkhdxdh"/>  
-      <attribute key="isAll" value="false"/>  
-      <attribute key="multiple" value="false"/>  
-      <attribute key="isEditable" value="false"/>  
-      <attribute key="editable" value="false"/> 
-    </tag>  
-    <tag row="2" col="0" rowspan="1" colspan="1" name="Text" label="考核指标" fieldName=""> 
-      <attribute key="style" value="160px;"/>  
-      <attribute key="name" value="khzbmc"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="false"/> 
-    </tag>  
-    <tag row="2" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="KHZBDH"> 
-      <attribute key="name" value="KHZBDH"/> 
-    </tag>  
-    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="1季度  计划值" fieldName="JHZ1"> 
-      <attribute key="precision" value="4"/>  
-      <attribute key="style" value="160px;text-align:right;"/>  
-      <attribute key="name" value="jgjjh_jhz1"/>  
-      <attribute key="intparts" value="21"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="3" col="1" rowspan="1" colspan="1" name="Number" label="力争值" fieldName="LZZ1"> 
-      <attribute key="precision" value="4"/>  
-      <attribute key="style" value="160px;text-align:right;"/>  
-      <attribute key="name" value="jgjjh_lzz1"/>  
-      <attribute key="intparts" value="21"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="2季度  计划值" fieldName="JHZ2"> 
-      <attribute key="precision" value="4"/>  
-      <attribute key="style" value="160px;text-align:right;"/>  
-      <attribute key="name" value="jgjjh_jhz2"/>  
-      <attribute key="intparts" value="21"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="4" col="1" rowspan="1" colspan="1" name="Number" label="力争值" fieldName="LZZ2"> 
-      <attribute key="precision" value="4"/>  
-      <attribute key="style" value="160px;text-align:right;"/>  
-      <attribute key="name" value="jgjjh_lzz2"/>  
-      <attribute key="intparts" value="21"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="5" col="0" rowspan="1" colspan="1" name="Number" label="3季度  计划值" fieldName="JHZ3"> 
-      <attribute key="precision" value="4"/>  
-      <attribute key="style" value="160px;text-align:right;"/>  
-      <attribute key="name" value="jgjjh_jhz3"/>  
-      <attribute key="intparts" value="21"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="5" col="1" rowspan="1" colspan="1" name="Number" label="力争值" fieldName="LZZ3"> 
-      <attribute key="precision" value="4"/>  
-      <attribute key="style" value="160px;text-align:right;"/>  
-      <attribute key="name" value="jgjjh_lzz3"/>  
-      <attribute key="intparts" value="21"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="6" col="0" rowspan="1" colspan="1" name="Number" label="4季度  计划值" fieldName="JHZ4"> 
-      <attribute key="precision" value="4"/>  
-      <attribute key="style" value="160px;text-align:right;"/>  
-      <attribute key="name" value="jgjjh_jhz4"/>  
-      <attribute key="intparts" value="21"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag>  
-    <tag row="6" col="1" rowspan="1" colspan="1" name="Number" label="力争值" fieldName="LZZ4"> 
-      <attribute key="precision" value="4"/>  
-      <attribute key="style" value="160px;text-align:right;"/>  
-      <attribute key="name" value="jgjjh_lzz4"/>  
-      <attribute key="intparts" value="21"/>  
-      <attribute key="readonly" value="false"/>  
-      <attribute key="editable" value="true"/> 
-    </tag> 
-  </updatePage>  
-  <buttons> 
-    <button>add</button>  
-    <button>edit</button>  
-    <button>delete</button>  
-    <button>import</button> 
-  </buttons>  
-  <flow> 
-    <insertbefore/>  
-    <insertafter/>  
-    <deletebefore/>  
-    <deleteafter/>  
-    <updatebefore/>  
-    <updateafter/> 
-  </flow>  
-  <sqlMap namespace="studio.jgjjhgl"> 
-    <select id="dn0.jgjjhglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select jjh.khnf,jjh.khdxdh,jg.jgdh,jg.jgmc,khjg.khzbmc,1,2,3,4, jjh.jhz1,jjh.lzz1,jjh.jhz2,jjh.lzz2,jjh.jhz3,jjh.lzz3,jjh.jhz4,jjh.lzz4,khjg.khzbdh from khfa_khzb_jg khjg inner join yjzb_jgjjh jjh on khjg.khzbdh=jjh.khzbdh inner join khdx_jg jg on jg.khdxdh=jjh.khdxdh inner join table(fn_getsjjg_java_qx($sysdate$,$login_khdxdh$,0)) qx on qx.khdxdh=jg.khdxdh where 1=1 
-      <isNotEmpty property="tjrq">and jjh.khnf=$tjrq$</isNotEmpty>  
-      <isNotEmpty property="khzbdh">and khjg.khzbdh=$khzbdh$</isNotEmpty>  
-      <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty> order by khjg.zbpx
-    </select>  
-    <select id="dn0.jgjjhglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select jjh.khnf,jjh.khdxdh,jg.jgdh,jg.jgmc,khjg.khzbmc,1,2,3,4, jjh.jhz1,jjh.lzz1,jjh.jhz2,jjh.lzz2,jjh.jhz3,jjh.lzz3,jjh.jhz4,jjh.lzz4,khjg.khzbdh from khfa_khzb_jg khjg inner join yjzb_jgjjh jjh on khjg.khzbdh=jjh.khzbdh inner join khdx_jg jg on jg.khdxdh=jjh.khdxdh inner join table(fn_getsjjg_java_qx($sysdate$,$login_khdxdh$,0)) qx on qx.khdxdh=jg.khdxdh where 1=1
-      <isNotEmpty property="tjrq">and jjh.khnf=$tjrq$</isNotEmpty>  
-      <isNotEmpty property="khzbdh">and khjg.khzbdh=$khzbdh$</isNotEmpty>  
-      <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty> order by khjg.zbpx ) t
-    </select>  
-    <select id="dn0.jgjjhgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select KHNF, LZZ4, JHZ4, KHDXDH, KHZBDH, LZZ3, JHZ3, LZZ2, JHZ2, LZZ1, JHZ1 from YJZB_JGJJH where 1= 1 and KHNF = $khnf$ and KHDXDH = $khdxdh$ and KHZBDH = $khzbdh$
-    </select>  
-    <select id="dn0.jgjjhgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select KHNF, LZZ4, JHZ4, KHDXDH, KHZBDH, LZZ3, JHZ3, LZZ2, JHZ2, LZZ1, JHZ1 from YJZB_JGJJH where 1= 1 and KHNF = $jgjjh_nf$ and KHDXDH = $jgkhdxdh$ and KHZBDH = $KHZBDH$
-    </select>  
-    <insert id="dn0.jgjjhgl_insert" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into YJZB_JGJJH( JHZ3, KHNF, LZZ4, JHZ2, JHZ1, KHZBDH, LZZ1, LZZ3, JHZ4, LZZ2, KHDXDH ) values ( $jgjjh_jhz3$,$jgjjh_nf$,$jgjjh_lzz4$,$jgjjh_jhz2$,$jgjjh_jhz1$,$KHZBDH$,$jgjjh_lzz1$,$jgjjh_lzz3$,$jgjjh_jhz4$,$jgjjh_lzz2$,$jgkhdxdh$)
-    </insert>  
-    <update id="dn0.jgjjhgl_update" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update YJZB_JGJJH set JHZ3 = $jgjjh_jhz3$,LZZ4 = $jgjjh_lzz4$,JHZ2 = $jgjjh_jhz2$,JHZ1 = $jgjjh_jhz1$,LZZ1 = $jgjjh_lzz1$,LZZ3 = $jgjjh_lzz3$,JHZ4 = $jgjjh_jhz4$,LZZ2 = $jgjjh_lzz2$ where 1=1 and KHNF = $jgjjh_nf$ and KHDXDH = $jgkhdxdh$ and KHZBDH = $KHZBDH$
-    </update>  
-    <delete id="dn0.jgjjhgl_delete" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from YJZB_JGJJH where 1=1 and KHNF = $khnf$ and KHDXDH = $khdxdh$ and KHZBDH = $khzbdh$
-    </delete> 
-  </sqlMap>  
-  <javascript> 
-    <import>parent.addTab('jgjjhgldr','机构季计划管理','/module/parser/import/visitHtml/jgjjhgldr');</import>  
-    <query>jQuery(document).ready(function () { jQuery("input[value='添 加']").hide(); jQuery("#exportBtn").show(); }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; }</query>  
-    <edit>jQuery(document).ready(function () { //这里的js脚本，会在页面加载完成后执行 for(var i=1;i&lt;5;i++){ $("#jgjjh_lzz"+i).removeClass().addClass("{decimal:[21,4]}"); } }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ for(var i=1;i&lt;5;i++) { if($('#jgjjh_lzz'+i).val()==null ||$('#jgjjh_lzz'+i).val()=='') { $('#jgjjh_lzz'+i).val('null'); } } return true; }</edit> 
-  </javascript> 
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}</query>
+    <edit>jQuery(document).ready(function () {
+//这里的js脚本，会在页面加载完成后执行
+for(var i=1;i&lt;5;i++){
+  $("#jgjjh_lzz"+i).removeClass().addClass("{decimal:[21,4]}");
+}
+});
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+
+  for(var i=1;i&lt;5;i++)
+  {
+    if($('#jgjjh_lzz'+i).val()==null ||$('#jgjjh_lzz'+i).val()=='')
+    {
+      $('#jgjjh_lzz'+i).val('null');
+    }
+  }
+ return true;
+}</edit>
+  </javascript>
 </pageSetting>
+

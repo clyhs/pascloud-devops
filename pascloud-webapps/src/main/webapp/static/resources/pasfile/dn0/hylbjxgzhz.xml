@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="hylbjxgzhz" title="行员类别绩效工资汇总" type="query" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags> 
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="起始日期"> 
-        <attribute key="dateFmt" value="yyyyMM"/>  
-        <attribute key="defValType" value="yc"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="qsrq"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="结束日期"> 
-        <attribute key="dateFmt" value="yyyyMM"/>  
-        <attribute key="defValType" value="ym"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="jsrq"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="行员类别"> 
-        <attribute key="isMultiple" value="false"/>  
-        <attribute key="width" value="120px;"/>  
-        <attribute key="isSearch" value="true"/>  
-        <attribute key="sql" value="select lbdh as key,lbmc as value from csb_hylb"/>  
-        <attribute key="isRequired" value="false"/>  
-        <attribute key="style" value="width:auto;"/>  
-        <attribute key="name" value="hylb"/>  
-        <attribute key="isAll" value="true"/>  
-        <attribute key="isEditable" value="true"/> 
-      </tag>  
-      <tag row="0" col="3" colspan="1" rowspan="1" name="Hidden" label=""> 
-        <attribute key="name" value="qsrq1"/> 
-      </tag>  
-      <tag row="0" col="3" colspan="1" rowspan="1" name="Hidden" label=""> 
-        <attribute key="name" value="jsrq1"/> 
-      </tag> 
-    </tags> 
-  </conPart>  
-  <table id="hylbjxgzhz_xsjy1jgj" title="新数据源1结果集" page="false" isDym="true"> 
-    <col id="NF" title="年份" align="left" type="string" width="120" frozen="true" format="" showDymCol="false" mergeCells="true" footerCells="false"/>  
-    <col id="LBMC" title="行员类别" align="left" type="string" width="120" frozen="true" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="$yf$" title="YF" align="left" type="string" width="480" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" dym="true"> 
-      <col id="HYS" title="行员数" align="left" type="float" width="120" frozen="false" format="###,##0.00" showDymCol="true" mergeCells="false" footerCells="false"/>  
-      <col id="YYJG" title="绩效工资(元)" align="right" type="float" width="120" frozen="false" format="###,##0.00" showDymCol="true" mergeCells="false" footerCells="true"/>  
-      <col id="HYPJJXGZ" title="行员平均绩效工资" align="right" type="float" width="120" frozen="false" format="###,##0.00" showDymCol="true" mergeCells="false" footerCells="false"/>  
-      <col id="ZB" title="占比(%)" align="right" type="float" width="120" frozen="false" format="##0.00" showDymCol="true" mergeCells="false" footerCells="true"/> 
-    </col>  
-    <col id="QSRQ" title="起始日期" align="left" type="hidden" width="75" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JSRQ" title="结束日期" align="left" type="hidden" width="75" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="LBDH" title="类别编号" align="left" type="hidden" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <sqlMap namespace="studio.hylbjxgzhz"> 
-    <select id="dn0.hylbjxgzhzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select $qsrq$ qsrq,$jsrq$ jsrq,t.nf,t.lbmc,t.lbdh,t.yf,t.hys,
+<pageSetting id="hylbjxgzhz" title="行员类别绩效工资汇总" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="起始日期">
+        <attribute key="dateFmt" value="yyyyMM" />
+        <attribute key="defValType" value="yc" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="qsrq" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Date" label="结束日期">
+        <attribute key="dateFmt" value="yyyyMM" />
+        <attribute key="defValType" value="ym" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="jsrq" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="行员类别">
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isSearch" value="true" />
+        <attribute key="sql" value="select lbdh as key,lbmc as value from csb_hylb" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="style" value="width:auto;" />
+        <attribute key="name" value="hylb" />
+        <attribute key="isAll" value="true" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="qsrq1" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="jsrq1" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="hylbjxgzhz_xsjy1jgj" title="新数据源1结果集" page="false" isDym="true">
+    <col id="NF" title="年份" align="left" type="string" width="120" frozen="true" format="" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="LBMC" title="行员类别" align="left" type="string" width="120" frozen="true" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="$yf$" title="YF" align="left" type="string" width="480" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" dym="true">
+      <col id="HYS" title="行员数" align="left" type="float" width="120" frozen="false" format="###,##0.00" showDymCol="true" mergeCells="false" footerCells="false" />
+      <col id="YYJG" title="绩效工资(元)" align="right" type="float" width="120" frozen="false" format="###,##0.00" showDymCol="true" mergeCells="false" footerCells="true" />
+      <col id="HYPJJXGZ" title="行员平均绩效工资" align="right" type="float" width="120" frozen="false" format="###,##0.00" showDymCol="true" mergeCells="false" footerCells="false" />
+      <col id="ZB" title="占比(%)" align="right" type="float" width="120" frozen="false" format="##0.00" showDymCol="true" mergeCells="false" footerCells="true" />
+    </col>
+    <col id="QSRQ" title="起始日期" align="left" type="hidden" width="75" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JSRQ" title="结束日期" align="left" type="hidden" width="75" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="LBDH" title="类别编号" align="left" type="hidden" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.hylbjxgzhz">
+    <select id="dn0.hylbjxgzhzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[select $qsrq$ qsrq,$jsrq$ jsrq,t.nf,t.lbmc,t.lbdh,t.yf,t.hys,
 case when t.hys!=0 then t.yyjg/t.hys else 0 end hypjjxgz,t.yyjg,t.zb from (
 select t.nf,t.lbmc,t.lbdh,t.YF,t.hys,
 case when t.hys=0 then 0 else (t.YYJG/t.hys) end hypjjxgz,
@@ -67,10 +67,13 @@ select substr(f_numtochar(yyjg.tjrq), 1, 4) nf,csb.LBMC,hylb.lbdh,yyjg.khdxdh,
     from (
 select distinct case when ym<$sysdate$ then ym else $sysdate$ end as ym
 from csb_sjw 
-where  tjrq=ym]]>  
-      <isNotEmpty property="qsrq1">and tjrq between $qsrq1$ and $jsrq1$</isNotEmpty> ) sjw inner join KHFA_YYJG_HY yyjg on sjw.YM=yyjg.TJRQ inner join KHDX_HYLB hylb on hylb.KHDXDH = yyjg.KHDXDH 
-      <isNotEmpty property="jsrq1">and $jsrq1$ between hylb.qsrq and hylb.jsrq</isNotEmpty> inner join CSB_HYLB csb on csb.LBDH=hylb.LBDH where exists(select 1 from khfa_fapz pz where yyjg.fabh=pz.fabh and pz.yyzlbh=1) group by substr(f_numtochar(yyjg.tjrq), 1, 4),substr(f_numtochar(yyjg.tjrq), 5, 2),csb.LBMC,hylb.lbdh,yyjg.khdxdh order by nf,yf,lbdh )l group by l.nf,l.lbmc,l.lbdh,l.yf )y )t where 1=1 
-      <isNotEmpty property="hylb">and t.lbdh='$hylb$'</isNotEmpty>  <![CDATA[union all 
+where  tjrq=ym]]>
+      <isNotEmpty property="qsrq1">and tjrq between $qsrq1$ and $jsrq1$</isNotEmpty>
+      ) sjw inner join KHFA_YYJG_HY yyjg on sjw.YM=yyjg.TJRQ inner join KHDX_HYLB hylb on hylb.KHDXDH = yyjg.KHDXDH
+      <isNotEmpty property="jsrq1">and $jsrq1$ between hylb.qsrq and hylb.jsrq</isNotEmpty>
+      inner join CSB_HYLB csb on csb.LBDH=hylb.LBDH where exists(select 1 from khfa_fapz pz where yyjg.fabh=pz.fabh and pz.yyzlbh=1)  group by substr(f_numtochar(yyjg.tjrq), 1, 4),substr(f_numtochar(yyjg.tjrq), 5, 2),csb.LBMC,hylb.lbdh,yyjg.khdxdh order by nf,yf,lbdh )l group by l.nf,l.lbmc,l.lbdh,l.yf )y )t where 1=1
+      <isNotEmpty property="hylb">and  t.lbdh='$hylb$'</isNotEmpty>
+      <![CDATA[union all 
 
 select t.nf,t.lbmc,t.lbdh,'月份合计' yf,
 case when count(t.yf)=0 then 0 else round(cast(sum(t.hys) as decimal(19,3))/cast(count(t.yf) as decimal(19,3)),2) end hys,
@@ -89,13 +92,17 @@ select substr(f_numtochar(yyjg.tjrq), 1, 4) nf,csb.LBMC,hylb.lbdh,yyjg.khdxdh,
     from (
 select distinct case when ym<$sysdate$ then ym else $sysdate$ end as ym
 from csb_sjw 
-where  tjrq=ym]]>  
-      <isNotEmpty property="qsrq1">and tjrq between $qsrq1$ and $jsrq1$</isNotEmpty> ) sjw inner join KHFA_YYJG_HY yyjg on sjw.YM=yyjg.TJRQ inner join KHDX_HYLB hylb on hylb.KHDXDH = yyjg.KHDXDH 
-      <isNotEmpty property="jsrq1">and $jsrq1$ between hylb.qsrq and hylb.jsrq</isNotEmpty> inner join CSB_HYLB csb on csb.LBDH=hylb.LBDH where exists(select 1 from khfa_fapz pz where yyjg.fabh=pz.fabh and pz.yyzlbh=1) group by substr(f_numtochar(yyjg.tjrq), 1, 4),substr(f_numtochar(yyjg.tjrq), 5, 2),csb.LBMC,hylb.lbdh,yyjg.khdxdh order by nf,yf,lbdh )l group by l.nf,l.lbmc,l.lbdh,l.yf )y )t where 1=1 
-      <isNotEmpty property="hylb">and t.lbdh='$hylb$'</isNotEmpty> ) t group by t.nf,t.lbmc,t.lbdh ) t order by t.yf
-    </select>  
-    <select id="dn0.hylbjxgzhzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( <![CDATA[select $qsrq$ qsrq,$jsrq$ jsrq,t.nf,t.lbmc,t.lbdh,t.yf,t.hys,
+where  tjrq=ym]]>
+      <isNotEmpty property="qsrq1">and tjrq between $qsrq1$ and $jsrq1$</isNotEmpty>
+      ) sjw inner join KHFA_YYJG_HY yyjg on sjw.YM=yyjg.TJRQ inner join KHDX_HYLB hylb on hylb.KHDXDH = yyjg.KHDXDH
+      <isNotEmpty property="jsrq1">and $jsrq1$ between hylb.qsrq and hylb.jsrq</isNotEmpty>
+      inner join CSB_HYLB csb on csb.LBDH=hylb.LBDH where exists(select 1 from khfa_fapz pz where yyjg.fabh=pz.fabh and pz.yyzlbh=1)  group by substr(f_numtochar(yyjg.tjrq), 1, 4),substr(f_numtochar(yyjg.tjrq), 5, 2),csb.LBMC,hylb.lbdh,yyjg.khdxdh order by nf,yf,lbdh )l group by l.nf,l.lbmc,l.lbdh,l.yf )y )t where 1=1
+      <isNotEmpty property="hylb">and  t.lbdh='$hylb$'</isNotEmpty>
+      ) t group by t.nf,t.lbmc,t.lbdh ) t order by t.yf
+    </select>
+    <select id="dn0.hylbjxgzhzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( <![CDATA[select $qsrq$ qsrq,$jsrq$ jsrq,t.nf,t.lbmc,t.lbdh,t.yf,t.hys,
 case when t.hys!=0 then t.yyjg/t.hys else 0 end hypjjxgz,t.yyjg,t.zb from (
 select t.nf,t.lbmc,t.lbdh,t.YF,t.hys,
 case when t.hys=0 then 0 else (t.YYJG/t.hys) end hypjjxgz,
@@ -109,10 +116,13 @@ select substr(f_numtochar(yyjg.tjrq), 1, 4) nf,csb.LBMC,hylb.lbdh,yyjg.khdxdh,
     from (
 select distinct case when ym<$sysdate$ then ym else $sysdate$ end as ym
 from csb_sjw 
-where  tjrq=ym]]>  
-      <isNotEmpty property="qsrq1">and tjrq between $qsrq1$ and $jsrq1$</isNotEmpty> ) sjw inner join KHFA_YYJG_HY yyjg on sjw.YM=yyjg.TJRQ inner join KHDX_HYLB hylb on hylb.KHDXDH = yyjg.KHDXDH 
-      <isNotEmpty property="jsrq1">and $jsrq1$ between hylb.qsrq and hylb.jsrq</isNotEmpty> inner join CSB_HYLB csb on csb.LBDH=hylb.LBDH where exists(select 1 from khfa_fapz pz where yyjg.fabh=pz.fabh and pz.yyzlbh=1) group by substr(f_numtochar(yyjg.tjrq), 1, 4),substr(f_numtochar(yyjg.tjrq), 5, 2),csb.LBMC,hylb.lbdh,yyjg.khdxdh order by nf,yf,lbdh )l group by l.nf,l.lbmc,l.lbdh,l.yf )y )t where 1=1 
-      <isNotEmpty property="hylb">and t.lbdh='$hylb$'</isNotEmpty>  <![CDATA[union all 
+where  tjrq=ym]]>
+      <isNotEmpty property="qsrq1">and tjrq between $qsrq1$ and $jsrq1$</isNotEmpty>
+      ) sjw inner join KHFA_YYJG_HY yyjg on sjw.YM=yyjg.TJRQ inner join KHDX_HYLB hylb on hylb.KHDXDH = yyjg.KHDXDH
+      <isNotEmpty property="jsrq1">and $jsrq1$ between hylb.qsrq and hylb.jsrq</isNotEmpty>
+      inner join CSB_HYLB csb on csb.LBDH=hylb.LBDH where exists(select 1 from khfa_fapz pz where yyjg.fabh=pz.fabh and pz.yyzlbh=1)  group by substr(f_numtochar(yyjg.tjrq), 1, 4),substr(f_numtochar(yyjg.tjrq), 5, 2),csb.LBMC,hylb.lbdh,yyjg.khdxdh order by nf,yf,lbdh )l group by l.nf,l.lbmc,l.lbdh,l.yf )y )t where 1=1
+      <isNotEmpty property="hylb">and  t.lbdh='$hylb$'</isNotEmpty>
+      <![CDATA[union all 
 
 select t.nf,t.lbmc,t.lbdh,'月份合计' yf,
 case when count(t.yf)=0 then 0 else round(cast(sum(t.hys) as decimal(19,3))/cast(count(t.yf) as decimal(19,3)),2) end hys,
@@ -131,16 +141,19 @@ select substr(f_numtochar(yyjg.tjrq), 1, 4) nf,csb.LBMC,hylb.lbdh,yyjg.khdxdh,
     from (
 select distinct case when ym<$sysdate$ then ym else $sysdate$ end as ym
 from csb_sjw 
-where  tjrq=ym]]>  
-      <isNotEmpty property="qsrq1">and tjrq between $qsrq1$ and $jsrq1$</isNotEmpty> ) sjw inner join KHFA_YYJG_HY yyjg on sjw.YM=yyjg.TJRQ inner join KHDX_HYLB hylb on hylb.KHDXDH = yyjg.KHDXDH 
-      <isNotEmpty property="jsrq1">and $jsrq1$ between hylb.qsrq and hylb.jsrq</isNotEmpty> inner join CSB_HYLB csb on csb.LBDH=hylb.LBDH where exists(select 1 from khfa_fapz pz where yyjg.fabh=pz.fabh and pz.yyzlbh=1) group by substr(f_numtochar(yyjg.tjrq), 1, 4),substr(f_numtochar(yyjg.tjrq), 5, 2),csb.LBMC,hylb.lbdh,yyjg.khdxdh order by nf,yf,lbdh )l group by l.nf,l.lbmc,l.lbdh,l.yf )y )t where 1=1 
-      <isNotEmpty property="hylb">and t.lbdh='$hylb$'</isNotEmpty> ) t group by t.nf,t.lbmc,t.lbdh ) t order by t.yf ) t
-    </select>  
-    <select id="dn0.hylbjxgzhz_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key,lbmc as value from csb_hylb</select> 
-  </sqlMap>  
-  <rels> 
-    <items id="hylbjxgzhz_xsjy1jgj"/> 
-  </rels>  
+where  tjrq=ym]]>
+      <isNotEmpty property="qsrq1">and tjrq between $qsrq1$ and $jsrq1$</isNotEmpty>
+      ) sjw inner join KHFA_YYJG_HY yyjg on sjw.YM=yyjg.TJRQ inner join KHDX_HYLB hylb on hylb.KHDXDH = yyjg.KHDXDH
+      <isNotEmpty property="jsrq1">and $jsrq1$ between hylb.qsrq and hylb.jsrq</isNotEmpty>
+      inner join CSB_HYLB csb on csb.LBDH=hylb.LBDH where exists(select 1 from khfa_fapz pz where yyjg.fabh=pz.fabh and pz.yyzlbh=1)  group by substr(f_numtochar(yyjg.tjrq), 1, 4),substr(f_numtochar(yyjg.tjrq), 5, 2),csb.LBMC,hylb.lbdh,yyjg.khdxdh order by nf,yf,lbdh )l group by l.nf,l.lbmc,l.lbdh,l.yf )y )t where 1=1
+      <isNotEmpty property="hylb">and  t.lbdh='$hylb$'</isNotEmpty>
+      ) t group by t.nf,t.lbmc,t.lbdh ) t order by t.yf ) t
+    </select>
+    <select id="dn0.hylbjxgzhz_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key,lbmc as value from csb_hylb</select>
+  </sqlMap>
+  <rels>
+    <items id="hylbjxgzhz_xsjy1jgj" />
+  </rels>
   <javascript><![CDATA[jQuery(document).ready(function () {
 /*
     jQuery('#tjrq').blur(function(){
@@ -234,5 +247,6 @@ function customOnLoadSuccess(data){
                   +'</div></td>');
     }
   }
-}]]></javascript> 
+}]]></javascript>
 </pageSetting>
+

@@ -1,106 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="cdkcplrfx" title="存贷款产品利润分析" type="query" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags> 
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月"> 
-        <attribute key="dateFmt" value="yyyyMM"/>  
-        <attribute key="defValType" value="sysDate"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="tjny"/>  
-        <attribute key="minDate" value="no"/> 
-      </tag>  
-      <tag row="0" col="1" colspan="1" rowspan="1" name="Dmms" label="对象类型"> 
-        <attribute key="defVal" value="1"/>  
-        <attribute key="width" value="120px;"/>  
-        <attribute key="dmmc" value="zhlx"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="dxlx"/>  
-        <attribute key="isAll" value="false"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag>  
-      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="业务类型"> 
-        <attribute key="width" value="120px;"/>  
-        <attribute key="dmmc" value="ywlx"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="ywlx"/>  
-        <attribute key="isAll" value="true"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag>  
-      <tag row="0" col="3" colspan="1" rowspan="1" name="Dmms" label="时段"> 
-        <attribute key="defVal" value="3"/>  
-        <attribute key="width" value="120px;"/>  
-        <attribute key="dmmc" value="lrsdbs"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="sd"/>  
-        <attribute key="isAll" value="false"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag> 
-    </tags> 
-  </conPart>  
-  <table id="cdkcplrfx_xsjy1jgj" title="新数据源1结果集" page="true"> 
-    <col id="TJNY" title="统计年月" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="CPDH" title="产品代号" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="CPMC" title="产品名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="QX" title="期限" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DQYE" title="当前余额(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="RJYE" title="日均余额(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="RJZB" title="日均占比" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="FTPLXSR" title="FTP利息收入(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZBJSR" title="准备金收入(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="TQLXZCKH" title="提前利息支出扣回(万元)" align="right" type="float" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="LXZC" title="利息支出(万元)" align="right" type="float" width="105" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="MNLR" title="模拟利润(万元)" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="PM" title="排名" align="right" type="string" width="50" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <table id="cdkcplrfx_xsjy2jgj" title="新数据源2结果集" page="true"> 
-    <col id="TJNY" title="统计年月" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="CPDH" title="产品代号" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="CPMC" title="产品名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="QX" title="期限" align="left" type="string" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DQYE" title="当前余额(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="RJYE" title="日均余额(万元)" align="right" type="float" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="RJZB" title="日均占比" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="LXSR" title="利息收入(万元)" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="FTPLXZC" title="FTP支出(万元)" align="right" type="float" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZCJZZB" title="资产减值准备(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="YSWSLXXZ" title="应收未收利息新增(万元)" align="right" type="float" width="140" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="MNLR" title="模拟利润(万元)" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="PM" title="排名" align="right" type="string" width="50" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <sqlMap namespace="studio.cdkcplrfx"> 
-    <select id="dn0.cdkcplrfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
-      <isEqual property="dxlx" compareValue="1">select $tjny$ as tjny, lr.cpdh, cp.cpmc, qx.qxmc as qx, lr.dqye/cast(10000 as float) as dqye, (case when $sd$ = 1 then lr.yrjye when $sd$ = 2 then lr.jrjye when $sd$ = 3 then lr.nrjye end)/cast(10000 as float) as rjye, (case when $sd$ = 1 then (case when sum(coalesce(lr.yrjye,0)) over () = 0 then 0 else lr.yrjye/cast(sum(coalesce(lr.yrjye,0)) over () as float)*100 end) when $sd$ = 2 then (case when sum(coalesce(lr.jrjye,0)) over () = 0 then 0 else lr.jrjye/cast(sum(coalesce(lr.jrjye,0)) over () as float)*100 end) when $sd$ = 3 then (case when sum(coalesce(lr.nrjye,0)) over () = 0 then 0 else lr.nrjye/cast(sum(coalesce(lr.nrjye,0)) over () as float)*100 end) end) as rjzb, (case when $sd$ = 1 then lr.yftpsr when $sd$ = 2 then lr.jftpsr when $sd$ = 3 then lr.nftpsr end)/cast(10000 as float) as ftplxsr, (case when $sd$ = 1 then lr.yzbjsr when $sd$ = 2 then lr.jzbjsr when $sd$ = 3 then lr.nzbjsr end)/cast(10000 as float) as zbjsr, (case when $sd$ = 1 then lr.ytqzqlxkh when $sd$ = 2 then lr.jtqzqlxkh when $sd$ = 3 then lr.ntqzqlxkh end)/cast(10000 as float) as tqlxzckh, (case when $sd$ = 1 then lr.ylxzc when $sd$ = 2 then lr.jlxzc when $sd$ = 3 then lr.nlxzc end)/cast(10000 as float) as lxzc, (case when $sd$ = 1 then lr.ylr when $sd$ = 2 then lr.jlr when $sd$ = 3 then lr.nlr end)/cast(10000 as float) as mnlr, rank () over (order by (case when $sd$ = 1 then lr.ylr when $sd$ = 2 then lr.jlr when $sd$ = 3 then lr.nlr end) desc nulls last) as pm from nbzz_ckcplr lr inner join csb_cpxz cp on cp.cpdh = lr.cpdh and cp.jxdxlx = 1
-        <isNotEmpty property="ywlx">and cp.ywlx ='$ywlx$'</isNotEmpty> inner join csb_qxsdb qx on qx.qxdh = lr.qxdh inner join csb_sjw sj on sj.tjrq = lr.tjrq and substr(cast(sj.tjrq as char(8)),1,6) = cast($tjny$ as char(6)) where 1=1 
-        <isNotEmpty property="ywlx">and lr.zhbs = '$ywlx$'</isNotEmpty> 
-      </isEqual>  
-      <isEqual property="dxlx" compareValue="2">select $tjny$ as tjny, lr.cpdh, cp.cpmc, qx.qxmc as qx, lr.dqye/cast(10000 as float) as dqye, (case when $sd$ = 1 then lr.yrjye when $sd$ = 2 then lr.jrjye when $sd$ = 3 then lr.nrjye end)/cast(10000 as float) as rjye, (case when $sd$ = 1 then (case when sum(coalesce(lr.yrjye,0)) over () = 0 then 0 else lr.yrjye/cast(sum(coalesce(lr.yrjye,0)) over () as float)*100 end) when $sd$ = 2 then (case when sum(coalesce(lr.jrjye,0)) over () = 0 then 0 else lr.jrjye/cast(sum(coalesce(lr.jrjye,0)) over () as float)*100 end) when $sd$ = 3 then (case when sum(coalesce(lr.nrjye,0)) over () = 0 then 0 else lr.nrjye/cast(sum(coalesce(lr.nrjye,0)) over ()as float)*100 end) end) as rjzb, (case when $sd$ = 1 then lr.ylxsr when $sd$ = 2 then lr.jlxsr when $sd$ = 3 then lr.nlxsr end)/cast(10000 as float) as lxsr, (case when $sd$ = 1 then lr.yftplxzc when $sd$ = 2 then lr.jftplxzc when $sd$ = 3 then lr.nftplxzc end)/cast(10000 as float) as ftplxzc, (case when $sd$ = 1 then lr.yzcjzss when $sd$ = 2 then lr.jzcjzss when $sd$ = 3 then lr.nzcjzss end)/cast(10000 as float) as zcjzzb, (case when $sd$ = 1 then lr.yyswslxxz when $sd$ = 2 then lr.jyswslxxz when $sd$ = 3 then lr.nyswslxxz end)/cast(10000 as float) as yswslxxz, (case when $sd$ = 1 then lr.ylr when $sd$ = 2 then lr.jlr when $sd$ = 3 then lr.nlr end)/cast(10000 as float) as mnlr, rank () over (order by (case when $sd$ = 1 then lr.ylr when $sd$ = 2 then lr.jlr when $sd$ = 3 then lr.nlr end) desc nulls last) as pm from nbzz_dkcplr lr inner join csb_cpxz cp on cp.cpdh = lr.cpdh and cp.jxdxlx = 2 
-        <isNotEmpty property="ywlx">and cp.ywlx ='$ywlx$'</isNotEmpty> inner join csb_qxsdb qx on qx.qxdh = lr.qxdh inner join csb_sjw sj on sj.tjrq = lr.tjrq and substr(cast(sj.tjrq as char(8)),1,6) = cast($tjny$ as char(6)) where 1=1 
-        <isNotEmpty property="ywlx">and lr.zhbs = '$ywlx$'</isNotEmpty> 
-      </isEqual> 
-    </select>  
-    <select id="dn0.cdkcplrfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
-      <isEqual property="dxlx" compareValue="1">select $tjny$ as tjny, lr.cpdh, cp.cpmc, qx.qxmc as qx, lr.dqye/cast(10000 as float) as dqye, (case when $sd$ = 1 then lr.yrjye when $sd$ = 2 then lr.jrjye when $sd$ = 3 then lr.nrjye end)/cast(10000 as float) as rjye, (case when $sd$ = 1 then (case when sum(coalesce(lr.yrjye,0)) over () = 0 then 0 else lr.yrjye/cast(sum(coalesce(lr.yrjye,0)) over () as float)*100 end) when $sd$ = 2 then (case when sum(coalesce(lr.jrjye,0)) over () = 0 then 0 else lr.jrjye/cast(sum(coalesce(lr.jrjye,0)) over () as float)*100 end) when $sd$ = 3 then (case when sum(coalesce(lr.nrjye,0)) over () = 0 then 0 else lr.nrjye/cast(sum(coalesce(lr.nrjye,0)) over () as float)*100 end) end) as rjzb, (case when $sd$ = 1 then lr.yftpsr when $sd$ = 2 then lr.jftpsr when $sd$ = 3 then lr.nftpsr end)/cast(10000 as float) as ftplxsr, (case when $sd$ = 1 then lr.yzbjsr when $sd$ = 2 then lr.jzbjsr when $sd$ = 3 then lr.nzbjsr end)/cast(10000 as float) as zbjsr, (case when $sd$ = 1 then lr.ytqzqlxkh when $sd$ = 2 then lr.jtqzqlxkh when $sd$ = 3 then lr.ntqzqlxkh end)/cast(10000 as float) as tqlxzckh, (case when $sd$ = 1 then lr.ylxzc when $sd$ = 2 then lr.jlxzc when $sd$ = 3 then lr.nlxzc end)/cast(10000 as float) as lxzc, (case when $sd$ = 1 then lr.ylr when $sd$ = 2 then lr.jlr when $sd$ = 3 then lr.nlr end)/cast(10000 as float) as mnlr, rank () over (order by (case when $sd$ = 1 then lr.ylr when $sd$ = 2 then lr.jlr when $sd$ = 3 then lr.nlr end) desc nulls last) as pm from nbzz_ckcplr lr inner join csb_cpxz cp on cp.cpdh = lr.cpdh and cp.jxdxlx = 1 
-        <isNotEmpty property="ywlx">and cp.ywlx ='$ywlx$'</isNotEmpty> inner join csb_qxsdb qx on qx.qxdh = lr.qxdh inner join csb_sjw sj on sj.tjrq = lr.tjrq and substr(cast(sj.tjrq as char(8)),1,6) = cast($tjny$ as char(6)) where 1=1 
-        <isNotEmpty property="ywlx">and lr.zhbs = '$ywlx$'</isNotEmpty> 
-      </isEqual>  
-      <isEqual property="dxlx" compareValue="2">select $tjny$ as tjny, lr.cpdh, cp.cpmc, qx.qxmc as qx, lr.dqye/cast(10000 as float) as dqye, (case when $sd$ = 1 then lr.yrjye when $sd$ = 2 then lr.jrjye when $sd$ = 3 then lr.nrjye end)/cast(10000 as float) as rjye, (case when $sd$ = 1 then (case when sum(coalesce(lr.yrjye,0)) over () = 0 then 0 else lr.yrjye/cast(sum(coalesce(lr.yrjye,0)) over () as float)*100 end) when $sd$ = 2 then (case when sum(coalesce(lr.jrjye,0)) over () = 0 then 0 else lr.jrjye/cast(sum(coalesce(lr.jrjye,0)) over () as float)*100 end) when $sd$ = 3 then (case when sum(coalesce(lr.nrjye,0)) over () = 0 then 0 else lr.nrjye/cast(sum(coalesce(lr.nrjye,0)) over ()as float)*100 end) end) as rjzb, (case when $sd$ = 1 then lr.ylxsr when $sd$ = 2 then lr.jlxsr when $sd$ = 3 then lr.nlxsr end)/cast(10000 as float) as lxsr, (case when $sd$ = 1 then lr.yftplxzc when $sd$ = 2 then lr.jftplxzc when $sd$ = 3 then lr.nftplxzc end)/cast(10000 as float) as ftplxzc, (case when $sd$ = 1 then lr.yzcjzss when $sd$ = 2 then lr.jzcjzss when $sd$ = 3 then lr.nzcjzss end)/cast(10000 as float) as zcjzzb, (case when $sd$ = 1 then lr.yyswslxxz when $sd$ = 2 then lr.jyswslxxz when $sd$ = 3 then lr.nyswslxxz end)/cast(10000 as float) as yswslxxz, (case when $sd$ = 1 then lr.ylr when $sd$ = 2 then lr.jlr when $sd$ = 3 then lr.nlr end)/cast(10000 as float) as mnlr, rank () over (order by (case when $sd$ = 1 then lr.ylr when $sd$ = 2 then lr.jlr when $sd$ = 3 then lr.nlr end) desc nulls last) as pm from nbzz_dkcplr lr inner join csb_cpxz cp on cp.cpdh = lr.cpdh and cp.jxdxlx = 2 
-        <isNotEmpty property="ywlx">and cp.ywlx ='$ywlx$'</isNotEmpty> inner join csb_qxsdb qx on qx.qxdh = lr.qxdh inner join csb_sjw sj on sj.tjrq = lr.tjrq and substr(cast(sj.tjrq as char(8)),1,6) = cast($tjny$ as char(6)) where 1=1 
-        <isNotEmpty property="ywlx">and lr.zhbs = '$ywlx$'</isNotEmpty> 
-      </isEqual> ) t
-    </select> 
-  </sqlMap>  
-  <rels> 
-    <items id="cdkcplrfx_xsjy1jgj"> 
-      <item name="dxlx" compareValue="1" operate="isEqual"/> 
-    </items>  
-    <items id="cdkcplrfx_xsjy2jgj"> 
-      <item name="dxlx" compareValue="2" operate="isEqual"/> 
-    </items> 
-  </rels>  
+<pageSetting id="cdkcplrfx" title="存贷款产品利润分析" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月">
+        <attribute key="dateFmt" value="yyyyMM" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjny" />
+        <attribute key="minDate" value="no" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="Dmms" label="对象类型">
+        <attribute key="defVal" value="1" />
+        <attribute key="width" value="120px;" />
+        <attribute key="dmmc" value="zhlx" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="dxlx" />
+        <attribute key="isAll" value="false" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="业务类型">
+        <attribute key="width" value="120px;" />
+        <attribute key="dmmc" value="ywlx" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="ywlx" />
+        <attribute key="isAll" value="true" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Dmms" label="时段">
+        <attribute key="defVal" value="3" />
+        <attribute key="width" value="120px;" />
+        <attribute key="dmmc" value="lrsdbs" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="sd" />
+        <attribute key="isAll" value="false" />
+        <attribute key="multiple" value="false" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="cdkcplrfx_xsjy1jgj" title="新数据源1结果集" page="true">
+    <col id="TJNY" title="统计年月" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="CPDH" title="产品代号" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="CPMC" title="产品名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QX" title="期限" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DQYE" title="当前余额(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="RJYE" title="日均余额(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="RJZB" title="日均占比" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FTPLXSR" title="FTP利息收入(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZBJSR" title="准备金收入(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="TQLXZCKH" title="提前利息支出扣回(万元)" align="right" type="float" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="LXZC" title="利息支出(万元)" align="right" type="float" width="105" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="MNLR" title="模拟利润(万元)" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="PM" title="排名" align="right" type="string" width="50" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <table id="cdkcplrfx_xsjy2jgj" title="新数据源2结果集" page="true">
+    <col id="TJNY" title="统计年月" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="CPDH" title="产品代号" align="left" type="string" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="CPMC" title="产品名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QX" title="期限" align="left" type="string" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DQYE" title="当前余额(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="RJYE" title="日均余额(万元)" align="right" type="float" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="RJZB" title="日均占比" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="LXSR" title="利息收入(万元)" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FTPLXZC" title="FTP支出(万元)" align="right" type="float" width="110" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZCJZZB" title="资产减值准备(万元)" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="YSWSLXXZ" title="应收未收利息新增(万元)" align="right" type="float" width="140" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="MNLR" title="模拟利润(万元)" align="right" type="float" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="PM" title="排名" align="right" type="string" width="50" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.cdkcplrfx">
+    <select id="dn0.cdkcplrfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <isEqual property="dxlx" compareValue="1">
+        select $tjny$ as tjny,           lr.cpdh,           cp.cpmc,           qx.qxmc as qx,           lr.dqye/cast(10000 as float) as dqye,           (case when $sd$ = 1 then lr.yrjye                    when $sd$ = 2 then lr.jrjye                    when $sd$ = 3 then lr.nrjye                    end)/cast(10000 as float) as rjye,          (case when $sd$ = 1 then (case when sum(coalesce(lr.yrjye,0)) over () = 0 then 0                                                              else  lr.yrjye/cast(sum(coalesce(lr.yrjye,0)) over () as float)*100  end)                 when $sd$ = 2 then (case when sum(coalesce(lr.jrjye,0)) over () = 0 then 0                                                              else  lr.jrjye/cast(sum(coalesce(lr.jrjye,0)) over () as float)*100  end)                 when $sd$ = 3 then (case when sum(coalesce(lr.nrjye,0)) over () = 0 then 0                                                              else  lr.nrjye/cast(sum(coalesce(lr.nrjye,0)) over () as float)*100  end)                  end) as rjzb,                           (case when $sd$ = 1 then lr.yftpsr                   when $sd$ = 2 then lr.jftpsr                   when $sd$ = 3 then lr.nftpsr                  end)/cast(10000 as float)  as ftplxsr,                 (case when $sd$ = 1 then lr.yzbjsr                    when $sd$ = 2 then lr.jzbjsr                    when $sd$ = 3 then lr.nzbjsr                    end)/cast(10000 as float) as zbjsr,            (case when $sd$ = 1 then lr.ytqzqlxkh                     when $sd$ = 2 then lr.jtqzqlxkh                     when $sd$ = 3 then lr.ntqzqlxkh                    end)/cast(10000 as float) as tqlxzckh,               (case when $sd$ = 1 then lr.ylxzc                   when $sd$ = 2 then lr.jlxzc                   when $sd$ = 3 then lr.nlxzc                  end)/cast(10000 as float)  as lxzc,                         (case when $sd$ = 1 then lr.ylr                     when $sd$ = 2 then lr.jlr                     when $sd$ = 3 then lr.nlr                    end)/cast(10000 as float) as mnlr,                                   rank () over (order by (case when $sd$ = 1 then lr.ylr                                                      when $sd$ = 2 then lr.jlr                                                      when $sd$ = 3 then lr.nlr                                                       end) desc nulls last) as pm from nbzz_ckcplr lr inner join csb_cpxz cp on cp.cpdh = lr.cpdh and cp.jxdxlx = 1
+        <isNotEmpty property="ywlx">and cp.ywlx ='$ywlx$'</isNotEmpty>
+        inner join csb_qxsdb qx on  qx.qxdh = lr.qxdh inner join csb_sjw sj on sj.tjrq = lr.tjrq and substr(cast(sj.tjrq as char(8)),1,6) = cast($tjny$ as char(6))  where 1=1
+        <isNotEmpty property="ywlx">and lr.zhbs = '$ywlx$'</isNotEmpty>
+      </isEqual>
+      <isEqual property="dxlx" compareValue="2">
+        select $tjny$ as tjny,           lr.cpdh,           cp.cpmc,           qx.qxmc as qx,           lr.dqye/cast(10000 as float) as dqye,           (case when $sd$ = 1 then lr.yrjye                    when $sd$ = 2 then lr.jrjye                    when $sd$ = 3 then lr.nrjye                    end)/cast(10000 as float) as rjye,          (case when $sd$ = 1 then (case when sum(coalesce(lr.yrjye,0)) over () = 0 then 0                                                              else  lr.yrjye/cast(sum(coalesce(lr.yrjye,0)) over () as float)*100  end)                 when $sd$ = 2 then (case when sum(coalesce(lr.jrjye,0)) over () = 0 then 0                                                              else  lr.jrjye/cast(sum(coalesce(lr.jrjye,0)) over () as float)*100  end)                 when $sd$ = 3 then (case when sum(coalesce(lr.nrjye,0)) over () = 0 then 0                                                              else  lr.nrjye/cast(sum(coalesce(lr.nrjye,0)) over ()as float)*100  end)                  end) as rjzb,                  (case when $sd$ = 1 then lr.ylxsr                   when $sd$ = 2 then lr.jlxsr                   when $sd$ = 3 then lr.nlxsr                  end)/cast(10000 as float)  as lxsr,           (case when $sd$ = 1 then lr.yftplxzc                   when $sd$ = 2 then lr.jftplxzc                   when $sd$ = 3 then lr.nftplxzc                  end)/cast(10000 as float)  as ftplxzc,                 (case when $sd$ = 1 then lr.yzcjzss                    when $sd$ = 2 then lr.jzcjzss                    when $sd$ = 3 then lr.nzcjzss                    end)/cast(10000 as float) as zcjzzb,            (case when $sd$ = 1 then lr.yyswslxxz                     when $sd$ = 2 then lr.jyswslxxz                     when $sd$ = 3 then lr.nyswslxxz                    end)/cast(10000 as float) as yswslxxz,                     (case when $sd$ = 1 then lr.ylr                     when $sd$ = 2 then lr.jlr                     when $sd$ = 3 then lr.nlr                    end)/cast(10000 as float) as mnlr,                                   rank () over (order by (case when $sd$ = 1 then lr.ylr                                                      when $sd$ = 2 then lr.jlr                                                      when $sd$ = 3 then lr.nlr                                                       end) desc nulls last) as pm from nbzz_dkcplr lr inner join csb_cpxz cp on cp.cpdh = lr.cpdh and cp.jxdxlx = 2
+        <isNotEmpty property="ywlx">and cp.ywlx ='$ywlx$'</isNotEmpty>
+        inner join csb_qxsdb qx on  qx.qxdh = lr.qxdh inner join csb_sjw sj on sj.tjrq = lr.tjrq and substr(cast(sj.tjrq as char(8)),1,6) = cast($tjny$ as char(6))  where 1=1
+        <isNotEmpty property="ywlx">and lr.zhbs = '$ywlx$'</isNotEmpty>
+      </isEqual>
+    </select>
+    <select id="dn0.cdkcplrfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from (
+      <isEqual property="dxlx" compareValue="1">
+        select $tjny$ as tjny,           lr.cpdh,           cp.cpmc,           qx.qxmc as qx,           lr.dqye/cast(10000 as float) as dqye,           (case when $sd$ = 1 then lr.yrjye                    when $sd$ = 2 then lr.jrjye                    when $sd$ = 3 then lr.nrjye                    end)/cast(10000 as float) as rjye,          (case when $sd$ = 1 then (case when sum(coalesce(lr.yrjye,0)) over () = 0 then 0                                                              else  lr.yrjye/cast(sum(coalesce(lr.yrjye,0)) over () as float)*100  end)                 when $sd$ = 2 then (case when sum(coalesce(lr.jrjye,0)) over () = 0 then 0                                                              else  lr.jrjye/cast(sum(coalesce(lr.jrjye,0)) over () as float)*100  end)                 when $sd$ = 3 then (case when sum(coalesce(lr.nrjye,0)) over () = 0 then 0                                                              else  lr.nrjye/cast(sum(coalesce(lr.nrjye,0)) over () as float)*100  end)                  end) as rjzb,                           (case when $sd$ = 1 then lr.yftpsr                   when $sd$ = 2 then lr.jftpsr                   when $sd$ = 3 then lr.nftpsr                  end)/cast(10000 as float)  as ftplxsr,                 (case when $sd$ = 1 then lr.yzbjsr                    when $sd$ = 2 then lr.jzbjsr                    when $sd$ = 3 then lr.nzbjsr                    end)/cast(10000 as float) as zbjsr,            (case when $sd$ = 1 then lr.ytqzqlxkh                     when $sd$ = 2 then lr.jtqzqlxkh                     when $sd$ = 3 then lr.ntqzqlxkh                    end)/cast(10000 as float) as tqlxzckh,               (case when $sd$ = 1 then lr.ylxzc                   when $sd$ = 2 then lr.jlxzc                   when $sd$ = 3 then lr.nlxzc                  end)/cast(10000 as float)  as lxzc,                         (case when $sd$ = 1 then lr.ylr                     when $sd$ = 2 then lr.jlr                     when $sd$ = 3 then lr.nlr                    end)/cast(10000 as float) as mnlr,                                   rank () over (order by (case when $sd$ = 1 then lr.ylr                                                      when $sd$ = 2 then lr.jlr                                                      when $sd$ = 3 then lr.nlr                                                       end) desc nulls last) as pm from nbzz_ckcplr lr inner join csb_cpxz cp on cp.cpdh = lr.cpdh and cp.jxdxlx = 1
+        <isNotEmpty property="ywlx">and cp.ywlx ='$ywlx$'</isNotEmpty>
+        inner join csb_qxsdb qx on  qx.qxdh = lr.qxdh inner join csb_sjw sj on sj.tjrq = lr.tjrq and substr(cast(sj.tjrq as char(8)),1,6) = cast($tjny$ as char(6))  where 1=1
+        <isNotEmpty property="ywlx">and lr.zhbs = '$ywlx$'</isNotEmpty>
+      </isEqual>
+      <isEqual property="dxlx" compareValue="2">
+        select $tjny$ as tjny,           lr.cpdh,           cp.cpmc,           qx.qxmc as qx,           lr.dqye/cast(10000 as float) as dqye,           (case when $sd$ = 1 then lr.yrjye                    when $sd$ = 2 then lr.jrjye                    when $sd$ = 3 then lr.nrjye                    end)/cast(10000 as float) as rjye,          (case when $sd$ = 1 then (case when sum(coalesce(lr.yrjye,0)) over () = 0 then 0                                                              else  lr.yrjye/cast(sum(coalesce(lr.yrjye,0)) over () as float)*100  end)                 when $sd$ = 2 then (case when sum(coalesce(lr.jrjye,0)) over () = 0 then 0                                                              else  lr.jrjye/cast(sum(coalesce(lr.jrjye,0)) over () as float)*100  end)                 when $sd$ = 3 then (case when sum(coalesce(lr.nrjye,0)) over () = 0 then 0                                                              else  lr.nrjye/cast(sum(coalesce(lr.nrjye,0)) over ()as float)*100  end)                  end) as rjzb,                  (case when $sd$ = 1 then lr.ylxsr                   when $sd$ = 2 then lr.jlxsr                   when $sd$ = 3 then lr.nlxsr                  end)/cast(10000 as float)  as lxsr,           (case when $sd$ = 1 then lr.yftplxzc                   when $sd$ = 2 then lr.jftplxzc                   when $sd$ = 3 then lr.nftplxzc                  end)/cast(10000 as float)  as ftplxzc,                 (case when $sd$ = 1 then lr.yzcjzss                    when $sd$ = 2 then lr.jzcjzss                    when $sd$ = 3 then lr.nzcjzss                    end)/cast(10000 as float) as zcjzzb,            (case when $sd$ = 1 then lr.yyswslxxz                     when $sd$ = 2 then lr.jyswslxxz                     when $sd$ = 3 then lr.nyswslxxz                    end)/cast(10000 as float) as yswslxxz,                     (case when $sd$ = 1 then lr.ylr                     when $sd$ = 2 then lr.jlr                     when $sd$ = 3 then lr.nlr                    end)/cast(10000 as float) as mnlr,                                   rank () over (order by (case when $sd$ = 1 then lr.ylr                                                      when $sd$ = 2 then lr.jlr                                                      when $sd$ = 3 then lr.nlr                                                       end) desc nulls last) as pm from nbzz_dkcplr lr inner join csb_cpxz cp on cp.cpdh = lr.cpdh and cp.jxdxlx = 2
+        <isNotEmpty property="ywlx">and cp.ywlx ='$ywlx$'</isNotEmpty>
+        inner join csb_qxsdb qx on  qx.qxdh = lr.qxdh inner join csb_sjw sj on sj.tjrq = lr.tjrq and substr(cast(sj.tjrq as char(8)),1,6) = cast($tjny$ as char(6))  where 1=1
+        <isNotEmpty property="ywlx">and lr.zhbs = '$ywlx$'</isNotEmpty>
+      </isEqual>
+      ) t
+    </select>
+  </sqlMap>
+  <rels>
+    <items id="cdkcplrfx_xsjy1jgj">
+      <item name="dxlx" compareValue="1" operate="isEqual" />
+    </items>
+    <items id="cdkcplrfx_xsjy2jgj">
+      <item name="dxlx" compareValue="2" operate="isEqual" />
+    </items>
+  </rels>
   <javascript><![CDATA[jQuery(document).ready(function () {
 
 });
@@ -108,5 +117,6 @@
 //自定义验证，在提交时执行。通过返回true，否则返回false
 function customValidate(){
  return true;
-}]]></javascript> 
+}]]></javascript>
 </pageSetting>
+

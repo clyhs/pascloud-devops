@@ -1,46 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="xtdlhyxxmx" title="系统登陆行员信息明细" type="query" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags/> 
-  </conPart>  
-  <table id="xtdlhyxxmx_xsjy1jgj" title="新数据源1结果集" page="true"> 
-    <col id="QSRQ" title="起始日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JSRQ" title="结束日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="LBMC" title="行员考核角色" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYDH" title="行员代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYMC" title="行员名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DLCS" title="活跃度" align="center" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <sqlMap namespace="studio.xtdlhyxxmx"> 
-    <select id="dn0.xtdlhyxxmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select $qsrq$ as qsrq,$jsrq$ as jsrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,lb.lbmc,count(distinct yyrz.sjsj) dlcs from khdx_hy hy
+<pageSetting id="xtdlhyxxmx" title="系统登陆行员信息明细" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags />
+  </conPart>
+  <table id="xtdlhyxxmx_xsjy1jgj" title="新数据源1结果集" page="true">
+    <col id="QSRQ" title="起始日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JSRQ" title="结束日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="LBMC" title="行员考核角色" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DLCS" title="活跃度" align="center" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.xtdlhyxxmx">
+    <select id="dn0.xtdlhyxxmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[select $qsrq$ as qsrq,$jsrq$ as jsrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,lb.lbmc,count(distinct yyrz.sjsj) dlcs from khdx_hy hy
 inner join khdx_jgcy jgcy on jgcy.khdxdh=hy.khdxdh and $qsrq$>=jgcy.qsrq and $jsrq$<=jgcy.jsrq
 inner join khdx_jg jg on jg.khdxdh=jgcy.jgkhdxdh
 inner join xtb_yyrz yyrz on yyrz.hydh=hy.hydh
 inner join khdx_hylb lb on lb.khdxdh=hy.khdxdh and $qsrq$>=lb.qsrq and $jsrq$<=lb.jsrq
 where hy.hydh not like 'XN%' and hy.hydh != 'admin' and 
 yyrz.sjsj between F_INTTOTIME($qsrq$,1) and F_INTTOTIME($jsrq$,2)
-and yyrz.sjms like '%system/index%']]>  
-      <isNotEmpty property="jgdh">and jg.jgdh='$jgdh$'</isNotEmpty> group by jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,lb.lbmc order by jg.jgdh,lb.lbmc,hy.hydh
-    </select>  
-    <select id="dn0.xtdlhyxxmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( <![CDATA[select $qsrq$ as qsrq,$jsrq$ as jsrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,lb.lbmc,count(distinct yyrz.sjsj) dlcs from khdx_hy hy
+and yyrz.sjms like '%system/index%']]>
+      <isNotEmpty property="jgdh">and jg.jgdh='$jgdh$'</isNotEmpty>
+      group by jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,lb.lbmc order by jg.jgdh,lb.lbmc,hy.hydh
+    </select>
+    <select id="dn0.xtdlhyxxmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( <![CDATA[select $qsrq$ as qsrq,$jsrq$ as jsrq,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,lb.lbmc,count(distinct yyrz.sjsj) dlcs from khdx_hy hy
 inner join khdx_jgcy jgcy on jgcy.khdxdh=hy.khdxdh and $qsrq$>=jgcy.qsrq and $jsrq$<=jgcy.jsrq
 inner join khdx_jg jg on jg.khdxdh=jgcy.jgkhdxdh
 inner join xtb_yyrz yyrz on yyrz.hydh=hy.hydh
 inner join khdx_hylb lb on lb.khdxdh=hy.khdxdh and $qsrq$>=lb.qsrq and $jsrq$<=lb.jsrq
 where hy.hydh not like 'XN%' and hy.hydh != 'admin' and 
 yyrz.sjsj between F_INTTOTIME($qsrq$,1) and F_INTTOTIME($jsrq$,2)
-and yyrz.sjms like '%system/index%']]>  
-      <isNotEmpty property="jgdh">and jg.jgdh='$jgdh$'</isNotEmpty> group by jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,lb.lbmc order by jg.jgdh,lb.lbmc,hy.hydh ) t
-    </select> 
-  </sqlMap>  
-  <rels> 
-    <items id="xtdlhyxxmx_xsjy1jgj"/> 
-  </rels>  
+and yyrz.sjms like '%system/index%']]>
+      <isNotEmpty property="jgdh">and jg.jgdh='$jgdh$'</isNotEmpty>
+      group by jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,lb.lbmc order by jg.jgdh,lb.lbmc,hy.hydh ) t
+    </select>
+  </sqlMap>
+  <rels>
+    <items id="xtdlhyxxmx_xsjy1jgj" />
+  </rels>
   <javascript><![CDATA[jQuery(document).ready(function () {
  $('#query_conn_panel').hide();
 });
@@ -48,5 +51,6 @@ and yyrz.sjms like '%system/index%']]>
 //自定义验证，在提交时执行。通过返回true，否则返回false
 function customValidate(){
  return true;
-}]]></javascript> 
+}]]></javascript>
 </pageSetting>
+

@@ -1,100 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="khywzkfx" title="客户业务状况分析" type="query" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags> 
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月"> 
-        <attribute key="dateFmt" value="yyyyMM"/>  
-        <attribute key="defValType" value="sysDate"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="tjrq"/>  
-        <attribute key="minDate" value="no"/> 
-      </tag>  
-      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员"> 
-        <attribute key="isDisplayXN" value="true"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="jgckbz" value="jg_ckhy"/>  
-        <attribute key="name" value="khdxdh"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag>  
-      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="客户类型"> 
-        <attribute key="isMultiple" value="false"/>  
-        <attribute key="width" value="120px;"/>  
-        <attribute key="isSearch" value="false"/>  
-        <attribute key="sql" value="select dmz as key, dmms as value from CSB_DMMS where  DMMC= 'KHLX'"/>  
-        <attribute key="isRequired" value="false"/>  
-        <attribute key="name" value="khlx"/>  
-        <attribute key="isAll" value="true"/>  
-        <attribute key="isEditable" value="true"/> 
-      </tag>  
-      <tag row="0" col="3" colspan="1" rowspan="1" name="Hidden" label=""> 
-        <attribute key="name" value="year"/> 
-      </tag>  
-      <tag row="0" col="4" colspan="1" rowspan="1" name="Hidden" label=""> 
-        <attribute key="defVal" value="$sysdate$"/>  
-        <attribute key="name" value="sysdate"/> 
-      </tag>  
-      <tag row="1" col="0" colspan="1" rowspan="1" name="Text" label="客户号"> 
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="khh"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="1" col="1" colspan="1" rowspan="1" name="Text" label="客户名称"> 
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="khmc"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="1" col="2" colspan="1" rowspan="1" name="DataInterface" label="null"> 
-        <attribute key="dataType" value="select"/>  
-        <attribute key="sql" value="select sym from CSB_SJW where tjrq=cast($tjrq$ as integer)"/>  
-        <attribute key="name" value="sym"/> 
-      </tag> 
-    </tags> 
-  </conPart>  
-  <table id="khywzkfx_xsjy1jgj" title="新数据源1结果集" page="noCount"> 
-    <col id="KHLX" title="客户类型" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHMC" title="客户名称" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="CKYE" title="存款余额" align="right" type="float" width="80" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="CKNRJ" title="存款年日均" align="right" type="float" width="80" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DKYE" title="贷款余额" align="right" type="float" width="80" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DKNRJ" title="贷款年日均" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KKS" title="开卡数" align="right" type="float" width="80" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="XYKZS" title="信用卡张数" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="WYKHS" title="网银开通数" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="SJYHKHS" title="手机银行开通数" align="right" type="float" width="140" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DXTKHS" title="短信通开通数" align="right" type="float" width="140" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="LCCPCYS" title="理财产品持有数" align="right" type="float" width="140" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="BXYWBLBS" title="保险业务办理笔数" align="right" type="float" width="140" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <sqlMap namespace="studio.khywzkfx"> 
-    <select id="dn0.khywzkfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> SELECT dmms.dmms AS KHLX, khyw.KHH as khh, khyw.KHMC as khmc, khyw.CKYE as ckye, khyw.CKNRJ as cknrj, khyw.DKYE as dkye, khyw.DKNRJ as dknrj, khyw.KKS as kks, khyw.XYKZS as xykzs, khyw.WYKhS as wykhs, khyw.SJYHKhS as sjyhkhs, khyw.DXTKhS as dxtkhs, khyw.LCCPCYS as lccpcys, khyw.BXYWBLBS as bxywblbs from KHFX_KHYWZKTJ_$tjrq$ khyw left join CSB_DMMS dmms on dmms.dmmc='KHLX' and khyw.KHLX = DMMS.DMZ WHERE khyw.TJRQ = (select ym from CSB_SJW where tjrq=cast(cast($tjrq$ as char(6))||'01' as integer) ) 
-      <isNotEmpty property="khdxdh">and khyw.KHDXDH = $khdxdh$</isNotEmpty>  
-      <isNotEmpty property="khlx">and khyw.KHLX= '$khlx$'</isNotEmpty>  
-      <isNotEmpty property="khh">and khyw.khh like '%$khh$%'</isNotEmpty>  
-      <isNotEmpty property="khmc">and khyw.khmc like '%$khmc$%'</isNotEmpty> order by khyw.cknrj desc
-    </select>  
-    <select id="dn0.khywzkfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( SELECT dmms.dmms AS KHLX, khyw.KHH as khh, khyw.KHMC as khmc, khyw.CKYE as ckye, khyw.CKNRJ as cknrj, khyw.DKYE as dkye, khyw.DKNRJ as dknrj, khyw.KKS as kks, khyw.XYKZS as xykzs, khyw.WYKhS as wykhs, khyw.SJYHKhS as sjyhkhs, khyw.DXTKhS as dxtkhs, khyw.LCCPCYS as lccpcys, khyw.BXYWBLBS as bxywblbs from KHFX_KHYWZKTJ_$tjrq$ khyw left join CSB_DMMS dmms on dmms.dmmc='KHLX' and khyw.KHLX = DMMS.DMZ WHERE khyw.TJRQ = (select ym from CSB_SJW where tjrq=cast(cast($tjrq$ as char(6))||'01' as integer) ) 
-      <isNotEmpty property="khdxdh">and khyw.KHDXDH = $khdxdh$</isNotEmpty>  
-      <isNotEmpty property="khlx">and khyw.KHLX= '$khlx$'</isNotEmpty>  
-      <isNotEmpty property="khh">and khyw.khh like '%$khh$%'</isNotEmpty>  
-      <isNotEmpty property="khmc">and khyw.khmc like '%$khmc$%'</isNotEmpty> order by khyw.cknrj desc ) t
-    </select>  
-    <select id="dn0.khywzkfx_MSQL4SELECT_khlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where DMMC= 'KHLX'</select>  
-    <select id="dn0.khywzkfx_sym" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select sym from CSB_SJW where tjrq=cast($tjrq$ as integer)</select> 
-  </sqlMap>  
-  <finger custPlotMth=""> 
-    <plotType/>  
-    <needPlot>false</needPlot>  
-    <plotTitle/> 
-  </finger>  
-  <rels> 
-    <items id="khywzkfx_xsjy1jgj"/> 
-  </rels>  
+<pageSetting id="khywzkfx" title="客户业务状况分析" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月">
+        <attribute key="dateFmt" value="yyyyMM" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="no" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员">
+        <attribute key="isDisplayXN" value="true" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="客户类型">
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isSearch" value="false" />
+        <attribute key="sql" value="select dmz as key, dmms as value from CSB_DMMS where  DMMC= 'KHLX'" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="khlx" />
+        <attribute key="isAll" value="true" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="year" />
+      </tag>
+      <tag row="0" col="4" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="defVal" value="$sysdate$" />
+        <attribute key="name" value="sysdate" />
+      </tag>
+      <tag row="1" col="0" colspan="1" rowspan="1" name="Text" label="客户号">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="khh" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="1" col="1" colspan="1" rowspan="1" name="Text" label="客户名称">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="khmc" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="1" col="2" colspan="1" rowspan="1" name="DataInterface" label="null">
+        <attribute key="dataType" value="select" />
+        <attribute key="sql" value="select sym from CSB_SJW where tjrq=cast($tjrq$ as integer)" />
+        <attribute key="name" value="sym" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="khywzkfx_xsjy1jgj" title="新数据源1结果集" page="noCount">
+    <col id="KHLX" title="客户类型" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHMC" title="客户名称" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="CKYE" title="存款余额" align="right" type="float" width="80" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="CKNRJ" title="存款年日均" align="right" type="float" width="80" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DKYE" title="贷款余额" align="right" type="float" width="80" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DKNRJ" title="贷款年日均" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KKS" title="开卡数" align="right" type="float" width="80" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="XYKZS" title="信用卡张数" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="WYKHS" title="网银开通数" align="right" type="float" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="SJYHKHS" title="手机银行开通数" align="right" type="float" width="140" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DXTKHS" title="短信通开通数" align="right" type="float" width="140" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="LCCPCYS" title="理财产品持有数" align="right" type="float" width="140" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="BXYWBLBS" title="保险业务办理笔数" align="right" type="float" width="140" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.khywzkfx">
+    <select id="dn0.khywzkfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      SELECT  dmms.dmms AS KHLX,         khyw.KHH as khh,         khyw.KHMC as khmc,         khyw.CKYE as ckye,         khyw.CKNRJ as cknrj,         khyw.DKYE as dkye,         khyw.DKNRJ as dknrj,         khyw.KKS as kks,         khyw.XYKZS as xykzs,         khyw.WYKhS as wykhs,         khyw.SJYHKhS as sjyhkhs,         khyw.DXTKhS as dxtkhs,         khyw.LCCPCYS as lccpcys,         khyw.BXYWBLBS as bxywblbs from  KHFX_KHYWZKTJ_$tjrq$ khyw  left join CSB_DMMS dmms on dmms.dmmc='KHLX' and khyw.KHLX = DMMS.DMZ WHERE  khyw.TJRQ = (select ym from CSB_SJW where tjrq=cast(cast($tjrq$ as char(6))||'01' as integer) )
+      <isNotEmpty property="khdxdh">and khyw.KHDXDH = $khdxdh$</isNotEmpty>
+      <isNotEmpty property="khlx">and  khyw.KHLX= '$khlx$'</isNotEmpty>
+      <isNotEmpty property="khh">and khyw.khh like '%$khh$%'</isNotEmpty>
+      <isNotEmpty property="khmc">and khyw.khmc like '%$khmc$%'</isNotEmpty>
+      order by khyw.cknrj desc
+    </select>
+    <select id="dn0.khywzkfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( SELECT  dmms.dmms AS KHLX,         khyw.KHH as khh,         khyw.KHMC as khmc,         khyw.CKYE as ckye,         khyw.CKNRJ as cknrj,         khyw.DKYE as dkye,         khyw.DKNRJ as dknrj,         khyw.KKS as kks,         khyw.XYKZS as xykzs,         khyw.WYKhS as wykhs,         khyw.SJYHKhS as sjyhkhs,         khyw.DXTKhS as dxtkhs,         khyw.LCCPCYS as lccpcys,         khyw.BXYWBLBS as bxywblbs from  KHFX_KHYWZKTJ_$tjrq$ khyw  left join CSB_DMMS dmms on dmms.dmmc='KHLX' and khyw.KHLX = DMMS.DMZ WHERE  khyw.TJRQ = (select ym from CSB_SJW where tjrq=cast(cast($tjrq$ as char(6))||'01' as integer) )
+      <isNotEmpty property="khdxdh">and khyw.KHDXDH = $khdxdh$</isNotEmpty>
+      <isNotEmpty property="khlx">and  khyw.KHLX= '$khlx$'</isNotEmpty>
+      <isNotEmpty property="khh">and khyw.khh like '%$khh$%'</isNotEmpty>
+      <isNotEmpty property="khmc">and khyw.khmc like '%$khmc$%'</isNotEmpty>
+      order by khyw.cknrj desc ) t
+    </select>
+    <select id="dn0.khywzkfx_MSQL4SELECT_khlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from CSB_DMMS where  DMMC= 'KHLX'</select>
+    <select id="dn0.khywzkfx_sym" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select sym from CSB_SJW where tjrq=cast($tjrq$ as integer)</select>
+  </sqlMap>
+  <finger custPlotMth="">
+    <plotType />
+    <needPlot>false</needPlot>
+    <plotTitle />
+  </finger>
+  <rels>
+    <items id="khywzkfx_xsjy1jgj" />
+  </rels>
   <javascript><![CDATA[jQuery(document).ready(function () {
   var obj=createTimeObj(jQuery("#sysdate").val());
     if(jQuery("#sysdate").val()!=obj.ym){
@@ -119,5 +122,6 @@ function tjrqChange(obj){
         b++;
      }
  }
-}]]></javascript> 
+}]]></javascript>
 </pageSetting>
+

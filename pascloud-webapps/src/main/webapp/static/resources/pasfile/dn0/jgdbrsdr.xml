@@ -1,188 +1,236 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="jgdbrsdr" title="机构定编人数导入" type="import" version="1.0.0.0" pid="" desc="标准版"> 
-  <template> 
-    <src>ONLINE</src>  
-    <column> 
-      <text>统计年月</text>  
-      <name>tjrq</name>  
-      <index>0</index>  
-      <width>120</width>  
-      <height/>  
-      <align>center</align>  
-      <annotate>日期格式:yyyyMM 如：201401</annotate>  
-      <length>100</length>  
-      <req>Y</req> 
-    </column>  
-    <column> 
-      <text>机构代号</text>  
-      <name>jgdh</name>  
-      <index>1</index>  
-      <width>120</width>  
-      <height/>  
-      <align>center</align>  
-      <annotate/>  
-      <length>100</length>  
-      <req>Y</req> 
-    </column>  
-    <column> 
-      <text>机构名称</text>  
-      <name>jgmc</name>  
-      <index>2</index>  
-      <width>120</width>  
-      <height/>  
-      <align>center</align>  
-      <annotate/>  
-      <length>100</length>  
-      <req>N</req> 
-    </column>  
-    <column> 
-      <text>行员类别</text>  
-      <name>hylb</name>  
-      <index>3</index>  
-      <width>120</width>  
-      <height/>  
-      <align>center</align>  
-      <annotate>行员类别名称</annotate>  
-      <length>100</length>  
-      <req>Y</req> 
-    </column>  
-    <column> 
-      <text>定编人数</text>  
-      <name>dbrs</name>  
-      <index>4</index>  
-      <width>120</width>  
-      <height/>  
-      <align>right</align>  
-      <annotate/>  
-      <length>100</length>  
-      <req>Y</req> 
-    </column>  
-    <data> 
-      <tags> 
-        <tag row="0" col="0" name="Date" label="统计年月" colspan="1" rowspan="1"> 
-          <attribute key="style" value=""/>  
-          <attribute key="isRequired" value="true"/>  
-          <attribute key="defVal" value=""/>  
-          <attribute key="name" value="tjrq"/>  
-          <attribute key="styleClass" value=""/>  
-          <attribute key="minDate" value="no"/>  
-          <attribute key="defValType" value="sysDate"/>  
-          <attribute key="dateFmt" value="yyyyMM"/>  
-          <attribute key="editable" value="true"/> 
-        </tag>  
-        <tag row="0" col="1" name="NewJg" label="机构" colspan="1" rowspan="1"> 
-          <attribute key="ckbz" value="jg_ckhy"/>  
-          <attribute key="cascadeCheck" value="true"/>  
-          <attribute key="isRequired" value="true"/>  
-          <attribute key="style" value=""/>  
-          <attribute key="defVal" value=""/>  
-          <attribute key="name" value="jgkhdxdh"/>  
-          <attribute key="multiple" value="false"/>  
-          <attribute key="editable" value="true"/> 
-        </tag> 
-      </tags> 
-    </data> 
-  </template>  
-  <table id="jgdbrsdr_table" page="true"> 
-    <col id="ZT" title="状态" align="center" type="string" width="50"/>  
-    <col id="ERROR" title="错误原因" align="center" type="string" width="250"/>  
-    <col id="TJRQ" title="统计年月" align="center" type="" width="120"/>  
-    <col id="JGDH" title="机构代号" align="center" type="" width="120"/>  
-    <col id="JGMC" title="机构名称" align="center" type="" width="120"/>  
-    <col id="HYLB" title="行员类别" align="center" type="" width="120"/>  
-    <col id="DBRS" title="定编人数" align="right" type="" width="120"/> 
-  </table>  
-  <flow> 
-    <rule> 
-      <sql type="update">jgdbrsdr_check_hylb_0</sql>  
-      <sql type="update">jgdbrsdr_check_dbrs_1</sql>  
-      <sql type="update">jgdbrsdr_check_dbrs_2</sql>  
-      <sql type="update">jgdbrsdr_check_tjrq_3</sql>  
-      <sql type="update">jgdbrsdr_check_jgdh_4</sql>  
-      <sql type="update">jgdbrsdr_check_jgdh_5</sql>  
-      <sql type="update">jgdbrsdr_checkupdate_hylb_0</sql>  
-      <sql type="update">jgdbrsdr_checkupdate_tjrq_0</sql>  
-      <sql type="update">jgdbrsdr_checkupdate_tjrq_1</sql>  
-      <sql type="update">jgdbrsdr_exists_target</sql>  
-      <sql type="update">jgdbrsdr_exists_same_temp</sql> 
-    </rule>  
-    <before/>  
-    <cover> 
-      <sql type="delete">jgdbrsdr_delete_before_override</sql> 
-    </cover>  
-    <insert> 
-      <sql type="insert">jgdbrsdr_insert_into_target</sql> 
-    </insert>  
-    <after/> 
-  </flow>  
-  <sqlMap namespace="studio.jgdbrsdr"> 
-    <update parameterClass="java.util.Map" id="dn0.jgdbrsdr_check_hylb_0"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgdbrsdr_temp t set t.error=t.error||'行员类别输入错误，不能为空!' where f_java_rule_length(t.hylb)=0 and t.khdxdh=$login_khdxdh$
-    </update>  
-    <update parameterClass="java.util.Map" id="dn0.jgdbrsdr_check_dbrs_1"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgdbrsdr_temp t set t.error=t.error||'定编人数输入错误，只能输入:21位整数,0位小数!' where f_java_rule_length(t.dbrs)&gt;0 and f_java_rule_number(t.dbrs,21,0)=1 and t.khdxdh=$login_khdxdh$
-    </update>  
-    <update parameterClass="java.util.Map" id="dn0.jgdbrsdr_check_dbrs_2"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgdbrsdr_temp t set t.error=t.error||'定编人数输入错误，不能为空!' where f_java_rule_length(t.dbrs)=0 and t.khdxdh=$login_khdxdh$
-    </update>  
-    <update parameterClass="java.util.Map" id="dn0.jgdbrsdr_check_tjrq_3"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgdbrsdr_temp t set t.error=t.error||'统计日期输入错误，格式应该是:yyyyMM!' where f_java_rule_date(t.tjrq,'yyyyMM')=1 and t.khdxdh=$login_khdxdh$
-    </update>  
-    <update parameterClass="java.util.Map" id="dn0.jgdbrsdr_check_jgdh_4"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgdbrsdr_temp t set t.error=t.error||'机构代号输入错误，不能为空!' where f_java_rule_length(t.jgdh)=0 and t.khdxdh=$login_khdxdh$
-    </update>  
-    <update parameterClass="java.util.Map" id="dn0.jgdbrsdr_check_jgdh_5"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgdbrsdr_temp t set t.error=t.error||'机构代号不存在!' where not exists(select 1 from khdx_jg j where rtrim(t.jgdh)=rtrim(j.jgdh)) and t.khdxdh=$login_khdxdh$
-    </update>  
-    <update parameterClass="java.util.Map" id="dn0.jgdbrsdr_checkupdate_hylb_0"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgdbrsdr_temp t set error=error||'类别名称必须存在于参数表-行员类别表中' where not exists ( select 1 from csb_hylb lb where t.hylb = lb.lbmc ) and t.khdxdh=$login_khdxdh$
-    </update>  
-    <update parameterClass="java.util.Map" id="dn0.jgdbrsdr_checkupdate_tjrq_0"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgdbrsdr_temp t set t.tjrq=(select sjw.ym from csb_sjw sjw where sjw.tjrq=cast(t.tjrq||'01' as integer)) where t.khdxdh=$login_khdxdh$
-    </update>  
-    <update parameterClass="java.util.Map" id="dn0.jgdbrsdr_checkupdate_tjrq_1"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgdbrsdr_temp t set t.error=t.error||'起始日期不能小于(系统日期-重跑天数)'||(select f_change_days(cast(rq.csz as integer ),-cast(cs.csz as integer )) from xtb_xtcs rq,xtb_xtcs cs where rq.csmc='SYS_DATE' and cs.csmc='SYS_CSTS')||'！' where cast(t.tjrq as integer)&lt;(select f_change_days(cast(rq.csz as integer ),-cast(cs.csz as integer )) from xtb_xtcs rq,xtb_xtcs cs where rq.csmc='SYS_DATE' and cs.csmc='SYS_CSTS') and t.khdxdh=$login_khdxdh$
-    </update>  
-    <update parameterClass="java.util.Map" id="dn0.jgdbrsdr_exists_target"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgdbrsdr_temp t set t.error=t.error||'数据已存在!' where exists(select 1 from SGLR_JGDBRS tar ,CSB_SJW CSB_SJW0,KHDX_JG KHDX_JG1,CSB_HYLB CSB_HYLB2 where 1=1 and cast(t.tjrq as INTEGER)=CSB_SJW0.TJRQ and CSB_SJW0.YM=tar.TJRQ and t.jgdh=KHDX_JG1.JGDH and KHDX_JG1.KHDXDH=tar.KHDXDH and t.hylb=CSB_HYLB2.LBMC and CSB_HYLB2.LBDH=tar.HYLB and t.khdxdh=$login_khdxdh$ and (length(t.error)=0 or t.error is null ))
-    </update>  
-    <update parameterClass="java.util.Map" id="dn0.jgdbrsdr_exists_same_temp"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update jgdbrsdr_temp t set t.error=error||'存在重复数据!' where exists( select 1 from (select tjrq,jgdh,hylb from jgdbrsdr_temp dr where khdxdh=$login_khdxdh$ group by tjrq,jgdh,hylb having count(1)<![CDATA[>]]>1 ) dr where 1=1 and t.tjrq=dr.tjrq and t.jgdh=dr.jgdh and t.hylb=dr.hylb) and khdxdh=$login_khdxdh$
-    </update>  
-    <insert parameterClass="java.util.Map" id="dn0.jgdbrsdr_create_lsb"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> CREATE TABLE jgdbrsdr_temp ( tjrq varchar(100) , jgdh varchar(100) , jgmc varchar(100) , hylb varchar(100) , dbrs varchar(100) , khdxdh integer,error varchar(1000) )
-    </insert>  
-    <delete parameterClass="java.util.Map" id="dn0.jgdbrsdr_delete_lsb"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from jgdbrsdr_temp where khdxdh=$login_khdxdh$
-    </delete>  
-    <insert parameterClass="java.util.Map" id="dn0.jgdbrsdr_insert_into_lsb"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into JGDBRSDR_TEMP (tjrq,jgdh,jgmc,hylb,dbrs,khdxdh,error) values(?,?,?,?,?,?,?)
-    </insert>  
-    <select parameterClass="java.util.Map" id="dn0.jgdbrsdr_exists_error_msg" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from jgdbrsdr_temp where length(error) <![CDATA[>]]> 0 and khdxdh = $login_khdxdh$
-    </select>  
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn0.jgdbrsdr_exists_same_data"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from jgdbrsdr_temp where length(error) <![CDATA[>]]> 0 and error != '数据已存在!' and khdxdh = $login_khdxdh$
-    </select>  
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn0.jgdbrsdr_select_error_msg"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/cancel.jpg" border="0"/<![CDATA[>]]>' as zt, tjrq,jgdh,jgmc,hylb,dbrs,khdxdh,error from jgdbrsdr_temp where khdxdh=$login_khdxdh$ and length(error)<![CDATA[>]]>0
-    </select>  
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn0.jgdbrsdr_count_all_msg"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, tjrq,jgdh,jgmc,hylb,dbrs,khdxdh,error from jgdbrsdr_temp where khdxdh=$login_khdxdh$ )a
-    </select>  
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn0.jgdbrsdr_select_all_msg"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, tjrq,jgdh,jgmc,hylb,dbrs,khdxdh,error from jgdbrsdr_temp where khdxdh=$login_khdxdh$
-    </select>  
-    <insert parameterClass="java.util.Map" id="dn0.jgdbrsdr_insert_into_target"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into SGLR_JGDBRS(TJRQ,KHDXDH,HYLB,DBRS,CZR,CZSJ) select CSB_SJW0.YM,KHDX_JG1.KHDXDH,CSB_HYLB2.LBDH,cast (t.dbrs as DECIMAL(25,4)),'$login_khdxdh$',F_GET_SYSTIME() from jgdbrsdr_temp t ,CSB_SJW CSB_SJW0,KHDX_JG KHDX_JG1,CSB_HYLB CSB_HYLB2 where t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null) and CSB_SJW0.TJRQ=cast (t.tjrq as INTEGER) and KHDX_JG1.JGDH=cast (t.jgdh as VARCHAR(15)) and CSB_HYLB2.LBMC=cast (t.hylb as VARCHAR(50))
-    </insert>  
-    <delete parameterClass="java.util.Map" id="dn0.jgdbrsdr_delete_before_override"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from SGLR_JGDBRS tar where exists(select 1 from jgdbrsdr_temp t ,CSB_SJW CSB_SJW0,KHDX_JG KHDX_JG1,CSB_HYLB CSB_HYLB2 where 1=1 and cast(t.tjrq as INTEGER)=CSB_SJW0.TJRQ and CSB_SJW0.YM=tar.TJRQ and t.jgdh=KHDX_JG1.JGDH and KHDX_JG1.KHDXDH=tar.KHDXDH and t.hylb=CSB_HYLB2.LBMC and CSB_HYLB2.LBDH=tar.HYLB and t.khdxdh=$login_khdxdh$ )
-    </delete>  
-    <select id="dn0.jgdbrsdr_select_template_data" parameterClass="java.util.Map" remapResults="true" resultClass="java.util.LinkedHashMap"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select $tjrq$ tjrq,jg.jgdh,jg.jgmc,lb.lbmc hylb,cast(coalesce(dbrs.dbrs,0) as integer) dbrs from khdx_jg jg inner join csb_sjw sjw on sjw.tjrq=cast($tjrq$01 as integer) inner join csb_hylb lb on 1=1 left join sglr_jgdbrs dbrs on dbrs.khdxdh=jg.khdxdh and dbrs.hylb=lb.lbdh and dbrs.tjrq=sjw.ym where 1=1 
-      <isNotEmpty property="jgkhdxdh">and jg.khdxdh=$jgkhdxdh$</isNotEmpty> and exists( select 1 from khdx_jgcy jgcy inner join khdx_hylb hylb on jgcy.khdxdh=hylb.khdxdh where sjw.ym between jgcy.qsrq and jgcy.jsrq and sjw.ym between hylb.qsrq and hylb.jsrq and jgcy.jgkhdxdh=jg.khdxdh and hylb.lbdh=lb.lbdh ) order by jg.jgdh,lb.lbmc
-    </select> 
-  </sqlMap> 
+<pageSetting id="jgdbrsdr" title="机构定编人数导入" type="import" version="1.0.0.0" pid="" desc="标准版">
+  <template>
+    <src>ONLINE</src>
+    <column>
+      <text>统计年月</text>
+      <name>tjrq</name>
+      <index>0</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate>日期格式:yyyyMM 
+如：201401</annotate>
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>机构代号</text>
+      <name>jgdh</name>
+      <index>1</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>机构名称</text>
+      <name>jgmc</name>
+      <index>2</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>N</req>
+    </column>
+    <column>
+      <text>行员类别</text>
+      <name>hylb</name>
+      <index>3</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate>行员类别名称</annotate>
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>定编人数</text>
+      <name>dbrs</name>
+      <index>4</index>
+      <width>120</width>
+      <height />
+      <align>right</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <data>
+      <tags>
+        <tag row="0" col="0" name="Date" label="统计年月" colspan="1" rowspan="1">
+          <attribute key="style" value="" />
+          <attribute key="isRequired" value="true" />
+          <attribute key="defVal" value="" />
+          <attribute key="name" value="tjrq" />
+          <attribute key="styleClass" value="" />
+          <attribute key="minDate" value="no" />
+          <attribute key="defValType" value="sysDate" />
+          <attribute key="dateFmt" value="yyyyMM" />
+          <attribute key="editable" value="true" />
+        </tag>
+        <tag row="0" col="1" name="NewJg" label="机构" colspan="1" rowspan="1">
+          <attribute key="ckbz" value="jg_ckhy" />
+          <attribute key="cascadeCheck" value="true" />
+          <attribute key="isRequired" value="true" />
+          <attribute key="style" value="" />
+          <attribute key="defVal" value="" />
+          <attribute key="name" value="jgkhdxdh" />
+          <attribute key="multiple" value="false" />
+          <attribute key="editable" value="true" />
+        </tag>
+      </tags>
+    </data>
+  </template>
+  <table id="jgdbrsdr_table" page="true">
+    <col id="ZT" title="状态" align="center" type="string" width="50" />
+    <col id="ERROR" title="错误原因" align="center" type="string" width="250" />
+    <col id="TJRQ" title="统计年月" align="center" type="" width="120" />
+    <col id="JGDH" title="机构代号" align="center" type="" width="120" />
+    <col id="JGMC" title="机构名称" align="center" type="" width="120" />
+    <col id="HYLB" title="行员类别" align="center" type="" width="120" />
+    <col id="DBRS" title="定编人数" align="right" type="" width="120" />
+  </table>
+  <flow>
+    <rule>
+      <sql type="update">jgdbrsdr_check_hylb_0</sql>
+      <sql type="update">jgdbrsdr_check_dbrs_1</sql>
+      <sql type="update">jgdbrsdr_check_dbrs_2</sql>
+      <sql type="update">jgdbrsdr_check_tjrq_3</sql>
+      <sql type="update">jgdbrsdr_check_jgdh_4</sql>
+      <sql type="update">jgdbrsdr_check_jgdh_5</sql>
+      <sql type="update">jgdbrsdr_checkupdate_hylb_0</sql>
+      <sql type="update">jgdbrsdr_checkupdate_tjrq_0</sql>
+      <sql type="update">jgdbrsdr_checkupdate_tjrq_1</sql>
+      <sql type="update">jgdbrsdr_exists_target</sql>
+      <sql type="update">jgdbrsdr_exists_same_temp</sql>
+    </rule>
+    <before />
+    <cover>
+      <sql type="delete">jgdbrsdr_delete_before_override</sql>
+    </cover>
+    <insert>
+      <sql type="insert">jgdbrsdr_insert_into_target</sql>
+    </insert>
+    <after />
+  </flow>
+  <sqlMap namespace="studio.jgdbrsdr">
+    <update parameterClass="java.util.Map" id="dn0.jgdbrsdr_check_hylb_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgdbrsdr_temp  t  set  t.error=t.error||'行员类别输入错误，不能为空!' 
+		where  f_java_rule_length(t.hylb)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.jgdbrsdr_check_dbrs_1">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgdbrsdr_temp  t  
+		set  t.error=t.error||'定编人数输入错误，只能输入:21位整数,0位小数!'  
+		where f_java_rule_length(t.dbrs)&gt;0 and f_java_rule_number(t.dbrs,21,0)=1  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.jgdbrsdr_check_dbrs_2">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgdbrsdr_temp  t  set  t.error=t.error||'定编人数输入错误，不能为空!' 
+		where  f_java_rule_length(t.dbrs)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.jgdbrsdr_check_tjrq_3">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgdbrsdr_temp  t  
+		set  t.error=t.error||'统计日期输入错误，格式应该是:yyyyMM!'  
+		where  f_java_rule_date(t.tjrq,'yyyyMM')=1  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.jgdbrsdr_check_jgdh_4">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgdbrsdr_temp  t  set  t.error=t.error||'机构代号输入错误，不能为空!' 
+		where  f_java_rule_length(t.jgdh)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.jgdbrsdr_check_jgdh_5">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgdbrsdr_temp  t  set  t.error=t.error||'机构代号不存在!'  where  not  exists(select  1  from  khdx_jg  j  where  rtrim(t.jgdh)=rtrim(j.jgdh))  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.jgdbrsdr_checkupdate_hylb_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update jgdbrsdr_temp t set error=error||'类别名称必须存在于参数表-行员类别表中'  
+ where  not exists (
+select 1  from csb_hylb lb where t.hylb = lb.lbmc
+)  and t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.jgdbrsdr_checkupdate_tjrq_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update jgdbrsdr_temp t set t.tjrq=(select sjw.ym from csb_sjw sjw where sjw.tjrq=cast(t.tjrq||'01' as integer)) 
+where t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.jgdbrsdr_checkupdate_tjrq_1">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update jgdbrsdr_temp t set t.error=t.error||'起始日期不能小于(系统日期-重跑天数)'||(select f_change_days(cast(rq.csz as integer ),-cast(cs.csz as integer )) 
+from xtb_xtcs rq,xtb_xtcs cs where rq.csmc='SYS_DATE' and cs.csmc='SYS_CSTS')||'！' 
+where cast(t.tjrq as integer)&lt;(select f_change_days(cast(rq.csz as integer ),-cast(cs.csz as integer )) 
+from xtb_xtcs rq,xtb_xtcs cs where rq.csmc='SYS_DATE' and cs.csmc='SYS_CSTS') and t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.jgdbrsdr_exists_target">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgdbrsdr_temp  t  set  t.error=t.error||'数据已存在!'  where  exists(select  1  from  SGLR_JGDBRS  tar  ,CSB_SJW  CSB_SJW0,KHDX_JG  KHDX_JG1,CSB_HYLB  CSB_HYLB2  where  1=1   and  cast(t.tjrq  as  INTEGER)=CSB_SJW0.TJRQ  and  CSB_SJW0.YM=tar.TJRQ  and  t.jgdh=KHDX_JG1.JGDH  and  KHDX_JG1.KHDXDH=tar.KHDXDH  and  t.hylb=CSB_HYLB2.LBMC  and  CSB_HYLB2.LBDH=tar.HYLB  and  t.khdxdh=$login_khdxdh$  and  (length(t.error)=0  or  t.error  is  null  ))
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.jgdbrsdr_exists_same_temp">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  jgdbrsdr_temp  t  set  t.error=error||'存在重复数据!'  where  exists(  select  1  from   (select  tjrq,jgdh,hylb  from  jgdbrsdr_temp  dr  where  khdxdh=$login_khdxdh$  group  by  tjrq,jgdh,hylb  having  count(1)<![CDATA[>]]>1  )  dr  where  1=1   and  t.tjrq=dr.tjrq  and  t.jgdh=dr.jgdh  and  t.hylb=dr.hylb)  and  khdxdh=$login_khdxdh$
+    </update>
+    <insert parameterClass="java.util.Map" id="dn0.jgdbrsdr_create_lsb">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      CREATE  TABLE   jgdbrsdr_temp   (   tjrq  varchar(100)  ,  jgdh  varchar(100)  ,  jgmc  varchar(100)  ,  hylb  varchar(100)  ,  dbrs  varchar(100)  ,  khdxdh  integer,error  varchar(1000)   )
+    </insert>
+    <delete parameterClass="java.util.Map" id="dn0.jgdbrsdr_delete_lsb">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from jgdbrsdr_temp where khdxdh=$login_khdxdh$
+    </delete>
+    <insert parameterClass="java.util.Map" id="dn0.jgdbrsdr_insert_into_lsb">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert  into  JGDBRSDR_TEMP  (tjrq,jgdh,jgmc,hylb,dbrs,khdxdh,error)  values(?,?,?,?,?,?,?)
+    </insert>
+    <select parameterClass="java.util.Map" id="dn0.jgdbrsdr_exists_error_msg" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  count(1)  from  jgdbrsdr_temp  where  length(error) <![CDATA[>]]> 0  and  khdxdh  =  $login_khdxdh$
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn0.jgdbrsdr_exists_same_data">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  count(1)  from  jgdbrsdr_temp  where  length(error) <![CDATA[>]]> 0  and  error  !=  '数据已存在!'  and  khdxdh  =  $login_khdxdh$
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn0.jgdbrsdr_select_error_msg">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/cancel.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  tjrq,jgdh,jgmc,hylb,dbrs,khdxdh,error  from  jgdbrsdr_temp  where  khdxdh=$login_khdxdh$  and  length(error)<![CDATA[>]]>0
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn0.jgdbrsdr_count_all_msg">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  count(1)  from  (select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/ok.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  tjrq,jgdh,jgmc,hylb,dbrs,khdxdh,error  from  jgdbrsdr_temp  where  khdxdh=$login_khdxdh$  )a
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn0.jgdbrsdr_select_all_msg">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/ok.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  tjrq,jgdh,jgmc,hylb,dbrs,khdxdh,error  from  jgdbrsdr_temp  where  khdxdh=$login_khdxdh$
+    </select>
+    <insert parameterClass="java.util.Map" id="dn0.jgdbrsdr_insert_into_target">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into SGLR_JGDBRS(TJRQ,KHDXDH,HYLB,DBRS,CZR,CZSJ) select CSB_SJW0.YM,KHDX_JG1.KHDXDH,CSB_HYLB2.LBDH,cast (t.dbrs as DECIMAL(25,4)),'$login_khdxdh$',F_GET_SYSTIME() from jgdbrsdr_temp t ,CSB_SJW CSB_SJW0,KHDX_JG KHDX_JG1,CSB_HYLB CSB_HYLB2 where t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null)  and CSB_SJW0.TJRQ=cast (t.tjrq as INTEGER) and KHDX_JG1.JGDH=cast (t.jgdh as VARCHAR(15)) and CSB_HYLB2.LBMC=cast (t.hylb as VARCHAR(50))
+    </insert>
+    <delete parameterClass="java.util.Map" id="dn0.jgdbrsdr_delete_before_override">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete  from  SGLR_JGDBRS  tar  where  exists(select  1  from  jgdbrsdr_temp  t  ,CSB_SJW  CSB_SJW0,KHDX_JG  KHDX_JG1,CSB_HYLB  CSB_HYLB2  where  1=1   and  cast(t.tjrq  as  INTEGER)=CSB_SJW0.TJRQ  and  CSB_SJW0.YM=tar.TJRQ  and  t.jgdh=KHDX_JG1.JGDH  and  KHDX_JG1.KHDXDH=tar.KHDXDH  and  t.hylb=CSB_HYLB2.LBMC  and  CSB_HYLB2.LBDH=tar.HYLB  and  t.khdxdh=$login_khdxdh$  )
+    </delete>
+    <select id="dn0.jgdbrsdr_select_template_data" parameterClass="java.util.Map" remapResults="true" resultClass="java.util.LinkedHashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select $tjrq$ tjrq,jg.jgdh,jg.jgmc,lb.lbmc hylb,cast(coalesce(dbrs.dbrs,0) as integer) dbrs 
+from khdx_jg jg
+inner join csb_sjw sjw on sjw.tjrq=cast($tjrq$01 as integer)
+inner join csb_hylb lb on 1=1
+left join sglr_jgdbrs dbrs on dbrs.khdxdh=jg.khdxdh and dbrs.hylb=lb.lbdh and dbrs.tjrq=sjw.ym
+where 1=1
+      <isNotEmpty property="jgkhdxdh">and  jg.khdxdh=$jgkhdxdh$</isNotEmpty>
+      and exists( 
+  select 1 
+  from khdx_jgcy jgcy
+  inner join khdx_hylb hylb on jgcy.khdxdh=hylb.khdxdh where sjw.ym between jgcy.qsrq and jgcy.jsrq and sjw.ym between hylb.qsrq and hylb.jsrq and jgcy.jgkhdxdh=jg.khdxdh and hylb.lbdh=lb.lbdh
+)
+order by jg.jgdh,lb.lbmc
+    </select>
+  </sqlMap>
 </pageSetting>
+

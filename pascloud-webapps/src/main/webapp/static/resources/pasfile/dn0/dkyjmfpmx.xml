@@ -1,80 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="dkyjmfpmx" title="贷款业绩未分配明细" type="query" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags> 
-      <tag row="0" col="0" colspan="1" rowspan="1" name="DataInterface" label="null"> 
-        <attribute key="dataType" value="select"/>  
-        <attribute key="sql" value="select csz from xtb_xtcs where csmc='DKYJGXMS'"/>  
-        <attribute key="name" value="dkyjmfpmxcsz"/> 
-      </tag>  
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Hidden" label=""> 
-        <attribute key="name" value="dkyjmfpcsz"/> 
-      </tag> 
-    </tags> 
-  </conPart>  
-  <table id="dkyjmfpmx_xsjy1jgj" title="新数据源1结果集" page="true"> 
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHDH" title="账号" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="FFRQ" title="发放日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="FPGX" title="分配关系" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="BZZWMC" title="币种" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="QX" title="期限" align="left" type="hidden" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <table id="dkyjmfpmx_zzhjgj" title="子账号结果集" page="true"> 
-    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="FFRQ" title="发放日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="FPGX" title="分配关系" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="BZZWMC" title="币种" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="QX" title="期限" align="left" type="hidden" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <sqlMap namespace="studio.dkyjmfpmx"> 
-    <select id="dn0.dkyjmfpmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
-      <isEqual property="dkyjmfpcsz" compareValue="1">select * from (select zh.jgdh, jg.jgmc, zh.zhdh, zh.zhhm, zh.zhye, zh.ffrq, f_get_dqfp($jsrq$, zh.jxdxdh, zh.gxhslx, zh.khdxdh, 'dk') as fpgx, zh.kmh, bz.bzzwmc, zh.qx from jxdx_dkzh zh inner join khdx_jg jg on zh.jgdh = jg.jgdh inner join csb_bz bz on bz.bz = zh.bz left join khdx_hy hy on zh.khdxdh=hy.khdxdh 
-        <isNotEmpty property="qsrq">where zh.ffrq between $qsrq$ and $jsrq$</isNotEmpty>  
-        <isNotEmpty property="zhye"><![CDATA[and zh.zhye > $zhye$]]></isNotEmpty>  
-        <isNotEmpty property="jgdh">and zh.jgdh = '$jgdh$'</isNotEmpty> and zh.gxhslx='0' and hy.hydh like 'XN%') a order by a.ffrq desc
-      </isEqual>  
-      <isEqual property="dkyjmfpcsz" compareValue="2">select * from (select zh.jgdh, jg.jgmc, zh.zhdh,zh.zzh, zh.zhhm, zh.zhye, zh.ffrq, f_get_dqfp($jsrq$, zh.jxdxdh, zh.gxhslx, zh.khdxdh, 'dk') as fpgx, zh.kmh, bz.bzzwmc, zh.qx from jxdx_dkzh zh inner join khdx_jg jg on zh.jgdh = jg.jgdh inner join csb_bz bz on bz.bz = zh.bz left join khdx_hy hy on zh.khdxdh=hy.khdxdh 
-        <isNotEmpty property="qsrq">where zh.ffrq between $qsrq$ and $jsrq$</isNotEmpty>  
-        <isNotEmpty property="zhye"><![CDATA[and zh.zhye > $zhye$]]></isNotEmpty>  
-        <isNotEmpty property="jgdh">and zh.jgdh = '$jgdh$'</isNotEmpty> and zh.gxhslx='0' and hy.hydh like 'XN%') a order by a.ffrq desc
-      </isEqual> 
-    </select>  
-    <select id="dn0.dkyjmfpmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
-      <isEqual property="dkyjmfpcsz" compareValue="1">select * from (select zh.jgdh, jg.jgmc, zh.zhdh, zh.zhhm, zh.zhye, zh.ffrq, f_get_dqfp($jsrq$, zh.jxdxdh, zh.gxhslx, zh.khdxdh, 'dk') as fpgx, zh.kmh, bz.bzzwmc, zh.qx from jxdx_dkzh zh inner join khdx_jg jg on zh.jgdh = jg.jgdh inner join csb_bz bz on bz.bz = zh.bz left join khdx_hy hy on zh.khdxdh=hy.khdxdh 
-        <isNotEmpty property="qsrq">where zh.ffrq between $qsrq$ and $jsrq$</isNotEmpty>  
-        <isNotEmpty property="zhye"><![CDATA[and zh.zhye > $zhye$]]></isNotEmpty>  
-        <isNotEmpty property="jgdh">and zh.jgdh = '$jgdh$'</isNotEmpty> and zh.gxhslx='0' and hy.hydh like 'XN%') a order by a.ffrq desc
-      </isEqual>  
-      <isEqual property="dkyjmfpcsz" compareValue="2">select * from (select zh.jgdh, jg.jgmc, zh.zhdh,zh.zzh, zh.zhhm, zh.zhye, zh.ffrq, f_get_dqfp($jsrq$, zh.jxdxdh, zh.gxhslx, zh.khdxdh, 'dk') as fpgx, zh.kmh, bz.bzzwmc, zh.qx from jxdx_dkzh zh inner join khdx_jg jg on zh.jgdh = jg.jgdh inner join csb_bz bz on bz.bz = zh.bz left join khdx_hy hy on zh.khdxdh=hy.khdxdh 
-        <isNotEmpty property="qsrq">where zh.ffrq between $qsrq$ and $jsrq$</isNotEmpty>  
-        <isNotEmpty property="zhye"><![CDATA[and zh.zhye > $zhye$]]></isNotEmpty>  
-        <isNotEmpty property="jgdh">and zh.jgdh = '$jgdh$'</isNotEmpty> and zh.gxhslx='0' and hy.hydh like 'XN%') a order by a.ffrq desc
-      </isEqual> ) t
-    </select>  
-    <select id="dn0.dkyjmfpmx_dkyjmfpmxcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='DKYJGXMS'</select> 
-  </sqlMap>  
-  <rels> 
-    <items id="dkyjmfpmx_xsjy1jgj"> 
-      <item name="dkyjmfpcsz" compareValue="1" operate="isEqual"/> 
-    </items>  
-    <items id="dkyjmfpmx_zzhjgj"> 
-      <item name="dkyjmfpcsz" compareValue="2" operate="isEqual"/> 
-    </items> 
-  </rels>  
+<pageSetting id="dkyjmfpmx" title="贷款业绩未分配明细" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="DataInterface" label="null">
+        <attribute key="dataType" value="select" />
+        <attribute key="sql" value="select csz from xtb_xtcs where csmc='DKYJGXMS'" />
+        <attribute key="name" value="dkyjmfpmxcsz" />
+      </tag>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="dkyjmfpcsz" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="dkyjmfpmx_xsjy1jgj" title="新数据源1结果集" page="true">
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHDH" title="账号" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FFRQ" title="发放日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FPGX" title="分配关系" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="BZZWMC" title="币种" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QX" title="期限" align="left" type="hidden" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false" />
+  </table>
+  <table id="dkyjmfpmx_zzhjgj" title="子账号结果集" page="true">
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FFRQ" title="发放日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FPGX" title="分配关系" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="BZZWMC" title="币种" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QX" title="期限" align="left" type="hidden" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.dkyjmfpmx">
+    <select id="dn0.dkyjmfpmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <isEqual property="dkyjmfpcsz" compareValue="1">
+        select * from (select zh.jgdh, jg.jgmc, zh.zhdh, zh.zhhm, zh.zhye, zh.ffrq,  f_get_dqfp($jsrq$, zh.jxdxdh, zh.gxhslx, zh.khdxdh, 'dk') as fpgx, zh.kmh, bz.bzzwmc, zh.qx      from jxdx_dkzh zh      inner join khdx_jg jg on zh.jgdh = jg.jgdh      inner join csb_bz bz on bz.bz = zh.bz      left join khdx_hy hy on zh.khdxdh=hy.khdxdh
+        <isNotEmpty property="qsrq">where zh.ffrq between $qsrq$ and $jsrq$</isNotEmpty>
+        <isNotEmpty property="zhye"><![CDATA[and zh.zhye > $zhye$]]></isNotEmpty>
+        <isNotEmpty property="jgdh">and zh.jgdh = '$jgdh$'</isNotEmpty>
+        and zh.gxhslx='0' and hy.hydh like 'XN%') a  order by a.ffrq desc
+      </isEqual>
+      <isEqual property="dkyjmfpcsz" compareValue="2">
+        select * from (select zh.jgdh, jg.jgmc, zh.zhdh,zh.zzh, zh.zhhm, zh.zhye, zh.ffrq,  f_get_dqfp($jsrq$, zh.jxdxdh, zh.gxhslx, zh.khdxdh, 'dk') as fpgx, zh.kmh, bz.bzzwmc, zh.qx      from jxdx_dkzh zh      inner join khdx_jg jg on zh.jgdh = jg.jgdh      inner join csb_bz bz on bz.bz = zh.bz      left join khdx_hy hy on zh.khdxdh=hy.khdxdh
+        <isNotEmpty property="qsrq">where zh.ffrq between $qsrq$ and $jsrq$</isNotEmpty>
+        <isNotEmpty property="zhye"><![CDATA[and zh.zhye > $zhye$]]></isNotEmpty>
+        <isNotEmpty property="jgdh">and zh.jgdh = '$jgdh$'</isNotEmpty>
+        and zh.gxhslx='0' and hy.hydh like 'XN%') a  order by a.ffrq desc
+      </isEqual>
+    </select>
+    <select id="dn0.dkyjmfpmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from (
+      <isEqual property="dkyjmfpcsz" compareValue="1">
+        select * from (select zh.jgdh, jg.jgmc, zh.zhdh, zh.zhhm, zh.zhye, zh.ffrq,  f_get_dqfp($jsrq$, zh.jxdxdh, zh.gxhslx, zh.khdxdh, 'dk') as fpgx, zh.kmh, bz.bzzwmc, zh.qx      from jxdx_dkzh zh      inner join khdx_jg jg on zh.jgdh = jg.jgdh      inner join csb_bz bz on bz.bz = zh.bz      left join khdx_hy hy on zh.khdxdh=hy.khdxdh
+        <isNotEmpty property="qsrq">where zh.ffrq between $qsrq$ and $jsrq$</isNotEmpty>
+        <isNotEmpty property="zhye"><![CDATA[and zh.zhye > $zhye$]]></isNotEmpty>
+        <isNotEmpty property="jgdh">and zh.jgdh = '$jgdh$'</isNotEmpty>
+        and zh.gxhslx='0' and hy.hydh like 'XN%') a  order by a.ffrq desc
+      </isEqual>
+      <isEqual property="dkyjmfpcsz" compareValue="2">
+        select * from (select zh.jgdh, jg.jgmc, zh.zhdh,zh.zzh, zh.zhhm, zh.zhye, zh.ffrq,  f_get_dqfp($jsrq$, zh.jxdxdh, zh.gxhslx, zh.khdxdh, 'dk') as fpgx, zh.kmh, bz.bzzwmc, zh.qx      from jxdx_dkzh zh      inner join khdx_jg jg on zh.jgdh = jg.jgdh      inner join csb_bz bz on bz.bz = zh.bz      left join khdx_hy hy on zh.khdxdh=hy.khdxdh
+        <isNotEmpty property="qsrq">where zh.ffrq between $qsrq$ and $jsrq$</isNotEmpty>
+        <isNotEmpty property="zhye"><![CDATA[and zh.zhye > $zhye$]]></isNotEmpty>
+        <isNotEmpty property="jgdh">and zh.jgdh = '$jgdh$'</isNotEmpty>
+        and zh.gxhslx='0' and hy.hydh like 'XN%') a  order by a.ffrq desc
+      </isEqual>
+      ) t
+    </select>
+    <select id="dn0.dkyjmfpmx_dkyjmfpmxcsz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='DKYJGXMS'</select>
+  </sqlMap>
+  <rels>
+    <items id="dkyjmfpmx_xsjy1jgj">
+      <item name="dkyjmfpcsz" compareValue="1" operate="isEqual" />
+    </items>
+    <items id="dkyjmfpmx_zzhjgj">
+      <item name="dkyjmfpcsz" compareValue="2" operate="isEqual" />
+    </items>
+  </rels>
   <javascript><![CDATA[jQuery(document).ready(function () {
  $('#query_conn_panel').hide();
   PAS.di.execute('dkyjmfpmx_dkyjmfpmxcsz',dkyjmfpmxDk);//判断有没有子账号
@@ -112,5 +121,6 @@ function dkyjmfpmxDk(obj){
 //自定义验证，在提交时执行。通过返回true，否则返回false
 function customValidate(){
  return true;
-}]]></javascript> 
+}]]></javascript>
 </pageSetting>
+

@@ -1,143 +1,176 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="xcdkzhdr" title="瑕疵贷款账户导入" type="import" version="1.0.0.0" pid="" desc="标准版"> 
-  <template> 
-    <src>ONLINE</src>  
-    <column> 
-      <text>账号</text>  
-      <name>zhdh</name>  
-      <index>0</index>  
-      <width>200</width>  
-      <height/>  
-      <align>center</align>  
-      <annotate/>  
-      <length>100</length>  
-      <req>Y</req> 
-    </column>  
-    <column> 
-      <text>起始日期</text>  
-      <name>qsrq</name>  
-      <index>1</index>  
-      <width>120</width>  
-      <height/>  
-      <align>center</align>  
-      <annotate>格式：YYYYMMDD 例如：20161231</annotate>  
-      <length>100</length>  
-      <req>Y</req> 
-    </column>  
-    <column> 
-      <text>是否瑕疵贷款</text>  
-      <name>sxz</name>  
-      <index>2</index>  
-      <width>120</width>  
-      <height/>  
-      <align>center</align>  
-      <annotate>此项填写 0 或 1 ： 0：非瑕疵贷款 1：是瑕疵贷款</annotate>  
-      <length>100</length>  
-      <req>Y</req> 
-    </column>  
-    <column> 
-      <text>备注说明</text>  
-      <name>bzsm</name>  
-      <index>3</index>  
-      <width>120</width>  
-      <height/>  
-      <align>center</align>  
-      <annotate/>  
-      <length>100</length>  
-      <req>N</req> 
-    </column> 
-  </template>  
-  <table id="xcdkzhdr_table" page="true"> 
-    <col id="ZT" title="状态" align="center" type="string" width="50"/>  
-    <col id="ERROR" title="错误原因" align="center" type="string" width="250"/>  
-    <col id="ZHDH" title="账号" align="center" type="" width="200"/>  
-    <col id="QSRQ" title="起始日期" align="center" type="" width="120"/>  
-    <col id="SXZ" title="是否瑕疵贷款" align="center" type="" width="120"/>  
-    <col id="BZSM" title="备注说明" align="center" type="" width="120"/> 
-  </table>  
-  <flow> 
-    <rule> 
-      <sql type="update">xcdkzhdr_check_zhdh_0</sql>  
-      <sql type="update">xcdkzhdr_check_qsrq_1</sql>  
-      <sql type="update">xcdkzhdr_check_sxz_2</sql>  
-      <sql type="update">xcdkzhdr_check_bzsm_3</sql>  
-      <sql type="update">xcdkzhdr_checkupdate_zhdh_0</sql>  
-      <sql type="update">xcdkzhdr_checkupdate_qsrq_0</sql>  
-      <sql type="update">xcdkzhdr_checkupdate_sxz_0</sql>  
-      <sql type="update">xcdkzhdr_exists_target</sql>  
-      <sql type="update">xcdkzhdr_exists_same_temp</sql> 
-    </rule>  
-    <before> 
-      <sql type="delete">xcdkzhdr_before_insert_delqsrqAndCover</sql>  
-      <sql type="update">xcdkzhdr_before_insert_cutqsrq</sql> 
-    </before>  
-    <cover/>  
-    <insert> 
-      <sql type="insert">xcdkzhdr_insert_into_target</sql> 
-    </insert>  
-    <after/> 
-  </flow>  
-  <sqlMap namespace="studio.xcdkzhdr"> 
-    <update parameterClass="java.util.Map" id="dn0.xcdkzhdr_check_zhdh_0"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update xcdkzhdr_temp t set t.error=t.error||'账号输入错误，不能为空!' where f_java_rule_length(t.zhdh)=0 and t.khdxdh=$login_khdxdh$
-    </update>  
-    <update parameterClass="java.util.Map" id="dn0.xcdkzhdr_check_qsrq_1"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update xcdkzhdr_temp t set t.error=t.error||'起始日期输入错误，格式应该是:yyyyMMdd!' where f_java_rule_date(t.qsrq,'yyyyMMdd')=1 and t.khdxdh=$login_khdxdh$
-    </update>  
-    <update parameterClass="java.util.Map" id="dn0.xcdkzhdr_check_sxz_2"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update xcdkzhdr_temp t set t.error=t.error||'是否瑕疵贷款输入错误，不能为空!' where f_java_rule_length(t.sxz)=0 and t.khdxdh=$login_khdxdh$
-    </update>  
-    <update parameterClass="java.util.Map" id="dn0.xcdkzhdr_check_bzsm_3"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update xcdkzhdr_temp t set t.error=t.error||'备注说明输入错误，长度不能超过:100!' where f_java_rule_length(t.bzsm)&gt;100 and t.khdxdh=$login_khdxdh$
-    </update>  
-    <update parameterClass="java.util.Map" id="dn0.xcdkzhdr_checkupdate_zhdh_0"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update xcdkzhdr_temp t set t.error=t.error||'账号不存在！' where not exists( select 1 from jxdx_dkzh zh where zh.zhdh=t.zhdh ) and t.khdxdh=$login_khdxdh$
-    </update>  
-    <update parameterClass="java.util.Map" id="dn0.xcdkzhdr_checkupdate_qsrq_0"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update xcdkzhdr_temp t set t.error=t.error||'起始日期不能小于(系统日期-重跑天数)'||(select f_change_days(cast(rq.csz as integer ),-cast(cs.csz as integer )) from xtb_xtcs rq,xtb_xtcs cs where rq.csmc='SYS_DATE' and cs.csmc='SYS_CSTS')||'！' where cast(t.qsrq as integer)&lt;(select f_change_days(cast(rq.csz as integer ),-cast(cs.csz as integer )) from xtb_xtcs rq,xtb_xtcs cs where rq.csmc='SYS_DATE' and cs.csmc='SYS_CSTS') and t.khdxdh=$login_khdxdh$
-    </update>  
-    <update parameterClass="java.util.Map" id="dn0.xcdkzhdr_checkupdate_sxz_0"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update xcdkzhdr_temp t set error=error||'是否瑕疵贷款必须为 0 或 1 !' where not exists ( select 1 from pas_vt vt where t.sxz='0' or t.sxz='1') and t.khdxdh=$login_khdxdh$
-    </update>  
-    <update parameterClass="java.util.Map" id="dn0.xcdkzhdr_exists_target"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update xcdkzhdr_temp t set t.error=t.error||'数据已存在!' where exists(select 1 from SGLR_DKZHKZSX tar where 1=1 and t.zhdh =tar.ZHDH and 'XC' =tar.ZHKZSX and tar.QSRQ <![CDATA[>]]>= cast(t.qsrq as INTEGER) and t.khdxdh=$login_khdxdh$ and (length(t.error)=0 or t.error is null ))
-    </update>  
-    <update parameterClass="java.util.Map" id="dn0.xcdkzhdr_exists_same_temp"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update xcdkzhdr_temp t set t.error=error||'存在重复数据!' where exists( select 1 from (select zhdh from xcdkzhdr_temp dr where khdxdh=$login_khdxdh$ group by zhdh having count(1)<![CDATA[>]]>1 ) dr where 1=1 and t.zhdh=dr.zhdh) and khdxdh=$login_khdxdh$
-    </update>  
-    <insert parameterClass="java.util.Map" id="dn0.xcdkzhdr_create_lsb"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> CREATE TABLE xcdkzhdr_temp ( zhdh varchar(100) , qsrq varchar(100) , sxz varchar(100) , bzsm varchar(100) , khdxdh integer,error varchar(1000) )
-    </insert>  
-    <delete parameterClass="java.util.Map" id="dn0.xcdkzhdr_delete_lsb"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from xcdkzhdr_temp where khdxdh=$login_khdxdh$
-    </delete>  
-    <insert parameterClass="java.util.Map" id="dn0.xcdkzhdr_insert_into_lsb"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into XCDKZHDR_TEMP (zhdh,qsrq,sxz,bzsm,khdxdh,error) values(?,?,?,?,?,?)
-    </insert>  
-    <select parameterClass="java.util.Map" id="dn0.xcdkzhdr_exists_error_msg" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from xcdkzhdr_temp where length(error) <![CDATA[>]]> 0 and khdxdh = $login_khdxdh$
-    </select>  
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn0.xcdkzhdr_exists_same_data"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from xcdkzhdr_temp where length(error) <![CDATA[>]]> 0 and error != '数据已存在!' and khdxdh = $login_khdxdh$
-    </select>  
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn0.xcdkzhdr_select_error_msg"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/cancel.jpg" border="0"/<![CDATA[>]]>' as zt, zhdh,qsrq,sxz,bzsm,khdxdh,error from xcdkzhdr_temp where khdxdh=$login_khdxdh$ and length(error)<![CDATA[>]]>0
-    </select>  
-    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn0.xcdkzhdr_count_all_msg"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, zhdh,qsrq,sxz,bzsm,khdxdh,error from xcdkzhdr_temp where khdxdh=$login_khdxdh$ )a
-    </select>  
-    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn0.xcdkzhdr_select_all_msg"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, zhdh,qsrq,sxz,bzsm,khdxdh,error from xcdkzhdr_temp where khdxdh=$login_khdxdh$
-    </select>  
-    <delete id="dn0.xcdkzhdr_before_insert_delqsrqAndCover" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from SGLR_DKZHKZSX tar where exists ( select 1 from $temp$ t where (length(t.error)=0 or t.error is null or t.error ='数据已存在!') and t.khdxdh=$login_khdxdh$ and cast(t.zhdh as VARCHAR(40))=tar.ZHDH and cast('XC' as VARCHAR(20))=tar.ZHKZSX and tar.qsrq<![CDATA[>]]>= cast(t.qsrq as integer) )
-    </delete>  
-    <update id="dn0.xcdkzhdr_before_insert_cutqsrq" parameterClass="java.util.Map"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update SGLR_DKZHKZSX tar set jsrq=(select F_Change_Days(cast(dr.qsrq as Integer),-1) from xcdkzhdr_temp dr where 1=1 and cast(dr.zhdh as VARCHAR(40))=tar.ZHDH and cast('XC' as VARCHAR(20))=tar.ZHKZSX and (length(dr.error)=0 or dr.error is null or dr.error='数据已存在!') and dr.khdxdh=$login_khdxdh$) where exists( select 1 from xcdkzhdr_temp t where 1=1 and cast(t.zhdh as VARCHAR(40))=tar.ZHDH and cast('XC' as VARCHAR(20))=tar.ZHKZSX and (length(t.error)=0 or t.error is null or t.error='数据已存在!') and t.khdxdh=$login_khdxdh$ and tar.jsrq&gt;=F_Change_Days(cast(t.qsrq as Integer),-1))
-    </update>  
-    <insert parameterClass="java.util.Map" id="dn0.xcdkzhdr_insert_into_target"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into SGLR_DKZHKZSX(ZHDH,ZHKZSX,QSRQ,SXZ,BZSM,JSRQ,CZR,CZSJ) select t.zhdh ,'XC',cast (t.qsrq as INTEGER), t.sxz , t.bzsm ,29991231,'$login_hydh$',f_get_systime() from xcdkzhdr_temp t where t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null)
-    </insert> 
-  </sqlMap> 
+<pageSetting id="xcdkzhdr" title="瑕疵贷款账户导入" type="import" version="1.0.0.0" pid="" desc="标准版">
+  <template>
+    <src>ONLINE</src>
+    <column>
+      <text>账号</text>
+      <name>zhdh</name>
+      <index>0</index>
+      <width>200</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>起始日期</text>
+      <name>qsrq</name>
+      <index>1</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate>格式：YYYYMMDD
+例如：20161231</annotate>
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>是否瑕疵贷款</text>
+      <name>sxz</name>
+      <index>2</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate>此项填写 0 或 1 ：
+0：非瑕疵贷款
+1：是瑕疵贷款</annotate>
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>备注说明</text>
+      <name>bzsm</name>
+      <index>3</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>N</req>
+    </column>
+  </template>
+  <table id="xcdkzhdr_table" page="true">
+    <col id="ZT" title="状态" align="center" type="string" width="50" />
+    <col id="ERROR" title="错误原因" align="center" type="string" width="250" />
+    <col id="ZHDH" title="账号" align="center" type="" width="200" />
+    <col id="QSRQ" title="起始日期" align="center" type="" width="120" />
+    <col id="SXZ" title="是否瑕疵贷款" align="center" type="" width="120" />
+    <col id="BZSM" title="备注说明" align="center" type="" width="120" />
+  </table>
+  <flow>
+    <rule>
+      <sql type="update">xcdkzhdr_check_zhdh_0</sql>
+      <sql type="update">xcdkzhdr_check_qsrq_1</sql>
+      <sql type="update">xcdkzhdr_check_sxz_2</sql>
+      <sql type="update">xcdkzhdr_check_bzsm_3</sql>
+      <sql type="update">xcdkzhdr_checkupdate_zhdh_0</sql>
+      <sql type="update">xcdkzhdr_checkupdate_qsrq_0</sql>
+      <sql type="update">xcdkzhdr_checkupdate_sxz_0</sql>
+      <sql type="update">xcdkzhdr_exists_target</sql>
+      <sql type="update">xcdkzhdr_exists_same_temp</sql>
+    </rule>
+    <before>
+      <sql type="delete">xcdkzhdr_before_insert_delqsrqAndCover</sql>
+      <sql type="update">xcdkzhdr_before_insert_cutqsrq</sql>
+    </before>
+    <cover />
+    <insert>
+      <sql type="insert">xcdkzhdr_insert_into_target</sql>
+    </insert>
+    <after />
+  </flow>
+  <sqlMap namespace="studio.xcdkzhdr">
+    <update parameterClass="java.util.Map" id="dn0.xcdkzhdr_check_zhdh_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  xcdkzhdr_temp  t  set  t.error=t.error||'账号输入错误，不能为空!' 
+		where  f_java_rule_length(t.zhdh)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.xcdkzhdr_check_qsrq_1">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  xcdkzhdr_temp  t  
+		set  t.error=t.error||'起始日期输入错误，格式应该是:yyyyMMdd!'  
+		where  f_java_rule_date(t.qsrq,'yyyyMMdd')=1  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.xcdkzhdr_check_sxz_2">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  xcdkzhdr_temp  t  set  t.error=t.error||'是否瑕疵贷款输入错误，不能为空!' 
+		where  f_java_rule_length(t.sxz)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.xcdkzhdr_check_bzsm_3">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  xcdkzhdr_temp  t  set  t.error=t.error||'备注说明输入错误，长度不能超过:100!' 
+		where  f_java_rule_length(t.bzsm)&gt;100  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.xcdkzhdr_checkupdate_zhdh_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update xcdkzhdr_temp t set t.error=t.error||'账号不存在！' where not exists(
+select 1 from jxdx_dkzh zh where zh.zhdh=t.zhdh
+) and t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.xcdkzhdr_checkupdate_qsrq_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update xcdkzhdr_temp t set t.error=t.error||'起始日期不能小于(系统日期-重跑天数)'||(select f_change_days(cast(rq.csz as integer ),-cast(cs.csz as integer )) 
+from xtb_xtcs rq,xtb_xtcs cs where rq.csmc='SYS_DATE' and cs.csmc='SYS_CSTS')||'！' 
+where cast(t.qsrq as integer)&lt;(select f_change_days(cast(rq.csz as integer ),-cast(cs.csz as integer )) 
+from xtb_xtcs rq,xtb_xtcs cs where rq.csmc='SYS_DATE' and cs.csmc='SYS_CSTS') and t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.xcdkzhdr_checkupdate_sxz_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update xcdkzhdr_temp t set error=error||'是否瑕疵贷款必须为 0 或 1 !' where not exists ( select 1 from pas_vt vt where t.sxz='0' or t.sxz='1') and t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.xcdkzhdr_exists_target">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  xcdkzhdr_temp  t  set  t.error=t.error||'数据已存在!'  where  exists(select  1  from  SGLR_DKZHKZSX  tar   where  1=1   and  t.zhdh  =tar.ZHDH  and  'XC'  =tar.ZHKZSX  and  tar.QSRQ <![CDATA[>]]>=  cast(t.qsrq  as  INTEGER)  and  t.khdxdh=$login_khdxdh$  and  (length(t.error)=0  or  t.error  is  null  ))
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.xcdkzhdr_exists_same_temp">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  xcdkzhdr_temp  t  set  t.error=error||'存在重复数据!'  where  exists(  select  1  from   (select  zhdh  from  xcdkzhdr_temp  dr  where  khdxdh=$login_khdxdh$  group  by  zhdh  having  count(1)<![CDATA[>]]>1  )  dr  where  1=1   and  t.zhdh=dr.zhdh)  and  khdxdh=$login_khdxdh$
+    </update>
+    <insert parameterClass="java.util.Map" id="dn0.xcdkzhdr_create_lsb">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      CREATE  TABLE   xcdkzhdr_temp   (   zhdh  varchar(100)  ,  qsrq  varchar(100)  ,  sxz  varchar(100)  ,  bzsm  varchar(100)  ,  khdxdh  integer,error  varchar(1000)   )
+    </insert>
+    <delete parameterClass="java.util.Map" id="dn0.xcdkzhdr_delete_lsb">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from xcdkzhdr_temp where khdxdh=$login_khdxdh$
+    </delete>
+    <insert parameterClass="java.util.Map" id="dn0.xcdkzhdr_insert_into_lsb">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert  into  XCDKZHDR_TEMP  (zhdh,qsrq,sxz,bzsm,khdxdh,error)  values(?,?,?,?,?,?)
+    </insert>
+    <select parameterClass="java.util.Map" id="dn0.xcdkzhdr_exists_error_msg" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  count(1)  from  xcdkzhdr_temp  where  length(error) <![CDATA[>]]> 0  and  khdxdh  =  $login_khdxdh$
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn0.xcdkzhdr_exists_same_data">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  count(1)  from  xcdkzhdr_temp  where  length(error) <![CDATA[>]]> 0  and  error  !=  '数据已存在!'  and  khdxdh  =  $login_khdxdh$
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn0.xcdkzhdr_select_error_msg">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/cancel.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  zhdh,qsrq,sxz,bzsm,khdxdh,error  from  xcdkzhdr_temp  where  khdxdh=$login_khdxdh$  and  length(error)<![CDATA[>]]>0
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn0.xcdkzhdr_count_all_msg">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  count(1)  from  (select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/ok.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  zhdh,qsrq,sxz,bzsm,khdxdh,error  from  xcdkzhdr_temp  where  khdxdh=$login_khdxdh$  )a
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn0.xcdkzhdr_select_all_msg">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/ok.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  zhdh,qsrq,sxz,bzsm,khdxdh,error  from  xcdkzhdr_temp  where  khdxdh=$login_khdxdh$
+    </select>
+    <delete id="dn0.xcdkzhdr_before_insert_delqsrqAndCover" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete  from  SGLR_DKZHKZSX  tar  where  exists  (   select  1  from  $temp$  t   where  (length(t.error)=0  or  t.error  is  null  or  t.error  ='数据已存在!')  and  t.khdxdh=$login_khdxdh$   and  cast(t.zhdh  as  VARCHAR(40))=tar.ZHDH  and  cast('XC'  as  VARCHAR(20))=tar.ZHKZSX  and  tar.qsrq<![CDATA[>]]>=  cast(t.qsrq  as  integer)  )
+    </delete>
+    <update id="dn0.xcdkzhdr_before_insert_cutqsrq" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update SGLR_DKZHKZSX tar set jsrq=(select F_Change_Days(cast(dr.qsrq as Integer),-1) from xcdkzhdr_temp dr where 1=1  and cast(dr.zhdh as VARCHAR(40))=tar.ZHDH and cast('XC' as VARCHAR(20))=tar.ZHKZSX and (length(dr.error)=0 or dr.error is null or dr.error='数据已存在!') and dr.khdxdh=$login_khdxdh$) where exists( select 1 from xcdkzhdr_temp t  where 1=1  and cast(t.zhdh as VARCHAR(40))=tar.ZHDH and cast('XC' as VARCHAR(20))=tar.ZHKZSX and (length(t.error)=0 or t.error is null or t.error='数据已存在!') and t.khdxdh=$login_khdxdh$  and tar.jsrq&gt;=F_Change_Days(cast(t.qsrq as Integer),-1))
+    </update>
+    <insert parameterClass="java.util.Map" id="dn0.xcdkzhdr_insert_into_target">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into SGLR_DKZHKZSX(ZHDH,ZHKZSX,QSRQ,SXZ,BZSM,JSRQ,CZR,CZSJ) select  t.zhdh ,'XC',cast (t.qsrq as INTEGER), t.sxz , t.bzsm ,29991231,'$login_hydh$',f_get_systime() from xcdkzhdr_temp t  where t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null)
+    </insert>
+  </sqlMap>
 </pageSetting>
+

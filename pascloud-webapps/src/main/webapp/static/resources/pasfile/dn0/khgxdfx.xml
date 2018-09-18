@@ -1,93 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="khgxdfx" title="客户存贷款分析" type="query" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags> 
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期"> 
-        <attribute key="dateFmt" value="yyyyMMdd"/>  
-        <attribute key="defValType" value="sysDate"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="tjrq"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="0" col="1" colspan="1" rowspan="1" name="NewJg" label="机构"> 
-        <attribute key="cascadeCheck" value="true"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="ckbz" value="jg"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="jgkhdxdh"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag>  
-      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="客户类型"> 
-        <attribute key="width" value="120px;"/>  
-        <attribute key="dmmc" value="khlx"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="khlx"/>  
-        <attribute key="isAll" value="true"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag>  
-      <tag row="0" col="3" colspan="1" rowspan="1" name="Dmms" label="降序排序"> 
-        <attribute key="width" value="120px;"/>  
-        <attribute key="dmmc" value="khgxdcxpx"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="orderkey"/>  
-        <attribute key="isAll" value="false"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag>  
-      <tag row="1" col="0" colspan="1" rowspan="1" name="Text" label="客户号"> 
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="khh"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="1" col="1" colspan="1" rowspan="1" name="Text" label="客户名称"> 
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="khmc"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="1" col="2" colspan="1" rowspan="1" name="Text" label="前"> 
-        <attribute key="styleClass" value="{required:true,range:[1,100]}"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="mc"/>  
-        <attribute key="value" value="20"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag> 
-    </tags> 
-  </conPart>  
-  <table id="khgxdfx_xsjy1jgj" title="新数据源1结果集" page="true"> 
-    <col id="TJRQ" title="统计日期" align="left" type="string" width="80" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHLX" title="客户类型" align="left" type="string" width="60" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHH" title="客户号" align="left" type="string" width="100" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHMC" title="客户名称" align="left" type="string" width="200" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="CKSD" title="存款时点(万元)" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="CKNRJ" title="存款年日均(万元)" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DKSD" title="贷款时点(万元)" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DKNRJ" title="贷款年日均(万元)" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <sqlMap namespace="studio.khgxdfx"> 
-    <select id="dn0.khgxdfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select * from( SELECT RANK() OVER(ORDER BY $orderkey$ DESC ) AS MC,RS.TJRQ AS TJRQ,RS.KHH,RS.KHMC,RS.KHLX, rs.CKSD/10000.00 as cksd,rs.cknrj/10000.00 AS CKNRJ,rs.dksd/10000.00 as dksd,rs.dknrj/10000.00 AS DKNRJ from ( SELECT sytj.tjrq ,ms.dmms as khlx ,sytj.khh,sytj.khmc,sytj.ckye as cksd,sytj.cknrj,sytj.dkye as dksd,sytj.dknrj FROM KHFX_KHSYTJ_$tjrq_yyyymm$ SYTJ INNER JOIN TABLE(FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,$jgkhdxdh$)) QX ON QX.KHDXDH=SYTJ.jgKHDXDH inner join csb_dmms ms on lower(ms.dmmc)='khlx' and ms.dmz = SYTJ.khlx WHERE sytj.TJRQ = (select ym from CSB_SJW where tjrq=$tjrq$) 
-      <isNotEmpty property="khlx">AND sytj.khlx='$khlx$'</isNotEmpty>  
-      <isNotEmpty property="khh">AND sytj.KHH LIKE '$khh$%'</isNotEmpty>  
-      <isNotEmpty property="khmc">and sytj.khmc like '%$khmc$%'</isNotEmpty> ) RS ) t where 1=1 
-      <isNotEmpty property="mc"><![CDATA[and  t.mc <= $mc$]]></isNotEmpty> 
-    </select>  
-    <select id="dn0.khgxdfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select * from( SELECT RANK() OVER(ORDER BY $orderkey$ DESC ) AS MC,RS.TJRQ AS TJRQ,RS.KHH,RS.KHMC,RS.KHLX, rs.CKSD/10000.00 as cksd,rs.cknrj/10000.00 AS CKNRJ,rs.dksd/10000.00 as dksd,rs.dknrj/10000.00 AS DKNRJ from ( SELECT sytj.tjrq ,ms.dmms as khlx ,sytj.khh,sytj.khmc,sytj.ckye as cksd,sytj.cknrj,sytj.dkye as dksd,sytj.dknrj FROM KHFX_KHSYTJ_$tjrq_yyyymm$ SYTJ INNER JOIN TABLE(FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,$jgkhdxdh$)) QX ON QX.KHDXDH=SYTJ.jgKHDXDH inner join csb_dmms ms on lower(ms.dmmc)='khlx' and ms.dmz = SYTJ.khlx WHERE sytj.TJRQ = (select ym from CSB_SJW where tjrq=$tjrq$) 
-      <isNotEmpty property="khlx">AND sytj.khlx='$khlx$'</isNotEmpty>  
-      <isNotEmpty property="khh">AND sytj.KHH LIKE '$khh$%'</isNotEmpty>  
-      <isNotEmpty property="khmc">and sytj.khmc like '%$khmc$%'</isNotEmpty> ) RS ) t where 1=1 
-      <isNotEmpty property="mc"><![CDATA[and  t.mc <= $mc$]]></isNotEmpty> ) t
-    </select> 
-  </sqlMap>  
-  <finger custPlotMth=""> 
-    <plotType/>  
-    <needPlot>false</needPlot>  
-    <plotTitle/> 
-  </finger>  
-  <rels> 
-    <items id="khgxdfx_xsjy1jgj"/> 
-  </rels>  
+<pageSetting id="khgxdfx" title="客户存贷款分析" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期">
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewJg" label="机构">
+        <attribute key="cascadeCheck" value="true" />
+        <attribute key="editable" value="true" />
+        <attribute key="ckbz" value="jg" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="jgkhdxdh" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="客户类型">
+        <attribute key="width" value="120px;" />
+        <attribute key="dmmc" value="khlx" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="khlx" />
+        <attribute key="isAll" value="true" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Dmms" label="降序排序">
+        <attribute key="width" value="120px;" />
+        <attribute key="dmmc" value="khgxdcxpx" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="orderkey" />
+        <attribute key="isAll" value="false" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="1" col="0" colspan="1" rowspan="1" name="Text" label="客户号">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="khh" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="1" col="1" colspan="1" rowspan="1" name="Text" label="客户名称">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="khmc" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="1" col="2" colspan="1" rowspan="1" name="Text" label="前">
+        <attribute key="styleClass" value="{required:true,range:[1,100]}" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="mc" />
+        <attribute key="value" value="20" />
+        <attribute key="readonly" value="false" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="khgxdfx_xsjy1jgj" title="新数据源1结果集" page="true">
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="80" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHLX" title="客户类型" align="left" type="string" width="60" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHH" title="客户号" align="left" type="string" width="100" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHMC" title="客户名称" align="left" type="string" width="200" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="CKSD" title="存款时点(万元)" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="CKNRJ" title="存款年日均(万元)" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DKSD" title="贷款时点(万元)" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DKNRJ" title="贷款年日均(万元)" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.khgxdfx">
+    <select id="dn0.khgxdfxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select * from(     SELECT RANK() OVER(ORDER BY $orderkey$ DESC ) AS MC,RS.TJRQ AS TJRQ,RS.KHH,RS.KHMC,RS.KHLX,           rs.CKSD/10000.00 as cksd,rs.cknrj/10000.00 AS CKNRJ,rs.dksd/10000.00 as dksd,rs.dknrj/10000.00 AS DKNRJ      from (        SELECT sytj.tjrq ,ms.dmms as khlx ,sytj.khh,sytj.khmc,sytj.ckye as cksd,sytj.cknrj,sytj.dkye as dksd,sytj.dknrj       FROM KHFX_KHSYTJ_$tjrq_yyyymm$ SYTJ       INNER JOIN TABLE(FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,$jgkhdxdh$)) QX ON QX.KHDXDH=SYTJ.jgKHDXDH         inner join csb_dmms ms on lower(ms.dmmc)='khlx' and ms.dmz = SYTJ.khlx       WHERE sytj.TJRQ = (select ym from CSB_SJW where tjrq=$tjrq$)
+      <isNotEmpty property="khlx">AND sytj.khlx='$khlx$'</isNotEmpty>
+      <isNotEmpty property="khh">AND sytj.KHH LIKE '$khh$%'</isNotEmpty>
+      <isNotEmpty property="khmc">and sytj.khmc like '%$khmc$%'</isNotEmpty>
+      ) RS ) t where 1=1
+      <isNotEmpty property="mc"><![CDATA[and  t.mc <= $mc$]]></isNotEmpty>
+    </select>
+    <select id="dn0.khgxdfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select * from(     SELECT RANK() OVER(ORDER BY $orderkey$ DESC ) AS MC,RS.TJRQ AS TJRQ,RS.KHH,RS.KHMC,RS.KHLX,           rs.CKSD/10000.00 as cksd,rs.cknrj/10000.00 AS CKNRJ,rs.dksd/10000.00 as dksd,rs.dknrj/10000.00 AS DKNRJ      from (        SELECT sytj.tjrq ,ms.dmms as khlx ,sytj.khh,sytj.khmc,sytj.ckye as cksd,sytj.cknrj,sytj.dkye as dksd,sytj.dknrj       FROM KHFX_KHSYTJ_$tjrq_yyyymm$ SYTJ       INNER JOIN TABLE(FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,$jgkhdxdh$)) QX ON QX.KHDXDH=SYTJ.jgKHDXDH         inner join csb_dmms ms on lower(ms.dmmc)='khlx' and ms.dmz = SYTJ.khlx       WHERE sytj.TJRQ = (select ym from CSB_SJW where tjrq=$tjrq$)
+      <isNotEmpty property="khlx">AND sytj.khlx='$khlx$'</isNotEmpty>
+      <isNotEmpty property="khh">AND sytj.KHH LIKE '$khh$%'</isNotEmpty>
+      <isNotEmpty property="khmc">and sytj.khmc like '%$khmc$%'</isNotEmpty>
+      ) RS ) t where 1=1
+      <isNotEmpty property="mc"><![CDATA[and  t.mc <= $mc$]]></isNotEmpty>
+      ) t
+    </select>
+  </sqlMap>
+  <finger custPlotMth="">
+    <plotType />
+    <needPlot>false</needPlot>
+    <plotTitle />
+  </finger>
+  <rels>
+    <items id="khgxdfx_xsjy1jgj" />
+  </rels>
   <javascript><![CDATA[jQuery(document).ready(function () {
 //这里的js脚本，会在页面加载完成后执行
 
@@ -95,5 +99,6 @@
 //自定义验证，在提交时执行。通过返回true，否则返回false
 function customValidate(){
  return true;
-}]]></javascript> 
+}]]></javascript>
 </pageSetting>
+

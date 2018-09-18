@@ -1,230 +1,247 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="dklrmxcx" title="贷款帐户利润明细查询" type="query" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags> 
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月"> 
-        <attribute key="dateFmt" value="yyyyMM"/>  
-        <attribute key="defValType" value="sysDate"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="name" value="tjrq"/> 
-      </tag>  
-      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年份"> 
-        <attribute key="dateFmt" value="yyyy"/>  
-        <attribute key="defValType" value="sysDate"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="style" value="display:none"/>  
-        <attribute key="name" value="tjnf"/> 
-      </tag>  
-      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员"> 
-        <attribute key="isDisplayXN" value="true"/>  
-        <attribute key="editable" value="true"/>  
-        <attribute key="isRequired" value="true"/>  
-        <attribute key="jgckbz" value="jg_ckhy"/>  
-        <attribute key="name" value="khdxdh"/>  
-        <attribute key="multiple" value="false"/> 
-      </tag>  
-      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="时段"> 
-        <attribute key="isMultiple" value="false"/>  
-        <attribute key="width" value="120px;"/>  
-        <attribute key="isSearch" value="false"/>  
-        <attribute key="sql" value="SELECT dmms.DMZ AS key,dmms.DMMS AS value  FROM CSB_DMMS dmms WHERE dmms.DMMC ='ZBSDBS' AND dmms.DMZ IN ('1','5','6','7')"/>  
-        <attribute key="isRequired" value="false"/>  
-        <attribute key="name" value="sd"/>  
-        <attribute key="isAll" value="false"/>  
-        <attribute key="isEditable" value="true"/> 
-      </tag>  
-      <tag row="0" col="3" colspan="1" rowspan="1" name="Text" label="科目号"> 
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="kmh"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="1" col="0" colspan="1" rowspan="1" name="Text" label="客户号"> 
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="khh"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="1" col="1" colspan="1" rowspan="1" name="Text" label="客户名称"> 
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="zhhm"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag>  
-      <tag row="1" col="2" colspan="1" rowspan="1" name="Text" label="账号"> 
-        <attribute key="editable" value="true"/>  
-        <attribute key="name" value="zhdh"/>  
-        <attribute key="readonly" value="false"/> 
-      </tag> 
-    </tags> 
-  </conPart>  
-  <table id="dklrmxcx_sdjgj" title="时点结果集" page="true"> 
-    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGDH" title="开户机构代号" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGMC" title="开户机构名称" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="QX" title="期限" align="left" type="string" width="100" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="FFRQ" title="发放日期" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DQRQ" title="到期日期" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZLBL" title="增量比例" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYYE" title="行员余额" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="LXSR" title="利息收入" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="FTPLXZC" title="FTP利息支出" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="YSWSLXXZ" title="应收未收利息新增" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZCJZSS" title="资产减值损失" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="LR" title="模拟利润" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <table id="dklrmxcx_yljjgj" title="月累计结果集" page="true"> 
-    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGDH" title="开户机构代号" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGMC" title="开户机构名称" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="QX" title="期限" align="left" type="string" width="100" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="FFRQ" title="发放日期" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DQRQ" title="到期日期" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZLBL" title="增量比例" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYYE" title="行员余额" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="YLXSR" title="利息收入" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="YFTPLXZC" title="FTP利息支出" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="YYSWSLXXZ" title="应收未收利息新增" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="YZCJZSS" title="资产减值损失" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="YLR" title="模拟利润" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <table id="dklrmxcx_jljjgj" title="季累计结果集" page="true"> 
-    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGDH" title="开户机构代号" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGMC" title="开户机构名称" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="QX" title="期限" align="left" type="string" width="100" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="FFRQ" title="发放日期" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DQRQ" title="到期日期" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZLBL" title="增量比例" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYYE" title="行员余额" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JLXSR" title="利息收入" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JFTPLXZC" title="FTP利息支出" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JYSWSLXXZ" title="应收未收利息新增" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JZCJZSS" title="资产减值损失" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JLR" title="模拟利润" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <table id="dklrmxcx_nljjgj" title="年累计结果集" page="true"> 
-    <col id="TJRQ" title="统计日期" align="left" type="float" width="75" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGDH" title="开户机构代号" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="JGMC" title="开户机构名称" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="QX" title="期限" align="left" type="string" width="100" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="FFRQ" title="发放日期" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DQRQ" title="到期日期" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="ZLBL" title="增量比例" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="HYYE" title="行员余额" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="NLXSR" title="利息收入" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="NFTPLXZC" title="FTP利息支出" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="NYSWSLXXZ" title="应收未收利息新增" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="NZCJZSS" title="资产减值损失" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="NLR" title="模拟利润" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <sqlMap namespace="studio.dklrmxcx"> 
-    <select id="dn0.dklrmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  
-      <isEqual property="sd" compareValue="1">SELECT dkzhym.tjrq,dkzhym.ZHDH,dkzhym.KHH,dkzhym.ZHHM,jg.JGDH,jg.JGMC,dkzhym.KMH,dkzhym.QX,dkzhym.FFRQ,dkzhym.DQRQ, dkzhym.ZHYE,dkzhym.ZLBL,dkzhym.HYYE ,dkzhym.LXSR,dkzhym.FTPLXZC,dkzhym.YSWSLXXZ,dkzhym.ZCJZSS,dkzhym.LR FROM NBZZ_DKZHYM_$tjrq$ dkzhym INNER JOIN KHDX_HY hy on hy.KHDXDH = dkzhym.KHDXDH INNER JOIN KHDX_JG jg ON jg.JGDH = dkzhym.JGDH inner join csb_sjw sjw on 1=1 
-        <isNotEmpty property="tjrq">and sjw.tjrq = $tjrq$01</isNotEmpty> where dkzhym.tjrq between sjw.yc and sjw.ym 
-        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty>  
-        <isNotEmpty property="kmh">and dkzhym.kmh like '%$kmh$%'</isNotEmpty>  
-        <isNotEmpty property="zhdh">and dkzhym.ZHDH LIKE '%$zhdh$%'</isNotEmpty>  
-        <isNotEmpty property="khh">AND dkzhym.KHH LIKE '%$khh$%'</isNotEmpty>  
-        <isNotEmpty property="zhhm">AND dkzhym.ZHHM LIKE '%$zhhm$%'</isNotEmpty> 
-      </isEqual>  
-      <isEqual property="sd" compareValue="5">SELECT dkzhym.tjrq,dkzhym.ZHDH,dkzhym.KHH,dkzhym.ZHHM,jg.JGDH,jg.JGMC,dkzhym.KMH,dkzhym.QX,dkzhym.FFRQ,dkzhym.DQRQ, dkzhym.ZHYE,dkzhym.ZLBL,dkzhym.HYYE ,dkzhym.YLXSR,dkzhym.YFTPLXZC,dkzhym.YYSWSLXXZ,dkzhym.YZCJZSS,dkzhym.YLR FROM NBZZ_DKZHYM_$tjrq$ dkzhym INNER JOIN KHDX_HY hy on hy.KHDXDH = dkzhym.KHDXDH INNER JOIN KHDX_JG jg ON jg.JGDH = dkzhym.JGDH inner join csb_sjw sjw on 1=1 
-        <isNotEmpty property="tjrq">and sjw.tjrq = $tjrq$01</isNotEmpty> where dkzhym.tjrq between sjw.yc and sjw.ym 
-        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty>  
-        <isNotEmpty property="kmh">and dkzhym.kmh like '%$kmh$%'</isNotEmpty>  
-        <isNotEmpty property="zhdh">and dkzhym.ZHDH LIKE '%$zhdh$%'</isNotEmpty>  
-        <isNotEmpty property="khh">AND dkzhym.KHH LIKE '%$khh$%'</isNotEmpty>  
-        <isNotEmpty property="zhhm">AND dkzhym.ZHHM LIKE '%$zhhm$%'</isNotEmpty> 
-      </isEqual>  
-      <isEqual property="sd" compareValue="6">SELECT dkzhym.tjrq,dkzhym.ZHDH,dkzhym.KHH,dkzhym.ZHHM,jg.JGDH,jg.JGMC,dkzhym.KMH,dkzhym.QX,dkzhym.FFRQ,dkzhym.DQRQ, dkzhym.ZHYE,dkzhym.ZLBL,dkzhym.HYYE ,dkzhym.JLXSR,dkzhym.JFTPLXZC,dkzhym.JYSWSLXXZ,dkzhym.JZCJZSS,dkzhym.JLR FROM NBZZ_DKZHYM_$tjrq$ dkzhym INNER JOIN KHDX_HY hy on hy.KHDXDH = dkzhym.KHDXDH INNER JOIN KHDX_JG jg ON jg.JGDH = dkzhym.JGDH inner join csb_sjw sjw on 1=1 
-        <isNotEmpty property="tjrq">and sjw.tjrq = $tjrq$01</isNotEmpty> where dkzhym.tjrq between sjw.yc and sjw.ym 
-        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty>  
-        <isNotEmpty property="kmh">and dkzhym.kmh like '%$kmh$%'</isNotEmpty>  
-        <isNotEmpty property="zhdh">and dkzhym.ZHDH LIKE '%$zhdh$%'</isNotEmpty>  
-        <isNotEmpty property="khh">AND dkzhym.KHH LIKE '%$khh$%'</isNotEmpty>  
-        <isNotEmpty property="zhhm">AND dkzhym.ZHHM LIKE '%$zhhm$%'</isNotEmpty> 
-      </isEqual>  
-      <isEqual property="sd" compareValue="7">SELECT dkzhym.tjrq,dkzhym.ZHDH,dkzhym.KHH,dkzhym.ZHHM,jg.JGDH,jg.JGMC,dkzhym.KMH,dkzhym.QX,dkzhym.FFRQ,dkzhym.DQRQ, dkzhym.ZHYE,dkzhym.ZLBL,dkzhym.HYYE ,dkzhym.NLXSR,dkzhym.NFTPLXZC,dkzhym.NYSWSLXXZ,dkzhym.NZCJZSS,dkzhym.NLR FROM NBZZ_DKZHYM_$tjrq$ dkzhym INNER JOIN KHDX_HY hy on hy.KHDXDH = dkzhym.KHDXDH INNER JOIN KHDX_JG jg ON jg.JGDH = dkzhym.JGDH inner join csb_sjw sjw on 1=1 
-        <isNotEmpty property="tjrq">and sjw.tjrq = $tjrq$01</isNotEmpty> where dkzhym.tjrq between sjw.yc and sjw.ym 
-        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty>  
-        <isNotEmpty property="kmh">and dkzhym.kmh like '%$kmh$%'</isNotEmpty>  
-        <isNotEmpty property="zhdh">and dkzhym.ZHDH LIKE '%$zhdh$%'</isNotEmpty>  
-        <isNotEmpty property="khh">AND dkzhym.KHH LIKE '%$khh$%'</isNotEmpty>  
-        <isNotEmpty property="zhhm">AND dkzhym.ZHHM LIKE '%$zhhm$%'</isNotEmpty> 
-      </isEqual> 
-    </select>  
-    <select id="dn0.dklrmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( 
-      <isEqual property="sd" compareValue="1">SELECT dkzhym.tjrq,dkzhym.ZHDH,dkzhym.KHH,dkzhym.ZHHM,jg.JGDH,jg.JGMC,dkzhym.KMH,dkzhym.QX,dkzhym.FFRQ,dkzhym.DQRQ, dkzhym.ZHYE,dkzhym.ZLBL,dkzhym.HYYE ,dkzhym.LXSR,dkzhym.FTPLXZC,dkzhym.YSWSLXXZ,dkzhym.ZCJZSS,dkzhym.LR FROM NBZZ_DKZHYM_$tjrq$ dkzhym INNER JOIN KHDX_HY hy on hy.KHDXDH = dkzhym.KHDXDH INNER JOIN KHDX_JG jg ON jg.JGDH = dkzhym.JGDH inner join csb_sjw sjw on 1=1 
-        <isNotEmpty property="tjrq">and sjw.tjrq = $tjrq$01</isNotEmpty> where dkzhym.tjrq between sjw.yc and sjw.ym 
-        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty>  
-        <isNotEmpty property="kmh">and dkzhym.kmh like '%$kmh$%'</isNotEmpty>  
-        <isNotEmpty property="zhdh">and dkzhym.ZHDH LIKE '%$zhdh$%'</isNotEmpty>  
-        <isNotEmpty property="khh">AND dkzhym.KHH LIKE '%$khh$%'</isNotEmpty>  
-        <isNotEmpty property="zhhm">AND dkzhym.ZHHM LIKE '%$zhhm$%'</isNotEmpty> 
-      </isEqual>  
-      <isEqual property="sd" compareValue="5">SELECT dkzhym.tjrq,dkzhym.ZHDH,dkzhym.KHH,dkzhym.ZHHM,jg.JGDH,jg.JGMC,dkzhym.KMH,dkzhym.QX,dkzhym.FFRQ,dkzhym.DQRQ, dkzhym.ZHYE,dkzhym.ZLBL,dkzhym.HYYE ,dkzhym.YLXSR,dkzhym.YFTPLXZC,dkzhym.YYSWSLXXZ,dkzhym.YZCJZSS,dkzhym.YLR FROM NBZZ_DKZHYM_$tjrq$ dkzhym INNER JOIN KHDX_HY hy on hy.KHDXDH = dkzhym.KHDXDH INNER JOIN KHDX_JG jg ON jg.JGDH = dkzhym.JGDH inner join csb_sjw sjw on 1=1 
-        <isNotEmpty property="tjrq">and sjw.tjrq = $tjrq$01</isNotEmpty> where dkzhym.tjrq between sjw.yc and sjw.ym 
-        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty>  
-        <isNotEmpty property="kmh">and dkzhym.kmh like '%$kmh$%'</isNotEmpty>  
-        <isNotEmpty property="zhdh">and dkzhym.ZHDH LIKE '%$zhdh$%'</isNotEmpty>  
-        <isNotEmpty property="khh">AND dkzhym.KHH LIKE '%$khh$%'</isNotEmpty>  
-        <isNotEmpty property="zhhm">AND dkzhym.ZHHM LIKE '%$zhhm$%'</isNotEmpty> 
-      </isEqual>  
-      <isEqual property="sd" compareValue="6">SELECT dkzhym.tjrq,dkzhym.ZHDH,dkzhym.KHH,dkzhym.ZHHM,jg.JGDH,jg.JGMC,dkzhym.KMH,dkzhym.QX,dkzhym.FFRQ,dkzhym.DQRQ, dkzhym.ZHYE,dkzhym.ZLBL,dkzhym.HYYE ,dkzhym.JLXSR,dkzhym.JFTPLXZC,dkzhym.JYSWSLXXZ,dkzhym.JZCJZSS,dkzhym.JLR FROM NBZZ_DKZHYM_$tjrq$ dkzhym INNER JOIN KHDX_HY hy on hy.KHDXDH = dkzhym.KHDXDH INNER JOIN KHDX_JG jg ON jg.JGDH = dkzhym.JGDH inner join csb_sjw sjw on 1=1 
-        <isNotEmpty property="tjrq">and sjw.tjrq = $tjrq$01</isNotEmpty> where dkzhym.tjrq between sjw.yc and sjw.ym 
-        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty>  
-        <isNotEmpty property="kmh">and dkzhym.kmh like '%$kmh$%'</isNotEmpty>  
-        <isNotEmpty property="zhdh">and dkzhym.ZHDH LIKE '%$zhdh$%'</isNotEmpty>  
-        <isNotEmpty property="khh">AND dkzhym.KHH LIKE '%$khh$%'</isNotEmpty>  
-        <isNotEmpty property="zhhm">AND dkzhym.ZHHM LIKE '%$zhhm$%'</isNotEmpty> 
-      </isEqual>  
-      <isEqual property="sd" compareValue="7">SELECT dkzhym.tjrq,dkzhym.ZHDH,dkzhym.KHH,dkzhym.ZHHM,jg.JGDH,jg.JGMC,dkzhym.KMH,dkzhym.QX,dkzhym.FFRQ,dkzhym.DQRQ, dkzhym.ZHYE,dkzhym.ZLBL,dkzhym.HYYE ,dkzhym.NLXSR,dkzhym.NFTPLXZC,dkzhym.NYSWSLXXZ,dkzhym.NZCJZSS,dkzhym.NLR FROM NBZZ_DKZHYM_$tjrq$ dkzhym INNER JOIN KHDX_HY hy on hy.KHDXDH = dkzhym.KHDXDH INNER JOIN KHDX_JG jg ON jg.JGDH = dkzhym.JGDH inner join csb_sjw sjw on 1=1 
-        <isNotEmpty property="tjrq">and sjw.tjrq = $tjrq$01</isNotEmpty> where dkzhym.tjrq between sjw.yc and sjw.ym 
-        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty>  
-        <isNotEmpty property="kmh">and dkzhym.kmh like '%$kmh$%'</isNotEmpty>  
-        <isNotEmpty property="zhdh">and dkzhym.ZHDH LIKE '%$zhdh$%'</isNotEmpty>  
-        <isNotEmpty property="khh">AND dkzhym.KHH LIKE '%$khh$%'</isNotEmpty>  
-        <isNotEmpty property="zhhm">AND dkzhym.ZHHM LIKE '%$zhhm$%'</isNotEmpty> 
-      </isEqual> ) t
-    </select>  
-    <select id="dn0.dklrmxcx_MSQL4SELECT_sd" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT dmms.DMZ AS key,dmms.DMMS AS value FROM CSB_DMMS dmms WHERE dmms.DMMC ='ZBSDBS' AND dmms.DMZ IN ('1','5','6','7')</select> 
-  </sqlMap>  
-  <rels> 
-    <items id="dklrmxcx_sdjgj"> 
-      <item name="sd" compareValue="1" operate="isEqual"/> 
-    </items>  
-    <items id="dklrmxcx_yljjgj"> 
-      <item name="sd" compareValue="5" operate="isEqual"/> 
-    </items>  
-    <items id="dklrmxcx_jljjgj"> 
-      <item name="sd" compareValue="6" operate="isEqual"/> 
-    </items>  
-    <items id="dklrmxcx_nljjgj"> 
-      <item name="sd" compareValue="7" operate="isEqual"/> 
-    </items> 
-  </rels>  
+<pageSetting id="dklrmxcx" title="贷款帐户利润明细查询" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月">
+        <attribute key="dateFmt" value="yyyyMM" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+      </tag>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年份">
+        <attribute key="dateFmt" value="yyyy" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="style" value="display:none" />
+        <attribute key="name" value="tjnf" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员">
+        <attribute key="isDisplayXN" value="true" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="时段">
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isSearch" value="false" />
+        <attribute key="sql" value="SELECT dmms.DMZ AS key,dmms.DMMS AS value  FROM CSB_DMMS dmms WHERE dmms.DMMC ='ZBSDBS' AND dmms.DMZ IN ('1','5','6','7')" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="sd" />
+        <attribute key="isAll" value="false" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Text" label="科目号">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="kmh" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="1" col="0" colspan="1" rowspan="1" name="Text" label="客户号">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="khh" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="1" col="1" colspan="1" rowspan="1" name="Text" label="客户名称">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="zhhm" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="1" col="2" colspan="1" rowspan="1" name="Text" label="账号">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="zhdh" />
+        <attribute key="readonly" value="false" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="dklrmxcx_sdjgj" title="时点结果集" page="true">
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="开户机构代号" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="开户机构名称" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QX" title="期限" align="left" type="string" width="100" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FFRQ" title="发放日期" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DQRQ" title="到期日期" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZLBL" title="增量比例" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYYE" title="行员余额" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="LXSR" title="利息收入" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FTPLXZC" title="FTP利息支出" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="YSWSLXXZ" title="应收未收利息新增" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZCJZSS" title="资产减值损失" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="LR" title="模拟利润" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <table id="dklrmxcx_yljjgj" title="月累计结果集" page="true">
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="开户机构代号" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="开户机构名称" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QX" title="期限" align="left" type="string" width="100" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FFRQ" title="发放日期" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DQRQ" title="到期日期" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZLBL" title="增量比例" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYYE" title="行员余额" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="YLXSR" title="利息收入" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="YFTPLXZC" title="FTP利息支出" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="YYSWSLXXZ" title="应收未收利息新增" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="YZCJZSS" title="资产减值损失" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="YLR" title="模拟利润" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <table id="dklrmxcx_jljjgj" title="季累计结果集" page="true">
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="开户机构代号" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="开户机构名称" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QX" title="期限" align="left" type="string" width="100" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FFRQ" title="发放日期" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DQRQ" title="到期日期" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZLBL" title="增量比例" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYYE" title="行员余额" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JLXSR" title="利息收入" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JFTPLXZC" title="FTP利息支出" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JYSWSLXXZ" title="应收未收利息新增" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JZCJZSS" title="资产减值损失" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JLR" title="模拟利润" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <table id="dklrmxcx_nljjgj" title="年累计结果集" page="true">
+    <col id="TJRQ" title="统计日期" align="left" type="float" width="75" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="开户机构代号" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="开户机构名称" align="left" type="string" width="150" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KMH" title="科目号" align="left" type="string" width="80" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QX" title="期限" align="left" type="string" width="100" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FFRQ" title="发放日期" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DQRQ" title="到期日期" align="left" type="string" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHYE" title="账户余额" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZLBL" title="增量比例" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYYE" title="行员余额" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="NLXSR" title="利息收入" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="NFTPLXZC" title="FTP利息支出" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="NYSWSLXXZ" title="应收未收利息新增" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="NZCJZSS" title="资产减值损失" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="NLR" title="模拟利润" align="right" type="float" width="120" frozen="false" format="" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.dklrmxcx">
+    <select id="dn0.dklrmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <isEqual property="sd" compareValue="1">
+        SELECT dkzhym.tjrq,dkzhym.ZHDH,dkzhym.KHH,dkzhym.ZHHM,jg.JGDH,jg.JGMC,dkzhym.KMH,dkzhym.QX,dkzhym.FFRQ,dkzhym.DQRQ, dkzhym.ZHYE,dkzhym.ZLBL,dkzhym.HYYE ,dkzhym.LXSR,dkzhym.FTPLXZC,dkzhym.YSWSLXXZ,dkzhym.ZCJZSS,dkzhym.LR FROM NBZZ_DKZHYM_$tjrq$ dkzhym INNER JOIN KHDX_HY hy on hy.KHDXDH = dkzhym.KHDXDH INNER JOIN KHDX_JG jg ON jg.JGDH = dkzhym.JGDH inner join csb_sjw sjw on 1=1
+        <isNotEmpty property="tjrq">and  sjw.tjrq = $tjrq$01</isNotEmpty>
+        where dkzhym.tjrq  between sjw.yc and sjw.ym
+        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty>
+        <isNotEmpty property="kmh">and dkzhym.kmh like '%$kmh$%'</isNotEmpty>
+        <isNotEmpty property="zhdh">and  dkzhym.ZHDH LIKE '%$zhdh$%'</isNotEmpty>
+        <isNotEmpty property="khh">AND dkzhym.KHH LIKE '%$khh$%'</isNotEmpty>
+        <isNotEmpty property="zhhm">AND dkzhym.ZHHM LIKE '%$zhhm$%'</isNotEmpty>
+      </isEqual>
+      <isEqual property="sd" compareValue="5">
+        SELECT dkzhym.tjrq,dkzhym.ZHDH,dkzhym.KHH,dkzhym.ZHHM,jg.JGDH,jg.JGMC,dkzhym.KMH,dkzhym.QX,dkzhym.FFRQ,dkzhym.DQRQ, dkzhym.ZHYE,dkzhym.ZLBL,dkzhym.HYYE ,dkzhym.YLXSR,dkzhym.YFTPLXZC,dkzhym.YYSWSLXXZ,dkzhym.YZCJZSS,dkzhym.YLR FROM NBZZ_DKZHYM_$tjrq$ dkzhym INNER JOIN KHDX_HY hy on hy.KHDXDH = dkzhym.KHDXDH INNER JOIN KHDX_JG jg ON jg.JGDH = dkzhym.JGDH inner join csb_sjw sjw on 1=1
+        <isNotEmpty property="tjrq">and  sjw.tjrq = $tjrq$01</isNotEmpty>
+        where dkzhym.tjrq between sjw.yc and sjw.ym
+        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty>
+        <isNotEmpty property="kmh">and dkzhym.kmh like '%$kmh$%'</isNotEmpty>
+        <isNotEmpty property="zhdh">and  dkzhym.ZHDH LIKE '%$zhdh$%'</isNotEmpty>
+        <isNotEmpty property="khh">AND dkzhym.KHH LIKE '%$khh$%'</isNotEmpty>
+        <isNotEmpty property="zhhm">AND dkzhym.ZHHM LIKE '%$zhhm$%'</isNotEmpty>
+      </isEqual>
+      <isEqual property="sd" compareValue="6">
+        SELECT dkzhym.tjrq,dkzhym.ZHDH,dkzhym.KHH,dkzhym.ZHHM,jg.JGDH,jg.JGMC,dkzhym.KMH,dkzhym.QX,dkzhym.FFRQ,dkzhym.DQRQ, dkzhym.ZHYE,dkzhym.ZLBL,dkzhym.HYYE ,dkzhym.JLXSR,dkzhym.JFTPLXZC,dkzhym.JYSWSLXXZ,dkzhym.JZCJZSS,dkzhym.JLR FROM NBZZ_DKZHYM_$tjrq$ dkzhym INNER JOIN KHDX_HY hy on hy.KHDXDH = dkzhym.KHDXDH INNER JOIN KHDX_JG jg ON jg.JGDH = dkzhym.JGDH inner join csb_sjw sjw on 1=1
+        <isNotEmpty property="tjrq">and  sjw.tjrq = $tjrq$01</isNotEmpty>
+        where dkzhym.tjrq  between sjw.yc and sjw.ym
+        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty>
+        <isNotEmpty property="kmh">and dkzhym.kmh like '%$kmh$%'</isNotEmpty>
+        <isNotEmpty property="zhdh">and  dkzhym.ZHDH LIKE '%$zhdh$%'</isNotEmpty>
+        <isNotEmpty property="khh">AND dkzhym.KHH LIKE '%$khh$%'</isNotEmpty>
+        <isNotEmpty property="zhhm">AND dkzhym.ZHHM LIKE '%$zhhm$%'</isNotEmpty>
+      </isEqual>
+      <isEqual property="sd" compareValue="7">
+        SELECT dkzhym.tjrq,dkzhym.ZHDH,dkzhym.KHH,dkzhym.ZHHM,jg.JGDH,jg.JGMC,dkzhym.KMH,dkzhym.QX,dkzhym.FFRQ,dkzhym.DQRQ, dkzhym.ZHYE,dkzhym.ZLBL,dkzhym.HYYE ,dkzhym.NLXSR,dkzhym.NFTPLXZC,dkzhym.NYSWSLXXZ,dkzhym.NZCJZSS,dkzhym.NLR FROM NBZZ_DKZHYM_$tjrq$ dkzhym INNER JOIN KHDX_HY hy on hy.KHDXDH = dkzhym.KHDXDH INNER JOIN KHDX_JG jg ON jg.JGDH = dkzhym.JGDH inner join csb_sjw sjw on 1=1
+        <isNotEmpty property="tjrq">and  sjw.tjrq = $tjrq$01</isNotEmpty>
+        where dkzhym.tjrq between sjw.yc and sjw.ym
+        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty>
+        <isNotEmpty property="kmh">and dkzhym.kmh like '%$kmh$%'</isNotEmpty>
+        <isNotEmpty property="zhdh">and  dkzhym.ZHDH LIKE '%$zhdh$%'</isNotEmpty>
+        <isNotEmpty property="khh">AND dkzhym.KHH LIKE '%$khh$%'</isNotEmpty>
+        <isNotEmpty property="zhhm">AND dkzhym.ZHHM LIKE '%$zhhm$%'</isNotEmpty>
+      </isEqual>
+    </select>
+    <select id="dn0.dklrmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from (
+      <isEqual property="sd" compareValue="1">
+        SELECT dkzhym.tjrq,dkzhym.ZHDH,dkzhym.KHH,dkzhym.ZHHM,jg.JGDH,jg.JGMC,dkzhym.KMH,dkzhym.QX,dkzhym.FFRQ,dkzhym.DQRQ, dkzhym.ZHYE,dkzhym.ZLBL,dkzhym.HYYE ,dkzhym.LXSR,dkzhym.FTPLXZC,dkzhym.YSWSLXXZ,dkzhym.ZCJZSS,dkzhym.LR FROM NBZZ_DKZHYM_$tjrq$ dkzhym INNER JOIN KHDX_HY hy on hy.KHDXDH = dkzhym.KHDXDH INNER JOIN KHDX_JG jg ON jg.JGDH = dkzhym.JGDH inner join csb_sjw sjw on 1=1
+        <isNotEmpty property="tjrq">and  sjw.tjrq = $tjrq$01</isNotEmpty>
+        where dkzhym.tjrq  between sjw.yc and sjw.ym
+        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty>
+        <isNotEmpty property="kmh">and dkzhym.kmh like '%$kmh$%'</isNotEmpty>
+        <isNotEmpty property="zhdh">and  dkzhym.ZHDH LIKE '%$zhdh$%'</isNotEmpty>
+        <isNotEmpty property="khh">AND dkzhym.KHH LIKE '%$khh$%'</isNotEmpty>
+        <isNotEmpty property="zhhm">AND dkzhym.ZHHM LIKE '%$zhhm$%'</isNotEmpty>
+      </isEqual>
+      <isEqual property="sd" compareValue="5">
+        SELECT dkzhym.tjrq,dkzhym.ZHDH,dkzhym.KHH,dkzhym.ZHHM,jg.JGDH,jg.JGMC,dkzhym.KMH,dkzhym.QX,dkzhym.FFRQ,dkzhym.DQRQ, dkzhym.ZHYE,dkzhym.ZLBL,dkzhym.HYYE ,dkzhym.YLXSR,dkzhym.YFTPLXZC,dkzhym.YYSWSLXXZ,dkzhym.YZCJZSS,dkzhym.YLR FROM NBZZ_DKZHYM_$tjrq$ dkzhym INNER JOIN KHDX_HY hy on hy.KHDXDH = dkzhym.KHDXDH INNER JOIN KHDX_JG jg ON jg.JGDH = dkzhym.JGDH inner join csb_sjw sjw on 1=1
+        <isNotEmpty property="tjrq">and  sjw.tjrq = $tjrq$01</isNotEmpty>
+        where dkzhym.tjrq between sjw.yc and sjw.ym
+        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty>
+        <isNotEmpty property="kmh">and dkzhym.kmh like '%$kmh$%'</isNotEmpty>
+        <isNotEmpty property="zhdh">and  dkzhym.ZHDH LIKE '%$zhdh$%'</isNotEmpty>
+        <isNotEmpty property="khh">AND dkzhym.KHH LIKE '%$khh$%'</isNotEmpty>
+        <isNotEmpty property="zhhm">AND dkzhym.ZHHM LIKE '%$zhhm$%'</isNotEmpty>
+      </isEqual>
+      <isEqual property="sd" compareValue="6">
+        SELECT dkzhym.tjrq,dkzhym.ZHDH,dkzhym.KHH,dkzhym.ZHHM,jg.JGDH,jg.JGMC,dkzhym.KMH,dkzhym.QX,dkzhym.FFRQ,dkzhym.DQRQ, dkzhym.ZHYE,dkzhym.ZLBL,dkzhym.HYYE ,dkzhym.JLXSR,dkzhym.JFTPLXZC,dkzhym.JYSWSLXXZ,dkzhym.JZCJZSS,dkzhym.JLR FROM NBZZ_DKZHYM_$tjrq$ dkzhym INNER JOIN KHDX_HY hy on hy.KHDXDH = dkzhym.KHDXDH INNER JOIN KHDX_JG jg ON jg.JGDH = dkzhym.JGDH inner join csb_sjw sjw on 1=1
+        <isNotEmpty property="tjrq">and  sjw.tjrq = $tjrq$01</isNotEmpty>
+        where dkzhym.tjrq  between sjw.yc and sjw.ym
+        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty>
+        <isNotEmpty property="kmh">and dkzhym.kmh like '%$kmh$%'</isNotEmpty>
+        <isNotEmpty property="zhdh">and  dkzhym.ZHDH LIKE '%$zhdh$%'</isNotEmpty>
+        <isNotEmpty property="khh">AND dkzhym.KHH LIKE '%$khh$%'</isNotEmpty>
+        <isNotEmpty property="zhhm">AND dkzhym.ZHHM LIKE '%$zhhm$%'</isNotEmpty>
+      </isEqual>
+      <isEqual property="sd" compareValue="7">
+        SELECT dkzhym.tjrq,dkzhym.ZHDH,dkzhym.KHH,dkzhym.ZHHM,jg.JGDH,jg.JGMC,dkzhym.KMH,dkzhym.QX,dkzhym.FFRQ,dkzhym.DQRQ, dkzhym.ZHYE,dkzhym.ZLBL,dkzhym.HYYE ,dkzhym.NLXSR,dkzhym.NFTPLXZC,dkzhym.NYSWSLXXZ,dkzhym.NZCJZSS,dkzhym.NLR FROM NBZZ_DKZHYM_$tjrq$ dkzhym INNER JOIN KHDX_HY hy on hy.KHDXDH = dkzhym.KHDXDH INNER JOIN KHDX_JG jg ON jg.JGDH = dkzhym.JGDH inner join csb_sjw sjw on 1=1
+        <isNotEmpty property="tjrq">and  sjw.tjrq = $tjrq$01</isNotEmpty>
+        where dkzhym.tjrq between sjw.yc and sjw.ym
+        <isNotEmpty property="khdxdh">and hy.khdxdh = $khdxdh$</isNotEmpty>
+        <isNotEmpty property="kmh">and dkzhym.kmh like '%$kmh$%'</isNotEmpty>
+        <isNotEmpty property="zhdh">and  dkzhym.ZHDH LIKE '%$zhdh$%'</isNotEmpty>
+        <isNotEmpty property="khh">AND dkzhym.KHH LIKE '%$khh$%'</isNotEmpty>
+        <isNotEmpty property="zhhm">AND dkzhym.ZHHM LIKE '%$zhhm$%'</isNotEmpty>
+      </isEqual>
+      ) t
+    </select>
+    <select id="dn0.dklrmxcx_MSQL4SELECT_sd" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT dmms.DMZ AS key,dmms.DMMS AS value  FROM CSB_DMMS dmms WHERE dmms.DMMC ='ZBSDBS' AND dmms.DMZ IN ('1','5','6','7')</select>
+  </sqlMap>
+  <rels>
+    <items id="dklrmxcx_sdjgj">
+      <item name="sd" compareValue="1" operate="isEqual" />
+    </items>
+    <items id="dklrmxcx_yljjgj">
+      <item name="sd" compareValue="5" operate="isEqual" />
+    </items>
+    <items id="dklrmxcx_jljjgj">
+      <item name="sd" compareValue="6" operate="isEqual" />
+    </items>
+    <items id="dklrmxcx_nljjgj">
+      <item name="sd" compareValue="7" operate="isEqual" />
+    </items>
+  </rels>
   <javascript><![CDATA[jQuery(document).ready(function () {
   BindParent('tjrq','tjnf','blur');
 });
@@ -234,5 +251,6 @@ function customValidate(){
 var tjrq = $('#tjrq').val().substring(0,4);
  $('#tjnf').val(tjrq);
  return true;
-}]]></javascript> 
+}]]></javascript>
 </pageSetting>
+
