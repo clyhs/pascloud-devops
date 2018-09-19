@@ -427,7 +427,7 @@ public class PasService extends AbstractBaseService {
 	 * @param containerName
 	 * @return
 	 */
-	private Boolean uploadDubbofile(Connection conn,String serverPath,String containerName){
+	private synchronized Boolean uploadDubbofile(Connection conn,String serverPath,String containerName){
 		Boolean flag = false;
 		if(null!=conn){
 			log.info("上传dubbo.properties文件");
@@ -448,7 +448,7 @@ public class PasService extends AbstractBaseService {
 	 * @param containerName
 	 * @return
 	 */
-	private Boolean uploadConfigfile(Connection conn,String serverPath,Boolean dev,String containerName,String ip){
+	private synchronized Boolean uploadConfigfile(Connection conn,String serverPath,Boolean dev,String containerName,String ip){
 		Boolean flag = false;
 		List<MqVo> mqs = new ArrayList<MqVo>();
 		if(null!=conn){

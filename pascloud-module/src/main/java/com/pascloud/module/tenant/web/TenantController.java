@@ -6,6 +6,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,6 +30,7 @@ import com.pascloud.module.docker.service.ContainerService;
 import com.pascloud.module.docker.service.DockerService;
 import com.pascloud.module.mycat.service.MycatService;
 import com.pascloud.module.passervice.service.ConfigService;
+import com.pascloud.module.passervice.service.ContainerThread;
 import com.pascloud.module.passervice.service.PasService;
 import com.pascloud.module.redis.service.RedisService;
 import com.pascloud.module.server.service.ServerService;
@@ -36,6 +42,7 @@ import com.pascloud.vo.database.DBInfo;
 import com.pascloud.vo.docker.ContainerVo;
 import com.pascloud.vo.docker.NodeVo;
 import com.pascloud.vo.mycat.DataNodeVo;
+import com.pascloud.vo.pass.ContainerThreadVo;
 import com.pascloud.vo.pass.PasTypeEnum;
 import com.pascloud.vo.pass.RedisVo;
 import com.pascloud.vo.result.ResultBean;
@@ -230,6 +237,7 @@ public class TenantController extends BaseController {
 				if(null!=dn0Conn){
 					log.info("清除租户在公共库的全部行员数据");
 					m_tenantService.deleteHyWithPublicDB(dn0Conn, name);
+					/*
 					List<RedisVo> rediss = m_pasService.getRedisServer();
 					if(null!=rediss && rediss.size()>0){
 						for(RedisVo vo:rediss){
@@ -237,7 +245,8 @@ public class TenantController extends BaseController {
 							log.info("清除租户在缓存的全部行员数据");
 							m_redisService.delRedisByKey(id, 0, "app_*");
 						}
-					}
+					}*/
+					m_redisService.deleteRedisApp();
 					
 				}
 				result = new ResultCommon(PasCloudCode.SUCCESS);
@@ -278,33 +287,54 @@ public class TenantController extends BaseController {
 		ResultCommon result = new ResultCommon(PasCloudCode.SUCCESS);
 		List<ContainerVo> containers = new ArrayList<>();
 		//containers = m_dockerService.getContainer(dockerClient);
-		containers = m_containerService.getContainers("pascloud_service");
-		List<NodeVo> nodes = new ArrayList<>();
 		
-		/****上传到复制的项目***/
-		String status = "";
-		if(containers.size()>0){
-			for(ContainerVo vo : containers){
-				Boolean flag = false;
-				
-				if(vo.getName().contains(PasTypeEnum.DEMO.getValue())){
-					m_pasService.uploadConfigForStart(vo.getIp(), PasTypeEnum.DEMO, vo.getName());
-					flag = true;
-				}else if(vo.getName().contains(PasTypeEnum.PASPM.getValue())){
-					m_pasService.uploadConfigForStart(vo.getIp(), PasTypeEnum.PASPM, vo.getName());
-					flag = true;
+		try{
+			containers = m_containerService.getContainers("pascloud_service");
+			List<NodeVo> nodes = new ArrayList<>();
+			List<Future<ContainerThreadVo>> futures = new ArrayList<>();
+			//List<ContainerThread> tasks = new ArrayList<>();
+			/****上传到复制的项目***/
+			String status = "";
+			if(containers.size()>0){
+				ExecutorService pool = Executors.newFixedThreadPool(3);
+				for(ContainerVo vo : containers){
+					Boolean flag = false;
+					Future<ContainerThreadVo> future = pool.submit(new ContainerThread(m_pasService,vo ,m_dockerService));
+					futures.add(future);
+					
+					//tasks.add(new ContainerThread(m_pasService,vo ,m_dockerService));
+					
+
+					
+					/*
+					if(vo.getName().contains(PasTypeEnum.DEMO.getValue())){
+						m_pasService.uploadConfigForStart(vo.getIp(), PasTypeEnum.DEMO, vo.getName());
+						flag = true;
+					}else if(vo.getName().contains(PasTypeEnum.PASPM.getValue())){
+						m_pasService.uploadConfigForStart(vo.getIp(), PasTypeEnum.PASPM, vo.getName());
+						flag = true;
+					}
+					if(flag){
+						DefaultDockerClient client = DefaultDockerClient.builder()
+								.uri("http://"+vo.getIp()+":"+defaultPort).build();
+						log.info("重启服务"+vo.getName());
+						status = m_dockerService.restartContainer(client, vo.getId());
+						log.info("重启服务"+vo.getName()+"成功");
+					}*/
+					
 				}
-				if(flag){
-					DefaultDockerClient client = DefaultDockerClient.builder()
-							.uri("http://"+vo.getIp()+":"+defaultPort).build();
-					log.info("重启服务"+vo.getName());
-					status = m_dockerService.restartContainer(client, vo.getId());
-					log.info("重启服务"+vo.getName()+"成功");
+				//List<Future<ContainerThreadVo>> futuress = pool.invokeAll(tasks); 
+				pool.shutdown();
+				pool.awaitTermination(1, TimeUnit.HOURS);
+				for(Future f:futures){
+					ContainerThreadVo vto = (ContainerThreadVo) f.get();
+					log.info(vto.getVo().getName()+" status="+vto.getStatus());
 				}
-				
 			}
-		}
-		
+		}catch(InterruptedException | ExecutionException e) {
+            log.error(e.getMessage());
+        }
+        
 		return result;
 		
 	}
