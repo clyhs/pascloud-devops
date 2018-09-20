@@ -257,8 +257,8 @@ public class ConfigService {
 		p.setValueByKey(Constants.PASCLOUD_PUBLIC_DB+".username", "root", "");
 		p.setValueByKey(Constants.PASCLOUD_PUBLIC_DB+".password", "root", "");
 		p.setValueByKey(Constants.PASCLOUD_PUBLIC_DB+".type", "mysql", "");
-		p.setValueByKey(Constants.PASCLOUD_PUBLIC_DB+".en", "gg", "");
-		p.setValueByKey(Constants.PASCLOUD_PUBLIC_DB+".cn", "公共", "");
+		p.setValueByKey(Constants.PASCLOUD_PUBLIC_DB+".en", "yw", "");
+		p.setValueByKey(Constants.PASCLOUD_PUBLIC_DB+".cn", "运维库", "");
 		
 		/*dn0.url=jdbc\:mysql\://192.168.0.16\:3306/pascloud
           dn0.driverClass=com.mysql.jdbc.Driver

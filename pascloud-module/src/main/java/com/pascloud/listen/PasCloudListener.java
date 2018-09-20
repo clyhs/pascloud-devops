@@ -1,6 +1,9 @@
 package com.pascloud.listen;
 
 import java.io.File;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -13,6 +16,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.pascloud.constant.Constants;
 import com.pascloud.module.config.init.PasCloudInitConfig;
 import com.pascloud.module.redis.service.RedisService;
+import com.pascloud.timer.RedisTimerTask;
 
 public class PasCloudListener implements ServletContextListener {
 	
@@ -36,12 +40,26 @@ public class PasCloudListener implements ServletContextListener {
 		System.setProperty(Constants.WEB_APP_ROOT_DEFAULT, prefix);
 		
 		springContext = WebApplicationContextUtils.getWebApplicationContext(sce.getServletContext());  
+		/*
+		new Thread(new Runnable(){
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				if(null==redisService){
+					log.info("获取RedisService");
+					redisService = (RedisService) springContext.getBean("redisService");
+					redisService.initRedisServer();
+				}
+			}
+			
+		}).start();
+		*/
+		redisService = (RedisService) springContext.getBean("redisService");
+		RedisTimerTask redisTimeTask = new RedisTimerTask(redisService);
+		ScheduledExecutorService pool = Executors.newScheduledThreadPool(1);
+		pool.scheduleAtFixedRate(redisTimeTask, 0, 30*1000, TimeUnit.MILLISECONDS);
 		
-		if(null==redisService){
-			log.info("获取RedisService");
-			redisService = (RedisService) springContext.getBean("redisService");
-			redisService.initRedisServer();
-		}
 		
 	}
 

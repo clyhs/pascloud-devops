@@ -533,7 +533,7 @@ public class TenantController extends BaseController {
 		return result;
 	}
 	
-	@RequestMapping(value = "checkDBConfigByName.json", method = RequestMethod.GET)
+	@RequestMapping(value = "checkDBConfigByName.json", method = RequestMethod.POST)
 	@ResponseBody
 	public ResultCommon checkDBConfigByName(HttpServletRequest request,
 			@RequestParam(value = "name", defaultValue = "", required = true) String name,
@@ -545,7 +545,19 @@ public class TenantController extends BaseController {
 		if(name.length()==0 || cn.length()==0 || en.length()==0){
 			return  new ResultCommon(PasCloudCode.NULLDATA);
 		}
+		
+		
 		try {
+			log.info("cn="+cn+",en="+en);
+			if(name.toLowerCase().equals(Constants.PASCLOUD_DNX)){
+				if(!cn.trim().equals("公共") || !en.trim().toLowerCase().equals("gg")){
+					return  new ResultCommon(PasCloudCode.ERROR.getCode(),"dnx的英文代号只能填写‘gg’,中方名称只能填写‘公共’");
+				}
+			}else{
+				if(cn.trim().equals("公共") || en.trim().toLowerCase().equals("gg")){
+					return  new ResultCommon(PasCloudCode.ERROR.getCode(),"dn1..99的英文代号不能填写‘gg’,中方名称不能填写‘公共’");
+				}
+			}
 			
 			Boolean flag = false;
 			flag = m_configService.checkEnAndCn(name, en, cn);
@@ -595,6 +607,23 @@ public class TenantController extends BaseController {
 		}
 		
 		return conn;
+	}
+	
+	
+	public static void main(String[] args ){
+		String name = "dn0";
+		String en="gg1";
+		String cn="公共1";
+		System.out.println("cn="+cn+",en="+en);
+		if(name.toLowerCase().equals(Constants.PASCLOUD_DNX)){
+			if(!cn.trim().equals("公共") || !en.trim().toLowerCase().equals("gg")){
+				System.out.println("dnx的英文代号只能填写‘gg’,中方名称只能填写‘公共’");
+			}
+		}else{
+			if(cn.trim().equals("公共") || en.trim().toLowerCase().equals("gg")){
+				System.out.println("dn1..99的英文代号不能填写‘gg’,中方名称不能填写‘公共’");
+			}
+		}
 	}
 	
 

@@ -222,13 +222,27 @@ function addSelectDB(){
 		return ;
 	}
 	
+	if(name.toLowerCase()=='dnx'){
+		if(en!='gg' || cn!='公共'){
+			$.messager.alert('提示','dnx的英文代号只能填写‘gg’,中方名称只能填写‘公共’');
+			return ;
+		}
+	}else{
+		if(en=='gg' || cn=='公共'){
+			$.messager.alert('提示','dn1..99的英文代号不能填写‘gg’,中方名称不能填写‘公共’');
+			return ;
+		}
+	}
+	
+	
+	
 	var params = {name:name,en:en,cn:cn};
 	//EasyUILoad('mainCenter');
 	//EasyUILoadForMsgWithId('mainCenter','添加租户节点','maskId');
 	MaskUtil.mask();
 	MaskUtil.mask('添加租户节点...');
 	$('#tenantAddSelectDb').dialog('close');
-	$.get('checkDBConfigByName.json',params,function(data,status){
+	$.post('checkDBConfigByName.json',params,function(data,status){
 		if(data.code == 10000){
 			//$.messager.alert('提示','节点还没被使用');
 			//这一步先把信息填到db.properties
@@ -252,7 +266,7 @@ function addSelectDB(){
 			});
 		}else{
 			//dispalyEasyUILoad('mainCenter');
-			$.messager.alert('提示','此节点已经被使用，请换其它节点');
+			$.messager.alert('提示',data.desc);
 			MaskUtil.unmask(); 
 		}
 	});
