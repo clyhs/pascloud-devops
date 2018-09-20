@@ -16,6 +16,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.pascloud.constant.Constants;
 import com.pascloud.module.config.init.PasCloudInitConfig;
 import com.pascloud.module.redis.service.RedisService;
+import com.pascloud.timer.RedisScheduledTask;
 import com.pascloud.timer.RedisTimerTask;
 
 public class PasCloudListener implements ServletContextListener {
@@ -56,9 +57,12 @@ public class PasCloudListener implements ServletContextListener {
 		}).start();
 		*/
 		redisService = (RedisService) springContext.getBean("redisService");
-		RedisTimerTask redisTimeTask = new RedisTimerTask(redisService);
-		ScheduledExecutorService pool = Executors.newScheduledThreadPool(1);
-		pool.scheduleAtFixedRate(redisTimeTask, 0, 30*1000, TimeUnit.MILLISECONDS);
+		//RedisTimerTask redisTimeTask = new RedisTimerTask(redisService);
+		//ScheduledExecutorService pool = Executors.newScheduledThreadPool(1);
+		//pool.scheduleAtFixedRate(redisTimeTask, 0, 30*1000, TimeUnit.MILLISECONDS);
+		//RedisScheduledTask task = new RedisScheduledTask(redisService);
+		
+		new RedisScheduledTask(redisService).start();
 		
 		
 	}

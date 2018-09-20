@@ -90,6 +90,7 @@ import com.spotify.docker.client.messages.swarm.Swarm;
 import com.spotify.docker.client.messages.swarm.SwarmInit;
 import com.spotify.docker.client.messages.swarm.SwarmJoin;
 
+
 //@RunWith(SpringJUnit4ClassRunner.class)
 //@WebAppConfiguration
 //@ContextConfiguration(locations = { "classpath*:META-INF/spring/pascloud-*.xml" })
@@ -129,7 +130,7 @@ public class DockerTest {
 //
 //	@Before
 //	public void setup() throws Exception {
-//		mockMvc = MockMvcBuilders.standaloneSetup(wac).build();
+//		//mockMvc = MockMvcBuilders.standaloneSetup(wac).build();
 //		DefaultDockerClient docker = DefaultDockerClient.builder().uri("http://192.168.0.16:2375").build();
 //		sut = docker;
 //		dockerEndpoint = docker.builder().uri();
@@ -139,9 +140,13 @@ public class DockerTest {
 //
 //	@Test
 //	public void testListImages() throws Exception {
+//		DefaultDockerClient docker = DefaultDockerClient.builder().uri("http://192.168.0.16:2375").build();
+//		sut = docker;
+//		dockerEndpoint = docker.builder().uri();
+//		dockerApiVersion = sut.version().apiVersion();
 //		final List<Image> images = sut.listImages();
 //		for (Image image : images) {
-//			System.out.println(g.toJson(image));
+//			System.out.println();
 //		}
 //	}
 //
