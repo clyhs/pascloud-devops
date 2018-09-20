@@ -34,7 +34,7 @@
 		<commons-net.version>3.3</commons-net.version>
 		<joda-time.version>2.3</joda-time.version>
 	</properties>
-
+    
 	<repositories>
 		<repository>
 			<id>pascloud</id>
@@ -50,11 +50,12 @@
 			</snapshots>
 		</repository>
 		<repository>  
-        <id>nexus</id>  
-        <name>Team Nexus Repository</name>  
-        <url>https://artifacts.alfresco.com/nexus/content/repositories/public</url>  
-    </repository> 
+            <id>nexus</id>  
+            <name>Team Nexus Repository</name>  
+            <url>https://artifacts.alfresco.com/nexus/content/repositories/public</url>  
+        </repository> 
 	</repositories>
+	
 	
 	<distributionManagement>
 		<repository>
@@ -66,7 +67,7 @@
 			<url>http://192.168.0.16:8081/nexus/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
-
+    
 	<dependencyManagement>
 		<dependencies>
 			<dependency>

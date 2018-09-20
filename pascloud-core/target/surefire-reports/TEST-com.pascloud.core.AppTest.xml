@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="com.pascloud.core.AppTest" time="0" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="com.pascloud.core.AppTest" time="0.002" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="D:\java64\jdk8\jdk1.8.0_121\jre\bin"/>
     <property name="java.vm.version" value="25.121-b13"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="D:\eclipse64\workspace\devops\pascloud-devops-parent"/>
+    <property name="maven.multiModuleProjectDirectory" value="D:/eclipse64/devops/pascloud-devops-parent"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=";"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="D:\eclipse64\workspace\devops\pascloud-devops-parent"/>
+    <property name="user.dir" value="D:\eclipse64\devops\pascloud-devops-parent"/>
     <property name="java.runtime.version" value="1.8.0_121-b13"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="D:\java64\jdk8\jdk1.8.0_121\jre\lib\endorsed"/>
@@ -27,9 +27,9 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 7"/>
-    <property name="classworlds.conf" value="D:\eclipse64\devops\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf3249624943226319313.tmp"/>
+    <property name="classworlds.conf" value="D:/apache-maven-3.3.9/bin/m2.conf"/>
     <property name="sun.jnu.encoding" value="GBK"/>
-    <property name="java.library.path" value="D:\java64\jdk8\jdk1.8.0_121\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;d:\11.2.0\client_1;d:\app\chenly\product\11.2.0\client_1;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\java64\jdk8\jdk1.8.0_121\bin;D:\Program Files\TortoiseSVN\bin;D:\apache-maven-3.3.9\bin;D:\Program Files (x86)\PuTTY\;d:\Program Files\Git\cmd;d:\nvm;d:\nodejs;D:\apache-ant-1.8.1\bin;C:\Program Files (x86)\IBM\SQLLIB\BIN;C:\Program Files (x86)\IBM\SQLLIB\FUNCTION;C:\strawberry\c\bin;C:\strawberry\perl\bin;D:\go\bin;d:/go/bin;d:\gopath\bin;D:\protoc-3.6.0-win32\bin;;."/>
+    <property name="java.library.path" value="D:\java64\jdk8\jdk1.8.0_121\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Users\chenly\bin;D:\Program Files\Git\mingw64\bin;D:\Program Files\Git\usr\local\bin;D:\Program Files\Git\usr\bin;D:\Program Files\Git\usr\bin;D:\Program Files\Git\mingw64\bin;D:\Program Files\Git\usr\bin;C:\Users\chenly\bin;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;D:\11.2.0\client_1;D:\app\chenly\product\11.2.0\client_1;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;D:\java64\jdk8\jdk1.8.0_121\bin;D:\Program Files\TortoiseSVN\bin;D:\apache-maven-3.3.9\bin;D:\Program Files (x86)\PuTTY;D:\Program Files\Git\cmd;D:\nvm;D:\nodejs;D:\apache-ant-1.8.1\bin;C:\Program Files (x86)\IBM\SQLLIB\BIN;C:\Program Files (x86)\IBM\SQLLIB\FUNCTION;C:\strawberry\c\bin;C:\strawberry\perl\bin;D:\go\bin;D:\go\bin;D:\gopath\bin;D:\protoc-3.6.0-win32\bin;D:\Program Files\Git\usr\bin\vendor_perl;D:\Program Files\Git\usr\bin\core_perl;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -38,13 +38,13 @@
     <property name="user.timezone" value="Asia/Shanghai"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
     <property name="java.specification.version" value="1.8"/>
-    <property name="file.encoding" value="UTF-8"/>
+    <property name="file.encoding" value="GBK"/>
     <property name="user.name" value="chenly"/>
-    <property name="java.class.path" value="D:\apache-maven-3.3.9\boot\plexus-classworlds-2.5.2.jar"/>
+    <property name="java.class.path" value="D:/apache-maven-3.3.9/boot/plexus-classworlds-2.5.2.jar"/>
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="D:\java64\jdk8\jdk1.8.0_121\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B -s D:\apache-maven-3.3.9\conf\settings.xml install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher install"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="zh"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -61,5 +61,5 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.pascloud.core.AppTest" name="testApp" time="0"/>
+  <testcase classname="com.pascloud.core.AppTest" name="testApp" time="0.002"/>
 </testsuite>

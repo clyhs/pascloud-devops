@@ -1,2 +1,5 @@
-D:\eclipse64\workspace\devops\pascloud-devops-parent\pascloud-core\src\main\java\com\pascloud\core\thread\timer\ScheduledTask.java
-D:\eclipse64\workspace\devops\pascloud-devops-parent\pascloud-core\src\main\java\com\pascloud\core\App.java
+D:\eclipse64\devops\pascloud-devops-parent\pascloud-core\src\main\java\com\pascloud\core\mina\HttpServer.java
+D:\eclipse64\devops\pascloud-devops-parent\pascloud-core\src\main\java\com\pascloud\core\App.java
+D:\eclipse64\devops\pascloud-devops-parent\pascloud-core\src\main\java\com\pascloud\core\thread\timer\ScheduledTask.java
+D:\eclipse64\devops\pascloud-devops-parent\pascloud-core\src\main\java\com\pascloud\core\mina\TcpServer.java
+D:\eclipse64\devops\pascloud-devops-parent\pascloud-core\src\main\java\com\pascloud\core\mina\UdpServer.java
