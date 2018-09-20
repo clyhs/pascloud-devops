@@ -9,6 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
+/**
+ * 
+ * @author chenly
+ *
+ */
 
 public abstract class ScheduledTask {
 	
@@ -60,8 +65,6 @@ public abstract class ScheduledTask {
 	/**
 	 * 任务
 	 * 
-	 * @author JiangZhiYong
-	 * @QQ 359135103 2017年7月3日 上午10:45:01
 	 */
 	class Task implements Runnable {
 
