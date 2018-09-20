@@ -80,8 +80,10 @@ public class ServerService  {
         		}
         	}
         }
-        url ="http://"+ master.getIp()+":"+"2375";
-		
+        if(null!=master.getIp()){
+        	url ="http://"+ master.getIp()+":"+"2375";
+        }
+        
 		return url;
 	}
     

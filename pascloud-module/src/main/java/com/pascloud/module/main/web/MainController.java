@@ -47,11 +47,11 @@ public class MainController extends BaseController {
 	@RequestMapping("index.html")
 	public ModelAndView index(HttpServletRequest request) {
 
-		List<SysServerInfo> servers = new ArrayList<>();
-		List<NodeVo> nodes = new ArrayList<>();
-		nodes = m_dockerService.getNodes(getDockerClient());
+		//List<SysServerInfo> servers = new ArrayList<>();
+		//List<NodeVo> nodes = new ArrayList<>();
+		//nodes = m_dockerService.getNodes(getDockerClient());
 		ModelAndView view = new ModelAndView("main/index");
-		view.addObject("nodes", nodes);
+		//view.addObject("nodes", nodes);
 		return view;
 	}
 

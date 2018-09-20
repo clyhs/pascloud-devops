@@ -67,7 +67,10 @@ public abstract class BaseController {
 	}
 	
 	public DefaultDockerClient getDockerClient(){
-		this.dockerClient = DefaultDockerClient.builder().uri(m_serverService.getMasterDockerUrl()).build();
+		String url = m_serverService.getMasterDockerUrl();
+		if(!"".equals(url)){
+			this.dockerClient = DefaultDockerClient.builder().uri(url).build();
+		}
 		return dockerClient;
 	}
 
