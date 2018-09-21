@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="testhydr1002" title="测试行员导入" type="import" version="1.0.0.2" desc="从我我我7777" pid="testhydr">
+  <template>
+    <src>ONLINE</src>
+    <column>
+      <text>行员代号</text>
+      <name>hydh</name>
+      <index>0</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>行员名称</text>
+      <name>hymc</name>
+      <index>1</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>学历</text>
+      <name>xl</name>
+      <index>2</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>联系电话</text>
+      <name>lxdh</name>
+      <index>3</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>身份证号码</text>
+      <name>sfz</name>
+      <index>4</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>营销人员标志</text>
+      <name>yxrybz</name>
+      <index>5</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>虚拟行员标志</text>
+      <name>xnhybz</name>
+      <index>6</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>登录名称</text>
+      <name>dlmc</name>
+      <index>7</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>登录密码</text>
+      <name>dlmm</name>
+      <index>8</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>安全级别</text>
+      <name>aqjb</name>
+      <index>9</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>注销状态</text>
+      <name>zxzt</name>
+      <index>10</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>首次登录</text>
+      <name>scdl</name>
+      <index>11</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>照片信息</text>
+      <name>zpxx</name>
+      <index>12</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>操作员编号</text>
+      <name>czybh</name>
+      <index>13</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>注销日期</text>
+      <name>zxrq</name>
+      <index>14</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>出生日期</text>
+      <name>csrq</name>
+      <index>15</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>工作日期</text>
+      <name>gzrq</name>
+      <index>16</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>入行日期</text>
+      <name>rhrq</name>
+      <index>17</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>风格标志</text>
+      <name>fgbz</name>
+      <index>18</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>排序标志</text>
+      <name>pxbz</name>
+      <index>19</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+  </template>
+  <table id="testhydr1002_table" page="true">
+    <col id="ZT" title="状态" align="center" type="string" width="50" />
+    <col id="ERROR" title="错误原因" align="center" type="string" width="250" />
+    <col id="HYDH" title="行员代号" align="center" type="" width="120" />
+    <col id="HYMC" title="行员名称" align="center" type="" width="120" />
+    <col id="XL" title="学历" align="center" type="" width="120" />
+    <col id="LXDH" title="联系电话" align="center" type="" width="120" />
+    <col id="SFZ" title="身份证号码" align="center" type="" width="120" />
+    <col id="YXRYBZ" title="营销人员标志" align="center" type="" width="120" />
+    <col id="XNHYBZ" title="虚拟行员标志" align="center" type="" width="120" />
+    <col id="DLMC" title="登录名称" align="center" type="" width="120" />
+    <col id="DLMM" title="登录密码" align="center" type="" width="120" />
+    <col id="AQJB" title="安全级别" align="center" type="" width="120" />
+    <col id="ZXZT" title="注销状态" align="center" type="" width="120" />
+    <col id="SCDL" title="首次登录" align="center" type="" width="120" />
+    <col id="ZPXX" title="照片信息" align="center" type="" width="120" />
+    <col id="CZYBH" title="操作员编号" align="center" type="" width="120" />
+    <col id="ZXRQ" title="注销日期" align="center" type="" width="120" />
+    <col id="CSRQ" title="出生日期" align="center" type="" width="120" />
+    <col id="GZRQ" title="工作日期" align="center" type="" width="120" />
+    <col id="RHRQ" title="入行日期" align="center" type="" width="120" />
+    <col id="FGBZ" title="风格标志" align="center" type="" width="120" />
+    <col id="PXBZ" title="排序标志" align="center" type="" width="120" />
+  </table>
+  <flow>
+    <rule>
+      <sql type="update">testhydr1002_check_hydh_0</sql>
+      <sql type="update">testhydr1002_checkupdate_hymc_0</sql>
+      <sql type="update">testhydr1002_exists_target</sql>
+      <sql type="update">testhydr1002_exists_same_temp</sql>
+    </rule>
+    <before />
+    <cover>
+      <sql type="delete">testhydr1002_delete_before_override</sql>
+    </cover>
+    <insert>
+      <sql type="insert">testhydr1002_insert_into_target</sql>
+    </insert>
+    <after />
+  </flow>
+  <sqlMap namespace="studio.testhydr1002">
+    <update parameterClass="java.util.Map" id="dn1.testhydr1002_check_hydh_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  testhydr1002_temp  t  set  t.error=t.error||'行员代号不存在!'  
+		where  not  exists(select  1  from  khdx_hy  h  where  rtrim(t.hydh)=rtrim(h.hydh))  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn1.testhydr1002_checkupdate_hymc_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update testhydr1002_temp t set error=error||'行员代号和名称必须一致' where  not exists (    select 1 from khdx_hy hy     where t.hydh=hy.hydh and hy.hymc=t.hymc) and t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn1.testhydr1002_exists_target">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  testhydr1002_temp  t  set  t.error=t.error||'数据已存在!'  where  exists(select  1  from  KHDX_HY  tar   where  1=1   and  1=2  and  t.khdxdh=$login_khdxdh$  )
+    </update>
+    <update parameterClass="java.util.Map" id="dn1.testhydr1002_exists_same_temp">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  testhydr1002_temp  t  set  t.error=error||'存在重复数据!'  where  1=2   and  khdxdh=$login_khdxdh$
+    </update>
+    <insert parameterClass="java.util.Map" id="dn1.testhydr1002_create_lsb">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      CREATE  TABLE   testhydr1002_temp   (   hydh  varchar(100)  ,  hymc  varchar(100)  ,  xl  varchar(100)  ,  lxdh  varchar(100)  ,  sfz  varchar(100)  ,  yxrybz  varchar(100)  ,  xnhybz  varchar(100)  ,  dlmc  varchar(100)  ,  dlmm  varchar(100)  ,  aqjb  varchar(100)  ,  zxzt  varchar(100)  ,  scdl  varchar(100)  ,  zpxx  varchar(100)  ,  czybh  varchar(100)  ,  zxrq  varchar(100)  ,  csrq  varchar(100)  ,  gzrq  varchar(100)  ,  rhrq  varchar(100)  ,  fgbz  varchar(100)  ,  pxbz  varchar(100)  ,  khdxdh  integer,error  varchar(1000)   )
+    </insert>
+    <delete parameterClass="java.util.Map" id="dn1.testhydr1002_delete_lsb">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from testhydr1002_temp where khdxdh=$login_khdxdh$
+    </delete>
+    <insert parameterClass="java.util.Map" id="dn1.testhydr1002_insert_into_lsb">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert  into  TESTHYDR1002_TEMP  (hydh,hymc,xl,lxdh,sfz,yxrybz,xnhybz,dlmc,dlmm,aqjb,zxzt,scdl,zpxx,czybh,zxrq,csrq,gzrq,rhrq,fgbz,pxbz,khdxdh,error)  values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+    </insert>
+    <select parameterClass="java.util.Map" id="dn1.testhydr1002_exists_error_msg" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  count(1)  from  testhydr1002_temp  where  length(error) <![CDATA[>]]> 0  and  khdxdh  =  $login_khdxdh$
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn1.testhydr1002_exists_same_data">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  count(1)  from  testhydr1002_temp  where  length(error) <![CDATA[>]]> 0  and  error  !=  '数据已存在!'  and  khdxdh  =  $login_khdxdh$
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn1.testhydr1002_select_error_msg">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/cancel.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  hydh,hymc,xl,lxdh,sfz,yxrybz,xnhybz,dlmc,dlmm,aqjb,zxzt,scdl,zpxx,czybh,zxrq,csrq,gzrq,rhrq,fgbz,pxbz,khdxdh,error  from  testhydr1002_temp  where  khdxdh=$login_khdxdh$  and  length(error)<![CDATA[>]]>0
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn1.testhydr1002_count_all_msg">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  count(1)  from  (select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/ok.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  hydh,hymc,xl,lxdh,sfz,yxrybz,xnhybz,dlmc,dlmm,aqjb,zxzt,scdl,zpxx,czybh,zxrq,csrq,gzrq,rhrq,fgbz,pxbz,khdxdh,error  from  testhydr1002_temp  where  khdxdh=$login_khdxdh$  )a
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn1.testhydr1002_select_all_msg">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/ok.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  hydh,hymc,xl,lxdh,sfz,yxrybz,xnhybz,dlmc,dlmm,aqjb,zxzt,scdl,zpxx,czybh,zxrq,csrq,gzrq,rhrq,fgbz,pxbz,khdxdh,error  from  testhydr1002_temp  where  khdxdh=$login_khdxdh$
+    </select>
+    <insert parameterClass="java.util.Map" id="dn1.testhydr1002_insert_into_target">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into KHDX_HY(KHDXDH,HYDH,HYMC,XL,LXDH,SFZ,YXRYBZ,XNHYBZ,DLMC,DLMM,AQJB,ZXZT,SCDL,ZPXX,CZYBH,ZXRQ,CSRQ,GZRQ,RHRQ,FGBZ,PXBZ) select KHDX_HY0.KHDXDH, t.hydh , t.hymc , t.xl , t.lxdh , t.sfz , t.yxrybz , t.xnhybz , t.dlmc , t.dlmm , t.aqjb , t.zxzt , t.scdl , t.zpxx , t.czybh ,cast (t.zxrq as INTEGER),cast (t.csrq as INTEGER),cast (t.gzrq as INTEGER),cast (t.rhrq as INTEGER), t.fgbz ,cast (t.pxbz as INTEGER) from testhydr1002_temp t ,KHDX_HY KHDX_HY0 where t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null)  and KHDX_HY0.HYDH=cast (t.hydh as VARCHAR(20))
+    </insert>
+    <delete parameterClass="java.util.Map" id="dn1.testhydr1002_delete_before_override">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete  from  KHDX_HY  tar  where  exists(select  1  from  testhydr1002_temp  t   where  1=1   and  t.khdxdh=$login_khdxdh$  )
+    </delete>
+  </sqlMap>
+</pageSetting>
+

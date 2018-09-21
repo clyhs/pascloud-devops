@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="ggjxbcx" title="公共绩效包查询" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月">
+        <attribute key="dateFmt" value="yyyyMM" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="no" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewJg" label="机构">
+        <attribute key="cascadeCheck" value="true" />
+        <attribute key="editable" value="true" />
+        <attribute key="ckbz" value="jg" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="jgkhdxdh" />
+        <attribute key="multiple" value="true" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="defVal" value="20170101" />
+        <attribute key="name" value="tjrq_yc" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="defVal" value="20170101" />
+        <attribute key="name" value="tjrq_sym" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="defVal" value="20170101" />
+        <attribute key="name" value="tjrq_nc" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="defVal" value="20170101" />
+        <attribute key="name" value="tjrq_ym" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="ggjxbcx_xsjy1jgj" title="新数据源1结果集" page="true">
+    <col id="TJNY" title="统计年月" align="left" type="string" width="120" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="LSWFP" title="历史未分配" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="DYJXB" title="当月绩效包" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="XJ" title="小计" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="KFP" title="可分配" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="YFP" title="已分配" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="GZXMC" title="工资项名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="GZXBH" title="工资项编号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="false" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="1528856554871" title="工资项" align="center" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
+      <col id="GZX_LSWFP" title="历史未分配" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="GZX_DYJXB" title="当月绩效包" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="GZX_XJ" title="小计" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="GZX_KFP" title="可分配" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="GZX_YFP" title="已分配" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    </col>
+  </table>
+  <sqlMap namespace="studio.ggjxbcx">
+    <select id="dn0.ggjxbcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select $tjrq$ as tjny,d.gzxbh,d.gzxmc,        zh.jgdh,        zh.jgmc,        coalesce(jxb.lsjxb,0)-coalesce(yfp.lsyfp,0) as gzx_lswfp,        coalesce(jxb.dyjxb,0) as gzx_dyjxb,        coalesce(jxb.lsjxb,0)-coalesce(yfp.lsyfp,0)+coalesce(jxb.dyjxb,0) as gzx_xj,        round(coalesce(jxb.lsjxb,0)-coalesce(yfp.lsyfp,0)+coalesce(jxb.dyjxb,0)-coalesce(yfp.dyyfp,0),2) as gzx_kfp,        coalesce(yfp.dyyfp,0) as gzx_yfp,        sum(coalesce(jxb.lsjxb,0)-coalesce(yfp.lsyfp,0)) over(partition by zh.khdxdh) as lswfp,        sum(coalesce(jxb.dyjxb,0)) over(partition by zh.khdxdh) as dyjxb,        sum(coalesce(jxb.lsjxb,0)-coalesce(yfp.lsyfp,0)+coalesce(jxb.dyjxb,0)) over(partition by zh.khdxdh) as xj,        round(sum(coalesce(jxb.lsjxb,0)-coalesce(yfp.lsyfp,0)+coalesce(jxb.dyjxb,0)-coalesce(yfp.dyyfp,0)) over(partition by zh.khdxdh),2) as kfp,        sum(coalesce(yfp.dyyfp,0)) over(partition by zh.khdxdh) as yfp   from gztx_gzxdy d  inner join khdx_jg zh on 1=1
+      <isNotEmpty property="jgkhdxdh">and zh.khdxdh in ($jgkhdxdh$)</isNotEmpty>
+      inner join khdx_jglb jl on zh.khdxdh=jl.khdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between jl.qsrq and jl.jsrq</isNotEmpty>
+      and (jl.lbdh like 'C%' or jl.lbdh like 'D%')  inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,0)) jg on jg.khdxdh = zh.khdxdh    left outer join (select hz.gzxbh,st.sjjgkhdxdh,                           sum(case when (hz.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$) then gzxsfgz else 0 end) lsjxb,                           sum(case when (hz.tjrq=$tjrq_ym$) then gzxsfgz else 0 end) dyjxb                      from gztx_zxhz hz                     inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'                     inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'                     inner join khdx_jgcy cy on hz.khdxdh=cy.khdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between cy.qsrq and cy.jsrq</isNotEmpty>
+      inner join xtb_jggxst st on cy.jgkhdxdh=st.jgkhdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between st.qsrq and st.jsrq</isNotEmpty>
+      inner join khdx_jglb jl on st.sjjgkhdxdh=jl.khdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between jl.qsrq and jl.jsrq</isNotEmpty>
+      <![CDATA[and (jl.lbdh like 'C%' or jl.lbdh like 'D%')
+                    where hz.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_ym$  
+                      and hz.hylb='XN' and hz.gzxsfgz>0
+                    group by hz.gzxbh,st.sjjgkhdxdh) jxb on d.gzxbh=jxb.gzxbh and zh.khdxdh=jxb.sjjgkhdxdh                                        
+  left outer join (select sg.fpgzxbh,st.sjjgkhdxdh,
+                          sum(case when (sjw.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$) then sg.sfgz else 0 end) as lsyfp,
+                          sum(case when sjw.tjrq=$tjrq_ym$ then sg.sfgz else 0 end) as dyyfp
+                     from sglr_ggjxecfp sg
+                    inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'
+                    inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ' 
+                    inner join csb_sjw sjw on sjw.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_ym$ and sjw.tjrq=sjw.ym
+              inner join khdx_jgcy cy on sg.khdxdh=cy.khdxdh]]> and sjw.tjrq between cy.qsrq and cy.jsrq inner join xtb_jggxst st on cy.jgkhdxdh=st.jgkhdxdh and sjw.tjrq between st.qsrq and st.jsrq inner join khdx_jglb jl on st.sjjgkhdxdh=jl.khdxdh and sjw.tjrq between jl.qsrq and jl.jsrq and (jl.lbdh like 'C%' or jl.lbdh like 'D%')                                        where sg.tjrq=sjw.tjrq                       group by sg.fpgzxbh,st.sjjgkhdxdh) yfp on zh.khdxdh=yfp.sjjgkhdxdh and d.gzxbh=yfp.fpgzxbh      where d.sfkecfp='1'  order by zh.jgdh
+    </select>
+    <select id="dn0.ggjxbcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select $tjrq$ as tjny,d.gzxbh,d.gzxmc,        zh.jgdh,        zh.jgmc,        coalesce(jxb.lsjxb,0)-coalesce(yfp.lsyfp,0) as gzx_lswfp,        coalesce(jxb.dyjxb,0) as gzx_dyjxb,        coalesce(jxb.lsjxb,0)-coalesce(yfp.lsyfp,0)+coalesce(jxb.dyjxb,0) as gzx_xj,        round(coalesce(jxb.lsjxb,0)-coalesce(yfp.lsyfp,0)+coalesce(jxb.dyjxb,0)-coalesce(yfp.dyyfp,0),2) as gzx_kfp,        coalesce(yfp.dyyfp,0) as gzx_yfp,        sum(coalesce(jxb.lsjxb,0)-coalesce(yfp.lsyfp,0)) over(partition by zh.khdxdh) as lswfp,        sum(coalesce(jxb.dyjxb,0)) over(partition by zh.khdxdh) as dyjxb,        sum(coalesce(jxb.lsjxb,0)-coalesce(yfp.lsyfp,0)+coalesce(jxb.dyjxb,0)) over(partition by zh.khdxdh) as xj,        round(sum(coalesce(jxb.lsjxb,0)-coalesce(yfp.lsyfp,0)+coalesce(jxb.dyjxb,0)-coalesce(yfp.dyyfp,0)) over(partition by zh.khdxdh),2) as kfp,        sum(coalesce(yfp.dyyfp,0)) over(partition by zh.khdxdh) as yfp   from gztx_gzxdy d  inner join khdx_jg zh on 1=1
+      <isNotEmpty property="jgkhdxdh">and zh.khdxdh in ($jgkhdxdh$)</isNotEmpty>
+      inner join khdx_jglb jl on zh.khdxdh=jl.khdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between jl.qsrq and jl.jsrq</isNotEmpty>
+      and (jl.lbdh like 'C%' or jl.lbdh like 'D%')  inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,0)) jg on jg.khdxdh = zh.khdxdh    left outer join (select hz.gzxbh,st.sjjgkhdxdh,                           sum(case when (hz.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$) then gzxsfgz else 0 end) lsjxb,                           sum(case when (hz.tjrq=$tjrq_ym$) then gzxsfgz else 0 end) dyjxb                      from gztx_zxhz hz                     inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'                     inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'                     inner join khdx_jgcy cy on hz.khdxdh=cy.khdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between cy.qsrq and cy.jsrq</isNotEmpty>
+      inner join xtb_jggxst st on cy.jgkhdxdh=st.jgkhdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between st.qsrq and st.jsrq</isNotEmpty>
+      inner join khdx_jglb jl on st.sjjgkhdxdh=jl.khdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between jl.qsrq and jl.jsrq</isNotEmpty>
+      <![CDATA[and (jl.lbdh like 'C%' or jl.lbdh like 'D%')
+                    where hz.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_ym$  
+                      and hz.hylb='XN' and hz.gzxsfgz>0
+                    group by hz.gzxbh,st.sjjgkhdxdh) jxb on d.gzxbh=jxb.gzxbh and zh.khdxdh=jxb.sjjgkhdxdh                                        
+  left outer join (select sg.fpgzxbh,st.sjjgkhdxdh,
+                          sum(case when (sjw.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$) then sg.sfgz else 0 end) as lsyfp,
+                          sum(case when sjw.tjrq=$tjrq_ym$ then sg.sfgz else 0 end) as dyyfp
+                     from sglr_ggjxecfp sg
+                    inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'
+                    inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ' 
+                    inner join csb_sjw sjw on sjw.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_ym$ and sjw.tjrq=sjw.ym
+              inner join khdx_jgcy cy on sg.khdxdh=cy.khdxdh]]> and sjw.tjrq between cy.qsrq and cy.jsrq inner join xtb_jggxst st on cy.jgkhdxdh=st.jgkhdxdh and sjw.tjrq between st.qsrq and st.jsrq inner join khdx_jglb jl on st.sjjgkhdxdh=jl.khdxdh and sjw.tjrq between jl.qsrq and jl.jsrq and (jl.lbdh like 'C%' or jl.lbdh like 'D%')                                        where sg.tjrq=sjw.tjrq                       group by sg.fpgzxbh,st.sjjgkhdxdh) yfp on zh.khdxdh=yfp.sjjgkhdxdh and d.gzxbh=yfp.fpgzxbh      where d.sfkecfp='1'  order by zh.jgdh ) t
+    </select>
+  </sqlMap>
+  <rels>
+    <items id="ggjxbcx_xsjy1jgj" />
+  </rels>
+  <javascript><![CDATA[jQuery(document).ready(function () {
+
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ var obj=createTimeObj(jQuery("#tjrq").val());
+ //alert(obj);
+ jQuery("#tjrq_nc").val(obj.nc);
+ //alert($("#tjrq_nc").val(obj.nc));
+ jQuery("#tjrq_sym").val(obj.sym);
+ jQuery("#tjrq_yc").val(obj.yc);
+ jQuery("#tjrq_ym").val(obj.ym); 
+ return true;
+}]]></javascript>
+</pageSetting>
+

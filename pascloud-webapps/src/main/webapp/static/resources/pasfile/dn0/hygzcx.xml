@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="hygzcx" title="行员工资查询" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期">
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="no" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员">
+        <attribute key="isDisplayXN" value="true" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="true" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="行员类别">
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isSearch" value="false" />
+        <attribute key="sql" value="select lbdh as key, lbmc as value from csb_hylb " />
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="hylb" />
+        <attribute key="isAll" value="true" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="MSQL4Select" label="报表方式">
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isSearch" value="false" />
+        <attribute key="sql" value="select dmz as key,dmms as value from csb_dmms where dmmc = 'HYGZBBFS'" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="bbfs" />
+        <attribute key="isAll" value="false" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="hygzcx_xsjy1jgj" title="新数据源1结果集" page="true">
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYLB" title="行员类别" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYGW" title="行员岗位" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JBGZ_BT" title="基本工资" align="center" type="string" width="600" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
+      <col id="SFGZX2001" title="固定工资" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="SFGZX2002" title="岗位工资" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="SFGZX2003" title="等级工资" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="SFGZX2004" title="保障工资" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="SFGZX2000" title="基本工资合计" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    </col>
+    <col id="JXGZ_BT" title="绩效工资" align="center" type="string" width="2520" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
+      <col id="SFGZX3001" title="实发机构管理绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openJGGL" />
+      <col id="SFGZX3002" title="实发机构业绩工资" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openJGYJ" />
+      <col id="GRCKYXJX_BT" title="个人产品营销绩效" align="center" type="string" width="1680" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
+        <col id="SFGZX3004" title="实发存款绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openSFCK" />
+        <col id="SFGZX3005" title="实发中间业务绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openZJYW" />
+        <col id="SFGZX3006" title="实发电子银行绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openDZYH" />
+        <col id="SFGZX3007" title="实发不良贷款清收绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openBLDK" />
+        <col id="SFGZX3008" title="实发推荐放贷" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openDKTJ" />
+        <col id="SFGZX3009" title="实发贷款绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openDKJX" />
+        <col id="SFGZX3025" title="实发贷款审批业务量" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openDKSP" />
+        <col id="SFGZX3026" title="实发业务量绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openYWLJX" />
+        <col id="SFGZX3027" title="实发服务质量绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openFWZL" />
+        <col id="SFGZX3028" title="实发ATM维护绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openATM" />
+        <col id="SFGZX3003_01" title="个人产品营销绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+        <col id="CZDXBL" title="个人产品营销垂直兑现比例" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+        <col id="JGKHDF" title="机构考核得分" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openJGDFMX" />
+        <col id="SFGZX3003" title="个人产品营销兑现绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      </col>
+      <col id="SFGZX3029" title="实发履职绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openLZ" />
+      <col id="SFGZX3030" title="公共绩效二次分配" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openGGJX" />
+      <col id="SFGZX3031" title="公共存款下降扣罚" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" xsType="href" onclick="openGGCK" />
+      <col id="SFGZX3032" title="工资调整项" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="SFGZX3000" title="绩效工资合计" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    </col>
+    <col id="QTGZ_BT" title="其它工资" align="center" type="string" width="480" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
+      <col id="SFGZX4000" title="其它工资合计" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="SFGZX4001" title="加班工资" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="SFGZX4002" title="全勤奖" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="SFGZX4003" title="其它奖金" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    </col>
+    <col id="GZJT_BT" title="工资津贴" align="center" type="string" width="720" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
+      <col id="SFGZX5000" title="工资津贴合计" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="SFGZX5001" title="工龄津贴" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="SFGZX5002" title="学历津贴" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="SFGZX5003" title="职称津贴" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="SFGZX5004" title="车改补贴" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="SFGZX5005" title="其他津贴" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    </col>
+    <col id="BXFL_BT" title="保险福利" align="center" type="string" width="360" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
+      <col id="SFGZX6000" title="保险福利合计" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="SFGZX6001" title="社保" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="SFGZX6002" title="公积金" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    </col>
+    <col id="SFGZX7000" title="所得税" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="SFGZX1000" title="实发工资合计" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGKHDXDH" title="机构考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <table id="hygzcx_xsjy2jgj" title="新数据源2结果集" page="true">
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYLB" title="行员类别" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYGW" title="行员岗位" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="SFGZX2000" title="基本工资" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="SFGZX3000" title="绩效工资" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="SFGZX4000" title="其它工资" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="SFGZX5000" title="工资津贴" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="SFGZX6000" title="福利保险" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="SFGZX7000" title="所得税" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="SFGZX1000" title="实发工资合计" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.hygzcx">
+    <select id="dn0.hygzcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <isEqual property="bbfs" compareValue="1">
+        select  $tjrq$ as tjrq,a.khdxdh,c.jgdh,c.jgmc,b.hydh,b.hymc,d.lbmc as hylb,e.gwmc as hygw,         1 as jbgz_bt ,a.sfgzx2001,a.sfgzx2002,a.sfgzx2003,a.sfgzx2004,a.sfgzx2000,         2 as jxgz_bt,3 as grckyxjx_bt,a.sfgzx3000,a.sfgzx3001,a.sfgzx3002,         a.sfgzx3003_01,a.czdxbl,a.jgkhdf,a.sfgzx3003,a.sfgzx3004,a.sfgzx3005,a.sfgzx3006,         a.sfgzx3007,a.sfgzx3008,a.sfgzx3009,         a.sfgzx3025,a.sfgzx3026,         a.sfgzx3027,a.sfgzx3028,a.sfgzx3029,a.sfgzx3030,         a.sfgzx3031,a.sfgzx3032,         4 as qtgz_bt,a.sfgzx4000,a.sfgzx4001,a.sfgzx4002,a.sfgzx4003,         5 as gzjt_bt,a.sfgzx5000,a.sfgzx5001,a.sfgzx5002,a.sfgzx5003,a.sfgzx5004,a.sfgzx5005,         6 as bxfl_bt ,a.sfgzx6000,a.sfgzx6001,a.sfgzx6002,         a.sfgzx7000,         a.sfgzx1000,c.khdxdh as jgkhdxdh   from gztx_hxhz a         inner join khdx_hy b on b.khdxdh=a.khdxdh         inner join khdx_jg c on c.jgdh=a.jgdh   inner join table(fn_getsjjg_java_qxhy($tjrq$,$login_khdxdh$,0)) hy on hy.khdxdh=b.khdxdh  inner join csb_hylb d on d.lbdh=a.hylb         inner join csb_hygw e on e.gwbh=a.hygw
+        <isNotEmpty property="khdxdh">where a.khdxdh in ($khdxdh$)</isNotEmpty>
+        <isNotEmpty property="hylb">and d.lbdh='$hylb$'</isNotEmpty>
+        <isNotEmpty property="tjrq">and a.tjrq=$tjrq$</isNotEmpty>
+        order by c.jgdh,b.hydh
+      </isEqual>
+      <isEqual property="bbfs" compareValue="2">
+        select a.khdxdh,$tjrq$ as tjrq,c.jgdh,c.jgmc,b.hydh,b.hymc,        d.lbmc as hylb,e.gwmc as hygw,        a.sfgzx2000,a.sfgzx3000,a.sfgzx4000,a.sfgzx5000,        a.sfgzx6000,a.SFGZX7000,a.SFGZX1000  from gztx_hxhz a        inner join khdx_hy b on b.khdxdh=a.khdxdh        inner join khdx_jg c on c.jgdh=a.jgdh inner join table(fn_getsjjg_java_qxhy($tjrq$,$login_khdxdh$,0)) hy on hy.khdxdh=b.khdxdh inner join csb_hylb d on d.lbdh=a.hylb        inner join csb_hygw e on e.gwbh=a.hygw
+        <isNotEmpty property="khdxdh">where a.khdxdh in ($khdxdh$)</isNotEmpty>
+        <isNotEmpty property="hylb">and d.lbdh='$hylb$'</isNotEmpty>
+        <isNotEmpty property="tjrq">and a.tjrq=$tjrq$</isNotEmpty>
+        order by c.jgdh,b.hydh
+      </isEqual>
+    </select>
+    <select id="dn0.hygzcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from (
+      <isEqual property="bbfs" compareValue="1">
+        select  $tjrq$ as tjrq,a.khdxdh,c.jgdh,c.jgmc,b.hydh,b.hymc,d.lbmc as hylb,e.gwmc as hygw,         1 as jbgz_bt ,a.sfgzx2001,a.sfgzx2002,a.sfgzx2003,a.sfgzx2004,a.sfgzx2000,         2 as jxgz_bt,3 as grckyxjx_bt,a.sfgzx3000,a.sfgzx3001,a.sfgzx3002,         a.sfgzx3003_01,a.czdxbl,a.jgkhdf,a.sfgzx3003,a.sfgzx3004,a.sfgzx3005,a.sfgzx3006,         a.sfgzx3007,a.sfgzx3008,a.sfgzx3009,         a.sfgzx3025,a.sfgzx3026,         a.sfgzx3027,a.sfgzx3028,a.sfgzx3029,a.sfgzx3030,         a.sfgzx3031,a.sfgzx3032,         4 as qtgz_bt,a.sfgzx4000,a.sfgzx4001,a.sfgzx4002,a.sfgzx4003,         5 as gzjt_bt,a.sfgzx5000,a.sfgzx5001,a.sfgzx5002,a.sfgzx5003,a.sfgzx5004,a.sfgzx5005,         6 as bxfl_bt ,a.sfgzx6000,a.sfgzx6001,a.sfgzx6002,         a.sfgzx7000,         a.sfgzx1000,c.khdxdh as jgkhdxdh   from gztx_hxhz a         inner join khdx_hy b on b.khdxdh=a.khdxdh         inner join khdx_jg c on c.jgdh=a.jgdh   inner join table(fn_getsjjg_java_qxhy($tjrq$,$login_khdxdh$,0)) hy on hy.khdxdh=b.khdxdh  inner join csb_hylb d on d.lbdh=a.hylb         inner join csb_hygw e on e.gwbh=a.hygw
+        <isNotEmpty property="khdxdh">where a.khdxdh in ($khdxdh$)</isNotEmpty>
+        <isNotEmpty property="hylb">and d.lbdh='$hylb$'</isNotEmpty>
+        <isNotEmpty property="tjrq">and a.tjrq=$tjrq$</isNotEmpty>
+        order by c.jgdh,b.hydh
+      </isEqual>
+      <isEqual property="bbfs" compareValue="2">
+        select a.khdxdh,$tjrq$ as tjrq,c.jgdh,c.jgmc,b.hydh,b.hymc,        d.lbmc as hylb,e.gwmc as hygw,        a.sfgzx2000,a.sfgzx3000,a.sfgzx4000,a.sfgzx5000,        a.sfgzx6000,a.SFGZX7000,a.SFGZX1000  from gztx_hxhz a        inner join khdx_hy b on b.khdxdh=a.khdxdh        inner join khdx_jg c on c.jgdh=a.jgdh inner join table(fn_getsjjg_java_qxhy($tjrq$,$login_khdxdh$,0)) hy on hy.khdxdh=b.khdxdh inner join csb_hylb d on d.lbdh=a.hylb        inner join csb_hygw e on e.gwbh=a.hygw
+        <isNotEmpty property="khdxdh">where a.khdxdh in ($khdxdh$)</isNotEmpty>
+        <isNotEmpty property="hylb">and d.lbdh='$hylb$'</isNotEmpty>
+        <isNotEmpty property="tjrq">and a.tjrq=$tjrq$</isNotEmpty>
+        order by c.jgdh,b.hydh
+      </isEqual>
+      ) t
+    </select>
+    <select id="dn0.hygzcx_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key, lbmc as value from csb_hylb</select>
+    <select id="dn0.hygzcx_MSQL4SELECT_bbfs" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc = 'HYGZBBFS'</select>
+  </sqlMap>
+  <rels>
+    <items id="hygzcx_xsjy1jgj">
+      <item name="bbfs" compareValue="1" operate="isEqual" />
+    </items>
+    <items id="hygzcx_xsjy2jgj">
+      <item name="bbfs" compareValue="2" operate="isEqual" />
+    </items>
+  </rels>
+  <javascript><![CDATA[jQuery(document).ready(function () {
+//报表方式1：详细报表 2：精简报表
+
+
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}
+
+function returnPars(obj){
+  var ohylb = "";
+  $("#hylb option").each(function(){
+     if( this.text == obj['HYLB']){ohylb=this.value;}
+  })
+  pars = "{khdxdh:'"+obj['KHDXDH']+"',hylb:'"+ohylb+"',tjrq:'"+obj['TJRQ']+"'}";
+}
+function openGW(obj){     
+   // alert(pars);
+   returnPars(obj)
+    querySubQuery(pars,'gwgzmxcx','45','30','tag');
+
+}
+function openDJ(obj){  
+    returnPars(obj)
+    //alert(pars);
+    querySubQuery(pars,'djgzmxcx','45','30','tag');
+
+}
+function openJGGL(obj){  
+    returnPars(obj)
+    //alert(pars);
+    querySubQuery(pars,'jggljxmxcx','45','30','tag');
+
+}
+function openJGYJ(obj){  
+    returnPars(obj)
+    //alert(pars);
+    querySubQuery(pars,'jgyjgzmxcx','45','30','tag');
+
+}
+function openSFCK(obj){  
+    returnPars(obj)
+    //alert(pars);
+    querySubQuery(pars,'ckjxgzmxcx','45','30','tag');
+
+}
+function openZJYW(obj){  
+    returnPars(obj)
+    //alert(pars);
+    querySubQuery(pars,'zjywjxgzcx','45','30','tag');
+
+}
+function openDZYH(obj){  
+    returnPars(obj)
+    //alert(pars);
+    querySubQuery(pars,'dzyhjxgzcx','45','30','tag');
+
+}
+function openBLDK(obj){  
+    returnPars(obj)
+    //alert(pars);
+    querySubQuery(pars,'bldkqsjxcx','45','30','tag');
+
+}
+function openDKTJ(obj){  
+    returnPars(obj)
+    //alert(pars);
+    querySubQuery(pars,'dktjjxmxcx','45','30','tag');
+
+}
+function openDKJX(obj){  
+    returnPars(obj)
+    //alert(pars);
+    querySubQuery(pars,'hydkjxgzhzcx','45','30','tag');
+
+}
+function openDKSP(obj){  
+    returnPars(obj)
+    //alert(pars);
+    querySubQuery(pars,'dkspywljxmxcx','45','30','tag');
+
+}
+
+function openYWLJX(obj){  
+    returnPars(obj)
+    //alert(pars);
+    querySubQuery(pars,'ywljxgzmxcx','45','30','tag');
+
+}
+function openATM(obj){  
+    returnPars(obj)
+    //alert(pars);
+    querySubQuery(pars,'atmwhjxgzmxcx','45','30','tag');
+
+}
+function openLZ(obj){  
+   returnPars(obj)
+    //alert(pars);
+    querySubQuery(pars,'lzjxmxcx','45','30','tag');
+
+}
+function openGGJX(obj){  
+    returnPars(obj)
+    //alert(pars);
+    querySubQuery(pars,'ggjxmxcx','45','30','tag');
+
+}
+function openGGCK(obj){  
+    returnPars(obj)
+    //alert(pars);
+    querySubQuery(pars,'ggckxjkfmxcx','45','30','tag');
+
+}
+function openFWZL(obj){  
+   returnPars(obj)
+    //alert(pars);
+    querySubQuery(pars,'fwzljxgzcx','45','30','tag');
+
+}
+function openJGDFMX(obj){  
+var ohylb = "";
+$("#hylb option").each(function(){
+     if( this.text == obj['HYLB']){ohylb=this.value;}
+})
+    var pars = "{khdxdh:'"+obj['JGKHDXDH']+"',hylb:'"+ohylb+"',tjrq:'"+obj['TJRQ']+"',gzxbh:'"+3003+"',yyzl:'"+2+"'}";
+   //alert(pars);
+    querySubQuery(pars,'jggzxzbjgcx','45','30','tag');
+
+}]]></javascript>
+</pageSetting>
+

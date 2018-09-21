@@ -1,5 +1,4 @@
 /target/
+/src/main/webapp/static/resources/pascode/
 /src/main/webapp/static/resources/pasfile/
-/src/main/webapp/static/resources/script/
-/src/main/webapp/static/resources/mycat/sql/
 /src/main/webapp/static/resources/upload/

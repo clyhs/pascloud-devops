@@ -17,6 +17,11 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
+	    <dependency>
+			<groupId>com.pascloud.devops</groupId>
+			<artifactId>pascloud-utils</artifactId>
+		</dependency>
+	
 		<dependency>
 			<groupId>com.google.protobuf</groupId>
 			<artifactId>protobuf-java</artifactId>

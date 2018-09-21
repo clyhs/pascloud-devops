@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="dktfmxcx" title="贷款投放绩效明细查询" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期">
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="no" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员">
+        <attribute key="isDisplayXN" value="true" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="true" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="客户类型">
+        <attribute key="selectedList" value="1" />
+        <attribute key="width" value="120px;" />
+        <attribute key="mulShowType" value="null" />
+        <attribute key="dmmc" value="zhbs" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="zhbs" />
+        <attribute key="isAll" value="true" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Text" label="客户号">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="khh" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="defVal" value="$sysdate$" />
+        <attribute key="name" value="sysdate" />
+      </tag>
+      <tag row="1" col="0" colspan="1" rowspan="1" name="Text" label="客户名称">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="zhhm" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="1" col="1" colspan="1" rowspan="1" name="Number" label="客户金额">
+        <attribute key="precision" value="2" />
+        <attribute key="defVal" value="0" />
+        <attribute key="intparts" value="10" />
+        <attribute key="editable" value="true" />
+        <attribute key="style" value="width:140px" />
+        <attribute key="name" value="khdkjexx" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="1" col="2" colspan="1" rowspan="1" name="Number" label="至">
+        <attribute key="precision" value="2" />
+        <attribute key="defVal" value="9999999999" />
+        <attribute key="intparts" value="10" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="khdkjesx" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="1" col="2" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="gzxsf" />
+      </tag>
+      <tag row="1" col="2" colspan="1" rowspan="1" name="DataInterface" label="null">
+        <attribute key="dataType" value="select" />
+        <attribute key="sql" value="select max(jxdxdh) jxdxdh from dkjx_dktfjxmx where tjrq=$tjrq$" />
+        <attribute key="name" value="gzxsfselect" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="dktfmxcx_xsjy1jgj" title="新数据源1结果集" page="true">
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYLB" title="行员类别" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYGW" title="行员岗位" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHDH" title="账户代号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHMC" title="客户名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHLX" title="客户类型" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="BZZWMC" title="币种" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JCBZ" title="计酬标准（元/万元）" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DKYWTJXS" title="贷款业务调节系数" align="right" type="float" width="120" frozen="false" format="#,##0.0000" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="LLTJXS" title="利率调节系数" align="right" type="hidden" width="120" frozen="false" format="#,##0.0000" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DBFSTJXS" title="担保方式调节系数" align="right" type="hidden" width="120" frozen="false" format="#,##0.0000" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHDKJE" title="客户贷款金额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DKJE" title="贷款金额" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="YFGZ" title="应发贷款投放绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="true" />
+    <col id="SFGZ" title="实发贷款投放绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="true" />
+  </table>
+  <table id="dktfmxcx_sf2sjyjgj" title="算法2数据源结果集" page="true">
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYLB" title="行员类别" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYGW" title="行员岗位" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="YFGZ" title="应发贷款投放绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="SFGZ" title="实发贷款投放绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.dktfmxcx">
+    <select id="dn0.dktfmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <isEqual property="gzxsf" compareValue="1">
+        select a.tjrq,c.jgdh,c.jgmc,b.hydh,b.hymc,d.LBMC as hylb,e.GWMC as hygw,        a.khh,dk.zhhm as khmc,dmms.dmms as khlx,bz.BZZWMC,a.jcbz,a.dkywtjxs,        a.lltjxs,a.dbfstjxs,a.khdkje,a.dkje,a.yfgz,a.sfgz,dk.zhdh   from dkjx_dktfjxmx  a  inner join khdx_hy b on b.khdxdh=a.khdxdh         inner join khdx_jg c on c.jgdh=a.jgdh         inner join csb_hylb d on d.lbdh=a.hylb         inner join csb_hygw e on e.gwbh=a.hygw     inner join jxdx_dkzh dk on dk.jxdxdh=a.jxdxdh  inner join csb_dmms dmms on dmms.dmz = a.zhbs and dmms.dmmc='ZHBS'  inner join csb_bz bz on bz.bz=dk.bz  inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qxhy on b.khdxdh=qxhy.khdxdh  where 1=1
+        <isNotEmpty property="tjrq">and  a.tjrq=$tjrq$</isNotEmpty>
+        <isNotEmpty property="khdxdh">and a.khdxdh in ($khdxdh$)</isNotEmpty>
+        <isNotEmpty property="khh">and a.khh like '%$khh$%'</isNotEmpty>
+        <isNotEmpty property="zhhm">and dk.zhhm like '%$zhhm$%'</isNotEmpty>
+        <isNotEmpty property="zhbs">and a.zhbs = '$zhbs$'</isNotEmpty>
+        <isNotEmpty property="khdkjexx">and a.khdkje between $khdkjexx$ and $khdkjesx$</isNotEmpty>
+        order by c.jgdh,b.hydh
+      </isEqual>
+      <isEqual property="gzxsf" compareValue="2">
+        select a.tjrq,c.jgdh,c.jgmc,b.hydh,b.hymc,d.LBMC as hylb,e.GWMC as hygw,        a.yfgz,a.sfgz   from dkjx_dktfjxmx  a  inner join khdx_hy b on b.khdxdh=a.khdxdh         inner join khdx_jg c on c.jgdh=a.jgdh         inner join csb_hylb d on d.lbdh=a.hylb         inner join csb_hygw e on e.gwbh=a.hygw     inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qxhy on b.khdxdh=qxhy.khdxdh  where 1=1
+        <isNotEmpty property="tjrq">and  a.tjrq=$tjrq$</isNotEmpty>
+        <isNotEmpty property="khdxdh">and a.khdxdh in ($khdxdh$)</isNotEmpty>
+        order by c.jgdh,b.hydh
+      </isEqual>
+    </select>
+    <select id="dn0.dktfmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from (
+      <isEqual property="gzxsf" compareValue="1">
+        select a.tjrq,c.jgdh,c.jgmc,b.hydh,b.hymc,d.LBMC as hylb,e.GWMC as hygw,        a.khh,dk.zhhm as khmc,dmms.dmms as khlx,bz.BZZWMC,a.jcbz,a.dkywtjxs,        a.lltjxs,a.dbfstjxs,a.khdkje,a.dkje,a.yfgz,a.sfgz,dk.zhdh   from dkjx_dktfjxmx  a  inner join khdx_hy b on b.khdxdh=a.khdxdh         inner join khdx_jg c on c.jgdh=a.jgdh         inner join csb_hylb d on d.lbdh=a.hylb         inner join csb_hygw e on e.gwbh=a.hygw     inner join jxdx_dkzh dk on dk.jxdxdh=a.jxdxdh  inner join csb_dmms dmms on dmms.dmz = a.zhbs and dmms.dmmc='ZHBS'  inner join csb_bz bz on bz.bz=dk.bz  inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qxhy on b.khdxdh=qxhy.khdxdh  where 1=1
+        <isNotEmpty property="tjrq">and  a.tjrq=$tjrq$</isNotEmpty>
+        <isNotEmpty property="khdxdh">and a.khdxdh in ($khdxdh$)</isNotEmpty>
+        <isNotEmpty property="khh">and a.khh like '%$khh$%'</isNotEmpty>
+        <isNotEmpty property="zhhm">and dk.zhhm like '%$zhhm$%'</isNotEmpty>
+        <isNotEmpty property="zhbs">and a.zhbs = '$zhbs$'</isNotEmpty>
+        <isNotEmpty property="khdkjexx">and a.khdkje between $khdkjexx$ and $khdkjesx$</isNotEmpty>
+        order by c.jgdh,b.hydh
+      </isEqual>
+      <isEqual property="gzxsf" compareValue="2">
+        select a.tjrq,c.jgdh,c.jgmc,b.hydh,b.hymc,d.LBMC as hylb,e.GWMC as hygw,        a.yfgz,a.sfgz   from dkjx_dktfjxmx  a  inner join khdx_hy b on b.khdxdh=a.khdxdh         inner join khdx_jg c on c.jgdh=a.jgdh         inner join csb_hylb d on d.lbdh=a.hylb         inner join csb_hygw e on e.gwbh=a.hygw     inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qxhy on b.khdxdh=qxhy.khdxdh  where 1=1
+        <isNotEmpty property="tjrq">and  a.tjrq=$tjrq$</isNotEmpty>
+        <isNotEmpty property="khdxdh">and a.khdxdh in ($khdxdh$)</isNotEmpty>
+        order by c.jgdh,b.hydh
+      </isEqual>
+      ) t
+    </select>
+    <select id="dn0.dktfmxcx_gzxsfselect" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select max(jxdxdh) jxdxdh from dkjx_dktfjxmx where tjrq=$tjrq$</select>
+  </sqlMap>
+  <rels>
+    <items id="dktfmxcx_xsjy1jgj">
+      <item name="gzxsf" compareValue="1" operate="isEqual" />
+    </items>
+    <items id="dktfmxcx_sf2sjyjgj">
+      <item name="gzxsf" compareValue="2" operate="isEqual" />
+    </items>
+  </rels>
+  <javascript><![CDATA[jQuery(document).ready(function () {
+
+   PAS.di.execute('dktfmxcx_gzxsfselect',gzxsf_select);
+   $('#tjrq').executeOnEvent('blur','dktfmxcx_gzxsfselect',gzxsf_select);
+
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ var xx=$('#khdkjexx').val();
+ var sx=$('#khdkjesx').val();
+ if(xx>sx){
+   alert("客户金额下限不能大于客户金额上限！");
+   return false;
+ }
+ return true;
+}
+
+
+function gzxsf_select(obj){
+  if(obj.data.length<1){
+    $('#gzxsf').val(1);
+  }else{
+    if(obj.data[0].JXDXDH==-1){
+      $('#gzxsf').val(2);
+    }else{
+      $('#gzxsf').val(1);
+    }
+  }
+  
+}]]></javascript>
+</pageSetting>
+

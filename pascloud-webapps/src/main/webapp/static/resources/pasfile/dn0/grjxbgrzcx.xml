@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="grjxbgrzcx" title="个人绩效报告日志查询" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期">
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="no" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员">
+        <attribute key="isDisplayXN" value="true" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="true" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="MSQL4Select" label="文件状态">
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isSearch" value="false" />
+        <attribute key="sql" value="select  -1  as key, '全部' as value from pas_vt union all  select 0 as key, '成功' as value from pas_vt union all  select 1 as key, '失败' as value from pas_vt " />
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="wjzt" />
+        <attribute key="isAll" value="false" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="zt" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="grjxbgrzcx_xsjy1jgj" title="新数据源1结果集" page="true">
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="LBMC" title="行员角色" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="WJDH" title="行员代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="CJSJ" title="创建时间" align="left" type="string" width="130" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="YYCJ" title="报告类型" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="WJZT" title="文件状态" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FILEPATH" title="FILEPATH" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FILESIZE" title="FILESIZE" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.grjxbgrzcx">
+    <select id="dn0.grjxbgrzcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select rz.tjrq,jg.jgmc,lb.lbmc,rz.wjdh,hy.hymc,rz.cjsj, case when rz.yycj='1' then '个人绩效报告' else '机构绩效报告' end as yycj, case when rz.wjzt='0' then '成功' else '失败' end as wjzt,rz.filepath,rz.filesize from jxbg_wjscrz rz  inner join khdx_hy hy on hy.hydh=rz.wjdh  inner join khdx_jgcy cy on cy.khdxdh=hy.khdxdh
+      <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+      inner join khdx_jg jg on jg.khdxdh=cy.jgkhdxdh  left join khdx_hylb lb on hy.khdxdh=lb.khdxdh
+      <isNotEmpty property="tjrq">and $tjrq$ between lb.qsrq and lb.jsrq</isNotEmpty>
+      where 1=1
+      <isNotEmpty property="tjrq">and  rz.tjrq=$tjrq$</isNotEmpty>
+      and $zt$
+      <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
+      and hy.hydh not like 'XN%'
+    </select>
+    <select id="dn0.grjxbgrzcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select rz.tjrq,jg.jgmc,lb.lbmc,rz.wjdh,hy.hymc,rz.cjsj, case when rz.yycj='1' then '个人绩效报告' else '机构绩效报告' end as yycj, case when rz.wjzt='0' then '成功' else '失败' end as wjzt,rz.filepath,rz.filesize from jxbg_wjscrz rz  inner join khdx_hy hy on hy.hydh=rz.wjdh  inner join khdx_jgcy cy on cy.khdxdh=hy.khdxdh
+      <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+      inner join khdx_jg jg on jg.khdxdh=cy.jgkhdxdh  left join khdx_hylb lb on hy.khdxdh=lb.khdxdh
+      <isNotEmpty property="tjrq">and $tjrq$ between lb.qsrq and lb.jsrq</isNotEmpty>
+      where 1=1
+      <isNotEmpty property="tjrq">and  rz.tjrq=$tjrq$</isNotEmpty>
+      and $zt$
+      <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
+      and hy.hydh not like 'XN%' ) t
+    </select>
+    <select id="dn0.grjxbgrzcx_MSQL4SELECT_wjzt" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select  -1  as key, '全部' as value from pas_vt union all  select 0 as key, '成功' as value from pas_vt union all  select 1 as key, '失败' as value from pas_vt</select>
+  </sqlMap>
+  <rels>
+    <items id="grjxbgrzcx_xsjy1jgj" />
+  </rels>
+  <javascript><![CDATA[jQuery(document).ready(function () {
+  $('#tool_bar').children().val("重跑失败").addClass("cbutton_bg_110");
+  
+  $('#wjzt').change(function(){
+    var t = window.setInterval(function(){
+      var wjzt = $('#wjzt').val();
+      if(wjzt != undefined && wjzt.length > 0){
+        window.clearInterval(t);
+        if(wjzt == '-1'){
+          $('#zt').val(' 1=1 ');
+        }else {
+          $('#zt').val('rz.wjzt=CAST('+ wjzt + ' AS char(1)) ');
+        }
+      }
+    });
+  }).trigger('change');
+  
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+  return true;
+}
+
+function exportResults(){
+  $.post(
+    '/module/jxbgcx/reNewHyPdf',
+    {"tjrq":$("#tjrq").val()},
+    function(data){
+      var res = data;
+      alert(res);    
+    });
+}]]></javascript>
+</pageSetting>
+

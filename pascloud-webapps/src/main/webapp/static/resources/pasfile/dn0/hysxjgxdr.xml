@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="hysxjgxdr" title="行员上下级关系导入" type="import" version="1.0.0.0" desc="标准版" pid=""> 
+  <template> 
+    <src>ONLINE</src>  
+    <column> 
+      <text>行员代号</text>  
+      <name>hydh</name>  
+      <index>0</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>行员名称</text>  
+      <name>hymc</name>  
+      <index>1</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>起始日期</text>  
+      <name>qsrq</name>  
+      <index>2</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>直接上级（正职）代号</text>  
+      <name>zjsjzzdh</name>  
+      <index>3</index>  
+      <width>180</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>N</req> 
+    </column>  
+    <column> 
+      <text>直接上级（正职）</text>  
+      <name>zjsjzz</name>  
+      <index>4</index>  
+      <width>180</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>N</req> 
+    </column>  
+    <column> 
+      <text>是否机构负责人（是=1；否=0）</text>  
+      <name>sfjgfzr</name>  
+      <index>5</index>  
+      <width>180</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>是否总行领导（是=1；否=0）</text>  
+      <name>sfzhld</name>  
+      <index>6</index>  
+      <width>180</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>Y</req> 
+    </column>  
+    <column> 
+      <text>直接上级（副职）代号</text>  
+      <name>zjsjfzdh</name>  
+      <index>7</index>  
+      <width>180</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>N</req> 
+    </column>  
+    <column> 
+      <text>直接上级（副职）</text>  
+      <name>zjsjfz</name>  
+      <index>8</index>  
+      <width>180</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>N</req> 
+    </column>  
+    <column> 
+      <text>临时上级代号</text>  
+      <name>lssjdh</name>  
+      <index>9</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>N</req> 
+    </column>  
+    <column> 
+      <text>临时上级</text>  
+      <name>lssj</name>  
+      <index>10</index>  
+      <width>120</width>  
+      <height/>  
+      <align>center</align>  
+      <annotate/>  
+      <length>100</length>  
+      <req>N</req> 
+    </column> 
+  </template>  
+  <table id="hysxjgxdr_table" page="true"> 
+    <col id="ZT" title="状态" align="center" type="string" width="50"/>  
+    <col id="ERROR" title="错误原因" align="center" type="string" width="250"/>  
+    <col id="HYDH" title="行员代号" align="center" type="" width="120"/>  
+    <col id="HYMC" title="行员名称" align="center" type="" width="120"/>  
+    <col id="QSRQ" title="起始日期" align="center" type="" width="120"/>  
+    <col id="ZJSJZZDH" title="直接上级（正职）代号" align="center" type="" width="180"/>  
+    <col id="ZJSJZZ" title="直接上级（正职）" align="center" type="" width="180"/>  
+    <col id="SFJGFZR" title="是否机构负责人（是=1；否=0）" align="center" type="" width="180"/>  
+    <col id="SFZHLD" title="是否总行领导（是=1；否=0）" align="center" type="" width="180"/>  
+    <col id="ZJSJFZDH" title="直接上级（副职）代号" align="center" type="" width="180"/>  
+    <col id="ZJSJFZ" title="直接上级（副职）" align="center" type="" width="180"/>  
+    <col id="LSSJDH" title="临时上级代号" align="center" type="" width="120"/>  
+    <col id="LSSJ" title="临时上级" align="center" type="" width="120"/> 
+  </table>  
+  <flow> 
+    <rule> 
+      <sql type="update">hysxjgxdr_check_hydh_0</sql>  
+      <sql type="update">hysxjgxdr_check_hydh_1</sql>  
+      <sql type="update">hysxjgxdr_check_hymc_2</sql>  
+      <sql type="update">hysxjgxdr_check_qsrq_3</sql>  
+      <sql type="update">hysxjgxdr_check_qsrq_4</sql>  
+      <sql type="update">hysxjgxdr_check_qsrq_5</sql>  
+      <sql type="update">hysxjgxdr_check_sfjgfzr_6</sql>  
+      <sql type="update">hysxjgxdr_check_sfzhld_7</sql>  
+      <sql type="update">hysxjgxdr_checkupdate_hydh_0</sql>  
+      <sql type="update">hysxjgxdr_checkupdate_hymc_0</sql>  
+      <sql type="update">hysxjgxdr_checkupdate_zjsjzzdh_0</sql>  
+      <sql type="update">hysxjgxdr_checkupdate_zjsjzzdh_1</sql>  
+      <sql type="update">hysxjgxdr_checkupdate_zjsjzz_0</sql>  
+      <sql type="update">hysxjgxdr_checkupdate_sfjgfzr_0</sql>  
+      <sql type="update">hysxjgxdr_checkupdate_sfjgfzr_1</sql>  
+      <sql type="update">hysxjgxdr_checkupdate_sfzhld_0</sql>  
+      <sql type="update">hysxjgxdr_checkupdate_zjsjfzdh_0</sql>  
+      <sql type="update">hysxjgxdr_checkupdate_zjsjfzdh_1</sql>  
+      <sql type="update">hysxjgxdr_checkupdate_zjsjfz_0</sql>  
+      <sql type="update">hysxjgxdr_checkupdate_lssjdh_0</sql>  
+      <sql type="update">hysxjgxdr_checkupdate_lssjdh_1</sql>  
+      <sql type="update">hysxjgxdr_checkupdate_lssj_0</sql>  
+      <sql type="update">hysxjgxdr_exists_target</sql>  
+      <sql type="update">hysxjgxdr_exists_same_temp</sql> 
+    </rule>  
+    <before> 
+      <sql type="delete">hysxjgxdr_before_insert_delqsrqAndCover</sql>  
+      <sql type="update">hysxjgxdr_before_insert_cutqsrq</sql> 
+    </before>  
+    <cover/>  
+    <insert> 
+      <sql type="insert">hysxjgxdr_insert_into_target</sql>  
+      <sql type="update">hysxjgxdr_insert_rule_0</sql>  
+      <sql type="delete">hysxjgxdr_insert_rule_1</sql>  
+      <sql type="insert">hysxjgxdr_insert_rule_2</sql> 
+    </insert>  
+    <after/> 
+  </flow>  
+  <sqlMap namespace="studio.hysxjgxdr"> 
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_check_hydh_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set t.error=t.error||'行员代号输入错误，不能为空!' where f_java_rule_length(t.hydh)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_check_hydh_1"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set t.error=t.error||'行员代号不存在!' where not exists(select 1 from khdx_hy h where rtrim(t.hydh)=rtrim(h.hydh)) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_check_hymc_2"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set t.error=t.error||'行员名称输入错误，不能为空!' where f_java_rule_length(t.hymc)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_check_qsrq_3"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set t.error=t.error||'起始日期输入错误，格式应该是:yyyyMMdd!' where f_java_rule_date(t.qsrq,'yyyyMMdd')=1 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_check_qsrq_4"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set t.error=t.error||'起始日期输入错误，不能为空!' where f_java_rule_length(t.qsrq)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_check_qsrq_5"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set t.error=(select t.error||'起始日期不能小于(系统日期-重跑天数)'|| cast(f_change_days(cast(rq.csz as integer),-cast(cs.csz as integer )) as char(8))||'!' as error from xtb_xtcs rq ,xtb_xtcs cs where rq.csmc='SYS_DATE' and cs.csmc='SYS_CSTS') where cast(t.qsrq as integer)&lt;(select f_change_days(cast(rq.csz as integer ),-cast(cs.csz as integer )) from xtb_xtcs rq ,xtb_xtcs cs where rq.csmc='SYS_DATE' and cs.csmc='SYS_CSTS') and (error='' or error is null) and khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_check_sfjgfzr_6"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set t.error=t.error||'是否机构负责人（是=1；否=0）输入错误，不能为空!' where f_java_rule_length(t.sfjgfzr)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_check_sfzhld_7"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set t.error=t.error||'是否总行领导（是=1；否=0）输入错误，不能为空!' where f_java_rule_length(t.sfzhld)=0 and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_checkupdate_hydh_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set error=error||'行员代号、正职、副职、临时上级代号不能两两相同!' where ( t.hydh = t.zjsjzzdh or t.hydh = t.zjsjfzdh or t.hydh = t.lssjdh or (t.zjsjzzdh is not null and t.zjsjzzdh !='' and t.zjsjfzdh is not null and t.zjsjfzdh !='' and t.zjsjzzdh = t.zjsjfzdh) or (t.zjsjzzdh is not null and t.zjsjzzdh !='' and t.lssjdh is not null and t.lssj !='' and t.zjsjzzdh = t.lssjdh ) or ( t.zjsjfzdh is not null and t.zjsjfzdh !='' and t.lssjdh is not null and t.lssj !='' and t.zjsjfzdh = t.lssjdh ) ) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_checkupdate_hymc_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set error=error||'行员代号和名称必须一致' where not exists ( select 1 from khdx_hy hy where t.hydh=hy.hydh and hy.hymc=t.hymc) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_checkupdate_zjsjzzdh_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set error=error||'直接上级（正职）行员代号和名称必须一致!' where not exists ( select 1 from khdx_hy hy where t.zjsjzzdh=hy.hydh and hy.hymc=t.zjsjzz) and t.zjsjzzdh is not null and t.zjsjzzdh != '' and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_checkupdate_zjsjzzdh_1"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set error=error||'直接上级（正职）行员代号不能与行员代号一致!' where t.zjsjzzdh = t.hydh and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_checkupdate_zjsjzz_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set error=error||'直接上级（正职）不存在!' where not exists ( select 1 from khdx_hy hy where hy.hymc=t.hymc) and t.zjsjzzdh is not null and t.zjsjzzdh != '' and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_checkupdate_sfjgfzr_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set error=error||'是否机构负责人只允许输入0和1!' where t.sfjgfzr not in ('0','1') and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_checkupdate_sfjgfzr_1"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set error = error||'一个时间范围内同一个机构不能出现多个机构负责人!' where t.hydh in(SELECT t.hydh FROM hysxjgxdr_temp t INNER JOIN khdx_hy hy ON t.hydh=hy.hydh INNER JOIN khdx_jgcy cy ON hy.khdxdh=cy.khdxdh AND CAST(t.qsrq AS INTEGER) BETWEEN cy.qsrq AND cy.jsrq AND t.sfjgfzr = '1' WHERE cy.jgkhdxdh IN (SELECT cy.jgkhdxdh FROM hysxjgxdr_temp t INNER JOIN khdx_hy hy ON t.hydh=hy.hydh INNER JOIN khdx_jgcy cy ON hy.khdxdh=cy.khdxdh AND CAST(t.qsrq AS INTEGER) BETWEEN cy.qsrq AND cy.jsrq where t.sfjgfzr = '1' group by cy.jgkhdxdh HAVING COUNT(1)&gt;1 ) ) and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_checkupdate_sfzhld_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set error=error||'是否总行领导只允许输入0和1!' where t.sfzhld not in ('0','1') and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_checkupdate_zjsjfzdh_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set error=error||'直接上级（副职）行员代号和名称必须一致!' where not exists ( select 1 from khdx_hy hy where t.zjsjfzdh=hy.hydh and hy.hymc=t.zjsjfz) and t.zjsjfzdh is not null and t.zjsjfzdh !='' and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_checkupdate_zjsjfzdh_1"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set error=error||'直接上级（副职）行员代号不能与行员代号一致!' where t.zjsjfzdh = t.hydh and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_checkupdate_zjsjfz_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set error=error||'直接上级（副职）不存在!' where not exists ( select 1 from khdx_hy hy where hy.hymc=t.hymc) and t.zjsjfzdh is not null and t.zjsjfzdh !='' and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_checkupdate_lssjdh_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set error=error||'临时上级行员代号和名称必须一致!' where not exists ( select 1 from khdx_hy hy where t.lssjdh=hy.hydh and hy.hymc=t.lssj) and t.lssjdh is not null and t.lssjdh !='' and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_checkupdate_lssjdh_1"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set error=error||'临时上级代号不能与行员代号一致!' where t.zjsjzzdh = t.hydh and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_checkupdate_lssj_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set error=error||'临时上级不存在!' where not exists ( select 1 from khdx_hy hy where hy.hymc=t.hymc) and t.lssj is not null and t.lssj !='' and t.khdxdh=$login_khdxdh$
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_exists_target"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set t.error=t.error||'数据已存在!' where exists(select 1 from KHDX_HYSXJGX tar ,KHDX_HY KHDX_HY0 where 1=1 and t.hydh=KHDX_HY0.HYDH and KHDX_HY0.KHDXDH=tar.KHDXDH and cast(tar.qsrq as integer) <![CDATA[>]]>= cast(t.qsrq as integer) and t.khdxdh=$login_khdxdh$ and (length(t.error)=0 or t.error is null ))
+    </update>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_exists_same_temp"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update hysxjgxdr_temp t set t.error=error||'存在重复数据!' where exists( select 1 from (select hydh from hysxjgxdr_temp dr where khdxdh=$login_khdxdh$ group by hydh having count(1)<![CDATA[>]]>1 ) dr where 1=1 and t.hydh=dr.hydh) and khdxdh=$login_khdxdh$
+    </update>  
+    <insert parameterClass="java.util.Map" id="dn0.hysxjgxdr_create_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> CREATE TABLE hysxjgxdr_temp ( hydh varchar(100) , hymc varchar(100) , qsrq varchar(100) , zjsjzzdh varchar(100) , zjsjzz varchar(100) , sfjgfzr varchar(100) , sfzhld varchar(100) , zjsjfzdh varchar(100) , zjsjfz varchar(100) , lssjdh varchar(100) , lssj varchar(100) , khdxdh integer,error varchar(1000) )
+    </insert>  
+    <delete parameterClass="java.util.Map" id="dn0.hysxjgxdr_delete_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from hysxjgxdr_temp where khdxdh=$login_khdxdh$
+    </delete>  
+    <insert parameterClass="java.util.Map" id="dn0.hysxjgxdr_insert_into_lsb"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into HYSXJGXDR_TEMP (hydh,hymc,qsrq,zjsjzzdh,zjsjzz,sfjgfzr,sfzhld,zjsjfzdh,zjsjfz,lssjdh,lssj,khdxdh,error) values(?,?,?,?,?,?,?,?,?,?,?,?,?)
+    </insert>  
+    <select parameterClass="java.util.Map" id="dn0.hysxjgxdr_exists_error_msg" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from hysxjgxdr_temp where length(error) <![CDATA[>]]> 0 and khdxdh = $login_khdxdh$
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn0.hysxjgxdr_exists_same_data"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from hysxjgxdr_temp where length(error) <![CDATA[>]]> 0 and error != '数据已存在!' and khdxdh = $login_khdxdh$
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn0.hysxjgxdr_select_error_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/cancel.jpg" border="0"/<![CDATA[>]]>' as zt, hydh,hymc,qsrq,zjsjzzdh,zjsjzz,sfjgfzr,sfzhld,zjsjfzdh,zjsjfz,lssjdh,lssj,khdxdh,error from hysxjgxdr_temp where khdxdh=$login_khdxdh$ and length(error)<![CDATA[>]]>0
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn0.hysxjgxdr_count_all_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from (select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, hydh,hymc,qsrq,zjsjzzdh,zjsjzz,sfjgfzr,sfzhld,zjsjfzdh,zjsjfz,lssjdh,lssj,khdxdh,error from hysxjgxdr_temp where khdxdh=$login_khdxdh$ )a
+    </select>  
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn0.hysxjgxdr_select_all_msg"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select '<![CDATA[<]]>img src="$path$/lib/themes/common/images/ok.jpg" border="0"/<![CDATA[>]]>' as zt, hydh,hymc,qsrq,zjsjzzdh,zjsjzz,sfjgfzr,sfzhld,zjsjfzdh,zjsjfz,lssjdh,lssj,khdxdh,error from hysxjgxdr_temp where khdxdh=$login_khdxdh$
+    </select>  
+    <delete id="dn0.hysxjgxdr_before_insert_delqsrqAndCover" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from KHDX_HYSXJGX tar where exists ( select 1 from hysxjgxdr_temp t ,KHDX_HY KHDX_HY0 where (length(t.error)=0 or t.error is null or t.error ='数据已存在!') and t.khdxdh=$login_khdxdh$ and cast(t.hydh as VARCHAR(12) )=KHDX_HY0.HYDH and KHDX_HY0.KHDXDH=tar.KHDXDH and cast(tar.qsrq as integer)<![CDATA[>]]>= cast(t.qsrq as integer) )
+    </delete>  
+    <update id="dn0.hysxjgxdr_before_insert_cutqsrq" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update KHDX_HYSXJGX tar set jsrq=(select F_Change_Days(cast(dr.qsrq as Integer),-1) from hysxjgxdr_temp dr,KHDX_HY KHDX_HY0 where 1=1 and cast(dr.hydh as VARCHAR(20) )=KHDX_HY0.HYDH and KHDX_HY0.KHDXDH=tar.KHDXDH and (length(dr.error)=0 or dr.error is null or dr.error='数据已存在!') and dr.khdxdh=$login_khdxdh$) where exists( select 1 from hysxjgxdr_temp t ,KHDX_HY KHDX_HY0 where 1=1 and cast(t.hydh as VARCHAR(20) )=KHDX_HY0.HYDH and KHDX_HY0.KHDXDH=tar.KHDXDH and (length(t.error)=0 or t.error is null or t.error='数据已存在!') and t.khdxdh=$login_khdxdh$ and tar.jsrq&gt;=F_Change_Days(cast(t.qsrq as Integer),-1))
+    </update>  
+    <insert id="dn0.hysxjgxdr_insert_into_target" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into KHDX_HYSXJGX(KHDXDH,QSRQ,JSRQ,ZJSJZZ,SFJGFZR,SFZHLD,ZJSJFZ,LSSJ) select KHDX_HY0.KHDXDH,cast(t.qsrq as integer),29991231,KHDX_HY1.KHDXDH, cast (t.sfjgfzr as CHAR(1)),cast (t.sfzhld as CHAR(1)),KHDX_HY2.KHDXDH,KHDX_HY3.KHDXDH from hysxjgxdr_temp t inner join KHDX_HY KHDX_HY0 on KHDX_HY0.HYDH=cast (t.hydh as VARCHAR(12)) left join KHDX_HY KHDX_HY1 on KHDX_HY1.HYDH=cast (t.zjsjzzdh as VARCHAR(12)) left join KHDX_HY KHDX_HY2 on KHDX_HY2.HYDH=cast (t.zjsjfzdh as VARCHAR(12)) left join KHDX_HY KHDX_HY3 on KHDX_HY3.HYDH=cast (t.lssjdh as VARCHAR(12)) where t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null)
+    </insert>  
+    <update parameterClass="java.util.Map" id="dn0.hysxjgxdr_insert_rule_0"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update KHDX_HYSXJGX gx set jsrq=( select F_Change_Days(cast(t.qsrq as Integer),-1) From hysxjgxdr_temp t INNER JOIN khdx_hy hy ON t.hydh=hy.hydh INNER JOIN khdx_jgcy cy ON hy.khdxdh=cy.khdxdh AND CAST(t.qsrq AS INTEGER) BETWEEN cy.qsrq AND cy.jsrq and t.sfjgfzr = '1' INNER JOIN khdx_jgcy cy2 ON cy.jgkhdxdh=cy2.jgkhdxdh AND CAST(t.qsrq AS INTEGER) BETWEEN cy2.qsrq AND cy2.jsrq WHERE cy2.khdxdh=gx.khdxdh and CAST(t.qsrq AS INTEGER) BETWEEN gx.qsrq AND gx.jsrq and gx.sfjgfzr = '1' AND hy.khdxdh<![CDATA[<>]]>gx.khdxdh ) where gx.sfjgfzr = '1' AND exists( select 1 From hysxjgxdr_temp t INNER JOIN khdx_hy hy ON t.hydh=hy.hydh INNER JOIN khdx_jgcy cy ON hy.khdxdh=cy.khdxdh AND CAST(t.qsrq AS INTEGER) BETWEEN cy.qsrq AND cy.jsrq and t.sfjgfzr = '1' INNER JOIN khdx_jgcy cy2 ON cy.jgkhdxdh=cy2.jgkhdxdh AND CAST(t.qsrq AS INTEGER) BETWEEN cy2.qsrq AND cy2.jsrq WHERE cy2.khdxdh=gx.khdxdh and CAST(t.qsrq AS INTEGER) BETWEEN gx.qsrq AND gx.jsrq and gx.sfjgfzr = '1' AND hy.khdxdh<![CDATA[<>]]>gx.khdxdh and t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null))
+    </update>  
+    <delete parameterClass="java.util.Map" id="dn0.hysxjgxdr_insert_rule_1"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from KHDX_HYSXJGX gx where gx.qsrq<![CDATA[>]]>=( select CAST(t.qsrq AS INTEGER) from hysxjgxdr_temp t INNER JOIN khdx_hy hy ON t.hydh=hy.hydh INNER JOIN khdx_jgcy cy ON hy.khdxdh=cy.khdxdh AND CAST(t.qsrq AS INTEGER) BETWEEN cy.qsrq AND cy.jsrq and t.sfjgfzr = '1' INNER JOIN khdx_jgcy cy2 ON cy.jgkhdxdh=cy2.jgkhdxdh AND CAST(t.qsrq AS INTEGER) BETWEEN cy2.qsrq AND cy2.jsrq WHERE cy2.khdxdh=gx.khdxdh and gx.qsrq<![CDATA[>]]>=CAST(t.qsrq AS INTEGER) and gx.sfjgfzr = '1' AND hy.khdxdh<![CDATA[<>]]>gx.khdxdh )
+    </delete>  
+    <insert parameterClass="java.util.Map" id="dn0.hysxjgxdr_insert_rule_2"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into KHDX_HYSXJGX(khdxdh,qsrq,jsrq,zjsjzz,sfjgfzr,sfzhld,zjsjfz,lssj) select gx.khdxdh,cast(t.qsrq as Integer),29991231,gx.zjsjzz,'0' as sfjgfzr,gx.sfzhld,gx.zjsjfz,gx.lssj from hysxjgxdr_temp t INNER JOIN khdx_hy hy ON t.hydh=hy.hydh INNER JOIN khdx_jgcy cy ON hy.khdxdh=cy.khdxdh AND CAST(t.qsrq AS INTEGER) BETWEEN cy.qsrq AND cy.jsrq and t.sfjgfzr = '1' INNER JOIN khdx_jgcy cy2 ON cy.jgkhdxdh=cy2.jgkhdxdh AND CAST(t.qsrq AS INTEGER) BETWEEN cy2.qsrq AND cy2.jsrq inner join KHDX_HYSXJGX gx on cy2.khdxdh=gx.khdxdh where gx.jsrq=F_Change_Days(cast(t.qsrq as Integer),-1) and gx.sfjgfzr = '1' AND hy.khdxdh<![CDATA[<>]]>gx.khdxdh and t.khdxdh=$login_khdxdh$ and (t.error = '数据已存在!' or length(t.error) = 0 or t.error is null) and not exists(select 1 from KHDX_HYSXJGX bm where gx.khdxdh=bm.khdxdh and bm.qsrq=CAST(t.qsrq AS INTEGER))
+    </insert> 
+  </sqlMap> 
+</pageSetting>

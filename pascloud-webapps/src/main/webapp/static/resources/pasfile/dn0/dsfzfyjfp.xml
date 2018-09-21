@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="dsfzfyjfp" title="第三方支付业绩分配" type="yjgx" version="1.0.0.0" pid="" desc="标准版"> 
+  <database> 
+    <targetTable> 
+      <relevance> 
+        <name>DXGX_YJGX_DSFZF</name>  
+        <fields> 
+          <field> 
+            <name>qykey</name>  
+            <dbType>VARCHAR(100)</dbType> 
+          </field>  
+          <field> 
+            <name>khdxdh</name>  
+            <dbType>INTEGER</dbType> 
+          </field>  
+          <field> 
+            <name>qsrq</name>  
+            <dbType>INTEGER</dbType> 
+          </field>  
+          <field> 
+            <name>jsrq</name>  
+            <dbType>INTEGER</dbType> 
+          </field>  
+          <field> 
+            <name>zlbl</name>  
+            <dbType>DECIMAL(19,5)</dbType> 
+          </field>  
+          <field> 
+            <name>gxly</name>  
+            <dbType>VARCHAR(2)</dbType> 
+          </field>  
+          <field> 
+            <name>yylsh</name>  
+            <dbType>NUMERIC(20)</dbType> 
+          </field> 
+        </fields> 
+      </relevance>  
+      <performance> 
+        <name>JXDX_DSFZFQY</name>  
+        <fields> 
+          <field> 
+            <name>qykey</name>  
+            <dbType>VARCHAR(100)</dbType>  
+            <isPrimaryKey>true</isPrimaryKey> 
+          </field>  
+          <field> 
+            <name>kh</name>  
+            <dbType>VARCHAR(40)</dbType>  
+            <isPrimaryKey>false</isPrimaryKey> 
+          </field>  
+          <field> 
+            <name>lx</name>  
+            <dbType>VARCHAR(2)</dbType>  
+            <isPrimaryKey>false</isPrimaryKey> 
+          </field>  
+          <field> 
+            <name>khh</name>  
+            <dbType>VARCHAR(30)</dbType>  
+            <isPrimaryKey>false</isPrimaryKey> 
+          </field>  
+          <field> 
+            <name>khmc</name>  
+            <dbType>VARCHAR(100)</dbType>  
+            <isPrimaryKey>false</isPrimaryKey> 
+          </field>  
+          <field> 
+            <name>sjhm</name>  
+            <dbType>VARCHAR(20)</dbType>  
+            <isPrimaryKey>false</isPrimaryKey> 
+          </field>  
+          <field> 
+            <name>zjh</name>  
+            <dbType>VARCHAR(20)</dbType>  
+            <isPrimaryKey>false</isPrimaryKey> 
+          </field>  
+          <field> 
+            <name>qyrq</name>  
+            <dbType>INTEGER</dbType>  
+            <isPrimaryKey>false</isPrimaryKey> 
+          </field>  
+          <field> 
+            <name>cxrq</name>  
+            <dbType>INTEGER</dbType>  
+            <isPrimaryKey>false</isPrimaryKey> 
+          </field>  
+          <field> 
+            <name>jgdh</name>  
+            <dbType>VARCHAR(10)</dbType>  
+            <isPrimaryKey>false</isPrimaryKey> 
+          </field>  
+          <field> 
+            <name>jyzt</name>  
+            <dbType>VARCHAR(2)</dbType>  
+            <isPrimaryKey>false</isPrimaryKey> 
+          </field>  
+          <field> 
+            <name>hydh</name>  
+            <dbType>VARCHAR(12)</dbType>  
+            <isPrimaryKey>false</isPrimaryKey> 
+          </field>  
+          <field> 
+            <name>khdxdh</name>  
+            <dbType>INTEGER</dbType>  
+            <isPrimaryKey>false</isPrimaryKey> 
+          </field> 
+        </fields>  
+        <dateField>qyrq</dateField>  
+        <innerFields> 
+          <innerField>qykey</innerField> 
+        </innerFields> 
+      </performance>  
+      <log> 
+        <name>XTB_HYGXRZ_DSFZF</name>  
+        <fields> 
+          <field> 
+            <name>jldh</name>  
+            <dbType>INTEGER</dbType> 
+          </field>  
+          <field> 
+            <name>jlsj</name>  
+            <dbType>TIMESTAMP</dbType> 
+          </field>  
+          <field> 
+            <name>czlx</name>  
+            <dbType>VARCHAR2(2)</dbType> 
+          </field>  
+          <field> 
+            <name>xgrdh</name>  
+            <dbType>INTEGER</dbType> 
+          </field>  
+          <field> 
+            <name>qykey</name>  
+            <dbType>VARCHAR2(100)</dbType> 
+          </field> 
+        </fields> 
+      </log>  
+      <record> 
+        <name>XTB_HYGXJL_DSFZF</name>  
+        <fields> 
+          <field> 
+            <name>jldh</name>  
+            <dbType>INTEGER</dbType> 
+          </field>  
+          <field> 
+            <name>ggbz</name>  
+            <dbType>VARCHAR2(1)</dbType> 
+          </field>  
+          <field> 
+            <name>khdxdh</name>  
+            <dbType>INTEGER</dbType> 
+          </field>  
+          <field> 
+            <name>qsrq</name>  
+            <dbType>INTEGER</dbType> 
+          </field>  
+          <field> 
+            <name>jsrq</name>  
+            <dbType>INTEGER</dbType> 
+          </field>  
+          <field> 
+            <name>zlbl</name>  
+            <dbType>DECIMAL(19,5)</dbType> 
+          </field> 
+        </fields> 
+      </record> 
+    </targetTable>  
+    <extendTable> 
+      <table name="KHDX_JG" alias="KHDX_JG1534818434889" joinType="inner"> 
+        <fields> 
+          <field> 
+            <name>KHDXDH</name>  
+            <dbType>INTEGER</dbType> 
+          </field>  
+          <field> 
+            <name>JGDH</name>  
+            <dbType>VARCHAR(15)</dbType> 
+          </field>  
+          <field> 
+            <name>JGMC</name>  
+            <dbType>VARCHAR(100)</dbType> 
+          </field>  
+          <field> 
+            <name>JYJGBZ</name>  
+            <dbType>VARCHAR(1)</dbType> 
+          </field>  
+          <field> 
+            <name>PXBZ</name>  
+            <dbType>INTEGER</dbType> 
+          </field>  
+          <field> 
+            <name>ZXZT</name>  
+            <dbType>VARCHAR(1)</dbType> 
+          </field>  
+          <field> 
+            <name>ZXRQ</name>  
+            <dbType>INTEGER</dbType> 
+          </field>  
+          <field> 
+            <name>FHDH</name>  
+            <dbType>VARCHAR(15)</dbType> 
+          </field>  
+          <field> 
+            <name>FHBZ</name>  
+            <dbType>VARCHAR(2)</dbType> 
+          </field>  
+          <field> 
+            <name>JGDJ</name>  
+            <dbType>VARCHAR(2)</dbType> 
+          </field>  
+          <field> 
+            <name>KYRQ</name>  
+            <dbType>INTEGER</dbType> 
+          </field> 
+        </fields>  
+        <relevanceFields> 
+          <field> 
+            <name>JGDH</name>  
+            <dbType/>  
+            <operator>=</operator>  
+            <condition> 
+              <table>JXDX_DSFZFQY</table>  
+              <field>JGDH</field>  
+              <dbType/> 
+            </condition>  
+            <limitCondition/> 
+          </field> 
+        </relevanceFields> 
+      </table>  
+      <table name="CSB_DMMS" alias="CSB_DMMS589" joinType="inner"> 
+        <fields> 
+          <field> 
+            <name>DMMC</name>  
+            <dbType>VARCHAR(15)</dbType> 
+          </field>  
+          <field> 
+            <name>DMZ</name>  
+            <dbType>VARCHAR(30)</dbType> 
+          </field>  
+          <field> 
+            <name>DMMS</name>  
+            <dbType>VARCHAR(200)</dbType> 
+          </field>  
+          <field> 
+            <name>DMSM</name>  
+            <dbType>VARCHAR(500)</dbType> 
+          </field>  
+          <field> 
+            <name>XH</name>  
+            <dbType>INTEGER</dbType> 
+          </field> 
+        </fields>  
+        <relevanceFields> 
+          <field> 
+            <name>DMZ</name>  
+            <dbType>VARCHAR(30)</dbType>  
+            <operator>=</operator>  
+            <condition> 
+              <table>JXDX_DSFZFQY</table>  
+              <field>lx</field>  
+              <dbType>VARCHAR(2)</dbType> 
+            </condition>  
+            <limitCondition>and csb_dmms.dmmc='DSFZFLX'</limitCondition> 
+          </field> 
+        </relevanceFields> 
+      </table> 
+    </extendTable> 
+  </database>  
+  <mainPart> 
+    <tags> 
+      <tag name="qsrq" field="JXDX_DSFZFQY.qyrq" type="Date" source="perfor" condition="between ? and 1" col="0" row="0" colspan="1"> 
+        <attribute key="label" value="签约日期"/>  
+        <attribute key="name" value="qsrq"/>  
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="yc"/>  
+        <attribute key="styleClass" value=""/>  
+        <attribute key="minDate" value="no"/>  
+        <attribute key="defVal" value=""/>  
+        <attribute key="style" value=""/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag name="jsrq" field="JXDX_DSFZFQY.qyrq" type="Date" source="perfor" condition="between 1 and ?" col="1" row="0" colspan="1"> 
+        <attribute key="label" value="到"/>  
+        <attribute key="name" value="jsrq"/>  
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="styleClass" value=""/>  
+        <attribute key="minDate" value="no"/>  
+        <attribute key="defVal" value=""/>  
+        <attribute key="style" value=""/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag name="jgkhdxdh" field="JXDX_DSFZFQY.jgdh" type="NewJg" source="perfor" condition="in" col="2" row="0" colspan="1"> 
+        <attribute key="label" value="签约机构"/>  
+        <attribute key="name" value="jgkhdxdh"/>  
+        <attribute key="ckbz" value="jg"/>  
+        <attribute key="defVal" value=""/>  
+        <attribute key="multiple" value="false"/>  
+        <attribute key="cascadeCheck" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="style" value=""/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag name="lx" field="JXDX_DSFZFQY.lx" type="Dmms" source="perfor" condition="=" col="0" row="1" colspan="1"> 
+        <attribute key="label" value="支付渠道"/>  
+        <attribute key="name" value="lx"/>  
+        <attribute key="dmmc" value="dsfzflx"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="multiple" value="false"/>  
+        <attribute key="defVal" value=""/>  
+        <attribute key="width" value="120px;"/>  
+        <attribute key="style" value=""/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag name="khh" field="JXDX_DSFZFQY.khh" type="Text" source="perfor" condition="like %?%" col="1" row="1" colspan="1"> 
+        <attribute key="label" value="客户号"/>  
+        <attribute key="name" value="khh"/>  
+        <attribute key="value" value=""/>  
+        <attribute key="maxlength" value=""/>  
+        <attribute key="readonly" value="false"/>  
+        <attribute key="style" value=""/>  
+        <attribute key="styleClass" value=""/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag name="khmc" field="JXDX_DSFZFQY.khmc" type="Text" source="perfor" condition="like %?%" col="2" row="1" colspan="1"> 
+        <attribute key="label" value="客户名称"/>  
+        <attribute key="name" value="khmc"/>  
+        <attribute key="value" value=""/>  
+        <attribute key="maxlength" value=""/>  
+        <attribute key="readonly" value="false"/>  
+        <attribute key="style" value=""/>  
+        <attribute key="styleClass" value=""/>  
+        <attribute key="editable" value="true"/> 
+      </tag> 
+    </tags>  
+    <javascript/> 
+  </mainPart>  
+  <listPart> 
+    <tags> 
+      <tag name="label" field="qykey" type="Label" col="0" row="0" condition="=" colspan="1"> 
+        <attribute key="label" value="签约KEY"/>  
+        <attribute key="name" value="qykey"/> 
+      </tag> 
+    </tags>  
+    <javascript/> 
+  </listPart>  
+  <resultSet> 
+    <mainTable id="001" title="mainTable" page="true"> 
+      <col id="qykey" fieldAlias="qykey" tvalue="JXDX_DSFZFQY" tableAlias="JXDX_DSFZFQY" source="perfor" title="签约KEY" align="left" type="string" width="120" format="" exp="true"/>  
+      <col id="DMMS" fieldAlias="DMMS" tvalue="CSB_DMMS" tableAlias="CSB_DMMS589" source="extend" title="支付渠道" align="left" type="string" width="120" format="" exp="true"/>  
+      <col id="kh" fieldAlias="kh" tvalue="JXDX_DSFZFQY" tableAlias="JXDX_DSFZFQY" source="perfor" title="卡号" align="left" type="string" width="150" format="" exp="true"/>  
+      <col id="khh" fieldAlias="khh" tvalue="JXDX_DSFZFQY" tableAlias="JXDX_DSFZFQY" source="perfor" title="客户号" align="left" type="string" width="120" format="" exp="true"/>  
+      <col id="khmc" fieldAlias="khmc" tvalue="JXDX_DSFZFQY" tableAlias="JXDX_DSFZFQY" source="perfor" title="客户名称" align="left" type="string" width="120" format="" exp="true"/>  
+      <col id="sjhm" fieldAlias="sjhm" tvalue="JXDX_DSFZFQY" tableAlias="JXDX_DSFZFQY" source="perfor" title="手机号码" align="left" type="string" width="120" format="" exp="true"/>  
+      <col id="zjh" fieldAlias="zjh" tvalue="JXDX_DSFZFQY" tableAlias="JXDX_DSFZFQY" source="perfor" title="证件号" align="left" type="string" width="120" format="" exp="true"/>  
+      <col id="qyrq" fieldAlias="qyrq" tvalue="JXDX_DSFZFQY" tableAlias="JXDX_DSFZFQY" source="perfor" title="签约日期" align="left" type="string" width="80" format="" exp="true"/>  
+      <col id="DQFPGX" fieldAlias="DQFPGX" tvalue="parentName" tableAlias="parentName" source="base" title="当前分配关系" align="left" type="string" width="200" format="" exp="true"/>  
+      <col id="JGMC" fieldAlias="JGMC" tvalue="KHDX" tableAlias="KHDX" source="inObject" title="签约机构" align="left" type="string" width="150" format="" exp="true"/>  
+      <col id="cxrq" fieldAlias="cxrq" tvalue="JXDX_DSFZFQY" tableAlias="JXDX_DSFZFQY" source="perfor" title="销户日期" align="left" type="string" width="120" format="" exp="true"/> 
+    </mainTable>  
+    <listTable id="002" type="tag" title="listTable" page="true"> 
+      <col id="JGDH" fieldAlias="JGDH" tvalue="KHDX" tableAlias="KHDX" source="inObject" title="机构代号" align="left" type="string" width="100" format=""/>  
+      <col id="JGMC" fieldAlias="JGMC" tvalue="KHDX" tableAlias="KHDX" source="inObject" title="机构名称" align="left" type="string" width="150" format=""/>  
+      <col id="HYDH" fieldAlias="HYDH" tvalue="KHDX" tableAlias="KHDX" source="inObject" title="行员代号" align="left" type="string" width="80" format=""/>  
+      <col id="HYMC" fieldAlias="HYMC" tvalue="KHDX" tableAlias="KHDX" source="inObject" title="行员名称" align="left" type="string" width="90" format=""/>  
+      <col id="QSRQ" fieldAlias="QSRQ" tvalue="DXGX_YJGX_DSFZF" tableAlias="DXGX_YJGX_DSFZF" source="rele" title="起始日期" align="left" type="string" width="80" format=""/>  
+      <col id="JSRQ" fieldAlias="JSRQ" tvalue="DXGX_YJGX_DSFZF" tableAlias="DXGX_YJGX_DSFZF" source="rele" title="结束日期" align="left" type="string" width="80" format=""/>  
+      <col id="ZLBL" fieldAlias="ZLBL" tvalue="DXGX_YJGX_DSFZF" tableAlias="DXGX_YJGX_DSFZF" source="rele" title="增量比例" align="left" type="string" width="80" format=""/> 
+    </listTable> 
+  </resultSet> 
+</pageSetting>

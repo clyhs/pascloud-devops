@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="cdkyjfpmx" title="存贷款业绩分配明细" type="query" version="1.0.0.0" pid="" desc="标准版"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="DataInterface" label="null"> 
+        <attribute key="dataType" value="select"/>  
+        <attribute key="sql" value="select csz from xtb_xtcs  where csmc='CKYJGXMS'"/>  
+        <attribute key="name" value="getCKYJGXMS"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="cdkyjfpmx_xsjy1jgj" title="新数据源1结果集" page="true"> 
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZZH" title="子账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="QSRQ" title="起始日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+  </table>  
+  <sqlMap namespace="studio.cdkyjfpmx"> 
+    <select id="dn0.cdkyjfpmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select b.khh,b.zhdh,b.zzh,b.zhhm,a.qsrq,a.jsrq from dxgx_hyyjgx_ck a inner join jxdx_ckzh b on a.jxdxdh=b.jxdxdh where 1=1 
+      <isNotEmpty property="LSH">and a.yylsh=$LSH$</isNotEmpty> 
+    </select>  
+    <select id="dn0.cdkyjfpmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select b.khh,b.zhdh,b.zzh,b.zhhm,a.qsrq,a.jsrq from dxgx_hyyjgx_ck a inner join jxdx_ckzh b on a.jxdxdh=b.jxdxdh where 1=1 
+      <isNotEmpty property="LSH">and a.yylsh=$LSH$</isNotEmpty> ) t
+    </select>  
+    <select id="dn0.cdkyjfpmx_getCKYJGXMS" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz from xtb_xtcs where csmc='CKYJGXMS'</select> 
+  </sqlMap>  
+  <rels> 
+    <items id="cdkyjfpmx_xsjy1jgj"/> 
+  </rels>  
+  <javascript><![CDATA[jQuery(document).ready(function () {
+   PAS.di.execute('cdkyjfpmx_getCKYJGXMS',getCsz);//数据访问组件
+   $('#query_conn_panel').hide();//隐藏查询按钮 
+   jQuery('#tool_bar'). hide();//去掉按钮区域
+   
+   
+   
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}
+
+
+function getCsz(obj){
+  setTimeout(function(){
+    if(obj.data.length>0){
+      if(obj.data[0].CSZ=='0'){
+       $('td[field="ZZH"] div').hide();
+      }
+    }
+  },400);
+}]]></javascript> 
+</pageSetting>

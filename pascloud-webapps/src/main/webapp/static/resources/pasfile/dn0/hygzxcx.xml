@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="hygzxcx" title="行员工资项查询" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="考核年份">
+        <attribute key="dateFmt" value="yyyy" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="no" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="hygzxcx_xsjy1jgj" title="新数据源1结果集" page="true">
+    <col id="SJGZXLJMC" title="工资项" align="left" type="string" width="400" frozen="true" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false" />
+    <col id="LBMC" title="行员类别" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="GZSFMC" title="算法" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="PX" title="排序" align="left" type="hidden" width="120" frozen="true" format="" exp="false" zsy="false" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.hygzxcx">
+    <select id="dn0.hygzxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[select distinct dy.px,
+       case when dy.sfgxh='1' then '<font style="color:red;font-size:12px">' else '' end 
+       ||rtrim(dy.sjgzxljmc)||case when dy.sfgxh='1' then '</font>' else '' end as sjgzxljmc,
+       case when sf.sfgxh='1' then '<font style="color:red;font-size:12px">' else '' end 
+       ||rtrim(sf.gzsfmc)||case when sf.sfgxh='1' then '</font>' else '' end as gzsfmc,
+       rtrim(hl.lbdh)||hl.lbmc as lbmc
+  from GZTX_HYGZXPZ pz
+    inner join csb_hylb hl on pz.hylb=hl.lbdh
+    inner join gztx_gzxdy dy on pz.gzxbh=dy.gzxbh
+    inner join gztx_gzxsfdy sf on pz.gzxsfbh=sf.gzxsfbh
+ where 1=1]]>
+      <isNotEmpty property="tjrq">and  pz.KHNF=$tjrq$</isNotEmpty>
+      and dy.zt='1'
+    </select>
+    <select id="dn0.hygzxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( <![CDATA[select distinct dy.px,
+       case when dy.sfgxh='1' then '<font style="color:red;font-size:12px">' else '' end 
+       ||rtrim(dy.sjgzxljmc)||case when dy.sfgxh='1' then '</font>' else '' end as sjgzxljmc,
+       case when sf.sfgxh='1' then '<font style="color:red;font-size:12px">' else '' end 
+       ||rtrim(sf.gzsfmc)||case when sf.sfgxh='1' then '</font>' else '' end as gzsfmc,
+       rtrim(hl.lbdh)||hl.lbmc as lbmc
+  from GZTX_HYGZXPZ pz
+    inner join csb_hylb hl on pz.hylb=hl.lbdh
+    inner join gztx_gzxdy dy on pz.gzxbh=dy.gzxbh
+    inner join gztx_gzxsfdy sf on pz.gzxsfbh=sf.gzxsfbh
+ where 1=1]]>
+      <isNotEmpty property="tjrq">and  pz.KHNF=$tjrq$</isNotEmpty>
+      and dy.zt='1' ) t
+    </select>
+  </sqlMap>
+  <rels>
+    <items id="hygzxcx_xsjy1jgj" />
+  </rels>
+  <javascript><![CDATA[jQuery(document).ready(function () {
+
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}
+
+function exportListData(key) {
+         if(!key){ key="hygzxcx";}
+         
+          var arr = document.getElementsByTagName('select');
+        var selectStr = "";
+        for(var i=0;i<arr.length;i++){
+            var selectName = arr[i].name;
+//            var selectVal = params2.Attr();
+             if(arr[i].multiple){
+                 var optArr = document.getElementById(selectName).options;
+                 var tmpSelStr="";
+                 for(var n=0;n<optArr.length;n++){
+                     if(optArr[n].selected==true){
+                         if(tmpSelStr==""){
+                             tmpSelStr+=optArr[n].value;
+                         }else{
+                             tmpSelStr+="--" + optArr[n].value
+                         }
+                     } 
+                 }
+                 selectStr+="&"+selectName+"="+tmpSelStr;
+             }
+        }
+         var url ='/module/parser/query/hygzxcx/exportData.xls?'+selectStr+"&Aiax=1";
+         //myForm.action="../studio/queryParserdiy.do?method=exportData&funId="+key+selectStr;
+         myForm.action=url;
+         myForm.submit();
+     }]]></javascript>
+</pageSetting>
+

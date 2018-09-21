@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="nqrykqjlgl" title="内勤人员考勤记录管理" type="manage" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计月份" fieldName="">
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjyf" />
+        <attribute key="minDate" value="no" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="dateFmt" value="yyyyMM" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+        <attribute key="name" value="tjyf_ym" />
+      </tag>
+      <tag row="0" col="1" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="">
+        <attribute key="isRequired" value="false" />
+        <attribute key="isDisplayXN" value="true" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="true" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="Dmms" label="考勤类型" fieldName="">
+        <attribute key="selectedList" value="1" />
+        <attribute key="name" value="kqlx" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isAll" value="true" />
+        <attribute key="mulShowType" value="null" />
+        <attribute key="dmmc" value="kqlx" />
+        <attribute key="multiple" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+        <attribute key="dataType" value="select" />
+        <attribute key="sql" value="select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxtzrq from xtb_xtcs s,xtb_xtcs c  where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'" />
+        <attribute key="name" value="getMaxtzrq" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="nqrykqjlgltable">
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="TJ" title="统计月份" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="KQLX" title="考勤类型" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="false" zsy="false" showDymCol="false" />
+    <col id="KQLX1" title="考勤类型" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="KQTS" title="考勤天数" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="BZSM" title="备注说明" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HYMC1" title="操作人" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="false" zsy="false" />
+    <col id="TJRQ" title="统计日期" align="left" type="hidden" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="false" zsy="false" />
+  </table>
+  <rels>
+    <items id="nqrykqjlgltable" />
+  </rels>
+  <addPage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="khdxdh">
+      <attribute key="isRequired" value="false" />
+      <attribute key="style" value="width:120px" />
+      <attribute key="isDisplayXN" value="true" />
+      <attribute key="jgckbz" value="jg_ckhy" />
+      <attribute key="name" value="khdxdh" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Date" label="统计月份" fieldName="">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="tjrq" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMM" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="tjrq">
+      <attribute key="name" value="tjyf_ym" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="考勤类型" fieldName="kqlx">
+      <attribute key="sql" value="select dmz as key, dmms as value from csb_dmms  where upper(dmmc)='KQLX'" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="style" value="width:140px" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="selectedList" value="1" />
+      <attribute key="name" value="kqlx" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="mulShowType" value="null" />
+      <attribute key="isEditable" value="true" />
+      <attribute key="key_SELECTTYPE" value="Integer" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="考勤天数" fieldName="kqts">
+      <attribute key="precision" value="2" />
+      <attribute key="style" value="width:140px" />
+      <attribute key="name" value="kqts" />
+      <attribute key="intparts" value="10" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Text" label="备注说明" fieldName="bzsm">
+      <attribute key="maxlength" value="50" />
+      <attribute key="style" value="width:140px" />
+      <attribute key="name" value="bzsm" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxtzrq from xtb_xtcs s,xtb_xtcs c  where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'" />
+      <attribute key="name" value="getMaxtzrq" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="czsj">
+      <attribute key="defVal" value="f_get_systime()" />
+      <attribute key="name" value="czsj" />
+    </tag>
+    <tag row="6" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="czr">
+      <attribute key="defVal" value="$login_hydh$" />
+      <attribute key="name" value="czr" />
+    </tag>
+  </addPage>
+  <updatePage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="khdxdh">
+      <attribute key="isRequired" value="false" />
+      <attribute key="style" value="width:120px" />
+      <attribute key="isDisplayXN" value="true" />
+      <attribute key="jgckbz" value="jg_ckhy" />
+      <attribute key="name" value="khdxdh" />
+      <attribute key="isAll" value="false" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Date" label="统计月份" fieldName="">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="tjrq" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMM" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="tjrq">
+      <attribute key="name" value="tjyf_ym" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="考勤类型" fieldName="kqlx">
+      <attribute key="selectedList" value="1" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="width" value="120px;" />
+      <attribute key="mulShowType" value="null" />
+      <attribute key="editable" value="false" />
+      <attribute key="key_SELECTTYPE" value="Integer" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="sql" value="select dmz as key, dmms as value from csb_dmms  where upper(dmmc)='KQLX'" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="style" value="width:140px" />
+      <attribute key="name" value="kqlx" />
+      <attribute key="isAll" value="false" />
+      <attribute key="isEditable" value="false" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="考勤天数" fieldName="kqts">
+      <attribute key="precision" value="2" />
+      <attribute key="style" value="width:140px" />
+      <attribute key="name" value="kqts" />
+      <attribute key="intparts" value="10" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Text" label="备注说明" fieldName="bzsm">
+      <attribute key="maxlength" value="50" />
+      <attribute key="style" value="width:140px" />
+      <attribute key="name" value="bzsm" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxtzrq from xtb_xtcs s,xtb_xtcs c  where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'" />
+      <attribute key="name" value="getMaxtzrq" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="czsj">
+      <attribute key="defVal" value="f_get_systime()" />
+      <attribute key="name" value="czsj" />
+    </tag>
+    <tag row="6" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="czr">
+      <attribute key="defVal" value="$login_hydh$" />
+      <attribute key="name" value="czr" />
+    </tag>
+  </updatePage>
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+    <button>import</button>
+  </buttons>
+  <flow>
+    <insertbefore />
+    <insertafter />
+    <deletebefore />
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.nqrykqjlgl">
+    <select id="dn0.nqrykqjlglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select substr(a.tjrq,1,6) as tj,a.tjrq,a.khdxdh,d.jgdh,d.JGMC,b.HYDH,b.hymc,dm.dmz as kqlx, dm.dmms as kqlx1,a.kqts,a.bzsm,gg.hymc as hymc1 from sglr_nqrykqjl  a     inner join khdx_hy b on a.khdxdh=b.khdxdh     inner join khdx_jgcy c on c.KHDXDH=b.khdxdh and a.tjrq between c.qsrq and c.jsrq inner join khdx_jg d on d.KHDXDH=c.JGKHDXDH     inner join khdx_hy gg on gg.hydh=a.czr     inner join csb_dmms dm on dm.dmz=a.KQLX and dm.dmmc='KQLX'     inner join table(fn_getsjjg_java_qxhy($tjyf_ym$,$login_khdxdh$,0)) hy on hy.khdxdh=b.khdxdh where  1=1
+      <isNotEmpty property="khdxdh">and a.KHDXDH in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="kqlx">and a.kqlx=$kqlx$</isNotEmpty>
+      and substr(a.tjrq,1,6)=$tjyf$
+    </select>
+    <select id="dn0.nqrykqjlglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select substr(a.tjrq,1,6) as tj,a.tjrq,a.khdxdh,d.jgdh,d.JGMC,b.HYDH,b.hymc,dm.dmz as kqlx, dm.dmms as kqlx1,a.kqts,a.bzsm,gg.hymc as hymc1 from sglr_nqrykqjl  a     inner join khdx_hy b on a.khdxdh=b.khdxdh     inner join khdx_jgcy c on c.KHDXDH=b.khdxdh and a.tjrq between c.qsrq and c.jsrq inner join khdx_jg d on d.KHDXDH=c.JGKHDXDH     inner join khdx_hy gg on gg.hydh=a.czr     inner join csb_dmms dm on dm.dmz=a.KQLX and dm.dmmc='KQLX'     inner join table(fn_getsjjg_java_qxhy($tjyf_ym$,$login_khdxdh$,0)) hy on hy.khdxdh=b.khdxdh where  1=1
+      <isNotEmpty property="khdxdh">and a.KHDXDH in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="kqlx">and a.kqlx=$kqlx$</isNotEmpty>
+      and substr(a.tjrq,1,6)=$tjyf$ ) t
+    </select>
+    <select id="dn0.nqrykqjlgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  kqts, kqlx, khdxdh, czsj, czr, tjrq, bzsm  from SGLR_NQRYKQJL where 1= 1  and kqlx = '$kqlx$' and khdxdh = '$khdxdh$' and tjrq = '$tjrq$'
+    </select>
+    <select id="dn0.nqrykqjlgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  kqts, kqlx, khdxdh, czsj, czr, tjrq, bzsm  from SGLR_NQRYKQJL where 1= 1  and kqlx = '$kqlx$' and khdxdh = '$khdxdh$' and tjrq = '$tjyf_ym$'
+    </select>
+    <insert id="dn0.nqrykqjlgl_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into SGLR_NQRYKQJL( kqts, kqlx, tjrq, khdxdh, czsj, czr, bzsm ) values ( $kqts$,'$kqlx$',$tjyf_ym$,$khdxdh$,$czsj$,'$czr$','$bzsm$')
+    </insert>
+    <update id="dn0.nqrykqjlgl_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update SGLR_NQRYKQJL set kqts = $kqts$,bzsm = '$bzsm$' where 1=1  and kqlx = '$kqlx$' and khdxdh = '$khdxdh$' and tjrq = '$tjyf_ym$'
+    </update>
+    <delete id="dn0.nqrykqjlgl_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from SGLR_NQRYKQJL where 1=1  and kqlx = '$kqlx$' and khdxdh = '$khdxdh$' and tjrq = '$tjrq$'
+    </delete>
+    <select id="dn0.nqrykqjlgl_getMaxtzrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxtzrq from xtb_xtcs s,xtb_xtcs c 
+where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'</select>
+    <select id="dn0.nqrykqjlgl_MSQL4SELECT_kqlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key, dmms as value from csb_dmms  where upper(dmmc)='KQLX'</select>
+  </sqlMap>
+  <javascript>
+    <import>parent.addTab('nqrykqjlgldr','内勤人员考勤记录管理','/module/parser/import/visitHtml/nqrykqjlgldr');</import>
+    <query>jQuery(document).ready(function () {
+ PAS.di.execute('nqrykqjlgl_getMaxtzrq',getMaxtzrqBack) ;    
+});
+
+function showDeleteDialog(sel){ 
+     var tjrq=sel["TJRQ"];
+     if(maxtzrq&gt;tjrq){
+        custom_alert("只能删除统计月份对应的月末在重算日期及以后"+maxtzrq+"的数据");
+        return false;
+     }
+      custom_confirm('你确定要删除所选记录吗？','提示',function(){
+            var colIds="TJRQ,KHDXDH,KQLX,KQTS,BZSM";
+            var colId=colIds.split(",");//所有的主键名
+            var params="&amp;"; //URL的参数
+            for(var i=0;i&lt;colId.length;i++){
+                params+=colId[i].toLowerCase()+"="+selDataFilter(sel[colId[i]])+"&amp;";
+            }
+            params=encodeURI(params.substring(0,params.length-1));
+           // alert(params);
+           $.post('/module/parser/manage/deleteData/nqrykqjlgl',params,function(cb){
+                custom_alert(cb);
+                    loadData();
+            }).error(function(){
+                custom_alert("发生内部错误，无法删除所选记录！");
+            });
+        });   
+}
+function showUpdateEdtiDialog(sel){
+    var tjrq=sel["TJRQ"];
+     if(maxtzrq&gt;tjrq){
+        custom_alert("只能修改统计月份对应的月末在重算日期及以后"+maxtzrq+"的数据");
+        return false;
+     }
+     var colIds="TJRQ,KHDXDH,JGDH,JGMC,HYDH,HYMC,KQLX,KQTS,BZSM,HYMC1";
+        var colId=colIds.split(",");//所有的主键名
+        var params="&amp;"; //URL的参数
+        for(var i=0;i&lt;colId.length;i++){
+            var data = selDataFilter(sel[colId[i]]);
+            //alert("|"+data+"|");
+            if(data==undefined){data=''}
+            params+=colId[i].toLowerCase()+"="+data+"&amp;";
+        }
+        params=encodeURI(params.substring(0,params.length-1));
+        //alert(params);
+        var width = editpage_width||700;    
+        var height = editpage_height||400;    
+        custom_window('/module/parser/manage/getById/nqrykqjlgl?operate=update'+params,width,height,'内勤人员考勤记录管理编辑');
+    }
+
+function getMaxtzrqBack(obj){
+  if(obj.data.length&gt;0){
+        maxtzrq = obj.data[0].MAXTZRQ;
+        PAS.di.setDone(obj.sqlid);
+  }
+}
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){   
+     var obj=createTimeObj(jQuery("#tjyf").val());
+     jQuery("#tjyf_ym").val(obj.ym);
+ return true;
+}</query>
+    <edit>jQuery(document).ready(function () {
+//这里的js脚本，会在页面加载完成后执行
+PAS.di.execute('nqrykqjlgl_getMaxtzrq',getMaxtzrqBack);//加载最大的起始日期
+  var obj=createTimeObj(jQuery("#tjrq").val());
+  $("#tjyf_ym").val(obj.ym);
+  if($("#page_operate").val()=="update"){
+      jQuery($("#tjrq").attr("disabled","disabled"));
+   }
+});
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+  var obj=createTimeObj($("#tjrq").val());
+  $('#tjyf_ym').val(obj.ym);
+  if(maxtzrq&gt;parseInt($("#tjyf_ym").val(obj.ym))){
+      parent.custom_alert("由于重算天数的限制，统计月份所在月末不能小于最小重跑日期");
+      return false;
+   }
+ return true;
+}
+
+
+function getMaxtzrqBack(obj){
+  if(obj.data.length&gt;0){
+        maxtzrq = obj.data[0].MAXTZRQ;    
+        PAS.di.setDone(obj.sqlid);
+  }
+}</edit>
+  </javascript>
+</pageSetting>
+

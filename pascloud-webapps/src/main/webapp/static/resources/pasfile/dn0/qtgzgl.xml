@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="qtgzgl" title="其它工资管理" type="manage" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName="">
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="dateFmt" value="yyyyMM" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="1" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="">
+        <attribute key="isRequired" value="false" />
+        <attribute key="isDisplayXN" value="true" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="true" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+        <attribute key="name" value="tjrq_ym" />
+      </tag>
+      <tag row="0" col="3" rowspan="1" colspan="1" name="MSQL4Select" label="行员类别" fieldName="">
+        <attribute key="sql" value="select lbdh as key,lbmc as value from csb_hylb" />
+        <attribute key="isSearch" value="false" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="isMultiple" value="false" />
+        <attribute key="selectedList" value="1" />
+        <attribute key="name" value="hylb" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isAll" value="true" />
+        <attribute key="mulShowType" value="null" />
+        <attribute key="isEditable" value="true" />
+        <attribute key="key_SELECTTYPE" value="Integer" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="qtgzgltable">
+    <col id="TJNY" title="统计年月" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="LBMC" title="类别名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="GWMC" title="岗位名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="GZXMC" title="工资项名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="SFGZ" title="工资（元）" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="false" zsy="false" />
+    <col id="TJRQ" title="统计日期" align="left" type="hidden" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="false" zsy="false" />
+    <col id="GZXBH" title="GZXBH" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" />
+  </table>
+  <rels>
+    <items id="qtgzgltable" />
+  </rels>
+  <addPage title="编辑页面" />
+  <updatePage title="编辑页面" />
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+    <button>import</button>
+  </buttons>
+  <flow>
+    <insertbefore />
+    <insertafter />
+    <deletebefore />
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.qtgzgl">
+    <select id="dn0.qtgzglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select a.khdxdh as khdxdh,a.tjrq as tjrq,$tjrq$ as tjny,c.jgdh,c.jgmc,b.HYDH,b.HYMC,d.LBMC,coalesce(e.GWMC,'') as gwmc,f.gzxmc,a.sfgz,a.gzxbh   from sgdr_hygzx a   inner join khdx_hy b on b.khdxdh=a.khdxdh  inner join khdx_jg c on c.jgdh=a.jgdh  inner join khdx_hylb d on d.khdxdh=a.khdxdh and a.tjrq between d.qsrq and d.jsrq left join khdx_hygw e on e.khdxdh=a.khdxdh and a.tjrq between e.qsrq and e.jsrq inner join gztx_gzxdy f on f.gzxbh=a.gzxbh  inner join table(fn_getsjjg_java_qxhy($tjrq_ym$,$login_khdxdh$,0)) q on q.khdxdh=b.khdxdh  where 1=1
+      <isNotEmpty property="tjrq_ym">and  a.tjrq=$tjrq_ym$</isNotEmpty>
+      <isNotEmpty property="khdxdh">and a.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="hylb">and a.hylb='$hylb$'</isNotEmpty>
+      and exists(select 1                 from GZTX_HYGZXPZ pz                where pz.khnf=cast(substr(cast($tjrq$ as char(6)),1,4) as integer) and f.gzxbh=pz.gzxbh)          order by c.jgdh,b.hydh
+    </select>
+    <select id="dn0.qtgzglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select a.khdxdh as khdxdh,a.tjrq as tjrq,$tjrq$ as tjny,c.jgdh,c.jgmc,b.HYDH,b.HYMC,d.LBMC,coalesce(e.GWMC,'') as gwmc,f.gzxmc,a.sfgz,a.gzxbh   from sgdr_hygzx a   inner join khdx_hy b on b.khdxdh=a.khdxdh  inner join khdx_jg c on c.jgdh=a.jgdh  inner join khdx_hylb d on d.khdxdh=a.khdxdh and a.tjrq between d.qsrq and d.jsrq left join khdx_hygw e on e.khdxdh=a.khdxdh and a.tjrq between e.qsrq and e.jsrq inner join gztx_gzxdy f on f.gzxbh=a.gzxbh  inner join table(fn_getsjjg_java_qxhy($tjrq_ym$,$login_khdxdh$,0)) q on q.khdxdh=b.khdxdh  where 1=1
+      <isNotEmpty property="tjrq_ym">and  a.tjrq=$tjrq_ym$</isNotEmpty>
+      <isNotEmpty property="khdxdh">and a.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="hylb">and a.hylb='$hylb$'</isNotEmpty>
+      and exists(select 1                 from GZTX_HYGZXPZ pz                where pz.khnf=cast(substr(cast($tjrq$ as char(6)),1,4) as integer) and f.gzxbh=pz.gzxbh)          order by c.jgdh,b.hydh ) t
+    </select>
+    <select id="dn0.qtgzgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  from  where 1= 1
+    </select>
+    <select id="dn0.qtgzgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  from  where 1= 1
+    </select>
+    <insert id="dn0.qtgzgl_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into  ) values ()
+    </insert>
+    <update id="dn0.qtgzgl_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  set where 1=1
+    </update>
+    <delete id="dn0.qtgzgl_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from  where 1=1
+    </delete>
+    <select id="dn0.qtgzgl_MSQL4SELECT_hylb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select lbdh as key,lbmc as value from csb_hylb</select>
+  </sqlMap>
+  <javascript>
+    <import>parent.addTab('gyywlzsxsgldr','其它工资管理','/module/parser/import/visitHtml/gyywlzsxsgldr');</import>
+    <query>jQuery(document).ready(function () {
+  $("input[type='button'][value='添 加']").hide();
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ var obj=createTimeObj(jQuery("#tjrq").val());
+ //alert(obj);
+ jQuery("#tjrq_ym").val(obj.ym); 
+ return true;
+}
+
+function toImportPage(){ 
+     parent.addTab('qtgzxgldr','其他工资管理导入','/module/qtgzxgldr/index');
+}
+
+function customFastLink($table,row){//去掉删除、编辑按钮
+  var del = $('&lt;a class="operation_del LIST_BAR" title="删除"&gt;删除&lt;/a&gt;');
+  this.append(del);
+  clickDel();
+  return true;
+}
+
+
+function  clickDel() {
+  $(".operation_del").click(function(){
+    var flag="";
+    var arr = ['KHDXDH','GZXBH','TJRQ'];
+    var params="&amp;"; //URL的参数
+    var newFlag="";
+    for(var i=0;i&lt;arr.length;i++) {
+      var v = $(this).parents("tr").find("td[field="+arr[i]+"]").children("div").html()+"&amp;";
+      newFlag+=v;
+      params += arr[i].toLowerCase() + "=" + v;
+    }
+      custom_confirm('你确定要删除所选记录吗？','提示',function(){
+          $.post('/module/qtgzxgldr/delPage',params,function(cb){
+                  custom_alert(cb);
+                  loadData();
+          }).error(function(){
+              custom_alert("发生内部错误，无法删除所选记录！");
+          });
+      });
+   flag = newFlag;
+  });
+
+}</query>
+    <edit>jQuery(document).ready(function () {
+//这里的js脚本，会在页面加载完成后执行
+
+});
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}</edit>
+  </javascript>
+</pageSetting>
+

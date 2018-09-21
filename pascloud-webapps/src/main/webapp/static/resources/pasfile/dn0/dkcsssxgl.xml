@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="dkcsssxgl" title="贷款超诉讼时效管理" type="manage" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName="">
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="1" rowspan="1" colspan="1" name="Text" label="账号代号" fieldName="">
+        <attribute key="name" value="zhdh" />
+        <attribute key="readonly" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="Text" label="账号名称" fieldName="">
+        <attribute key="name" value="zhhm" />
+        <attribute key="readonly" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="dkcsssxgltable">
+    <col id="ZHDH" title="账号" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="QSRQ" title="起始日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JSRQ" title="结束日期" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="DMMS" title="是否超诉讼时效" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JXDXDH" title="绩效对象代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="SFCSSSX" title="SFCSSSX" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+  </table>
+  <rels>
+    <items id="dkcsssxgltable" />
+  </rels>
+  <addPage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="贷款账号" fieldName="">
+      <attribute key="name" value="zhdh" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="qsrq" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Dmms" label="是否超诉讼时效" fieldName="SFCSSSX">
+      <attribute key="selectedList" value="1" />
+      <attribute key="name" value="sfcsssx" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="mulShowType" value="null" />
+      <attribute key="dmmc" value="sfcsssx" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select jxdxdh from jxdx_dkzh where zhdh='$zhdh$'" />
+      <attribute key="name" value="zhdhselect" />
+    </tag>
+    <tag row="7" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JXDXDH">
+      <attribute key="name" value="jxdxdh" />
+    </tag>
+    <tag row="7" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ">
+      <attribute key="defVal" value="29991231" />
+      <attribute key="name" value="jsrq" />
+    </tag>
+  </addPage>
+  <updatePage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="贷款账号" fieldName="">
+      <attribute key="name" value="zhdh" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Date" label="起始日期" fieldName="QSRQ">
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="qsrq" />
+      <attribute key="isAll" value="false" />
+      <attribute key="minDate" value="no" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMMdd" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Dmms" label="是否超诉讼时效" fieldName="SFCSSSX">
+      <attribute key="selectedList" value="1" />
+      <attribute key="name" value="sfcsssx" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="mulShowType" value="null" />
+      <attribute key="dmmc" value="sfcsssx" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select jxdxdh from jxdx_dkzh where zhdh='$zhdh$'" />
+      <attribute key="name" value="zhdhselect" />
+    </tag>
+    <tag row="7" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JXDXDH">
+      <attribute key="name" value="jxdxdh" />
+    </tag>
+    <tag row="7" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JSRQ">
+      <attribute key="defVal" value="29991231" />
+      <attribute key="name" value="jsrq" />
+    </tag>
+  </updatePage>
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+    <button>import</button>
+  </buttons>
+  <flow>
+    <insertbefore>
+      <sql type="delete">dkcsssxgl_check_itemAddDel</sql>
+      <sql type="update">dkcsssxgl_check_itemUP</sql>
+    </insertbefore>
+    <insertafter />
+    <deletebefore>
+      <sql type="selectmaxqsrq">dkcsssxgl_check_itemMAX_del</sql>
+      <sql type="update">dkcsssxgl_check_itemDELUP</sql>
+    </deletebefore>
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.dkcsssxgl">
+    <select id="dn0.dkcsssxglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select zh.zhdh,zh.zhhm,zh.jxdxdh,sx.qsrq,sx.jsrq,sx.sfcsssx,ms.dmms         from csb_dkcsssxgl sx         inner join jxdx_dkzh zh on sx.jxdxdh=zh.jxdxdh         left join csb_dmms ms on ms.dmmc='SFCSSSX' and sx.sfcsssx=ms.dmz         where 1=1
+      <isNotEmpty property="tjrq">and $tjrq$ between sx.qsrq and sx.jsrq</isNotEmpty>
+      <isNotEmpty property="zhdh">and zh.zhdh like '%$zhdh$%'</isNotEmpty>
+      <isNotEmpty property="zhhm">and zh.zhhm like '%$zhhm$%'</isNotEmpty>
+    </select>
+    <select id="dn0.dkcsssxglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select zh.zhdh,zh.zhhm,zh.jxdxdh,sx.qsrq,sx.jsrq,sx.sfcsssx,ms.dmms         from csb_dkcsssxgl sx         inner join jxdx_dkzh zh on sx.jxdxdh=zh.jxdxdh         left join csb_dmms ms on ms.dmmc='SFCSSSX' and sx.sfcsssx=ms.dmz         where 1=1
+      <isNotEmpty property="tjrq">and $tjrq$ between sx.qsrq and sx.jsrq</isNotEmpty>
+      <isNotEmpty property="zhdh">and zh.zhdh like '%$zhdh$%'</isNotEmpty>
+      <isNotEmpty property="zhhm">and zh.zhhm like '%$zhhm$%'</isNotEmpty>
+      ) t
+    </select>
+    <select id="dn0.dkcsssxgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  QSRQ, JXDXDH, JSRQ, SFCSSSX  from CSB_DKCSSSXGL where 1= 1  and QSRQ = $qsrq$ and JXDXDH = $jxdxdh$
+    </select>
+    <select id="dn0.dkcsssxgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  QSRQ, JXDXDH, JSRQ, SFCSSSX  from CSB_DKCSSSXGL where 1= 1  and QSRQ = $qsrq$ and JXDXDH = $jxdxdh$
+    </select>
+    <insert id="dn0.dkcsssxgl_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into CSB_DKCSSSXGL( JXDXDH, QSRQ, JSRQ, SFCSSSX ) values ( $jxdxdh$,$qsrq$,$jsrq$,'$sfcsssx$')
+    </insert>
+    <update id="dn0.dkcsssxgl_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update CSB_DKCSSSXGL set SFCSSSX = '$sfcsssx$' where 1=1  and QSRQ = $qsrq$ and JXDXDH = $jxdxdh$
+    </update>
+    <delete id="dn0.dkcsssxgl_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from CSB_DKCSSSXGL where 1=1  and QSRQ = $qsrq$ and JXDXDH = $jxdxdh$
+    </delete>
+    <delete id="dn0.dkcsssxgl_check_itemAddDel" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[delete from CSB_DKCSSSXGL where qsrq >=$qsrq$  and JXDXDH = $jxdxdh$]]>
+    </delete>
+    <update id="dn0.dkcsssxgl_check_itemUP" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update CSB_DKCSSSXGL set jsrq=$qdate$
+      <isNotEmpty property="qsrq">where $qsrq$ between qsrq and jsrq</isNotEmpty>
+      and JXDXDH = $jxdxdh$
+    </update>
+    <select id="dn0.dkcsssxgl_check_itemMAX_del" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select max(qsrq) from CSB_DKCSSSXGL where 1=1  and JXDXDH = $jxdxdh$
+    </select>
+    <select id="dn0.dkcsssxgl_check_itemSEL" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[select  QSRQ, JXDXDH, JSRQ, SFCSSSX from CSB_DKCSSSXGL where 1=1  and JXDXDH = $jxdxdh$ and $qsrq$ > $maxqsrq$]]>
+    </select>
+    <update id="dn0.dkcsssxgl_check_itemDELUP" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update CSB_DKCSSSXGL set jsrq =29991231 where 1=1 and JXDXDH = $jxdxdh$ and jsrq =$lastjsrq$
+    </update>
+    <select id="dn0.dkcsssxgl_zhdhselect" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select jxdxdh from jxdx_dkzh where zhdh='$zhdh$'</select>
+  </sqlMap>
+  <javascript>
+    <import>parent.addTab('dkcsssxdr','贷款超诉讼时效管理','/module/parser/import/visitHtml/dkcsssxdr');</import>
+    <query>jQuery(document).ready(function () {
+
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}</query>
+    <edit>jQuery(document).ready(function () {
+//这里的js脚本，会在页面加载完成后执行
+$('#zhdh').executeOnEvent('blur', 'dkcsssxgl_zhdhselect', zhdh_select);
+if($('#page_operate').val()=='update'){
+  $('#zhdh').attr("readOnly","true"); 
+}
+
+});
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ if($('#jxdxdh').val().length==0){
+   return false;
+ }
+ return true;
+}
+
+
+
+function zhdh_select(obj){
+    $("#zhdh").validationPass();
+  if(obj.data.length&lt;1){
+    $('#zhdh').validationFiled('账号输入错误');
+  }else{
+    $('#jxdxdh').val(obj.data[0].JXDXDH);
+  }
+  
+  
+}</edit>
+  </javascript>
+</pageSetting>
+

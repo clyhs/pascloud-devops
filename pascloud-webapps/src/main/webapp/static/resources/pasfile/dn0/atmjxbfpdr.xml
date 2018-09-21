@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="atmjxbfpdr" title="ATM绩效包分配导入" type="import" version="1.0.0.0" pid="" desc="标准版">
+  <template>
+    <src>ONLINE</src>
+    <column>
+      <text>统计年月</text>
+      <name>tjrq</name>
+      <index>0</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate>日期格式:yyyyMM 
+如：201401</annotate>
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>机构代号</text>
+      <name>jgdh</name>
+      <index>1</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>机构名称</text>
+      <name>jgmc</name>
+      <index>2</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>行员代号</text>
+      <name>hydh</name>
+      <index>3</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>行员名称</text>
+      <name>hymc</name>
+      <index>4</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>可分配绩效</text>
+      <name>kfpjx</name>
+      <index>5</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>Y</req>
+    </column>
+    <column>
+      <text>分配绩效</text>
+      <name>fpjx</name>
+      <index>6</index>
+      <width>120</width>
+      <height />
+      <align>center</align>
+      <annotate />
+      <length>100</length>
+      <req>N</req>
+    </column>
+    <data>
+      <tags>
+        <tag row="0" col="0" name="Date" label="统计年月" colspan="1" rowspan="1">
+          <attribute key="style" value="width:180px" />
+          <attribute key="isRequired" value="true" />
+          <attribute key="defVal" value="" />
+          <attribute key="name" value="tjrq" />
+          <attribute key="styleClass" value="" />
+          <attribute key="minDate" value="no" />
+          <attribute key="defValType" value="ym" />
+          <attribute key="dateFmt" value="yyyyMM" />
+          <attribute key="editable" value="true" />
+        </tag>
+        <tag row="0" col="1" name="Hidden" label="" colspan="1" rowspan="1">
+          <attribute key="defVal" value="$login_khdxdh$" />
+          <attribute key="name" value="login_khdxdh" />
+        </tag>
+        <tag row="1" col="0" name="NewJg" label="机构" colspan="1" rowspan="1">
+          <attribute key="ckbz" value="jg_ckhy" />
+          <attribute key="cascadeCheck" value="true" />
+          <attribute key="isRequired" value="true" />
+          <attribute key="style" value="width:180px" />
+          <attribute key="defVal" value="" />
+          <attribute key="name" value="jgkhdxdh" />
+          <attribute key="multiple" value="true" />
+          <attribute key="editable" value="true" />
+        </tag>
+      </tags>
+    </data>
+  </template>
+  <table id="atmjxbfpdr_table" page="true">
+    <col id="ZT" title="状态" align="center" type="string" width="50" />
+    <col id="ERROR" title="错误原因" align="center" type="string" width="250" />
+    <col id="TJRQ" title="统计年月" align="center" type="" width="120" />
+    <col id="JGDH" title="机构代号" align="center" type="" width="120" />
+    <col id="JGMC" title="机构名称" align="center" type="" width="120" />
+    <col id="HYDH" title="行员代号" align="center" type="" width="120" />
+    <col id="HYMC" title="行员名称" align="center" type="" width="120" />
+    <col id="KFPJX" title="可分配绩效" align="center" type="" width="120" />
+    <col id="FPJX" title="分配绩效" align="center" type="" width="120" />
+  </table>
+  <flow>
+    <rule>
+      <sql type="update">atmjxbfpdr_check_tjrq_0</sql>
+      <sql type="update">atmjxbfpdr_check_tjrq_1</sql>
+      <sql type="update">atmjxbfpdr_check_hydh_2</sql>
+      <sql type="update">atmjxbfpdr_check_hydh_3</sql>
+      <sql type="update">atmjxbfpdr_check_kfpjx_4</sql>
+      <sql type="update">atmjxbfpdr_check_kfpjx_5</sql>
+      <sql type="update">atmjxbfpdr_check_fpjx_6</sql>
+      <sql type="update">atmjxbfpdr_check_fpjx_7</sql>
+      <sql type="update">atmjxbfpdr_checkupdate_tjrq_0</sql>
+      <sql type="update">atmjxbfpdr_checkupdate_hymc_0</sql>
+      <sql type="update">atmjxbfpdr_checkupdate_fpjx_0</sql>
+      <sql type="update">atmjxbfpdr_checkupdate_fpjx_1</sql>
+      <sql type="update">atmjxbfpdr_exists_target</sql>
+      <sql type="update">atmjxbfpdr_exists_same_temp</sql>
+    </rule>
+    <before />
+    <cover>
+      <sql type="delete">atmjxbfpdr_delete_before_override</sql>
+    </cover>
+    <insert>
+      <sql type="insert">atmjxbfpdr_insert_into_target</sql>
+    </insert>
+    <after />
+  </flow>
+  <sqlMap namespace="studio.atmjxbfpdr">
+    <update parameterClass="java.util.Map" id="dn0.atmjxbfpdr_check_tjrq_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  atmjxbfpdr_temp  t  
+		set  t.error=t.error||'统计年月输入错误，格式应该是:yyyyMM!'  
+		where  f_java_rule_date(t.tjrq,'yyyyMM')=1  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.atmjxbfpdr_check_tjrq_1">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  atmjxbfpdr_temp  t  set  t.error=t.error||'统计年月输入错误，不能为空!' 
+		where  f_java_rule_length(t.tjrq)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.atmjxbfpdr_check_hydh_2">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  atmjxbfpdr_temp  t  set  t.error=t.error||'行员代号输入错误，不能为空!' 
+		where  f_java_rule_length(t.hydh)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.atmjxbfpdr_check_hydh_3">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  atmjxbfpdr_temp  t  set  t.error=t.error||'行员代号不存在!'  
+		where  not  exists(select  1  from  khdx_hy  h  where  rtrim(t.hydh)=rtrim(h.hydh))  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.atmjxbfpdr_check_kfpjx_4">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  atmjxbfpdr_temp  t  
+		set  t.error=t.error||'可分配绩效输入错误，只能输入:19位整数,2位小数!'  
+		where f_java_rule_length(t.kfpjx)&gt;0 and f_java_rule_number(t.kfpjx,19,2)=1  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.atmjxbfpdr_check_kfpjx_5">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  atmjxbfpdr_temp  t  set  t.error=t.error||'可分配绩效输入错误，不能为空!' 
+		where  f_java_rule_length(t.kfpjx)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.atmjxbfpdr_check_fpjx_6">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  atmjxbfpdr_temp  t  
+		set  t.error=t.error||'分配绩效输入错误，只能输入:19位整数,2位小数!'  
+		where f_java_rule_length(t.fpjx)&gt;0 and f_java_rule_number(t.fpjx,19,2)=1  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.atmjxbfpdr_check_fpjx_7">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  atmjxbfpdr_temp  t  set  t.error=t.error||'分配绩效输入错误，长度不能超过:100!' 
+		where  f_java_rule_length(t.fpjx)&gt;100  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.atmjxbfpdr_checkupdate_tjrq_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      UPDATE atmjxbfpdr_temp t1 SET t1.error =  t1.error||'与该行员同一机构的分配绩效总和超过了所在机构的可分配绩效包！'
+where exists(
+select 1
+  from khdx_hy hy
+ inner join (select tmp.tjrq,tmp.hydh,sum(cast(fpjx as decimal(25,4))) over(partition by cy.jgdh) as jgjxb
+               from atmjxbfpdr_temp tmp 
+              INNER JOIN csb_sjw sjw ON sjw.TJRQ= cast(tmp.tjrq||'01' as integer)
+              inner join khdx_jgcy cy on cy.hydh=tmp.hydh and sjw.ym between cy.qsrq and cy.jsrq
+              where tmp.khdxdh=$login_khdxdh$) t on hy.hydh=t.hydh
+  INNER JOIN csb_sjw sjw ON sjw.TJRQ= cast(t.tjrq||'01' as integer)
+ inner join khdx_jgcy cy on hy.khdxdh=cy.khdxdh and sjw.ym between cy.qsrq and cy.jsrq
+ inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh              
+  left outer join (select jx.khdxdh,
+                          sum(jx.atmwhjx) as jxb
+                     from jxgz_jgatmjx jx
+                   inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'
+                   inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'
+                   inner join (select max(tjrq) tjrq from atmjxbfpdr_temp where khdxdh=$login_khdxdh$) tj on 1=1
+                   INNER JOIN csb_sjw sjw ON sjw.TJRQ=  cast(tj.tjrq||'01' as integer)
+                   where jx.tjrq between case when cs.csz='0' then sjw.ym  when cs.csz='1' then sjw.nc  when cs.csz='2' then cast(jzqsrq.csz as integer) end and sjw.ym 
+                   group by jx.khdxdh) jgjxb on jg.khdxdh=jgjxb.khdxdh
+ left outer join (select jx.khdxdh,
+                         sum(case when jx.tjrq between case when cs.csz='0' then sjw.ym  when cs.csz='1' then sjw.nc  when cs.csz='2' then cast(jzqsrq.csz as integer) end and sjw.sym  then jx.sfgz else 0 end) over(partition by jg.jgdh) lsyfp
+                    from JXGZ_HYATMJX jx
+                   inner join khdx_jg jg on jx.jgdh=jg.jgdh    
+                   inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'
+                   inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'
+                   inner join (select max(tjrq) tjrq from atmjxbfpdr_temp where khdxdh=$login_khdxdh$) tj on 1=1
+                   INNER JOIN csb_sjw sjw ON sjw.TJRQ=  cast(tj.tjrq||'01' as integer)
+                   where jx.tjrq between case when cs.csz='0' then sjw.ym  when cs.csz='1' then sjw.nc when cs.csz='2' then cast(jzqsrq.csz as integer) end and sjw.ym
+                     and jx.gzxsfbh ='26'
+                                         ) hyjxb on hy.khdxdh=hyjxb.khdxdh 
+where coalesce(jgjxb.jxb,0)-coalesce(hyjxb.lsyfp,0)&lt;t.jgjxb 
+  and t1.hydh=hy.hydh and t1.khdxdh=$login_khdxdh$
+)
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.atmjxbfpdr_checkupdate_hymc_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update atmjxbfpdr_temp t set error=error||'行员代号和名称必须一致' where  not exists (    select 1 from khdx_hy hy     where t.hydh=hy.hydh and hy.hymc=t.hymc) and t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.atmjxbfpdr_checkupdate_fpjx_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      UPDATE atmjxbfpdr_temp t1 SET t1.error =  t1.error||'与该行员同一机构的分配绩效总和超过了所在机构的可分配绩效包！'
+where exists(
+select 1
+  from khdx_hy hy
+  INNER JOIN csb_sjw sjw ON sjw.TJRQ=  cast ('$tjrq$'||'01' AS integer)
+ inner join khdx_jgcy cy on hy.khdxdh=cy.khdxdh and sjw.ym between cy.qsrq and cy.jsrq
+ inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh
+ inner join (select tmp.hydh,sum(cast(fpjx as decimal(25,4))) over(partition by cy.jgdh) as jgjxb
+               from atmjxbfpdr_temp tmp 
+              INNER JOIN csb_sjw sjw ON sjw.TJRQ=  cast ('$tjrq$'||'01' AS integer)
+              inner join khdx_jgcy cy on cy.hydh=tmp.hydh and sjw.ym between cy.qsrq and cy.jsrq
+              where cy.khdxdh=$login_khdxdh$) t on hy.hydh=t.hydh
+  left outer join (select jx.khdxdh,
+                          sum(jx.atmwhjx) as jxb
+                     from jxgz_jgatmjx jx
+                   inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'
+                   inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'
+                   INNER JOIN csb_sjw sjw ON sjw.TJRQ=  cast ('$tjrq$'||'01' AS integer)
+                   where jx.tjrq between case when cs.csz='0' then sjw.ym when cs.csz='1' then sjw.nc  when cs.csz='2' then cast(jzqsrq.csz as integer) end and sjw.ym 
+                   group by jx.khdxdh) jgjxb on jg.khdxdh=jgjxb.khdxdh
+ left outer join (select jx.khdxdh,
+                         sum(case when jx.tjrq between case when cs.csz='0' then sjw.ym when cs.csz='1' then sjw.nc  when cs.csz='2' then cast(jzqsrq.csz as integer) end and sjw.sym  then jx.sfgz else 0 end) over(partition by jg.jgdh) lsyfp
+                    from JXGZ_HYATMJX jx
+                   inner join khdx_jg jg on jx.jgdh=jg.jgdh    
+                   inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'
+                   inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'
+                   INNER JOIN csb_sjw sjw ON sjw.TJRQ=  cast ('$tjrq$'||'01' AS integer)
+                   where jx.tjrq between case when cs.csz='0' then sjw.ym when cs.csz='1' then sjw.nc when cs.csz='2' then cast(jzqsrq.csz as integer) end and sjw.ym
+                     and jx.gzxsfbh='26'
+                                         ) hyjxb on hy.khdxdh=hyjxb.khdxdh 
+where coalesce(jgjxb.jxb,0)-coalesce(hyjxb.lsyfp,0)&lt;t.jgjxb 
+  and t1.hydh=hy.hydh and t1.khdxdh=$login_khdxdh$
+)
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.atmjxbfpdr_checkupdate_fpjx_1">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update atmjxbfpdr_temp t set error=error||'分配绩效不能为负数!' where  t.fpjx&lt;0
+ and t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.atmjxbfpdr_exists_target">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  atmjxbfpdr_temp  t  set  error=error||'数据已存在!'  where   exists  (  select  1  from  JXGZ_HYATMJX  jx,csb_sjw  s,khdx_hy  h  where  jx.tjrq=s.ym  and  s.tjrq=cast(rtrim(t.tjrq)||'01'  as  integer)  and  t.hydh=h.hydh  and  h.khdxdh=jx.khdxdh  )  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.atmjxbfpdr_exists_same_temp">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  atmjxbfpdr_temp  t  set  t.error=error||'存在重复数据!'  where  exists(  select  1  from   (select  tjrq,hydh  from  atmjxbfpdr_temp  dr  where  khdxdh=$login_khdxdh$  group  by  tjrq,hydh  having  count(1)<![CDATA[>]]>1  )  dr  where  1=1   and  t.tjrq=dr.tjrq  and  t.hydh=dr.hydh)  and  khdxdh=$login_khdxdh$
+    </update>
+    <insert parameterClass="java.util.Map" id="dn0.atmjxbfpdr_create_lsb">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      CREATE  TABLE   atmjxbfpdr_temp   (   tjrq  varchar(100)  ,  jgdh  varchar(100)  ,  jgmc  varchar(100)  ,  hydh  varchar(100)  ,  hymc  varchar(100)  ,  kfpjx  varchar(100)  ,  fpjx  varchar(100)  ,  khdxdh  integer,error  varchar(1000)   )
+    </insert>
+    <delete parameterClass="java.util.Map" id="dn0.atmjxbfpdr_delete_lsb">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from atmjxbfpdr_temp where khdxdh=$login_khdxdh$
+    </delete>
+    <insert parameterClass="java.util.Map" id="dn0.atmjxbfpdr_insert_into_lsb">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert  into  ATMJXBFPDR_TEMP  (tjrq,jgdh,jgmc,hydh,hymc,kfpjx,fpjx,khdxdh,error)  values(?,?,?,?,?,?,?,?,?)
+    </insert>
+    <select parameterClass="java.util.Map" id="dn0.atmjxbfpdr_exists_error_msg" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  count(1)  from  atmjxbfpdr_temp  where  length(error) <![CDATA[>]]> 0  and  khdxdh  =  $login_khdxdh$
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" id="dn0.atmjxbfpdr_exists_same_data">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  count(1)  from  atmjxbfpdr_temp  where  length(error) <![CDATA[>]]> 0  and  error  !=  '数据已存在!'  and  khdxdh  =  $login_khdxdh$
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" id="dn0.atmjxbfpdr_select_error_msg">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/cancel.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  tjrq,jgdh,jgmc,hydh,hymc,kfpjx,fpjx,khdxdh,error  from  atmjxbfpdr_temp  where  khdxdh=$login_khdxdh$  and  length(error)<![CDATA[>]]>0
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true" id="dn0.atmjxbfpdr_count_all_msg">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  count(1)  from  (select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/ok.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  tjrq,jgdh,jgmc,hydh,hymc,kfpjx,fpjx,khdxdh,error  from  atmjxbfpdr_temp  where  khdxdh=$login_khdxdh$  )a
+    </select>
+    <select parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true" id="dn0.atmjxbfpdr_select_all_msg">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  '<![CDATA[<]]>img  src="$path$/lib/themes/common/images/ok.jpg"  border="0"/<![CDATA[>]]>'  as  zt,  tjrq,jgdh,jgmc,hydh,hymc,kfpjx,fpjx,khdxdh,error  from  atmjxbfpdr_temp  where  khdxdh=$login_khdxdh$
+    </select>
+    <insert id="dn0.atmjxbfpdr_insert_into_target" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert  into  JXGZ_HYATMJX(tjrq,  gzfamc,  khdxdh,  hylb,  hygw,  jgdh,  gzxbh,  gzxsfbh,  gzsfmc,  sfgl,  gzsfms,  yfgz,  sfgz)  SELECT  sjw.ym,  cshl.lbmc||'工资方案'  AS  gzfamc,  hy.khdxdh,  hl.lbdh  AS  hylb,  gw.gwbh  AS  hygw,  cy.jgdh,  gzxsf.gzxbh,  sfdy.gzxsfbh,  sfdy.gzsfmc,  sfdy.sfgl,  sfdy.gzsfms,  CAST(t.fpjx  AS  decimal(25,  4))  AS  yfgz,  CAST(t.fpjx  AS  decimal(25,  4))  AS  sfgz  FROM  atmjxbfpdr_temp  t  INNER  JOIN  csb_sjw  sjw  ON  sjw.TJRQ  =  CAST(t.tjrq||'01'  AS  integer)   INNER  JOIN  khdx_hy  hy  ON  hy.hydh  =  t.hydh   INNER  JOIN  khdx_jgcy  cy  ON  hy.khdxdh  =  cy.khdxdh  AND  sjw.ym  BETWEEN  cy.qsrq  AND  cy.jsrq   INNER  JOIN  khdx_hylb  hl  ON  hl.khdxdh  =  hy.khdxdh  AND  sjw.ym  BETWEEN  hl.qsrq  AND  hl.jsrq  inner  join  csb_hylb  cshl  on  cshl.lbdh=hl.lbdh  INNER  JOIN  khdx_hygw  gw  ON  gw.khdxdh  =  hy.khdxdh  AND  sjw.ym  BETWEEN  gw.qsrq  AND  gw.jsrq   INNER  JOIN  gztx_gzxsf  gzxsf  ON  gzxsf.gzxbh  =  '3028'   INNER  JOIN  gztx_gzxsfdy  sfdy  ON  sfdy.gzxsfbh  =  gzxsf.gzxsfbh  AND  sfdy.gzxsfbh  =  '26'   WHERE  t.khdxdh  =  $login_khdxdh$  AND  CAST(t.fpjx  AS  decimal(25,  4))<![CDATA[>]]>0
+    </insert>
+    <delete id="dn0.atmjxbfpdr_delete_before_override" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete  from  JXGZ_HYATMJX  jx  where  exists  (  select  1  from  atmjxbfpdr_temp  t,csb_sjw  s,khdx_hy  h  where  s.tjrq=cast(rtrim(t.tjrq)||'01'  as  integer)  and  jx.tjrq=s.ym  and  t.hydh=h.hydh  and  h.khdxdh=jx.khdxdh  and  t.khdxdh=$login_khdxdh$)
+    </delete>
+    <select id="dn0.atmjxbfpdr_select_template_data" parameterClass="java.util.Map" remapResults="true" resultClass="java.util.LinkedHashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select a.tjny as tjrq,a.jgdh,a.jgmc,a.hydh,a.hymc,CAST( round(a.xj,2) as decimal(19,2)) as kfpjx,CAST( round(a.yfp,2) as decimal(19,2)) as fpjx
+ from(
+select $tjrq$ as tjny,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,
+       coalesce(jgjxb.lsjxb,0)-sum(coalesce(hyjxb.lsyfp,0)) over(partition by jg.jgdh) as lswfp ,
+       coalesce(jgjxb.dyjxb,0) as dyjxb,
+       coalesce(jgjxb.lsjxb,0)-sum(coalesce(hyjxb.lsyfp,0)) over(partition by jg.jgdh)+coalesce(jgjxb.dyjxb,0) as xj,
+       coalesce(jgjxb.lsjxb,0)-sum(coalesce(hyjxb.lsyfp,0)) over(partition by jg.jgdh)+coalesce(jgjxb.dyjxb,0)-sum(coalesce(hyjxb.dyyfp,0)) over(partition by jg.khdxdh) as kfp,
+       coalesce(hyjxb.dyyfp,0) as yfp,hy.khdxdh,cy.jgkhdxdh
+  from khdx_hy hy
+  INNER JOIN csb_sjw sjw ON sjw.TJRQ=  cast ('$tjrq$'||'01' AS integer)
+ inner join khdx_jgcy cy on hy.khdxdh=cy.khdxdh and sjw.ym between cy.qsrq and cy.jsrq inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh
+  left outer join (select jx.khdxdh,
+                          sum(case when jx.tjrq between case when cs.csz='0' then sjw.ym when cs.csz='1' then sjw.nc  when cs.csz='2' then cast(jzqsrq.csz as integer) end and sjw.sym  then jx.atmwhjx else 0 end) lsjxb,
+                          sum(case when jx.tjrq=sjw.ym  then jx.atmwhjx else 0 end) as dyjxb
+                     from jxgz_jgatmjx jx
+                   inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'
+                   inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'
+                   INNER JOIN csb_sjw sjw ON sjw.TJRQ=  cast ('$tjrq$'||'01' AS integer)
+                   where jx.tjrq between case when cs.csz='0' then sjw.ym when cs.csz='1' then sjw.nc  when cs.csz='2' then cast(jzqsrq.csz as integer) end and sjw.ym 
+                   group by jx.khdxdh) jgjxb on jg.khdxdh=jgjxb.khdxdh
+ left outer join (select jx.khdxdh,
+                         sum(case when jx.tjrq between case when cs.csz='0' then sjw.ym when cs.csz='1' then sjw.nc  when cs.csz='2' then cast(jzqsrq.csz as integer) end and sjw.sym  then jx.sfgz else 0 end) lsyfp,
+                         sum(case when jx.tjrq=sjw.ym  then jx.sfgz else 0 end) dyyfp
+                    from JXGZ_HYATMJX jx
+                   inner join khdx_jg jg on jx.jgdh=jg.jgdh    
+                   inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'
+                   inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'
+                   INNER JOIN csb_sjw sjw ON sjw.TJRQ=  cast ('$tjrq$'||'01' AS integer)
+                   where jx.tjrq between case when cs.csz='0' then sjw.ym when cs.csz='1' then sjw.nc when cs.csz='2' then cast(jzqsrq.csz as integer) end and sjw.ym
+                     and jx.gzxsfbh ='26'
+                   group by jx.khdxdh
+                                         ) hyjxb on hy.khdxdh=hyjxb.khdxdh
+     where hy.hydh NOT LIKE 'XN%' 
+      and hy.khdxdh not in (SELECT hl.khdxdh FROM GZTX_HYGZXPZ pz,khdx_hylb hl,khdx_jgcy cy,KHDX_JGLB jl
+                         WHERE khnf=sjw.sznf AND gzxsfbh IN ('27') AND GZXBH='3028'
+                           AND pz.HYLB=hl.LBDH AND sjw.ym BETWEEN hl.qsrq AND hl.JSRQ AND hl.khdxdh=cy.khdxdh AND sjw.ym BETWEEN cy.qsrq AND cy.JSRQ AND cy.JGKHDXDH=jl.KHDXDH AND sjw.ym BETWEEN jl.qsrq AND jl.JSRQ AND (pz.JGLB='-1' OR pz.JGLB=jl.LBDH))     
+  ) a  
+INNER JOIN csb_sjw sjw ON sjw.TJRQ=  cast ('$tjrq$'||'01' AS integer)                                         
+ inner join table(FN_GETSJJG_JAVA_QX(sjw.ym,$login_khdxdh$,0)) v  on a.jgkhdxdh = v.khdxdh
+      <isNotEmpty property="jgkhdxdh">where a.jgkhdxdh in ($jgkhdxdh$)</isNotEmpty>
+      <![CDATA[and a.xj>0
+order by a.jgdh,a.hydh]]>
+    </select>
+  </sqlMap>
+</pageSetting>
+

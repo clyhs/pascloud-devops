@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="atmjxbfp" title="ATM绩效包分配" type="manage" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName="">
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="dateFmt" value="yyyyMM" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="1" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="">
+        <attribute key="isRequired" value="false" />
+        <attribute key="isDisplayXN" value="true" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="true" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+        <attribute key="name" value="tjrq_sym" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+        <attribute key="name" value="tjrq_ym" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+        <attribute key="name" value="tjrq_yc" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+        <attribute key="name" value="tjrq_nc" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="atmjxbfptable">
+    <col id="TJNY" title="统计年月" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="LSWFP" title="历史未分配" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="DYJXB" title="当月绩效包" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="XJ" title="小计" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="KFP" title="可分配" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="YFP" title="已分配" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="false" zsy="false" />
+    <col id="TJRQ" title="统计日期" align="left" type="hidden" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="false" zsy="false" />
+  </table>
+  <rels>
+    <items id="atmjxbfptable" />
+  </rels>
+  <addPage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName="">
+      <attribute key="style" value="width:218px;" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="tjrq" />
+      <attribute key="minDate" value="csdate" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMM" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="HYLB">
+      <attribute key="name" value="hylb" />
+    </tag>
+    <tag row="0" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="SELECT   lb.LBDH lbdh, gw.GWBH gwbh,jgcy.JGDH AS JGDH FROM khdx_hy hy   INNER JOIN KHDX_JGCY jgcy ON jgcy.KHDXDH = hy.KHDXDH and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq   LEFT JOIN KHDX_HYLB lb ON hy.KHDXDH = lb.KHDXDH   LEFT JOIN KHDX_HYGW gw ON gw.KHDXDH = hy.KHDXDH WHERE hy.KHDXDH = $khdxdh$" />
+      <attribute key="name" value="selecthy" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="KHDXDH">
+      <attribute key="isRequired" value="true" />
+      <attribute key="style" value="width:197px;" />
+      <attribute key="isDisplayXN" value="true" />
+      <attribute key="jgckbz" value="jg_ckhy" />
+      <attribute key="name" value="khdxdh" />
+      <attribute key="multiple" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select cast(coalesce(jgjxb.lsjxb,0)-coalesce(hyjxb.lsyfp,0)+coalesce(jgjxb.dyjxb,0) as decimal(19,2)) as jxb   from khdx_jgcy cy   inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh  left outer join (select jx.khdxdh,                          sum(case when jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$ then jx.atmwhjx else 0 end) lsjxb,                          sum(case when jx.tjrq=$tjrq_ym$ then jx.atmwhjx else 0 end) as dyjxb                     from jxgz_jgatmjx jx                    inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'                    inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'                    where jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_ym$                    group by jx.khdxdh) jgjxb on cy.jgkhdxdh=jgjxb.khdxdh  left outer join (select jg.khdxdh,                           sum(case when jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$ then jx.sfgz else 0 end) lsyfp,                           sum(case when jx.tjrq=$tjrq_ym$ then jx.sfgz else 0 end) dyyfp                     from JXGZ_HYATMJX jx                    inner join khdx_jg jg on jx.jgdh=jg.jgdh                        inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'                    inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'                    where jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_ym$                      and jx.gzxsfbh ='26'                    group by jg.khdxdh) hyjxb on cy.jgkhdxdh=hyjxb.khdxdh                                                                                     where jg.jyjgbz='Y' and cy.khdxdh=$khdxdh$ and $tjrq_ym$ between cy.qsrq and cy.jsrq" />
+      <attribute key="name" value="selectjxb" />
+    </tag>
+    <tag row="1" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="HYGW">
+      <attribute key="name" value="hygw" />
+    </tag>
+    <tag row="1" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="tjrq_sym" />
+    </tag>
+    <tag row="1" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="TJRQ">
+      <attribute key="name" value="tjrq_ym" />
+    </tag>
+    <tag row="1" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="tjrq_yc" />
+    </tag>
+    <tag row="1" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="tjrq_nc" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Text" label="绩效包" fieldName="">
+      <attribute key="style" value="background-color: #b3b3b3;width:218px;text-align:right;" />
+      <attribute key="name" value="jxb" />
+      <attribute key="readonly" value="true" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select cast(coalesce(jgjxb.lsjxb,0)-coalesce(hyjxb.lsyfp,0)+coalesce(jgjxb.dyjxb,0)-coalesce(hyjxb.dyyfp,0) as decimal(19,2)) as kfp   from khdx_jgcy cy   inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh  left outer join (select jx.khdxdh,                          sum(case when jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$ then jx.atmwhjx else 0 end) lsjxb,                          sum(case when jx.tjrq=$tjrq_ym$ then jx.atmwhjx else 0 end) as dyjxb                     from jxgz_jgatmjx jx                    inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'                    inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'                    where jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_ym$                    group by jx.khdxdh) jgjxb on cy.jgkhdxdh=jgjxb.khdxdh  left outer join (select jg.khdxdh,                           sum(case when jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$ then jx.sfgz else 0 end) lsyfp,                           sum(case when jx.tjrq=$tjrq_ym$ then jx.sfgz else 0 end) dyyfp                     from JXGZ_HYATMJX jx                    inner join khdx_jg jg on jx.jgdh=jg.jgdh                        inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'                    inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'                    where jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_ym$                      and jx.gzxsfbh ='26'                    group by jg.khdxdh) hyjxb on cy.jgkhdxdh=hyjxb.khdxdh                                                                                     where jg.jyjgbz='Y' and cy.khdxdh=$khdxdh$ and $tjrq_ym$ between cy.qsrq and cy.jsrq" />
+      <attribute key="name" value="selectkfpjx" />
+    </tag>
+    <tag row="2" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JGDH">
+      <attribute key="name" value="jgdh" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Text" label="可分配绩效" fieldName="">
+      <attribute key="style" value="background-color: #b3b3b3;width:218px;text-align:right;" />
+      <attribute key="name" value="kfpjx" />
+      <attribute key="readonly" value="true" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="分配绩效" fieldName="YFGZ">
+      <attribute key="min" value="0" />
+      <attribute key="precision" value="2" />
+      <attribute key="style" value="width:218px;text-align:right;" />
+      <attribute key="name" value="fpjx" />
+      <attribute key="intparts" value="10" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="SFGZ">
+      <attribute key="name" value="sfkfpjx" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="GZFAMC">
+      <attribute key="name" value="gzfamc" />
+    </tag>
+    <tag row="5" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select cl.lbmc||'工资方案' as  GZFAMC  from khdx_hylb lb,csb_hylb cl where lb.lbdh=cl.lbdh and lb.khdxdh=$khdxdh$" />
+      <attribute key="name" value="selectGzfamc" />
+    </tag>
+    <tag row="6" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="GZXBH">
+      <attribute key="name" value="gzxbh" />
+    </tag>
+    <tag row="6" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="GZXSFBH">
+      <attribute key="name" value="gzxsfbh" />
+    </tag>
+    <tag row="6" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select gzxdy.gzxbh as gzxbh, sfdy.gzxsfbh as gzxsfbh, sfdy.gzsfmc as gzsfmc, sfdy.sfgl as sfgl, sfdy.gzsfms as gzsfms from gztx_gzxdy gzxdy INNER JOIN gztx_gzxsf gzxsf on gzxdy.gzxbh = gzxsf.gzxbh INNER JOIN gztx_gzxsfdy sfdy on sfdy.gzxsfbh = gzxsf.gzxsfbh where gzxdy.gzxbh = '3028' and sfdy.gzxsfbh='26'" />
+      <attribute key="name" value="selectgzx" />
+    </tag>
+    <tag row="7" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="GZSFMC">
+      <attribute key="name" value="gzxsfmc" />
+    </tag>
+    <tag row="7" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="SFGL">
+      <attribute key="name" value="sfgl" />
+    </tag>
+    <tag row="7" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="GZSFMS">
+      <attribute key="name" value="gzsfms" />
+    </tag>
+  </addPage>
+  <updatePage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName="">
+      <attribute key="style" value="width:218px;" />
+      <attribute key="isRequired" value="true" />
+      <attribute key="name" value="tjrq" />
+      <attribute key="minDate" value="csdate" />
+      <attribute key="defValType" value="sysDate" />
+      <attribute key="dateFmt" value="yyyyMM" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="HYLB">
+      <attribute key="name" value="hylb" />
+    </tag>
+    <tag row="0" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="SELECT   lb.LBDH lbdh, gw.GWBH gwbh,jgcy.JGDH AS JGDH FROM khdx_hy hy   INNER JOIN KHDX_JGCY jgcy ON jgcy.KHDXDH = hy.KHDXDH and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq   LEFT JOIN KHDX_HYLB lb ON hy.KHDXDH = lb.KHDXDH   LEFT JOIN KHDX_HYGW gw ON gw.KHDXDH = hy.KHDXDH WHERE hy.KHDXDH = $khdxdh$" />
+      <attribute key="name" value="selecthy" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="KHDXDH">
+      <attribute key="isRequired" value="true" />
+      <attribute key="style" value="width:197px;" />
+      <attribute key="isDisplayXN" value="true" />
+      <attribute key="jgckbz" value="jg_ckhy" />
+      <attribute key="name" value="khdxdh" />
+      <attribute key="isAll" value="false" />
+      <attribute key="multiple" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select cast(coalesce(jgjxb.lsjxb,0)-coalesce(hyjxb.lsyfp,0)+coalesce(jgjxb.dyjxb,0) as decimal(19,2)) as jxb   from khdx_jgcy cy   inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh  left outer join (select jx.khdxdh,                          sum(case when jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$ then jx.atmwhjx else 0 end) lsjxb,                          sum(case when jx.tjrq=$tjrq_ym$ then jx.atmwhjx else 0 end) as dyjxb                     from jxgz_jgatmjx jx                    inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'                    inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'                    where jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_ym$                    group by jx.khdxdh) jgjxb on cy.jgkhdxdh=jgjxb.khdxdh  left outer join (select jg.khdxdh,                           sum(case when jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$ then jx.sfgz else 0 end) lsyfp,                           sum(case when jx.tjrq=$tjrq_ym$ then jx.sfgz else 0 end) dyyfp                     from JXGZ_HYATMJX jx                    inner join khdx_jg jg on jx.jgdh=jg.jgdh                        inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'                    inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'                    where jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_ym$                      and jx.gzxsfbh ='26'                    group by jg.khdxdh) hyjxb on cy.jgkhdxdh=hyjxb.khdxdh                                                                                     where jg.jyjgbz='Y' and cy.khdxdh=$khdxdh$ and $tjrq_ym$ between cy.qsrq and cy.jsrq" />
+      <attribute key="name" value="selectjxb" />
+    </tag>
+    <tag row="1" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="HYGW">
+      <attribute key="name" value="hygw" />
+    </tag>
+    <tag row="1" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="tjrq_sym" />
+    </tag>
+    <tag row="1" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="TJRQ">
+      <attribute key="name" value="tjrq_ym" />
+    </tag>
+    <tag row="1" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="tjrq_yc" />
+    </tag>
+    <tag row="1" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="tjrq_nc" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Text" label="绩效包" fieldName="">
+      <attribute key="style" value="background-color: #b3b3b3;width:218px;text-align:right;" />
+      <attribute key="name" value="jxb" />
+      <attribute key="readonly" value="true" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select cast(coalesce(jgjxb.lsjxb,0)-coalesce(hyjxb.lsyfp,0)+coalesce(jgjxb.dyjxb,0)-coalesce(hyjxb.dyyfp,0) as decimal(19,2)) as kfp   from khdx_jgcy cy   inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh  left outer join (select jx.khdxdh,                          sum(case when jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$ then jx.atmwhjx else 0 end) lsjxb,                          sum(case when jx.tjrq=$tjrq_ym$ then jx.atmwhjx else 0 end) as dyjxb                     from jxgz_jgatmjx jx                    inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'                    inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'                    where jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_ym$                    group by jx.khdxdh) jgjxb on cy.jgkhdxdh=jgjxb.khdxdh  left outer join (select jg.khdxdh,                           sum(case when jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$ then jx.sfgz else 0 end) lsyfp,                           sum(case when jx.tjrq=$tjrq_ym$ then jx.sfgz else 0 end) dyyfp                     from JXGZ_HYATMJX jx                    inner join khdx_jg jg on jx.jgdh=jg.jgdh                        inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'                    inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'                    where jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_ym$                      and jx.gzxsfbh ='26'                    group by jg.khdxdh) hyjxb on cy.jgkhdxdh=hyjxb.khdxdh                                                                                     where jg.jyjgbz='Y' and cy.khdxdh=$khdxdh$ and $tjrq_ym$ between cy.qsrq and cy.jsrq" />
+      <attribute key="name" value="selectkfpjx" />
+    </tag>
+    <tag row="2" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="JGDH">
+      <attribute key="name" value="jgdh" />
+    </tag>
+    <tag row="3" col="0" rowspan="1" colspan="1" name="Text" label="可分配绩效" fieldName="">
+      <attribute key="style" value="background-color: #b3b3b3;width:218px;text-align:right;" />
+      <attribute key="name" value="kfpjx" />
+      <attribute key="readonly" value="true" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="分配绩效" fieldName="YFGZ">
+      <attribute key="min" value="0" />
+      <attribute key="precision" value="2" />
+      <attribute key="style" value="width:218px;text-align:right;" />
+      <attribute key="name" value="fpjx" />
+      <attribute key="intparts" value="10" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="4" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="SFGZ">
+      <attribute key="name" value="sfkfpjx" />
+    </tag>
+    <tag row="5" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="GZFAMC">
+      <attribute key="name" value="gzfamc" />
+    </tag>
+    <tag row="5" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select cl.lbmc||'工资方案' as  GZFAMC  from khdx_hylb lb,csb_hylb cl where lb.lbdh=cl.lbdh and lb.khdxdh=$khdxdh$" />
+      <attribute key="name" value="selectGzfamc" />
+    </tag>
+    <tag row="6" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="GZXBH">
+      <attribute key="name" value="gzxbh" />
+    </tag>
+    <tag row="6" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="GZXSFBH">
+      <attribute key="name" value="gzxsfbh" />
+    </tag>
+    <tag row="6" col="2" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select gzxdy.gzxbh as gzxbh, sfdy.gzxsfbh as gzxsfbh, sfdy.gzsfmc as gzsfmc, sfdy.sfgl as sfgl, sfdy.gzsfms as gzsfms from gztx_gzxdy gzxdy INNER JOIN gztx_gzxsf gzxsf on gzxdy.gzxbh = gzxsf.gzxbh INNER JOIN gztx_gzxsfdy sfdy on sfdy.gzxsfbh = gzxsf.gzxsfbh where gzxdy.gzxbh = '3028' and sfdy.gzxsfbh='26'" />
+      <attribute key="name" value="selectgzx" />
+    </tag>
+    <tag row="7" col="0" rowspan="1" colspan="1" name="Hidden" label="" fieldName="GZSFMC">
+      <attribute key="name" value="gzxsfmc" />
+    </tag>
+    <tag row="7" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="SFGL">
+      <attribute key="name" value="sfgl" />
+    </tag>
+    <tag row="7" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="GZSFMS">
+      <attribute key="name" value="gzsfms" />
+    </tag>
+  </updatePage>
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+    <button>import</button>
+  </buttons>
+  <flow>
+    <insertbefore />
+    <insertafter />
+    <deletebefore />
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.atmjxbfp">
+    <select id="dn0.atmjxbfpList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select a.khdxdh,a.tjrq,a.tjny,a.jgdh,a.jgmc,a.hydh,a.hymc,a.lswfp,a.dyjxb,a.xj,a.kfp,a.yfp   from( select $tjrq$ as tjny,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,hyjx.tjrq,        coalesce(jgjxb.lsjxb,0)-coalesce(lsyfp.lsyfp,0) as lswfp ,        coalesce(jgjxb.dyjxb,0) as dyjxb,        coalesce(jgjxb.lsjxb,0)-coalesce(lsyfp.lsyfp,0)+coalesce(jgjxb.dyjxb,0) as xj,        coalesce(jgjxb.lsjxb,0)-coalesce(lsyfp.lsyfp,0)+coalesce(jgjxb.dyjxb,0)-sum(coalesce(hyjxb.dyyfp,0)) over(partition by jg.khdxdh) as kfp,        coalesce(hyjxb.dyyfp,0) as yfp,hy.khdxdh   from JXGZ_HYATMJX hyjx  inner join khdx_hy hy on hy.khdxdh=hyjx.khdxdh  inner join khdx_jg jg on hyjx.jgdh=jg.jgdh     left outer join (select jx.khdxdh,                           sum(case when jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$  when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$  then jx.atmwhjx else 0 end) lsjxb,                           sum(case when jx.tjrq=$tjrq_ym$  then jx.atmwhjx else 0 end) as dyjxb                      from jxgz_jgatmjx jx                    inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'                    inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'                    where jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$  when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_ym$                     group by jx.khdxdh) jgjxb on jg.khdxdh=jgjxb.khdxdh                      left outer join (select jg.khdxdh,                          sum(jx.sfgz) lsyfp                     from JXGZ_HYATMJX jx                    inner join khdx_jg jg on jx.jgdh=jg.jgdh                        inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'                    inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'                    where jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$  when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$                       and jx.gzxsfbh ='26'                    group by jg.khdxdh                                          ) lsyfp on jg.khdxdh=lsyfp.khdxdh                                            left outer join (select jx.khdxdh,                          sum(case when jx.tjrq=$tjrq_ym$  then jx.sfgz else 0 end) dyyfp                     from JXGZ_HYATMJX jx                    inner join khdx_jg jg on jx.jgdh=jg.jgdh                        inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'                    inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'                    where jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$  when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_ym$                       and jx.gzxsfbh='26'                                       group by jx.khdxdh                                          ) hyjxb on hyjx.khdxdh=hyjxb.khdxdh      where 1=1
+      <isNotEmpty property="tjrq_ym">and  hyjx.tjrq=$tjrq_ym$</isNotEmpty>
+      and hyjx.gzxsfbh ='26') a     inner join table(fn_getsjjg_java_qxhy($tjrq_ym$,$login_khdxdh$,0)) qx on qx.khdxdh=a.KHDXDH
+      <isNotEmpty property="khdxdh">where a.khdxdh in ($khdxdh$)</isNotEmpty>
+      order by a.jgdh,a.hydh
+    </select>
+    <select id="dn0.atmjxbfpCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select a.khdxdh,a.tjrq,a.tjny,a.jgdh,a.jgmc,a.hydh,a.hymc,a.lswfp,a.dyjxb,a.xj,a.kfp,a.yfp   from( select $tjrq$ as tjny,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc,hyjx.tjrq,        coalesce(jgjxb.lsjxb,0)-coalesce(lsyfp.lsyfp,0) as lswfp ,        coalesce(jgjxb.dyjxb,0) as dyjxb,        coalesce(jgjxb.lsjxb,0)-coalesce(lsyfp.lsyfp,0)+coalesce(jgjxb.dyjxb,0) as xj,        coalesce(jgjxb.lsjxb,0)-coalesce(lsyfp.lsyfp,0)+coalesce(jgjxb.dyjxb,0)-sum(coalesce(hyjxb.dyyfp,0)) over(partition by jg.khdxdh) as kfp,        coalesce(hyjxb.dyyfp,0) as yfp,hy.khdxdh   from JXGZ_HYATMJX hyjx  inner join khdx_hy hy on hy.khdxdh=hyjx.khdxdh  inner join khdx_jg jg on hyjx.jgdh=jg.jgdh     left outer join (select jx.khdxdh,                           sum(case when jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$  when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$  then jx.atmwhjx else 0 end) lsjxb,                           sum(case when jx.tjrq=$tjrq_ym$  then jx.atmwhjx else 0 end) as dyjxb                      from jxgz_jgatmjx jx                    inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'                    inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'                    where jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$  when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_ym$                     group by jx.khdxdh) jgjxb on jg.khdxdh=jgjxb.khdxdh                      left outer join (select jg.khdxdh,                          sum(jx.sfgz) lsyfp                     from JXGZ_HYATMJX jx                    inner join khdx_jg jg on jx.jgdh=jg.jgdh                        inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'                    inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'                    where jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$  when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$                       and jx.gzxsfbh ='26'                    group by jg.khdxdh                                          ) lsyfp on jg.khdxdh=lsyfp.khdxdh                                            left outer join (select jx.khdxdh,                          sum(case when jx.tjrq=$tjrq_ym$  then jx.sfgz else 0 end) dyyfp                     from JXGZ_HYATMJX jx                    inner join khdx_jg jg on jx.jgdh=jg.jgdh                        inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'                    inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'                    where jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$  when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_ym$                       and jx.gzxsfbh='26'                                       group by jx.khdxdh                                          ) hyjxb on hyjx.khdxdh=hyjxb.khdxdh      where 1=1
+      <isNotEmpty property="tjrq_ym">and  hyjx.tjrq=$tjrq_ym$</isNotEmpty>
+      and hyjx.gzxsfbh ='26') a     inner join table(fn_getsjjg_java_qxhy($tjrq_ym$,$login_khdxdh$,0)) qx on qx.khdxdh=a.KHDXDH
+      <isNotEmpty property="khdxdh">where a.khdxdh in ($khdxdh$)</isNotEmpty>
+      order by a.jgdh,a.hydh ) t
+    </select>
+    <select id="dn0.atmjxbfp_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  GZFAMC, HYLB, KHDXDH, SFGL, JGDH, TJRQ, GZSFMS, YFGZ, SFGZ, GZXSFBH, HYGW, GZSFMC, GZXBH  from JXGZ_HYATMJX where 1= 1  and KHDXDH = $khdxdh$ and TJRQ = $tjrq$
+    </select>
+    <select id="dn0.atmjxbfp_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  GZFAMC, HYLB, KHDXDH, SFGL, JGDH, TJRQ, GZSFMS, YFGZ, SFGZ, GZXSFBH, HYGW, GZSFMC, GZXBH  from JXGZ_HYATMJX where 1= 1  and KHDXDH = $khdxdh$ and TJRQ = $tjrq_ym$
+    </select>
+    <insert id="dn0.atmjxbfp_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into JXGZ_HYATMJX( SFGZ, GZFAMC, KHDXDH, YFGZ, HYGW, TJRQ, GZXSFBH, HYLB, GZSFMS, SFGL, JGDH, GZXBH, GZSFMC ) values ( $sfkfpjx$,'$gzfamc$',$khdxdh$,$fpjx$,'$hygw$',$tjrq_ym$,'$gzxsfbh$','$hylb$','$gzsfms$','$sfgl$','$jgdh$','$gzxbh$','$gzxsfmc$')
+    </insert>
+    <update id="dn0.atmjxbfp_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update JXGZ_HYATMJX set SFGZ = $sfkfpjx$,YFGZ = $fpjx$ where 1=1  and KHDXDH = $khdxdh$ and TJRQ = $tjrq_ym$
+    </update>
+    <delete id="dn0.atmjxbfp_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from JXGZ_HYATMJX where 1=1  and KHDXDH = $khdxdh$ and TJRQ = $tjrq$
+    </delete>
+    <select id="dn0.atmjxbfp_selecthy" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ SELECT
+  lb.LBDH lbdh, gw.GWBH gwbh,jgcy.JGDH AS JGDH
+FROM khdx_hy hy
+  INNER JOIN KHDX_JGCY jgcy ON jgcy.KHDXDH = hy.KHDXDH and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq
+  LEFT JOIN KHDX_HYLB lb ON hy.KHDXDH = lb.KHDXDH
+  LEFT JOIN KHDX_HYGW gw ON gw.KHDXDH = hy.KHDXDH WHERE hy.KHDXDH = $khdxdh$</select>
+    <select id="dn0.atmjxbfp_selectjxb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select cast(coalesce(jgjxb.lsjxb,0)-coalesce(hyjxb.lsyfp,0)+coalesce(jgjxb.dyjxb,0) as decimal(19,2)) as jxb
+  from khdx_jgcy cy
+  inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh
+ left outer join (select jx.khdxdh,
+                         sum(case when jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$ then jx.atmwhjx else 0 end) lsjxb,
+                         sum(case when jx.tjrq=$tjrq_ym$ then jx.atmwhjx else 0 end) as dyjxb
+                    from jxgz_jgatmjx jx
+                   inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'
+                   inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'
+                   where jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_ym$
+                   group by jx.khdxdh) jgjxb on cy.jgkhdxdh=jgjxb.khdxdh
+ left outer join (select jg.khdxdh,
+                          sum(case when jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$ then jx.sfgz else 0 end) lsyfp,
+                          sum(case when jx.tjrq=$tjrq_ym$ then jx.sfgz else 0 end) dyyfp
+                    from JXGZ_HYATMJX jx
+                   inner join khdx_jg jg on jx.jgdh=jg.jgdh    
+                   inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'
+                   inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'
+                   where jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_ym$
+                     and jx.gzxsfbh ='26'
+                   group by jg.khdxdh) hyjxb on cy.jgkhdxdh=hyjxb.khdxdh                                         
+                                         
+ where jg.jyjgbz='Y' and cy.khdxdh=$khdxdh$ and $tjrq_ym$ between cy.qsrq and cy.jsrq</select>
+    <select id="dn0.atmjxbfp_selectkfpjx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select cast(coalesce(jgjxb.lsjxb,0)-coalesce(hyjxb.lsyfp,0)+coalesce(jgjxb.dyjxb,0)-coalesce(hyjxb.dyyfp,0) as decimal(19,2)) as kfp
+  from khdx_jgcy cy
+  inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh
+ left outer join (select jx.khdxdh,
+                         sum(case when jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$ then jx.atmwhjx else 0 end) lsjxb,
+                         sum(case when jx.tjrq=$tjrq_ym$ then jx.atmwhjx else 0 end) as dyjxb
+                    from jxgz_jgatmjx jx
+                   inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'
+                   inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'
+                   where jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_ym$
+                   group by jx.khdxdh) jgjxb on cy.jgkhdxdh=jgjxb.khdxdh
+ left outer join (select jg.khdxdh,
+                          sum(case when jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$ then jx.sfgz else 0 end) lsyfp,
+                          sum(case when jx.tjrq=$tjrq_ym$ then jx.sfgz else 0 end) dyyfp
+                    from JXGZ_HYATMJX jx
+                   inner join khdx_jg jg on jx.jgdh=jg.jgdh    
+                   inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'
+                   inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'
+                   where jx.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_ym$
+                     and jx.gzxsfbh ='26'
+                   group by jg.khdxdh) hyjxb on cy.jgkhdxdh=hyjxb.khdxdh                                         
+                                         
+ where jg.jyjgbz='Y' and cy.khdxdh=$khdxdh$ and $tjrq_ym$ between cy.qsrq and cy.jsrq</select>
+    <select id="dn0.atmjxbfp_selectGzfamc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select cl.lbmc||'工资方案' as  GZFAMC  from khdx_hylb lb,csb_hylb cl where lb.lbdh=cl.lbdh and lb.khdxdh=$khdxdh$</select>
+    <select id="dn0.atmjxbfp_selectgzx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select gzxdy.gzxbh as gzxbh, sfdy.gzxsfbh as gzxsfbh, sfdy.gzsfmc as gzsfmc, sfdy.sfgl as sfgl, sfdy.gzsfms as gzsfms
+from gztx_gzxdy gzxdy
+INNER JOIN gztx_gzxsf gzxsf on gzxdy.gzxbh = gzxsf.gzxbh
+INNER JOIN gztx_gzxsfdy sfdy on sfdy.gzxsfbh = gzxsf.gzxsfbh
+where gzxdy.gzxbh = '3028' and sfdy.gzxsfbh='26'</select>
+  </sqlMap>
+  <javascript>
+    <import>parent.addTab('atmjxbfpdr','ATM绩效包分配','/module/parser/import/visitHtml/atmjxbfpdr');</import>
+    <query>jQuery(document).ready(function () {
+       editpage_width = 500;    
+       editpage_height = 320;  
+       var obj=createTimeObj(jQuery("#tjrq").val());
+ //alert(obj);
+ jQuery("#tjrq_nc").val(obj.nc);
+ //alert($("#tjrq_nc").val(obj.nc));
+ jQuery("#tjrq_sym").val(obj.sym);
+ jQuery("#tjrq_yc").val(obj.yc);
+ jQuery("#tjrq_ym").val(obj.ym); 
+
+       
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ 
+ return true;
+}</query>
+    <edit>jQuery(document).ready(function () {
+//这里的js脚本，会在页面加载完成后执行 
+var obj=createTimeObj(jQuery("#tjrq").val());
+initDateTime(obj);
+ 
+    /**初始化参数*/
+    PAS.di.execute('atmjxbfp_selectjxb',selectjxb);
+   // $("#tjrq").executeOnEvent('blur','atmjxbfp_selectjxb',selectjxb); 
+    $("#tjrq").blur(function(){
+        var obj=createTimeObj(jQuery("#tjrq").val());
+        initDateTime(obj);
+        PAS.di.execute('atmjxbfp_selectjxb',selectjxb);
+    });
+    $("#khdxdh").executeOnEvent('change','atmjxbfp_selectjxb',selectjxb); 
+    if($("#page_operate").val()=='add'){
+         jQuery($("#tjrq").removeAttr("disabled"));
+        
+    }else {
+         PAS.di.execute('atmjxbfp_selectkfpjx',selectkfpjx);
+         PAS.di.execute('atmjxbfp_selectjxb',selectjxb);        
+    }
+});
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ 
+ 
+  var kfpjx = $("#kfpjx").val();
+   var fpjx = $("#fpjx").val();
+   if(parseFloat(fpjx)&gt;parseFloat(kfpjx)){
+    custom_alert('分配绩效必须小于等于可分配绩效!');
+      return false;
+   }
+$("#sfkfpjx").val(fpjx);
+ return true;
+}
+/**初始化日期*/
+function initDateTime(obj){
+ jQuery("#tjrq_nc").val(obj.nc);
+ jQuery("#tjrq_sym").val(obj.sym);
+ jQuery("#tjrq_yc").val(obj.yc);
+ jQuery("#tjrq_ym").val(obj.ym); 
+}
+
+/**绩效包*/
+function selectjxb(obj){
+  var dateTime=createTimeObj(jQuery("#tjrq").val());
+  initDateTime(dateTime);
+   if(obj.data.length&gt;0){
+     var jxb = obj.data[0].JXB;
+     console.log("jxb-&gt;&gt;"+jxb);
+      $("#jxb").val(jxb); 
+   }else{
+      $("#jxb").val("0"); 
+   }
+   /* 工资项信息 */
+    PAS.di.execute('atmjxbfp_selectgzx',selectgzx);
+   if($("#page_operate").val()=='add'){
+       /* 可分配绩效 */
+      PAS.di.execute('atmjxbfp_selectkfpjx',selectkfpjx);
+      $("#tjrq").executeOnEvent('blur','atmjxbfp_selectkfpjx',selectkfpjx);
+      $("#khdxdh").executeOnEvent('change','atmjxbfp_selectkfpjx',selectkfpjx);
+      
+      /* 行员信息 */
+      PAS.di.execute('atmjxbfp_selecthy',selecthy);
+      $("#tjrq").executeOnEvent('blur','atmjxbfp_selecthy',selecthy);
+      $("#khdxdh").executeOnEvent('change','atmjxbfp_selecthy',selecthy);
+      $("#khdxdh").executeOnEvent('change','atmjxbfp_selectGzfamc',selectGzfamc);
+       PAS.di.execute('atmjxbfp_selectGzfamc',selectGzfamc);
+                  
+    }else {
+      jQuery($("#fpjx").removeAttr("disabled","disabled"));
+      jQuery($("#tjrq").attr("disabled","disabled"));
+    }
+
+}
+
+
+/**可分配绩效*/
+function selectkfpjx(obj){
+ if(obj.data.length&gt;0){
+     var kfpjx = obj.data[0].KFP;
+     if($("#page_operate").val()=='update'){
+       var yfpjx = $("#fpjx").val();
+       kfpjx = parseFloat(kfpjx)+parseFloat(yfpjx);
+     }
+      $("#kfpjx").val(kfpjx); 
+   }else{
+      $("#kfpjx").val("0"); 
+   }
+}
+
+/**行员信息*/
+function selecthy(obj) {
+  if(obj.data.length&gt;0){
+      $("#jgdh").val(obj.data[0].JGDH);
+      $("#hygw").val(obj.data[0].GWBH); 
+      $("#hylb").val(obj.data[0].LBDH); 
+   }
+}
+
+/* 工资项信息*/
+function selectgzx(obj) {
+  if(obj.data.length&gt;0){
+      $("#gzxbh").val(obj.data[0].GZXBH); 
+      $("#gzxsfbh").val(obj.data[0].GZXSFBH); 
+      $("#sfgl").val(obj.data[0].SFGL); 
+      $("#gzxsfmc").val(obj.data[0].GZSFMC); 
+      $("#gzsfms").val(obj.data[0].GZSFMS); 
+   }
+}
+function selectGzfamc(obj) {
+  if(obj.data.length&gt;0){
+      $("#gzfamc").val(obj.data[0].GZFAMC); 
+      //alert("222");
+   }
+}</edit>
+  </javascript>
+</pageSetting>
+

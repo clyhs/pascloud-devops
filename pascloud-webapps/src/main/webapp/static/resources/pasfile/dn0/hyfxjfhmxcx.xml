@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="hyfxjfhmxcx" title="行员风险金返还明细查询" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期">
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="no" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员">
+        <attribute key="isDisplayXN" value="true" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="true" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Dmms" label="客户类型">
+        <attribute key="selectedList" value="1" />
+        <attribute key="width" value="120px;" />
+        <attribute key="mulShowType" value="null" />
+        <attribute key="dmmc" value="zhbs" />
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="zhbs" />
+        <attribute key="isAll" value="true" />
+        <attribute key="multiple" value="false" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="MSQL4Select" label="风险金类型">
+        <attribute key="selectedList" value="1" />
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="120px;" />
+        <attribute key="mulShowType" value="null" />
+        <attribute key="key_SELECTTYPE" value="Integer" />
+        <attribute key="isSearch" value="false" />
+        <attribute key="sql" value="select gzxbh as key,gzxmc as value from gztx_gzxdy where gzxbh in(select substr(csid,instr(csid,'=')+1,instr(csid,']')-instr(csid,'=')-1) from CSB_GZXCS where gzxbh='3023' and csmc='GZXBH') union all select '-1' as key,'贷款业绩绩效包' as value from pas_vt" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="fxjlx" />
+        <attribute key="isAll" value="true" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+      <tag row="1" col="0" colspan="1" rowspan="1" name="Text" label="客户号">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="khh" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="1" col="1" colspan="1" rowspan="1" name="Text" label="客户名称">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="zhhm" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="1" col="2" colspan="1" rowspan="1" name="Text" label="贷款账号">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="zhdh" />
+        <attribute key="readonly" value="false" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="hyfxjfhmxcx_xsjy1jgj" title="新数据源1结果集" page="true">
+    <col id="TJRQ" title="统计日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FXJLX" title="风险金类型" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="BZ" title="备注" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FHTJ" title="返还途径" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DYJTFXJ" title="当月计提风险金" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="true" />
+    <col id="LJYJTFXJ" title="累计已计提风险金" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="true" />
+    <col id="DYFHFXJ" title="当月返还风险金" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="true" />
+    <col id="LJFHFXJ" title="累计已返还风险金" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="true" />
+    <col id="DFHFXJ" title="待返还风险金" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="true" />
+    <col id="YFGZ" title="应返风险金" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="true" />
+    <col id="SFGZ" title="实返风险金" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="true" />
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHHM" title="账户名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHLX" title="客户类型" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ZHDH" title="账号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="FFRQ" title="发放日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DQRQ" title="到期日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="false" zsy="false" showDymCol="" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.hyfxjfhmxcx">
+    <select id="dn0.hyfxjfhmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select fxjmx.tjrq  as tjrq,fxjmx.khdxdh,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc, case when fxjmx.jxdxdh=-1  then '按指标计提'  else '按明细计提' end  as bz, case when dkzh.jxdxdh is null then '无' else dkzh.khh end khh, case when dkzh.jxdxdh is null then '无' else dkzh.zhhm end zhhm, case when dmms.dmms is null then '无' else dmms.dmms end as khlx, case when dkzh.jxdxdh is null then '无' else dkzh.zhdh end zhdh, case when dkzh.jxdxdh is null then '无' else cast(dkzh.ffrq as char(8)) end ffrq, case when dkzh.jxdxdh is null then '无' else cast(dkzh.dqrq as char(8)) end dqrq, case when fxjmx.FHTJ='0' then '系统自动返还'  when fxjmx.FHTJ='1' then '手工导入返还'  else  '末返还'  end as fhtj, fxjmx.dyjtfxj,fxjmx.ljyjtfxj,fxjmx.dyfhfxj,fxjmx.ljfhfxj,fxjmx.dfhfxj,fxjmx.yfgz,fxjmx.sfgz, case when fxjmx.dygzxbh='-1' then '贷款业绩绩效包' else gzx.gzxmc end as fxjlx from dkjx_dkfxjfhmx fxjmx left join gztx_gzxdy gzx on fxjmx.dygzxbh=gzx.gzxbh inner join khdx_hy hy on hy.khdxdh = fxjmx.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh = hy.khdxdh
+      <isNotEmpty property="tjrq">and $tjrq$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty>
+      inner join khdx_jg jg on jg.khdxdh = jgcy.jgkhdxdh left join jxdx_dkzh dkzh on fxjmx.jxdxdh = dkzh.jxdxdh left join csb_dmms dmms on dkzh.zhbs = dmms.dmz and dmms.dmmc = 'ZHBS'  inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh where 1=1
+      <isNotEmpty property="tjrq">and  fxjmx.tjrq =$tjrq$</isNotEmpty>
+      <isNotEmpty property="khdxdh">and  hy.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="khh">and dkzh.khh like '%$khh$%'</isNotEmpty>
+      <isNotEmpty property="zhhm">and dkzh.zhhm like '%$zhhm$%'</isNotEmpty>
+      <isNotEmpty property="zhdh">and dkzh.zhdh like '%$zhdh$%'</isNotEmpty>
+      <isNotEmpty property="zhbs">and dkzh.zhbs = '$zhbs$'</isNotEmpty>
+      <isNotEmpty property="fxjlx">and fxjmx.dygzxbh in ('$fxjlx$')</isNotEmpty>
+      order by jg.jgdh,hy.hydh
+    </select>
+    <select id="dn0.hyfxjfhmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select fxjmx.tjrq  as tjrq,fxjmx.khdxdh,jg.jgdh,jg.jgmc,hy.hydh,hy.hymc, case when fxjmx.jxdxdh=-1  then '按指标计提'  else '按明细计提' end  as bz, case when dkzh.jxdxdh is null then '无' else dkzh.khh end khh, case when dkzh.jxdxdh is null then '无' else dkzh.zhhm end zhhm, case when dmms.dmms is null then '无' else dmms.dmms end as khlx, case when dkzh.jxdxdh is null then '无' else dkzh.zhdh end zhdh, case when dkzh.jxdxdh is null then '无' else cast(dkzh.ffrq as char(8)) end ffrq, case when dkzh.jxdxdh is null then '无' else cast(dkzh.dqrq as char(8)) end dqrq, case when fxjmx.FHTJ='0' then '系统自动返还'  when fxjmx.FHTJ='1' then '手工导入返还'  else  '末返还'  end as fhtj, fxjmx.dyjtfxj,fxjmx.ljyjtfxj,fxjmx.dyfhfxj,fxjmx.ljfhfxj,fxjmx.dfhfxj,fxjmx.yfgz,fxjmx.sfgz, case when fxjmx.dygzxbh='-1' then '贷款业绩绩效包' else gzx.gzxmc end as fxjlx from dkjx_dkfxjfhmx fxjmx left join gztx_gzxdy gzx on fxjmx.dygzxbh=gzx.gzxbh inner join khdx_hy hy on hy.khdxdh = fxjmx.khdxdh inner join khdx_jgcy jgcy on jgcy.khdxdh = hy.khdxdh
+      <isNotEmpty property="tjrq">and $tjrq$ between jgcy.qsrq and jgcy.jsrq</isNotEmpty>
+      inner join khdx_jg jg on jg.khdxdh = jgcy.jgkhdxdh left join jxdx_dkzh dkzh on fxjmx.jxdxdh = dkzh.jxdxdh left join csb_dmms dmms on dkzh.zhbs = dmms.dmz and dmms.dmmc = 'ZHBS'  inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$,$login_khdxdh$,0)) qxhy on hy.khdxdh=qxhy.khdxdh where 1=1
+      <isNotEmpty property="tjrq">and  fxjmx.tjrq =$tjrq$</isNotEmpty>
+      <isNotEmpty property="khdxdh">and  hy.khdxdh in ($khdxdh$)</isNotEmpty>
+      <isNotEmpty property="khh">and dkzh.khh like '%$khh$%'</isNotEmpty>
+      <isNotEmpty property="zhhm">and dkzh.zhhm like '%$zhhm$%'</isNotEmpty>
+      <isNotEmpty property="zhdh">and dkzh.zhdh like '%$zhdh$%'</isNotEmpty>
+      <isNotEmpty property="zhbs">and dkzh.zhbs = '$zhbs$'</isNotEmpty>
+      <isNotEmpty property="fxjlx">and fxjmx.dygzxbh in ('$fxjlx$')</isNotEmpty>
+      order by jg.jgdh,hy.hydh ) t
+    </select>
+    <select id="dn0.hyfxjfhmxcx_MSQL4SELECT_fxjlx" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select gzxbh as key,gzxmc as value from gztx_gzxdy where gzxbh in(select substr(csid,instr(csid,'=')+1,instr(csid,']')-instr(csid,'=')-1) from CSB_GZXCS where gzxbh='3023' and csmc='GZXBH') union all select '-1' as key,'贷款业绩绩效包' as value from pas_vt</select>
+  </sqlMap>
+  <rels>
+    <items id="hyfxjfhmxcx_xsjy1jgj" />
+  </rels>
+  <javascript><![CDATA[jQuery(document).ready(function () {
+
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}]]></javascript>
+</pageSetting>
+

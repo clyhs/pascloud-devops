@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="jxbgcsgl" title="绩效报告参数管理" type="manage" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="参数名称" fieldName="">
+        <attribute key="name" value="csmc" />
+        <attribute key="readonly" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="1" rowspan="1" colspan="1" name="Text" label="参数描述" fieldName="">
+        <attribute key="name" value="csms" />
+        <attribute key="readonly" value="false" />
+        <attribute key="editable" value="true" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="jxbgcsgltable">
+    <col id="CSMC" title="参数名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="CSMS" title="参数描述" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="CSZ" title="参数值" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+  </table>
+  <rels>
+    <items id="jxbgcsgltable" />
+  </rels>
+  <addPage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="参数名称" fieldName="csmc">
+      <attribute key="style" value="width:220px;" />
+      <attribute key="name" value="csmc" />
+      <attribute key="styleClass" value="{required:true,special:true,maxlength:50}" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Text" label="参数值" fieldName="csz">
+      <attribute key="style" value="width:220px;" />
+      <attribute key="name" value="csz" />
+      <attribute key="styleClass" value="{required:true,maxlength:50}" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Textarea" label="参数描述" fieldName="csms">
+      <attribute key="cols" value="14" />
+      <attribute key="style" value="width:220px;" />
+      <attribute key="name" value="csms" />
+      <attribute key="styleClass" value="{maxlength:1000}" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+      <attribute key="rows" value="5" />
+    </tag>
+  </addPage>
+  <updatePage title="编辑页面">
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="参数名称" fieldName="csmc">
+      <attribute key="style" value="width:220px;" />
+      <attribute key="name" value="csmc" />
+      <attribute key="styleClass" value="{required:true,special:true,maxlength:50}" />
+      <attribute key="isAll" value="false" />
+      <attribute key="readonly" value="false" />
+      <attribute key="isEditable" value="false" />
+      <attribute key="editable" value="false" />
+    </tag>
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Text" label="参数值" fieldName="csz">
+      <attribute key="style" value="width:220px;" />
+      <attribute key="name" value="csz" />
+      <attribute key="styleClass" value="{required:true,maxlength:50}" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+    </tag>
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Textarea" label="参数描述" fieldName="csms">
+      <attribute key="cols" value="14" />
+      <attribute key="style" value="width:220px;" />
+      <attribute key="name" value="csms" />
+      <attribute key="styleClass" value="{maxlength:1000}" />
+      <attribute key="readonly" value="false" />
+      <attribute key="editable" value="true" />
+      <attribute key="rows" value="5" />
+    </tag>
+  </updatePage>
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+  </buttons>
+  <flow>
+    <insertbefore />
+    <insertafter />
+    <deletebefore />
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.jxbgcsgl">
+    <select id="dn0.jxbgcsglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select cs.csmc,cs.csms,cs.csz  from jxbg_xtcs cs  where 1=1
+      <isNotEmpty property="csmc">and  cs.csmc like '%$csmc$%'</isNotEmpty>
+      <isNotEmpty property="csms">and cs.csms like '%$csms$%'</isNotEmpty>
+    </select>
+    <select id="dn0.jxbgcsglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select cs.csmc,cs.csms,cs.csz  from jxbg_xtcs cs  where 1=1
+      <isNotEmpty property="csmc">and  cs.csmc like '%$csmc$%'</isNotEmpty>
+      <isNotEmpty property="csms">and cs.csms like '%$csms$%'</isNotEmpty>
+      ) t
+    </select>
+    <select id="dn0.jxbgcsgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  csz, csmc, csms  from JXBG_XTCS where 1= 1  and csmc = '$csmc$'
+    </select>
+    <select id="dn0.jxbgcsgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  csz, csmc, csms  from JXBG_XTCS where 1= 1  and csmc = '$csmc$'
+    </select>
+    <insert id="dn0.jxbgcsgl_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into JXBG_XTCS( csz, csmc, csms ) values ( '$csz$','$csmc$','$csms$')
+    </insert>
+    <update id="dn0.jxbgcsgl_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update JXBG_XTCS set csz = '$csz$',csms = '$csms$' where 1=1  and csmc = '$csmc$'
+    </update>
+    <delete id="dn0.jxbgcsgl_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from JXBG_XTCS where 1=1  and csmc = '$csmc$'
+    </delete>
+  </sqlMap>
+  <javascript>
+    <query>jQuery(document).ready(function () {
+
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+  return true;
+}
+
+function showDeleteDialog(sel){
+  var csmc=sel["CSMC"];    
+  if(csmc=='JXBG_START_TIMER_DAY' ||csmc == 'JXBG_START_TIMER_HOUR' || csmc == 'SERVICE_PORT'){            
+    custom_alert("绩效报告关键参数，不允许删除!");
+    return ;
+  }
+  custom_confirm('你确定要删除所选记录吗？','提示',function(){
+    var colIds="CSMC,CSZ,CSMS";
+    var colId=colIds.split(",");//所有的主键名
+    var params="&amp;"; //URL的参数
+    for(var i=0;i&lt;colId.length;i++){
+      params+=colId[i].toLowerCase()+"="+selDataFilter(sel[colId[i]])+"&amp;";
+    }
+    params=encodeURI(params.substring(0,params.length-1));
+    //alert(params);
+    $.post('/module/parser/manage/deleteData/jxbgcsgl',params,function(cb){
+      custom_alert(cb);
+      loadData();
+    }).error(function(){
+      custom_alert("发生内部错误，无法删除所选记录！");
+    });
+  });
+}</query>
+    <edit>jQuery(document).ready(function () {
+//这里的js脚本，会在页面加载完成后执行
+ var csmc=$('#csmc').val();
+ if(csmc=='JXBG_START_TIMER_DAY'){ 
+    $('#csz').attr("class","{dateFmt:'yyyyMMdd'}");     
+ }
+/*$('#csz').blur(function(){
+     var csmc=$('#csmc').val();
+     var csz=$('#csz').val();
+    if(csmc=='JXBG_START_TIMER_HOUR'){ 
+       var pattern =  /^(0\\d{1}|1\\d{1}|2[0-3]):([0-5]\\d{1}):([0-5]\\d{1})$/;
+       if(!pattern.test(csz)){
+          // $('#csz').validationFiled('!!!!!!!!!!');
+            return ;
+       }           
+     }
+  });*/
+});
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}</edit>
+  </javascript>
+</pageSetting>
+

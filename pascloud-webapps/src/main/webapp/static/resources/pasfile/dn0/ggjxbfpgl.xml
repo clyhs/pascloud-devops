@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="ggjxbfpgl" title="公共绩效包分配" type="manage" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName="">
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="no" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="dateFmt" value="yyyyMM" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="1" rowspan="1" colspan="1" name="NewMultipleHy" label="行员" fieldName="">
+        <attribute key="isRequired" value="false" />
+        <attribute key="isDisplayXN" value="true" />
+        <attribute key="jgckbz" value="jg_ckhy" />
+        <attribute key="name" value="khdxdh" />
+        <attribute key="multiple" value="true" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+        <attribute key="defVal" value="20171231" />
+        <attribute key="name" value="tjrq_yc" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+        <attribute key="defVal" value="20171231" />
+        <attribute key="name" value="tjrq_nc" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+        <attribute key="defVal" value="20171231" />
+        <attribute key="name" value="tjrq_sym" />
+      </tag>
+      <tag row="0" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+        <attribute key="defVal" value="20171231" />
+        <attribute key="name" value="tjrq_ym" />
+      </tag>
+    </tags>
+  </conPart>
+  <table page="true" id="ggjxbfpgltable">
+    <col id="TJNY" title="统计年月" align="left" type="string" width="120" format="" frozen="false" mergeCells="true" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" format="" frozen="false" mergeCells="true" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" format="" frozen="false" mergeCells="true" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HYDH" title="行员代号" align="left" type="string" width="75" format="" frozen="false" mergeCells="true" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HYMC" title="行员名称" align="left" type="string" width="90" format="" frozen="false" mergeCells="true" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HYLB" title="行员类别" align="left" type="string" width="120" format="" frozen="false" mergeCells="true" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HYGW" title="行员岗位" align="left" type="string" width="120" format="" frozen="false" mergeCells="true" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="LSWFP" title="历史未分配" align="right" type="hidden" width="120" format="" frozen="false" mergeCells="true" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="DYJXB" title="当月绩效包" align="right" type="hidden" width="120" format="" frozen="false" mergeCells="true" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="XJ" title="小计" align="right" type="hidden" width="120" format="" frozen="false" mergeCells="true" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="KFP" title="可分配" align="right" type="hidden" width="120" format="" frozen="false" mergeCells="true" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="YFP" title="已分配" align="right" type="hidden" width="120" format="" frozen="false" mergeCells="true" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="GZXMC" title="工资项名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="" title="工资项" align="center" type="string" width="600" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false">
+      <col id="GZX_LSWFP" title="历史未分配" align="right" type="float" width="120" format="" frozen="" mergeCells="" footerCells="" exp="true" zsy="true" showDymCol="false" />
+      <col id="GZX_DYJXB" title="当月绩效包" align="right" type="float" width="120" format="" frozen="" mergeCells="" footerCells="" exp="true" zsy="true" showDymCol="false" />
+      <col id="GZX_XJ" title="小计" align="right" type="float" width="120" format="" frozen="" mergeCells="" footerCells="" exp="true" zsy="true" showDymCol="false" />
+      <col id="GZX_KFP" title="可分配" align="right" type="float" width="120" format="" frozen="" mergeCells="" footerCells="" exp="true" zsy="true" showDymCol="false" />
+      <col id="GZX_YFP" title="已分配" align="right" type="float" width="120" format="" frozen="" mergeCells="" footerCells="" exp="true" zsy="true" showDymCol="false" />
+    </col>
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="false" zsy="false" showDymCol="false" />
+    <col id="FPGZXBH" title="分配工资项编号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="false" zsy="false" showDymCol="false" />
+    <col id="FPGZXMC" title="分配工资项名称" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="false" zsy="false" showDymCol="false" />
+    <col id="TJRQ" title="统计日期" align="left" type="hidden" width="75" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" />
+  </table>
+  <rels>
+    <items id="ggjxbfpgltable" />
+  </rels>
+  <addPage title="编辑页面" />
+  <updatePage title="编辑页面" />
+  <buttons>
+    <button>add</button>
+    <button>edit</button>
+    <button>delete</button>
+    <button>import</button>
+  </buttons>
+  <flow>
+    <insertbefore />
+    <insertafter />
+    <deletebefore />
+    <deleteafter />
+    <updatebefore />
+    <updateafter />
+  </flow>
+  <sqlMap namespace="studio.ggjxbfpgl">
+    <select id="dn0.ggjxbfpglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select $tjrq$ as tjny,d.gzxbh as fpgzxbh,d.gzxmc AS fpgzxmc,d.gzxmc,hy.khdxdh,
+       case when zh.jgdh=wd.jgdh then zh.jgdh else zh.jgdh||'-'||rtrim(wd.jgdh) end as jgdh,
+       case when zh.jgdh=wd.jgdh then zh.jgmc else zh.jgmc||'-'||rtrim(wd.jgmc) end as jgmc,
+       hy.hydh,hy.hymc,dd.lbmc as hylb,gw.gwmc as hygw,
+       coalesce(lsjxb.lsjxb,0)-sum(coalesce(lsyfp.lsyfp,0)) over(partition by zh.khdxdh,d.gzxbh) as gzx_lswfp,
+       coalesce(dyjxb.dyjxb,0) as gzx_dyjxb,
+       coalesce(lsjxb.lsjxb,0)-sum(coalesce(lsyfp.lsyfp,0)) over(partition by zh.khdxdh,d.gzxbh)+coalesce(dyjxb.dyjxb,0) as gzx_xj,
+       round(coalesce(lsjxb.lsjxb,0)-sum(coalesce(lsyfp.lsyfp,0)) over(partition by zh.khdxdh,d.gzxbh)+coalesce(dyjxb.dyjxb,0)-sum(coalesce(dyyfp.dyyfp,0)) over(partition by zh.khdxdh,d.gzxbh),2) as gzx_kfp,
+       dyyfp.dyyfp as gzx_yfp, 
+       sum(coalesce(lsjxb.lsjxb,0)) over(partition by hy.khdxdh)-sum(coalesce(lsyfp.lsyfp,0)) over(partition by hy.khdxdh) as lswfp,
+       sum(coalesce(dyjxb.dyjxb,0)) over(partition by hy.khdxdh) as dyjxb,
+       sum(coalesce(lsjxb.lsjxb,0)-coalesce(lsyfp.lsyfp,0) +coalesce(dyjxb.dyjxb,0)) over(partition by hy.khdxdh) as xj,
+       round(sum(coalesce(lsjxb.lsjxb,0)-coalesce(lsyfp.lsyfp,0) +coalesce(dyjxb.dyjxb,0)) over(partition by hy.khdxdh)-sum(coalesce(dyyfp.dyyfp,0)) over(partition by zh.khdxdh),2) as kfp,
+       sum(dyyfp.dyyfp) over(partition by zh.khdxdh) as yfp,$tjrq_ym$ as tjrq
+  from gztx_gzxdy d
+ inner join (select sg.fpgzxbh,sg.khdxdh,sg.jgdh,st.sjjgkhdxdh,sum(sg.sfgz) as dyyfp
+               from sglr_ggjxecfp sg
+              inner join khdx_jgcy cy on sg.khdxdh=cy.khdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between cy.qsrq and cy.jsrq</isNotEmpty>
+      inner join xtb_jggxst st on cy.jgkhdxdh=st.jgkhdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between st.qsrq and st.jsrq</isNotEmpty>
+      inner join khdx_jglb jl on st.sjjgkhdxdh=jl.khdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between jl.qsrq and jl.jsrq</isNotEmpty>
+      and (jl.lbdh like 'C%' OR jl.lbdh like 'D%')
+              where 1=1
+      <isNotEmpty property="tjrq_ym">and  sg.tjrq=$tjrq_ym$</isNotEmpty>
+      group by sg.fpgzxbh,sg.khdxdh,sg.jgdh,st.sjjgkhdxdh) dyyfp on dyyfp.fpgzxbh=d.gzxbh
+      <isNotEmpty property="khdxdh">and dyyfp.khdxdh in ($khdxdh$)</isNotEmpty>
+      inner join khdx_hy hy on dyyfp.khdxdh=hy.khdxdh
+ inner join table(fn_getsjjg_java_qxhy($tjrq_ym$,$login_khdxdh$,0)) qx on qx.khdxdh=dyyfp.KHDXDH
+ inner join khdx_jg wd on dyyfp.jgdh=wd.jgdh
+ inner join khdx_jg zh on zh.khdxdh=dyyfp.sjjgkhdxdh
+ inner join khdx_hylb dd on dd.khdxdh=hy.khdxdh
+      <isNotEmpty property="tjrq_ym">and  $tjrq_ym$ between dd.qsrq and dd.jsrq</isNotEmpty>
+      inner join khdx_hygw gw on gw.khdxdh=hy.khdxdh
+      <isNotEmpty property="tjrq_ym">and  $tjrq_ym$ between gw.qsrq and gw.jsrq</isNotEmpty>
+      left outer join (select hz.gzxbh,st.sjjgkhdxdh,sum(gzxsfgz) lsjxb
+                     from gztx_zxhz hz
+                    inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'
+                    inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'
+                    inner join khdx_jgcy cy on hz.khdxdh=cy.khdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between cy.qsrq and cy.jsrq</isNotEmpty>
+      inner join xtb_jggxst st on cy.jgkhdxdh=st.jgkhdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between st.qsrq and st.jsrq</isNotEmpty>
+      inner join khdx_jglb jl on st.sjjgkhdxdh=jl.khdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between jl.qsrq and jl.jsrq</isNotEmpty>
+      <![CDATA[and (jl.lbdh like 'C%' OR jl.lbdh like 'D%')
+                    where hz.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$  
+                      and hz.hylb='XN' and hz.gzxsfgz>0
+                    group by hz.gzxbh,st.sjjgkhdxdh) lsjxb on dyyfp.fpgzxbh=lsjxb.gzxbh and    dyyfp.sjjgkhdxdh=lsjxb.sjjgkhdxdh                                        
+  left outer join (select sg.fpgzxbh,sg.khdxdh,sum(sg.sfgz) as lsyfp
+                     from sglr_ggjxecfp sg
+                    inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'
+                    inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'                  
+                    where sg.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$ 
+                    group by sg.fpgzxbh,sg.khdxdh) lsyfp    on dyyfp.khdxdh=lsyfp.khdxdh and dyyfp.fpgzxbh=lsyfp.fpgzxbh    
+  left outer join (select hz.gzxbh,st.sjjgkhdxdh,sum(gzxsfgz) dyjxb
+                     from gztx_zxhz hz
+                    inner join khdx_jgcy cy on hz.khdxdh=cy.khdxdh]]>
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between cy.qsrq and cy.jsrq</isNotEmpty>
+      inner join xtb_jggxst st on cy.jgkhdxdh=st.jgkhdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between st.qsrq and st.jsrq</isNotEmpty>
+      inner join khdx_jglb jl on st.sjjgkhdxdh=jl.khdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between jl.qsrq and jl.jsrq</isNotEmpty>
+      and (jl.lbdh like 'C%' OR jl.lbdh like 'D%')                
+                    where 1=1
+      <isNotEmpty property="tjrq_ym">and  hz.tjrq = $tjrq_ym$</isNotEmpty>
+      <![CDATA[and hz.hylb='XN' and hz.gzxsfgz>0
+                    group by hz.gzxbh,st.sjjgkhdxdh) dyjxb on  dyyfp.fpgzxbh=dyjxb.gzxbh and    dyyfp.sjjgkhdxdh=dyjxb.sjjgkhdxdh
+ where d.sfkecfp='1'
+ order by hy.khdxdh,d.gzxbh]]>
+    </select>
+    <select id="dn0.ggjxbfpglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select $tjrq$ as tjny,d.gzxbh as fpgzxbh,d.gzxmc AS fpgzxmc,d.gzxmc,hy.khdxdh,
+       case when zh.jgdh=wd.jgdh then zh.jgdh else zh.jgdh||'-'||rtrim(wd.jgdh) end as jgdh,
+       case when zh.jgdh=wd.jgdh then zh.jgmc else zh.jgmc||'-'||rtrim(wd.jgmc) end as jgmc,
+       hy.hydh,hy.hymc,dd.lbmc as hylb,gw.gwmc as hygw,
+       coalesce(lsjxb.lsjxb,0)-sum(coalesce(lsyfp.lsyfp,0)) over(partition by zh.khdxdh,d.gzxbh) as gzx_lswfp,
+       coalesce(dyjxb.dyjxb,0) as gzx_dyjxb,
+       coalesce(lsjxb.lsjxb,0)-sum(coalesce(lsyfp.lsyfp,0)) over(partition by zh.khdxdh,d.gzxbh)+coalesce(dyjxb.dyjxb,0) as gzx_xj,
+       round(coalesce(lsjxb.lsjxb,0)-sum(coalesce(lsyfp.lsyfp,0)) over(partition by zh.khdxdh,d.gzxbh)+coalesce(dyjxb.dyjxb,0)-sum(coalesce(dyyfp.dyyfp,0)) over(partition by zh.khdxdh,d.gzxbh),2) as gzx_kfp,
+       dyyfp.dyyfp as gzx_yfp, 
+       sum(coalesce(lsjxb.lsjxb,0)) over(partition by hy.khdxdh)-sum(coalesce(lsyfp.lsyfp,0)) over(partition by hy.khdxdh) as lswfp,
+       sum(coalesce(dyjxb.dyjxb,0)) over(partition by hy.khdxdh) as dyjxb,
+       sum(coalesce(lsjxb.lsjxb,0)-coalesce(lsyfp.lsyfp,0) +coalesce(dyjxb.dyjxb,0)) over(partition by hy.khdxdh) as xj,
+       round(sum(coalesce(lsjxb.lsjxb,0)-coalesce(lsyfp.lsyfp,0) +coalesce(dyjxb.dyjxb,0)) over(partition by hy.khdxdh)-sum(coalesce(dyyfp.dyyfp,0)) over(partition by zh.khdxdh),2) as kfp,
+       sum(dyyfp.dyyfp) over(partition by zh.khdxdh) as yfp,$tjrq_ym$ as tjrq
+  from gztx_gzxdy d
+ inner join (select sg.fpgzxbh,sg.khdxdh,sg.jgdh,st.sjjgkhdxdh,sum(sg.sfgz) as dyyfp
+               from sglr_ggjxecfp sg
+              inner join khdx_jgcy cy on sg.khdxdh=cy.khdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between cy.qsrq and cy.jsrq</isNotEmpty>
+      inner join xtb_jggxst st on cy.jgkhdxdh=st.jgkhdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between st.qsrq and st.jsrq</isNotEmpty>
+      inner join khdx_jglb jl on st.sjjgkhdxdh=jl.khdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between jl.qsrq and jl.jsrq</isNotEmpty>
+      and (jl.lbdh like 'C%' OR jl.lbdh like 'D%')
+              where 1=1
+      <isNotEmpty property="tjrq_ym">and  sg.tjrq=$tjrq_ym$</isNotEmpty>
+      group by sg.fpgzxbh,sg.khdxdh,sg.jgdh,st.sjjgkhdxdh) dyyfp on dyyfp.fpgzxbh=d.gzxbh
+      <isNotEmpty property="khdxdh">and dyyfp.khdxdh in ($khdxdh$)</isNotEmpty>
+      inner join khdx_hy hy on dyyfp.khdxdh=hy.khdxdh
+ inner join table(fn_getsjjg_java_qxhy($tjrq_ym$,$login_khdxdh$,0)) qx on qx.khdxdh=dyyfp.KHDXDH
+ inner join khdx_jg wd on dyyfp.jgdh=wd.jgdh
+ inner join khdx_jg zh on zh.khdxdh=dyyfp.sjjgkhdxdh
+ inner join khdx_hylb dd on dd.khdxdh=hy.khdxdh
+      <isNotEmpty property="tjrq_ym">and  $tjrq_ym$ between dd.qsrq and dd.jsrq</isNotEmpty>
+      inner join khdx_hygw gw on gw.khdxdh=hy.khdxdh
+      <isNotEmpty property="tjrq_ym">and  $tjrq_ym$ between gw.qsrq and gw.jsrq</isNotEmpty>
+      left outer join (select hz.gzxbh,st.sjjgkhdxdh,sum(gzxsfgz) lsjxb
+                     from gztx_zxhz hz
+                    inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'
+                    inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'
+                    inner join khdx_jgcy cy on hz.khdxdh=cy.khdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between cy.qsrq and cy.jsrq</isNotEmpty>
+      inner join xtb_jggxst st on cy.jgkhdxdh=st.jgkhdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between st.qsrq and st.jsrq</isNotEmpty>
+      inner join khdx_jglb jl on st.sjjgkhdxdh=jl.khdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between jl.qsrq and jl.jsrq</isNotEmpty>
+      <![CDATA[and (jl.lbdh like 'C%' OR jl.lbdh like 'D%')
+                    where hz.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$  
+                      and hz.hylb='XN' and hz.gzxsfgz>0
+                    group by hz.gzxbh,st.sjjgkhdxdh) lsjxb on dyyfp.fpgzxbh=lsjxb.gzxbh and    dyyfp.sjjgkhdxdh=lsjxb.sjjgkhdxdh                                        
+  left outer join (select sg.fpgzxbh,sg.khdxdh,sum(sg.sfgz) as lsyfp
+                     from sglr_ggjxecfp sg
+                    inner join xtb_xtcs cs on cs.csmc='XNHYJXJZBZ'
+                    inner join xtb_xtcs jzqsrq on jzqsrq.csmc='XNHYJZQSRQ'                  
+                    where sg.tjrq between case when cs.csz='0' then $tjrq_ym$ when cs.csz='1' then $tjrq_nc$ when cs.csz='2' then cast(jzqsrq.csz as integer) end and $tjrq_sym$ 
+                    group by sg.fpgzxbh,sg.khdxdh) lsyfp    on dyyfp.khdxdh=lsyfp.khdxdh and dyyfp.fpgzxbh=lsyfp.fpgzxbh    
+  left outer join (select hz.gzxbh,st.sjjgkhdxdh,sum(gzxsfgz) dyjxb
+                     from gztx_zxhz hz
+                    inner join khdx_jgcy cy on hz.khdxdh=cy.khdxdh]]>
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between cy.qsrq and cy.jsrq</isNotEmpty>
+      inner join xtb_jggxst st on cy.jgkhdxdh=st.jgkhdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between st.qsrq and st.jsrq</isNotEmpty>
+      inner join khdx_jglb jl on st.sjjgkhdxdh=jl.khdxdh
+      <isNotEmpty property="tjrq_ym">and $tjrq_ym$ between jl.qsrq and jl.jsrq</isNotEmpty>
+      and (jl.lbdh like 'C%' OR jl.lbdh like 'D%')                
+                    where 1=1
+      <isNotEmpty property="tjrq_ym">and  hz.tjrq = $tjrq_ym$</isNotEmpty>
+      <![CDATA[and hz.hylb='XN' and hz.gzxsfgz>0
+                    group by hz.gzxbh,st.sjjgkhdxdh) dyjxb on  dyyfp.fpgzxbh=dyjxb.gzxbh and    dyyfp.sjjgkhdxdh=dyjxb.sjjgkhdxdh
+ where d.sfkecfp='1'
+ order by hy.khdxdh,d.gzxbh]]> ) t
+    </select>
+    <select id="dn0.ggjxbfpgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  from  where 1= 1
+    </select>
+    <select id="dn0.ggjxbfpgl_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select  from  where 1= 1
+    </select>
+    <insert id="dn0.ggjxbfpgl_insert" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert into  ) values ()
+    </insert>
+    <update id="dn0.ggjxbfpgl_update" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  set where 1=1
+    </update>
+    <delete id="dn0.ggjxbfpgl_delete" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      delete from  where 1=1
+    </delete>
+  </sqlMap>
+  <javascript>
+    <import>parent.addTab('gyywlzsxsgldr','公共绩效包分配','/module/parser/import/visitHtml/gyywlzsxsgldr');</import>
+    <query>jQuery(document).ready(function () {
+editpage_width = 680;    
+editpage_height = 480;
+
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ var obj=createTimeObj(jQuery("#tjrq").val());
+ //alert(obj);
+ jQuery("#tjrq_nc").val(obj.nc);
+ //alert($("#tjrq_nc").val(obj.nc));
+ jQuery("#tjrq_sym").val(obj.sym);
+ jQuery("#tjrq_yc").val(obj.yc);
+ jQuery("#tjrq_ym").val(obj.ym); 
+ return true;
+}
+
+function showAddEditDialog(){
+        var width = editpage_width||700;    
+        var height = editpage_height||400;    
+        custom_window('/module/ggjxbfp/toEditPage',width,height,'公共绩效包分配编辑');
+ }
+ 
+ function showUpdateEdtiDialog(sel){        
+        //var jsrq=sel["JSRQ"];           
+        var temp;
+        var obj = {},i=0;obj.arr = [];
+        for(var ky in sel){
+            var hz ="_"+i+"_"+i;      
+            
+            if(ky.indexOf("GZX_DYJXB_")&gt;-1) {
+                
+               var num = ky.replace("GZX_DYJXB_","");
+               
+               obj[num]==undefined&amp;&amp;obj.arr.push(num);
+             
+            }            
+            
+        } 
+        for(var ky in sel){
+          for(var i=0;i&lt;obj.arr.length;i++){
+             if(ky.indexOf(obj.arr[i])!=-1){             
+                  var o = {};
+                  o[ky] = sel[ky];
+                 if(obj[obj.arr[i]]==undefined){
+                   obj[obj.arr[i]]=[];                  
+                 }
+                 obj[obj.arr[i]].push(o);
+             }
+             
+          }
+        }
+          /**
+        console.log(obj);
+        if(null!=jsrq){
+            if(jsrq!='29991231')
+            {
+                custom_alert("只能修改结束日期为29991231的记录，请重新操作!");
+                return ;
+            }
+        }*/
+        //var colIds="TJNY,KHDXDH,JGDH,JGMC,HYDH,HYMC";
+        //var colIds="TJRQ,TJNY,JGDH,JGMC,HYDH,HYMC,HYLB,HYGW,LSWFP,DYJXB,XJ,KFP,YFP,GZXMC,,KHDXDH,FPGZXBH,FPGZXMC";
+        var colIds="TJNY,JGDH,JGMC,HYDH,HYMC,HYLB,HYGW,LSWFP,DYJXB,XJ,KFP,YFP,GZXMC,KHDXDH,FPGZXBH,FPGZXMC,TJRQ,GZX_LSWFP,GZX_DYJXB,GZX_XJ,GZX_KFP,GZX_YFP";
+        var colId=colIds.split(",");//所有的主键名
+        var params="&amp;"; //URL的参数
+        for(var i=0;i&lt;colId.length;i++){
+            params+=colId[i].toLowerCase()+"="+selDataFilter(sel[colId[i]])+"&amp;";
+        }
+        params=encodeURI(encodeURI(params.substring(0,params.length-1)));
+        var data = encodeURI(encodeURI(JSON.stringify(obj)));
+        console.log(params+"---"+data);
+        
+        var width = editpage_width||700;    
+        var height = editpage_height||400;    
+        custom_window('/module/ggjxbfp/toEditPage?operate=update'+params+"&amp;data="+data,width,height,'公共绩效包分配编辑');
+    }
+
+
+function showDeleteDialog(sel){
+        /**var jsrq=sel["JSRQ"];    
+        if(null!=jsrq){
+            if(jsrq!='29991231')
+            {
+                custom_alert("只能删除结束日期为29991231的记录，请重新操作!");
+                return ;
+            }
+        }*/
+        custom_confirm('你确定要删除所选记录吗？','提示',function(){
+            //var colIds="TJNY,JGDH,JGMC,HYDH,HYMC,HYLB,HYGW,KHDXDH,LSWFP,DYJXB,XJ,KFP,YFP,$gzxmc$";
+            //var colIds="TJRQ,TJNY,JGDH,JGMC,HYDH,HYMC,HYLB,HYGW,LSWFP,DYJXB,XJ,KFP,YFP,GZXMC,,KHDXDH,FPGZXBH,FPGZXMC";
+            var colIds="TJNY,JGDH,JGMC,HYDH,HYMC,HYLB,HYGW,LSWFP,DYJXB,XJ,KFP,YFP,GZXMC,KHDXDH,FPGZXBH,FPGZXMC,TJRQ,GZX_LSWFP,GZX_DYJXB,GZX_XJ,GZX_KFP,GZX_YFP";
+            var colId=colIds.split(",");//所有的主键名
+            var params="&amp;"; //URL的参数
+            for(var i=0;i&lt;colId.length;i++){
+                params+=colId[i].toLowerCase()+"="+selDataFilter(sel[colId[i]])+"&amp;";
+            }
+            params=encodeURI(params.substring(0,params.length-1));
+            //alert(params);
+            $.post('/module/ggjxbfp/delPage',params,function(cb){
+                    custom_alert(cb);
+                    loadData();
+            }).error(function(){
+                custom_alert("发生内部错误，无法删除所选记录！");
+            });
+        });
+    }
+
+function toImportPage(){ 
+     parent.addTab('ggjxbfpdr','公共绩效包分配导入','/module/ggjxbfp/index');
+     
+  }
+  
+  
+     function changeTableCss(){
+      if($("td[field=FPGZXBH_0_0]").length!=0){
+           setTimeout(function () {
+              for(var i=0;i&lt;10;i++) {
+                  $("td[field=FPGZXBH_"+i+"_"+i+"]").hide();
+                  $("td[field=FPGZXMC_"+i+"_"+i+"]").hide();
+              }
+              
+              $(".datagrid-cell-group").parent().each(function(){
+                 $(this).attr("colspan",5);
+              
+              });
+             
+        }, 1000);
+      }else{
+          changeTableCss();
+      }
+     
+       
+  }</query>
+    <edit>jQuery(document).ready(function () {
+//这里的js脚本，会在页面加载完成后执行
+
+});
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}</edit>
+  </javascript>
+</pageSetting>
+

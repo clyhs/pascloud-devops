@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="wxyhyjmx" title="微信银行业绩明细" type="query" version="1.0.0.0" pid="" desc="标准版"> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期"> 
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="tjrq"/>  
+        <attribute key="minDate" value="no"/> 
+      </tag>  
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewMultipleHy" label="行员"> 
+        <attribute key="isDisplayXN" value="true"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="false"/>  
+        <attribute key="jgckbz" value="jg_ckhy"/>  
+        <attribute key="name" value="khdxdh"/>  
+        <attribute key="multiple" value="true"/> 
+      </tag>  
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Date" label="签约日期"> 
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="yc"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="qyqsrq"/>  
+        <attribute key="minDate" value="no"/> 
+      </tag>  
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Date" label="至"> 
+        <attribute key="dateFmt" value="yyyyMMdd"/>  
+        <attribute key="defValType" value="sysDate"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="isRequired" value="true"/>  
+        <attribute key="name" value="qyjsrq"/>  
+        <attribute key="minDate" value="no"/> 
+      </tag>  
+      <tag row="1" col="0" colspan="1" rowspan="1" name="Dmms" label="渠道"> 
+        <attribute key="width" value="120px;"/>  
+        <attribute key="dmmc" value="qd"/>  
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="qd"/>  
+        <attribute key="isAll" value="true"/>  
+        <attribute key="multiple" value="false"/> 
+      </tag>  
+      <tag row="1" col="1" colspan="1" rowspan="1" name="Text" label="客户号"> 
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="khh"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="1" col="2" colspan="1" rowspan="1" name="Text" label="客户名称"> 
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="khmc"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag>  
+      <tag row="1" col="3" colspan="1" rowspan="1" name="Text" label="手机号码"> 
+        <attribute key="editable" value="true"/>  
+        <attribute key="name" value="sjhm"/>  
+        <attribute key="readonly" value="false"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table id="wxyhyjmx_xsjy1jgj" title="新数据源1结果集" page="true"> 
+    <col id="ZHDH" title="账户代号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="QD" title="渠道" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="KHMC" title="客户名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JYZH" title="交易账号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="ZJHM" title="证件号码" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="SJHM" title="手机号码" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="QYRQ" title="签约日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="CXRQ" title="撤销日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGMC" title="签约机构" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="JGDH" title="签约机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+    <col id="1534409114887" title="业绩关系" align="left" type="string" width="555" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"> 
+      <col id="HYSSJG" title="行员归属机构" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="HYDH" title="行员代号" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="HYMC" title="行员名称" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="ZLBL" title="分配比例" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="QSRQ" title="起始日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
+      <col id="JSRQ" title="结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
+    </col> 
+  </table>  
+  <sqlMap namespace="studio.wxyhyjmx"> 
+    <select id="dn0.wxyhyjmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select djb.zhdh, c.dmms as qd, djb.khh, djb.khmc, djb.jyzh, djb.zjhm, djb.sjhm, djb.qyrq, djb.cxrq, djb.jgdh, qyjg.jgmc, jg.jgmc as hyssjg , hy.hydh, hy.hymc, wx.zlbl, wx.qsrq, wx.jsrq from dxgx_yjgx_wxyh wx inner join jxdx_wxyhqydjb djb on djb.zhdh = wx.zhdh inner join khdx_hy hy on hy.khdxdh = wx.khdxdh inner join khdx_jg qyjg on djb.jgdh=qyjg.jgdh inner join table (FN_GETSJJG_JAVA_QXHY($tjrq$, $login_khdxdh$, 0)) hyqx on wx.khdxdh = hyqx.khdxdh LEFT JOIN csb_dmms c on djb.qd=c.dmz and c.DMMC='QD' inner join khdx_jgcy cy on cy.khdxdh=hy.khdxdh 
+      <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh 
+      <isNotEmpty property="tjrq">where $tjrq$ between wx.qsrq and wx.jsrq</isNotEmpty>  
+      <isNotEmpty property="khdxdh">and wx.khdxdh in ($khdxdh$)</isNotEmpty>  
+      <isNotEmpty property="qd">and djb.qd = '$qd$'</isNotEmpty>  
+      <isNotEmpty property="qyqsrq">and djb.qyrq between $qyqsrq$ and $qyjsrq$</isNotEmpty>  
+      <isNotEmpty property="khh">and djb.khh like '%$khh$%'</isNotEmpty>  
+      <isNotEmpty property="khmc">and djb.khmc like '%$khmc$%'</isNotEmpty>  
+      <isNotEmpty property="sjhm">and djb.sjhm like '%$sjhm$%'</isNotEmpty> order by hy.hydh,djb.qyrq,wx.qsrq asc
+    </select>  
+    <select id="dn0.wxyhyjmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select djb.zhdh, c.dmms as qd, djb.khh, djb.khmc, djb.jyzh, djb.zjhm, djb.sjhm, djb.qyrq, djb.cxrq, djb.jgdh, qyjg.jgmc, jg.jgmc as hyssjg , hy.hydh, hy.hymc, wx.zlbl, wx.qsrq, wx.jsrq from dxgx_yjgx_wxyh wx inner join jxdx_wxyhqydjb djb on djb.zhdh = wx.zhdh inner join khdx_hy hy on hy.khdxdh = wx.khdxdh inner join khdx_jg qyjg on djb.jgdh=qyjg.jgdh inner join table (FN_GETSJJG_JAVA_QXHY($tjrq$, $login_khdxdh$, 0)) hyqx on wx.khdxdh = hyqx.khdxdh LEFT JOIN csb_dmms c on djb.qd=c.dmz and c.DMMC='QD' inner join khdx_jgcy cy on cy.khdxdh=hy.khdxdh 
+      <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty> inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh 
+      <isNotEmpty property="tjrq">where $tjrq$ between wx.qsrq and wx.jsrq</isNotEmpty>  
+      <isNotEmpty property="khdxdh">and wx.khdxdh in ($khdxdh$)</isNotEmpty>  
+      <isNotEmpty property="qd">and djb.qd = '$qd$'</isNotEmpty>  
+      <isNotEmpty property="qyqsrq">and djb.qyrq between $qyqsrq$ and $qyjsrq$</isNotEmpty>  
+      <isNotEmpty property="khh">and djb.khh like '%$khh$%'</isNotEmpty>  
+      <isNotEmpty property="khmc">and djb.khmc like '%$khmc$%'</isNotEmpty>  
+      <isNotEmpty property="sjhm">and djb.sjhm like '%$sjhm$%'</isNotEmpty> order by hy.hydh,djb.qyrq,wx.qsrq asc ) t
+    </select> 
+  </sqlMap>  
+  <rels> 
+    <items id="wxyhyjmx_xsjy1jgj"/> 
+  </rels>  
+  <javascript><![CDATA[jQuery(document).ready(function () {
+
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ return true;
+}]]></javascript> 
+</pageSetting>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pageSetting id="grzmcsgl2" title="个人桌面参数管理" type="manage" version="1.0.0.0" desc="标准版" pid=""> 
+  <conPart> 
+    <tags> 
+      <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="参数名称" fieldName=""> 
+        <attribute key="name" value="csmc"/>  
+        <attribute key="readonly" value="false"/>  
+        <attribute key="editable" value="true"/> 
+      </tag>  
+      <tag row="0" col="1" rowspan="1" colspan="1" name="Text" label="参数值" fieldName=""> 
+        <attribute key="name" value="csz"/>  
+        <attribute key="readonly" value="false"/>  
+        <attribute key="editable" value="true"/> 
+      </tag> 
+    </tags> 
+  </conPart>  
+  <table page="true" id="grzmcsgl2table"> 
+    <col id="CSMC" title="参数名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="CSMS" title="参数描述" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/>  
+    <col id="CSZ" title="参数值" align="right" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false"/> 
+  </table>  
+  <rels> 
+    <items id="grzmcsgl2table"/> 
+  </rels>  
+  <addPage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="参数名称" fieldName="CSMC"> 
+      <attribute key="maxlength" value="100"/>  
+      <attribute key="style" value="width:400px;"/>  
+      <attribute key="name" value="csmc"/>  
+      <attribute key="styleClass" value="{rangelength:[0,500],required:true}"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Text" label="参数描述" fieldName="CSMS"> 
+      <attribute key="maxlength" value="100"/>  
+      <attribute key="style" value="width:400px;"/>  
+      <attribute key="name" value="csms"/>  
+      <attribute key="styleClass" value="{rangelength:[0,500],required:true}"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Text" label="参数值" fieldName="CSZ"> 
+      <attribute key="maxlength" value="100"/>  
+      <attribute key="style" value="width:400px;"/>  
+      <attribute key="name" value="csz"/>  
+      <attribute key="styleClass" value="{rangelength:[0,500],required:true}"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag> 
+  </addPage>  
+  <updatePage title="编辑页面"> 
+    <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="参数名称" fieldName="CSMC"> 
+      <attribute key="maxlength" value="100"/>  
+      <attribute key="style" value="width:400px;"/>  
+      <attribute key="name" value="csmc"/>  
+      <attribute key="styleClass" value="{rangelength:[0,500],required:true}"/>  
+      <attribute key="isAll" value="false"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="isEditable" value="false"/>  
+      <attribute key="editable" value="false"/> 
+    </tag>  
+    <tag row="1" col="0" rowspan="1" colspan="1" name="Text" label="参数描述" fieldName="CSMS"> 
+      <attribute key="maxlength" value="100"/>  
+      <attribute key="style" value="width:400px;"/>  
+      <attribute key="name" value="csms"/>  
+      <attribute key="styleClass" value="{rangelength:[0,500],required:true}"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag>  
+    <tag row="2" col="0" rowspan="1" colspan="1" name="Text" label="参数值" fieldName="CSZ"> 
+      <attribute key="maxlength" value="100"/>  
+      <attribute key="style" value="width:400px;"/>  
+      <attribute key="name" value="csz"/>  
+      <attribute key="styleClass" value="{rangelength:[0,500],required:true}"/>  
+      <attribute key="readonly" value="false"/>  
+      <attribute key="editable" value="true"/> 
+    </tag> 
+  </updatePage>  
+  <buttons> 
+    <button>add</button>  
+    <button>edit</button>  
+    <button>delete</button> 
+  </buttons>  
+  <flow> 
+    <insertbefore/>  
+    <insertafter/>  
+    <deletebefore/>  
+    <deleteafter/>  
+    <updatebefore/>  
+    <updateafter/> 
+  </flow>  
+  <sqlMap namespace="studio.grzmcsgl2"> 
+    <select id="dn0.grzmcsgl2List" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select csmc,csms,csz from grzm_xtcs where csmc like '%$csmc$%' and csz like '%$csz$%'
+    </select>  
+    <select id="dn0.grzmcsgl2Count" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( select csmc,csms,csz from grzm_xtcs where csmc like '%$csmc$%' and csz like '%$csz$%' ) t
+    </select>  
+    <select id="dn0.grzmcsgl2_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select CSMC, CSMS, CSZ from GRZM_XTCS where 1= 1 and CSMC = '$csmc$'
+    </select>  
+    <select id="dn0.grzmcsgl2_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select CSMC, CSMS, CSZ from GRZM_XTCS where 1= 1 and CSMC = '$csmc$'
+    </select>  
+    <insert id="dn0.grzmcsgl2_insert" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> insert into GRZM_XTCS( CSZ, CSMC, CSMS ) values ( '$csz$','$csmc$','$csms$')
+    </insert>  
+    <update id="dn0.grzmcsgl2_update" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> update GRZM_XTCS set CSZ = '$csz$',CSMS = '$csms$' where 1=1 and CSMC = '$csmc$'
+    </update>  
+    <delete id="dn0.grzmcsgl2_delete" parameterClass="java.util.Map"> 
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> delete from GRZM_XTCS where 1=1 and CSMC = '$csmc$'
+    </delete> 
+  </sqlMap>  
+  <javascript> 
+    <query>jQuery(document).ready(function () { }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; }</query>  
+    <edit>jQuery(document).ready(function () { //这里的js脚本，会在页面加载完成后执行 }); //自定义验证，在提交时执行。通过返回true，否则返回false function customValidate(){ return true; }</edit> 
+  </javascript> 
+</pageSetting>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageSetting id="atmjxbmxcx" title="ATM绩效包明细查询" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags>
+      <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计年月">
+        <attribute key="dateFmt" value="yyyyMM" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="tjrq" />
+        <attribute key="minDate" value="no" />
+      </tag>
+      <tag row="0" col="1" colspan="1" rowspan="1" name="NewJg" label="机构">
+        <attribute key="cascadeCheck" value="true" />
+        <attribute key="editable" value="true" />
+        <attribute key="ckbz" value="jg" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="jgkhdxdh" />
+        <attribute key="multiple" value="true" />
+      </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="tjrq_ym" />
+      </tag>
+    </tags>
+  </conPart>
+  <table id="atmjxbmxcx_xsjy1jgj" title="新数据源1结果集" page="true">
+    <col id="TJNY" title="统计年月" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ATMYWLXX" title="ATM业务量下限" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ATMYWLSX" title="ATM业务量上限" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ATMTS" title="ATM台数" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ATMWHBTBZ" title="ATM维护补贴标准" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="ATMWHJX" title="ATM维护绩效" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.atmjxbmxcx">
+    <select id="dn0.atmjxbmxcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select $tjrq$ as tjny,jg.jgdh,jg.jgmc,jx.atmywlxx,jx.atmywlsx,jx.ATMTS,jx.atmwhbtbz,jx.atmwhjx   from JXGZ_JGATMJX jx  inner join khdx_jg jg on jx.khdxdh=jg.khdxdh  inner join table(FN_GETSJJG_JAVA_QX($tjrq_ym$,$login_khdxdh$,0)) v  on jg.khdxdh = v.khdxdh
+      <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
+      where 1=1
+      <isNotEmpty property="tjrq_ym">and  jx.tjrq=$tjrq_ym$</isNotEmpty>
+      order by jg.jgdh
+    </select>
+    <select id="dn0.atmjxbmxcxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( select $tjrq$ as tjny,jg.jgdh,jg.jgmc,jx.atmywlxx,jx.atmywlsx,jx.ATMTS,jx.atmwhbtbz,jx.atmwhjx   from JXGZ_JGATMJX jx  inner join khdx_jg jg on jx.khdxdh=jg.khdxdh  inner join table(FN_GETSJJG_JAVA_QX($tjrq_ym$,$login_khdxdh$,0)) v  on jg.khdxdh = v.khdxdh
+      <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
+      where 1=1
+      <isNotEmpty property="tjrq_ym">and  jx.tjrq=$tjrq_ym$</isNotEmpty>
+      order by jg.jgdh ) t
+    </select>
+  </sqlMap>
+  <rels>
+    <items id="atmjxbmxcx_xsjy1jgj" />
+  </rels>
+  <javascript><![CDATA[jQuery(document).ready(function () {
+
+});
+
+//自定义验证，在提交时执行。通过返回true，否则返回false
+function customValidate(){
+ var obj=createTimeObj(jQuery("#tjrq").val());
+ jQuery("#tjrq_ym").val(obj.ym); 
+ return true;
+}]]></javascript>
+</pageSetting>
+
