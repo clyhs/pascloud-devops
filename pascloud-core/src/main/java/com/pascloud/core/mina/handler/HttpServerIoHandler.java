@@ -7,6 +7,8 @@ import org.apache.mina.http.HttpRequestImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.pascloud.core.handler.HandlerEntity;
+import com.pascloud.core.handler.IHandler;
 import com.pascloud.core.utils.MsgUtil;
 
 
@@ -57,6 +59,11 @@ public abstract class HttpServerIoHandler implements IoHandler {
 		HttpRequestImpl httpRequest = (HttpRequestImpl) message;
 		
 		//code...
+		/*
+		Class<? extends IHandler> handlerClass = ScriptManager.getInstance()
+				.getHttpHandler(httpRequest.getRequestPath());
+		HandlerEntity handlerEntity = ScriptManager.getInstance().getHttpHandlerEntity(httpRequest.getRequestPath());
+		*/
 		
 		
 		long cost = System.currentTimeMillis() - begin;
