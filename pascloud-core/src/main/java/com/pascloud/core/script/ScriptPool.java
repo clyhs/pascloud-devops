@@ -35,4 +35,19 @@ public final class ScriptPool {
 	public ScriptPool() {
 	}
 
+	public void setSource(String source, String out, String jarsDir) throws Exception {
+		if (stringIsNullEmpty(source)) {
+			log.error("指定 输入 输出 目录为空");
+			throw new Exception("目录为空");
+		}
+		this.sourceDir = source;
+		this.outDir = out;
+		this.jarsDir = jarsDir;
+		log.info("脚本指定 输入 {} 输出 {} jars目录 {}", source, out, jarsDir);
+		//log.info("", source, out, jarsDir);
+	}
+	
+	final boolean stringIsNullEmpty(String str) {
+		return str == null || str.length() <= 0 || "".equals(str.trim());
+	}
 }
