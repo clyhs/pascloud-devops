@@ -1,19 +1,30 @@
 package com.pascloud.core.script;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+import javax.tools.DiagnosticCollector;
+import javax.tools.JavaCompiler;
+import javax.tools.JavaFileObject;
+import javax.tools.StandardJavaFileManager;
+import javax.tools.ToolProvider;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.pascloud.core.handler.HandlerEntity;
 import com.pascloud.core.handler.IHandler;
+import com.pascloud.utils.FileUtils;
 
 public final class ScriptPool {
 
@@ -157,6 +168,98 @@ public final class ScriptPool {
 			}
 		}
 		return null;
+	}
+	
+	String compile() {
+		FileUtils.deleteDir(this.outDir);
+		List<File> sourceFileList = new ArrayList<>();
+		sourceFileList = FileUtils.listFilesInDirWithFilter(this.sourceDir, ".java", true);
+		return this.compile(sourceFileList);
+	}
+	
+	String compile(List<File> sourceFileList) {
+		
+		StringBuilder sb = new StringBuilder();
+		if (null != sourceFileList) {
+			DiagnosticCollector<JavaFileObject> oDiagnosticCollector = new DiagnosticCollector<>();
+			// 获取编译器实例
+			JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
+			// 获取标准文件管理器实例
+			StandardJavaFileManager fileManager = compiler.getStandardFileManager(oDiagnosticCollector, null,
+					Charset.forName("utf-8"));
+			
+			try {
+				if (sourceFileList.isEmpty()) {
+					// log.warn(this.sourceDir + "目录下查找不到任何java文件");
+					return this.sourceDir + "目录下查找不到任何java文件";
+				}
+				log.warn("找到脚本并且需要编译的文件共：" + sourceFileList.size());
+				
+				
+				FileUtils.createOrExistsDir(this.outDir);
+				
+				// 获取要编译的编译单元
+				Iterable<? extends JavaFileObject> compilationUnits = fileManager
+						.getJavaFileObjectsFromFiles(sourceFileList);
+				
+				/**
+				 * 编译选项，在编译java文件时，编译程序会自动的去寻找java文件引用的其他的java源文件或者class。
+				 * -sourcepath选项就是定义java源文件的查找目录， -classpath选项就是定义class文件的查找目录。
+				 */
+				ArrayList<String> options = new ArrayList<>(0);
+				options.add("-g");
+				options.add("-source");
+				options.add("1.8");
+				// options.add("-Xlint");
+				// options.add("unchecked");
+				options.add("-encoding");
+				options.add("UTF-8");
+				options.add("-sourcepath");
+				options.add(this.sourceDir); // 指定文件目录
+				options.add("-d");
+				options.add(this.outDir); // 指定输出目录
+				
+				List<File> jarsList = new ArrayList<>();
+				jarsList = FileUtils.listFilesInDirWithFilter(this.jarsDir, ".jar", true);
+				
+				String jarString = "";
+				jarString = jarsList.stream().map((jar) -> jar.getPath() + File.pathSeparator).reduce(jarString,
+						String::concat);
+				
+				log.warn("jarString:" + jarString);
+				if (!stringIsNullEmpty(jarString)) {
+					options.add("-classpath");
+					options.add(jarString);// 指定附加的jar包
+				}
+				
+				JavaCompiler.CompilationTask compilationTask = compiler.getTask(null, fileManager, oDiagnosticCollector,
+						options, null, compilationUnits);
+				// 运行编译任务
+				Boolean call = compilationTask.call();
+				if (!call) {
+					oDiagnosticCollector.getDiagnostics().forEach(f -> {
+						sb.append(";").append(((JavaFileObject) (f.getSource())).getName()).append(" line:")
+								.append(f.getLineNumber());
+						log.warn("加载脚本错误：" + ((JavaFileObject) (f.getSource())).getName() + " line:"
+								+ f.getLineNumber());
+					});
+				}
+				
+			}catch (Exception ex) {
+				sb.append(this.sourceDir).append("错误：").append(ex);
+				log.error("加载脚本错误：", ex);
+			} finally {
+				try {
+					fileManager.close();
+				} catch (IOException ex) {
+					log.error("", ex);
+				}
+			}
+		}else{
+			log.warn(this.sourceDir + "目录下查找不到任何java文件");
+		}
+		
+		return sb.toString();
 	}
 	
 	
