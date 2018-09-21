@@ -262,6 +262,39 @@ public final class ScriptPool {
 		return sb.toString();
 	}
 	
+	public String loadJava(Consumer<String> condition) {
+		String compile = this.compile();
+		StringBuilder sb=new StringBuilder();
+		if (compile == null || compile.isEmpty()) {
+			List<File> sourceFileList = new ArrayList<>(0);
+			// 得到编译后的class文件
+			sourceFileList = FileUtils.listFilesInDirWithFilter(this.outDir, ".class", true);
+			String[] fileNames = new String[sourceFileList.size()]; // 类路径列表
+			for (int i = 0; i < sourceFileList.size(); i++) {
+				fileNames[i] = sourceFileList.get(i).getPath();
+				sb.append(fileNames[i]).append(";");
+			}
+			tmpScriptInstances = new ConcurrentHashMap<>();
+			tmpIdScriptInstances = new ConcurrentHashMap<>();
+			//loadClass(fileNames);
+			if (tmpScriptInstances.size() > 0) {
+				scriptInstances.clear();
+				scriptInstances = tmpScriptInstances;
+			}
+			if (tmpIdScriptInstances.size() > 0) {
+				idScriptInstances.clear();
+				idScriptInstances = tmpIdScriptInstances;
+			}
+		} else {
+			if (!compile.isEmpty()) {
+				if (condition != null) {
+					condition.accept(compile);
+				}
+			}
+		}
+		return sb.toString();
+	}
+	
 	
 	final boolean stringIsNullEmpty(String str) {
 		return str == null || str.length() <= 0 || "".equals(str.trim());
@@ -291,5 +324,7 @@ public final class ScriptPool {
 		return httpHandlerEntityMap;
 	}
 	
-	
+	public static void main(String[] args){
+		System.out.println("l");
+	}
 }
