@@ -1,5 +1,7 @@
 package com.pascloud.core.mina.handler;
 
+import java.util.concurrent.Executor;
+
 import org.apache.mina.core.service.IoHandler;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
@@ -9,6 +11,9 @@ import org.slf4j.LoggerFactory;
 
 import com.pascloud.core.handler.HandlerEntity;
 import com.pascloud.core.handler.IHandler;
+import com.pascloud.core.mina.config.MinaServerConfig;
+import com.pascloud.core.script.ScriptManager;
+import com.pascloud.core.server.AbsService;
 import com.pascloud.core.utils.MsgUtil;
 
 
@@ -59,14 +64,44 @@ public abstract class HttpServerIoHandler implements IoHandler {
 		HttpRequestImpl httpRequest = (HttpRequestImpl) message;
 		
 		//code...
-		/*
+		
 		Class<? extends IHandler> handlerClass = ScriptManager.getInstance()
 				.getHttpHandler(httpRequest.getRequestPath());
 		HandlerEntity handlerEntity = ScriptManager.getInstance().getHttpHandlerEntity(httpRequest.getRequestPath());
-		*/
 		
+		if (handlerClass == null) {
+			handlerClass = ScriptManager.getInstance().getHttpHandler("");
+			handlerEntity = ScriptManager.getInstance().getHttpHandlerEntity("");
+		}
+		if (handlerClass == null) {
+			log.error("Http 容器 未能找到 content = {} 的 httpMessageBean tostring: {}", httpRequest.getRequestPath(),
+					session.getRemoteAddress().toString());
+			return;
+		}
+		
+		try {
+			IHandler handler = handlerClass.newInstance();
+			handler.setMessage(httpRequest);
+			handler.setSession(session);
+			handler.setCreateTime(System.currentTimeMillis());
+
+			Executor executor = getSevice().getExecutor(handlerEntity.thread());
+			if (executor != null) {
+				executor.execute(handler);
+			} else {
+				handler.run();
+//				LOG.error("{}指定的线程{}未开启", handlerClass.getName(), handlerEntity.thread().toString());
+			}
+
+		} catch (InstantiationException | IllegalAccessException ex) {
+			log.error("messageReceived build message error !!! ", ex);
+		}
 		
 		long cost = System.currentTimeMillis() - begin;
+		if (cost > 30L) {
+			log.error(String.format("\t messageReceived %s msgID[%s] builder[%s] cost %d ms",
+					Thread.currentThread().toString(), httpRequest.getRequestPath(), httpRequest.toString(), cost));
+		}
 	}
 
 	@Override
@@ -84,6 +119,8 @@ public abstract class HttpServerIoHandler implements IoHandler {
 		MsgUtil.close(session, "http inputClosed");
 	}
 	
+	
+	protected abstract AbsService<MinaServerConfig> getSevice();
 	
 
 }
