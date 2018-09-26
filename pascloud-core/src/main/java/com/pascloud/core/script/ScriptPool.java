@@ -1,9 +1,14 @@
 package com.pascloud.core.script;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Modifier;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -23,7 +28,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.pascloud.core.handler.HandlerEntity;
+import com.pascloud.core.handler.HttpHandler;
 import com.pascloud.core.handler.IHandler;
+import com.pascloud.core.handler.TcpHandler;
+import com.pascloud.core.utils.FileUtil;
 import com.pascloud.utils.FileUtils;
 
 public final class ScriptPool {
@@ -61,9 +69,9 @@ public final class ScriptPool {
 		this.outDir = out;
 		this.jarsDir = jarsDir;
 		log.info("脚本指定 输入 {} 输出 {} jars目录 {}", source, out, jarsDir);
-		//log.info("", source, out, jarsDir);
+		// log.info("", source, out, jarsDir);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public <T extends IIdScript> T getIIdScript(Integer modelID) {
 		IIdScript iis = null;
@@ -72,9 +80,10 @@ public final class ScriptPool {
 		}
 		return (T) iis;
 	}
-	
+
 	/**
 	 * 脚本列表
+	 * 
 	 * @param name
 	 * @return
 	 */
@@ -86,9 +95,10 @@ public final class ScriptPool {
 		}
 		return new ArrayList<>();
 	}
-	
+
 	/**
 	 * 脚本列表
+	 * 
 	 * @param clazz
 	 * @return
 	 */
@@ -100,9 +110,10 @@ public final class ScriptPool {
 		}
 		return new ArrayList<>();
 	}
-	
+
 	/**
 	 * 执行脚本
+	 * 
 	 * @param scriptClass
 	 * @param action
 	 */
@@ -119,10 +130,10 @@ public final class ScriptPool {
 			});
 		}
 	}
-	
-	
+
 	/**
-	 * 执行脚本，当执行结果为true时，中断执行，并返回true。否则统一返回执行false		
+	 * 执行脚本，当执行结果为true时，中断执行，并返回true。否则统一返回执行false
+	 * 
 	 * @param scriptClass
 	 * @param condition
 	 * @return
@@ -144,9 +155,10 @@ public final class ScriptPool {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * 执行脚本，并返回一个值
+	 * 
 	 * @param scriptClass
 	 * @param function
 	 * @return
@@ -169,16 +181,16 @@ public final class ScriptPool {
 		}
 		return null;
 	}
-	
+
 	String compile() {
 		FileUtils.deleteDir(this.outDir);
 		List<File> sourceFileList = new ArrayList<>();
 		sourceFileList = FileUtils.listFilesInDirWithFilter(this.sourceDir, ".java", true);
 		return this.compile(sourceFileList);
 	}
-	
+
 	String compile(List<File> sourceFileList) {
-		
+
 		StringBuilder sb = new StringBuilder();
 		if (null != sourceFileList) {
 			DiagnosticCollector<JavaFileObject> oDiagnosticCollector = new DiagnosticCollector<>();
@@ -187,21 +199,20 @@ public final class ScriptPool {
 			// 获取标准文件管理器实例
 			StandardJavaFileManager fileManager = compiler.getStandardFileManager(oDiagnosticCollector, null,
 					Charset.forName("utf-8"));
-			
+
 			try {
 				if (sourceFileList.isEmpty()) {
 					// log.warn(this.sourceDir + "目录下查找不到任何java文件");
 					return this.sourceDir + "目录下查找不到任何java文件";
 				}
 				log.warn("找到脚本并且需要编译的文件共：" + sourceFileList.size());
-				
-				
+
 				FileUtils.createOrExistsDir(this.outDir);
-				
+
 				// 获取要编译的编译单元
 				Iterable<? extends JavaFileObject> compilationUnits = fileManager
 						.getJavaFileObjectsFromFiles(sourceFileList);
-				
+
 				/**
 				 * 编译选项，在编译java文件时，编译程序会自动的去寻找java文件引用的其他的java源文件或者class。
 				 * -sourcepath选项就是定义java源文件的查找目录， -classpath选项就是定义class文件的查找目录。
@@ -218,20 +229,20 @@ public final class ScriptPool {
 				options.add(this.sourceDir); // 指定文件目录
 				options.add("-d");
 				options.add(this.outDir); // 指定输出目录
-				
+
 				List<File> jarsList = new ArrayList<>();
 				jarsList = FileUtils.listFilesInDirWithFilter(this.jarsDir, ".jar", true);
-				
+
 				String jarString = "";
 				jarString = jarsList.stream().map((jar) -> jar.getPath() + File.pathSeparator).reduce(jarString,
 						String::concat);
-				
+
 				log.warn("jarString:" + jarString);
 				if (!stringIsNullEmpty(jarString)) {
 					options.add("-classpath");
 					options.add(jarString);// 指定附加的jar包
 				}
-				
+
 				JavaCompiler.CompilationTask compilationTask = compiler.getTask(null, fileManager, oDiagnosticCollector,
 						options, null, compilationUnits);
 				// 运行编译任务
@@ -244,8 +255,8 @@ public final class ScriptPool {
 								+ f.getLineNumber());
 					});
 				}
-				
-			}catch (Exception ex) {
+
+			} catch (Exception ex) {
 				sb.append(this.sourceDir).append("错误：").append(ex);
 				log.error("加载脚本错误：", ex);
 			} finally {
@@ -255,16 +266,16 @@ public final class ScriptPool {
 					log.error("", ex);
 				}
 			}
-		}else{
+		} else {
 			log.warn(this.sourceDir + "目录下查找不到任何java文件");
 		}
-		
+
 		return sb.toString();
 	}
-	
+
 	public String loadJava(Consumer<String> condition) {
 		String compile = this.compile();
-		StringBuilder sb=new StringBuilder();
+		StringBuilder sb = new StringBuilder();
 		if (compile == null || compile.isEmpty()) {
 			List<File> sourceFileList = new ArrayList<>(0);
 			// 得到编译后的class文件
@@ -276,7 +287,7 @@ public final class ScriptPool {
 			}
 			tmpScriptInstances = new ConcurrentHashMap<>();
 			tmpIdScriptInstances = new ConcurrentHashMap<>();
-			//loadClass(fileNames);
+			loadClass(fileNames);
 			if (tmpScriptInstances.size() > 0) {
 				scriptInstances.clear();
 				scriptInstances = tmpScriptInstances;
@@ -295,7 +306,236 @@ public final class ScriptPool {
 		return sb.toString();
 	}
 	
+	public String loadJava(String... source) {
+		//FileUtil.deleteDirectory(this.outDir);
+		FileUtils.deleteDir(this.outDir);
+		List<File> sourceFileList = new ArrayList<>();
+		FileUtil.getFiles(this.sourceDir, sourceFileList, ".java", fileAbsolutePath -> {
+			if (source == null) {
+				return true;
+			}
+			for (String str : source) {
+				if (fileAbsolutePath.contains(str) || str.equals("")) {
+					return true;
+				}
+			}
+			return false;
+		});
+		String result = this.compile(sourceFileList);
+		StringBuilder loadJava = new StringBuilder();
+		if (result == null || result.isEmpty()) {
+			sourceFileList.clear();
+			FileUtil.getFiles(this.outDir, sourceFileList, ".class", fileAbsolutePath -> {
+				if (source == null) {
+					return true;
+				}
+				for (String str : source) {
+					if (fileAbsolutePath.contains(str) || str.equals("")) {
+						return true;
+					}
+				}
+				return false;
+			});
+			String[] fileNames = new String[sourceFileList.size()];
+			for (int i = 0; i < sourceFileList.size(); i++) {
+				fileNames[i] = sourceFileList.get(i).getPath();
+				loadJava.append(fileNames[i]).append(";/r/n");
+			}
+			tmpScriptInstances = new ConcurrentHashMap<>();
+			tmpIdScriptInstances = new ConcurrentHashMap<>();
+			loadClass(fileNames);
+			if (tmpScriptInstances.size() > 0) {
+				tmpScriptInstances.entrySet().stream().forEach((entry) -> {
+					String key = entry.getKey();
+					Map<String, IScript> value = entry.getValue();
+					scriptInstances.put(key, value);
+//					loadJava.append(key).append(";");
+				});
+			}
+			if (tmpIdScriptInstances.size() > 0) {
+				tmpIdScriptInstances.entrySet().stream().forEach((entry) -> {
+					Integer key = entry.getKey();
+					IIdScript value = entry.getValue();
+					idScriptInstances.put(key, value);
+				});
+			}
+		}
+		return loadJava.toString();
+	}
+
+	/**
+	 * 加载脚本文件
+	 *
+	 * @param names
+	 */
+	void loadClass(String... names) {
+		try {
+			ScriptClassLoader loader = new ScriptClassLoader();
+			for (String name : names) {
+				String tmpName = name.replace(outDir, "").replace(".class", "").replace(File.separatorChar, '.');
+				loader.loadClass(tmpName);
+			}
+		} catch (ClassNotFoundException e) {
+			log.error("", e);
+		}
+	}
+
+	// <editor-fold desc="自定义文件加载器 class ScriptClassLoader extends ClassLoader">
+	class ScriptClassLoader extends ClassLoader {
+
+		@Override
+		public Class<?> loadClass(String name) throws ClassNotFoundException {
+			Class<?> defineClass = null;
+			defineClass = super.loadClass(name);
+			return defineClass;
+		}
+
+		@SuppressWarnings("unchecked")
+		@Override
+		protected Class<?> findClass(String name) {
+			// log.warn("加载脚本目录名称：" + (name));
+			byte[] classData = getClassData(name);
+			Class<?> defineClass = null;
+			if (classData != null) {
+				try {
+					defineClass = defineClass(name, classData, 0, classData.length);
+					String nameString = defineClass.getName();
+					if (!Modifier.isAbstract(defineClass.getModifiers())
+							&& !Modifier.isPrivate(defineClass.getModifiers())
+							&& !Modifier.isStatic(defineClass.getModifiers()) && !nameString.contains("$")) {
+						Object newInstance = defineClass.newInstance();
+						List<Class<?>> interfaces = new ArrayList<>(); // 实现的接口
+						if (IInitScript.class.isAssignableFrom(defineClass)
+								|| IScript.class.isAssignableFrom(defineClass)) {
+							Class<?> cls = defineClass;
+							while (cls != null && !cls.isInterface() && !cls.isPrimitive()) {
+								interfaces.addAll(Arrays.asList(cls.getInterfaces()));
+								cls = cls.getSuperclass();
+							}
+							if (newInstance instanceof IInitScript) { // 执行初始方法
+								((IInitScript) newInstance).init();
+							}
+						}
+						// 脚本
+						if (newInstance != null && !interfaces.isEmpty()) {
+							for (Class<?> aInterface : interfaces) {
+								if (IScript.class.isAssignableFrom(aInterface)) {
+									if (!tmpScriptInstances.containsKey(aInterface.getName())) {
+										tmpScriptInstances.put(aInterface.getName(), new ConcurrentHashMap<>());
+									}
+									log.info("脚本[{}]加载到IScript容器", nameString);
+									tmpScriptInstances.get(aInterface.getName()).put(defineClass.getName(),
+											(IScript) newInstance);
+								}
+								if (IIdScript.class.isAssignableFrom(aInterface)) {
+									log.warn("脚本[{}]加载到IIDScript容器", nameString);
+									IIdScript iis = (IIdScript) newInstance;
+									tmpIdScriptInstances.put(iis.getModelID(), iis);
+								}
+							}
+						}
+
+						// handler
+						if (IHandler.class.isAssignableFrom(defineClass)) {
+							HandlerEntity handlerEntity = defineClass.getAnnotation(HandlerEntity.class);
+							if (handlerEntity != null) {
+								if (TcpHandler.class.isAssignableFrom(defineClass)) {
+									tcpHandlerMap.put(handlerEntity.mid(), (Class<? extends IHandler>) defineClass);
+									tcpHandlerEntityMap.put(handlerEntity.mid(), handlerEntity);
+									log.debug("[{}]加载到tcp handler容器", nameString);
+								} else if (HttpHandler.class.isAssignableFrom(defineClass)) {
+									httpHandlerMap.put(handlerEntity.path(), (Class<? extends IHandler>) defineClass);
+									httpHandlerEntityMap.put(handlerEntity.path(), handlerEntity);
+									log.debug("[{}]加载到http handler容器", nameString);
+								} else {
+									log.warn("handler[{}]未继承Handler", defineClass.getSimpleName());
+								}
+
+							} else {
+								log.warn("handler[{}]未添加注解", defineClass.getSimpleName());
+							}
+						}
+					} else {
+						log.warn("没有加载脚本：" + nameString);
+					}
+				} catch (Exception ex) {
+					log.error("加载脚本发生错误", ex);
+				}
+			}
+			return defineClass;
+		}
+
+		private byte[] getClassData(String className) {
+			String path = classNameToPath(className);
+			// log.warn("加载脚本路径", path);
+			InputStream ins = null;
+			try {
+				File file = new File(path);
+				if (file.exists()) {
+					ins = new FileInputStream(path);
+					ByteArrayOutputStream baos = new ByteArrayOutputStream();
+					int bufferSize = 4096;
+					byte[] buffer = new byte[bufferSize];
+					int bytesNumRead = 0;
+					while ((bytesNumRead = ins.read(buffer)) != -1) {
+						baos.write(buffer, 0, bytesNumRead);
+					}
+					return baos.toByteArray();
+				} else {
+					log.warn("自定义脚本文件不存在：" + path);
+				}
+			} catch (IOException e) {
+				log.error("", e);
+			} finally {
+				if (ins != null) {
+					try {
+						ins.close();
+					} catch (Exception e) {
+						log.error("", e);
+					}
+				}
+			}
+			return null;
+		}
+
+		private String classNameToPath(String className) {
+			File file = null;
+			try {
+				String path = outDir + className.replace('.', File.separatorChar) + ".class";
+				// log.warn("classNameToPath path:{}", path);
+				file = new File(path);
+				if (!file.exists()) {
+					log.warn("classNameToPath path:{}不存在", path);
+				}
+				return file.getPath();
+			} catch (Exception e) {
+				log.error(outDir, e);
+			}
+			return "";
+		}
+	}
 	
+	public void addHandler(Class<? extends IHandler> clazz){
+		if (IHandler.class.isAssignableFrom(clazz)) {
+			HandlerEntity handlerEntity = clazz.getAnnotation(HandlerEntity.class);
+			if (handlerEntity != null) {
+				if(TcpHandler.class.isAssignableFrom(clazz)){
+					tcpHandlerMap.put(handlerEntity.mid(), (Class<? extends IHandler>) clazz);
+					tcpHandlerEntityMap.put(handlerEntity.mid(), handlerEntity);
+					log.debug("[{}]加载到tcp handler容器", clazz.getName());
+				}else if(HttpHandler.class.isAssignableFrom(clazz)){
+					httpHandlerMap.put(handlerEntity.path(), (Class<? extends IHandler>) clazz);
+					httpHandlerEntityMap.put(handlerEntity.path(), handlerEntity);
+					log.debug("[{}]加载到http handler容器", clazz.getName());
+				}else{
+					log.warn("handler[{}]未继承Handler", clazz.getSimpleName());
+				}
+			} else {
+				log.warn("handler[{}]未添加注解", clazz.getSimpleName());
+			}
+		}
+	}
+
 	final boolean stringIsNullEmpty(String str) {
 		return str == null || str.length() <= 0 || "".equals(str.trim());
 	}
@@ -324,7 +564,19 @@ public final class ScriptPool {
 		return httpHandlerEntityMap;
 	}
 	
-	public static void main(String[] args){
+	/*
+	public Map<Integer, Class<? extends IHandler>> getHandlerMap() {
+		return tcpHandlerMap;
+	}
+
+	public Map<Integer, HandlerEntity> getHandlerEntityMap() {
+		return tcpHandlerEntityMap;
+	}*/
+
+	
+	
+
+	public static void main(String[] args) {
 		System.out.println("l");
 	}
 }
