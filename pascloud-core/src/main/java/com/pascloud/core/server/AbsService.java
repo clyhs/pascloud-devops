@@ -4,11 +4,14 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.pascloud.core.mina.config.BaseServerConfig;
+import com.pascloud.core.thread.ExecutorPool;
+import com.pascloud.core.thread.ServerThread;
 import com.pascloud.core.thread.ThreadPoolExecutorConfig;
 import com.pascloud.core.thread.ThreadType;
 
@@ -27,19 +30,21 @@ public abstract class AbsService<Conf extends BaseServerConfig> implements Runna
 			serverThreads.put(ThreadType.IO, ioHandlerThreadExcutor);
 
 			//全局sync线程
-			/*
+			
 			ServerThread syncThread = new ServerThread(new ThreadGroup("全局同步线程"),
 					"全局同步线程:" + this.getClass().getSimpleName(), threadPoolExecutorConfig.getHeart(),
 					threadPoolExecutorConfig.getCommandSize());
 			syncThread.start();
-			serverThreads.put(ThreadType.SYNC, syncThread);*/
+			serverThreads.put(ThreadType.SYNC, syncThread);
 		}
 	}
 
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-
+		Runtime.getRuntime().addShutdownHook(new Thread(new CloseByExit(this)));
+		initThread();
+		running();
 	}
 	
 	/**
@@ -54,7 +59,29 @@ public abstract class AbsService<Conf extends BaseServerConfig> implements Runna
 	protected abstract void running();
 
 	protected void onShutdown() {
-		
+		serverThreads.values().forEach(executor -> {
+			if (executor != null) {
+				try {
+					if (executor instanceof ServerThread) {
+						if (((ServerThread) executor).isAlive()) {
+							((ServerThread) executor).stop(true);
+						}
+					} else if (executor instanceof ThreadPoolExecutor) {
+						if (!((ThreadPoolExecutor) executor).isShutdown()) {
+							((ThreadPoolExecutor) executor).shutdown();
+							while (!((ThreadPoolExecutor) executor).awaitTermination(5, TimeUnit.SECONDS)) {
+								logger.error("线程池剩余线程:" + ((ThreadPoolExecutor) executor).getActiveCount());
+							}
+						}
+					} else if (executor instanceof ExecutorPool) {
+						((ExecutorPool) executor).stop();
+					}
+				} catch (Exception e) {
+					logger.error("关闭线程", e);
+				}
+
+			}
+		});
 	}
 	
 	public void stop(boolean flag) {
