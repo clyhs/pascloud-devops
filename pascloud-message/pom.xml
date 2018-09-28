@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.pascloud.devops</groupId>
+		<artifactId>pascloud-devops-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>com.pascloud.devops</groupId>
+	<artifactId>pascloud-message</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>pascloud-message</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<protobuf.input.directory>${project.basedir}/src/main/proto</protobuf.input.directory>
+		<protobuf.output.directory>src/main/java</protobuf.output.directory>
+		<protobuf.protoc.path>${settings.localRepository}/protoc</protobuf.protoc.path>
+		<protobuf.version>2.6.1</protobuf.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>com.google.protobuf</groupId>
+			<artifactId>protobuf-java</artifactId>
+			<version>${protobuf.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<extensions>
+			<!-- provides os.detected.classifier (i.e. linux-x86_64, osx-x86_64) property -->
+			<extension>
+				<groupId>kr.motd.maven</groupId>
+				<artifactId>os-maven-plugin</artifactId>
+				<version>1.4.1.Final</version>
+			</extension>
+		</extensions>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.10</version>
+				<executions>
+					<execution>
+						<id>copy-protoc</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.google.protobuf</groupId>
+									<artifactId>protoc</artifactId>
+									<version>${protobuf.version}</version>
+									<classifier>${os.detected.classifier}</classifier>
+									<type>exe</type>
+									<overWrite>false</overWrite>
+									<outputDirectory>${protobuf.protoc.path}</outputDirectory>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<dependencies>
+					<dependency>
+						<groupId>ant-contrib</groupId>
+						<artifactId>ant-contrib</artifactId>
+						<version>1.0b3</version>
+						<exclusions>
+							<exclusion>
+								<groupId>ant</groupId>
+								<artifactId>ant</artifactId>
+							</exclusion>
+						</exclusions>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.ant</groupId>
+						<artifactId>ant-apache-regexp</artifactId>
+						<version>1.8.2</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.ant</groupId>
+						<artifactId>ant-nodeps</artifactId>
+						<version>1.8.1</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>compile-protoc</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<tasks>
+								<taskdef
+									resource="net/sf/antcontrib/antcontrib.properties" />
+								<available property="isExist" file="src/main/proto"
+									type="dir" />
+								<if>
+									<equals arg1="${isExist}" arg2="true" />
+									<then>
+										<property name="protoc.filename"
+											value="protoc-${protobuf.version}-${os.detected.classifier}.exe" />
+										<property name="protoc.filepath"
+											value="${protobuf.protoc.path}/${protoc.filename}" />
+										<propertyregex property="proto.include"
+											input="${protobuf.input.directory}" regexp=";" replace=" -I"
+											defaultvalue="${protobuf.input.directory}" global="true" />
+										<chmod file="${protoc.filepath}" perm="ugo+rx" />
+
+										<path id="proto.path">
+											<fileset dir="src/main/proto">
+												<include name="**/*.proto" />
+											</fileset>
+										</path>
+
+										<mkdir dir="src/main/gen-java" />
+										<pathconvert pathsep=" " property="proto.files"
+											refid="proto.path" />
+										<exec executable="${protoc.filepath}" failonerror="true">
+											<arg value="--java_out=${protobuf.output.directory}" />
+											<arg value="-I${proto.include}" />
+											<arg line="${proto.files}" />
+										</exec>
+									</then>
+								</if>
+							</tasks>
+							<sourceRoot>${protobuf.output.directory}</sourceRoot>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<execution>
+						<id>add-classes</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${protobuf.output.directory}</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
