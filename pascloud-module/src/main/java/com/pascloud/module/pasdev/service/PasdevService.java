@@ -1391,9 +1391,15 @@ public class PasdevService extends AbstractBaseService {
 		for(int i=0;i<vos.size();i++){
 			PasfileVo vo = vos.get(i);
 			if(vo.getFhdh().equals(Constants.PASCLOUD_PUBLIC_DB)){
+				log.info("选处理"+Constants.PASCLOUD_PUBLIC_DB);
+				path = path +"/"+Constants.PASCLOUD_PUBLIC_DB;
+				uploadPasfileForCopyToDB(Constants.PASCLOUD_PUBLIC_DB,sourcePath,vo.getFunId());
+				
 				for(DBInfo db:dbs){
-					path = path +"/"+db.getId();
-					uploadPasfileForCopyToDB(db.getId(),sourcePath,vo.getFunId());
+					if(db.getId().equals(Constants.PASCLOUD_PUBLIC_DB)){
+						path = path +"/"+db.getId();
+						uploadPasfileForCopyToDB(db.getId(),sourcePath,vo.getFunId());
+					}
 				}
 			}else{
 				path = path + "/" + vo.getFhdh();
@@ -1607,8 +1613,16 @@ public class PasdevService extends AbstractBaseService {
 	
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException, JDOMException{
-		
+		String path ="D:/dn12/atmjxbcx.xml";
+//		Document doc = XmlParser.getDocument(path);
+//		Element root = doc.getRootElement();
+//		
+//		if(root.selectNodes("sqlMap").size()>0){
+//			Element sqlmap = (Element) root.selectNodes("sqlMap").get(0);
+//		}
+//		
 		//String path = "D:/eclipse64/workspace/pas-cloud-parent/pas-cloud-service/pas-cloud-service-demo/src/main/assembly/data/pasplus/config/dn28";
+		/*
 		String path = "D:/dn12/dn3";
 		List<File> files = new ArrayList<File>();
 		files = FileUtils.listFilesInDirWithFilter(path, ".para", false);
@@ -1707,7 +1721,7 @@ public class PasdevService extends AbstractBaseService {
 				OutputStream cos = new FileOutputStream(f2.getAbsolutePath());
 				xmlout.output(doc2,cos);
 			}
-		}
+		}*/
 		/*
 		ByteArrayInputStream bis = new ByteArrayInputStream(runtimeContent.getBytes("UTF-8"));
 		org.jdom.Document doc = (new SAXBuilder()).build(bis);
@@ -1808,11 +1822,49 @@ public class PasdevService extends AbstractBaseService {
 		String dest = "D:/eclipse64/workspace/devops/pascloud-devops-parent/pascloud-webapps/src/main/webapp/static/resources/pasfile/dn0/bgxyjfprz.xml";
 		
 		
-		Document doc = XmlParser.getDocument(dest);
+		Document doc = XmlParser.getDocument(path);
 		Element root = doc.getRootElement();
-		
+		String dbSchema = "dnx";
+		Integer num = 0;
 		if(root.selectNodes("sqlMap").size()>0){
 			Element sqlmap = (Element) root.selectNodes("sqlMap").get(0);
+			
+			
+			
+			//替换SELECT的ID
+			List<Element> selectNodes = sqlmap.selectNodes("select");
+			for(Element node:selectNodes){
+				//System.out.println(node.attributeValue("id"));
+				String id = node.attributeValue("id").replaceAll("^dn[0-9]{1,}", dbSchema);
+				//System.out.println(id);
+				node.addAttribute("id", id);
+				num++;
+			}
+			
+			List<Element> insertNodes = sqlmap.selectNodes("insert");
+			for(Element node:insertNodes){
+				//System.out.println(node.attributeValue("id"));
+				String id = node.attributeValue("id").replaceAll("^dn[0-9]{1,}", dbSchema);
+				node.addAttribute("id", id);
+				num++;
+			}
+			
+			List<Element> updateNodes = sqlmap.selectNodes("update");
+			for(Element node:updateNodes){
+				//System.out.println(node.attributeValue("id"));
+				String id = node.attributeValue("id").replaceAll("^dn[0-9]{1,}", dbSchema);
+				node.addAttribute("id", id);
+				num++;
+			}
+			
+			List<Element> deleteNodes = sqlmap.selectNodes("delete");
+			for(Element node:deleteNodes){
+				//System.out.println(node.attributeValue("id"));
+				String id = node.attributeValue("id").replaceAll("^dn[0-9]{1,}", dbSchema);
+				node.addAttribute("id", id);
+				num++;
+			}
+		
 		}
 	}
 	 
