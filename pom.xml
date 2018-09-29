@@ -738,5 +738,6 @@
 		<module>pascloud-module</module>
         <module>pascloud-core</module>
         <module>pascloud-message</module>
+    <module>pascloud-cluster</module>
   </modules>
 </project>
