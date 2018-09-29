@@ -4,13 +4,13 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.pascloud.devops</groupId>
-    <artifactId>pascloud-devops-parent</artifactId>
+    <artifactId>pascloud-game</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <groupId>com.pascloud.devops</groupId>
-  <artifactId>pascloud-cluster</artifactId>
+  <artifactId>pascloud-game-cluster</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>pascloud-cluster</name>
+  <name>pascloud-game-cluster</name>
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

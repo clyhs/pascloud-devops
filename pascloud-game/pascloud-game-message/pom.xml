@@ -6,13 +6,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.pascloud.devops</groupId>
-		<artifactId>pascloud-devops-parent</artifactId>
+		<artifactId>pascloud-game</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>com.pascloud.devops</groupId>
-	<artifactId>pascloud-message</artifactId>
+	<artifactId>pascloud-game-message</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>pascloud-message</name>
+	<name>pascloud-game-message</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
