@@ -29,6 +29,12 @@
 		</dependency>
 		
 		<dependency>
+			<groupId>org.mongodb.morphia</groupId>
+			<artifactId>morphia</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+		
+		<dependency>
 			<groupId>com.squareup.retrofit</groupId>
 			<artifactId>converter-simplexml</artifactId>
 			<version>1.6.1</version>
