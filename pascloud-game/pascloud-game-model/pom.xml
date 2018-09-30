@@ -22,6 +22,11 @@
 			<groupId>com.pascloud.devops</groupId>
 			<artifactId>pascloud-core</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.pascloud.devops</groupId>
+			<artifactId>pascloud-game-message</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
