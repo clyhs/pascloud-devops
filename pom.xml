@@ -731,13 +731,14 @@
 		</plugins>
 	</build>
 	<modules>
+	    <!--
 		<module>pascloud-utils</module>
 		<module>pascloud-model</module>
 		<module>pascloud-dao-mybatis</module>
 		<module>pascloud-webapps</module>
-		<module>pascloud-module</module>
+		<module>pascloud-module</module>-->
         <module>pascloud-core</module>
         
-    <module>pascloud-game</module>
+        <module>pascloud-game</module>
   </modules>
 </project>
