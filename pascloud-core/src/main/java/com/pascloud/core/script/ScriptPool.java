@@ -185,7 +185,7 @@ public final class ScriptPool {
 	String compile() {
 		FileUtils.deleteDir(this.outDir);
 		List<File> sourceFileList = new ArrayList<>();
-		sourceFileList = FileUtils.listFilesInDirWithFilter(this.sourceDir, ".java", true);
+		FileUtil.getFiles(this.sourceDir, sourceFileList, ".java", null);
 		return this.compile(sourceFileList);
 	}
 
@@ -221,8 +221,8 @@ public final class ScriptPool {
 				options.add("-g");
 				options.add("-source");
 				options.add("1.8");
-				// options.add("-Xlint");
-				// options.add("unchecked");
+				 //options.add("-Xlint");
+				 //options.add("unchecked");
 				options.add("-encoding");
 				options.add("UTF-8");
 				options.add("-sourcepath");
@@ -231,7 +231,8 @@ public final class ScriptPool {
 				options.add(this.outDir); // 指定输出目录
 
 				List<File> jarsList = new ArrayList<>();
-				jarsList = FileUtils.listFilesInDirWithFilter(this.jarsDir, ".jar", true);
+				//jarsList = FileUtils.listFilesInDirWithFilter(this.jarsDir, ".jar", true);
+				FileUtil.getFiles(this.jarsDir, jarsList, ".jar", null);
 
 				String jarString = "";
 				jarString = jarsList.stream().map((jar) -> jar.getPath() + File.pathSeparator).reduce(jarString,
@@ -259,6 +260,7 @@ public final class ScriptPool {
 			} catch (Exception ex) {
 				sb.append(this.sourceDir).append("错误：").append(ex);
 				log.error("加载脚本错误：", ex);
+				ex.printStackTrace();
 			} finally {
 				try {
 					fileManager.close();
@@ -279,6 +281,7 @@ public final class ScriptPool {
 		if (compile == null || compile.isEmpty()) {
 			List<File> sourceFileList = new ArrayList<>(0);
 			// 得到编译后的class文件
+			System.out.println(this.outDir);
 			sourceFileList = FileUtils.listFilesInDirWithFilter(this.outDir, ".class", true);
 			String[] fileNames = new String[sourceFileList.size()]; // 类路径列表
 			for (int i = 0; i < sourceFileList.size(); i++) {

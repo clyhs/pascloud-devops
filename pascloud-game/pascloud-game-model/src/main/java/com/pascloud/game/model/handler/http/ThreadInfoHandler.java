@@ -3,10 +3,13 @@ package com.pascloud.game.model.handler.http;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.pascloud.core.handler.HandlerEntity;
 import com.pascloud.core.handler.HttpHandler;
 import com.pascloud.core.utils.SysUtil;
 import com.pascloud.game.model.constant.Config;
 
+
+@HandlerEntity(path = "/server/thread/info")
 public class ThreadInfoHandler extends HttpHandler {
 	
 	private static final Logger LOGGER=LoggerFactory.getLogger(ThreadInfoHandler.class);

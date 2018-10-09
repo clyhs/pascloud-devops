@@ -3,12 +3,14 @@ package com.pascloud.game.model.handler.http;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
+import com.pascloud.core.handler.HandlerEntity;
 import com.pascloud.core.handler.HttpHandler;
 import com.pascloud.core.script.ScriptManager;
 import com.pascloud.core.utils.MsgUtil;
 import com.pascloud.game.model.constant.Config;
 
+
+@HandlerEntity(path = "/server/reloadScript")
 public class ReloadScriptHandler extends HttpHandler {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReloadScriptHandler.class);

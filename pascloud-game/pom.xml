@@ -1,7 +1,5 @@
-<?xml version="1.0"?>
-<project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.pascloud.devops</groupId>
@@ -17,7 +15,9 @@
 		<module>pascloud-game-message</module>
 		<module>pascloud-game-cluster</module>
 		<module>pascloud-game-model</module>
-	</modules>
+    <module>pascloud-game-cluster-scripts</module>
+    <module>pascloud-game-gate</module>
+  </modules>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -28,6 +28,12 @@
 			<dependency>
 				<groupId>com.pascloud.devops</groupId>
 				<artifactId>pascloud-game-model</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.pascloud.devops</groupId>
+				<artifactId>pascloud-game-cluster</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 		</dependencies>

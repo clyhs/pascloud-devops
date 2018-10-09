@@ -1,6 +1,8 @@
 package com.pascloud.cluster;
 
 import java.io.File;
+import java.util.HashSet;
+import java.util.Iterator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import com.pascloud.cluster.server.ClusterServer;
 import com.pascloud.core.mina.config.MinaServerConfig;
 import com.pascloud.core.redis.jedis.JedisClusterConfig;
+import com.pascloud.core.redis.jedis.JedisClusterConfig.JedisClusterNodesConfig;
 import com.pascloud.core.thread.ThreadPoolExecutorConfig;
 import com.pascloud.core.utils.FileUtil;
 import com.pascloud.core.utils.SysUtil;
@@ -33,12 +36,25 @@ public class AppCluster
 		} else {
 			path = file.getPath() + File.separatorChar + "target" + File.separatorChar + "config";
 		}
+		System.out.println("配置路径为：" + path);
 		log.info("配置路径为：" + path);
 		JedisClusterConfig jedisClusterConfig = FileUtil.getConfigXML(path, "jedisclusterConfig.xml",
 				JedisClusterConfig.class);
 		if (jedisClusterConfig == null) {
 			SysUtil.exit(AppCluster.class, null, "jedisclusterConfig");
 		}
+		/*
+		System.out.println(jedisClusterConfig.getNodes());
+		HashSet<JedisClusterNodesConfig> nodes = jedisClusterConfig.getNodes();
+		Iterator it = nodes.iterator();
+		while(it.hasNext())
+		{
+			JedisClusterNodesConfig n = (JedisClusterNodesConfig) it.next();
+			System.out.println(n.getIp());
+		}
+		FileUtil.writeObjectXml(jedisClusterConfig, "test.xml", path);
+		*/
+		
 		ThreadPoolExecutorConfig threadExcutorConfig_http = FileUtil.getConfigXML(path, "threadExcutorConfig_http.xml",
 				ThreadPoolExecutorConfig.class);
 		if (threadExcutorConfig_http == null) {
@@ -64,6 +80,7 @@ public class AppCluster
 		clusterServer = new ClusterServer(threadExcutorConfig_http, minaServerConfig_http, threadExcutorConfig_tcp,
 				minaServerConfig_tcp);
 		new Thread(clusterServer).start();
+		
     }
     
     public static ClusterServer getClusterServer() {

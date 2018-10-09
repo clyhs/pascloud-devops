@@ -5,7 +5,7 @@ import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
+import com.pascloud.core.handler.HandlerEntity;
 import com.pascloud.core.handler.HttpHandler;
 import com.pascloud.core.script.IConfigScript;
 import com.pascloud.core.script.ScriptManager;
@@ -13,6 +13,7 @@ import com.pascloud.core.utils.MsgUtil;
 import com.pascloud.core.utils.SymbolUtil;
 import com.pascloud.game.model.constant.Config;
 
+@HandlerEntity(path = "/server/reloadConfig")
 public class ReloadConfigHandler extends HttpHandler {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReloadConfigHandler.class);

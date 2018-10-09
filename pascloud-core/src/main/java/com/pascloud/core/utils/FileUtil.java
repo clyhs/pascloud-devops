@@ -145,6 +145,16 @@ public class FileUtil {
         }
         return ob;
     }
+    
+    public static void writeObjectXml( Object t ,String fileName,String path){
+    	fileName = path + File.separatorChar + fileName;
+    	Serializer serializer = new Persister();
+        try {
+            serializer.write(t, new File(fileName));
+        } catch (Exception ex) {
+            log.error("文件" + fileName + "配置有误", ex);
+        }
+    }
 
     public static String readTxtFile(String path, String fileName) {
         return readTxtFile(path + File.separatorChar + fileName);
