@@ -37,7 +37,7 @@ public abstract class DefaultProtocolHandler implements IoHandler {
 	}
 
 	@Override
-	public void sessionOpened(IoSession session) throws Exception {
+	public void sessionOpened(IoSession session)  {
 		// TODO Auto-generated method stub
 
 	}
