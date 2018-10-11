@@ -49,7 +49,7 @@ public abstract class DefaultProtocolHandler implements IoHandler {
 	}
 
 	@Override
-	public void sessionIdle(IoSession session, IdleStatus status) throws Exception {
+	public void sessionIdle(IoSession session, IdleStatus status) {
 		// TODO Auto-generated method stub
 
 	}
