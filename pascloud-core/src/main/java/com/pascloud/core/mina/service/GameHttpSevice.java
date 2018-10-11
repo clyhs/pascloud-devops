@@ -9,6 +9,11 @@ import com.pascloud.core.mina.handler.HttpServerIoHandler;
 import com.pascloud.core.server.AbsService;
 import com.pascloud.core.thread.ThreadPoolExecutorConfig;
 
+/**
+ * 游戏服http服务器
+ * @author admin
+ *
+ */
 public class GameHttpSevice extends AbsService<MinaServerConfig> {
 
 	private static final Logger log = LoggerFactory.getLogger(GameHttpSevice.class);
