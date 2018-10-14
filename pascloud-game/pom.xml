@@ -17,6 +17,7 @@
 		<module>pascloud-game-model</module>
     <module>pascloud-game-cluster-scripts</module>
     <module>pascloud-game-gate</module>
+    <module>pascloud-game-gate-scripts</module>
   </modules>
 	<dependencyManagement>
 		<dependencies>
