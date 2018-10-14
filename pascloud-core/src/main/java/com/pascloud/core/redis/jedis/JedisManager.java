@@ -30,8 +30,6 @@ import redis.clients.jedis.JedisCluster;
 /**
  * redis集群管理类
  * 
- * @author JiangZhiYong
- * @QQ 359135103 2017年8月18日 下午5:32:34
  */
 public class JedisManager {
 

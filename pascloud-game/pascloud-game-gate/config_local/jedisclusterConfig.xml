@@ -19,11 +19,11 @@
     </jedisClusterNodesConfig>
     <jedisClusterNodesConfig>
       <ip>${REDIS_IP}</ip>
-      <port>7000</port>
+      <port>7004</port>
     </jedisClusterNodesConfig>
     <jedisClusterNodesConfig>
       <ip>${REDIS_IP}</ip>
-      <port>7000</port>
+      <port>7005</port>
     </jedisClusterNodesConfig>
   </nodes>
   <poolMaxTotal>500</poolMaxTotal>

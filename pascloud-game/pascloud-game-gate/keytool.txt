@@ -1,0 +1,131 @@
+1.生成服务端证书
+keytool -genkey -v -alias server -keyalg RSA -keystore d:/ssl/server.keystore -dname "CN=localhost,OU=pascloud,O=pascloud,L=GuangZhou,ST=GuangZhou,C=CN" -validity 3650 -storepass 123456 -keypass 123456
+
+#CN=(名字与姓氏), OU=(组织单位名称), O=(组织名称), L=(城市或区域名称), ST=(州或省份名称), C=(单位的两字母国家代码)";(中英文即可)
+
+2.导出服务端证书
+keytool -export -alias server -keystore d:/ssl/server.keystore -storepass 123456 -rfc -file d:/ssl/server.cer
+
+3.生成客户端证书
+keytool -genkey -v -alias client -keyalg RSA -keystore d:/ssl/client.keystore -dname "CN=client,OU=pascloud,O=pascloud,L=GuangZhou,ST=GuangZhou,C=CN" -validity 3650 -storepass 123456 -keypass 123456
+
+4.导出客户端证书
+
+由于是双向SSL认证，服务器必须要信任客户端证书，因此，必须把客户端证书添加为服务器的信任认证。由于不能直接将PKCS12格式的证书库导入，我们必须先把客户端证书导出为一个单独的CER文件。
+
+其中storepass 为client.keystore 生成过程设置的密码。
+
+keytool -export -alias client -keystore d:/ssl/client.keystore -storepass 123456 -rfc -file d:/ssl/client.cer
+
+5.把客户端证书加入服务端证书信任列表
+
+通过以上命令，客户端证书就被我们导出到client.cer文件了。下一步，是将该文件导入到服务器的证书库，添加为一个信任证书：
+
+keytool -import -file d:/ssl/client.cer -storepass 123456 -keystore d:/ssl/server.truststore -alias client
+
+6.通过list命令查看服务器的证书库，我们可以看到两个输入，一个是服务器证书，一个是受信任的客户端证书：
+keytool -list -keystore server.truststore
+
+7.生成客户端信任列表 （客户端信任的服务端）
+keytool -import -file d:/ssl/server.cer -storepass 123456 -keystore d:/ssl/client.truststore -alias server
+
+
+1.浏览器证书（已可正常访问）
+
+浏览器生成证书，以便让服务器来验证它。为了能将证书顺利导入至IE和Firefox，证书格式应该是PKCS12。
+
+客户端的CN可以是任意值。
+
+keytool -validity 365 -genkeypair -v -alias browser -keyalg RSA -storetype PKCS12 -keystore d:/ssl/browser.p12 -dname "CN=browser,OU=pascloud,O=pascloud,L=GuangZhou,ST=GuangZhou,c=cn" -storepass 123456 -keypass 123456
+
+2、从客户端证书库中导出客户端证书
+keytool -export -v -alias browser -keystore d:/ssl/browser.p12 -storetype PKCS12 -storepass 123456 -rfc -file d:/ssl/browser.cer
+
+3、将客户端证书导入到服务器证书库(使得服务器信任客户端证书)
+keytool -import -v -alias browser -file d:/ssl/browser.cer -keystore d:/ssl/server.truststore -storepass 123456
+keytool -list -keystore d:/ssl/server.truststore -storepass 123456
+
+
+
+keytool -printcert -file gate.cer
+
+
+
+1.生成服务端证书
+keytool -genkey -v -alias gate -keyalg RSA -keystore d:/ssl/gate.keystore -dname "CN=localhost,OU=pascloud,O=pascloud,L=GuangZhou,ST=GuangZhou,C=CN" -validity 3650 -storepass 123456 -keypass 123456
+2.导出服务端证书
+keytool -export -alias gate -keystore d:/ssl/gate.keystore -storepass 123456 -rfc -file d:/ssl/gate.cer
+3.生成客户端证书
+keytool -genkey -v -alias client -keyalg RSA -keystore d:/ssl/client.keystore -dname "CN=client,OU=pascloud,O=pascloud,L=GuangZhou,ST=GuangZhou,C=CN" -validity 3650 -storepass 123456 -keypass 123456
+4.导出客户端证书
+keytool -export -alias client -keystore d:/ssl/client.keystore -storepass 123456 -rfc -file d:/ssl/client.cer
+5.把客户端证书加入服务端证书信任列表
+keytool -import -file d:/ssl/client.cer -storepass 123456 -keystore d:/ssl/gate.cert -alias client
+6.生成客户端信任列表
+keytool -import -file d:/ssl/gate.cer -storepass 123456 -keystore d:/ssl/client.cert -alias gate
+7.浏览器生成证书
+keytool -validity 365 -genkeypair -v -alias browser -keyalg RSA -storetype PKCS12 -keystore d:/ssl/client.p12 -dname "CN=localhost,OU=pascloud,O=pascloud,L=GuangZhou,ST=GuangZhou,c=cn" -storepass 123456 -keypass 123456
+8.从客户端证书库中导出客户端证书
+keytool -export -v -alias browser -keystore d:/ssl/client.p12 -storetype PKCS12 -storepass 123456 -rfc -file d:/ssl/client.cer
+9.将客户端证书导入到服务器证书库
+keytool -import -v -alias browser -file d:/ssl/client.cer -keystore d:/ssl/gate.cert -storepass 123456
+
+
+1.生成服务端证书
+keytool -genkey -v -alias gate -keyalg RSA -keystore gate.keystore -dname "CN=localhost,OU=pascloud,O=pascloud,L=GuangZhou,ST=GuangZhou,C=CN" -validity 3650 -storepass 123456 -keypass 123456
+
+keytool -list -keystore gate.keystore
+
+2.导出服务端证书
+keytool -export -alias gate -keystore gate.keystore -storepass 123456 -rfc -file gate.cer
+
+keytool -printcert -file gate.cer
+
+3.生成客户端证书
+
+keytool -validity 365 -genkeypair -v -alias client -keyalg RSA -storetype PKCS12 -keystore client.p12 -dname "CN=localhost,OU=pascloud,O=pascloud,L=GuangZhou,ST=GuangZhou,c=cn" -storepass 123456 -keypass 123456
+
+keytool -list -keystore client.p12
+
+4.从客户端证书库中导出客户端证书
+
+keytool -export -v -alias client -keystore client.p12 -storetype PKCS12 -storepass 123456 -rfc -file client.cer
+
+5.服务器导入客户端证书
+*	keytool -import  -file client.cer -keystore gate.keystore -storepass 123456 -alias gate
+
+6.客户端导入服务器证书
+*	keytool -import  -file gate.cer -keystore client.p12 -storepass 123456
+
+
+
+
+
+
+
+
+
+
+
+
+1.创建服务器证书
+keytool -genkey -alias serverkey -keyalg RSA -keystore serverkey.jks -keysize 2048
+
+2.从服务端证书导出 server.cer
+
+keytool -export -alias serverkey -keystore serverkey.jks -file server.cer
+3.创建客户端jks clientkey.jks
+
+keytool -genkey -alias clientkey -keyalg RSA -keystore clientkey.jks -keysize 2048
+
+4.从客户端导出cer client.cer
+
+keytool -export -alias clientkey -keystore clientkey.jks -file client.cer
+5.把server.cer 导入到clienttrust.jks
+
+keytool -import -alias serverkey -keystore clienttrust.jks -file server.cer
+6.把client.cer 导入到servertrust.jks
+
+keytool -import -alias clientkey -keystore servertrust.jks -file client.cer
+
+

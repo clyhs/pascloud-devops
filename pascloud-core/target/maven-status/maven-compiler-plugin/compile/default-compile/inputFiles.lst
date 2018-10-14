@@ -32,6 +32,7 @@ D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\reflect\FieldMethod.java
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\model\Person.java
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\mina\handler\HttpServerIoHandler.java
+D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\mina\service\SingleMinaTcpClientService.java
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\utils\MsgUtil.java
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\mina\code\ClientProtocolDecoder.java
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\utils\JsonUtil.java
@@ -62,6 +63,7 @@ D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\thread\ExecutorPool.java
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\script\IScript.java
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\mina\code\HttpResponseImpl.java
+D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\mina\handler\DefaultClientProtocolHandler.java
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\redis\jedis\JedisPubListener.java
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\script\ScriptManager.java
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\mina\websocket\WebSocketHandShakeResponse.java
@@ -78,6 +80,7 @@ D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\handler\HttpHandler.java
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\thread\ServerThread.java
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\mina\code\HttpServerDecoderImpl.java
+D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\utils\StringUtil.java
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\thread\timer\TimerEvent.java
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\mina\websocket\WebSocketCodecFactory.java
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\script\ScriptPool.java
