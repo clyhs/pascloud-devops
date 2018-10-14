@@ -1,5 +1,27 @@
 package com.pascloud.gate.server.ssl;
-
+/**
+ * /**
+* <h3>RSA证书生成步骤</h3>
+* <p>
+* //服务器证书生成
+* keytool -genkey -keyalg RSA -keysize 2048 -validity 36500 -alias GATE -keypass 123456 -keystore gate.keystore -storepass 123456 -dname "CN=localhost,OU=pas,O=pas,L=gz,ST=gz,C=CN"
+* //服务器证书导出
+*	keytool -export -alias GATE -file gate.cert -keystore gate.keystore -storepass 123456
+*	//服务器导入客户端证书
+*	keytool -import  -file client.cert -keystore gate.keystore -storepass 123456
+*	//查看证书条目
+*	keytool -list -v -keystore gate.keystore -storepass 123456
+*	
+*	//客户端证书生成
+*	keytool -genkey -keyalg RSA -keysize 2048 -validity 36500 -alias CLIENT -keypass 123456 -keystore client.keystore -storepass 123456 -dname "CN=localhost,OU=pas,O=pas,L=gz,ST=gz,C=CN"
+*	//客户端证书导出
+*	keytool -export -alias CLIENT -file client.cert -keystore client.keystore -storepass 123456
+*	//客户端导入服务器证书
+*	keytool -import  -file gate.cert -keystore client.keystore -storepass 123456
+*	//查看证书条目
+*	keytool -list -v -keystore client.keystore -storepass 123456
+* </p>
+*/
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.GeneralSecurityException;
