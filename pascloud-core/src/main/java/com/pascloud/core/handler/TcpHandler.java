@@ -2,6 +2,7 @@ package com.pascloud.core.handler;
 
 import com.google.protobuf.Message;
 import com.pascloud.core.mina.message.IDMessage;
+import com.pascloud.core.model.Person;
 
 /**
  * 
@@ -14,7 +15,7 @@ public abstract class TcpHandler extends AbsHandler {
 	
 	protected long rid; // 角色ID
 	
-	//protected Person person; // 角色
+	protected Person person; // 角色
 
 	@Override
 	public Message getMessage() {
@@ -31,7 +32,7 @@ public abstract class TcpHandler extends AbsHandler {
 		return (T) message;
 	}
 
-	/*
+	
 	@SuppressWarnings("unchecked")
 	public <T extends Person> T getPerson() {
 		return (T) person;
@@ -39,7 +40,7 @@ public abstract class TcpHandler extends AbsHandler {
 
 	public void setPerson(Person person) {
 		this.person = person;
-	}*/
+	}
 
 	@Override
 	public void setMessage(Object message) {
