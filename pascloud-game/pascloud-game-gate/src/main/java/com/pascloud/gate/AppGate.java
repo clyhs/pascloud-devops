@@ -9,6 +9,7 @@ import com.pascloud.core.redis.jedis.JedisClusterConfig;
 import com.pascloud.core.redis.jedis.JedisManager;
 import com.pascloud.core.script.ScriptManager;
 import com.pascloud.core.utils.FileUtil;
+import com.pascloud.gate.manager.MongoManager;
 import com.pascloud.gate.server.GateServer;
 
 
@@ -42,7 +43,7 @@ public class AppGate
 		redisManager = new JedisManager(jedisClusterConfig);
 
 		// 创建mongodb连接
-		//MongoManager.getInstance().createConnect(configPath);
+		MongoManager.getInstance().createConnect(configPath);
 
 		// 加载脚本
 		ScriptManager.getInstance().init(null);
