@@ -1,0 +1,19 @@
+2018-10-14 20:38:27 TimerThread.java:80 - [ ERROR ] TimerThread:end=全局同步线程:GateTcpUserServer=heart=1000
+2018-10-14 21:04:35 TimerThread.java:80 - [ ERROR ] TimerThread:end=全局同步线程:GateTcpUserServer=heart=1000
+2018-10-14 21:38:15 TimerThread.java:80 - [ ERROR ] TimerThread:end=全局同步线程:GateTcpUserServer=heart=1000
+2018-10-14 21:38:16 MinaTcpClient.java:121 - [ WARN ] 开始链接其他服务器,共 [1] 个
+2018-10-14 21:38:16 TcpServer.java:101 - [ WARN ] 已开始监听TCP端口：8002
+2018-10-14 21:38:16 TcpServer.java:101 - [ WARN ] 已开始监听TCP端口：8007
+2018-10-14 21:38:16 TcpServer.java:101 - [ WARN ] 已开始监听TCP端口：8003
+2018-10-14 21:38:16 HttpServer.java:105 - [ WARN ] 已开始监听HTTP端口：8006
+2018-10-14 21:38:16 UdpServer.java:82 - [ WARN ] 已开始监听UDP端口：8004
+2018-10-14 21:38:17 ServerThread.java:125 - [ WARN ] 线程：全局同步线程:GateTcpUserServer 执行 com.pascloud.core.thread.timer.event.ServerHeartTimer 消耗时间过长 92毫秒,当前命令数 0 条
+2018-10-14 21:38:17 MinaTcpClient.java:131 - [ WARN ] 失败！连接到服务器：目标类型：CLUSTER连接ip：127.0.0.1:8000
+2018-10-14 21:39:00 TimerThread.java:80 - [ ERROR ] TimerThread:end=全局同步线程:GateTcpUserServer=heart=1000
+2018-10-14 21:39:01 MinaTcpClient.java:121 - [ WARN ] 开始链接其他服务器,共 [1] 个
+2018-10-14 21:39:01 TcpServer.java:101 - [ WARN ] 已开始监听TCP端口：8007
+2018-10-14 21:39:01 TcpServer.java:101 - [ WARN ] 已开始监听TCP端口：8003
+2018-10-14 21:39:01 TcpServer.java:101 - [ WARN ] 已开始监听TCP端口：8002
+2018-10-14 21:39:01 HttpServer.java:105 - [ WARN ] 已开始监听HTTP端口：8006
+2018-10-14 21:39:01 MinaTcpClient.java:134 - [ WARN ] 成功！连接到服务器：目标类型：CLUSTER连接ip：127.0.0.1:8000
+2018-10-14 21:39:01 UdpServer.java:82 - [ WARN ] 已开始监听UDP端口：8004
