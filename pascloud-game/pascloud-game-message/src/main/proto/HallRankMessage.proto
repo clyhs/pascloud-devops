@@ -1,0 +1,4 @@
+option java_package = "com.pascloud.message.hall";
+import "Mid.proto";
+
+
