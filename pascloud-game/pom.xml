@@ -37,6 +37,11 @@
 				<artifactId>pascloud-game-cluster</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.pascloud.devops</groupId>
+				<artifactId>pascloud-game-gate</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 		</dependencies>
 
 	</dependencyManagement>
