@@ -27,6 +27,12 @@
 			<groupId>com.pascloud.devops</groupId>
 			<artifactId>pascloud-game-message</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.mongodb.morphia</groupId>
+			<artifactId>morphia</artifactId>
+			<version>1.2.1</version>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
