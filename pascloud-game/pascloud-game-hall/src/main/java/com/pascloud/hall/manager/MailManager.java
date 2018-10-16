@@ -54,6 +54,8 @@ public class MailManager {
 		ScriptManager.getInstance().getBaseScriptEntry().executeScripts(IMailScript.class,
 				script -> script.sendMail(senderId,receiverId,title, content, type, mailConsumer));
 	}
+	
+	
 
 	/**
 	 * 构建邮箱信息

@@ -197,8 +197,6 @@ public abstract class Person {
 	/**
 	 * 发送消息，带ID头
 	 * 
-	 * @author JiangZhiYong
-	 * @QQ 359135103 2017年8月3日 下午2:53:28
 	 * @param object
 	 */
 	public boolean sendMsg(Object message) {

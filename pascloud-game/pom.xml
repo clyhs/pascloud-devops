@@ -19,6 +19,7 @@
     <module>pascloud-game-gate</module>
     <module>pascloud-game-gate-scripts</module>
     <module>pascloud-game-hall</module>
+    <module>pascloud-game-hall-scripts</module>
   </modules>
 	<dependencyManagement>
 		<dependencies>
@@ -41,6 +42,12 @@
 			<dependency>
 				<groupId>com.pascloud.devops</groupId>
 				<artifactId>pascloud-game-gate</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.pascloud.devops</groupId>
+				<artifactId>pascloud-game-hall</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 		</dependencies>
