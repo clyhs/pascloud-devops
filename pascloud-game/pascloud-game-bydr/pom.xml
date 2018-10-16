@@ -9,15 +9,15 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>com.pascloud.devops</groupId>
-	<artifactId>pascloud-game-hall</artifactId>
+	<artifactId>pascloud-game-bydr</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>pascloud-game-hall</name>
+	<name>pascloud-game-bydr</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
-		<dependency>
+	    <dependency>
 			<groupId>com.pascloud.devops</groupId>
 			<artifactId>pascloud-game-message</artifactId>
 		</dependency>
@@ -44,7 +44,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>com.pascloud.hall.AppHall</mainClass>
+							<mainClass>com.pascloud.bydr.AppBydr</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

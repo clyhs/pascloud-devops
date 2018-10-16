@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.pascloud.devops</groupId>
@@ -15,12 +16,13 @@
 		<module>pascloud-game-message</module>
 		<module>pascloud-game-cluster</module>
 		<module>pascloud-game-model</module>
-    <module>pascloud-game-cluster-scripts</module>
-    <module>pascloud-game-gate</module>
-    <module>pascloud-game-gate-scripts</module>
-    <module>pascloud-game-hall</module>
-    <module>pascloud-game-hall-scripts</module>
-  </modules>
+		<module>pascloud-game-cluster-scripts</module>
+		<module>pascloud-game-gate</module>
+		<module>pascloud-game-gate-scripts</module>
+		<module>pascloud-game-hall</module>
+		<module>pascloud-game-hall-scripts</module>
+		<module>pascloud-game-bydr</module>
+	</modules>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -33,7 +35,7 @@
 				<artifactId>pascloud-game-model</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.pascloud.devops</groupId>
 				<artifactId>pascloud-game-cluster</artifactId>
@@ -44,22 +46,28 @@
 				<artifactId>pascloud-game-gate</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.pascloud.devops</groupId>
 				<artifactId>pascloud-game-hall</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			
+			<dependency>
+				<groupId>com.pascloud.devops</groupId>
+				<artifactId>pascloud-game-bydr</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 		</dependencies>
 
 	</dependencyManagement>
-	
+
 	<dependencies>
-	    <dependency>
-	        <groupId>com.pascloud.devops</groupId>
-	        <artifactId>pascloud-core</artifactId>
-	    </dependency>
-	
+		<dependency>
+			<groupId>com.pascloud.devops</groupId>
+			<artifactId>pascloud-core</artifactId>
+		</dependency>
+
 	</dependencies>
 
 
