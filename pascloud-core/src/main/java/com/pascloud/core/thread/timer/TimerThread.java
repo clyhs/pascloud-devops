@@ -77,7 +77,7 @@ public class TimerThread extends Timer {
             }
         };
         schedule(this.task, 0L, this.serverThread.getHeart());
-        log.error("TimerThread:end=" + this.serverThread.getThreadName() + "=heart=" + this.serverThread.getHeart());
+        log.info("TimerThread:end=" + this.serverThread.getThreadName() + "=heart=" + this.serverThread.getHeart());
     }
 
     public void stop(boolean flag) {
