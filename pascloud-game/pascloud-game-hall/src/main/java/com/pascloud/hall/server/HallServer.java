@@ -5,11 +5,13 @@ import org.slf4j.LoggerFactory;
 
 import com.pascloud.core.mina.config.MinaClientConfig;
 import com.pascloud.core.mina.config.MinaServerConfig;
+import com.pascloud.core.mq.MQConsumer;
 import com.pascloud.core.redis.jedis.JedisPubListener;
 import com.pascloud.core.server.ServerState;
 import com.pascloud.core.thread.ThreadPoolExecutorConfig;
 import com.pascloud.core.utils.FileUtil;
 import com.pascloud.game.model.constant.Config;
+import com.pascloud.game.model.redis.channel.HallChannel;
 import com.pascloud.game.model.timer.GameServerCheckTimer;
 import com.pascloud.hall.AppHall;
 import com.pascloud.message.ServerMessage;
@@ -32,13 +34,13 @@ public class HallServer implements Runnable {
     private HallHttpServer hallHttpServer;
 
     /** redis订阅发布 */
-    //private final JedisPubListener hallPubListener;
+    private final JedisPubListener hallPubListener;
 
     /** 服务器状态监测 */
     private GameServerCheckTimer hallServerCheckTimer;
 
     /** MQ消息 */
-    //private MQConsumer mqConsumer;
+    private MQConsumer mqConsumer;
 
     public HallServer(String configPath) {
 
@@ -75,9 +77,9 @@ public class HallServer implements Runnable {
 
         this.hallHttpServer = new HallHttpServer(minaServerConfig_http);
 
-        //hallPubListener = new JedisPubListener(HallChannel.getChannels());
+        hallPubListener = new JedisPubListener(HallChannel.getChannels());
 
-        //mqConsumer = new MQConsumer(configPath, "hall");
+        mqConsumer = new MQConsumer(configPath, "hall");
 
         Config.SERVER_ID = minaClientConfig_gate.getId();
     }
@@ -92,7 +94,7 @@ public class HallServer implements Runnable {
         new Thread(this.hall2ClusterClient).start();
         new Thread(this.hallHttpServer).start();
         this.hallServerCheckTimer.start();
-        //hallPubListener.start();
+        hallPubListener.start();
         // Thread thread = new Thread(mqConsumer);
         // thread.setName("MQConsumer");
         // thread.start();

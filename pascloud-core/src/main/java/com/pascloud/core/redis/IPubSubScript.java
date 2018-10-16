@@ -3,6 +3,11 @@ package com.pascloud.core.redis;
 import com.pascloud.core.redis.jedis.JedisPubSubMessage;
 import com.pascloud.core.script.IScript;
 
+/**
+ * 订阅消息处理器
+ * @author admin
+ *
+ */
 public interface IPubSubScript extends IScript {
 
     /**
