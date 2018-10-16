@@ -159,8 +159,6 @@ public class MutilMinaTcpClientService extends MinaClientService implements IMut
 	/**
 	 * 多连接消息处理器
 	 * 
-	 * @author JiangZhiYong
-	 * @QQ 359135103 2017年7月4日 下午3:22:48
 	 */
 	public class MutilTcpProtocolHandler extends DefaultClientProtocolHandler {
 
