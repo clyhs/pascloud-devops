@@ -18,6 +18,14 @@ import com.pascloud.message.ServerMessage.ServerListRequest;
 import com.pascloud.message.ServerMessage.ServerRegisterRequest;
 import com.pascloud.message.ServerMessage.ServerRegisterRequest.Builder;
 
+/**
+ * 游戏服务器 状态监测，重连线程
+ * <p>
+ * 每隔10秒监测一次
+ * </p>
+ * @author admin
+ *
+ */
 public class GameServerCheckTimer extends ScheduledTask {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GameServerCheckTimer.class);
 	private ITcpClientService<? extends BaseServerConfig> clusterService; // 集群连接服务
