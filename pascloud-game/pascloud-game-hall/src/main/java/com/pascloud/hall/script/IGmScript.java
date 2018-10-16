@@ -13,9 +13,6 @@ public interface IGmScript extends IScript {
 	
 	/**
 	 * 是否为gm命令
-	 * @author JiangZhiYong
-	 * @QQ 359135103
-	 * 2017年10月16日 下午6:07:32
 	 * @param gmCmd
 	 */
 	default boolean isGMCmd(String gmCmd) {
