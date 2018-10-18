@@ -11,6 +11,8 @@ import com.pascloud.core.mina.config.MinaClientConfig;
 import com.pascloud.core.mina.config.MinaServerConfig;
 import com.pascloud.core.mina.service.ClientServerService;
 import com.pascloud.core.mina.service.GameHttpSevice;
+import com.pascloud.core.netty.config.NettyClientConfig;
+import com.pascloud.core.netty.service.SingleNettyTcpClientService;
 import com.pascloud.core.redis.jedis.JedisPubListener;
 import com.pascloud.core.server.AbsService;
 import com.pascloud.core.server.IMutilTcpClientService;
@@ -59,10 +61,8 @@ public class BydrServer implements Runnable {
 		MinaClientConfig minaClientConfig_gate = FileUtil.getConfigXML(configPath, "minaClientConfig_gate.xml",
 				MinaClientConfig.class);
 
-		// NettyClientConfig nettyClientConfig_gate =
-		// FileUtil.getConfigXML(configPath,
-		// "nettyClientConfig_gate.xml",NettyClientConfig.class);
-		if (minaClientConfig_gate == null/* &&nettyClientConfig_gate==null */) {
+		NettyClientConfig nettyClientConfig_gate = FileUtil.getConfigXML(configPath,"nettyClientConfig_gate.xml",NettyClientConfig.class);
+		if (minaClientConfig_gate == null&&nettyClientConfig_gate==null ) {
 			LOGGER.error("{}未配置网关连接客户端", configPath);
 			System.exit(0);
 		}
@@ -71,12 +71,8 @@ public class BydrServer implements Runnable {
 		MinaClientConfig minaClientConfig_cluster = FileUtil.getConfigXML(configPath, "minaClientConfig_cluster.xml",
 				MinaClientConfig.class);
 
-		// NettyClientConfig nettyClinetConfig_cluster =
-		// FileUtil.getConfigXML(configPath,
-		// "nettyClientConfig_cluster.xml",NettyClientConfig.class);
-		if (minaClientConfig_cluster == null/*
-											 * &&nettyClinetConfig_cluster==null
-											 */) {
+		NettyClientConfig nettyClinetConfig_cluster = FileUtil.getConfigXML(configPath, "nettyClientConfig_cluster.xml",NettyClientConfig.class);
+		if (minaClientConfig_cluster == null && nettyClinetConfig_cluster==null) {
 			LOGGER.error("{}未配置集群连接客户端", configPath);
 			System.exit(0);
 		}
@@ -94,26 +90,26 @@ public class BydrServer implements Runnable {
 			this.bydrTcpServer = new ClientServerService(minaServerConfig);
 		}
 
-		// 如果netty 优先级高，使用Netty服务,一般不直接使用engine提供的类
+		//如果netty 优先级高，使用Netty服务,一般不直接使用engine提供的类
 		// 网关
-		//if (nettyClientConfig_gate != null && "NettyFirst".equalsIgnoreCase(nettyClientConfig_gate.getInfo())) {
+		if (nettyClientConfig_gate != null && "NettyFirst".equalsIgnoreCase(nettyClientConfig_gate.getInfo())) {
 			// TODO 需要重写channelActive 发送服务器注册消息 ，不然相当于当前客户端和网关只有一个channel连接
-			//this.bydr2GateClient = new Bydr2GateClientNetty(threadPoolExecutorConfig, nettyClientConfig_gate);
-		//} else {
+			this.bydr2GateClient = new Bydr2GateClientNetty(threadPoolExecutorConfig, nettyClientConfig_gate);
+		} else {
 			this.bydr2GateClient = new Bydr2GateClient(threadPoolExecutorConfig, minaClientConfig_gate);
-		//}
+		}
 
 		// 集群
-		//if (nettyClinetConfig_cluster != null && "NettyFirst".equalsIgnoreCase(nettyClinetConfig_cluster.getInfo())) {
-			//bydr2ClusterClient = new SingleNettyTcpClientService(nettyClinetConfig_cluster);
-		//} else {
+		if (nettyClinetConfig_cluster != null && "NettyFirst".equalsIgnoreCase(nettyClinetConfig_cluster.getInfo())) {
+			bydr2ClusterClient = new SingleNettyTcpClientService(nettyClinetConfig_cluster);
+		} else {
 			this.bydr2ClusterClient = new Bydr2ClusterClient(minaClientConfig_cluster);
-		//}
+		}
 
 		// 状态监控
-		//this.gameServerCheckTimer = new GameServerCheckTimer(bydr2ClusterClient, bydr2GateClient,
-				//bydr2GateClient instanceof Bydr2GateClient ? minaClientConfig_gate : nettyClientConfig_gate);
-		this.gameServerCheckTimer = new GameServerCheckTimer(bydr2ClusterClient, bydr2GateClient,minaClientConfig_gate);
+		this.gameServerCheckTimer = new GameServerCheckTimer(bydr2ClusterClient, bydr2GateClient,
+				bydr2GateClient instanceof Bydr2GateClient ? minaClientConfig_gate : nettyClientConfig_gate);
+		//this.gameServerCheckTimer = new GameServerCheckTimer(bydr2ClusterClient, bydr2GateClient,minaClientConfig_gate);
 		// 订阅发布
 		this.bydrPubListener = new JedisPubListener(BydrChannel.getChannels());
 
