@@ -2,9 +2,9 @@ package com.pascloud.bydr.script;
 
 import java.time.LocalTime;
 
+import com.pascloud.bydr.struct.role.Role;
 import com.pascloud.bydr.struct.room.Room;
 import com.pascloud.core.script.IScript;
-import com.pascloud.game.model.strut.Role;
 import com.pascloud.message.bydr.BydrRoomMessage.RoomType;
 
 /**
