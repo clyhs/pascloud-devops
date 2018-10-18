@@ -11,9 +11,9 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
 import com.pascloud.bydr.struct.Fish;
+import com.pascloud.bydr.struct.role.Role;
 import com.pascloud.bydr.thread.RoomThread;
 import com.pascloud.game.model.constant.Config;
-import com.pascloud.game.model.strut.Role;
 
 
 /**

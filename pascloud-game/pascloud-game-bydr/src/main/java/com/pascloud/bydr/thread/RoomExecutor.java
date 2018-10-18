@@ -11,12 +11,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.pascloud.bydr.manager.ConfigManager;
+import com.pascloud.bydr.manager.RoleManager;
+import com.pascloud.bydr.struct.role.Role;
 import com.pascloud.bydr.struct.room.Room;
 import com.pascloud.bydr.thread.timer.RoomTimer;
 import com.pascloud.core.handler.TcpHandler;
 import com.pascloud.core.thread.ExecutorPool;
 import com.pascloud.core.thread.ServerThread;
-import com.pascloud.game.model.strut.Role;
 
 /**
  * 逻辑执行线程池，将玩家的逻辑操作分配到同一个线程中执行，避免并发数据异常
@@ -37,19 +38,19 @@ public class RoomExecutor extends ExecutorPool {
 		if (command instanceof TcpHandler) {
 			TcpHandler handler = (TcpHandler) command;
 
-			//Role role = RoleManager.getInstance().getRole(handler.getRid());
-			//if (role == null) {
-				//LOGGER.warn("角色{}为在线", handler.getRid());
-				//return;
-			//}
-			//handler.setPerson(role);
-			/*
+			Role role = RoleManager.getInstance().getRole(handler.getRid());
+			if (role == null) {
+				LOGGER.warn("角色{}为在线", handler.getRid());
+				return;
+			}
+			handler.setPerson(role);
+			
 			ServerThread serverThread = roomThreads.get(role.getRoomId());
 			if (serverThread == null) {
 				LOGGER.warn("房间{}已经销毁", role.getRoomId());
 				return;
 			}
-			serverThread.execute(handler);*/
+			serverThread.execute(handler);
 		}
 	}
 

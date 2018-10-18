@@ -22,6 +22,7 @@
 		<module>pascloud-game-hall</module>
 		<module>pascloud-game-hall-scripts</module>
 		<module>pascloud-game-bydr</module>
+		<module>pascloud-game-bydr-scripts</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>
@@ -52,7 +53,7 @@
 				<artifactId>pascloud-game-hall</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.pascloud.devops</groupId>
 				<artifactId>pascloud-game-bydr</artifactId>

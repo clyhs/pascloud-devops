@@ -16,6 +16,4 @@ public class Bydr2ClusterClient extends SingleMinaTcpClientService{
 		// executor.addTimerEvent(new ServerHeartTimer()); //TODO 临时添加
 	}
 	
-	
-
 }
