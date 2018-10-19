@@ -3,6 +3,7 @@ D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\math\MathUtil.java
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\mina\websocket\WebSocketCodecPacket.java
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\math\Matrix4.java
+D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\utils\HttpUtil.java
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\netty\code\DefaultClientChannelInitializer.java
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\math\GeometryUtil.java
 D:\eclipse64\workspace\pascloud-devops\pascloud-core\src\main\java\com\pascloud\core\cache\MemoryPool.java

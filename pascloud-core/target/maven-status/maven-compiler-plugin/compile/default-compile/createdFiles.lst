@@ -75,6 +75,7 @@ com\pascloud\core\mina\service\MinaClientService.class
 com\pascloud\core\thread\timer\ScheduledTask$Task.class
 com\pascloud\core\mina\websocket\WebSocketCodecPacket.class
 com\pascloud\core\email\MailManager$1.class
+com\pascloud\core\utils\HttpUtil.class
 com\pascloud\core\redis\jedis\JedisManager.class
 com\pascloud\core\math\Interpolation$Bounce.class
 com\pascloud\core\redis\jedis\JedisPubSubMessage.class

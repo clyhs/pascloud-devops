@@ -1,0 +1,58 @@
+package com.pascloud.game.manage.controller;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.pascloud.core.utils.StringUtil;
+import com.pascloud.game.manage.constant.SessionKey;
+import com.pascloud.game.manage.service.UserService;
+
+/**
+ * 用户
+ *
+ */
+@Controller
+@RequestMapping("/user")
+public class UserController {
+	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+	@Autowired
+	private UserService userService;
+
+	@Value("${userName}")
+	private String userName;
+
+	@Value("${password}")
+	private String password;
+
+	/**
+	 * 登录
+	 * 
+	 * @param session
+	 * @param param
+	 * @return
+	 */
+	@RequestMapping(value = "/login")
+	public ModelAndView login(HttpSession session, HttpServletResponse response, String userName, String password) {
+
+		if (StringUtil.isNullOrEmpty(userName) || StringUtil.isNullOrEmpty(password)) {
+			return new ModelAndView("redirect:/login");
+		}
+
+		if (userName.equalsIgnoreCase(this.userName) && password.equals(this.password)) {
+			session.setAttribute(SessionKey.USER_INFO,userName);
+			userService.saveCookie(session, userName, response);
+			return new ModelAndView("redirect:/home");
+		}
+
+		return new ModelAndView("redirect:/login");
+	}
+
+}
