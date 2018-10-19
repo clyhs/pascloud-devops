@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import com.pascloud.core.mina.config.BaseServerConfig;
 import com.pascloud.core.mina.config.MinaClientConfig;
+import com.pascloud.core.netty.config.NettyClientConfig;
 import com.pascloud.core.script.ScriptManager;
 import com.pascloud.core.server.IMutilTcpClientService;
 import com.pascloud.core.server.ITcpClientService;
@@ -92,9 +93,9 @@ public class GameServerCheckTimer extends ScheduledTask {
 		if (baseServerConfig instanceof MinaClientConfig) {
 			MinaClientConfig minaClientConfig = (MinaClientConfig) baseServerConfig;
 			info.setType(minaClientConfig.getType().getType());
-		//}else if(baseServerConfig instanceof NettyClientConfig) {
-			//NettyClientConfig nettyClientConfig=(NettyClientConfig) baseServerConfig;
-			//info.setType(nettyClientConfig.getType().getType());
+		}else if(baseServerConfig instanceof NettyClientConfig) {
+			NettyClientConfig nettyClientConfig=(NettyClientConfig) baseServerConfig;
+			info.setType(nettyClientConfig.getType().getType());
 		} else {
 			throw new RuntimeException("服务器配置未实现");
 		}
