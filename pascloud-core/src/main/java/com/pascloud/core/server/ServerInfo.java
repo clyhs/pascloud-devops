@@ -109,8 +109,6 @@ public class ServerInfo {
 	/**
 	 * 获取空闲连接
 	 * 
-	 * @author JiangZhiYong
-	 * @QQ 359135103 2017年8月29日 下午3:36:38
 	 * @return
 	 */
 	public Channel getMostIdleChannel() {

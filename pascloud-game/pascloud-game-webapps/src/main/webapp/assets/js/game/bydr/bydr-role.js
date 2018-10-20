@@ -1,6 +1,5 @@
 /**
  * 捕鱼数据js
- * @author JiangZhiYong
  * */
 
 /**角色ID*/
