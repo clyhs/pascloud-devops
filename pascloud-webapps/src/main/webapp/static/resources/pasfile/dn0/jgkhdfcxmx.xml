@@ -25,7 +25,7 @@
         <attribute key="sql" value="select fabh as key,famc as value from khfa_fapz where khnf= cast(substr('$tjrq$',1,4) as integer) and yyzlbh=2 and khdx='1'" />
         <attribute key="isRequired" value="false" />
         <attribute key="name" value="fabh" />
-        <attribute key="isAll" value="true" />
+        <attribute key="isAll" value="false" />
         <attribute key="isEditable" value="true" />
       </tag>
       <tag row="0" col="3" colspan="1" rowspan="1" name="MSQL4Select" label="维度名称">
@@ -77,11 +77,15 @@
     <col id="BDZ" title="保底值" align="right" type="float" width="120" frozen="false" format="" exp="false" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
     <col id="FDZ" title="封顶值" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false" />
     <col id="YYSM" title="应用说明" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false" />
+    <col id="ZBQZ" title="权重" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false" />
+    <col id="JSFS" title="计算方式" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="" mergeCells="false" footerCells="false" />
+    <col id="JSFSZ" title="JSFSZ" align="left" type="hidden" width="120" frozen="false" format="" exp="false" zsy="false" showDymCol="" mergeCells="false" footerCells="false" />
+    <col id="PYHZ" title="PYHZ" align="left" type="hidden" width="120" frozen="false" format="" exp="false" zsy="false" showDymCol="" mergeCells="false" footerCells="false" />
   </table>
   <sqlMap namespace="studio.jgkhdfcxmx">
     <select id="dn0.jgkhdfcxmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select $tjrq$ tjrq, jg.jgdh, jg.jgmc,jglb.lbmc,  khfa.famc,zbpz.wdmc, case when khzb.khzbmc is null then zbpz.xmmc else khzb.khzbmc end as khzbmc ,  yyjg.yyjg,yyjg.zbz,yyjg.jhz, zbpz.bdz,zbpz.fdz, yyjg.yysm      from khfa_yyjg_jg yyjg      inner join khfa_fapz khfa on khfa.fabh = yyjg.fabh      inner join khdx_jg jg on yyjg.khdxdh=jg.khdxdh
+      select $tjrq$ tjrq, jg.jgdh, jg.jgmc,jglb.lbmc,  khfa.famc,zbpz.wdmc, case when khzb.khzbmc is null then zbpz.xmmc else khzb.khzbmc end as khzbmc ,  yyjg.yyjg,yyjg.zbz,yyjg.jhz,zbpz.zbqz, zbpz.bdz,zbpz.fdz, yyjg.yysm  ,case when zbpz.jsfs='0' then '手工录入' when zbpz.jsfs='1' then '系统计算'  when zbpz.jsfs='2' then '自定义程序' else '在线打分' end as jsfs     ,zbpz.jsfs as jsfsz,F_GET_STRZXPFPY('1',khfa.fabh,$tjrq$,yyjg.khdxdh) as pyhz     from khfa_yyjg_jg yyjg      inner join khfa_fapz khfa on khfa.fabh = yyjg.fabh      inner join khdx_jg jg on yyjg.khdxdh=jg.khdxdh
       <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
       inner join table(FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,0)) qx on jg.khdxdh = qx.khdxdh      inner join khdx_jglb jglb on jg.khdxdh=jglb.khdxdh
       <isNotEmpty property="tjrq">and $tjrq$ between jglb.qsrq  and jglb.jsrq</isNotEmpty>
@@ -91,11 +95,13 @@
       <isNotEmpty property="wdmc">and zbpz.wdmc = '$wdmc$'</isNotEmpty>
       <isNotEmpty property="khzbdh">and zbpz.khzbdh = $khzbdh$</isNotEmpty>
       <isNotEmpty property="jglb">and jglb.lbdh = '$jglb$'</isNotEmpty>
-      and khfa.yyzlbh=2 and khfa.khdx='1'     order by khfa.fabh desc,zbpz.wdmc,yyjg.yyjg desc,jg.khdxdh
+      and khfa.yyzlbh=2 and khfa.khdx='1'
+      <isNotEmpty property="jsfs">and zbpz.jsfs = '$jsfs$'</isNotEmpty>
+      order by khfa.fabh desc,zbpz.wdmc,yyjg.yyjg desc,jg.khdxdh
     </select>
     <select id="dn0.jgkhdfcxmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from ( select $tjrq$ tjrq, jg.jgdh, jg.jgmc,jglb.lbmc,  khfa.famc,zbpz.wdmc, case when khzb.khzbmc is null then zbpz.xmmc else khzb.khzbmc end as khzbmc ,  yyjg.yyjg,yyjg.zbz,yyjg.jhz, zbpz.bdz,zbpz.fdz, yyjg.yysm      from khfa_yyjg_jg yyjg      inner join khfa_fapz khfa on khfa.fabh = yyjg.fabh      inner join khdx_jg jg on yyjg.khdxdh=jg.khdxdh
+      select count(1) from ( select $tjrq$ tjrq, jg.jgdh, jg.jgmc,jglb.lbmc,  khfa.famc,zbpz.wdmc, case when khzb.khzbmc is null then zbpz.xmmc else khzb.khzbmc end as khzbmc ,  yyjg.yyjg,yyjg.zbz,yyjg.jhz,zbpz.zbqz, zbpz.bdz,zbpz.fdz, yyjg.yysm  ,case when zbpz.jsfs='0' then '手工录入' when zbpz.jsfs='1' then '系统计算'  when zbpz.jsfs='2' then '自定义程序' else '在线打分' end as jsfs     ,zbpz.jsfs as jsfsz,F_GET_STRZXPFPY('1',khfa.fabh,$tjrq$,yyjg.khdxdh) as pyhz     from khfa_yyjg_jg yyjg      inner join khfa_fapz khfa on khfa.fabh = yyjg.fabh      inner join khdx_jg jg on yyjg.khdxdh=jg.khdxdh
       <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
       inner join table(FN_GETSJJG_JAVA_QX($tjrq$,$login_khdxdh$,0)) qx on jg.khdxdh = qx.khdxdh      inner join khdx_jglb jglb on jg.khdxdh=jglb.khdxdh
       <isNotEmpty property="tjrq">and $tjrq$ between jglb.qsrq  and jglb.jsrq</isNotEmpty>
@@ -105,7 +111,9 @@
       <isNotEmpty property="wdmc">and zbpz.wdmc = '$wdmc$'</isNotEmpty>
       <isNotEmpty property="khzbdh">and zbpz.khzbdh = $khzbdh$</isNotEmpty>
       <isNotEmpty property="jglb">and jglb.lbdh = '$jglb$'</isNotEmpty>
-      and khfa.yyzlbh=2 and khfa.khdx='1'     order by khfa.fabh desc,zbpz.wdmc,yyjg.yyjg desc,jg.khdxdh ) t
+      and khfa.yyzlbh=2 and khfa.khdx='1'
+      <isNotEmpty property="jsfs">and zbpz.jsfs = '$jsfs$'</isNotEmpty>
+      order by khfa.fabh desc,zbpz.wdmc,yyjg.yyjg desc,jg.khdxdh ) t
     </select>
     <select id="dn0.jgkhdfcxmx_MSQL4SELECT_fabh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select fabh as key,famc as value from khfa_fapz where khnf= cast(substr('$tjrq$',1,4) as integer) and yyzlbh=2 and khdx='1'</select>
     <select id="dn0.jgkhdfcxmx_MSQL4SELECT_wdmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">

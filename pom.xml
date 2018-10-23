@@ -35,37 +35,7 @@
 		<joda-time.version>2.3</joda-time.version>
 	</properties>
 
-	<repositories>
-		<repository>
-			<id>pascloud</id>
-			<name>Pascloud</name>
-			<url>http://192.168.0.16:8081/nexus/content/groups/pascloud/</url>
-			<releases>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			</snapshots>
-		</repository>
-		<repository>  
-        <id>nexus</id>  
-        <name>Team Nexus Repository</name>  
-        <url>https://artifacts.alfresco.com/nexus/content/repositories/public</url>  
-    </repository> 
-	</repositories>
 	
-	<distributionManagement>
-		<repository>
-			<id>releases</id>
-			<url>http://192.168.0.16:8081/nexus/content/repositories/releases</url>
-		</repository>
-		<snapshotRepository>
-			<id>snapshots</id>
-			<url>http://192.168.0.16:8081/nexus/content/repositories/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
 
 	<dependencyManagement>
 		<dependencies>
@@ -93,6 +63,12 @@
 			<dependency>
 				<groupId>com.pascloud.devops</groupId>
 				<artifactId>pascloud-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.pascloud.devops</groupId>
+				<artifactId>pascloud-etl</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
@@ -758,9 +734,15 @@
 	<modules>
 		<module>pascloud-utils</module>
 		<module>pascloud-model</module>
+		 
 		<module>pascloud-dao-mybatis</module>
+		
 		<module>pascloud-webapps</module>
+		
 		<module>pascloud-module</module>
-        <module>pascloud-core</module>
+		 
+		<module>pascloud-core</module>
+		
+        <module>pascloud-etl</module>
   </modules>
 </project>

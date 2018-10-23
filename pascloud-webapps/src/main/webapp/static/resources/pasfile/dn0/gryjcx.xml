@@ -141,11 +141,12 @@
         <isNotEmpty property="tjrq"><![CDATA[and hy.zxrq>=$tjrq$]]></isNotEmpty>
         inner join khdx_jgcy cy on cy.khdxdh=yjzb.khdxdh and yjzb.tjrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh=cy.jgkhdxdh
         <isNotEmpty property="jgkhdxdh">and jg.khdxdh=$jgkhdxdh$</isNotEmpty>
-        inner join khdx_zb zb on zb.zbdh=yjzb.zbdh and zb.sfxs='0' inner join csb_dmms zbdw on upper(zbdw.dmmc)='ZBDW'and zbdw.dmz=zb.zbdw inner join csb_dmms sdbs on yjzb.sdbs=sdbs.dmz and  lower(sdbs.dmmc)='zbsdbs' inner join csb_bz bz on bz.bz=yjzb.bz inner join khdx_zblb lb1 on zb.zbdh=lb1.zbdh and yjzb.tjrq between lb1.qsrq and lb1.jsrq inner join table(FN_GETSJJG_JAVA_YWLB ($tjrq$,$login_khdxdh$,0)) qxywlb on qxywlb.ywlb=lb1.ywlb
+        inner join khdx_zb zb on zb.zbdh=yjzb.zbdh  inner join csb_dmms zbdw on upper(zbdw.dmmc)='ZBDW'and zbdw.dmz=zb.zbdw inner join csb_dmms sdbs on yjzb.sdbs=sdbs.dmz and  lower(sdbs.dmmc)='zbsdbs' inner join csb_bz bz on bz.bz=yjzb.bz inner join khdx_zblb lb1 on zb.zbdh=lb1.zbdh and yjzb.tjrq between lb1.qsrq and lb1.jsrq inner join table(FN_GETSJJG_JAVA_YWLB ($tjrq$,$login_khdxdh$,0)) qxywlb on qxywlb.ywlb=lb1.ywlb
         <isNotEmpty property="ywlb">and qxywlb.ywlb='$ywlb$'</isNotEmpty>
         inner join table(fn_getsjjg_java_qxhy($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh=yjzb.KHDXDH   left join yjzb_hykhjs js on js.zbdh = yjzb.zbdh and js.bz = yjzb.bz and js.sdbs = yjzb.sdbs  and js.khdxdh = yjzb.khdxdh and js.tjrq = yjzb.tjrq   where  1=1
         <isNotEmpty property="tjrq">and yjzb.tjrq=$tjrq$</isNotEmpty>
         <isNotEmpty property="zbdh">and yjzb.zbdh=$zbdh$</isNotEmpty>
+        and zb.sfxs='0'
         <isNotEmpty property="khdxdh">and yjzb.khdxdh in ($khdxdh$)</isNotEmpty>
         <isNotEmpty property="sdbs">and yjzb.sdbs='$sdbs$'</isNotEmpty>
         <isNotEmpty property="bz">and yjzb.bz='$bz$'</isNotEmpty>
@@ -165,11 +166,12 @@
         <isNotEmpty property="tjrq"><![CDATA[and hy.zxrq>=$tjrq$]]></isNotEmpty>
         inner join khdx_jgcy cy on cy.khdxdh=yjzb.khdxdh and yjzb.tjrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh=cy.jgkhdxdh
         <isNotEmpty property="jgkhdxdh">and jg.khdxdh=$jgkhdxdh$</isNotEmpty>
-        inner join khdx_zb zb on zb.zbdh=yjzb.zbdh and zb.sfxs='0' inner join csb_dmms zbdw on upper(zbdw.dmmc)='ZBDW'and zbdw.dmz=zb.zbdw inner join csb_dmms sdbs on yjzb.sdbs=sdbs.dmz and  lower(sdbs.dmmc)='zbsdbs' inner join csb_bz bz on bz.bz=yjzb.bz inner join khdx_zblb lb1 on zb.zbdh=lb1.zbdh and yjzb.tjrq between lb1.qsrq and lb1.jsrq inner join table(FN_GETSJJG_JAVA_YWLB ($tjrq$,$login_khdxdh$,0)) qxywlb on qxywlb.ywlb=lb1.ywlb
+        inner join khdx_zb zb on zb.zbdh=yjzb.zbdh  inner join csb_dmms zbdw on upper(zbdw.dmmc)='ZBDW'and zbdw.dmz=zb.zbdw inner join csb_dmms sdbs on yjzb.sdbs=sdbs.dmz and  lower(sdbs.dmmc)='zbsdbs' inner join csb_bz bz on bz.bz=yjzb.bz inner join khdx_zblb lb1 on zb.zbdh=lb1.zbdh and yjzb.tjrq between lb1.qsrq and lb1.jsrq inner join table(FN_GETSJJG_JAVA_YWLB ($tjrq$,$login_khdxdh$,0)) qxywlb on qxywlb.ywlb=lb1.ywlb
         <isNotEmpty property="ywlb">and qxywlb.ywlb='$ywlb$'</isNotEmpty>
         inner join table(fn_getsjjg_java_qxhy($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh=yjzb.KHDXDH   left join yjzb_hykhjs js on js.zbdh = yjzb.zbdh and js.bz = yjzb.bz and js.sdbs = yjzb.sdbs  and js.khdxdh = yjzb.khdxdh and js.tjrq = yjzb.tjrq   where  1=1
         <isNotEmpty property="tjrq">and yjzb.tjrq=$tjrq$</isNotEmpty>
         <isNotEmpty property="zbdh">and yjzb.zbdh=$zbdh$</isNotEmpty>
+        and zb.sfxs='0'
         <isNotEmpty property="khdxdh">and yjzb.khdxdh in ($khdxdh$)</isNotEmpty>
         <isNotEmpty property="sdbs">and yjzb.sdbs='$sdbs$'</isNotEmpty>
         <isNotEmpty property="bz">and yjzb.bz='$bz$'</isNotEmpty>
@@ -193,11 +195,12 @@
         <isNotEmpty property="tjrq"><![CDATA[and hy.zxrq>=$tjrq$]]></isNotEmpty>
         inner join khdx_jgcy cy on cy.khdxdh=yjzb.khdxdh and yjzb.tjrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh=cy.jgkhdxdh
         <isNotEmpty property="jgkhdxdh">and jg.khdxdh=$jgkhdxdh$</isNotEmpty>
-        inner join khdx_zb zb on zb.zbdh=yjzb.zbdh and zb.sfxs='0' inner join csb_dmms zbdw on upper(zbdw.dmmc)='ZBDW'and zbdw.dmz=zb.zbdw inner join csb_dmms sdbs on yjzb.sdbs=sdbs.dmz and  lower(sdbs.dmmc)='zbsdbs' inner join csb_bz bz on bz.bz=yjzb.bz inner join khdx_zblb lb1 on zb.zbdh=lb1.zbdh and yjzb.tjrq between lb1.qsrq and lb1.jsrq inner join table(FN_GETSJJG_JAVA_YWLB ($tjrq$,$login_khdxdh$,0)) qxywlb on qxywlb.ywlb=lb1.ywlb
+        inner join khdx_zb zb on zb.zbdh=yjzb.zbdh  inner join csb_dmms zbdw on upper(zbdw.dmmc)='ZBDW'and zbdw.dmz=zb.zbdw inner join csb_dmms sdbs on yjzb.sdbs=sdbs.dmz and  lower(sdbs.dmmc)='zbsdbs' inner join csb_bz bz on bz.bz=yjzb.bz inner join khdx_zblb lb1 on zb.zbdh=lb1.zbdh and yjzb.tjrq between lb1.qsrq and lb1.jsrq inner join table(FN_GETSJJG_JAVA_YWLB ($tjrq$,$login_khdxdh$,0)) qxywlb on qxywlb.ywlb=lb1.ywlb
         <isNotEmpty property="ywlb">and qxywlb.ywlb='$ywlb$'</isNotEmpty>
         inner join table(fn_getsjjg_java_qxhy($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh=yjzb.KHDXDH   left join yjzb_hykhjs js on js.zbdh = yjzb.zbdh and js.bz = yjzb.bz and js.sdbs = yjzb.sdbs  and js.khdxdh = yjzb.khdxdh and js.tjrq = yjzb.tjrq   where  1=1
         <isNotEmpty property="tjrq">and yjzb.tjrq=$tjrq$</isNotEmpty>
         <isNotEmpty property="zbdh">and yjzb.zbdh=$zbdh$</isNotEmpty>
+        and zb.sfxs='0'
         <isNotEmpty property="khdxdh">and yjzb.khdxdh in ($khdxdh$)</isNotEmpty>
         <isNotEmpty property="sdbs">and yjzb.sdbs='$sdbs$'</isNotEmpty>
         <isNotEmpty property="bz">and yjzb.bz='$bz$'</isNotEmpty>
@@ -217,11 +220,12 @@
         <isNotEmpty property="tjrq"><![CDATA[and hy.zxrq>=$tjrq$]]></isNotEmpty>
         inner join khdx_jgcy cy on cy.khdxdh=yjzb.khdxdh and yjzb.tjrq between cy.qsrq and cy.jsrq inner join khdx_jg jg on jg.khdxdh=cy.jgkhdxdh
         <isNotEmpty property="jgkhdxdh">and jg.khdxdh=$jgkhdxdh$</isNotEmpty>
-        inner join khdx_zb zb on zb.zbdh=yjzb.zbdh and zb.sfxs='0' inner join csb_dmms zbdw on upper(zbdw.dmmc)='ZBDW'and zbdw.dmz=zb.zbdw inner join csb_dmms sdbs on yjzb.sdbs=sdbs.dmz and  lower(sdbs.dmmc)='zbsdbs' inner join csb_bz bz on bz.bz=yjzb.bz inner join khdx_zblb lb1 on zb.zbdh=lb1.zbdh and yjzb.tjrq between lb1.qsrq and lb1.jsrq inner join table(FN_GETSJJG_JAVA_YWLB ($tjrq$,$login_khdxdh$,0)) qxywlb on qxywlb.ywlb=lb1.ywlb
+        inner join khdx_zb zb on zb.zbdh=yjzb.zbdh  inner join csb_dmms zbdw on upper(zbdw.dmmc)='ZBDW'and zbdw.dmz=zb.zbdw inner join csb_dmms sdbs on yjzb.sdbs=sdbs.dmz and  lower(sdbs.dmmc)='zbsdbs' inner join csb_bz bz on bz.bz=yjzb.bz inner join khdx_zblb lb1 on zb.zbdh=lb1.zbdh and yjzb.tjrq between lb1.qsrq and lb1.jsrq inner join table(FN_GETSJJG_JAVA_YWLB ($tjrq$,$login_khdxdh$,0)) qxywlb on qxywlb.ywlb=lb1.ywlb
         <isNotEmpty property="ywlb">and qxywlb.ywlb='$ywlb$'</isNotEmpty>
         inner join table(fn_getsjjg_java_qxhy($tjrq$,$login_khdxdh$,0)) qx on qx.khdxdh=yjzb.KHDXDH   left join yjzb_hykhjs js on js.zbdh = yjzb.zbdh and js.bz = yjzb.bz and js.sdbs = yjzb.sdbs  and js.khdxdh = yjzb.khdxdh and js.tjrq = yjzb.tjrq   where  1=1
         <isNotEmpty property="tjrq">and yjzb.tjrq=$tjrq$</isNotEmpty>
         <isNotEmpty property="zbdh">and yjzb.zbdh=$zbdh$</isNotEmpty>
+        and zb.sfxs='0'
         <isNotEmpty property="khdxdh">and yjzb.khdxdh in ($khdxdh$)</isNotEmpty>
         <isNotEmpty property="sdbs">and yjzb.sdbs='$sdbs$'</isNotEmpty>
         <isNotEmpty property="bz">and yjzb.bz='$bz$'</isNotEmpty>

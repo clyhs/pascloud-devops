@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="jgdbfx" title="机构对比分析" type="query" version="1.0.0.0" pid="" desc="标准版">
+<pageSetting id="jgdbfx" title="机构对比分析" type="query" version="1.0.0.0" desc="标准版" pid="">
   <conPart>
     <tags>
       <tag row="0" col="0" colspan="1" rowspan="1" name="Date" label="统计日期">
@@ -28,7 +28,17 @@
         <attribute key="name" value="jgkhdxdh" />
         <attribute key="multiple" value="true" />
       </tag>
-      <tag row="0" col="3" colspan="1" rowspan="1" name="Dmms" label="指标类型">
+      <tag row="0" col="3" colspan="1" rowspan="1" name="MSQL4Select" label=" 机构等级">
+        <attribute key="isMultiple" value="false" />
+        <attribute key="width" value="120px;" />
+        <attribute key="isSearch" value="false" />
+        <attribute key="sql" value="select dmz as key,dmms as value from csb_dmms where dmmc='JGDJ'" />
+        <attribute key="isRequired" value="false" />
+        <attribute key="name" value="jgdj" />
+        <attribute key="isAll" value="true" />
+        <attribute key="isEditable" value="true" />
+      </tag>
+      <tag row="0" col="4" colspan="1" rowspan="1" name="Dmms" label="指标类型">
         <attribute key="width" value="120px;" />
         <attribute key="dmmc" value="yjlx" />
         <attribute key="editable" value="true" />
@@ -100,13 +110,13 @@
         <attribute key="multiple" value="false" />
       </tag>
       <tag row="2" col="4" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="name" value="dbnf" />
+      </tag>
+      <tag row="2" col="4" colspan="1" rowspan="1" name="Hidden" label="">
         <attribute key="name" value="jzsjy" />
       </tag>
       <tag row="2" col="4" colspan="1" rowspan="1" name="Hidden" label="">
         <attribute key="name" value="tjnf" />
-      </tag>
-      <tag row="2" col="4" colspan="1" rowspan="1" name="Hidden" label="">
-        <attribute key="name" value="dbnf" />
       </tag>
     </tags>
   </conPart>
@@ -122,7 +132,7 @@
     <col id="ZL" title="增量" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
     <col id="BL" title="增幅(%)" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
   </table>
-  <table id="jgdbfx_khzbjgj" title="考核指标结果集" page="true">
+  <table id="jgdbfx_khzbjgj" title="考核指标结果集" page="false">
     <col id="JGDH" title="机构代号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
     <col id="JGMC" title="机构名称" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
     <col id="KHZBMC" title="指标名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
@@ -136,33 +146,34 @@
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
       <isEqual property="jzsjy" compareValue="fxzb_nfbt">
         <![CDATA[select t.jgdh,t.jgmc,t.tjz as tjz,t.dbz as dbz,cast((t.tjz-t.dbz) as decimal(19,2)) as zl,
-f_numtochar(case when (t.dbz is null or t.dbz=0) and t.tjz<>0 then 100 when (t.dbz is null or t.dbz=0) and t.tjz=0 then 0
-else cast(cast((t.tjz-t.dbz) as decimal(19,2))/t.dbz*100 as decimal(19,2)) end)||'%' as bl,t.bzzwmc as bz,t.sdbs,t.tjkj,t.zbmc
+F_NumToChar(case when (t.dbz is null or t.dbz=0) and t.tjz<>0 then 100
+                  when (t.dbz is null or t.dbz=0) and t.tjz=0   then 0
+      else cast(cast((t.tjz-t.dbz) as decimal(19,2))/t.dbz*100 as decimal(19,2))  end)||'%' as bl,
+      t.bzzwmc as bz,t.sdbs,t.tjkj,t.zbmc
 from (
-    select jg.jgdh,jg.jgmc,sum(yjzb.tjz) tjz,sum(yjzb.dbz) as dbz,bz.bzzwmc,
-    dmms_sdbs.dmms as sdbs,dmms_tjkj.dmms as tjkj,fxzb.zbmc
+    select jg.jgdh,jg.jgmc,sum(yjzb.tjz) tjz,
+    sum(yjzb.dbz) as dbz,bz.bzzwmc,
+    dmms_sdbs.dmms as sdbs,
+    dmms_tjkj.dmms as tjkj,fxzb.zbmc
     from khdx_zb fxzb
     inner join (
         select $qsrq$ as tjrq,zbdh,sdbs,bz,tjkj,khdxdh,zbz as tjz,0 as dbz
         from yjzb_jg_$tjnf$
-        where zbdh=$zbdh$ and bz='$bz$' and sdbs='$sdbs$' 
-        and tjkj='$tjkj$' and tjrq=$qsrq$
+        where zbdh = $zbdh$ and bz='$bz$' and sdbs = '$sdbs$' 
+        and tjkj='$tjkj$' and tjrq=$qsrq$ and khdxdh in ($jgkhdxdh$)
         union all
         select $jsrq$ as tjrq,zbdh,sdbs,bz,tjkj,khdxdh,0 as tjz,zbz as dbz
         from yjzb_jg_$dbnf$
-        where zbdh=$zbdh$ and bz='$bz$' and sdbs='$sdbs$' 
-        and tjkj='$tjkj$' and tjrq=$jsrq$
-    ) yjzb on yjzb.zbdh=fxzb.zbdh
-    inner join csb_bz bz on bz.bz=yjzb.bz
-    inner join khdx_jg jg on jg.khdxdh=yjzb.khdxdh
-    left join csb_dmms dmms_sdbs on dmms_sdbs.dmz=yjzb.sdbs and dmms_sdbs.dmmc='ZBSDBS'
-    left join csb_dmms dmms_tjkj on dmms_tjkj.dmz=yjzb.tjkj and dmms_tjkj.dmmc='TJKJ'   
-    inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,0)) qx on qx.khdxdh=yjzb.khdxdh 
-    inner join khdx_zblb zblb on zblb.zbdh=fxzb.zbdh and zblb.jsrq=29991231]]>
+        where zbdh = $zbdh$ and bz='$bz$' and sdbs = '$sdbs$' 
+        and tjkj='$tjkj$' and tjrq=$jsrq$ and khdxdh in ($jgkhdxdh$)
+    ) yjzb on yjzb.zbdh = fxzb.zbdh
+    inner join csb_bz bz on bz.bz = yjzb.bz
+    inner join khdx_jg jg on jg.khdxdh = yjzb.khdxdh]]>
+        <isNotEmpty property="jgdj">and jg.jgdj='$jgdj$'</isNotEmpty>
+        inner join csb_dmms dmms_sdbs on dmms_sdbs.dmz = yjzb.sdbs and dmms_sdbs.dmmc = 'ZBSDBS'     inner join csb_dmms dmms_tjkj on dmms_tjkj.dmz = yjzb.tjkj and dmms_tjkj.dmmc = 'TJKJ'        inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,0)) qx on qx.khdxdh = yjzb.khdxdh      inner join khdx_zblb zblb on zblb.zbdh=fxzb.zbdh and zblb.jsrq=29991231
         <isNotEmpty property="ywlb">and zblb.ywlb='$ywlb$'</isNotEmpty>
         where 1=1
-        <isNotEmpty property="fxzb">and  fxzb.zbdh=$fxzb$</isNotEmpty>
-        <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
+        <isNotEmpty property="fxzb">and  fxzb.zbdh = $fxzb$</isNotEmpty>
         group by jg.jgdh,jg.jgmc,fxzb.zbpx,bz.bzzwmc,dmms_sdbs.dmms,dmms_tjkj.dmms,fxzb.zbmc  ) t order by t.jgdh
       </isEqual>
       <isEqual property="jzsjy" compareValue="khzb_nfbt">
@@ -178,11 +189,11 @@ from (
         inner join  khfa_khzb_jg khzb on yjzb.zbdh = khzb.zbdh and yjzb.bz = khzb.bz and yjzb.sdbs=khzb.sdbs and yjzb.tjkj = khzb.tjkj
         where 1=1]]>
         <isNotEmpty property="khzb">and  khzb.khzbdh = $khzb$</isNotEmpty>
-        and tjrq=$qsrq$         union all         select $jsrq$ as tjrq,khzb.khzbmc,yjzb.khdxdh,0 as tjz,yjzb.zbz as dbz          from yjzb_jg_$dbnf$ yjzb         inner join  khfa_khzb_jg khzb on yjzb.zbdh = khzb.zbdh and yjzb.bz = khzb.bz and yjzb.sdbs=khzb.sdbs and yjzb.tjkj = khzb.tjkj         where 1=1
+        and tjrq=$qsrq$ and khdxdh in ($jgkhdxdh$)         union all         select $jsrq$ as tjrq,khzb.khzbmc,yjzb.khdxdh,0 as tjz,yjzb.zbz as dbz          from yjzb_jg_$dbnf$ yjzb         inner join  khfa_khzb_jg khzb on yjzb.zbdh = khzb.zbdh and yjzb.bz = khzb.bz and yjzb.sdbs=khzb.sdbs and yjzb.tjkj = khzb.tjkj         where 1=1
         <isNotEmpty property="khzb">and  khzb.khzbdh = $khzb$</isNotEmpty>
-        and  tjrq=$jsrq$     ) yjzb      inner join khdx_jg jg on jg.khdxdh = yjzb.khdxdh     inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,0)) qx on qx.khdxdh = yjzb.khdxdh
-        <isNotEmpty property="jgkhdxdh">where jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
-        group by jg.jgdh,jg.jgmc,yjzb.khzbmc  ) t order by t.jgdh
+        and  tjrq=$jsrq$ and khdxdh in ($jgkhdxdh$)     ) yjzb      inner join khdx_jg jg on jg.khdxdh = yjzb.khdxdh
+        <isNotEmpty property="jgdj">and jg.jgdj='$jgdj$'</isNotEmpty>
+        inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,0)) qx on qx.khdxdh = yjzb.khdxdh      group by jg.jgdh,jg.jgmc,yjzb.khzbmc  ) t order by t.jgdh
       </isEqual>
     </select>
     <select id="dn0.jgdbfxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
@@ -190,33 +201,34 @@ from (
       select count(1) from (
       <isEqual property="jzsjy" compareValue="fxzb_nfbt">
         <![CDATA[select t.jgdh,t.jgmc,t.tjz as tjz,t.dbz as dbz,cast((t.tjz-t.dbz) as decimal(19,2)) as zl,
-f_numtochar(case when (t.dbz is null or t.dbz=0) and t.tjz<>0 then 100 when (t.dbz is null or t.dbz=0) and t.tjz=0 then 0
-else cast(cast((t.tjz-t.dbz) as decimal(19,2))/t.dbz*100 as decimal(19,2)) end)||'%' as bl,t.bzzwmc as bz,t.sdbs,t.tjkj,t.zbmc
+F_NumToChar(case when (t.dbz is null or t.dbz=0) and t.tjz<>0 then 100
+                  when (t.dbz is null or t.dbz=0) and t.tjz=0   then 0
+      else cast(cast((t.tjz-t.dbz) as decimal(19,2))/t.dbz*100 as decimal(19,2))  end)||'%' as bl,
+      t.bzzwmc as bz,t.sdbs,t.tjkj,t.zbmc
 from (
-    select jg.jgdh,jg.jgmc,sum(yjzb.tjz) tjz,sum(yjzb.dbz) as dbz,bz.bzzwmc,
-    dmms_sdbs.dmms as sdbs,dmms_tjkj.dmms as tjkj,fxzb.zbmc
+    select jg.jgdh,jg.jgmc,sum(yjzb.tjz) tjz,
+    sum(yjzb.dbz) as dbz,bz.bzzwmc,
+    dmms_sdbs.dmms as sdbs,
+    dmms_tjkj.dmms as tjkj,fxzb.zbmc
     from khdx_zb fxzb
     inner join (
         select $qsrq$ as tjrq,zbdh,sdbs,bz,tjkj,khdxdh,zbz as tjz,0 as dbz
         from yjzb_jg_$tjnf$
-        where zbdh=$zbdh$ and bz='$bz$' and sdbs='$sdbs$' 
-        and tjkj='$tjkj$' and tjrq=$qsrq$
+        where zbdh = $zbdh$ and bz='$bz$' and sdbs = '$sdbs$' 
+        and tjkj='$tjkj$' and tjrq=$qsrq$ and khdxdh in ($jgkhdxdh$)
         union all
         select $jsrq$ as tjrq,zbdh,sdbs,bz,tjkj,khdxdh,0 as tjz,zbz as dbz
         from yjzb_jg_$dbnf$
-        where zbdh=$zbdh$ and bz='$bz$' and sdbs='$sdbs$' 
-        and tjkj='$tjkj$' and tjrq=$jsrq$
-    ) yjzb on yjzb.zbdh=fxzb.zbdh
-    inner join csb_bz bz on bz.bz=yjzb.bz
-    inner join khdx_jg jg on jg.khdxdh=yjzb.khdxdh
-    left join csb_dmms dmms_sdbs on dmms_sdbs.dmz=yjzb.sdbs and dmms_sdbs.dmmc='ZBSDBS'
-    left join csb_dmms dmms_tjkj on dmms_tjkj.dmz=yjzb.tjkj and dmms_tjkj.dmmc='TJKJ'   
-    inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,0)) qx on qx.khdxdh=yjzb.khdxdh 
-    inner join khdx_zblb zblb on zblb.zbdh=fxzb.zbdh and zblb.jsrq=29991231]]>
+        where zbdh = $zbdh$ and bz='$bz$' and sdbs = '$sdbs$' 
+        and tjkj='$tjkj$' and tjrq=$jsrq$ and khdxdh in ($jgkhdxdh$)
+    ) yjzb on yjzb.zbdh = fxzb.zbdh
+    inner join csb_bz bz on bz.bz = yjzb.bz
+    inner join khdx_jg jg on jg.khdxdh = yjzb.khdxdh]]>
+        <isNotEmpty property="jgdj">and jg.jgdj='$jgdj$'</isNotEmpty>
+        inner join csb_dmms dmms_sdbs on dmms_sdbs.dmz = yjzb.sdbs and dmms_sdbs.dmmc = 'ZBSDBS'     inner join csb_dmms dmms_tjkj on dmms_tjkj.dmz = yjzb.tjkj and dmms_tjkj.dmmc = 'TJKJ'        inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,0)) qx on qx.khdxdh = yjzb.khdxdh      inner join khdx_zblb zblb on zblb.zbdh=fxzb.zbdh and zblb.jsrq=29991231
         <isNotEmpty property="ywlb">and zblb.ywlb='$ywlb$'</isNotEmpty>
         where 1=1
-        <isNotEmpty property="fxzb">and  fxzb.zbdh=$fxzb$</isNotEmpty>
-        <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
+        <isNotEmpty property="fxzb">and  fxzb.zbdh = $fxzb$</isNotEmpty>
         group by jg.jgdh,jg.jgmc,fxzb.zbpx,bz.bzzwmc,dmms_sdbs.dmms,dmms_tjkj.dmms,fxzb.zbmc  ) t order by t.jgdh
       </isEqual>
       <isEqual property="jzsjy" compareValue="khzb_nfbt">
@@ -232,14 +244,15 @@ from (
         inner join  khfa_khzb_jg khzb on yjzb.zbdh = khzb.zbdh and yjzb.bz = khzb.bz and yjzb.sdbs=khzb.sdbs and yjzb.tjkj = khzb.tjkj
         where 1=1]]>
         <isNotEmpty property="khzb">and  khzb.khzbdh = $khzb$</isNotEmpty>
-        and tjrq=$qsrq$         union all         select $jsrq$ as tjrq,khzb.khzbmc,yjzb.khdxdh,0 as tjz,yjzb.zbz as dbz          from yjzb_jg_$dbnf$ yjzb         inner join  khfa_khzb_jg khzb on yjzb.zbdh = khzb.zbdh and yjzb.bz = khzb.bz and yjzb.sdbs=khzb.sdbs and yjzb.tjkj = khzb.tjkj         where 1=1
+        and tjrq=$qsrq$ and khdxdh in ($jgkhdxdh$)         union all         select $jsrq$ as tjrq,khzb.khzbmc,yjzb.khdxdh,0 as tjz,yjzb.zbz as dbz          from yjzb_jg_$dbnf$ yjzb         inner join  khfa_khzb_jg khzb on yjzb.zbdh = khzb.zbdh and yjzb.bz = khzb.bz and yjzb.sdbs=khzb.sdbs and yjzb.tjkj = khzb.tjkj         where 1=1
         <isNotEmpty property="khzb">and  khzb.khzbdh = $khzb$</isNotEmpty>
-        and  tjrq=$jsrq$     ) yjzb      inner join khdx_jg jg on jg.khdxdh = yjzb.khdxdh     inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,0)) qx on qx.khdxdh = yjzb.khdxdh
-        <isNotEmpty property="jgkhdxdh">where jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
-        group by jg.jgdh,jg.jgmc,yjzb.khzbmc  ) t order by t.jgdh
+        and  tjrq=$jsrq$ and khdxdh in ($jgkhdxdh$)     ) yjzb      inner join khdx_jg jg on jg.khdxdh = yjzb.khdxdh
+        <isNotEmpty property="jgdj">and jg.jgdj='$jgdj$'</isNotEmpty>
+        inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,0)) qx on qx.khdxdh = yjzb.khdxdh      group by jg.jgdh,jg.jgmc,yjzb.khzbmc  ) t order by t.jgdh
       </isEqual>
       ) t
     </select>
+    <select id="dn0.jgdbfx_MSQL4SELECT_jgdj" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc='JGDJ'</select>
     <select id="dn0.jgdbfx_MSQL4SELECT_khzb" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select khzbdh as KEY,khzbmc as VALUE from khfa_khzb_jg order by zbpx</select>
   </sqlMap>
   <finger custPlotMth="" id="jgdbfx_khzbjgj">

@@ -60,6 +60,10 @@
         <attribute key="isAll" value="false" />
         <attribute key="isEditable" value="true" />
       </tag>
+      <tag row="0" col="4" colspan="1" rowspan="1" name="Hidden" label="">
+        <attribute key="defVal" value="$khrq$" />
+        <attribute key="name" value="khrq" />
+      </tag>
       <tag row="1" col="0" colspan="1" rowspan="1" name="MSQL4Select" label="方案名称">
         <attribute key="parents" value="khzq" />
         <attribute key="selectedList" value="1" />
@@ -166,22 +170,22 @@
     <items id="jgzxpfjdcx_xsjy1jgj" />
   </rels>
   <javascript><![CDATA[jQuery(document).ready(function () {
-  BindParent('famc','khnf','blur');
+  BindParent('fabh','khnf','blur');
   PAS.di.execute('jgzxpfjdcx_getPfjsts',getPfjsts);
-  setTimeout(function () {
-  $("[name='khdxdh_mc']").val('');
-  $("[name='khdxdh']").val('');
-  $("#query_table tr:eq(1) ").append($("#query_table tr:eq(2)").find("td:last"));
-  $('#khzq').change(function(){
-  
+   $('#khzq').change(function(){
+  for (i = 1; i < 13; i++) {
+        
+      $('#khqs').append("<option value='"+i+"'>" + i + "月</option>"); 
+        
+  } 
   var xtrq = $('#xtrq').val();
   var pfts = $('#pfjsts').val();
  
   //var data =  minusDate(xtrq,pfts);
  // var qs = parseInt(data.substr(4,2));
-  var qs = minusDate(xtrq,pfts);
+  var qs = minusDate(xtrq,pfts);$('#khqs').empty(); 
   if($('#khzq').val()=='1'){
-      $('#khqs').empty(); 
+      
       for (i = 1; i < 13; i++) {
         if (qs != 0 && i == qs) {
             $('#khqs').append("<option value='"+i+"' selected='selected'>" + i + "月</option>"); 
@@ -190,7 +194,7 @@
         }
      }
    }else if($('#khzq').val()=='2'){
-     $('#khqs').empty();
+     
     for (i = 1; i < 5; i++) {
       var qs2 = qs/3;
       if (qs2 != 0 && i == qs2) {
@@ -201,13 +205,28 @@
     }
         
    }else{
-     $('#khqs').empty();
+     
      $('#khqs').append("<option value='"+$('#khnf').val()+"'>全年</option>");
      
    }
- }).trigger('change'); },200);
+ 
+})
+  
 });
-
+function getNJY(){
+  
+  $("[name='khdxdh_mc']").val('');
+  $("[name='khdxdh']").val('');
+  var qs = "";
+  var xtrq = $('#xtrq').val();
+  var pfts = $('#pfjsts').val();
+  for (i = 1; i <13; i++) {
+       qs = minusDate(xtrq,pfts)==i ? "selected='selected'" :""; 
+      $('#khqs').append("<option value='"+i+"' "+qs+">" + i + "月</option>"); 
+        
+  } 
+  $("#query_table tr:eq(1) ").append($("#query_table tr:eq(2)").find("td:last"));
+ }
 //得到减轻评分天数的月份
 function minusDate(data,day){
  
@@ -247,7 +266,9 @@ function customOnLoadSuccess(data){
      highLightDataGride(data,compare,{color:'red'},'PFZT');
     createGridDataListBar(data);
 }
-
+function callbackFun(p){
+  p=="khqs"&&getNJY();
+}
 function compare(row){
    var pfzt = row['PFZT'];
     return  pfzt=='未完成';

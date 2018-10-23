@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<pageSetting id="zxpfdfmx" title="机构在线评分得分明细" type="query" version="1.0.0.0" pid="" desc="标准版"> 
-  <conPart> 
-    <tags/> 
-  </conPart>  
-  <table id="zxpfdfmx_xsjy1jgj" title="新数据源1结果集" page="true"> 
-    <col id="JFLX" title="计分类型" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="DXLXMC" title="评分对象类型" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="QZZB" title="权重占比" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="PJDF" title="平均得分" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/>  
-    <col id="PYHZ" title="评语汇总" align="left" type="string" width="700" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false"/> 
-  </table>  
-  <sqlMap namespace="studio.zxpfdfmx"> 
-    <select id="dn0.zxpfdfmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>  <![CDATA[select case when b.jflx='1' then '打分者权重计分' 
+<pageSetting id="zxpfdfmx" title="机构在线评分得分明细" type="query" version="1.0.0.0" pid="" desc="标准版">
+  <conPart>
+    <tags />
+  </conPart>
+  <table id="zxpfdfmx_xsjy1jgj" title="新数据源1结果集" page="true">
+    <col id="JFLX" title="计分类型" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="DXLXMC" title="评分对象类型" align="left" type="string" width="200" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QZZB" title="权重占比" align="right" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="PJDF" title="平均得分" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="PYHZ" title="评语汇总" align="left" type="string" width="700" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+  </table>
+  <sqlMap namespace="studio.zxpfdfmx">
+    <select id="dn0.zxpfdfmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      <![CDATA[select case when b.jflx='1' then '打分者权重计分' 
             when b.jflx='2' then '打分者平均得分' 
             when b.jflx='3' then '打分者平均得分（去掉一个最高分，一个最低分）' 
             when b.jflx='4' then '在权重比例内再取人员平均（去掉一个最高分，一个最低分）' 
@@ -24,14 +24,17 @@
 from KHFA_ZXPFFA a
 inner join KHFA_ZXPFZ b on a.fabh=b.fabh and a.khqs=b.khqs and a.pjr=b.pjr and a.khdxdh=b.khdxdh 
 inner join CSB_PFLX c on b.pfdxlx=c.pfdxlx and c.sykhdx=b.khdx
-inner join csb_sjw d on 1=1]]>  
-      <isNotEmpty property="tjrq">and d.tjrq=$tjrq$</isNotEmpty> and d.tjrq=(case when a.khzq=3 then d.nm when a.khzq=2 then d.jm else d.ym end) where 1=1 
-      <isNotEmpty property="fabh">and b.fabh=$fabh$</isNotEmpty>  
-      <isNotEmpty property="khdxdh">and a.khdxdh= $khdxdh$</isNotEmpty>  
-      <isNotEmpty property="khzbdh">and b.khzbdh=$khzbdh$</isNotEmpty> and a.pfzt='1' and a.khdx='1' and b.pf is not null and a.khqs=(case when a.khzq=1 then cast(substr(cast(d.tjrq as char(8)),5,2) as integer) when a.khzq=2 then cast(cast(substr(cast(d.tjrq as char(8)),5,2) as integer)/3 as integer) else cast(substr(cast(d.tjrq as char(8)),1,4) as integer) end) group by a.khdx,a.fabh,a.khqs,a.khdxdh,b.jflx,b.pfdxlx,c.dxlxmc,b.qzzb
-    </select>  
-    <select id="dn0.zxpfdfmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer"> 
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty> select count(1) from ( <![CDATA[select case when b.jflx='1' then '打分者权重计分' 
+inner join csb_sjw d on 1=1]]>
+      <isNotEmpty property="tjrq">and   d.tjrq=$tjrq$</isNotEmpty>
+      and d.tjrq=(case when a.khzq=3 then d.nm when a.khzq=2 then d.jm else d.ym end) where 1=1
+      <isNotEmpty property="fabh">and  b.fabh=$fabh$</isNotEmpty>
+      <isNotEmpty property="khdxdh">and a.khdxdh= $khdxdh$</isNotEmpty>
+      <isNotEmpty property="khzbdh">and b.khzbdh=$khzbdh$</isNotEmpty>
+      and a.pfzt='1' and a.khdx='1' and b.pf is not null and a.khqs=(case when a.khzq=1 then cast(substr(cast(d.tjrq as char(8)),5,2) as integer)                                       when a.khzq=2 then cast(cast(substr(cast(d.tjrq as char(8)),5,2) as integer)/3 as integer)                                       else cast(substr(cast(d.tjrq as char(8)),1,4) as integer) end) group by  a.khdx,a.fabh,a.khqs,a.khdxdh,b.jflx,b.pfdxlx,c.dxlxmc,b.qzzb
+    </select>
+    <select id="dn0.zxpfdfmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      select count(1) from ( <![CDATA[select case when b.jflx='1' then '打分者权重计分' 
             when b.jflx='2' then '打分者平均得分' 
             when b.jflx='3' then '打分者平均得分（去掉一个最高分，一个最低分）' 
             when b.jflx='4' then '在权重比例内再取人员平均（去掉一个最高分，一个最低分）' 
@@ -42,16 +45,18 @@ inner join csb_sjw d on 1=1]]>
 from KHFA_ZXPFFA a
 inner join KHFA_ZXPFZ b on a.fabh=b.fabh and a.khqs=b.khqs and a.pjr=b.pjr and a.khdxdh=b.khdxdh 
 inner join CSB_PFLX c on b.pfdxlx=c.pfdxlx and c.sykhdx=b.khdx
-inner join csb_sjw d on 1=1]]>  
-      <isNotEmpty property="tjrq">and d.tjrq=$tjrq$</isNotEmpty> and d.tjrq=(case when a.khzq=3 then d.nm when a.khzq=2 then d.jm else d.ym end) where 1=1 
-      <isNotEmpty property="fabh">and b.fabh=$fabh$</isNotEmpty>  
-      <isNotEmpty property="khdxdh">and a.khdxdh= $khdxdh$</isNotEmpty>  
-      <isNotEmpty property="khzbdh">and b.khzbdh=$khzbdh$</isNotEmpty> and a.pfzt='1' and a.khdx='1' and b.pf is not null and a.khqs=(case when a.khzq=1 then cast(substr(cast(d.tjrq as char(8)),5,2) as integer) when a.khzq=2 then cast(cast(substr(cast(d.tjrq as char(8)),5,2) as integer)/3 as integer) else cast(substr(cast(d.tjrq as char(8)),1,4) as integer) end) group by a.khdx,a.fabh,a.khqs,a.khdxdh,b.jflx,b.pfdxlx,c.dxlxmc,b.qzzb ) t
-    </select> 
-  </sqlMap>  
-  <rels> 
-    <items id="zxpfdfmx_xsjy1jgj"/> 
-  </rels>  
+inner join csb_sjw d on 1=1]]>
+      <isNotEmpty property="tjrq">and   d.tjrq=$tjrq$</isNotEmpty>
+      and d.tjrq=(case when a.khzq=3 then d.nm when a.khzq=2 then d.jm else d.ym end) where 1=1
+      <isNotEmpty property="fabh">and  b.fabh=$fabh$</isNotEmpty>
+      <isNotEmpty property="khdxdh">and a.khdxdh= $khdxdh$</isNotEmpty>
+      <isNotEmpty property="khzbdh">and b.khzbdh=$khzbdh$</isNotEmpty>
+      and a.pfzt='1' and a.khdx='1' and b.pf is not null and a.khqs=(case when a.khzq=1 then cast(substr(cast(d.tjrq as char(8)),5,2) as integer)                                       when a.khzq=2 then cast(cast(substr(cast(d.tjrq as char(8)),5,2) as integer)/3 as integer)                                       else cast(substr(cast(d.tjrq as char(8)),1,4) as integer) end) group by  a.khdx,a.fabh,a.khqs,a.khdxdh,b.jflx,b.pfdxlx,c.dxlxmc,b.qzzb ) t
+    </select>
+  </sqlMap>
+  <rels>
+    <items id="zxpfdfmx_xsjy1jgj" />
+  </rels>
   <javascript><![CDATA[jQuery(document).ready(function () {
 $('#myForm').hide();
 });
@@ -59,5 +64,6 @@ $('#myForm').hide();
 //自定义验证，在提交时执行。通过返回true，否则返回false
 function customValidate(){
  return true;
-}]]></javascript> 
+}]]></javascript>
 </pageSetting>
+

@@ -18,47 +18,86 @@
         <attribute key="name" value="khdxdh" />
         <attribute key="multiple" value="true" />
       </tag>
+      <tag row="0" col="2" colspan="1" rowspan="1" name="Date" label="签约日期">
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="defValType" value="ym" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="qyqsrq" />
+        <attribute key="minDate" value="no" />
+      </tag>
+      <tag row="0" col="3" colspan="1" rowspan="1" name="Date" label="至">
+        <attribute key="dateFmt" value="yyyyMMdd" />
+        <attribute key="defValType" value="sysDate" />
+        <attribute key="editable" value="true" />
+        <attribute key="isRequired" value="true" />
+        <attribute key="name" value="qyjsrq" />
+        <attribute key="minDate" value="no" />
+      </tag>
+      <tag row="1" col="0" colspan="1" rowspan="1" name="Text" label="客户号">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="khh" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="1" col="1" colspan="1" rowspan="1" name="Text" label="客户名称">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="khmc" />
+        <attribute key="readonly" value="false" />
+      </tag>
+      <tag row="1" col="2" colspan="1" rowspan="1" name="Text" label="手机号码">
+        <attribute key="editable" value="true" />
+        <attribute key="name" value="sjhm" />
+        <attribute key="readonly" value="false" />
+      </tag>
     </tags>
   </conPart>
   <table id="dxtyjmx_xsjy1jgj" title="新数据源1结果集" page="noCount">
-    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false" />
-    <col id="QYKEY" title="签约KEY" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="HTH" title="合同号" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="KHMC" title="客户名称" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="QYRQ" title="签约日期" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="QYJG" title="签约机构" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false" />
-    <col id="JYZH" title="交易账号" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="CXRQ" title="撤销日期" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-    <col id="1446021304897" title="业绩关系" align="left" type="string" width="435" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false">
-      <col id="HYDH" title="行员代号" align="left" type="string" width="90" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="HYMC" title="行员名称" align="left" type="string" width="120" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="ZLBL" title="分配比例" align="right" type="float" width="75" frozen="false" format="" exp="true" showDymCol="true" mergeCells="false" footerCells="false" />
-      <col id="QSRQ" title="起始日期" align="left" type="string" width="75" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
-      <col id="JSRQ" title="结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" />
+    <col id="QYKEY" title="签约KEY" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="HTH" title="合同号" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHH" title="客户号" align="left" type="string" width="150" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="KHMC" title="客户名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="SJHM" title="手机号码" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QYRQ" title="签约日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="QYJG" title="签约机构" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" />
+    <col id="CXRQ" title="撤销日期" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="1446021304897" title="业绩关系" align="left" type="string" width="555" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false">
+      <col id="HYSSJG" title="行员归属机构" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="HYDH" title="行员代号" align="left" type="string" width="90" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="HYMC" title="行员名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="ZLBL" title="分配比例" align="right" type="float" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" />
+      <col id="QSRQ" title="起始日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+      <col id="JSRQ" title="结束日期" align="left" type="string" width="75" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
     </col>
   </table>
   <sqlMap namespace="studio.dxtyjmx">
     <select id="dn0.dxtyjmxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select a.* from  (select         khdx_hy.khdxdh        ,JXDX_DXTQY.qykey        ,JXDX_DXTQY.HTH        ,JXDX_DXTQY.KHH        ,JXDX_DXTQY.KHMC        ,JXDX_DXTQY.QYRQ        ,khdx_hy.HYDH        ,khdx_hy.HYMC        ,DXGX_YJGX_DXT.QSRQ        ,DXGX_YJGX_DXT.JSRQ        ,DXGX_YJGX_DXT.ZLBL        ,KHDX_JG_alias.JGMC QYJG        ,JXDX_DXTQY.JYZH               ,JXDX_DXTQY.CXRQ  from DXGX_YJGX_DXT DXGX_YJGX_DXT   inner join JXDX_DXTQY JXDX_DXTQY     on  DXGX_YJGX_DXT.qykey = JXDX_DXTQY.qykey  inner join khdx_hy khdx_hy     on DXGX_YJGX_DXT.khdxdh = khdx_hy.khdxdh     inner join KHDX_JG KHDX_JG_alias     on KHDX_JG_alias.JGDH = JXDX_DXTQY.JGDH
+      select         khdx_hy.khdxdh        ,JXDX_DXTQY.qykey        ,JXDX_DXTQY.HTH        ,JXDX_DXTQY.KHH        ,JXDX_DXTQY.KHMC        ,JXDX_DXTQY.QYRQ        ,JXDX_DXTQY.SJHM        ,jg.jgmc as hyssjg        ,khdx_hy.HYDH        ,khdx_hy.HYMC        ,DXGX_YJGX_DXT.QSRQ        ,DXGX_YJGX_DXT.JSRQ        ,DXGX_YJGX_DXT.ZLBL        ,KHDX_JG_alias.JGMC QYJG             ,JXDX_DXTQY.CXRQ   from DXGX_YJGX_DXT DXGX_YJGX_DXT   inner join JXDX_DXTQY JXDX_DXTQY on  DXGX_YJGX_DXT.qykey = JXDX_DXTQY.qykey  inner join khdx_hy khdx_hy on DXGX_YJGX_DXT.khdxdh = khdx_hy.khdxdh     inner join KHDX_JG KHDX_JG_alias on KHDX_JG_alias.JGDH = JXDX_DXTQY.JGDH  inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$, $login_khdxdh$, 0)) hyqx on khdx_hy.khdxdh = hyqx.khdxdh   inner join khdx_jgcy cy on cy.khdxdh=khdx_hy.khdxdh
+      <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+      inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh
       <isNotEmpty property="tjrq">where $tjrq$ between DXGX_YJGX_DXT.qsrq and DXGX_YJGX_DXT.jsrq</isNotEmpty>
       <isNotEmpty property="khdxdh">and khdx_hy.khdxdh in ($khdxdh$)</isNotEmpty>
-      ) a  inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$, $login_khdxdh$, 0)) hyqx  on a.khdxdh = hyqx.khdxdh    order by qsrq
+      <isNotEmpty property="qyqsrq">and JXDX_DXTQY.QYRQ between $qyqsrq$ and $qyjsrq$</isNotEmpty>
+      <isNotEmpty property="khh">and JXDX_DXTQY.khh like '%$khh$%'</isNotEmpty>
+      <isNotEmpty property="khmc">and JXDX_DXTQY.khmc like '%$khmc$%'</isNotEmpty>
+      <isNotEmpty property="sjhm">and JXDX_DXTQY.sjhm like '%$sjhm$%'</isNotEmpty>
+      order by khdx_hy.HYDH,JXDX_DXTQY.QYRQ,DXGX_YJGX_DXT.QSRQ asc
     </select>
     <select id="dn0.dxtyjmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from ( select a.* from  (select         khdx_hy.khdxdh        ,JXDX_DXTQY.qykey        ,JXDX_DXTQY.HTH        ,JXDX_DXTQY.KHH        ,JXDX_DXTQY.KHMC        ,JXDX_DXTQY.QYRQ        ,khdx_hy.HYDH        ,khdx_hy.HYMC        ,DXGX_YJGX_DXT.QSRQ        ,DXGX_YJGX_DXT.JSRQ        ,DXGX_YJGX_DXT.ZLBL        ,KHDX_JG_alias.JGMC QYJG        ,JXDX_DXTQY.JYZH               ,JXDX_DXTQY.CXRQ  from DXGX_YJGX_DXT DXGX_YJGX_DXT   inner join JXDX_DXTQY JXDX_DXTQY     on  DXGX_YJGX_DXT.qykey = JXDX_DXTQY.qykey  inner join khdx_hy khdx_hy     on DXGX_YJGX_DXT.khdxdh = khdx_hy.khdxdh     inner join KHDX_JG KHDX_JG_alias     on KHDX_JG_alias.JGDH = JXDX_DXTQY.JGDH
+      select count(1) from ( select         khdx_hy.khdxdh        ,JXDX_DXTQY.qykey        ,JXDX_DXTQY.HTH        ,JXDX_DXTQY.KHH        ,JXDX_DXTQY.KHMC        ,JXDX_DXTQY.QYRQ        ,JXDX_DXTQY.SJHM        ,jg.jgmc as hyssjg        ,khdx_hy.HYDH        ,khdx_hy.HYMC        ,DXGX_YJGX_DXT.QSRQ        ,DXGX_YJGX_DXT.JSRQ        ,DXGX_YJGX_DXT.ZLBL        ,KHDX_JG_alias.JGMC QYJG             ,JXDX_DXTQY.CXRQ   from DXGX_YJGX_DXT DXGX_YJGX_DXT   inner join JXDX_DXTQY JXDX_DXTQY on  DXGX_YJGX_DXT.qykey = JXDX_DXTQY.qykey  inner join khdx_hy khdx_hy on DXGX_YJGX_DXT.khdxdh = khdx_hy.khdxdh     inner join KHDX_JG KHDX_JG_alias on KHDX_JG_alias.JGDH = JXDX_DXTQY.JGDH  inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$, $login_khdxdh$, 0)) hyqx on khdx_hy.khdxdh = hyqx.khdxdh   inner join khdx_jgcy cy on cy.khdxdh=khdx_hy.khdxdh
+      <isNotEmpty property="tjrq">and $tjrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
+      inner join khdx_jg jg on cy.jgkhdxdh=jg.khdxdh
       <isNotEmpty property="tjrq">where $tjrq$ between DXGX_YJGX_DXT.qsrq and DXGX_YJGX_DXT.jsrq</isNotEmpty>
       <isNotEmpty property="khdxdh">and khdx_hy.khdxdh in ($khdxdh$)</isNotEmpty>
-      ) a  inner join table(FN_GETSJJG_JAVA_QXHY($tjrq$, $login_khdxdh$, 0)) hyqx  on a.khdxdh = hyqx.khdxdh    order by qsrq ) t
+      <isNotEmpty property="qyqsrq">and JXDX_DXTQY.QYRQ between $qyqsrq$ and $qyjsrq$</isNotEmpty>
+      <isNotEmpty property="khh">and JXDX_DXTQY.khh like '%$khh$%'</isNotEmpty>
+      <isNotEmpty property="khmc">and JXDX_DXTQY.khmc like '%$khmc$%'</isNotEmpty>
+      <isNotEmpty property="sjhm">and JXDX_DXTQY.sjhm like '%$sjhm$%'</isNotEmpty>
+      order by khdx_hy.HYDH,JXDX_DXTQY.QYRQ,DXGX_YJGX_DXT.QSRQ asc ) t
     </select>
   </sqlMap>
-  <finger custPlotMth="">
-    <plotType />
-    <needPlot>false</needPlot>
-    <plotTitle />
-  </finger>
   <rels>
     <items id="dxtyjmx_xsjy1jgj" />
   </rels>

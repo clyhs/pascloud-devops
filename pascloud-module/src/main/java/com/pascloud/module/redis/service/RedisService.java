@@ -364,8 +364,7 @@ public class RedisService extends AbstractRedisService {
 				log.info("set "+funId+".xml");
 			}
 			byte[]   content_byte = SerializeUtils.serialize(content);
-			String key_xml = dirId+"."+funId;
-			jedis.set(key_xml.getBytes(), content_byte);
+			
 			
 			//log.info("set "+funId+".para");
 			
@@ -383,15 +382,30 @@ public class RedisService extends AbstractRedisService {
 			if(p.getFunType().equals("query")){
 				Parameters para = (Parameters) p;
 				para_byte = SerializeUtils.serialize(para);
+				
+				String key_xml = dirId+"."+funId;
+				jedis.set(key_xml.getBytes(), content_byte);
+				
 			}else if(p.getFunType().equals("manage")){
 				ManageParameters para = (ManageParameters) p;
 				para_byte = SerializeUtils.serialize(para);
+				
+				String key_xml = dirId+"."+funId;
+				jedis.set(key_xml.getBytes(), content_byte);
+				
 			}else if(p.getFunType().equals("import")){
 				ImportParameters para = (ImportParameters) p;
 				para_byte = SerializeUtils.serialize(para);
+				
+				String key_xml = dirId+"."+funId;
+				jedis.set(key_xml.getBytes(), content_byte);
+				
 			}else if(p.getFunType().equals("yjgx")){
 				YjgxParameters para = (YjgxParameters) p;
 				para_byte = SerializeUtils.serialize(para);
+				
+				String key_xml = dirId+"."+funId+"Yjgx";
+				jedis.set(key_xml.getBytes(), content_byte);
 			}
 			
 			String key_para = dirId+"."+funId+".para";

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="gybcywlgldr" title="柜员补偿业务量管理导入" type="import" version="1.0.0.0" pid="" desc="标准版">
+<pageSetting id="gybcywlgldr" title="柜员补偿业务量管理导入" type="import" version="1.0.0.0" desc="标准版" pid="">
   <template>
     <src>ONLINE</src>
     <column>
@@ -9,8 +9,7 @@
       <width>120</width>
       <height />
       <align>center</align>
-      <annotate>日期格式:yyyyMM 
-如：201401</annotate>
+      <annotate />
       <length>100</length>
       <req>Y</req>
     </column>
@@ -34,7 +33,7 @@
       <align>center</align>
       <annotate />
       <length>100</length>
-      <req>N</req>
+      <req>Y</req>
     </column>
     <column>
       <text>机构补偿业务量</text>
@@ -45,7 +44,7 @@
       <align>center</align>
       <annotate />
       <length>100</length>
-      <req>Y</req>
+      <req>N</req>
     </column>
     <column>
       <text>可分配补偿业务量</text>
@@ -59,7 +58,7 @@
       <req>N</req>
     </column>
     <column>
-      <text>分配补偿业务量</text>
+      <text>补偿业务量</text>
       <name>bcywl</name>
       <index>5</index>
       <width>120</width>
@@ -99,7 +98,7 @@
           <attribute key="name" value="tjrq" />
           <attribute key="styleClass" value="" />
           <attribute key="minDate" value="no" />
-          <attribute key="defValType" value="xtrzympd" />
+          <attribute key="defValType" value="sysDate" />
           <attribute key="dateFmt" value="yyyyMM" />
           <attribute key="editable" value="true" />
         </tag>
@@ -114,22 +113,25 @@
     <col id="HYMC" title="行员名称" align="center" type="" width="120" />
     <col id="JGBCYWL" title="机构补偿业务量" align="center" type="" width="120" />
     <col id="KFPBCYWL" title="可分配补偿业务量" align="center" type="" width="120" />
-    <col id="BCYWL" title="分配补偿业务量" align="center" type="" width="120" />
+    <col id="BCYWL" title="补偿业务量" align="center" type="" width="120" />
     <col id="BZSM" title="备注说明" align="center" type="" width="120" />
   </table>
   <flow>
     <rule>
       <sql type="update">gybcywlgldr_check_hydh_0</sql>
       <sql type="update">gybcywlgldr_check_hydh_1</sql>
-      <sql type="update">gybcywlgldr_check_bcywl_2</sql>
-      <sql type="update">gybcywlgldr_check_bcywl_3</sql>
-      <sql type="update">gybcywlgldr_check_bzsm_4</sql>
-      <sql type="update">gybcywlgldr_check_bzsm_5</sql>
-      <sql type="update">gybcywlgldr_check_tjrq_6</sql>
-      <sql type="update">gybcywlgldr_check_tjrq_7</sql>
-      <sql type="update">gybcywlgldr_checkupdate_bcywl_0</sql>
+      <sql type="update">gybcywlgldr_check_bzsm_2</sql>
+      <sql type="update">gybcywlgldr_check_bzsm_3</sql>
+      <sql type="update">gybcywlgldr_check_tjrq_4</sql>
+      <sql type="update">gybcywlgldr_check_tjrq_5</sql>
+      <sql type="update">gybcywlgldr_check_bcywl_6</sql>
+      <sql type="update">gybcywlgldr_check_bcywl_7</sql>
+      <sql type="update">gybcywlgldr_checkupdate_hymc_0</sql>
+      <sql type="update">gybcywlgldr_checkupdate_jgbcywl_0</sql>
       <sql type="update">gybcywlgldr_checkupdate_tjrq_0</sql>
       <sql type="update">gybcywlgldr_checkupdate_tjrq_1</sql>
+      <sql type="update">gybcywlgldr_checkupdate_bcywl_0</sql>
+      <sql type="update">gybcywlgldr_checkupdate_kfpbcywl_0</sql>
       <sql type="update">gybcywlgldr_exists_target</sql>
       <sql type="update">gybcywlgldr_exists_same_temp</sql>
     </rule>
@@ -153,23 +155,12 @@
       update  gybcywlgldr_temp  t  set  t.error=t.error||'行员代号不存在!'  
 		where  not  exists(select  1  from  khdx_hy  h  where  rtrim(t.hydh)=rtrim(h.hydh))  and  t.khdxdh=$login_khdxdh$
     </update>
-    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_check_bcywl_2">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  gybcywlgldr_temp  t  
-		set  t.error=t.error||'分配补偿业务量输入错误，只能输入:21位整数,2位小数!'  
-		where f_java_rule_length(t.bcywl)&gt;0 and f_java_rule_number(t.bcywl,21,2)=1  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_check_bcywl_3">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  gybcywlgldr_temp  t  set  t.error=t.error||'分配补偿业务量输入错误，不能为空!' 
-		where  f_java_rule_length(t.bcywl)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_check_bzsm_4">
+    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_check_bzsm_2">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
       update  gybcywlgldr_temp  t  set  t.error=t.error||'备注说明输入错误，长度不能超过:200!' 
 		where  f_java_rule_length(t.bzsm)&gt;200  and  t.khdxdh=$login_khdxdh$
     </update>
-    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_check_bzsm_5">
+    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_check_bzsm_3">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
       update  gybcywlgldr_temp  t  
 		set  t.error=t.error||'备注说明输入错误，存在特殊字符!'  
@@ -177,76 +168,82 @@
 		 where F_EXISTS_SUM(ts.tszfmc,t.bzsm)&gt;0  and ts.zt='0') 
 		  and  t.khdxdh=$login_khdxdh$
     </update>
-    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_check_tjrq_6">
+    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_check_tjrq_4">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
       update  gybcywlgldr_temp  t  
-		set  t.error=t.error||'统计年月输入错误，格式应该是:yyyyMM!'  
+		set  t.error=t.error||'统计日期输入错误，格式应该是:yyyyMM!'  
 		where  f_java_rule_date(t.tjrq,'yyyyMM')=1  and  t.khdxdh=$login_khdxdh$
     </update>
-    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_check_tjrq_7">
+    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_check_tjrq_5">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update   gybcywlgldr_temp  t  set t.error=(select t.error||'起始日期不能小于(系统日期-重跑天数)'||
-		cast(f_change_days(cast(rq.csz  as  integer),-cast(cs.csz  as  integer  )) as char(8))||'!' as error from  xtb_xtcs  rq  
-		,xtb_xtcs  cs  where  rq.csmc='SYS_DATE'  and  cs.csmc='SYS_CSTS') 
-		 where  cast(t.qsrq  as  integer)&lt;(select  f_change_days(cast(rq.csz  as  integer  ),-cast(cs.csz       as   integer  )) 
-		 from  xtb_xtcs  rq  ,xtb_xtcs  cs    where  rq.csmc='SYS_DATE'  and  cs.csmc='SYS_CSTS')     and  (error=''  or  error  is  null) 
-		 and  khdxdh=$login_khdxdh$
+      update  gybcywlgldr_temp  t  set  t.error=t.error||'统计日期输入错误，不能为空!' 
+		where  f_java_rule_length(t.tjrq)=0  and  t.khdxdh=$login_khdxdh$
     </update>
-    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_checkupdate_bcywl_0">
+    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_check_bcywl_6">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update gybcywlgldr_temp temp set error=error||'柜员补偿业务量汇总必须小于等于该机构补偿业务量' where exists(
-  select 1
-  from (
-    select t.tjrq,t.jgkhdxdh,sum(coalesce(jgywl.bcywl,0)) as bcywl
-    from(
-      select distinct t.tjrq as tjrq,jgcy.jgkhdxdh
-      from gybcywlgldr_temp t
-      inner join khdx_hy hy on hy.hydh=t.hydh
-      inner join khdx_jgcy jgcy on jgcy.khdxdh=hy.khdxdh and t.tjrq between jgcy.qsrq and jgcy.jsrq
-      where t.khdxdh=$login_khdxdh$
-    ) t
-    left join nbzz_jgkh_ywl jgywl on jgywl.khdxdh=t.jgkhdxdh and jgywl.tjrq=t.tjrq
-    group by t.tjrq,t.jgkhdxdh
-  ) a
-  inner join (
-    select tjrq,jgkhdxdh,sum(bcywl) as bcywl
-    from(
-      select t.tjrq as tjrq,jgcy.jgkhdxdh,sum(t.bcywl) as bcywl
-      from gybcywlgldr_temp t
-      inner join khdx_hy hy on hy.hydh=t.hydh
-      inner join khdx_jgcy jgcy on jgcy.khdxdh=hy.khdxdh and t.tjrq between jgcy.qsrq and jgcy.jsrq
-    where t.khdxdh=$login_khdxdh$
-      group by t.tjrq,jgcy.jgkhdxdh
-      union all
-      select cast(sg.tjrq as char(8)) as tjrq,jgcy.jgkhdxdh,sum(sg.bcywl) as bcywl
-      from sgdr_gybcywl sg
-      inner join khdx_jgcy jgcy on jgcy.khdxdh=sg.khdxdh and sg.tjrq between jgcy.qsrq and jgcy.jsrq
-    where not exists(
-    select 1
-        from gybcywlgldr_temp t
-        inner join khdx_hy hy on hy.hydh=t.hydh
-    where t.khdxdh=$login_khdxdh$ and hy.khdxdh=sg.khdxdh and t.tjrq=sg.tjrq
-      )
-    group by sg.tjrq,jgcy.jgkhdxdh
-    )
-  group by tjrq,jgkhdxdh
-  ) b on a.tjrq=b.tjrq and a.jgkhdxdh=b.jgkhdxdh and b.bcywl&gt;a.bcywl
-  inner join khdx_jgcy jgcy on jgcy.jgkhdxdh=a.jgkhdxdh and a.tjrq between jgcy.qsrq and jgcy.jsrq
-  inner join khdx_hy hy on hy.khdxdh=jgcy.khdxdh
-  where a.tjrq=temp.tjrq and hy.hydh=temp.hydh
-) and temp.khdxdh=$login_khdxdh$
+      update  gybcywlgldr_temp  t  
+		set  t.error=t.error||'补偿业务量输入错误，只能输入:21位整数,2位小数!'  
+		where f_java_rule_length(t.bcywl)&gt;0 and f_java_rule_number(t.bcywl,21,2)=1  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_check_bcywl_7">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  gybcywlgldr_temp  t  set  t.error=t.error||'补偿业务量输入错误，不能为空!' 
+		where  f_java_rule_length(t.bcywl)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_checkupdate_hymc_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update gybcywlgldr_temp t set error=error||'行员代号和名称必须一致' where  not exists (    select 1 from khdx_hy hy     where t.hydh=hy.hydh and hy.hymc=t.hymc) and t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_checkupdate_jgbcywl_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      UPDATE  gybcywlgldr_temp t SET error=error ||'柜员补偿业务量汇总必须大于0'
+    where  cast(t.bcywl as integer)&lt;0 and  t.khdxdh=$login_khdxdh$
     </update>
     <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_checkupdate_tjrq_0">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update gybcywlgldr_temp t set t.tjrq=(select sjw.ym from csb_sjw sjw where sjw.tjrq=cast(t.tjrq||'01' as integer)) 
-where t.khdxdh=$login_khdxdh$
+      update gybcywlgldr_temp t set t.tjrq =( select cast(w.ym as char(20)) from csb_sjw w where w.tjrq=cast( t.tjrq||'01' as Integer) ) where t.khdxdh=$login_khdxdh$
     </update>
     <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_checkupdate_tjrq_1">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update gybcywlgldr_temp t set t.error=t.error||'起始日期不能小于(系统日期-重跑天数)'||(select f_change_days(cast(rq.csz as integer ),-cast(cs.csz as integer )) 
-from xtb_xtcs rq,xtb_xtcs cs where rq.csmc='SYS_DATE' and cs.csmc='SYS_CSTS')||'！' 
-where cast(t.tjrq as integer)&lt;(select f_change_days(cast(rq.csz as integer ),-cast(cs.csz as integer )) 
-from xtb_xtcs rq,xtb_xtcs cs where rq.csmc='SYS_DATE' and cs.csmc='SYS_CSTS') and t.khdxdh=$login_khdxdh$
+      update gybcywlgldr_temp t set t.error= t.error||'起始日期不能小于(系统日期-重跑天数)!' where cast( t.tjrq as integer)&lt;(select f_change_days(cast(rq.csz as integer ),-cast(cs.csz as integer )) from xtb_xtcs rq ,xtb_xtcs cs where rq.csmc='SYS_DATE' and cs.csmc='SYS_CSTS' ) and t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_checkupdate_bcywl_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      UPDATE  gybcywlgldr_temp t
+SET error=error
+  ||'柜员补偿业务量汇总必须小于等于该机构补偿业务量'
+  WHERE  EXISTS
+  (
+  select 1 from (
+    select jgkh_ywl.tjrq,jgkh_ywl.khdxdh,COALESCE(round(sum(jgkh_ywl.bcywl),2),0) bcywl
+    FROM NBZZ_JGKH_YWL jgkh_ywl
+    INNER JOIN CSB_SJW sjw ON jgkh_ywl.TJRQ = sjw.YM and sjw.tjrq=sjw.ym
+    group by jgkh_ywl.tjrq,jgkh_ywl.khdxdh
+  ) jgkh_ywl
+  INNER JOIN KHDX_JGCY jgcy ON jgcy.JGKHDXDH = jgkh_ywl.KHDXDH AND jgkh_ywl.tjrq BETWEEN jgcy.QSRQ AND jgcy.JSRQ
+  INNER JOIN KHDX_HY hy ON hy.KHDXDH = jgcy.KHDXDH
+  LEFT JOIN 
+    (SELECT cy.jgkhdxdh ,sg.tjrq,SUM(COALESCE(sg.bcywl,0)) sg_bcywl
+    FROM SGDR_GYBCYWL sg 
+    INNER JOIN khdx_jgcy cy  ON cy.khdxdh=sg.KHDXDH AND sg.tjrq BETWEEN cy.qsrq AND cy.jsrq
+    GROUP BY cy.jgkhdxdh,sg.tjrq
+    ) yy ON yy.jgkhdxdh =jgkh_ywl.khdxdh and jgkh_ywl.tjrq=yy.tjrq
+   LEFT JOIN 
+    (SELECT cy.jgkhdxdh,sjw.ym as tjrq, SUM(CAST(tmp.bcywl AS DECIMAL(25,4)))AS tmp_bcyw
+     FROM  gybcywlgldr_temp tmp
+     INNER JOIN CSB_SJW sjw ON CAST(tmp.TJRQ as INTEGER) = sjw.YM and sjw.tjrq=sjw.ym
+     INNER JOIN khdx_hy hy on tmp.hydh=hy.hydh
+     inner join khdx_jgcy cy on hy.khdxdh=cy.khdxdh and sjw.YM between cy.qsrq and cy.jsrq
+     where tmp.khdxdh=$login_khdxdh$
+     GROUP BY cy.jgkhdxdh,sjw.ym
+    ) te on jgkh_ywl.khdxdh=te.jgkhdxdh and jgkh_ywl.tjrq=te.tjrq 
+    where hy.hydh= t.hydh and cast(t.tjrq as integer) = jgkh_ywl.tjrq
+    and coalesce(te.tmp_bcyw,0)&gt;=coalesce(jgkh_ywl.bcywl,0)  )and t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_checkupdate_kfpbcywl_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      UPDATE  gybcywlgldr_temp t SET error=error ||'待分配补偿业务量必须大于等于可分配补偿业务量'
+    where  t.jgbcywl&lt;t.kfpbcywl and  t.khdxdh=$login_khdxdh$
     </update>
     <update parameterClass="java.util.Map" id="dn0.gybcywlgldr_exists_target">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>

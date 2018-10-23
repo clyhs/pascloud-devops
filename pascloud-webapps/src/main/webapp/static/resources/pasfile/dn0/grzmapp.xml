@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="grzmapp" title="个人桌面APP" type="manage" version="1.0.0.0" pid="" desc="标准版">
+<pageSetting id="grzmapp" title="个人桌面APP" type="manage" version="1.0.0.0" desc="标准版" pid="">
   <conPart>
     <tags>
       <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="APP名称" fieldName="">
@@ -10,15 +10,14 @@
     </tags>
   </conPart>
   <table page="true" id="grzmapptable">
-    <col id="NAME" title="名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="APPURL" title="地址" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="IMGURL" title="图片" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="WIDTH" title="宽度" align="right" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="HEIGHT" title="高度" align="right" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="MS" title="描述" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="SFXSMS" title="是否显示" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
-    <col id="SFXS" title="sfxs" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
     <col id="APPID" title="APPID" align="center" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="APPURL" title="地址" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="NAME" title="名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="IMGURL" title="图片" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="WIDTH" title="宽度%" align="right" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="HEIGHT" title="高度PX" align="right" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="MS" title="描述" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
+    <col id="XFXS" title="是否显示" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" />
   </table>
   <rels>
     <items id="grzmapptable" />
@@ -27,6 +26,7 @@
     <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="APP名称" fieldName="NAME">
       <attribute key="maxlength" value="50" />
       <attribute key="name" value="appname" />
+      <attribute key="styleClass" value="{required:true}" />
       <attribute key="readonly" value="false" />
       <attribute key="editable" value="true" />
     </tag>
@@ -39,25 +39,50 @@
       <attribute key="readonly" value="false" />
       <attribute key="editable" value="true" />
     </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select 1 from grzm_app where name='$appname$'" />
+      <attribute key="name" value="getAPPmc" />
+    </tag>
     <tag row="2" col="0" rowspan="1" colspan="1" name="Text" label="图片地址" fieldName="IMGURL">
       <attribute key="maxlength" value="20" />
       <attribute key="name" value="imgurl" />
       <attribute key="readonly" value="false" />
       <attribute key="editable" value="true" />
     </tag>
-    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="宽度" fieldName="WIDTH">
-      <attribute key="precision" value="0" />
-      <attribute key="name" value="width" />
-      <attribute key="intparts" value="10" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
+    <tag row="2" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="oldname" />
     </tag>
-    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="高度" fieldName="HEIGHT">
-      <attribute key="precision" value="0" />
+    <tag row="3" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="宽度" fieldName="WIDTH">
+      <attribute key="sql" value="select dmz as key,dmms as value from csb_dmms where dmmc='APPKD'" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="width" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="isEditable" value="true" />
+    </tag>
+    <tag row="3" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select width from grzm_app where appid='$appid$'" />
+      <attribute key="name" value="getKD" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="高度" fieldName="HEIGHT">
+      <attribute key="sql" value="select dmz as key,dmms as value from csb_dmms where dmmc='APPGD'" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="defVal" value="400" />
       <attribute key="name" value="height" />
-      <attribute key="intparts" value="10" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="isEditable" value="true" />
+    </tag>
+    <tag row="4" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select height from grzm_app where appid='$appid$'" />
+      <attribute key="name" value="getGD" />
     </tag>
     <tag row="5" col="0" rowspan="1" colspan="1" name="Text" label="APP描述" fieldName="MS">
       <attribute key="maxlength" value="100" />
@@ -78,6 +103,7 @@
     <tag row="0" col="0" rowspan="1" colspan="1" name="Text" label="APP名称" fieldName="NAME">
       <attribute key="maxlength" value="50" />
       <attribute key="name" value="appname" />
+      <attribute key="styleClass" value="{required:true}" />
       <attribute key="readonly" value="false" />
       <attribute key="editable" value="true" />
     </tag>
@@ -90,25 +116,50 @@
       <attribute key="readonly" value="false" />
       <attribute key="editable" value="true" />
     </tag>
+    <tag row="1" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select 1 from grzm_app where name='$appname$'" />
+      <attribute key="name" value="getAPPmc" />
+    </tag>
     <tag row="2" col="0" rowspan="1" colspan="1" name="Text" label="图片地址" fieldName="IMGURL">
       <attribute key="maxlength" value="20" />
       <attribute key="name" value="imgurl" />
       <attribute key="readonly" value="false" />
       <attribute key="editable" value="true" />
     </tag>
-    <tag row="3" col="0" rowspan="1" colspan="1" name="Number" label="宽度" fieldName="WIDTH">
-      <attribute key="precision" value="0" />
-      <attribute key="name" value="width" />
-      <attribute key="intparts" value="10" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
+    <tag row="2" col="1" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="name" value="oldname" />
     </tag>
-    <tag row="4" col="0" rowspan="1" colspan="1" name="Number" label="高度" fieldName="HEIGHT">
-      <attribute key="precision" value="0" />
+    <tag row="3" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="宽度" fieldName="WIDTH">
+      <attribute key="sql" value="select dmz as key,dmms as value from csb_dmms where dmmc='APPKD'" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="name" value="width" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="isEditable" value="true" />
+    </tag>
+    <tag row="3" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select width from grzm_app where appid='$appid$'" />
+      <attribute key="name" value="getKD" />
+    </tag>
+    <tag row="4" col="0" rowspan="1" colspan="1" name="MSQL4Select" label="高度" fieldName="HEIGHT">
+      <attribute key="sql" value="select dmz as key,dmms as value from csb_dmms where dmmc='APPGD'" />
+      <attribute key="isSearch" value="false" />
+      <attribute key="isRequired" value="false" />
+      <attribute key="isMultiple" value="false" />
+      <attribute key="defVal" value="400" />
       <attribute key="name" value="height" />
-      <attribute key="intparts" value="10" />
-      <attribute key="readonly" value="false" />
-      <attribute key="editable" value="true" />
+      <attribute key="width" value="120px;" />
+      <attribute key="isAll" value="false" />
+      <attribute key="isEditable" value="true" />
+    </tag>
+    <tag row="4" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
+      <attribute key="dataType" value="select" />
+      <attribute key="sql" value="select height from grzm_app where appid='$appid$'" />
+      <attribute key="name" value="getGD" />
     </tag>
     <tag row="5" col="0" rowspan="1" colspan="1" name="Text" label="APP描述" fieldName="MS">
       <attribute key="maxlength" value="100" />
@@ -141,16 +192,16 @@
   <sqlMap namespace="studio.grzmapp">
     <select id="dn0.grzmappList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select app.appid,app.appurl,app.name,app.imgurl,app.width,app.height,app.ms,app.sfxs,dmms.dmms sfxsMs from grzm_app app inner join csb_dmms dmms on dmms.dmz=app.sfxs and lower(dmms.dmmc)='jsbs'  where 1=1
+      select app.appid,app.appurl,app.name,app.imgurl,app.width,app.height,app.ms, case when app.sfxs =0 then '否'  when app.sfxs=1 then '是' end as xfxs  from grzm_app app where 1=1
       <isNotEmpty property="appname">and  app.name like '%$appname$%'</isNotEmpty>
     </select>
     <select id="dn0.grzmappCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from ( select app.appid,app.appurl,app.name,app.imgurl,app.width,app.height,app.ms,app.sfxs,dmms.dmms sfxsMs from grzm_app app inner join csb_dmms dmms on dmms.dmz=app.sfxs and lower(dmms.dmmc)='jsbs'  where 1=1
+      select count(1) from ( select app.appid,app.appurl,app.name,app.imgurl,app.width,app.height,app.ms, case when app.sfxs =0 then '否'  when app.sfxs=1 then '是' end as xfxs  from grzm_app app where 1=1
       <isNotEmpty property="appname">and  app.name like '%$appname$%'</isNotEmpty>
       ) t
     </select>
-    <select id="dn0.grzmapp_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap">
+    <select id="dn0.grzmapp_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
       select  SFXS, NAME, APPURL, HEIGHT, IMGURL, APPID, MS, WIDTH  from GRZM_APP where 1= 1  and APPID = '$appid$'
     </select>
@@ -170,6 +221,11 @@
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
       delete from GRZM_APP where 1=1  and APPID = '$appid$'
     </delete>
+    <select id="dn0.grzmapp_getAPPmc" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select 1 from grzm_app where name='$appname$'</select>
+    <select id="dn0.grzmapp_getKD" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select width from grzm_app where appid='$appid$'</select>
+    <select id="dn0.grzmapp_getGD" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select height from grzm_app where appid='$appid$'</select>
+    <select id="dn0.grzmapp_MSQL4SELECT_width" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc='APPKD'</select>
+    <select id="dn0.grzmapp_MSQL4SELECT_height" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select dmz as key,dmms as value from csb_dmms where dmmc='APPGD'</select>
   </sqlMap>
   <javascript>
     <query>jQuery(document).ready(function () {
@@ -182,17 +238,99 @@ function customValidate(){
 }</query>
     <edit>jQuery(document).ready(function () {
 //这里的js脚本，会在页面加载完成后执行
+if(jQuery('#page_operate').val()=='update'){
+   $("#oldname").val($("#appname").val());
+
+ }
+
+$('#appurl').hide();
+$('#appurl').parent().prev().hide();//隐藏APP地址这行
+$('#imgurl').hide();
+$('#imgurl').parent().prev().hide();//隐藏APP地址这行
+
+jQuery('#appname').executeOnEvent('blur','grzmapp_getAPPmc',checkAppmc);
+ PAS.di.execute('grzmapp_getKD',getKD);//数据访问组件
+ PAS.di.execute('grzmapp_getGD',getGD);//数据访问组件
+ $("#width").find("option:selected").attr('selected',false);
+ $('#width').bind("change mousemove",function(){
+ $("#width").val($("#width").find("option:selected").val());
+  if($("#width").val()!='50'){
+     //$("#height option[value='200']").remove(); 
+     $("#height option[value='200']").hide()
+  }else{
+    //$("#height").append("&lt;option value='200'&gt;200px&lt;/option&gt;"); 
+    $("#height option[value='200']").show();
+  }
+})
+
+ 
 if($('#page_operate').val()!='update')
   $('#appid').val(getUUID());
+  
 });
 //自定义验证，在提交时执行。通过返回true，否则返回false
 function customValidate(){
- if(fucCheckLength($('#appname').val())&gt;100){
+
+ if(fucCheckLength($('#appname').val())&gt;50 ){
         alert('APP名称超长,最大不超过25个汉字！');
         return false;
     }
- return true;
+  if($('#width').val()!='50'&amp;&amp;$('#height').val()=='200'){
+        alert("只有在宽度为50%时才会有高度为200，请修改高度！");
+        return false;
+  }
+ return  PAS.di.isDone();
 }
+function getKD(obj){
+  if(obj.data.length&gt;0){
+  $('#width').val(obj.data[0].WIDTH);
+  $("#width").find("option:selected").attr('selected',false);
+  $('#width').bind("change mousemove",function(){
+  $("#width").val($("#width").find("option:selected").val());
+  if($("#width").val()!='50'){
+    // $("#height option[value='200']").remove();
+    $("#height option[value='200']").hide()
+  }else{
+    //$("#height").append("&lt;option value='200'&gt;200px&lt;/option&gt;"); 
+    $("#height option[value='200']").show()
+  }
+})
+  }
+  PAS.di.setDone(obj.sqlid);
+}
+function getGD(obj){
+  if(obj.data.length&gt;0){
+    $('#height').val(obj.data[0].HEIGHT); 
+  }
+  PAS.di.setDone(obj.sqlid);
+}
+
+function checkAppmc(obj){
+  if(jQuery('#page_operate').val()=='update'){
+     if($("#oldname").val()==$("#appname").val()){
+       jQuery("#appname").validationPass();
+       PAS.di.setDone(obj.sqlid);
+     }else{
+       if(obj.data.length&gt;0){
+          jQuery("#appname").validationFiled('名称已存在！');
+        }else{
+          jQuery("#appname").validationPass();
+          PAS.di.setDone(obj.sqlid); 
+        }
+     }
+ }else{
+  if(obj.data.length&gt;0){
+    jQuery("#appname").validationFiled('名称已存在！');
+  }else{
+    jQuery("#appname").validationPass();
+    PAS.di.setDone(obj.sqlid);
+  }
+
+}
+  
+
+}
+
 
 
 function fucCheckLength(strTemp)  
@@ -219,6 +357,7 @@ function getUUID(){
     }
   }
   return uuid;
+
 }</edit>
   </javascript>
 </pageSetting>

@@ -310,8 +310,7 @@
   </rels>
   <javascript><![CDATA[jQuery(document).ready(function () {
 //这里的js脚本，会在页面加载完成后执行
-    BindParent('bz','zbdh','change');
-    BindParent('sdbs','zbdh','change');
+    
     init_yjlx().pipe(function(){
       jQuery('#yjlx').bind('change',yjlxChange).trigger('change');
   });

@@ -430,8 +430,8 @@ public class TenantController extends BaseController {
 					m_tenantService.addHyWithPublicDB(dn0Conn, id, lists);
 					log.info("导入租户全部行员数据到公共库完成");
 					result = new ResultCommon(10000, "同步成功");
+					m_redisService.deleteRedisApp();
 				}else{
-
 					result = new ResultCommon(20000, "公共库连接失败或者租户的行员数为空");
 				}
 			} else {
@@ -502,7 +502,7 @@ public class TenantController extends BaseController {
 			sourceConn = db.getConnection();
 			if (null!=sourceConn) {
 				log.info("更新行员的前缀");
-				hynum = m_tenantService.updateKhdxHy(sourceConn, en,cn);
+				hynum = m_tenantService.updateKhdxHy(sourceConn, en, cn, name);
 				log.info("更新行员的前缀完成");
 				log.info("获取租户的全部行员数据");
 				List<KhdxHyVo> lists = m_tenantService.getAllHy(sourceConn);
@@ -517,8 +517,8 @@ public class TenantController extends BaseController {
 					m_tenantService.addHyWithPublicDB(dn0Conn, name, lists);
 					log.info("导入租户全部行员数据到公共库完成");
 					result = new ResultCommon(10000, "同步成功");
+					m_redisService.deleteRedisApp();
 				}else{
-
 					result = new ResultCommon(20000, "公共库连接失败或者租户的行员数为空");
 				}
 			} else {

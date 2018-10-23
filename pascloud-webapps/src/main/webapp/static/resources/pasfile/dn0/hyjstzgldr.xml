@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="hyjstzgldr" title="行员基数调整管理导入" type="import" version="1.0.0.0" pid="" desc="标准版">
+<pageSetting id="hyjstzgldr" title="行员基数调整管理导入" type="import" version="1.0.0.0" desc="标准版" pid="">
   <template>
     <src>ONLINE</src>
     <column>
@@ -134,17 +134,18 @@ FF	非币种</annotate>
       <sql type="update">hyjstzgldr_check_qsrq_1</sql>
       <sql type="update">hyjstzgldr_check_qsrq_2</sql>
       <sql type="update">hyjstzgldr_check_hydh_3</sql>
-      <sql type="update">hyjstzgldr_check_zbdh_4</sql>
-      <sql type="update">hyjstzgldr_check_sdbs_5</sql>
-      <sql type="update">hyjstzgldr_check_bz_6</sql>
+      <sql type="update">hyjstzgldr_check_sdbs_4</sql>
+      <sql type="update">hyjstzgldr_check_bz_5</sql>
+      <sql type="update">hyjstzgldr_check_tzz_6</sql>
       <sql type="update">hyjstzgldr_check_tzz_7</sql>
-      <sql type="update">hyjstzgldr_check_tzz_8</sql>
-      <sql type="update">hyjstzgldr_check_tzyy_9</sql>
+      <sql type="update">hyjstzgldr_check_tzyy_8</sql>
+      <sql type="update">hyjstzgldr_check_zbdh_9</sql>
+      <sql type="update">hyjstzgldr_check_zbdh_10</sql>
       <sql type="update">hyjstzgldr_checkupdate_qsrq_0</sql>
       <sql type="update">hyjstzgldr_checkupdate_hydh_0</sql>
-      <sql type="update">hyjstzgldr_checkupdate_zbdh_0</sql>
       <sql type="update">hyjstzgldr_checkupdate_sdbs_0</sql>
       <sql type="update">hyjstzgldr_checkupdate_bz_0</sql>
+      <sql type="update">hyjstzgldr_checkupdate_zbdh_0</sql>
       <sql type="update">hyjstzgldr_exists_target</sql>
       <sql type="update">hyjstzgldr_exists_same_temp</sql>
     </rule>
@@ -187,36 +188,42 @@ FF	非币种</annotate>
       update  hyjstzgldr_temp  t  set  t.error=t.error||'行员代号输入错误，不能为空!' 
 		where  f_java_rule_length(t.hydh)=0  and  t.khdxdh=$login_khdxdh$
     </update>
-    <update parameterClass="java.util.Map" id="dn0.hyjstzgldr_check_zbdh_4">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update  hyjstzgldr_temp  t  set  t.error=t.error||'指标代号输入错误，不能为空!' 
-		where  f_java_rule_length(t.zbdh)=0  and  t.khdxdh=$login_khdxdh$
-    </update>
-    <update parameterClass="java.util.Map" id="dn0.hyjstzgldr_check_sdbs_5">
+    <update parameterClass="java.util.Map" id="dn0.hyjstzgldr_check_sdbs_4">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
       update  hyjstzgldr_temp  t  set  t.error=t.error||'时段标识输入错误，不能为空!' 
 		where  f_java_rule_length(t.sdbs)=0  and  t.khdxdh=$login_khdxdh$
     </update>
-    <update parameterClass="java.util.Map" id="dn0.hyjstzgldr_check_bz_6">
+    <update parameterClass="java.util.Map" id="dn0.hyjstzgldr_check_bz_5">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
       update  hyjstzgldr_temp  t  set  t.error=t.error||'币种输入错误，不能为空!' 
 		where  f_java_rule_length(t.bz)=0  and  t.khdxdh=$login_khdxdh$
     </update>
-    <update parameterClass="java.util.Map" id="dn0.hyjstzgldr_check_tzz_7">
+    <update parameterClass="java.util.Map" id="dn0.hyjstzgldr_check_tzz_6">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
       update  hyjstzgldr_temp  t  
 		set  t.error=t.error||'调整后基数输入错误，只能输入:21位整数,2位小数!'  
 		where f_java_rule_length(t.tzz)&gt;0 and f_java_rule_number(t.tzz,21,2)=1  and  t.khdxdh=$login_khdxdh$
     </update>
-    <update parameterClass="java.util.Map" id="dn0.hyjstzgldr_check_tzz_8">
+    <update parameterClass="java.util.Map" id="dn0.hyjstzgldr_check_tzz_7">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
       update  hyjstzgldr_temp  t  set  t.error=t.error||'调整后基数输入错误，不能为空!' 
 		where  f_java_rule_length(t.tzz)=0  and  t.khdxdh=$login_khdxdh$
     </update>
-    <update parameterClass="java.util.Map" id="dn0.hyjstzgldr_check_tzyy_9">
+    <update parameterClass="java.util.Map" id="dn0.hyjstzgldr_check_tzyy_8">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
       update  hyjstzgldr_temp  t  set  t.error=t.error||'调整原因输入错误，长度不能超过:100!' 
 		where  f_java_rule_length(t.tzyy)&gt;100  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.hyjstzgldr_check_zbdh_9">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  hyjstzgldr_temp  t  
+		set  t.error=t.error||'指标代号输入错误，只能输入:16位整数,0位小数!'  
+		where f_java_rule_length(t.zbdh)&gt;0 and f_java_rule_number(t.zbdh,16,0)=1  and  t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.hyjstzgldr_check_zbdh_10">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  hyjstzgldr_temp  t  set  t.error=t.error||'指标代号输入错误，不能为空!' 
+		where  f_java_rule_length(t.zbdh)=0  and  t.khdxdh=$login_khdxdh$
     </update>
     <update parameterClass="java.util.Map" id="dn0.hyjstzgldr_checkupdate_qsrq_0">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
@@ -231,10 +238,6 @@ hykhjs.tjrq =cast(t.qsrq as integer) and hykhjs.zbdh = cast(t.zbdh as integer)  
  select 1 from yjzb_hykhjs hykhjs inner join khdx_hy hy on hy.khdxdh=hykhjs.khdxdh where t.hydh=hy.hydh )
  and t.khdxdh=$login_khdxdh$
     </update>
-    <update parameterClass="java.util.Map" id="dn0.hyjstzgldr_checkupdate_zbdh_0">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update hyjstzgldr_temp t set error=error||'此调整日期不存在此指标代号' where not exists ( select 1 from yjzb_hykhjs hykhjs where cast(t.zbdh as integer) = hykhjs.zbdh AND cast(t.qsrq as integer) = hykhjs.tjrq ) and t.khdxdh=$login_khdxdh$
-    </update>
     <update parameterClass="java.util.Map" id="dn0.hyjstzgldr_checkupdate_sdbs_0">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
       update hyjstzgldr_temp t set error=error||'此调整日期不存在此时段标识' where not exists ( select 1 from yjzb_hykhjs hykhjs where t.sdbs=hykhjs.sdbs and cast(t.qsrq as integer) = hykhjs.tjrq ) and t.khdxdh=$login_khdxdh$
@@ -242,6 +245,10 @@ hykhjs.tjrq =cast(t.qsrq as integer) and hykhjs.zbdh = cast(t.zbdh as integer)  
     <update parameterClass="java.util.Map" id="dn0.hyjstzgldr_checkupdate_bz_0">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
       update hyjstzgldr_temp t set error=error||'此调整日期不存在此币种' where not exists ( select 1 from yjzb_hykhjs hykhjs where t.bz=hykhjs.bz and cast(t.qsrq as integer) = hykhjs.tjrq ) and t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.hyjstzgldr_checkupdate_zbdh_0">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update hyjstzgldr_temp t set error=error||'此调整日期不存在此指标代号' where not exists ( select 1 from yjzb_hykhjs hykhjs where cast(t.zbdh as integer) = hykhjs.zbdh AND cast(t.qsrq as integer) = hykhjs.tjrq ) and t.khdxdh=$login_khdxdh$
     </update>
     <update parameterClass="java.util.Map" id="dn0.hyjstzgldr_exists_target">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>

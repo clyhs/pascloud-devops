@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="jgdjpdtz" title="机构等级评定调整" type="manage" version="1.0.0.0" pid="" desc="标准版">
+<pageSetting id="jgdjpdtz" title="机构等级评定调整" type="manage" version="1.0.0.0" desc="标准版" pid="">
   <conPart>
     <tags>
       <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="评定日期" fieldName="">
@@ -34,7 +34,7 @@
       </tag>
     </tags>
   </conPart>
-  <table page="true" id="jgdjpdtztable">
+  <table page="true" id="jgdjpdtztable" isDym="true">
     <col id="BH" title="编号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
     <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
     <col id="OLDPDLB" title="评定类别" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
@@ -49,8 +49,9 @@
     <col id="OLDJBMC" title="等级" align="left" type="string" width="90" format="" frozen="false" mergeCells="true" footerCells="false" exp="true" zsy="true" showDymCol="true" orderby="desc" />
     <col id="OLDMS" title="评定标准" align="left" type="string" width="120" format="height:100px" frozen="false" mergeCells="true" footerCells="false" exp="true" zsy="true" showDymCol="true" />
     <col id="OLDJLBZ" title="薪酬系数" align="right" type="float" width="75" format="" frozen="false" mergeCells="true" footerCells="false" exp="true" zsy="true" showDymCol="true" />
-    <col id="XMMC" title="项目名称" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
-    <col id="XMZ" title="项目值" align="right" type="float" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="true" />
+    <col id="$xmmc$" title="XMMC" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" dym="true" showDymCol="true">
+      <col id="XMZ" title="项目值" align="right" type="float" width="120" format="" frozen="" mergeCells="" footerCells="" exp="true" zsy="true" showDymCol="true" />
+    </col>
   </table>
   <rels>
     <items id="jgdjpdtztable" />
@@ -250,24 +251,26 @@
     <deletebefore />
     <deleteafter />
     <updatebefore />
-    <updateafter />
+    <updateafter>
+      <sql type="insert">jgdjpdtz_update_after_item0</sql>
+    </updateafter>
   </flow>
   <sqlMap namespace="studio.jgdjpdtz">
     <select id="dn0.jgdjpdtzList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select djpd_yyjg_jg.tjrq, djpd_yyjg_jg.khdxdh, djpd_yyjg_jg.bh, djpd_yyjg_jg.djpdmc olddjpdmc, khdx_jg.jgdh, khdx_jg.jgmc, jglb.lbmc jglb, dmms.dmms khzq, djpd_yyjg_jg.pm, djpd_yyjg_jg.dj olddj, djpd_yyjg_jg.jbmc oldjbmc, djpd_yyjg_jg.jlbz oldjlbz, djpd_yyjg_jg.pdlb oldpdlb, djpd_yyjg_jg.ms   oldms, DJPD_YYMX_JG.xmmc, cast(DJPD_YYMX_JG.xmz as decimal(19,2)) as xmz from djpd_yyjg_jg djpd_yyjg_jg inner join khdx_jg khdx_jg on khdx_jg.khdxdh=djpd_yyjg_jg.khdxdh             inner join csb_dmms dmms on upper(dmms.dmmc) = 'DJPDZQ'              and dmms.dmz = djpd_yyjg_jg.pdzq inner join khdx_jglb jglb on djpd_yyjg_jg.khdxdh=jglb.khdxdh and djpd_yyjg_jg.tjrq between jglb.qsrq and jglb.jsrq inner join DJPD_YYMX_JG DJPD_YYMX_JG on DJPD_YYMX_JG.tjrq=djpd_yyjg_jg.tjrq and DJPD_YYMX_JG.bh=djpd_yyjg_jg.bh and DJPD_YYMX_JG.khdxdh=djpd_yyjg_jg.khdxdh   inner join table(fn_getsjjg_java_qx($pdrq$, $login_khdxdh$, 0)) qx on qx.khdxdh = khdx_jg.khdxdh   where 1=1
+      select djpd_yyjg_jg.tjrq, djpd_yyjg_jg.khdxdh, djpd_yyjg_jg.bh, djpd_yyjg_jg.djpdmc olddjpdmc, khdx_jg.jgdh, khdx_jg.jgmc, jglb.lbmc jglb, dmms.dmms khzq, djpd_djbz.zt, djpd_yyjg_jg.pm, djpd_yyjg_jg.dj olddj, djpd_yyjg_jg.jbmc oldjbmc, djpd_yyjg_jg.jlbz oldjlbz, djpd_yyjg_jg.pdlb oldpdlb, djpd_yyjg_jg.ms   oldms, DJPD_YYMX_JG.xmmc, cast(DJPD_YYMX_JG.xmz as decimal(19,2)) as xmz from djpd_yyjg_jg djpd_yyjg_jg inner join khdx_jg khdx_jg on khdx_jg.khdxdh=djpd_yyjg_jg.khdxdh   inner join djpd_djbz djpd_djbz        on djpd_djbz.djpdmc = djpd_yyjg_jg.djpdmc        and djpd_djbz.pdnf = substr('$pdrq$',1,4) inner join csb_dmms dmms on upper(dmms.dmmc) = 'DJPDZQ'              and dmms.dmz = djpd_yyjg_jg.pdzq inner join khdx_jglb jglb on djpd_yyjg_jg.khdxdh=jglb.khdxdh and djpd_yyjg_jg.tjrq between jglb.qsrq and jglb.jsrq inner join DJPD_YYMX_JG DJPD_YYMX_JG on DJPD_YYMX_JG.tjrq=djpd_yyjg_jg.tjrq and DJPD_YYMX_JG.bh=djpd_yyjg_jg.bh and DJPD_YYMX_JG.khdxdh=djpd_yyjg_jg.khdxdh   inner join table(fn_getsjjg_java_qx($pdrq$, $login_khdxdh$, 0)) qx on qx.khdxdh = khdx_jg.khdxdh   where 1=1
       <isNotEmpty property="pdrq">and  djpd_yyjg_jg.tjrq= $pdrq$</isNotEmpty>
       <isNotEmpty property="jgkhdxdh">and khdx_jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
       <isNotEmpty property="djpdmc">and djpd_yyjg_jg.djpdmc = '$djpdmc$'</isNotEmpty>
-      order by djpd_yyjg_jg.pm asc
+      and djpd_djbz.zt=1 order by djpd_yyjg_jg.pm asc
     </select>
     <select id="dn0.jgdjpdtzCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from ( select djpd_yyjg_jg.tjrq, djpd_yyjg_jg.khdxdh, djpd_yyjg_jg.bh, djpd_yyjg_jg.djpdmc olddjpdmc, khdx_jg.jgdh, khdx_jg.jgmc, jglb.lbmc jglb, dmms.dmms khzq, djpd_yyjg_jg.pm, djpd_yyjg_jg.dj olddj, djpd_yyjg_jg.jbmc oldjbmc, djpd_yyjg_jg.jlbz oldjlbz, djpd_yyjg_jg.pdlb oldpdlb, djpd_yyjg_jg.ms   oldms, DJPD_YYMX_JG.xmmc, cast(DJPD_YYMX_JG.xmz as decimal(19,2)) as xmz from djpd_yyjg_jg djpd_yyjg_jg inner join khdx_jg khdx_jg on khdx_jg.khdxdh=djpd_yyjg_jg.khdxdh             inner join csb_dmms dmms on upper(dmms.dmmc) = 'DJPDZQ'              and dmms.dmz = djpd_yyjg_jg.pdzq inner join khdx_jglb jglb on djpd_yyjg_jg.khdxdh=jglb.khdxdh and djpd_yyjg_jg.tjrq between jglb.qsrq and jglb.jsrq inner join DJPD_YYMX_JG DJPD_YYMX_JG on DJPD_YYMX_JG.tjrq=djpd_yyjg_jg.tjrq and DJPD_YYMX_JG.bh=djpd_yyjg_jg.bh and DJPD_YYMX_JG.khdxdh=djpd_yyjg_jg.khdxdh   inner join table(fn_getsjjg_java_qx($pdrq$, $login_khdxdh$, 0)) qx on qx.khdxdh = khdx_jg.khdxdh   where 1=1
+      select count(1) from ( select djpd_yyjg_jg.tjrq, djpd_yyjg_jg.khdxdh, djpd_yyjg_jg.bh, djpd_yyjg_jg.djpdmc olddjpdmc, khdx_jg.jgdh, khdx_jg.jgmc, jglb.lbmc jglb, dmms.dmms khzq, djpd_djbz.zt, djpd_yyjg_jg.pm, djpd_yyjg_jg.dj olddj, djpd_yyjg_jg.jbmc oldjbmc, djpd_yyjg_jg.jlbz oldjlbz, djpd_yyjg_jg.pdlb oldpdlb, djpd_yyjg_jg.ms   oldms, DJPD_YYMX_JG.xmmc, cast(DJPD_YYMX_JG.xmz as decimal(19,2)) as xmz from djpd_yyjg_jg djpd_yyjg_jg inner join khdx_jg khdx_jg on khdx_jg.khdxdh=djpd_yyjg_jg.khdxdh   inner join djpd_djbz djpd_djbz        on djpd_djbz.djpdmc = djpd_yyjg_jg.djpdmc        and djpd_djbz.pdnf = substr('$pdrq$',1,4) inner join csb_dmms dmms on upper(dmms.dmmc) = 'DJPDZQ'              and dmms.dmz = djpd_yyjg_jg.pdzq inner join khdx_jglb jglb on djpd_yyjg_jg.khdxdh=jglb.khdxdh and djpd_yyjg_jg.tjrq between jglb.qsrq and jglb.jsrq inner join DJPD_YYMX_JG DJPD_YYMX_JG on DJPD_YYMX_JG.tjrq=djpd_yyjg_jg.tjrq and DJPD_YYMX_JG.bh=djpd_yyjg_jg.bh and DJPD_YYMX_JG.khdxdh=djpd_yyjg_jg.khdxdh   inner join table(fn_getsjjg_java_qx($pdrq$, $login_khdxdh$, 0)) qx on qx.khdxdh = khdx_jg.khdxdh   where 1=1
       <isNotEmpty property="pdrq">and  djpd_yyjg_jg.tjrq= $pdrq$</isNotEmpty>
       <isNotEmpty property="jgkhdxdh">and khdx_jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
       <isNotEmpty property="djpdmc">and djpd_yyjg_jg.djpdmc = '$djpdmc$'</isNotEmpty>
-      order by djpd_yyjg_jg.pm asc ) t
+      and djpd_djbz.zt=1 order by djpd_yyjg_jg.pm asc ) t
     </select>
     <select id="dn0.jgdjpdtz_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
@@ -289,6 +292,10 @@
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
       delete from DJPD_YYJG_JG where 1=1  and BH = $bh$ and KHDXDH = $khdxdh$ and TJRQ = $tjrq$
     </delete>
+    <insert id="dn0.jgdjpdtz_update_after_item0" parameterClass="java.util.Map">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      insert  into  djpd_sgtz_jg(tzsj,tjrq,khdxdh,bh,tzqdj,tzqjbmc,tzqjlbz,tzhdj,tzhjbmc,tzhjlbz,xgrdh,tzyy)  values(F_GET_SYSTIME(),$TJRQ$,$KHDXDH$,$BH$,$olddj$,'$oldjbmc$',$oldjlbz$  ,$updateDj$,(select  jbmc  from  djpd_dj  where  pdlb='$oldpdlb$'  and  dj=$updateDj$),(select  jlbz  from  djpd_dj  where  pdlb='$oldpdlb$'  and  dj=$updateDj$),$login_khdxdh$,'$tzyy$')
+    </insert>
     <select id="dn0.jgdjpdtz_getUpdateJlbz" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select jlbz from djpd_dj
 where pdlb='$oldpdlb$'
 and dj=$tzdj$</select>

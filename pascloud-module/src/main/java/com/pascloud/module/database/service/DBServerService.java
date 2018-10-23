@@ -234,7 +234,47 @@ public class DBServerService extends AbstractBaseService {
 	} 
 	
 	
-	
+	public ResultCommon createOracleWithUser(Connection conn, String sid, String username,
+			String password,String dbUser ,String dbPass) {
+		ResultCommon result = null;
+		Boolean flag = false;
+		Session session = null;
+		try {
+			if (null != conn) {
+				
+				if(!checkDirIsExist(conn, m_config.getORACLE_DBHOME())){
+					result = new ResultCommon(PasCloudCode.ERROR.getCode(),m_config.getORACLE_DBHOME()+"目录不存在");
+					return result;
+				}
+				//
+				
+				if (grantWithSidAndUser(conn, sid,username,password,dbUser,dbPass)) {
+					if (grantWithSidAndUserShell(conn, sid,username,password)) {
+						if (impDmpFileWithSidAndUser(conn, sid,username,password)) {
+							result = new ResultCommon(PasCloudCode.SUCCESS);
+						}else{
+							result = new ResultCommon(PasCloudCode.ERROR.getCode(),"impDmpFileWithSidAndUser失败");
+						}
+					}else{
+						result = new ResultCommon(PasCloudCode.ERROR.getCode(),"grantWithSidAndUserShell失败");
+					}
+				}else{
+					result = new ResultCommon(PasCloudCode.ERROR.getCode(),"grantWithSidAndUser失败");
+				}
+				
+			}
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			result = new ResultCommon(PasCloudCode.ERROR.getCode(),e.getMessage());
+			log.error(e.getMessage());
+		} finally {
+			if(null!=session){
+				session.close();
+			}
+		}
+		return result;
+	} 
 	
 
 	private ResultCommon createOracleBySID(String sid, String ip, String tnsnamePath) {
@@ -288,7 +328,9 @@ public class DBServerService extends AbstractBaseService {
 							// flag =
 							// impDmpFileWithSid(conn2,sid);createTableSpaceWithSid
 							if(addSidWithListener(sid,conn,ip)){
+								
 								if (createTableSpaceWithSid(conn, sid)) {
+									/*
 									if (grantWithSid(conn, sid)) {
 										if(restartListenerWithSid(conn, sid)){
 											
@@ -298,7 +340,16 @@ public class DBServerService extends AbstractBaseService {
 										}
 									}else{
 										result = new ResultCommon(PasCloudCode.ERROR.getCode(),"grantWithSid失败");
+									}*/
+									
+									if(createManagerUserWithSid(sid,conn)){
+										result= createOracleWithUser(conn, sid,"pas", "pas", "CLOUDMANAGER", "CLOUDMANAGER");
+											
+										
+									}else{
+										result = new ResultCommon(PasCloudCode.ERROR.getCode(),"createManagerUserWithSid创建管理员失败");
 									}
+									
 								}else{
 									result = new ResultCommon(PasCloudCode.ERROR.getCode(),"createTableSpaceWithSid失败");
 								}
@@ -352,6 +403,54 @@ public class DBServerService extends AbstractBaseService {
 		return result;
 	}
 	
+	public Boolean createManagerUserWithSid(String sid,Connection conn) {
+		Boolean flag = false;
+		Session session = null;
+		InputStream stdout = null;
+		BufferedReader br = null;
+		//Connection conn = ;
+		try {
+			log.info("新建管理员");
+			session = conn.openSession();
+			session.execCommand(Constants.LINUX_ORACLE_HOME_SCRIPT+"/create_cloudmanager.sh" + " " + sid +" "+m_config.getORACLE_DBHOME());
+			stdout = new StreamGobbler(session.getStdout());
+			br = new BufferedReader(new InputStreamReader(stdout));
+			while (true) {
+				String line = br.readLine();
+				if (line == null) {
+					log.info("管理员新建成功");
+					flag = true;
+					break;
+				} else {
+					log.info(line);
+				}
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+			log.error("新建管理员异常");
+		} finally {
+			
+			
+			
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				// e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			try {
+				stdout.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				// e.printStackTrace();
+				log.error(e.getMessage());
+			}
+			session.close();
+		}
+		return flag;
+	}
 	
 	public Boolean createManagerUserWithSid(String sid,String ip) {
 		Boolean flag = false;

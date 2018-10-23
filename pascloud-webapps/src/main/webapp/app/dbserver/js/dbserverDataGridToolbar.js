@@ -5,13 +5,13 @@ var toolbar = function(){
         handler : function(){
         	addDB();
         }
-	}/*,{
+	},{
 		text : '删除数据库实例',  
         iconCls : 'icon-database_delete',  
         handler : function(){
         	delDB();
         }
-	}*/,{
+	},{
 		text : '初始化数据',  
         iconCls : 'icon-database_edit',  
         handler : function(){

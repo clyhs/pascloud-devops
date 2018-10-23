@@ -1,10 +1,233 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageSetting id="jjyjfp" title="基金业绩分配" type="yjgx" version="1.0.0.0" pid="" desc="标准版">
-  <mainPage>
+  <database>
+    <targetTable>
+      <relevance>
+        <name>DXGX_YJGX_JJ</name>
+        <fields>
+          <field>
+            <name>jjzh</name>
+            <dbType>VARCHAR(40)</dbType>
+          </field>
+          <field>
+            <name>khdxdh</name>
+            <dbType>INTEGER</dbType>
+          </field>
+          <field>
+            <name>qsrq</name>
+            <dbType>INTEGER</dbType>
+          </field>
+          <field>
+            <name>jsrq</name>
+            <dbType>INTEGER</dbType>
+          </field>
+          <field>
+            <name>zlbl</name>
+            <dbType>DECIMAL(19,5)</dbType>
+          </field>
+          <field>
+            <name>gxly</name>
+            <dbType>VARCHAR(2)</dbType>
+          </field>
+          <field>
+            <name>yylsh</name>
+            <dbType>NUMERIC(20)</dbType>
+          </field>
+        </fields>
+      </relevance>
+      <performance>
+        <name>JXDX_JJKHQY</name>
+        <fields>
+          <field>
+            <name>jjzh</name>
+            <dbType>VARCHAR(40)</dbType>
+            <isPrimaryKey>true</isPrimaryKey>
+          </field>
+          <field>
+            <name>jjlx</name>
+            <dbType>VARCHAR(2)</dbType>
+            <isPrimaryKey>false</isPrimaryKey>
+          </field>
+          <field>
+            <name>khh</name>
+            <dbType>VARCHAR(30)</dbType>
+            <isPrimaryKey>false</isPrimaryKey>
+          </field>
+          <field>
+            <name>khmc</name>
+            <dbType>VARCHAR(100)</dbType>
+            <isPrimaryKey>false</isPrimaryKey>
+          </field>
+          <field>
+            <name>jgdh</name>
+            <dbType>VARCHAR(10)</dbType>
+            <isPrimaryKey>false</isPrimaryKey>
+          </field>
+          <field>
+            <name>qyrq</name>
+            <dbType>INTEGER</dbType>
+            <isPrimaryKey>false</isPrimaryKey>
+          </field>
+          <field>
+            <name>jyrq</name>
+            <dbType>INTEGER</dbType>
+            <isPrimaryKey>false</isPrimaryKey>
+          </field>
+          <field>
+            <name>zjlb</name>
+            <dbType>VARCHAR(2)</dbType>
+            <isPrimaryKey>false</isPrimaryKey>
+          </field>
+          <field>
+            <name>zjhm</name>
+            <dbType>VARCHAR(25)</dbType>
+            <isPrimaryKey>false</isPrimaryKey>
+          </field>
+          <field>
+            <name>hydh</name>
+            <dbType>VARCHAR(12)</dbType>
+            <isPrimaryKey>false</isPrimaryKey>
+          </field>
+          <field>
+            <name>qygy</name>
+            <dbType>VARCHAR(12)</dbType>
+            <isPrimaryKey>false</isPrimaryKey>
+          </field>
+          <field>
+            <name>khdxdh</name>
+            <dbType>INTEGER</dbType>
+            <isPrimaryKey>false</isPrimaryKey>
+          </field>
+        </fields>
+        <dateField>qyrq</dateField>
+        <innerFields>
+          <innerField>jjzh</innerField>
+        </innerFields>
+      </performance>
+      <log>
+        <name>XTB_HYGXRZ_JJ</name>
+        <fields>
+          <field>
+            <name>jldh</name>
+            <dbType>INTEGER</dbType>
+          </field>
+          <field>
+            <name>jlsj</name>
+            <dbType>TIMESTAMP</dbType>
+          </field>
+          <field>
+            <name>czlx</name>
+            <dbType>VARCHAR(2)</dbType>
+          </field>
+          <field>
+            <name>xgrdh</name>
+            <dbType>INTEGER</dbType>
+          </field>
+          <field>
+            <name>jjzh</name>
+            <dbType>VARCHAR(40)</dbType>
+          </field>
+        </fields>
+      </log>
+      <record>
+        <name>XTB_HYGXJL_JJ</name>
+        <fields>
+          <field>
+            <name>jldh</name>
+            <dbType>INTEGER</dbType>
+          </field>
+          <field>
+            <name>ggbz</name>
+            <dbType>VARCHAR(1)</dbType>
+          </field>
+          <field>
+            <name>khdxdh</name>
+            <dbType>INTEGER</dbType>
+          </field>
+          <field>
+            <name>qsrq</name>
+            <dbType>INTEGER</dbType>
+          </field>
+          <field>
+            <name>jsrq</name>
+            <dbType>INTEGER</dbType>
+          </field>
+          <field>
+            <name>zlbl</name>
+            <dbType>DECIMAL(19,5)</dbType>
+          </field>
+        </fields>
+      </record>
+    </targetTable>
+    <extendTable>
+      <table name="KHDX_JG" alias="KHDX_JG396" joinType="inner">
+        <fields>
+          <field>
+            <name>KHDXDH</name>
+            <dbType>INTEGER</dbType>
+          </field>
+          <field>
+            <name>JGDH</name>
+            <dbType>VARCHAR(15)</dbType>
+          </field>
+          <field>
+            <name>JGMC</name>
+            <dbType>VARCHAR(100)</dbType>
+          </field>
+          <field>
+            <name>JYJGBZ</name>
+            <dbType>VARCHAR(1)</dbType>
+          </field>
+          <field>
+            <name>PXBZ</name>
+            <dbType>INTEGER</dbType>
+          </field>
+          <field>
+            <name>ZXZT</name>
+            <dbType>VARCHAR(1)</dbType>
+          </field>
+          <field>
+            <name>ZXRQ</name>
+            <dbType>INTEGER</dbType>
+          </field>
+          <field>
+            <name>FHDH</name>
+            <dbType>VARCHAR(15)</dbType>
+          </field>
+          <field>
+            <name>FHBZ</name>
+            <dbType>VARCHAR(2)</dbType>
+          </field>
+          <field>
+            <name>JGDJ</name>
+            <dbType>VARCHAR(2)</dbType>
+          </field>
+          <field>
+            <name>KYRQ</name>
+            <dbType>INTEGER</dbType>
+          </field>
+        </fields>
+        <relevanceFields>
+          <field>
+            <name>JGDH</name>
+            <dbType>VARCHAR(15)</dbType>
+            <operator>=</operator>
+            <condition>
+              <table>JXDX_JJKHQY</table>
+              <field>jgdh</field>
+              <dbType>VARCHAR(10)</dbType>
+            </condition>
+            <limitCondition />
+          </field>
+        </relevanceFields>
+      </table>
+    </extendTable>
+  </database>
+  <mainPart>
     <tags>
-      <tag name="Date" fieldName="JXDX_JJKHQY.QYRQ" condition="between ? and 1" col="0" row="0" colspan="1" label="签约日期">
+      <tag name="qsrq" field="JXDX_JJKHQY.qyrq" type="Date" source="perfor" condition="between ? and 1" col="0" row="0" colspan="1">
         <attribute key="label" value="签约日期" />
-        <attribute key="name" value="QSRQ" />
+        <attribute key="name" value="qsrq" />
         <attribute key="dateFmt" value="yyyyMMdd" />
         <attribute key="defValType" value="yc" />
         <attribute key="styleClass" value="" />
@@ -14,9 +237,9 @@
         <attribute key="isRequired" value="true" />
         <attribute key="editable" value="true" />
       </tag>
-      <tag name="Date" fieldName="JXDX_JJKHQY.QYRQ" condition="between 1 and ?" col="1" row="0" colspan="1" label="到">
+      <tag name="tjrq" field="JXDX_JJKHQY.qyrq" type="Date" source="perfor" condition="between 1 and ?" col="1" row="0" colspan="1">
         <attribute key="label" value="到" />
-        <attribute key="name" value="JSRQ" />
+        <attribute key="name" value="tjrq" />
         <attribute key="dateFmt" value="yyyyMMdd" />
         <attribute key="defValType" value="sysDate" />
         <attribute key="styleClass" value="" />
@@ -26,19 +249,40 @@
         <attribute key="isRequired" value="true" />
         <attribute key="editable" value="true" />
       </tag>
-      <tag name="NewJg" fieldName="JXDX_JJKHQY.JGDH" condition="in" col="2" row="0" colspan="1" label="签约机构">
+      <tag name="jgkhdxdh" field="JXDX_JJKHQY.jgdh" type="NewJg" source="perfor" condition="in" col="2" row="0" colspan="1">
         <attribute key="label" value="签约机构" />
-        <attribute key="name" value="JGKHDXDH" />
-        <attribute key="ckbz" value="jg_ckhy" />
+        <attribute key="name" value="jgkhdxdh" />
+        <attribute key="ckbz" value="jg" />
+        <attribute key="defVal" value="" />
         <attribute key="multiple" value="false" />
         <attribute key="cascadeCheck" value="true" />
         <attribute key="isRequired" value="true" />
         <attribute key="style" value="" />
         <attribute key="editable" value="true" />
       </tag>
-      <tag name="Text" fieldName="JXDX_JJKHQY.JJZH" condition="like %?%" col="3" row="0" colspan="1" label="基金账号">
+      <tag name="jjzh" field="JXDX_JJKHQY.jjzh" type="Text" source="perfor" condition="like %?%" col="0" row="1" colspan="1">
         <attribute key="label" value="基金账号" />
-        <attribute key="name" value="JJZH" />
+        <attribute key="name" value="jjzh" />
+        <attribute key="value" value="" />
+        <attribute key="maxlength" value="" />
+        <attribute key="readonly" value="false" />
+        <attribute key="style" value="" />
+        <attribute key="styleClass" value="" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag name="khh" field="JXDX_JJKHQY.khh" type="Text" source="perfor" condition="like %?%" col="1" row="1" colspan="1">
+        <attribute key="label" value="客户号" />
+        <attribute key="name" value="khh" />
+        <attribute key="value" value="" />
+        <attribute key="maxlength" value="" />
+        <attribute key="readonly" value="false" />
+        <attribute key="style" value="" />
+        <attribute key="styleClass" value="" />
+        <attribute key="editable" value="true" />
+      </tag>
+      <tag name="khmc" field="JXDX_JJKHQY.khmc" type="Text" source="perfor" condition="like %?%" col="2" row="1" colspan="1">
+        <attribute key="label" value="客户名称" />
+        <attribute key="name" value="khmc" />
         <attribute key="value" value="" />
         <attribute key="maxlength" value="" />
         <attribute key="readonly" value="false" />
@@ -48,168 +292,38 @@
       </tag>
     </tags>
     <javascript />
-  </mainPage>
-  <listPage>
+  </mainPart>
+  <listPart>
     <tags>
-      <tag name="Label" fieldName="KHH" condition="=" col="0" row="0" colspan="1" label="客户号">
+      <tag name="label" field="khh" type="Label" col="0" row="0" condition="=" colspan="1">
         <attribute key="label" value="客户号" />
-        <attribute key="name" value="KHH" />
+        <attribute key="name" value="khh" />
       </tag>
-      <tag name="Label" fieldName="KHMC" condition="=" col="1" row="0" colspan="1" label="客户名称">
+      <tag name="label" field="khmc" type="Label" col="1" row="0" condition="=" colspan="1">
         <attribute key="label" value="客户名称" />
-        <attribute key="name" value="KHMC" />
+        <attribute key="name" value="khmc" />
       </tag>
     </tags>
     <javascript />
-  </listPage>
-  <table page="true" id="jjyjfp_table_main">
-    <col id="JJZH" title="基金账号" align="left" type="string" width="150" format="" frozen="" exp="true" />
-    <col id="KHH" title="客户号" align="left" type="string" width="120" format="" frozen="" exp="true" />
-    <col id="KHMC" title="客户名称" align="left" type="string" width="180" format="" frozen="" exp="true" />
-    <col id="QYRQ" title="签约日期" align="left" type="string" width="80" format="" frozen="" exp="true" />
-    <col id="DQFPGX" title="当前分配关系" align="left" type="string" width="200" format="" frozen="" exp="true" />
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" format="" frozen="" exp="true" />
-  </table>
-  <table page="true" id="jjyjfp_table_list">
-    <col id="JGDH" title="机构代号" align="left" type="string" width="100" format="" frozen="" />
-    <col id="JGMC" title="机构名称" align="left" type="string" width="150" format="" frozen="" />
-    <col id="HYDH" title="行员代号" align="left" type="string" width="80" format="" frozen="" />
-    <col id="HYMC" title="行员名称" align="left" type="string" width="90" format="" frozen="" />
-    <col id="QSRQ" title="起始日期" align="left" type="string" width="80" format="" frozen="" />
-    <col id="JSRQ" title="结束日期" align="left" type="string" width="80" format="" frozen="" />
-    <col id="ZLBL" title="分配比例" align="right" type="float" width="80" format="" frozen="" />
-    <col id="QYRQ" title="qyrq1" align="right" type="hidden" width="180" format="true" frozen="false" hidden="true" />
-  </table>
-  <rels>
-    <items id="jjyjfp_table_main">
-      <item name="hideZd" compareValue="main" operate="isEqual" />
-    </items>
-    <items id="jjyjfp_table_list">
-      <item name="hideZd" compareValue="list" operate="isEqual" />
-    </items>
-  </rels>
-  <performance>
-    <primaryKey>QYRQ</primaryKey>
-  </performance>
-  <sqlMap>
-    <select id="dn0.jjyjfp_select_validateDate" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from JXDX_JJKHQY JXDX_JJKHQY where 1=1  and JXDX_JJKHQY.QYRQ = $QYRQ$ and jjzh &gt; $QSRQ$
-    </select>
-    <select id="dn0.jjyjfp_select_maxQsrq" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select max(qsrq) from dxgx_yjgx_jj where 1=1  and QYRQ = $QYRQ$
-    </select>
-    <select id="dn0.jjyjfp_select_khrq" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select jjzh from JXDX_JJKHQY where 1=1  and QYRQ = $QYRQ$
-    </select>
-    <select id="dn0.jjyjfp_select_minQsrq" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select min(qsrq) from dxgx_yjgx_jj gx where 1=1  and gx.QYRQ = $QYRQ$
-    </select>
-    <select id="dn0.jjyjfp_select_mainPage_db2" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select JXDX_JJKHQY.KHMC as KHMC,JXDX_JJKHQY.QYRQ as QYRQ,JXDX_JJKHQY.JJZH as JJZH,JXDX_JJKHQY.KHH as KHH,khdx_jg.JGMC as JGMC ,case when gxyj.jjzh is null then '无关系' else  gxyj.DQFPGX  end dqfpgx  from JXDX_JJKHQY JXDX_JJKHQY left outer join (  select  dxgx_yjgx_jj.jjzh, listagg(khdx_hy.hymc||'|'||f_numtochar(dxgx_yjgx_jj.zlbl)||',') as DQFPGX  from  khdx_hy khdx_hy  inner join dxgx_yjgx_jj dxgx_yjgx_jj on dxgx_yjgx_jj.khdxdh=khdx_hy.khdxdh and $sysdate$ between dxgx_yjgx_jj.qsrq and dxgx_yjgx_jj.jsrq group by dxgx_yjgx_jj.jjzh)  gxyj on gxyj.jjzh=JXDX_JJKHQY.jjzh  inner join khdx_jg khdx_jg on khdx_jg.jgdh=JXDX_JJKHQY.jgdh inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,$JGKHDXDH$)) qx on qx.khdxdh=khdx_jg.khdxdh where 1=1
-      <isNotEmpty property="JJZH">and JXDX_JJKHQY.JJZH like '%$JJZH$%'</isNotEmpty>
-      <isNotEmpty property="JSRQ">
-        <isEmpty property="QSRQ">and JXDX_JJKHQY.QYRQ between 20081231 and $JSRQ$</isEmpty>
-      </isNotEmpty>
-      <isNotEmpty property="QSRQ">
-        <isEmpty property="JSRQ">and JXDX_JJKHQY.QYRQ between $QSRQ$ and 29991231</isEmpty>
-      </isNotEmpty>
-      <isNotEmpty property="QSRQ">
-        <isNotEmpty property="JSRQ">and JXDX_JJKHQY.QYRQ between $QSRQ$ and $JSRQ$</isNotEmpty>
-      </isNotEmpty>
-      order by JXDX_JJKHQY.jjzh
-    </select>
-    <select id="dn0.jjyjfp_select_mainPage_ora" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select JXDX_JJKHQY.KHMC as KHMC,JXDX_JJKHQY.QYRQ as QYRQ,JXDX_JJKHQY.JJZH as JJZH,JXDX_JJKHQY.KHH as KHH,khdx_jg.JGMC as JGMC, F_WM_CONCAT(khdx_hy.hymc || dxgx_yjgx_jj.zlbl) DQFPGX  ,case when gxyj.jjzh is null then '无关系' else  gxyj.DQFPGX  end dqfpgx  from JXDX_JJKHQY JXDX_JJKHQY left outer join (  select  dxgx_yjgx_jj.jjzh, listagg(khdx_hy.hymc||'|'||f_numtochar(dxgx_yjgx_jj.zlbl)||',') as DQFPGX  from  khdx_hy khdx_hy  inner join dxgx_yjgx_jj dxgx_yjgx_jj on dxgx_yjgx_jj.khdxdh=khdx_hy.khdxdh and $sysdate$ between dxgx_yjgx_jj.qsrq and dxgx_yjgx_jj.jsrq group by dxgx_yjgx_jj.jjzh)  gxyj on gxyj.jjzh=JXDX_JJKHQY.jjzh  inner join khdx_jg khdx_jg on khdx_jg.jgdh=JXDX_JJKHQY.jgdh inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,$JGKHDXDH$)) qx on qx.khdxdh=khdx_jg.khdxdh where 1=1
-      <isNotEmpty property="JJZH">and JXDX_JJKHQY.JJZH like '%$JJZH$%'</isNotEmpty>
-      <isNotEmpty property="JSRQ">
-        <isEmpty property="QSRQ">and JXDX_JJKHQY.QYRQ between 20081231 and $JSRQ$</isEmpty>
-      </isNotEmpty>
-      <isNotEmpty property="QSRQ">
-        <isEmpty property="JSRQ">and JXDX_JJKHQY.QYRQ between $QSRQ$ and 29991231</isEmpty>
-      </isNotEmpty>
-      <isNotEmpty property="QSRQ">
-        <isNotEmpty property="JSRQ">and JXDX_JJKHQY.QYRQ between $QSRQ$ and $JSRQ$</isNotEmpty>
-      </isNotEmpty>
-      order by JXDX_JJKHQY.jjzh
-    </select>
-    <select id="dn0.jjyjfp_select_mainCount_db2" parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) as count from  JXDX_JJKHQY JXDX_JJKHQY  inner join khdx_jg khdx_jg on khdx_jg.jgdh=JXDX_JJKHQY.jgdh  inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,$JGKHDXDH$)) qx on qx.khdxdh=khdx_jg.khdxdh   where 1=1
-      <isNotEmpty property="JJZH">and JXDX_JJKHQY.JJZH like '%$JJZH$%'</isNotEmpty>
-      <isNotEmpty property="JSRQ">
-        <isEmpty property="QSRQ">and JXDX_JJKHQY.QYRQ between 20081231 and $JSRQ$</isEmpty>
-      </isNotEmpty>
-      <isNotEmpty property="QSRQ">
-        <isEmpty property="JSRQ">and JXDX_JJKHQY.QYRQ between $QSRQ$ and 29991231</isEmpty>
-      </isNotEmpty>
-      <isNotEmpty property="QSRQ">
-        <isNotEmpty property="JSRQ">and JXDX_JJKHQY.QYRQ between $QSRQ$ and $JSRQ$</isNotEmpty>
-      </isNotEmpty>
-    </select>
-    <select id="dn0.jjyjfp_select_mainCount_ora" parameterClass="java.util.Map" resultClass="java.lang.Integer" remapResults="true">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) as count from  JXDX_JJKHQY JXDX_JJKHQY  inner join khdx_jg khdx_jg on khdx_jg.jgdh=JXDX_JJKHQY.jgdh  inner join table(FN_GETSJJG_JAVA_QX($sysdate$,$login_khdxdh$,$JGKHDXDH$)) qx on qx.khdxdh=khdx_jg.khdxdh   where 1=1
-      <isNotEmpty property="JJZH">and JXDX_JJKHQY.JJZH like '%$JJZH$%'</isNotEmpty>
-      <isNotEmpty property="JSRQ">
-        <isEmpty property="QSRQ">and JXDX_JJKHQY.QYRQ between 20081231 and $JSRQ$</isEmpty>
-      </isNotEmpty>
-      <isNotEmpty property="QSRQ">
-        <isEmpty property="JSRQ">and JXDX_JJKHQY.QYRQ between $QSRQ$ and 29991231</isEmpty>
-      </isNotEmpty>
-      <isNotEmpty property="QSRQ">
-        <isNotEmpty property="JSRQ">and JXDX_JJKHQY.QYRQ between $QSRQ$ and $JSRQ$</isNotEmpty>
-      </isNotEmpty>
-    </select>
-    <select id="dn0.jjyjfp_select_gxmxPage" parameterClass="java.util.Map" resultClass="java.util.HashMap">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select distinct khdx_jg.JGDH as JGDH,khdx_hy.HYMC as HYMC,JXDX_JJKHQY.QYRQ,khdx_hy.HYDH as HYDH,DXGX_YJGX_JJ.QSRQ as QSRQ,DXGX_YJGX_JJ.JSRQ as JSRQ,KHDX_JG.JGMC as JGMC,DXGX_YJGX_JJ.ZLBL as ZLBL ,case when gxyj.jjzh is null then '无关系' else  gxyj.DQFPGX  end dqfpgx  from dxgx_yjgx_jj dxgx_yjgx_jj inner join JXDX_JJKHQY JXDX_JJKHQY on 1=1  and JXDX_JJKHQY.QYRQ=dxgx_yjgx_jj.QYRQ inner join khdx_hy khdx_hy on dxgx_yjgx_jj.khdxdh=khdx_hy.khdxdh inner join khdx_jgcy khdx_jgcy on khdx_hy.khdxdh=khdx_jgcy.khdxdh inner join khdx_jg khdx_jg on khdx_jgcy.jgkhdxdh=khdx_jg.khdxdh and $sysdate$ between khdx_jgcy.qsrq and khdx_jgcy.jsrq inner join KHDX_JG KHDX_JG780 on  KHDX_JG780.JGDH=JXDX_JJKHQY.JGDH  where 1=1  and dxgx_yjgx_jj.QYRQ = $QYRQ$ order by dxgx_yjgx_jj.qsrq
-    </select>
-    <select id="dn0.jjyjfp_select_gxmxCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from (select distinct khdx_jg.JGDH as JGDH,khdx_hy.HYMC as HYMC,JXDX_JJKHQY.QYRQ,khdx_hy.HYDH as HYDH,DXGX_YJGX_JJ.QSRQ as QSRQ,DXGX_YJGX_JJ.JSRQ as JSRQ,KHDX_JG.JGMC as JGMC,DXGX_YJGX_JJ.ZLBL as ZLBL ,case when gxyj.jjzh is null then '无关系' else  gxyj.DQFPGX  end dqfpgx  from dxgx_yjgx_jj dxgx_yjgx_jj inner join JXDX_JJKHQY JXDX_JJKHQY on 1=1  and JXDX_JJKHQY.QYRQ=dxgx_yjgx_jj.QYRQ inner join khdx_hy khdx_hy on dxgx_yjgx_jj.khdxdh=khdx_hy.khdxdh inner join khdx_jgcy khdx_jgcy on khdx_hy.khdxdh=khdx_jgcy.khdxdh inner join khdx_jg khdx_jg on khdx_jgcy.jgkhdxdh=khdx_jg.khdxdh and $sysdate$ between khdx_jgcy.qsrq and khdx_jgcy.jsrq inner join KHDX_JG KHDX_JG780 on  KHDX_JG780.JGDH=JXDX_JJKHQY.JGDH  where 1=1  and dxgx_yjgx_jj.QYRQ = $QYRQ$ order by dxgx_yjgx_jj.qsrq) a
-    </select>
-    <delete id="dn0.jjyjfp_delete_last_yjgx" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      delete from dxgx_yjgx_jj where 1=1  and QYRQ = $QYRQ$ and jsrq=29991231
-    </delete>
-    <update id="dn0.jjyjfp_before_insert_yjgx2" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update dxgx_yjgx_jj set jsrq=$BEFORE$  where 1=1  and QYRQ = $QYRQ$ and qsrq=(select max(qsrq) from dxgx_yjgx_jj where 1=1  and QYRQ = $QYRQ$)
-    </update>
-    <insert id="dn0.jjyjfp_before_insert_yjgx" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update dxgx_yjgx_jj set jsrq=$BEFORE$  where 1=1  and QYRQ = $QYRQ$ and jsrq=29991231
-    </insert>
-    <insert id="dn0.jjyjfp_insert_yjgx" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      insert into DXGX_YJGX_JJ(jjzh,khdxdh,qsrq,jsrq,zlbl) values('$jjzh$',$khdxdh$,$qsrq$,$jsrq$,$zlbl$)
-    </insert>
-    <delete id="dn0.jjyjfp_delete_yjgx" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      delete from dxgx_yjgx_jj gx where 1=1  and gx.QYRQ = $QYRQ$ and gx.jsrq=29991231
-    </delete>
-    <update id="dn0.jjyjfp_after_delete_yjgx" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update dxgx_yjgx_jj set jsrq=29991231  where 1=1  and QYRQ = $QYRQ$ and jsrq=(select max(jsrq) from dxgx_yjgx_jj where 1=1  and QYRQ = $QYRQ$)
-    </update>
-    <select id="dn0.jjyjfp_select_maxjldh" parameterClass="java.util.Map" resultClass="java.lang.Integer">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  coalesce(max(jldh),0) from XTB_HYGXRZ_JJ
-    </select>
-    <insert id="dn0.jjyjfp_insert_gxrz" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      insert into XTB_HYGXRZ_JJ(jldh,jlsj,czlx,xgrdh,jjzh) values($jldh$,F_GET_SYSTIME(),'$czlx$',$xgrdh$,'$jjzh$')
-    </insert>
-    <insert id="dn0.jjyjfp_insert_gxjl" parameterClass="java.util.Map">
-      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      insert into XTB_HYGXJL_JJ(jldh,ggbz,khdxdh,qsrq,jsrq,zlbl) select $jldh$,'$ggbz$',gx.khdxdh,gx.qsrq,gx.jsrq,gx.zlbl from dxgx_yjgx_jj gx where 1=1  and gx.QYRQ = $QYRQ$ and jsrq=29991231
-    </insert>
-  </sqlMap>
+  </listPart>
+  <resultSet>
+    <mainTable id="001" title="mainTable" page="true">
+      <col id="jjzh" fieldAlias="jjzh" tvalue="JXDX_JJKHQY" tableAlias="JXDX_JJKHQY" source="perfor" title="基金账号" align="left" type="string" width="150" format="" exp="true" />
+      <col id="khh" fieldAlias="khh" tvalue="JXDX_JJKHQY" tableAlias="JXDX_JJKHQY" source="perfor" title="客户号" align="left" type="string" width="120" format="" exp="true" />
+      <col id="khmc" fieldAlias="khmc" tvalue="JXDX_JJKHQY" tableAlias="JXDX_JJKHQY" source="perfor" title="客户名称" align="left" type="string" width="180" format="" exp="true" />
+      <col id="qyrq" fieldAlias="qyrq" tvalue="JXDX_JJKHQY" tableAlias="JXDX_JJKHQY" source="perfor" title="签约日期" align="left" type="string" width="80" format="" exp="true" />
+      <col id="DQFPGX" fieldAlias="DQFPGX" tvalue="parentName" tableAlias="parentName" source="base" title="当前分配关系" align="center" type="string" width="200" format="" exp="true" />
+      <col id="JGMC" fieldAlias="JGMC" tvalue="KHDX" tableAlias="KHDX" source="inObject" title="机构名称" align="left" type="string" width="150" format="" exp="true" />
+    </mainTable>
+    <listTable id="002" type="tag" title="listTable" page="true">
+      <col id="JGDH" fieldAlias="JGDH" tvalue="KHDX" tableAlias="KHDX" source="inObject" title="机构代号" align="left" type="string" width="100" format="" />
+      <col id="JGMC" fieldAlias="JGMC" tvalue="KHDX" tableAlias="KHDX" source="inObject" title="机构名称" align="left" type="string" width="150" format="" />
+      <col id="HYDH" fieldAlias="HYDH" tvalue="KHDX" tableAlias="KHDX" source="inObject" title="行员代号" align="left" type="string" width="80" format="" />
+      <col id="HYMC" fieldAlias="HYMC" tvalue="KHDX" tableAlias="KHDX" source="inObject" title="行员名称" align="left" type="string" width="90" format="" />
+      <col id="QSRQ" fieldAlias="QSRQ" tvalue="DXGX_YJGX_JJ" tableAlias="DXGX_YJGX_JJ" source="rele" title="起始日期" align="left" type="string" width="80" format="" />
+      <col id="JSRQ" fieldAlias="JSRQ" tvalue="DXGX_YJGX_JJ" tableAlias="DXGX_YJGX_JJ" source="rele" title="结束日期" align="left" type="string" width="80" format="" />
+      <col id="ZLBL" fieldAlias="ZLBL" tvalue="DXGX_YJGX_JJ" tableAlias="DXGX_YJGX_JJ" source="rele" title="增量比例" align="left" type="string" width="80" format="" />
+    </listTable>
+  </resultSet>
 </pageSetting>
 

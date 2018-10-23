@@ -25,26 +25,33 @@ public class TenantService {
 	private static Logger log = LoggerFactory.getLogger(TenantService.class);
 	
 	
-	 public Integer updateKhdxHy(Connection conn,String en,String cn){
+	 public Integer updateKhdxHy(Connection conn,String en,String cn, String name){
 			
 			Integer result = 0;
 			Integer result2 = 0;
 			Integer result3 = 0;
+			Integer result4 = 0;
 			QueryRunner qRunner = new QueryRunner();  
 			try {
 				if(null!=conn){
 					String sql = "update khdx_hy set dlmc=replace(dlmc,substr(dlmc, 0, 2),?)";
 					Object [] params = new Object[]{en};
 					result = qRunner.update(conn, sql, params);
+					
 					String xmmc = cn+"农商行绩效系统";
 					String sql2 = "update xtb_xtcs set CSZ=? where csmc='SYS_XMMC'";
 					Object [] params2 = new Object[]{xmmc};
 					result2 = qRunner.update(conn, sql2, params2);
 					String dlmc = en+"admin";
 					String old_dlmc=en+"as11";
+					
 					String sql3 = "update khdx_hy set dlmc=?,hymc=? where khdxdh=? ";
 					Object [] params3 = new Object[]{dlmc,dlmc,1};
 					result3 = qRunner.update(conn, sql3, params3);
+					
+					String sql4 = "update xtb_jsgnqx set fhdh=? ";
+					Object [] params4 = new Object[]{name};
+					result4 = qRunner.update(conn, sql4, params4);
 					
 				}else{
 					

@@ -19,6 +19,10 @@
 	        <groupId>com.pascloud.devops</groupId>
 	        <artifactId>pascloud-module</artifactId>
 	    </dependency>
+	    <dependency>
+	        <groupId>com.pascloud.devops</groupId>
+	        <artifactId>pascloud-etl</artifactId>
+	    </dependency>
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache</artifactId>

@@ -596,7 +596,10 @@ public class PascodeService extends AbstractBaseService {
     				log.info("上传源码包："+s.getIp()+" "+codepath);
     				if(putFileToServer(conn,codepath,Constants.PASCLOUD_HOME)){
     					log.info("执行："+s.getIp()+"的命令"+unzipCmd);
+
     					if(execCommand(conn,unzipCmd)){
+    						String chmodCmd = " chmod +x "+webappPath+"/jxbgcx/downutil/* ";
+    						execCommand(conn,chmodCmd);
     						result = new ResultCommon(PasCloudCode.SUCCESS);
     					}else{
     						result = new ResultCommon(PasCloudCode.ERROR.getCode(),unzipCmd+"失败");

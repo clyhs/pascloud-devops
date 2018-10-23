@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="yyckyj" title="预约业绩管理" type="manage" version="1.0.0.0" pid="" desc="标准版">
+<pageSetting id="yyckyj" title="预约业绩管理" type="manage" version="1.0.0.0" desc="标准版" pid="">
   <conPart>
     <tags>
       <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="录入日期" fieldName="">
@@ -80,7 +80,6 @@
     <col id="YYLX" title="YYLX" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" />
     <col id="CZRHYDH" title="操作人行员号" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" />
     <col id="CZRHYMC" title="操作人" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" />
-    <col id="CZSJ" title="操作时间" align="left" type="string" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
     <col id="PPBZ" title="PPBZ" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" />
     <col id="JGDH" title="机构代号" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
     <col id="LSH" title="LSH" align="left" type="hidden" width="120" format="" frozen="false" mergeCells="false" footerCells="false" exp="true" zsy="true" showDymCol="false" />
@@ -142,7 +141,7 @@
     </tag>
     <tag row="1" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
       <attribute key="dataType" value="select" />
-      <attribute key="sql" value="select F_CHANGE_DAYS($servedate$,$yyqsrqts$) as QSRQ from pas_vt" />
+      <attribute key="sql" value="select F_CHANGE_DAYS($serveDate$,$yyqsrqts$) as QSRQ from pas_vt" />
       <attribute key="name" value="getyyQsrq" />
     </tag>
     <tag row="2" col="0" rowspan="1" colspan="1" name="NewJg" label="预约机构" fieldName="JGKHDXDH">
@@ -244,17 +243,13 @@
       <attribute key="editable" value="true" />
       <attribute key="rows" value="3" />
     </tag>
-    <tag row="6" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZSJ">
-      <attribute key="defVal" value="systime" />
-      <attribute key="name" value="czsj" />
+    <tag row="6" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="defVal" value="$serveDate$" />
+      <attribute key="name" value="serveDate" />
     </tag>
-    <tag row="7" col="3" rowspan="1" colspan="1" name="Date" label="servedate" fieldName="">
-      <attribute key="isRequired" value="false" />
-      <attribute key="name" value="servedate" />
-      <attribute key="minDate" value="no" />
-      <attribute key="defValType" value="srvDate" />
-      <attribute key="dateFmt" value="yyyyMMdd" />
-      <attribute key="editable" value="true" />
+    <tag row="6" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZSJ">
+      <attribute key="defVal" value="$csdate$" />
+      <attribute key="name" value="czsj" />
     </tag>
   </addPage>
   <updatePage title="编辑页面">
@@ -318,7 +313,7 @@
     </tag>
     <tag row="1" col="3" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
       <attribute key="dataType" value="select" />
-      <attribute key="sql" value="select F_CHANGE_DAYS($servedate$,$yyqsrqts$) as QSRQ from pas_vt" />
+      <attribute key="sql" value="select F_CHANGE_DAYS($serveDate$,$yyqsrqts$) as QSRQ from pas_vt" />
       <attribute key="name" value="getyyQsrq" />
     </tag>
     <tag row="2" col="0" rowspan="1" colspan="1" name="NewJg" label="预约机构" fieldName="JGKHDXDH">
@@ -427,17 +422,13 @@
       <attribute key="editable" value="true" />
       <attribute key="rows" value="3" />
     </tag>
-    <tag row="6" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZSJ">
-      <attribute key="defVal" value="systime" />
-      <attribute key="name" value="czsj" />
+    <tag row="6" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="">
+      <attribute key="defVal" value="$serveDate$" />
+      <attribute key="name" value="serveDate" />
     </tag>
-    <tag row="7" col="3" rowspan="1" colspan="1" name="Date" label="servedate" fieldName="">
-      <attribute key="isRequired" value="false" />
-      <attribute key="name" value="servedate" />
-      <attribute key="minDate" value="no" />
-      <attribute key="defValType" value="srvDate" />
-      <attribute key="dateFmt" value="yyyyMMdd" />
-      <attribute key="editable" value="true" />
+    <tag row="6" col="3" rowspan="1" colspan="1" name="Hidden" label="" fieldName="CZSJ">
+      <attribute key="defVal" value="$csdate$" />
+      <attribute key="name" value="czsj" />
     </tag>
   </updatePage>
   <buttons>
@@ -456,7 +447,7 @@
   <sqlMap namespace="studio.yyckyj">
     <select id="dn0.yyckyjList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select jg.jgdh,jg.jgmc,jg.khdxdh as jgkhdxdh,hy.khdxdh,hy.hymc,hy.hydh,gsjg.jgmc as gsjg,yyck.lsh,         khlx.dmms khlx,yyck.khmc,zjlx.dmms zjlx,zjhm,          yyck.yjje,yyck.blrq,yyck.yyqsrq,yyck.yyjsrq,yyck.bz ,csb.yyms,csb.yylx,ppjg.dmms ppjg,yyck.ppbz,          czr.hydh as czrhydh,czr.hymc as czrhymc,yyck.czsj from jxdx_yyyj yyck inner join khdx_hy hy on hy.khdxdh=yyck.khdxdh inner join khdx_jg jg on jg.khdxdh=yyck.jgkhdxdh inner join khdx_jgcy cy on hy.khdxdh=cy.khdxdh
+      select jg.jgdh,jg.jgmc,jg.khdxdh as jgkhdxdh,hy.khdxdh,hy.hymc,hy.hydh,gsjg.jgmc as gsjg,yyck.lsh,         khlx.dmms khlx,yyck.khmc,zjlx.dmms zjlx,zjhm,          yyck.yjje,yyck.blrq,yyck.yyqsrq,yyck.yyjsrq,yyck.bz ,csb.yyms,csb.yylx,ppjg.dmms ppjg,yyck.ppbz,          czr.hydh as czrhydh,czr.hymc as czrhymc from jxdx_yyyj yyck inner join khdx_hy hy on hy.khdxdh=yyck.khdxdh inner join khdx_jg jg on jg.khdxdh=yyck.jgkhdxdh inner join khdx_jgcy cy on hy.khdxdh=cy.khdxdh
       <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
       inner join khdx_jg gsjg on cy.jgkhdxdh=gsjg.khdxdh inner join khdx_hy czr on czr.hydh=yyck.czr inner join table(FN_GETSJJG_JAVA_QXHY($jsrq$, $login_khdxdh$, 0)) hyqx on hy.khdxdh = hyqx.khdxdh left outer join csb_dmms khlx on yyck.khlx=khlx.dmz and khlx.dmmc='KHFXKHLX' left outer join csb_dmms zjlx on yyck.zjlb=zjlx.dmz and zjlx.dmmc='ZJLX' left outer join csb_dmms ppjg on yyck.ppbz = ppjg.dmz and ppjg.dmmc = 'YYJLPPBZ' inner join csb_yylx csb on csb.yylx = yyck.yylx
       <isNotEmpty property="qsrq">where yyck.blrq between $qsrq$ and $jsrq$</isNotEmpty>
@@ -468,7 +459,7 @@
     </select>
     <select id="dn0.yyckyjCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from ( select jg.jgdh,jg.jgmc,jg.khdxdh as jgkhdxdh,hy.khdxdh,hy.hymc,hy.hydh,gsjg.jgmc as gsjg,yyck.lsh,         khlx.dmms khlx,yyck.khmc,zjlx.dmms zjlx,zjhm,          yyck.yjje,yyck.blrq,yyck.yyqsrq,yyck.yyjsrq,yyck.bz ,csb.yyms,csb.yylx,ppjg.dmms ppjg,yyck.ppbz,          czr.hydh as czrhydh,czr.hymc as czrhymc,yyck.czsj from jxdx_yyyj yyck inner join khdx_hy hy on hy.khdxdh=yyck.khdxdh inner join khdx_jg jg on jg.khdxdh=yyck.jgkhdxdh inner join khdx_jgcy cy on hy.khdxdh=cy.khdxdh
+      select count(1) from ( select jg.jgdh,jg.jgmc,jg.khdxdh as jgkhdxdh,hy.khdxdh,hy.hymc,hy.hydh,gsjg.jgmc as gsjg,yyck.lsh,         khlx.dmms khlx,yyck.khmc,zjlx.dmms zjlx,zjhm,          yyck.yjje,yyck.blrq,yyck.yyqsrq,yyck.yyjsrq,yyck.bz ,csb.yyms,csb.yylx,ppjg.dmms ppjg,yyck.ppbz,          czr.hydh as czrhydh,czr.hymc as czrhymc from jxdx_yyyj yyck inner join khdx_hy hy on hy.khdxdh=yyck.khdxdh inner join khdx_jg jg on jg.khdxdh=yyck.jgkhdxdh inner join khdx_jgcy cy on hy.khdxdh=cy.khdxdh
       <isNotEmpty property="jsrq">and $jsrq$ between cy.qsrq and cy.jsrq</isNotEmpty>
       inner join khdx_jg gsjg on cy.jgkhdxdh=gsjg.khdxdh inner join khdx_hy czr on czr.hydh=yyck.czr inner join table(FN_GETSJJG_JAVA_QXHY($jsrq$, $login_khdxdh$, 0)) hyqx on hy.khdxdh = hyqx.khdxdh left outer join csb_dmms khlx on yyck.khlx=khlx.dmz and khlx.dmmc='KHFXKHLX' left outer join csb_dmms zjlx on yyck.zjlb=zjlx.dmz and zjlx.dmmc='ZJLX' left outer join csb_dmms ppjg on yyck.ppbz = ppjg.dmz and ppjg.dmmc = 'YYJLPPBZ' inner join csb_yylx csb on csb.yylx = yyck.yylx
       <isNotEmpty property="qsrq">where yyck.blrq between $qsrq$ and $jsrq$</isNotEmpty>
@@ -484,15 +475,15 @@
     </select>
     <select id="dn0.yyckyj_check_insert" parameterClass="java.util.Map" resultClass="java.util.HashMap">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select  JGKHDXDH, KHMC, YYQSRQ, PPBZ, KHDXDH, LSH, ZJHM, CZR, BZ, YYLX, ZJLB, YJJE, BLRQ, KHLX,F_TIMETOCHAR(CZSJ,'yyyy-mm-dd hh24:mi:ss') as CZSJ, YYJSRQ  from JXDX_YYYJ where 1= 1  and LSH = $lsh$ and YYLX = '$yylx$'
+      select  JGKHDXDH, KHMC, YYQSRQ, PPBZ, KHDXDH, LSH, ZJHM, CZR, BZ, YYLX, ZJLB, YJJE, BLRQ, KHLX,F_TIMETOCHAR(CZSJ,'yyyy-mm-dd hh24:mi:ss') as CZSJ, YYJSRQ  from JXDX_YYYJ where 1= 1  and LSH = $lsh$ and YYLX in ($yylx$)
     </select>
     <insert id="dn0.yyckyj_insert" parameterClass="java.util.Map">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      insert into JXDX_YYYJ( LSH, YJJE, ZJLB, BLRQ, BZ, KHDXDH, CZSJ, KHLX, YYQSRQ, CZR, YYJSRQ, PPBZ, KHMC, ZJHM, YYLX, JGKHDXDH ) values ( $lsh$,$yjje$,'$zjlb$',$blrq$,'$bz$',$khdxdh$,f_get_timestamp('$czsj$'),'$khlx$',$qsrq$,'$czr$',$jsrq$,'$ppbz$','$khmc$','$zjhm$','$yylx$',$jgkhdxdh$)
+      insert into JXDX_YYYJ( YJJE, BZ, KHDXDH, YYQSRQ, JGKHDXDH, ZJLB, LSH, BLRQ, CZSJ, KHLX, CZR, YYJSRQ, PPBZ, KHMC, ZJHM, YYLX ) values ( $yjje$,'$bz$',$khdxdh$,$qsrq$,$jgkhdxdh$,'$zjlb$',$lsh$,$blrq$,f_get_timestamp('$czsj$'),'$khlx$','$czr$',$jsrq$,'$ppbz$','$khmc$','$zjhm$','$yylx$')
     </insert>
     <update id="dn0.yyckyj_update" parameterClass="java.util.Map">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update JXDX_YYYJ set ZJLB = '$zjlb$',BZ = '$bz$',KHMC = '$khmc$',ZJHM = '$zjhm$' where 1=1  and LSH = $lsh$ and YYLX = '$yylx$'
+      update JXDX_YYYJ set BZ = '$bz$',ZJLB = '$zjlb$',KHMC = '$khmc$',ZJHM = '$zjhm$' where 1=1  and LSH = $lsh$ and YYLX in ($yylx$)
     </update>
     <delete id="dn0.yyckyj_delete" parameterClass="java.util.Map">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
@@ -500,7 +491,7 @@
     </delete>
     <select id="dn0.yyckyj_getYYQSRQTS" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select csz as YYQSRQTS from xtb_xtcs where csmc = 'YYQSRQTS'</select>
     <select id="dn0.yyckyj_getLsh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select $servedate$  as LSH from pas_vt</select>
-    <select id="dn0.yyckyj_getyyQsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select F_CHANGE_DAYS($servedate$,$yyqsrqts$) as QSRQ from pas_vt</select>
+    <select id="dn0.yyckyj_getyyQsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select F_CHANGE_DAYS($serveDate$,$yyqsrqts$) as QSRQ from pas_vt</select>
     <select id="dn0.yyckyj_existYy" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select count(1) cnt
   from JXDX_YYYJ
  where jgkhdxdh = $jgkhdxdh$
@@ -813,6 +804,8 @@ function getyyJsrq(obj){
     }
     PAS.di.setDone(obj.sqlid);
 }
+
+
 function mul(){
   if($('#yylx option').length==0){
     setTimeout(function(){mul()},500);

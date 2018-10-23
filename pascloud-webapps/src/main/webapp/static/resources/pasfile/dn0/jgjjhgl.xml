@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="jgjjhgl" title="机构季计划管理" type="manage" version="1.0.0.0" pid="" desc="标准版">
+<pageSetting id="jgjjhgl" title="机构季计划管理" type="manage" version="1.0.0.0" desc="标准版" pid="">
   <conPart>
     <tags>
       <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="日期" fieldName="">
         <attribute key="isRequired" value="true" />
-        <attribute key="name" value="khnf" />
+        <attribute key="name" value="tjrq" />
         <attribute key="minDate" value="no" />
         <attribute key="defValType" value="sysDate" />
         <attribute key="dateFmt" value="yyyy" />
@@ -262,7 +262,7 @@
     <select id="dn0.jgjjhglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
       select jjh.khnf,jjh.khdxdh,jg.jgdh,jg.jgmc,khjg.khzbmc,1,2,3,4, jjh.jhz1,jjh.lzz1,jjh.jhz2,jjh.lzz2,jjh.jhz3,jjh.lzz3,jjh.jhz4,jjh.lzz4,khjg.khzbdh from khfa_khzb_jg khjg  inner join yjzb_jgjjh jjh on khjg.khzbdh=jjh.khzbdh inner join khdx_jg jg on jg.khdxdh=jjh.khdxdh  inner join table(fn_getsjjg_java_qx($sysdate$,$login_khdxdh$,0)) qx on qx.khdxdh=jg.khdxdh    where 1=1
-      <isNotEmpty property="khnf">and  jjh.khnf=$khnf$</isNotEmpty>
+      <isNotEmpty property="tjrq">and  jjh.khnf=$tjrq$</isNotEmpty>
       <isNotEmpty property="khzbdh">and khjg.khzbdh=$khzbdh$</isNotEmpty>
       <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
       order by khjg.zbpx
@@ -270,7 +270,7 @@
     <select id="dn0.jgjjhglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
       select count(1) from ( select jjh.khnf,jjh.khdxdh,jg.jgdh,jg.jgmc,khjg.khzbmc,1,2,3,4, jjh.jhz1,jjh.lzz1,jjh.jhz2,jjh.lzz2,jjh.jhz3,jjh.lzz3,jjh.jhz4,jjh.lzz4,khjg.khzbdh from khfa_khzb_jg khjg  inner join yjzb_jgjjh jjh on khjg.khzbdh=jjh.khzbdh inner join khdx_jg jg on jg.khdxdh=jjh.khdxdh  inner join table(fn_getsjjg_java_qx($sysdate$,$login_khdxdh$,0)) qx on qx.khdxdh=jg.khdxdh    where 1=1
-      <isNotEmpty property="khnf">and  jjh.khnf=$khnf$</isNotEmpty>
+      <isNotEmpty property="tjrq">and  jjh.khnf=$tjrq$</isNotEmpty>
       <isNotEmpty property="khzbdh">and khjg.khzbdh=$khzbdh$</isNotEmpty>
       <isNotEmpty property="jgkhdxdh">and jg.khdxdh in ($jgkhdxdh$)</isNotEmpty>
       order by khjg.zbpx ) t

@@ -34,7 +34,7 @@
       </tag>
     </tags>
   </conPart>
-  <table id="jgdjpdcx_xsjy1jgj" title="新数据源1结果集" page="true">
+  <table id="jgdjpdcx_xsjy1jgj" title="新数据源1结果集" page="true" isDym="true">
     <col id="PDRQ" title="评定日期" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="true" footerCells="false" />
     <col id="JGMC" title="机构名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="true" footerCells="false" />
     <col id="JGDH" title="机构代号" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="true" footerCells="false" />
@@ -45,8 +45,9 @@
     <col id="DJMC" title="等级名称" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" />
     <col id="JLBZ" title="薪酬系数" align="right" type="float" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="true" footerCells="false" />
     <col id="MS" title="评定标准" align="left" type="string" width="140" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="true" footerCells="false" />
-    <col id="XMMC" title="项目名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" />
-    <col id="XMZ" title="项目值" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    <col id="$xmmc$" title="XMMC" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" dym="true">
+      <col id="XMZ" title="项目值" align="right" type="float" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="false" footerCells="false" />
+    </col>
   </table>
   <sqlMap namespace="studio.jgdjpdcx">
     <select id="dn0.jgdjpdcxList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">

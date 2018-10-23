@@ -34,7 +34,7 @@
       </tag>
     </tags>
   </conPart>
-  <table id="hydjpdcx_xsjy1jgj" title="新数据源1结果集" page="true">
+  <table id="hydjpdcx_xsjy1jgj" title="新数据源1结果集" page="true" isDym="true">
     <col id="PDRQ" title="评定日期" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="true" footerCells="false" />
     <col id="JGDH" title="机构代号" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="true" footerCells="false" />
     <col id="JGMC" title="机构名称" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="true" footerCells="false" />
@@ -44,8 +44,9 @@
     <col id="DJ" title="等级" align="left" type="string" width="80" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="true" footerCells="false" />
     <col id="JLBZ" title="等级工资" align="right" type="float" width="60" frozen="false" format="" exp="true" zsy="true" showDymCol="false" mergeCells="true" footerCells="false" />
     <col id="MS" title="评定标准" align="left" type="string" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="true" footerCells="false" />
-    <col id="XMMC" title="项目名称" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" />
-    <col id="XMZ" title="项目值" align="right" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="true" orderby="desc" mergeCells="false" footerCells="false" />
+    <col id="$xmmc$" title="XMMC" align="left" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" dym="true">
+      <col id="XMZ" title="项目值" align="right" type="string" width="100" frozen="false" format="" exp="true" zsy="true" showDymCol="true" orderby="desc" mergeCells="false" footerCells="false" />
+    </col>
     <col id="KHDXDH" title="考核对象代号" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="true" mergeCells="false" footerCells="false" />
     <col id="DJPX" title="DJPX" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" orderby="asc" mergeCells="false" footerCells="false" />
     <col id="PM" title="PM" align="left" type="hidden" width="120" frozen="false" format="" exp="true" zsy="true" showDymCol="false" orderby="asc" mergeCells="false" footerCells="false" />

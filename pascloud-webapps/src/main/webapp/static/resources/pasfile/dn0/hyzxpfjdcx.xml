@@ -164,18 +164,21 @@
   <javascript><![CDATA[jQuery(document).ready(function () {
   BindParent('famc','khnf','blur');
   PAS.di.execute('hyzxpfjdcx_getPfjsts',getPfjsts);
-  setTimeout(function () {
-  $("[name='pfr_mc']").val('');
-  $("[name='pfr']").val('');
-
-  $("#query_table tr:eq(1) ").append($("#query_table tr:eq(2)").find("td:last"));
-  $('#khzq').change(function(){
-     var xtrq = $('#xtrq').val();
-     var pfts = $('#pfjsts').val();
-     var qs = minusDate(xtrq,pfts);
-     if($('#khzq').val()=='1'){
-     $('#khqs').empty();
-     for (i = 1; i < 13; i++) {
+   $('#khzq').change(function(){
+  for (i = 1; i < 13; i++) {
+        
+      $('#khqs').append("<option value='"+i+"'>" + i + "月</option>"); 
+        
+  } 
+  var xtrq = $('#xtrq').val();
+  var pfts = $('#pfjsts').val();
+ 
+  //var data =  minusDate(xtrq,pfts);
+ // var qs = parseInt(data.substr(4,2));
+  var qs = minusDate(xtrq,pfts);$('#khqs').empty(); 
+  if($('#khzq').val()=='1'){
+      
+      for (var i = 1; i < 13; i++) {
         if (qs != 0 && i == qs) {
             $('#khqs').append("<option value='"+i+"' selected='selected'>" + i + "月</option>"); 
         } else {
@@ -183,23 +186,38 @@
         }
      }
    }else if($('#khzq').val()=='2'){
-     $('#khqs').empty();
-     for(i=1;i<5;i++){
-        var qs2 = qs/3;
-        if (qs2 != 0 && i == qs2) {
-            $('#khqs').append("<option value='"+i+"' selected='selected'>第"+i+"季度</option>");
-        } else {
-            $('#khqs').append("<option value='"+i+"'>第"+i+"季度</option>");
-        }
-     }
+     
+    for (i = 1; i < 5; i++) {
+      var qs2 = qs/3;
+      if (qs2 != 0 && i == qs2) {
+          $('#khqs').append("<option value='"+i+"' selected='selected'>第"+i+"季度</option>");
+      } else {
+          $('#khqs').append("<option value='"+i+"'>第"+i+"季度</option>");
+      }
+    }
+        
    }else{
-     $('#khqs').empty();
+     
      $('#khqs').append("<option value='"+$('#khnf').val()+"'>全年</option>");
      
    }
- }).trigger('change');},200);
+ 
+})
 });
-
+function getNJY(){
+  
+  $("[name='khdxdh_mc']").val('');
+  $("[name='khdxdh']").val('');
+  var qs = "";
+  var xtrq = $('#xtrq').val();
+  var pfts = $('#pfjsts').val();
+  for (i = 1; i <13; i++) {
+       qs = minusDate(xtrq,pfts)==i ? "selected='selected'" :""; 
+      $('#khqs').append("<option value='"+i+"' "+qs+">" + i + "月</option>"); 
+        
+  } 
+  $("#query_table tr:eq(1) ").append($("#query_table tr:eq(2)").find("td:last"));
+ }
 
 //得到减轻评分天数的月份
 function minusDate(data,day){
@@ -220,7 +238,9 @@ function minusDate(data,day){
    }
   return month;
 }
-
+function callbackFun(p){
+ p=="khqs"&&getNJY();
+}
 //得到评分结束天数
 function getPfjsts(obj){
     if(obj.data.length>0){

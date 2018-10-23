@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="hykhjsplgl" title="行员手工基数管理" type="manage" version="1.0.0.0" pid="" desc="标准版">
+<pageSetting id="hykhjsplgl" title="行员手工基数管理" type="manage" version="1.0.0.0" desc="标准版" pid="">
   <conPart>
     <tags>
       <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计日期" fieldName="">
@@ -19,7 +19,8 @@
         <attribute key="editable" value="true" />
       </tag>
       <tag row="0" col="2" rowspan="1" colspan="1" name="MSQL4Select" label="指标" fieldName="">
-        <attribute key="sql" value="select zb.zbdh as key,zb.zbmc as value from jsfa_jszb jszb    inner join khdx_zb zb on zb.zbdh=jszb.zbdh   inner join jsfa_fapz fapz on fapz.FABH=jszb.fabh  where fapz.faly='3' and cast(substr(cast(fapz.khnf as char(8)),1,4) as integer) =$sysdate_yyyy$" />
+        <attribute key="parents" value="tjrq" />
+        <attribute key="sql" value="select zb.zbdh as key,zb.zbmc as value from jsfa_jszb jszb    inner join khdx_zb zb on zb.zbdh=jszb.zbdh   inner join jsfa_fapz fapz on fapz.FABH=jszb.fabh  where fapz.faly='3' and cast(substr(cast(fapz.khnf as char(8)),1,4) as integer) =cast(substr(cast($tjrq$ as char(8)),1,4) as integer)" />
         <attribute key="isSearch" value="false" />
         <attribute key="style" value="width:auto" />
         <attribute key="isRequired" value="false" />
@@ -223,23 +224,23 @@
   <sqlMap namespace="studio.hykhjsplgl">
     <select id="dn0.hykhjsplglList" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select hy.hydh,hy.hymc,zb.zbmc,js.khdxdh,js.zbdh,js.bz,js.sdbs,js.qsrq,js.jsrq,js.khjs,dms.dmms bzmc,dms1.dmms sdbsmc from sgdr_hykhjs js inner join khdx_zb zb on js.zbdh=zb.zbdh inner join khdx_hy hy on js.khdxdh=hy.khdxdh inner join table(fn_getsjjg_java_qxhy($tjrq$, $login_khdxdh$, 0)) qx on hy.khdxdh=qx.khdxdh left join csb_dmms dms on js.bz=dms.dmz and upper(dms.dmmc)='ZBBZ' left join csb_dmms dms1 on js.sdbs=dms1.dmz and upper(dms1.dmmc)='ZBSDBS' where 1=1
+      select hy.hydh,hy.hymc,zb.zbmc,js.khdxdh,js.zbdh,js.bz,js.sdbs,js.qsrq,js.jsrq,js.khjs,dms.dmms bzmc,dms1.dmms sdbsmc from sgdr_hykhjs js inner join khdx_zb zb on js.zbdh=zb.zbdh inner join  jsfa_jszb jszb on zb.zbdh = jszb.zbdh inner join jsfa_fapz fa on jszb.fabh=fa.fabh inner join khdx_hy hy on js.khdxdh=hy.khdxdh inner join table(fn_getsjjg_java_qxhy($tjrq$, $login_khdxdh$, 0)) qx on hy.khdxdh=qx.khdxdh left join csb_dmms dms on js.bz=dms.dmz and upper(dms.dmmc)='ZBBZ' left join csb_dmms dms1 on js.sdbs=dms1.dmz and upper(dms1.dmmc)='ZBSDBS' where 1=1
       <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
       <isNotEmpty property="tjrq">and $tjrq$ between js.qsrq and js.jsrq</isNotEmpty>
       <isNotEmpty property="zbdh">and js.zbdh=$zbdh$</isNotEmpty>
       <isNotEmpty property="bz">and js.bz='$bz$'</isNotEmpty>
       <isNotEmpty property="sdbs">and js.sdbs='$sdbs$'</isNotEmpty>
-      order by zb.zbdh,js.qsrq desc
+      and fa.khnf=cast(substr(cast($tjrq$ as char(8)),1,4) as integer) order by zb.zbdh,js.qsrq desc
     </select>
     <select id="dn0.hykhjsplglCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select count(1) from ( select hy.hydh,hy.hymc,zb.zbmc,js.khdxdh,js.zbdh,js.bz,js.sdbs,js.qsrq,js.jsrq,js.khjs,dms.dmms bzmc,dms1.dmms sdbsmc from sgdr_hykhjs js inner join khdx_zb zb on js.zbdh=zb.zbdh inner join khdx_hy hy on js.khdxdh=hy.khdxdh inner join table(fn_getsjjg_java_qxhy($tjrq$, $login_khdxdh$, 0)) qx on hy.khdxdh=qx.khdxdh left join csb_dmms dms on js.bz=dms.dmz and upper(dms.dmmc)='ZBBZ' left join csb_dmms dms1 on js.sdbs=dms1.dmz and upper(dms1.dmmc)='ZBSDBS' where 1=1
+      select count(1) from ( select hy.hydh,hy.hymc,zb.zbmc,js.khdxdh,js.zbdh,js.bz,js.sdbs,js.qsrq,js.jsrq,js.khjs,dms.dmms bzmc,dms1.dmms sdbsmc from sgdr_hykhjs js inner join khdx_zb zb on js.zbdh=zb.zbdh inner join  jsfa_jszb jszb on zb.zbdh = jszb.zbdh inner join jsfa_fapz fa on jszb.fabh=fa.fabh inner join khdx_hy hy on js.khdxdh=hy.khdxdh inner join table(fn_getsjjg_java_qxhy($tjrq$, $login_khdxdh$, 0)) qx on hy.khdxdh=qx.khdxdh left join csb_dmms dms on js.bz=dms.dmz and upper(dms.dmmc)='ZBBZ' left join csb_dmms dms1 on js.sdbs=dms1.dmz and upper(dms1.dmmc)='ZBSDBS' where 1=1
       <isNotEmpty property="khdxdh">and hy.khdxdh in ($khdxdh$)</isNotEmpty>
       <isNotEmpty property="tjrq">and $tjrq$ between js.qsrq and js.jsrq</isNotEmpty>
       <isNotEmpty property="zbdh">and js.zbdh=$zbdh$</isNotEmpty>
       <isNotEmpty property="bz">and js.bz='$bz$'</isNotEmpty>
       <isNotEmpty property="sdbs">and js.sdbs='$sdbs$'</isNotEmpty>
-      order by zb.zbdh,js.qsrq desc ) t
+      and fa.khnf=cast(substr(cast($tjrq$ as char(8)),1,4) as integer) order by zb.zbdh,js.qsrq desc ) t
     </select>
     <select id="dn0.hykhjsplgl_select_by_primaryKey" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
@@ -289,12 +290,12 @@
  where fapz.faly='2' and cast(substr(cast(fapz.khnf as char(8)),1,4) as integer) =cast(substr(cast($tjrq$ as char(8)),1,4) as integer)</select>
     <select id="dn0.hykhjsplgl_getMaxqsrq" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select f_change_days(cast(s.csz as integer),-cast(c.csz as integer)) as maxqsrq from xtb_xtcs s,xtb_xtcs c 
 where s.csmc='SYS_DATE' and c.csmc='SYS_CSTS'</select>
-    <select id="dn0.hykhjsplgl_MSQL4SELECT_zbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select zb.zbdh as key,zb.zbmc as value from jsfa_jszb jszb    inner join khdx_zb zb on zb.zbdh=jszb.zbdh   inner join jsfa_fapz fapz on fapz.FABH=jszb.fabh  where fapz.faly='3' and cast(substr(cast(fapz.khnf as char(8)),1,4) as integer) =$sysdate_yyyy$</select>
+    <select id="dn0.hykhjsplgl_MSQL4SELECT_zbdh" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select zb.zbdh as key,zb.zbmc as value from jsfa_jszb jszb    inner join khdx_zb zb on zb.zbdh=jszb.zbdh   inner join jsfa_fapz fapz on fapz.FABH=jszb.fabh  where fapz.faly='3' and cast(substr(cast(fapz.khnf as char(8)),1,4) as integer) =cast(substr(cast($tjrq$ as char(8)),1,4) as integer)</select>
   </sqlMap>
   <javascript>
     <import>parent.addTab('hykhjspldr','行员手工基数管理','/module/parser/import/visitHtml/hykhjspldr');</import>
     <query>jQuery(document).ready(function () {
-  $("#tjrq").executeOnEvent("blur","hykhjsplgl_selectZBByTjrq",changeZb);
+  //$("#tjrq").executeOnEvent("blur","hykhjsplgl_selectZBByTjrq",changeZb);
 });
 
 function changeZb(obj){
@@ -347,12 +348,14 @@ function changeZb2(obj){
     
     $("#zbdh").empty();
     
+     var str = "";
     for(var i=0;i&lt;data.length;i++){
       var zbdh=data[i].KEY;
       var zbmc=data[i].VALUE;
-      var opt=$("&lt;option value='"+zbdh+"'&gt;"+zbmc+"&lt;/option&gt;");
-      $("#zbdh").append(opt);
+      str +="&lt;option value='"+zbdh+"'&gt;"+zbmc+"&lt;/option&gt;";
+      
     }
+    $("#zbdh").append(str).val(gq.zbdh).width(120);
   }
 }
 

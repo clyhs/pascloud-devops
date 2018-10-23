@@ -72,6 +72,7 @@
 
 
 	<!-- Jrds -->
+	<!--  
 	<servlet>
 		<servlet-name>CheckValues</servlet-name>
 		<servlet-class>jrds.webapp.CheckValues</servlet-class>
@@ -244,5 +245,7 @@
 		<servlet-name>GetDiscoverHtmlCode</servlet-name>
 		<url-pattern>/discoverhtml</url-pattern>
 	</servlet-mapping>
+	
+	-->
 
 </web-app>

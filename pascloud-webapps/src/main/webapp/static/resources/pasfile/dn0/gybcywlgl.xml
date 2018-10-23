@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="gybcywlgl" title="柜员补偿业务量管理" type="manage" version="1.0.0.0" pid="" desc="标准版">
+<pageSetting id="gybcywlgl" title="柜员补偿业务量管理" type="manage" version="1.0.0.0" desc="标准版" pid="">
   <conPart>
     <tags>
       <tag row="0" col="0" rowspan="1" colspan="1" name="Date" label="统计年月" fieldName="">
@@ -78,7 +78,7 @@
     </tag>
     <tag row="3" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
       <attribute key="dataType" value="select" />
-      <attribute key="sql" value="select round(coalesce(sum(sg.bcywl),0),2) bcywl from khdx_jgcy jgcy inner join khdx_jgcy jgcy2 on jgcy2.jgkhdxdh=jgcy.jgkhdxdh and $tjrq_ym$ between jgcy2.qsrq and jgcy2.jsrq and jgcy2.khdxdh!=$khdxdh$ left join sgdr_gybcywl sg on sg.khdxdh=jgcy2.khdxdh and sg.tjrq=$tjrq_ym$ where jgcy.khdxdh=$khdxdh$ and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq" />
+      <attribute key="sql" value="select round(coalesce(sum(sg.bcywl),0),2) bcywl from khdx_jgcy jgcy inner join khdx_jgcy jgcy2 on jgcy2.jgkhdxdh=jgcy.jgkhdxdh and $tjrq_ym$ between jgcy2.qsrq and jgcy2.jsrq  left join sgdr_gybcywl sg on sg.khdxdh=jgcy2.khdxdh and sg.tjrq=$tjrq_ym$ where jgcy.khdxdh=$khdxdh$ and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq" />
       <attribute key="name" value="getsgdrbcywl" />
     </tag>
     <tag row="3" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="tjrq">
@@ -151,7 +151,7 @@
     </tag>
     <tag row="3" col="1" rowspan="1" colspan="1" name="DataInterface" label="null" fieldName="">
       <attribute key="dataType" value="select" />
-      <attribute key="sql" value="select round(coalesce(sum(sg.bcywl),0),2) bcywl from khdx_jgcy jgcy inner join khdx_jgcy jgcy2 on jgcy2.jgkhdxdh=jgcy.jgkhdxdh and $tjrq_ym$ between jgcy2.qsrq and jgcy2.jsrq and jgcy2.khdxdh!=$khdxdh$ left join sgdr_gybcywl sg on sg.khdxdh=jgcy2.khdxdh and sg.tjrq=$tjrq_ym$ where jgcy.khdxdh=$khdxdh$ and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq" />
+      <attribute key="sql" value="select round(coalesce(sum(sg.bcywl),0),2) bcywl from khdx_jgcy jgcy inner join khdx_jgcy jgcy2 on jgcy2.jgkhdxdh=jgcy.jgkhdxdh and $tjrq_ym$ between jgcy2.qsrq and jgcy2.jsrq  left join sgdr_gybcywl sg on sg.khdxdh=jgcy2.khdxdh and sg.tjrq=$tjrq_ym$ where jgcy.khdxdh=$khdxdh$ and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq" />
       <attribute key="name" value="getsgdrbcywl" />
     </tag>
     <tag row="3" col="2" rowspan="1" colspan="1" name="Hidden" label="" fieldName="tjrq">
@@ -246,7 +246,7 @@ left join nbzz_jgkh_ywl jgkh_ywl on jgkh_ywl.khdxdh=jgcy.jgkhdxdh and jgkh_ywl.t
 where jgcy.khdxdh=$khdxdh$ and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq</select>
     <select id="dn0.gybcywlgl_getsgdrbcywl" parameterClass="java.util.Map" resultClass="java.util.HashMap" remapResults="true">/**!mycat:datanode=$db$**/ select round(coalesce(sum(sg.bcywl),0),2) bcywl
 from khdx_jgcy jgcy
-inner join khdx_jgcy jgcy2 on jgcy2.jgkhdxdh=jgcy.jgkhdxdh and $tjrq_ym$ between jgcy2.qsrq and jgcy2.jsrq and jgcy2.khdxdh!=$khdxdh$
+inner join khdx_jgcy jgcy2 on jgcy2.jgkhdxdh=jgcy.jgkhdxdh and $tjrq_ym$ between jgcy2.qsrq and jgcy2.jsrq 
 left join sgdr_gybcywl sg on sg.khdxdh=jgcy2.khdxdh and sg.tjrq=$tjrq_ym$
 where jgcy.khdxdh=$khdxdh$ and $tjrq_ym$ between jgcy.qsrq and jgcy.jsrq</select>
   </sqlMap>
@@ -264,6 +264,7 @@ function customValidate(){
 }</query>
     <edit>jQuery(document).ready(function () {
 //这里的js脚本，会在页面加载完成后执行
+  fpl = !!$("#bcywl").val()?$("#bcywl").val():0;
   $('#tjrq_ym').val(createTimeObj($('#tjrq').val() + '01').ym);
   PAS.di.execute('gybcywlgl_getJgywbcl', getJgywbclFromDb);
   
@@ -282,11 +283,13 @@ function customValidate(){
   }
 });
 
+var fpl='';
+
 //自定义验证，在提交时执行。通过返回true，否则返回false
 function customValidate(){
   var bcywl = $('#bcywl').val(); 
   var kfpbcywl = $('#kfpbcywl').val();
-  if(parseFloat(bcywl) &gt; parseFloat(kfpbcywl)){
+  if(parseFloat(bcywl) &gt; (parseFloat(kfpbcywl)+parseFloat(fpl))){
     custom_alert("柜员补偿业务量必须小于等于可分配补偿业务量!");
     return false;
   }

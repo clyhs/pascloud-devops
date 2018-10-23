@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="dkzhjstzdr" title="贷款账户基数调整导入" type="import" version="1.0.0.0" pid="" desc="标准版">
+<pageSetting id="dkzhjstzdr" title="贷款账户基数调整导入" type="import" version="1.0.0.0" desc="标准版" pid="">
   <template>
     <src>ONLINE</src>
     <column>
@@ -55,7 +55,7 @@
       <align>center</align>
       <annotate />
       <length>100</length>
-      <req>Y</req>
+      <req>N</req>
     </column>
   </template>
   <table id="dkzhjstzdr_table" page="true">
@@ -75,7 +75,9 @@
       <sql type="update">dkzhjstzdr_check_tzjs_3</sql>
       <sql type="update">dkzhjstzdr_check_tzyy_4</sql>
       <sql type="update">dkzhjstzdr_check_tzrq_5</sql>
+      <sql type="update">dkzhjstzdr_check_tzrq_6</sql>
       <sql type="update">dkzhjstzdr_checkupdate_zhdh_0</sql>
+      <sql type="update">dkzhjstzdr_checkupdate_zhdh_1</sql>
       <sql type="update">dkzhjstzdr_checkupdate_tzjs_0</sql>
       <sql type="update">dkzhjstzdr_checkupdate_tzrq_0</sql>
       <sql type="update">dkzhjstzdr_exists_target</sql>
@@ -129,9 +131,18 @@
 		set  t.error=t.error||'调整日期输入错误，格式应该是:yyyyMMdd!'  
 		where  f_java_rule_date(t.tzrq,'yyyyMMdd')=1  and  t.khdxdh=$login_khdxdh$
     </update>
+    <update parameterClass="java.util.Map" id="dn0.dkzhjstzdr_check_tzrq_6">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update  dkzhjstzdr_temp  t  set  t.error=t.error||'调整日期输入错误，不能为空!' 
+		where  f_java_rule_length(t.tzrq)=0  and  t.khdxdh=$login_khdxdh$
+    </update>
     <update parameterClass="java.util.Map" id="dn0.dkzhjstzdr_checkupdate_zhdh_0">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
       update dkzhjstzdr_temp t set t.error=t.error||'基数账户不存在' where not exists(select 1 from jxdx_dkzh zh where t.zhdh=zh.zhdh and cast(t.tzrq  AS INTEGER) &gt;= zh.khrq) and t.khdxdh=$login_khdxdh$
+    </update>
+    <update parameterClass="java.util.Map" id="dn0.dkzhjstzdr_checkupdate_zhdh_1">
+      <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
+      update dkzhjstzdr_temp l set l.error=l.error||'基数账号重复！' where l.khdxdh=$login_khdxdh$  and (select count(*) from dkzhjstzdr_temp l2 where l2.khdxdh=$login_khdxdh$ and l2.zhdh=l.zhdh)&gt;1
     </update>
     <update parameterClass="java.util.Map" id="dn0.dkzhjstzdr_checkupdate_tzjs_0">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
@@ -141,7 +152,7 @@
     </update>
     <update parameterClass="java.util.Map" id="dn0.dkzhjstzdr_checkupdate_tzrq_0">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      update dkzhjstzdr_temp t set error=error||'调整日期必须在统计日期的本'||substr(F_NUMTOCHAR($sysdate$) ,1,4)||'年内' where  substr(t.tzrq,1,4) != substr(F_NUMTOCHAR($sysdate$),1,4) and t.khdxdh=$login_khdxdh$
+      update dkzhjstzdr_temp t set error=error||'调整日期必须在重算日期内' where t.tzrq &lt; f_change_days($sysdate$,-(select csz from xtb_xtcs where csmc='SYS_CSTS')) and t.khdxdh=$login_khdxdh$
     </update>
     <update parameterClass="java.util.Map" id="dn0.dkzhjstzdr_exists_target">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>

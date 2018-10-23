@@ -19,6 +19,9 @@
         <dependent-module archiveName="pascloud-core-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/pascloud-core/pascloud-core">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="pascloud-etl-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/pascloud-etl/pascloud-etl">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="pascloud-webapps"/>
         <property name="java-output-path" value="/pascloud-webapps/target/classes"/>
     </wb-module>

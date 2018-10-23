@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageSetting id="jgzxpfdr" title="机构在线评分导入" type="import" version="1.0.0.0" pid="" desc="标准版">
+<pageSetting id="jgzxpfdr" title="机构在线评分导入" type="import" version="1.0.0.0" desc="标准版" pid="">
   <template>
     <src>ONLINE</src>
     <column>
@@ -117,7 +117,7 @@
           <attribute key="isEditable" value="true" />
         </tag>
         <tag row="2" col="0" name="MSQL4Select" label="考核指标" colspan="1" rowspan="1">
-          <attribute key="parents" value="" />
+          <attribute key="parents" value="khfa" />
           <attribute key="sql" value="select distinct zbpz.khzbdh as key,zbpz.xmmc as value    from khfa_khzbpz zbpz  where zbpz.jsfs = '3'    and  zbpz.khzbdh &lt;= 0    and zbpz.fabh in (        select distinct fapz.fabh        from khfa_fapz fapz       inner join khfa_khzbpz khzbpz on khzbpz.fabh = fapz.fabh      where fapz.khdx = '1'        and fapz.khnf =cast( substr(cast($tjrq$ as  char(8)),1,4)  as integer)        and khzbpz.jsfs = '3'        and  fapz.fabh =  $khfa$        and fapz.zt = '1'    ) union all select distinct jg.khzbdh as key, jg.khzbmc as value     from khfa_khzbpz zbpz  inner join khfa_khzb_jg jg     on jg.khzbdh = zbpz.khzbdh  where zbpz.jsfs = '3'    and zbpz.khzbdh &gt; 0    and zbpz.fabh in (        select distinct fapz.fabh       from khfa_fapz fapz       inner join khfa_khzbpz khzbpz on khzbpz.fabh = fapz.fabh      where fapz.khdx = '1'        and fapz.khnf =cast( substr(cast($tjrq$ as  char(8)),1,4)  as integer)        and khzbpz.jsfs = '3'        and  fapz.fabh =  $khfa$        and fapz.zt = '1'    )" />
           <attribute key="isSearch" value="true" />
           <attribute key="style" value="" />
@@ -340,7 +340,7 @@
     </delete>
     <select id="dn0.jgzxpfdr_select_template_data" parameterClass="java.util.Map" remapResults="true" resultClass="java.util.LinkedHashMap">
       <isNotEmpty property="db"><![CDATA[/**!mycat:datanode=$db$**/]]></isNotEmpty>
-      select distinct $tjrq$ as tjrq , fapz.famc ,coalesce(zbjg.khzbmc,khzbpz.xmmc) as khzbmc,
+      select distinct $tjrq$ as tjrq , fapz.famc ,coalesce(zbjg.khzbmc,khzbpz.xmmc) as khzb,
 khzbpz.zbqz as bzf,khzbpz.bdz as zdf,khzbpz.fdz as zgf
 ,jg.jgmc as khjg,zxpfz.pf
 from khfa_fapz fapz
