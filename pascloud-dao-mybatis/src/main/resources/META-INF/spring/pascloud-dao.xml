@@ -22,7 +22,7 @@
        http://www.dangdang.com/schema/ddframe/rdb 
        http://www.dangdang.com/schema/ddframe/rdb/rdb.xsd">
        
-    <!--    
+      
     <bean name="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${db.driverClass}"></property>
 		<property name="url" value="${db.url}" />
@@ -47,7 +47,7 @@
 	</bean>
 	
 	
-	
+
 	
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -114,7 +114,7 @@
 
 	</aop:config>
 	
-	--> 
+	
 	
 </beans>
 

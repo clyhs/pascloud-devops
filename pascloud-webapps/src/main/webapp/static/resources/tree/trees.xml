@@ -176,17 +176,17 @@
         <url>/module/redis/index.html</url>
         <pid>4000</pid>
       </tree>
-      <!--  
+      
       <tree>
         <id>4100</id>
-        <text>PB应用管理</text>
+        <text>任务管理</text>
         <isLeaf>true</isLeaf>
         <children/>
         <iconCls>icon-application</iconCls>
-        <url>/module/paspb/index.html</url>
+        <url>/module/scheduleJob/index.html</url>
         <pid>4000</pid>
       </tree>
-      -->
+      
     </children>
     <iconCls>icon-brick</iconCls>
     <url>#</url>
