@@ -10,8 +10,11 @@
     <link id="themesUI" href="/static/css/jquery-ui-1.9.2.custom.min.css" rel="stylesheet"  type="text/css"/>
    
     
-	<script type="text/javascript" src="/static/easyui/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="/static/easyui/jquery-1.8.0.min.js"></script>
+	
     <script type="text/javascript" src="/static/easyui/jquery.easyui.min.js"></script>
+
+    <script src="/static/easyui/release/jquery.jdirk.min.js"></script>
     <script type="text/javascript" src="/static/easyui/detailview/datagrid-detailview.js"></script>
     <script type="text/javascript" src="/static/js/lib/jquery.format.js"></script>
     
@@ -48,12 +51,10 @@
 	
 	
 </head>
-<body id="main" class="easyui-layout" data-options="fit:true,border:false"  > 
-    
-    <div class="easyui-layout" style="width:100%;height:445px;">
-			<div data-options="region:'center',border:false" >
-				<div class="easyui-tabs" data-options="fit:true,border:false">
-					<div title="秒">
+<body id="main" class="easyui-layout" data-options="fit:true,border:false" style="border:0;height:445px;" > 
+    <div id="mainCenter" data-options="region:'center',title:''" style="border:0;height:445px;">
+        <div id="mainCenterTab" class="easyui-tabs" data-options="region:'center',title:''" style="border:0;">
+	        <div title="秒">
 						<div class="line"><input type="radio" checked="checked" name="second" onclick="everyTime(this)"> 每秒 允许的通配符[, - * /]</div>
 						<div class="line"><input type="radio" name="second" onclick="cycle(this)"> 周期从 <input class="numberspinner" style="width:60px;" data-options="min:1,max:58" value="1"> - <input class="numberspinner" style="width:60px;" data-options="min:2,max:59" value="2"> 秒</div>
 						<div class="line"><input type="radio" name="second" onclick="startOn(this)"> 从 <input class="numberspinner" style="width:60px;" data-options="min:0,max:59" value="0"> 秒开始,每 <input class="numberspinner" style="width:60px;" data-options="min:1,max:59" value="1"> 秒执行一次</div>
@@ -308,9 +309,9 @@
 						<div class="line"><input type="radio" name="year" onclick="everyTime(this)"> 每年</div>
 						<div class="line"><input type="radio" name="year" onclick="cycle(this)">周期 从 <input class="numberspinner" style="width:90px;" data-options="min:2013,max:3000" value="2013"> - <input class="numberspinner" style="width:90px;" data-options="min:2014,max:3000" value="2014"></div>
 					</div>
-				</div>
-			</div>
-			<div data-options="region:'south',border:false" style="height:135px">
+	        
+	    </div>
+	    <div data-options="region:'south',border:false" style="height:135px">
 				<fieldset style="border-radius: 3px;height:116px;">
 					<legend>表达式</legend>
 					<table style="height: 100px;">
@@ -377,7 +378,6 @@
 					</table>
 				</fieldset>
 			</div>
-		</div>
-
+    </div>
 </body>
 </html>
