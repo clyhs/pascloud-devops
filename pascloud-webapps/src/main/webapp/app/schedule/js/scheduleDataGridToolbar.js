@@ -25,10 +25,22 @@ var toolbar = function(){
         	deleteJob();
         }
 	},{
-		text : '修改表达式',  
+		text : '编辑',  
         iconCls : 'icon-folder_up',  
         handler : function(){
         	upd();
+        }
+	},{
+		text : '保存',  
+        iconCls : 'icon-save',  
+        handler : function(){
+        	accept();
+        }
+	},{
+		text : '取消',  
+        iconCls : 'icon-cancel',  
+        handler : function(){
+        	cancel();
         }
 	},{
 		text : '立即运行一次',  

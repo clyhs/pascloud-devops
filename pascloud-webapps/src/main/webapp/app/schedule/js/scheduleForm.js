@@ -3,6 +3,8 @@ var dg;
 var dg_running;
 var d;
 
+var editIndex = undefined;
+
 function add(){
 	d=$("#dlg").dialog({   
 	    title: '添加定时任务',    
@@ -87,12 +89,29 @@ function deleteJob(){
 	});
 }
 
+function accept(){
+	dg.datagrid("endEdit", editIndex);
+}
+
 function upd(){
-	
 	var row = dg.datagrid('getSelected');
 	if(rowIsNull(row)) return;
-	var rowIndex=dg.datagrid('getRowIndex',row);
-	dg.datagrid('beginEdit',rowIndex);
+	
+	if (editIndex != undefined) {
+        datagrid.datagrid("endEdit", editIndex);
+    }
+	if (editIndex == undefined) {
+		var rowIndex=dg.datagrid('getRowIndex',row);
+		dg.datagrid('beginEdit',rowIndex);
+		editIndex = rowIndex;
+	}
+	
+}
+
+function cancel(){
+	editIndex = undefined;
+    dg.datagrid("rejectChanges");
+    dg.datagrid("unselectAll");
 }
 
 //确认修改
@@ -112,7 +131,6 @@ function sureUpd(row){
 					}  
 				}
 			});
-			d.panel('close');
 		}else{
 			dg.datagrid('rejectChanges');
 		}
