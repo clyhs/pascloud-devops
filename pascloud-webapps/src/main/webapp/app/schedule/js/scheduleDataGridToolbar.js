@@ -2,31 +2,31 @@
 var toolbar = function(){
 	return [{
 		text : '添加',  
-        iconCls : 'icon-add',  
+        iconCls : 'icon-control_add',  
         handler : function(){
         	add();
         }
 	},{
 		text : '停止',  
-        iconCls : 'icon-stop',  
+        iconCls : 'icon-control_pause',  
         handler : function(){
         	stop();
         }
 	},{
 		text : '恢复',  
-        iconCls : 'icon-folder_up',  
+        iconCls : 'icon-control_repeat_blue',  
         handler : function(){
         	resume();
         }
 	},{
 		text : '删除',  
-        iconCls : 'icon-folder_up',  
+        iconCls : 'icon-delete',  
         handler : function(){
         	deleteJob();
         }
 	},{
 		text : '编辑',  
-        iconCls : 'icon-folder_up',  
+        iconCls : 'icon-edit',  
         handler : function(){
         	upd();
         }
@@ -44,13 +44,13 @@ var toolbar = function(){
         }
 	},{
 		text : '立即运行一次',  
-        iconCls : 'icon-folder_up',  
+        iconCls : 'icon-bullet_start',  
         handler : function(){
         	startNow();
         }
 	},{
-		text : 'cron',  
-        iconCls : 'icon-add',  
+		text : 'cron生成器',  
+        iconCls : 'icon-script',  
         handler : function(){
         	addCron();
         }
