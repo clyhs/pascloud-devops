@@ -21,7 +21,7 @@
        http://www.springframework.org/schema/cache/spring-cache-3.2.xsd
        http://www.dangdang.com/schema/ddframe/rdb 
        http://www.dangdang.com/schema/ddframe/rdb/rdb.xsd">
-    <!--   
+       
       
     <bean name="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${db.driverClass}"></property>
@@ -47,7 +47,7 @@
 	</bean>
 	
 	
-
+    <!--
 	
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -113,8 +113,9 @@
 			advice-ref="transactionAdvice"  /> 
 
 	</aop:config>
-	
 	-->
+	
+	
 	
 </beans>
 
