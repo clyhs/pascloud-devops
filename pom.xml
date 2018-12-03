@@ -18,7 +18,7 @@
 		<spring.version>4.2.1.RELEASE</spring.version>
 		<mortbay.jetty.version>6.1.26</mortbay.jetty.version>
 		<jetty.jsp.version>6.1.14</jetty.jsp.version>
-		<jackson.version>1.9.2</jackson.version>
+		<jackson.version>1.9.13</jackson.version>
 		<slf4j.version>1.6.4</slf4j.version>
 		<mybatis.version>3.3.0</mybatis.version>
 		<mybatisspring.version>1.1.1</mybatisspring.version>
@@ -722,8 +722,8 @@
 				<version>3.5.1</version>
 
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-source-plugin</artifactId> 

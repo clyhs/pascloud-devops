@@ -15,7 +15,17 @@
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<kettle.version>8.1.0.0-365</kettle.version>
 	</properties>
+
+	<repositories>
+		<repository>
+			<id>pentaho-public</id>
+			<name>Pentaho Public</name>
+			<url>http://nexus.pentaho.org/content/groups/omni</url>
+		</repository>
+	</repositories>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.pascloud.devops</groupId>
@@ -35,11 +45,29 @@
 			<artifactId>quartz</artifactId>
 			<version>2.2.3</version>
 		</dependency>
+		<!--  -->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
+			<groupId>pentaho-kettle</groupId>
+			<artifactId>kettle-core</artifactId>
+			<version>${kettle.version}</version>
+			<exclusions>
+			    <exclusion>
+			        <groupId>javax.servlet</groupId>
+    				<artifactId>servlet-api</artifactId>
+			    </exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>pentaho-kettle</groupId>
+			<artifactId>kettle-engine</artifactId>
+			<version>${kettle.version}</version>
+			<exclusions>
+			    <exclusion>
+			        <groupId>javax.servlet</groupId>
+    				<artifactId>servlet-api</artifactId>
+			    </exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 </project>
