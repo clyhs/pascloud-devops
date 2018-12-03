@@ -21,7 +21,7 @@ private static final Logger log = LoggerFactory.getLogger(RedisScheduledTask.cla
 	@Override
 	protected void executeTask() {
 		// TODO Auto-generated method stub
-		log.info("初始化缓存服务");
+		//log.info("初始化缓存服务");
 		// TODO Auto-generated method stub
 		if(null!=m_redisService){
 			m_redisService.initRedisServer();
