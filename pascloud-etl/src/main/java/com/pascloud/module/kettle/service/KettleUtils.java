@@ -46,7 +46,7 @@ public class KettleUtils {
 			//getVariables();
 			//getRepositories();
 			//getRepository("eee","admin","admin");
-			//kps.createKettleFileRepository("test","test");
+			kps.createKettleFileRepository("test","test","D:/kettlerepo");
 			//createKettleDatabaseRepository("kettle02");
 			databaseMeta = kps.initDatabase();
 			databaseProperties = kps.initDatabaseProperties();
@@ -57,22 +57,22 @@ public class KettleUtils {
 			
 			//kps.createKettleDatabaseRepository("ddrr",databaseMeta,databaseProperties);
 			
-			Repository r =kps.getRepository("mydatarep","admin","admin");
-			RepositoryTree rt = kps.getfilefromRepository(r);
+			//Repository r =kps.getRepository("mydatarep","admin","admin");
+			//RepositoryTree rt = kps.getfilefromRepository(r);
 			
 			
 			
-			String json =JsonUtil.objectToJson(rt);
-			System.out.println(json);
-			KettleJobService kjs = new KettleJobService(kps);
-			KettleTransService kts = new KettleTransService(kps);
+			//String json =JsonUtil.objectToJson(rt);
+			//System.out.println(json);
+			//KettleJobService kjs = new KettleJobService(kps);
+			//KettleTransService kts = new KettleTransService(kps);
 			//kjs.execute("mydatarep","admin","admin", "/", "job01");
-			kts.execute("mydatarep","admin","admin", "/", "tran01");
+			//kts.execute("mydatarep","admin","admin", "/", "tran01");
 			
 			//kjs.suspendJob("job01");
 			//Thread.sleep(5000);
 			//kjs.resumeJob("job01");
-			kts.stopTrans("tran01");
+			//kts.stopTrans("tran01");
 			//kts.pauseTrans("tran01");
 			
 			//Thread.sleep(5000);
@@ -89,7 +89,7 @@ public class KettleUtils {
 	
 	
 	public static void main(String[] args){
-		KettleUtils ku = new KettleUtils();
+		//KettleUtils ku = new KettleUtils();
 	}
 
 }

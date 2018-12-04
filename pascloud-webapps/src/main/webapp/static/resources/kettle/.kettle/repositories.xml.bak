@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<repositories>
+  <repository>    <id>test2</id>
+    <name>test2</name>
+    <description>test2</description>
+    <is_default>true</is_default>
+    <base_directory>D:/kettlerepo</base_directory>
+    <read_only>N</read_only>
+    <hides_hidden_files>N</hides_hidden_files>
+  </repository>  </repositories>

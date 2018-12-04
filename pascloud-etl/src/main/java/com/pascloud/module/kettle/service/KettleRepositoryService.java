@@ -77,7 +77,7 @@ public class KettleRepositoryService {
 		return p;
 	}
 	
-	public void createKettleFileRepository(String repName,String desc){
+	public void createKettleFileRepository(String repName,String desc,String baseDirectory){
 		RepositoriesMeta rsMeta = new RepositoriesMeta();
 		KettleFileRepositoryMeta kfm = null;
 		//KettleFileRepository rep = new KettleFileRepository();  
@@ -89,7 +89,8 @@ public class KettleRepositoryService {
 			kfm.setId("KettleFileRepository");
 			kfm.setName(repName);
 			kfm.setDescription(desc);
-			kfm.setBaseDirectory(repName);
+			kfm.setBaseDirectory(baseDirectory);
+			
 			
 			rsMeta.addRepository(kfm);
 			if(!checkFileRepository(repName)){
