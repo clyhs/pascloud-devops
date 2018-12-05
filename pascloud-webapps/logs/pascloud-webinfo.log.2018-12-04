@@ -1,0 +1,245 @@
+[INFO ] 2018-12-04 09:09:47,753 - com.pascloud.module.kettle.env.KettleEnvironment - 
+[INFO ] 2018-12-04 09:32:35,869 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp
+[INFO ] 2018-12-04 10:38:44,260 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 10:38:44,352 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle directory:C:\Users\chenly\.kettle
+[INFO ] 2018-12-04 10:38:44,393 - com.pascloud.module.kettle.constant.KettleConstant - kettle properties path :webapp.root/static/resources/kettle\kettle.properties
+[INFO ] 2018-12-04 10:38:44,502 - com.pascloud.module.kettle.constant.KettleConstant - kettle properties path :webapp.root/static/resources/kettle\kettle.properties
+[INFO ] 2018-12-04 10:38:44,504 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 10:43:33,102 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 10:43:33,123 - com.pascloud.module.kettle.constant.KettleConstant - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\kettle.properties
+[INFO ] 2018-12-04 10:43:33,156 - com.pascloud.module.kettle.constant.KettleConstant - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\kettle.properties
+[INFO ] 2018-12-04 10:43:33,159 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle directory:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle
+[INFO ] 2018-12-04 10:43:33,196 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 10:57:39,049 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 10:57:39,074 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle directory:C:\Users\chenly\.kettle
+[INFO ] 2018-12-04 10:57:39,078 - com.pascloud.module.kettle.constant.KettleConstant - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle\kettle.properties
+[INFO ] 2018-12-04 10:57:39,103 - com.pascloud.module.kettle.constant.KettleConstant - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle\kettle.properties
+[INFO ] 2018-12-04 10:57:39,106 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 11:11:56,440 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 11:24:49,741 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 11:24:49,762 - com.pascloud.module.kettle.constant.KettleConstant - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\kettle.properties
+[INFO ] 2018-12-04 11:24:49,784 - com.pascloud.module.kettle.constant.KettleConstant - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\kettle.properties
+[INFO ] 2018-12-04 11:24:49,788 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 11:25:58,921 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 11:25:58,976 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 11:35:32,678 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 11:35:32,697 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle directory:C:\Users\chenly\.kettle
+[INFO ] 2018-12-04 11:35:32,700 - com.pascloud.module.kettle.constant.KettleConstant - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\kettle.properties
+[INFO ] 2018-12-04 11:35:32,765 - com.pascloud.module.kettle.constant.KettleConstant - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\kettle.properties
+[INFO ] 2018-12-04 11:35:32,767 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 11:35:48,349 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 11:37:52,716 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 11:37:52,741 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle directory:C:\Users\chenly\.kettle
+[INFO ] 2018-12-04 11:37:52,745 - com.pascloud.module.kettle.constant.KettleConstant - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\kettle.properties
+[INFO ] 2018-12-04 11:37:52,769 - com.pascloud.module.kettle.constant.KettleConstant - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\kettle.properties
+[INFO ] 2018-12-04 11:37:52,772 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 11:38:53,179 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 11:38:53,199 - com.pascloud.module.kettle.constant.KettleConstant - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\kettle.properties
+[INFO ] 2018-12-04 11:38:53,217 - com.pascloud.module.kettle.constant.KettleConstant - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\kettle.properties
+[INFO ] 2018-12-04 11:38:53,220 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle directory:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle
+[INFO ] 2018-12-04 11:38:53,223 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 11:40:22,094 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 11:40:22,116 - com.pascloud.module.kettle.constant.KettleConstant - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\kettle.properties
+[INFO ] 2018-12-04 11:40:22,154 - com.pascloud.module.kettle.constant.KettleConstant - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\kettle.properties
+[INFO ] 2018-12-04 11:40:22,156 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle directory:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle
+[INFO ] 2018-12-04 11:40:22,156 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 11:52:46,727 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 11:52:46,765 - com.pascloud.module.kettle.constant.KettleConstant - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle\kettle.properties
+[INFO ] 2018-12-04 11:52:46,802 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 11:56:49,232 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 11:56:49,277 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 11:58:15,276 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 11:58:15,318 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 12:05:47,762 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 12:05:47,877 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 12:07:11,146 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 12:07:11,185 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 12:08:55,700 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 12:08:55,765 - com.pascloud.module.kettle.constant.KettleConstant - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle\www.properties
+[INFO ] 2018-12-04 12:08:55,800 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 12:19:10,400 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 12:19:10,465 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 13:48:51,423 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 13:48:52,741 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 14:01:52,730 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 14:01:53,288 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle\kettle.properties
+[INFO ] 2018-12-04 14:01:53,335 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 14:03:40,832 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 14:03:41,350 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle\kettle.properties
+[INFO ] 2018-12-04 14:03:41,353 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - jndi dir:null
+[INFO ] 2018-12-04 14:03:41,420 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 14:04:42,124 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 14:04:42,642 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle\kettle.properties
+[INFO ] 2018-12-04 14:04:42,644 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - jndi dir:null
+[INFO ] 2018-12-04 14:04:42,678 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 14:07:09,336 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[ERROR] 2018-12-04 14:07:09,381 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\simple-jndi
+[INFO ] 2018-12-04 14:07:09,863 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle\kettle.properties
+[INFO ] 2018-12-04 14:07:09,874 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - jndi dir:null
+[INFO ] 2018-12-04 14:07:09,994 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 14:15:19,438 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 14:15:20,103 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle\kettle.properties
+[INFO ] 2018-12-04 14:15:20,112 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - jndi dir:null
+[INFO ] 2018-12-04 14:15:20,180 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 14:18:20,296 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 14:18:20,873 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle\kettle.properties
+[INFO ] 2018-12-04 14:18:20,879 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - jndi dir:null
+[INFO ] 2018-12-04 14:18:20,920 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 14:22:27,342 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 14:22:28,051 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle\kettle.properties
+[INFO ] 2018-12-04 14:22:28,149 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - jndi dir:null
+[INFO ] 2018-12-04 14:22:28,199 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 14:23:25,501 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 14:23:26,065 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - jndi dir:null
+[INFO ] 2018-12-04 14:23:26,065 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle\kettle.properties
+[INFO ] 2018-12-04 14:23:26,281 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 14:26:16,172 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 14:26:16,731 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - jndi dir:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\simple-jndi
+[INFO ] 2018-12-04 14:26:16,732 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle\kettle.properties
+[INFO ] 2018-12-04 14:26:16,791 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 14:27:20,260 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 14:27:20,655 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - jndi dir:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\simple-jndi
+[INFO ] 2018-12-04 14:27:20,656 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle properties path :D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle\kettle.properties
+[INFO ] 2018-12-04 14:27:20,705 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 14:32:13,996 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 14:32:14,608 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - jndi dir:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\simple-jndi
+[INFO ] 2018-12-04 14:32:15,047 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 14:33:31,319 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 14:33:31,878 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle home:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle
+[INFO ] 2018-12-04 14:33:32,299 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 15:29:04,062 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 15:29:04,790 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle home:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle
+[INFO ] 2018-12-04 15:29:05,185 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 15:29:24,936 - com.pascloud.module.login.web.LoginController - 登录成功
+[ERROR] 2018-12-04 15:29:40,722 - com.pascloud.module.kettle.serv.KettleRepoService - 
+[INFO ] 2018-12-04 15:34:46,909 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 15:34:47,476 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle home:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle
+[INFO ] 2018-12-04 15:34:47,843 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 15:34:54,532 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 15:35:08,916 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 15:36:03,169 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 15:36:03,801 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle home:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle
+[INFO ] 2018-12-04 15:36:04,140 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 15:36:14,458 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 15:36:18,535 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 15:36:25,989 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 15:38:04,990 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 15:38:05,362 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle home:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle
+[INFO ] 2018-12-04 15:38:05,920 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 15:38:29,405 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 15:38:32,865 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 15:38:39,945 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 15:43:32,227 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 15:43:32,910 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle home:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle
+[INFO ] 2018-12-04 15:43:33,239 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 15:43:39,203 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 15:43:41,663 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 15:43:51,965 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 15:47:18,503 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 15:48:38,541 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 15:48:41,918 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 15:49:22,725 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 16:06:54,446 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 16:06:54,852 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle home:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle
+[INFO ] 2018-12-04 16:06:55,368 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 16:07:03,174 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 16:07:05,310 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 16:07:18,182 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 16:08:07,871 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 16:08:08,299 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle home:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle
+[INFO ] 2018-12-04 16:08:08,990 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 16:08:15,001 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 16:08:18,191 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 16:08:26,011 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 16:27:39,577 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 16:27:40,210 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle home:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle
+[INFO ] 2018-12-04 16:27:40,674 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 16:28:31,787 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 16:28:34,972 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 16:32:57,917 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 16:32:58,460 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle home:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle
+[INFO ] 2018-12-04 16:32:58,864 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 16:33:04,581 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 16:33:07,830 - com.pascloud.module.kettle.serv.KettleRepoService - 0
+[INFO ] 2018-12-04 16:33:07,834 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 16:48:22,794 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 16:48:26,713 - com.pascloud.module.kettle.serv.KettleRepoService - 1
+[INFO ] 2018-12-04 16:48:26,714 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 16:49:23,559 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 16:49:24,123 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle home:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle
+[INFO ] 2018-12-04 16:49:24,697 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 16:50:38,612 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 16:50:40,786 - com.pascloud.module.kettle.serv.KettleRepoService - 0
+[INFO ] 2018-12-04 16:50:40,789 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 16:50:48,724 - com.pascloud.module.kettle.serv.KettleRepoService - 0
+[INFO ] 2018-12-04 16:50:48,730 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 16:51:59,413 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 16:51:59,975 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle home:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle
+[INFO ] 2018-12-04 16:52:00,649 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 16:52:07,625 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 16:52:09,664 - com.pascloud.module.kettle.serv.KettleRepoService - 0
+[INFO ] 2018-12-04 16:52:09,664 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 16:52:16,517 - com.pascloud.module.kettle.serv.KettleRepoService - 0
+[INFO ] 2018-12-04 16:52:16,517 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 16:54:21,452 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 16:54:22,015 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle home:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle
+[INFO ] 2018-12-04 16:54:22,420 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 16:54:29,385 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 16:54:32,708 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 16:54:32,717 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 16:54:32,734 - com.pascloud.module.kettle.serv.KettleRepoService - 0
+[INFO ] 2018-12-04 16:54:32,734 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 17:03:32,857 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 17:03:33,284 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle home:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle
+[INFO ] 2018-12-04 17:03:33,886 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 17:03:39,732 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 17:03:42,761 - com.pascloud.module.kettle.serv.KettleRepoService - 0
+[INFO ] 2018-12-04 17:03:42,762 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 17:04:12,807 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 17:04:13,425 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle home:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle
+[INFO ] 2018-12-04 17:04:13,874 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 17:04:20,974 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 17:04:24,350 - com.pascloud.module.kettle.serv.KettleRepoService - 0
+[INFO ] 2018-12-04 17:04:24,363 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 17:04:30,162 - com.pascloud.module.kettle.serv.KettleRepoService - 0
+[INFO ] 2018-12-04 17:04:30,162 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 17:05:16,809 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 17:05:17,205 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle home:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle
+[INFO ] 2018-12-04 17:05:17,590 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 17:05:23,676 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 17:05:26,626 - com.pascloud.module.kettle.serv.KettleRepoService - D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle\repositories.xml
+[INFO ] 2018-12-04 17:05:26,639 - com.pascloud.module.kettle.serv.KettleRepoService - 0
+[INFO ] 2018-12-04 17:05:26,639 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 17:05:35,816 - com.pascloud.module.kettle.serv.KettleRepoService - D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle\repositories.xml
+[INFO ] 2018-12-04 17:05:35,828 - com.pascloud.module.kettle.serv.KettleRepoService - 0
+[INFO ] 2018-12-04 17:05:35,828 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 17:14:47,882 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 17:14:48,356 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle home:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle
+[INFO ] 2018-12-04 17:14:48,990 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 17:14:56,524 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 17:14:59,190 - com.pascloud.module.kettle.serv.KettleRepoService - D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle\repositories.xml
+[INFO ] 2018-12-04 17:14:59,205 - com.pascloud.module.kettle.serv.KettleRepoService - 0
+[INFO ] 2018-12-04 17:14:59,207 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 17:15:10,627 - com.pascloud.module.kettle.serv.KettleRepoService - D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle\repositories.xml
+[INFO ] 2018-12-04 17:15:10,636 - com.pascloud.module.kettle.serv.KettleRepoService - 0
+[INFO ] 2018-12-04 17:15:10,636 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 17:15:43,787 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 17:15:44,202 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle home:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle
+[INFO ] 2018-12-04 17:15:44,839 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 17:15:52,735 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 17:15:54,835 - com.pascloud.module.kettle.serv.KettleRepoService - D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle\repositories.xml
+[INFO ] 2018-12-04 17:15:54,855 - com.pascloud.module.kettle.serv.KettleRepoService - 0
+[INFO ] 2018-12-04 17:15:54,855 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在
+[INFO ] 2018-12-04 17:18:00,457 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 17:18:01,060 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle home:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle
+[INFO ] 2018-12-04 17:18:01,584 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 17:18:11,394 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 17:18:14,558 - com.pascloud.module.kettle.serv.KettleRepoService - D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle\repositories.xml
+[INFO ] 2018-12-04 17:18:14,572 - com.pascloud.module.kettle.serv.KettleRepoService - 1
+[INFO ] 2018-12-04 17:21:26,848 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************开始初始化kettle的环境变量****************
+[INFO ] 2018-12-04 17:21:27,377 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - kettle home:D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle
+[INFO ] 2018-12-04 17:21:27,878 - com.pascloud.module.kettle.env.KettleEnvironmentLinstener - ****************结束初始化kettle的环境变量****************
+[INFO ] 2018-12-04 17:21:35,558 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-12-04 17:21:38,227 - com.pascloud.module.kettle.serv.KettleRepoService - D:\eclipse64\devops\pascloud-devops\pascloud-webapps\src\main\webapp/static/resources/kettle\.kettle\repositories.xml
+[INFO ] 2018-12-04 17:21:38,253 - com.pascloud.module.kettle.serv.KettleRepoService - 1
+[INFO ] 2018-12-04 17:21:38,254 - com.pascloud.module.kettle.web.KettleRepoController - 资源目录不存在

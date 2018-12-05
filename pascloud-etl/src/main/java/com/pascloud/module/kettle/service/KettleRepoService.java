@@ -1,9 +1,10 @@
-package com.pascloud.module.kettle.serv;
+package com.pascloud.module.kettle.service;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.exception.KettleException;
@@ -15,14 +16,19 @@ import org.pentaho.di.repository.RepositoryDirectory;
 import org.pentaho.di.repository.RepositoryDirectoryInterface;
 import org.pentaho.di.repository.RepositoryMeta;
 import org.pentaho.di.repository.filerep.KettleFileRepositoryMeta;
+import org.pentaho.di.repository.kdr.KettleDatabaseRepository;
+import org.pentaho.di.repository.kdr.KettleDatabaseRepositoryBase;
+import org.pentaho.di.repository.kdr.KettleDatabaseRepositoryMeta;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.google.gson.Gson;
 import com.pascloud.module.kettle.bean.RepositoryTree;
 import com.pascloud.module.kettle.constant.KettleConstant;
 import com.pascloud.utils.PasCloudCode;
 import com.pascloud.vo.result.ResultCommon;
+
 
 /**
  * 资源仓库接口
@@ -33,6 +39,114 @@ import com.pascloud.vo.result.ResultCommon;
 public class KettleRepoService {
 	
 	private static Logger log = LoggerFactory.getLogger(KettleRepoService.class);
+	
+	/**
+	 * 创建数据库资源
+	 * @param name
+	 * @param dm
+	 * @return
+	 */
+	public ResultCommon createKettleDatabaseRepository(String name,DatabaseMeta dm,String desc){
+		ResultCommon result =new ResultCommon(PasCloudCode.SUCCESS);
+		KettleDatabaseRepositoryMeta kdpm = new KettleDatabaseRepositoryMeta();
+		RepositoriesMeta rsMeta = new RepositoriesMeta();
+		try {
+			//如果不先读出数据，后面写入会覆盖掉
+			rsMeta.readData();
+			dm.setAttributes(buildDatabaseProperties());
+			kdpm.setConnection(dm);
+			kdpm.setId(KettleDatabaseRepositoryMeta.REPOSITORY_TYPE_ID);
+			kdpm.setName(name);
+			kdpm.setDescription(desc);
+			rsMeta.addDatabase(dm);
+			rsMeta.addRepository(kdpm);
+			//
+			if(!checkFileRepository(name)){
+				rsMeta.writeData();
+				RepositoryMeta meta = rsMeta.findRepository(name);
+				Boolean flag = initDatabase(meta);
+				if(!flag){
+					result =new ResultCommon(PasCloudCode.ERROR);
+				}
+				
+			}else{
+				result =new ResultCommon(PasCloudCode.ISEXIST);
+			}
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			result =new ResultCommon(PasCloudCode.EXCEPTION.getCode(),e.getMessage());
+		}
+		return result;
+	}
+	
+	/**
+	 * 初始化数据库的表
+	 * @param meta
+	 * @return
+	 */
+	private Boolean initDatabase(RepositoryMeta meta){
+		Boolean flag = false;
+		KettleDatabaseRepository repo=new KettleDatabaseRepository();
+		try {
+			repo.init(meta);
+			repo.create();
+			flag = true;
+		}catch (Exception e) {
+			log.error(e.getMessage());
+		}
+		return flag;
+	}
+	
+	
+	
+	/**
+	 * 创建数据仓库数据元(mysql)
+	 * @param dbname
+	 * @param dbport
+	 * @param hostname
+	 * @param servername
+	 * @param dbtype
+	 * @param name
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	public DatabaseMeta buildDatabaseMeta(String dbname,String dbport,String hostname,String servername,
+			String dbtype,String name,String username,String password){
+		DatabaseMeta dm = new DatabaseMeta();
+		dm.setDBName(dbname);
+		dm.setDBPort(dbport);
+		dm.setAccessType(DatabaseMeta.TYPE_ACCESS_NATIVE);
+		dm.setHostname(hostname);
+		//dm.setServername(servername);
+		dm.setDatabaseType(dbtype);
+		dm.setName(name);
+		dm.setUsername(username);
+		dm.setPassword(password);
+		dm.setStreamingResults(true);
+		dm.setAccessType(0);
+		dm.setDataTablespace("");
+		dm.setIndexTablespace("");
+		
+		return dm;
+	}
+	
+	private Properties buildDatabaseProperties(){
+		Properties p = new Properties();
+		//p.setProperty("EXTRA_OPTION_MYSQL.defaultFetchSize", "500");
+		//p.setProperty("EXTRA_OPTION_MYSQL.useCursorFetch", "true");
+		p.setProperty("FORCE_IDENTIFIERS_TO_LOWERCASE", "N");
+		p.setProperty("FORCE_IDENTIFIERS_TO_UPPERCASE", "N");
+		p.setProperty("IS_CLUSTERED", "N");
+		p.setProperty("PORT_NUMBER", "3306");
+		p.setProperty("PRESERVE_RESERVED_WORD_CASE", "Y");
+		p.setProperty("QUOTE_ALL_FIELDS", "N");
+		p.setProperty("STREAM_RESULTS", "Y");
+		p.setProperty("SUPPORTS_BOOLEAN_DATA_TYPE", "Y");
+		p.setProperty("SUPPORTS_TIMESTAMP_DATA_TYPE", "Y");
+		p.setProperty("USE_POOLING", "N");
+		return p;
+	}
 	
 	/**
 	 * 创建资源文件仓库
@@ -51,7 +165,8 @@ public class KettleRepoService {
 		try {
 			rsMeta.readData();
 			kfm = new KettleFileRepositoryMeta();		
-			kfm.setId(id);
+			kfm.setId(KettleFileRepositoryMeta.REPOSITORY_TYPE_ID);
+			//
 			kfm.setName(name);
 			kfm.setDescription(desc);
 			kfm.setBaseDirectory(baseDirectory);
@@ -69,12 +184,12 @@ public class KettleRepoService {
 		return result;
 	}
 	
-	public boolean checkRepository(String id){
+	public boolean checkRepositoryById(String id){
 		boolean flag = false;
 		RepositoriesMeta rsMeta = new RepositoriesMeta();
 		RepositoryMeta   repMeta  = null;
 		try {
-			log.info(KettleConstant.getKettleUserRepositoriesFile());
+			//log.info(KettleConstant.getKettleUserRepositoriesFile());
 			//rsMeta.readDataFromInputStream(new FileInputStream(new File(KettleConstant.getKettleUserRepositoriesFile())));
 			rsMeta.readData();
 			log.info(rsMeta.nrRepositories()+"");
@@ -105,6 +220,8 @@ public class KettleRepoService {
 		try {
 			rsMeta.readData();
 			repMeta = rsMeta.findRepository(name);
+			
+			
 			
 			if(null == repMeta){
 			}else{
@@ -168,8 +285,6 @@ public class KettleRepoService {
 	public List<RepositoryMeta> getRepository(){
 		List<RepositoryMeta> repos = new ArrayList<>();
 		RepositoriesMeta rms = new RepositoriesMeta();
-		
-		System.out.println("*****reps start*****");
 		try {
 			rms.readData();
 			
@@ -222,7 +337,7 @@ public class KettleRepoService {
 	 * @param filePath
 	 * @return
 	 */
-	private RepositoryDirectoryInterface getRepositoryDirectoryInterface(Repository rep, String filePath){
+	public RepositoryDirectoryInterface getRepositoryDirectoryInterface(Repository rep, String filePath){
 		RepositoryDirectoryInterface tree = null;
 		try{
 			tree = rep.loadRepositoryDirectoryTree();
@@ -287,6 +402,26 @@ public class KettleRepoService {
 		}
 		
 		return rt;
+	}
+	
+	public Repository getRepository(String name,String username,String password){
+		RepositoriesMeta rsMeta = new RepositoriesMeta();
+		RepositoryMeta   repMeta  = null;
+		Repository       rep  = null;
+		PluginRegistry   pluginRep = null;   
+		try {
+			rsMeta.readData();
+			repMeta = rsMeta.findRepository(name);
+			pluginRep = PluginRegistry.getInstance();
+			rep =  pluginRep.loadClass(RepositoryPluginType.class, repMeta, Repository.class); 
+			rep.init(repMeta);
+			rep.connect(username, password);
+			
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
+		return rep;
+		
 	}
 	
 	

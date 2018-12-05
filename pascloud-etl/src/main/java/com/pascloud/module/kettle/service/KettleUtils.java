@@ -40,16 +40,16 @@ public class KettleUtils {
 	
 	{
 		try {
-			KettleRepositoryService kps = new KettleRepositoryService();
+			//KettleRepositoryService kps = new KettleRepositoryService();
 			//KettleEnvironment.init();
 			logChannel = new LogChannel("spoon");
 			//getVariables();
 			//getRepositories();
 			//getRepository("eee","admin","admin");
-			kps.createKettleFileRepository("test","test","D:/kettlerepo");
+			//kps.createKettleFileRepository("test","test","D:/kettlerepo");
 			//createKettleDatabaseRepository("kettle02");
-			databaseMeta = kps.initDatabase();
-			databaseProperties = kps.initDatabaseProperties();
+			//databaseMeta = kps.initDatabase();
+			//databaseProperties = kps.initDatabaseProperties();
 			//System.out.println(checkDatabaseRepository("localhost"));
 			//checkDatabaseConnection(databaseMeta);
 			
