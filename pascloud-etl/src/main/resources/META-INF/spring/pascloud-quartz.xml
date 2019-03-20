@@ -53,15 +53,13 @@
 	
 	
 	<!-- 声明任务工厂 -->  
+	<!--  
     <bean id="scheduler" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
         <property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:quartz.properties" />
-		<!--applicationContextSchedulerContextKey： 
-		是org.springframework.scheduling.quartz.SchedulerFactoryBean这个类中
-		把spring上下 文以key/value的方式存放在了quartz的上下文中了，
-		可以用applicationContextSchedulerContextKey所定义的key得到对应的spring上下文-->  
+		<property name="configLocation" value="classpath:quartz.properties" /> 
 		<property name="applicationContextSchedulerContextKey" value="applicationContextKey"/>    
-    </bean>  
+		
+    </bean>  -->
 
 </beans>
 
