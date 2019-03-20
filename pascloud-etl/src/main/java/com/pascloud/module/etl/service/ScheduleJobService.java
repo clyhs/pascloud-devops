@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.annotation.PostConstruct;
+
 import org.quartz.CronScheduleBuilder;
 import org.quartz.CronTrigger;
 import org.quartz.JobBuilder;
@@ -16,6 +18,7 @@ import org.quartz.SimpleTrigger;
 import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.TriggerKey;
+import org.quartz.impl.StdSchedulerFactory;
 import org.quartz.impl.matchers.GroupMatcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,8 +33,19 @@ public class ScheduleJobService{
 	
 	private static final Logger log = LoggerFactory.getLogger(ScheduleJobService.class);
 
-	@Autowired
-	private Scheduler scheduler;
+//	@Autowired
+//	private Scheduler scheduler;
+	
+	@PostConstruct
+	public void initSchedule(){
+		 Scheduler scheduler;
+		try {
+			scheduler = StdSchedulerFactory.getDefaultScheduler();
+			scheduler.start();  
+		} catch (SchedulerException e) {
+			e.printStackTrace();
+		}  
+	}
 	
 	/**
 	 * 添加定时任务
@@ -56,6 +70,8 @@ public class ScheduleJobService{
 		//按新的cronExpression表达式构建一个新的trigger
 		CronTrigger trigger = TriggerBuilder.newTrigger().withIdentity(scheduleJob.getName(), scheduleJob.getGroup()).withSchedule(scheduleBuilder).build();
 		try {
+			Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+			scheduler.start();
 			scheduler.scheduleJob(jobDetail, trigger);
 			log.info("定时任务添加成功");
 		} catch (SchedulerException e) {
@@ -69,6 +85,8 @@ public class ScheduleJobService{
 	 */
 	public List<JobDetail> getJobs() {
 		try {
+			Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+			scheduler.start();
 			GroupMatcher<JobKey> matcher = GroupMatcher.anyJobGroup();
 			Set<JobKey> jobKeys = scheduler.getJobKeys(matcher);
 			List<JobDetail> jobDetails = new ArrayList<JobDetail>();
@@ -90,6 +108,8 @@ public class ScheduleJobService{
 		List<ScheduleJob> scheduleJobList=new ArrayList<ScheduleJob>();;
 		GroupMatcher<JobKey> matcher = GroupMatcher.anyJobGroup();
 		try {
+			Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+			scheduler.start();
 			Set<JobKey> jobKeys = scheduler.getJobKeys(matcher);
 			for (JobKey jobKey : jobKeys) {
 			    List<? extends Trigger> triggers = scheduler.getTriggersOfJob(jobKey);
@@ -130,6 +150,8 @@ public class ScheduleJobService{
 	public List<ScheduleJob> getAllRuningScheduleJob(){
 		List<ScheduleJob> scheduleJobList=null;
 		try {
+			Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+			scheduler.start();
 			List<JobExecutionContext> executingJobs = scheduler.getCurrentlyExecutingJobs();
 			scheduleJobList = new ArrayList<ScheduleJob>(executingJobs.size());
 			for (JobExecutionContext executingJob : executingJobs) {
@@ -170,6 +192,8 @@ public class ScheduleJobService{
 	 */
 	public List<ScheduleJob> getTriggersInfo(){
 		try {
+			Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+			scheduler.start();
 			GroupMatcher<TriggerKey> matcher = GroupMatcher.anyTriggerGroup();
 			Set<TriggerKey> Keys = scheduler.getTriggerKeys(matcher);
 			List<ScheduleJob> triggers = new ArrayList<ScheduleJob>();
@@ -208,6 +232,8 @@ public class ScheduleJobService{
 	public void stopJob(String name, String group){
 		JobKey key = new JobKey(name, group);
 		try {
+			Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+			scheduler.start();
 			scheduler.pauseJob(key);
 		} catch (SchedulerException e) {
 			e.printStackTrace();
@@ -222,6 +248,8 @@ public class ScheduleJobService{
 	public void restartJob(String name, String group){
 		JobKey key = new JobKey(name,group);
 		try {
+			Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+			scheduler.start();
 			scheduler.resumeJob(key);
 		} catch (SchedulerException e) {
 			e.printStackTrace();
@@ -236,6 +264,8 @@ public class ScheduleJobService{
 	public void startNowJob(String name, String group){
 		JobKey jobKey = JobKey.jobKey(name, group);
 		try {
+			Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+			scheduler.start();
 			scheduler.triggerJob(jobKey);
 		} catch (SchedulerException e) {
 			e.printStackTrace();
@@ -250,6 +280,8 @@ public class ScheduleJobService{
 	public void delJob(String name, String group){
 		JobKey key = new JobKey(name,group);
 		try {
+			Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+			scheduler.start();
 			scheduler.deleteJob(key);
 		} catch (SchedulerException e) {
 			e.printStackTrace();
@@ -264,6 +296,8 @@ public class ScheduleJobService{
 	 */
 	public void modifyTrigger(String name,String group,String cron){
 		try {  
+			Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+			scheduler.start();
             TriggerKey key = TriggerKey.triggerKey(name, group);  
             //Trigger trigger = scheduler.getTrigger(key);  
               
@@ -283,6 +317,8 @@ public class ScheduleJobService{
 	 */
 	public void stopScheduler(){
 		 try {
+			Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+			scheduler.start();
 			if (!scheduler.isInStandbyMode()) {
 				scheduler.standby();
 			}

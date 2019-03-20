@@ -889,7 +889,7 @@ public class PasService extends AbstractBaseService {
 		Map<String,String> port = new HashMap<String,String>();
 		port.put("3306", "3306");
 		List<String> envs = new ArrayList<>();
-		envs.add("MYSQL_ROOT_PASSWORD=root");
+		envs.add("MYSQL_ROOT_PASSWORD=3432$%^$62321");
 		//envs.add("lower_case_table_names=1");
         log.info("开始新建mysql容器");
 		DefaultDockerClient client = DefaultDockerClient.builder()
