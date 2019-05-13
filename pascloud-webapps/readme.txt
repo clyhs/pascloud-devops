@@ -140,4 +140,9 @@ SQL>@home/oracle/script/createCloudManager.sql
 ./create_shell.sh cpas01 /u01/app/oracle/product/11.2.0/dbhome_1 PAS2 pas2
 ./imp_dmpV2.sh cpas01 /u01/app/oracle/product/11.2.0/dbhome_1 PAS2 pas2
 
+docker
+限制日志大小
+--log-opt max-size=10m --log-opt max-file=3
+查看日志
+docker logs -f -t --tail 1000 pascloud_tomcat
 
