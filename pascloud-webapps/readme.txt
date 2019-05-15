@@ -156,3 +156,4 @@ docker run -d --log-opt max-size=100m --log-opt max-file=3 --name pascloud_tomca
 cpp gcc gcc-c++ glibc-devel glibc-headers libstdc++ kernel-headers keyutils-lib-devel krb5-devel libmpc libselinux-devel libsepol-devel libverto-devel libcom_err-devel
 zlib zlib-devel openssl openssl-devel pcre pcre-devel
 ./configure --prefix=/usr/local/nginx --with-http_ssl_module --with-http_flv_module --with-http_stub_status_module --with-http_gzip_static_module --with-http_stub_status_module --with-http_sub_module
+make && make install
