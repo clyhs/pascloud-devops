@@ -146,3 +146,13 @@ docker
 查看日志
 docker logs -f -t --tail 1000 pascloud_tomcat
 
+docker run -d --name pascloud_nginx --network=host -v /app/app/pascloud/nginx/nginx.conf:/etc/nginx/nginx.conf -v /etc/localtime:/etc/localtime -v /app/app/pascloud/nginx/proxy_temp:/app/app/pascloud/nginx/proxy_temp -v /app/app/pascloud/nginx/proxy_cache:/app/app/pascloud/nginx/proxy_cache -v /home/domains/pascloud/ROOT:/home/domains/pascloud/ROOT nginx
+
+docker run -d --log-opt max-size=100m --log-opt max-file=3 --name pascloud_tomcat -p:8170:8170 -v /app/app/pascloud/tomcat:/app/app/pascloud/tomcat -v /app/app/pascloud/pas-cloud-service-demo:/app/app/pascloud/pas-cloud-service-demo pascloud/jdk7:v1.0  /app/app/pascloud/tomcat/bin/catalina.sh run 
+
+
+docker run -d --log-opt max-size=100m --log-opt max-file=3 --name pascloud_tomcat -p:8170:8170 -v /home/domains/pascloud/tomcat:/home/domains/pascloud/tomcat -v /home/domains/pascloud/pas-cloud-service-demo:/home/domains/pascloud/pas-cloud-service-demo  pascloud/jdk7:v1.0  /home/domains/pascloud/tomcat/bin/catalina.sh run 
+安装nginx-1.12.1.tar.gz
+cpp gcc gcc-c++ glibc-devel glibc-headers libstdc++ kernel-headers keyutils-lib-devel krb5-devel libmpc libselinux-devel libsepol-devel libverto-devel libcom_err-devel
+zlib zlib-devel openssl openssl-devel pcre pcre-devel
+./configure --prefix=/usr/local/nginx --with-http_ssl_module --with-http_flv_module --with-http_stub_status_module --with-http_gzip_static_module --with-http_stub_status_module --with-http_sub_module
