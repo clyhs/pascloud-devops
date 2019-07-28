@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pascloud.bean.system.User;
+import com.pascloud.dao.system.UserDao;
+import com.pascloud.dao.system.UserDaoSupport;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.docker.service.DockerService;
 import com.pascloud.module.main.service.TreeService;
@@ -43,6 +45,11 @@ public class MainController extends BaseController {
 	private TreeService   m_treeService;
 	@Autowired
 	private ConfigService m_configService;
+	@Autowired
+	private UserDao userDao;
+	
+	@Autowired
+	private UserDaoSupport userDaoSupport;
 
 	@RequestMapping("index.html")
 	public ModelAndView index(HttpServletRequest request) {
@@ -158,6 +165,20 @@ public class MainController extends BaseController {
 			//result = new ResultCommon(PasCloudCode.SUCCESS);
 		}
 		return result;
+	}
+	
+	@RequestMapping("users.json")
+	@ResponseBody
+	public List<User> getUsers(@RequestParam(value = "db", defaultValue = "db1", required = true) String db){
+		//return userDao.selectall();
+		return userDaoSupport.selectAll(db);
+	}
+	
+	@RequestMapping("addUsers.json")
+	@ResponseBody
+	public String addUsers(@RequestParam(value = "db", defaultValue = "db1", required = true) String db) throws Exception{
+		//return userDao.selectall();
+		return userDaoSupport.insert(db);
 	}
 
 	public static void main(String[] args) {

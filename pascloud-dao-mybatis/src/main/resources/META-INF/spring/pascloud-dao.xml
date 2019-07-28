@@ -21,7 +21,7 @@
        http://www.springframework.org/schema/cache/spring-cache-3.2.xsd
        http://www.dangdang.com/schema/ddframe/rdb 
        http://www.dangdang.com/schema/ddframe/rdb/rdb.xsd">
-    <!--   
+    
       
     <bean name="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${db.driverClass}"></property>
@@ -32,6 +32,29 @@
 		<property name="maxActive" value="${db.maxActive}" />
 		<property name="maxIdle" value="${db.minIdle}" />
 		<property name="maxWait" value="${db.maxWait}" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="180" />
+		<property name="logAbandoned" value="true" />
+		
+		
+		<property name="validationQuery" value="SELECT 1"></property>
+        <property name="testWhileIdle" value="true"></property>
+        <property name="testOnBorrow" value="true"></property>
+        <property name="timeBetweenEvictionRunsMillis" value="3600000"></property>
+        <property name="numTestsPerEvictionRun" value="50"></property>
+        <property name="minEvictableIdleTimeMillis" value="120000"></property>
+	</bean>
+	
+	<bean name="dataSource2" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${db1.driverClass}"></property>
+		<property name="url" value="${db1.url}" />
+		<property name="username" value="${db1.username}" />
+		<property name="password" value="${db1.password}" />
+
+		<property name="maxActive" value="${db1.maxActive}" />
+		<property name="maxIdle" value="${db1.minIdle}" />
+		<property name="maxWait" value="${db1.maxWait}" />
 		<property name="defaultAutoCommit" value="true" />
 		<property name="removeAbandoned" value="true" />
 		<property name="removeAbandonedTimeout" value="180" />
@@ -71,12 +94,40 @@
         </property>
 	</bean>
 	
+	<bean id="sqlSessionFactory2" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource2" />
+		<property name="mapperLocations"
+			value="classpath*:com/pascloud/mapping/**/*Mapper.xml" />
+		
+		<property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageHelper">
+                    <property name="properties">
+                        <value>
+                            dialect=mysql
+                            reasonable=true
+                        </value>
+                    </property>
+                    
+                </bean>
+                
+            </array>
+            
+        </property>
+	</bean>
     
     
-	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+	<bean id="msc" class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.pascloud.mapper.**" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
+	
+	<bean id="msc2" class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.pascloud.mapper.**" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory2" />
+	</bean>
+	
+	
 	
 	
 	
@@ -85,7 +136,15 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+	<bean id="transactionManager2"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource2" />
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager"  />
+	<tx:annotation-driven transaction-manager="transactionManager2"  />
+	
+	<!-- <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="add*" propagation="REQUIRED" />
 
@@ -112,9 +171,9 @@
 		<aop:advisor pointcut-ref="transactionPointcut"
 			advice-ref="transactionAdvice"  /> 
 
-	</aop:config>
+	</aop:config> -->
 	
-	-->
+	
 	
 </beans>
 

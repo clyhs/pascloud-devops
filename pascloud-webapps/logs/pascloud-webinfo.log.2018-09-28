@@ -1,0 +1,7 @@
+[INFO ] 2018-09-28 21:10:27,481 - com.pascloud.timer.RedisScheduledTask - 初始化缓存服务
+[INFO ] 2018-09-28 21:10:47,479 - com.pascloud.timer.RedisScheduledTask - 初始化缓存服务
+[INFO ] 2018-09-28 21:10:52,242 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2018-09-28 21:11:07,477 - com.pascloud.timer.RedisScheduledTask - 初始化缓存服务
+[INFO ] 2018-09-28 21:11:10,315 - com.pascloud.module.redis.web.RedisController - 初始化redis--开始--
+[INFO ] 2018-09-28 21:11:10,315 - com.pascloud.module.redis.web.RedisController - 初始化redis--结束--
+[INFO ] 2018-09-28 21:11:27,480 - com.pascloud.timer.RedisScheduledTask - 初始化缓存服务

@@ -20,8 +20,8 @@
 		<jetty.jsp.version>6.1.14</jetty.jsp.version>
 		<jackson.version>1.9.13</jackson.version>
 		<slf4j.version>1.6.4</slf4j.version>
-		<mybatis.version>3.3.0</mybatis.version>
-		<mybatisspring.version>1.1.1</mybatisspring.version>
+		<mybatis.version>3.4.4</mybatis.version>
+		<mybatisspring.version>1.3.2</mybatisspring.version>
 		<tomcat.version>7.0.23</tomcat.version>
 		<resteasy.version>3.1.0.Final</resteasy.version>
 		<fasterxml.version>2.8.8</fasterxml.version>
@@ -361,11 +361,11 @@
 
 
 
-			<dependency>
+			<!-- <dependency>
 				<groupId>tk.mybatis</groupId>
 				<artifactId>mapper</artifactId>
 				<version>3.3.6</version>
-			</dependency>
+			</dependency> -->
 			<dependency>
 				<groupId>com.github.pagehelper</groupId>
 				<artifactId>pagehelper</artifactId>
