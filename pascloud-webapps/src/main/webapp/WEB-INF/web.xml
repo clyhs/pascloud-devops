@@ -14,9 +14,10 @@
 	<listener>
 		<listener-class>com.pascloud.listen.PasCloudListener</listener-class>
 	</listener>
+	<!--  
 	<listener>
 		<listener-class>com.pascloud.module.kettle.env.KettleEnvironmentLinstener</listener-class>
-	</listener>
+	</listener>-->
 	<listener>
 		<listener-class>jrds.webapp.StartListener</listener-class>
 	</listener>

@@ -1,0 +1,19 @@
+[INFO ] 2019-07-27 11:17:09,534 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2019-07-27 11:48:10,422 - com.pascloud.module.login.web.LoginController - 登录成功
+[INFO ] 2019-07-27 11:48:21,906 - com.pascloud.module.passervice.web.ConfigController - 查询配置信息
+[INFO ] 2019-07-27 11:48:23,738 - com.pascloud.module.mversion.web.MVersionController - 查询Id=dn0的功能菜单
+[INFO ] 2019-07-27 11:48:23,738 - com.pascloud.module.mversion.service.MVersionService - 查询Id=dn0的功能菜单
+[INFO ] 2019-07-27 11:48:23,739 - com.pascloud.module.mversion.service.MVersionService - 进入查询
+[INFO ] 2019-07-27 11:48:27,534 - com.pascloud.module.pascode.service.PascodeService - db为空
+[ERROR] 2019-07-27 11:48:27,537 - com.pascloud.module.pascode.service.PascodeService - Null connection
+[ERROR] 2019-07-27 11:48:28,021 - com.pascloud.utils.DBUtils - Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+[INFO ] 2019-07-27 11:48:28,022 - com.pascloud.utils.DBUtils - 连接失败...
+[INFO ] 2019-07-27 11:48:28,022 - com.pascloud.utils.DBUtils - 关闭连接...
+[ERROR] 2019-07-27 11:48:33,199 - com.pascloud.utils.DBUtils - 连接失败...
+[ERROR] 2019-07-27 11:48:33,200 - com.pascloud.module.pasdev.service.PasdevService - Null connection
+[ERROR] 2019-07-27 11:48:33,745 - com.pascloud.utils.DBUtils - 连接失败...
+[INFO ] 2019-07-27 11:48:33,745 - com.pascloud.module.mversion.service.MVersionService - select * from xtb_xtzycd
+[INFO ] 2019-07-27 11:48:33,748 - com.pascloud.module.mversion.service.MVersionService - 查询表所有数据--失败--
+[ERROR] 2019-07-27 11:48:33,748 - com.pascloud.module.mversion.service.MVersionService - Null connection
