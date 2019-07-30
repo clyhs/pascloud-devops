@@ -20,12 +20,17 @@
 		<dependency>
 			<groupId>com.pascloud.devops</groupId>
 			<artifactId>pascloud-utils</artifactId>
-			
+
 		</dependency>
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
 			<version>${mybatis.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ognl</groupId>
+			<artifactId>ognl</artifactId>
+			<version>3.1.14</version>
 		</dependency>
 		<!--通用Mapper -->
 		<dependency>

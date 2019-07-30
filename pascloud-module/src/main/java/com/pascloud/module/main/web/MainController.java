@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.pascloud.bean.system.User;
 import com.pascloud.dao.system.UserDao;
 import com.pascloud.dao.system.UserDaoSupport;
@@ -45,6 +47,7 @@ public class MainController extends BaseController {
 	private TreeService   m_treeService;
 	@Autowired
 	private ConfigService m_configService;
+	
 	@Autowired
 	private UserDao userDao;
 	
@@ -169,9 +172,13 @@ public class MainController extends BaseController {
 	
 	@RequestMapping("users.json")
 	@ResponseBody
-	public List<User> getUsers(@RequestParam(value = "db", defaultValue = "db1", required = true) String db){
+	public PageInfo getUsers(@RequestParam(value = "db", defaultValue = "db1", required = true) String db){
 		//return userDao.selectall();
-		return userDaoSupport.selectAll(db);
+		PageHelper.startPage(1, 5);
+		List<User> us = userDaoSupport.selectAll(db);
+		//return userDao.selectall2();
+		PageInfo page = new PageInfo(us);
+		return page;
 	}
 	
 	@RequestMapping("addUsers.json")

@@ -82,6 +82,9 @@ docker run --name pascloud_service_paspm_jpumpp  -d -v /home/pascloud/pas-cloud-
 docker run --name pascloud_service_demo_mdsqwb  -d -v /home/pascloud/pas-cloud-service-demo-mdsqwb:/home/pascloud/pas-cloud-service-demo-mdsqwb -p 8201:8201 -p 8211:8211 pascloud/jdk7:v1.0 /home/pascloud/pas-cloud-service-demo-mdsqwb/bin/start.sh
   
   
+docker run --name pascloud_service_demo_cdkfp1 --network=host  -d -v /home/domains/pascloud/pas-cloud-service-demo-cdkfp1:/home/domains/pascloud/pas-cloud-service-demo-cdkfp1 pascloud/jdk7:v1.0 /home/domains/pascloud/pas-cloud-service-demo-cdkfp1/bin/start.sh
+
+  
 -------------------------  
 redhat6.5
 1
@@ -148,12 +151,40 @@ docker logs -f -t --tail 1000 pascloud_tomcat
 
 docker run -d --name pascloud_nginx --network=host -v /app/app/pascloud/nginx/nginx.conf:/etc/nginx/nginx.conf -v /etc/localtime:/etc/localtime -v /app/app/pascloud/nginx/proxy_temp:/app/app/pascloud/nginx/proxy_temp -v /app/app/pascloud/nginx/proxy_cache:/app/app/pascloud/nginx/proxy_cache -v /home/domains/pascloud/ROOT:/home/domains/pascloud/ROOT nginx
 
+docker run -d --name pascloud_nginx --network=host -v /home/domains/pascloud/nginx/nginx.conf:/etc/nginx/nginx.conf -v /etc/localtime:/etc/localtime -v /home/domains/pascloud/nginx/proxy_temp:/home/domains/pascloud/nginx/proxy_temp -v /home/domains/pascloud/nginx/proxy_cache:/home/domains/pascloud/nginx/proxy_cache -v /home/domains/pascloud/ROOT:/home/domains/pascloud/ROOT nginx
+
+
 docker run -d --log-opt max-size=100m --log-opt max-file=3 --name pascloud_tomcat -p:8170:8170 -v /app/app/pascloud/tomcat:/app/app/pascloud/tomcat -v /app/app/pascloud/pas-cloud-service-demo:/app/app/pascloud/pas-cloud-service-demo pascloud/jdk7:v1.0  /app/app/pascloud/tomcat/bin/catalina.sh run 
 
 
 docker run -d --log-opt max-size=100m --log-opt max-file=3 --name pascloud_tomcat -p:8170:8170 -v /home/domains/pascloud/tomcat:/home/domains/pascloud/tomcat -v /home/domains/pascloud/pas-cloud-service-demo:/home/domains/pascloud/pas-cloud-service-demo  pascloud/jdk7:v1.0  /home/domains/pascloud/tomcat/bin/catalina.sh run 
+
+docker run -d --log-opt max-size=100m --log-opt max-file=3 --name pascloud_tomcat -p 1099:1099 -p:8170:8170 -v /home/domains/pascloud/tomcat:/home/domains/pascloud/tomcat -v /home/domains/pascloud/pas-cloud-service-demo:/home/domains/pascloud/pas-cloud-service-demo  pascloud/jdk7:v1.0  /home/domains/pascloud/tomcat/bin/catalina.sh run 
+
+
+docker run -d --log-opt max-size=100m --log-opt max-file=3 --name pascloud_tomcat2 -p:8270:8170 -v /home/domains/pascloud/tomcat2:/home/domains/pascloud/tomcat2 -v /home/domains/pascloud/pas-cloud-service-demo:/home/domains/pascloud/pas-cloud-service-demo  pascloud/jdk7:v1.0  /home/domains/pascloud/tomcat2/bin/catalina.sh run 
+
+docker run -d --log-opt max-size=100m --log-opt max-file=3 --name pascloud_tomcat3 -p:8370:8170 -v /home/domains/pascloud/tomcat3:/home/domains/pascloud/tomcat3 -v /home/domains/pascloud/pas-cloud-service-demo:/home/domains/pascloud/pas-cloud-service-demo  pascloud/jdk7:v1.0  /home/domains/pascloud/tomcat3/bin/catalina.sh run 
+
+
+docker run -d --log-opt max-size=100m --log-opt max-file=3 --name pascloud_tomcat7 -p:8080:8080 -v /home/domains/pascloud/tomcat7:/home/domains/pascloud/tomcat7 -v /home/domains/pascloud/pas-cloud-service-demo:/home/domains/pascloud/pas-cloud-service-demo  pascloud/jdk7:v1.0  /home/domains/pascloud/tomcat7/bin/catalina.sh run 
+
+
 安装nginx-1.12.1.tar.gz
 cpp gcc gcc-c++ glibc-devel glibc-headers libstdc++ kernel-headers keyutils-lib-devel krb5-devel libmpc libselinux-devel libsepol-devel libverto-devel libcom_err-devel
 zlib zlib-devel openssl openssl-devel pcre pcre-devel
 ./configure --prefix=/usr/local/nginx --with-http_ssl_module --with-http_flv_module --with-http_stub_status_module --with-http_gzip_static_module --with-http_stub_status_module --with-http_sub_module
 make && make install
+
+./nmon_linux_x86_64 -F  XXX.nmon -s 2 -c 300 -t 
+./nmon_linux_x86_64 -F  XXX.nmon -s 120 -c 310 -t 
+(只能在nmon路径下)2取一次，取300次
+
+AOF重写可以手动触发和自动触发：
+1.手动触发可以调用bgrewriteaof。
+2.根据如下两个参数自动触发。
+redis.conf
+#代表当前AOF文件空间和上次重写后AOF空间的比值。
+auto-aof-rewrite-percentage 100
+#AOP超过64m就开始收缩
+auto-aof-rewrite-min-size 64mb

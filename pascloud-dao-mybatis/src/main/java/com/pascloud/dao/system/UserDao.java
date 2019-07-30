@@ -6,6 +6,7 @@ package com.pascloud.dao.system;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -29,6 +30,9 @@ public class UserDao {
 	@Autowired
 	private UserMapper userMapper;
 	
+	@Autowired
+	private SqlSession sqlSession;
+	
 	public int insert(User t) {
 		// TODO Auto-generated method stub	
 		//return userMapper.insert_test(t);
@@ -39,6 +43,12 @@ public class UserDao {
 	public List<User> selectall(){
 		return userMapper.selectAll();
 	}
+	
+	public List<User> selectall2(){
+		
+		return sqlSession.selectList("com.pascloud.mapper.system.UserMapper.select_test");
+	}
+	
 	
 	public List<User> selecttest(Map map){
 		return userMapper.select_test(map);

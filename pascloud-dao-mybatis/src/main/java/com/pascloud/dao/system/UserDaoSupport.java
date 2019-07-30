@@ -86,8 +86,11 @@ public class UserDaoSupport extends SqlSessionDaoSupport {
 		SqlSessionFactory sqlSessionFactory= null;
 		if("db1".equals(db)) {
 			sqlSessionFactory= (SqlSessionFactory) springUtil.getBean("sqlSessionFactory");
-		}else {
+		}else if("db2".equals(db)) {
 			sqlSessionFactory= (SqlSessionFactory) springUtil.getBean("sqlSessionFactory2");
+		}else{
+			sqlSessionFactory= (SqlSessionFactory) springUtil.getBean("sqlSessionFactory3");
+			
 		}
 		super.setSqlSessionFactory(sqlSessionFactory);
 	}
@@ -96,8 +99,10 @@ public class UserDaoSupport extends SqlSessionDaoSupport {
 		DataSourceTransactionManager txManager = null;
 		if("db1".equals(db)) {
 			txManager=  (DataSourceTransactionManager) springUtil.getBean("transactionManager");
-		}else {
+		}else if("db2".equals(db)) {
 			txManager=  (DataSourceTransactionManager) springUtil.getBean("transactionManager2");
+		}else {
+			txManager=  (DataSourceTransactionManager) springUtil.getBean("transactionManager3");
 		}
 		return txManager;
 	}

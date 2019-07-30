@@ -4,9 +4,11 @@
 	<resultMap id="BaseResultMap" type="com.pascloud.bean.system.User">
 		<result column="id" property="id" jdbcType="INTEGER" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="age" property="age" jdbcType="INTEGER" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		ID, NAME 
+		ID, NAME ,AGE,PASSWORD 
 	</sql>
 
     <insert id="insert_test" parameterType="com.pascloud.bean.system.User">
