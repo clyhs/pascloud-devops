@@ -172,13 +172,13 @@ public class MainController extends BaseController {
 	
 	@RequestMapping("users.json")
 	@ResponseBody
-	public PageInfo getUsers(@RequestParam(value = "db", defaultValue = "db1", required = true) String db){
-		//return userDao.selectall();
-		PageHelper.startPage(1, 5);
-		List<User> us = userDaoSupport.selectAll(db);
+	public List<User> /*PageInfo*/ getUsers(@RequestParam(value = "db", defaultValue = "db1", required = true) String db){
+		return userDao.selectall();
+		//PageHelper.startPage(1, 5);
+		//List<User> us = userDaoSupport.selectAll(db);
 		//return userDao.selectall2();
-		PageInfo page = new PageInfo(us);
-		return page;
+		//PageInfo page = new PageInfo(us);
+		//return page;
 	}
 	
 	@RequestMapping("addUsers.json")

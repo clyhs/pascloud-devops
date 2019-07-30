@@ -164,6 +164,13 @@
 		advice-ref="transactionAdvice" /> </aop:config> -->
 
 
+    <bean id="baseMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" abstract="true" lazy-init="true">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+    
+    <bean id="userMapper2" parent="baseMapper">
+        <property name="mapperInterface" value="com.pascloud.mapper.system.UserMapper2" />
+    </bean>
 
 </beans>
 
