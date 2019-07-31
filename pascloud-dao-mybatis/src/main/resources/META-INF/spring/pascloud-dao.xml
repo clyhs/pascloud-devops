@@ -119,7 +119,7 @@
 	</bean>
 
 
-	<bean id="msc" class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+	<bean id="msc" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.pascloud.mapper.**" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
@@ -169,7 +169,7 @@
     </bean>
     
     <bean id="userMapper2" parent="baseMapper">
-        <property name="mapperInterface" value="com.pascloud.mapper.system.UserMapper2" />
+        <property name="mapperInterface" value="com.pascloud.mapper.system.User2Mapper" />
     </bean>
 
 </beans>

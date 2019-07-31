@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import com.pascloud.bean.system.User;
 import com.pascloud.mapper.system.UserMapper;
-import com.pascloud.mapper.system.UserMapper2;
+import com.pascloud.mapper.system.User2Mapper;
 
 
 
@@ -32,7 +32,7 @@ public class UserDao {
 	private UserMapper userMapper;
 	
 	@Autowired
-	private UserMapper2 userMapper2;
+	private User2Mapper user2Mapper;
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -45,7 +45,8 @@ public class UserDao {
 	
 	
 	public List<User> selectall(){
-		return userMapper2.select_test(null);
+		//return user2Mapper.select_test(null);
+		return userMapper.select_test(null);
 	}
 	
 	public List<User> selectall2(){
