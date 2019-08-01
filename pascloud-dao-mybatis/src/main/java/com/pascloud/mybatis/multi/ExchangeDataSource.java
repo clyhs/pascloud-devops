@@ -2,6 +2,7 @@ package com.pascloud.mybatis.multi;
 
 import java.lang.reflect.Method;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +32,7 @@ public class ExchangeDataSource implements MethodBeforeAdvice,
 
 	}
 
-	public void before(Method method, Object[] args, Object target)
+	public void before( Method method, Object[] args, Object target)
 			throws Throwable {
 		// TODO Auto-generated method stub
 		if (method.isAnnotationPresent(DataSource.class))   
@@ -50,6 +51,8 @@ public class ExchangeDataSource implements MethodBeforeAdvice,
             
             log.info("now datasource:"+DataSourceHolder.getDataSource());
         }
+		
+		
 
 
 	}

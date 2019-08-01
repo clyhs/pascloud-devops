@@ -73,8 +73,8 @@
     <bean id="dataSource" class="com.pascloud.mybatis.multi.DynamicDataSource">
         <property name="targetDataSources">
             <map key-type="java.lang.String">
-                <entry key="dataSource_dn1" value-ref="dataSource_dn1"></entry>
-                <entry key="dataSource_dn2" value-ref="dataSource_dn2"></entry>
+                <entry key="dn1" value-ref="dataSource_dn1"></entry>
+                <entry key="dn2" value-ref="dataSource_dn2"></entry>
             </map>
         </property>
     <!-- 默认目标数据源为你主库数据源  -->
@@ -112,7 +112,10 @@
 	
 	<!-- 开启注解@Transactional -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
+	<!-- 开启@aop注解 -->
+	<aop:aspectj-autoproxy/>
 	<!-- aop -->
+	<!--  
 	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="add*" propagation="REQUIRED" />
@@ -134,7 +137,9 @@
 		<aop:pointcut id="transactionPointcut" expression="execution(* com.pascloud.dao.**.*Dao.*(..))" />
 		<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" order="2" />
 		<aop:advisor pointcut-ref="transactionPointcut" advice-ref="exchangeDataSource" order="1" />
+		
 	</aop:config>
+	-->
 
 
 

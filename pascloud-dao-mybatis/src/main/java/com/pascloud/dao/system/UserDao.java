@@ -11,11 +11,13 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pascloud.bean.system.User;
 import com.pascloud.mapper.system.UserMapper;
 import com.pascloud.mybatis.multi.DataSource;
 import com.pascloud.mybatis.multi.DataSourceHolder;
+import com.pascloud.mybatis.multi.DataSourceParam;
 import com.pascloud.mapper.system.User2Mapper;
 
 
@@ -39,30 +41,34 @@ public class UserDao {
 //	@Autowired
 //	private SqlSession sqlSession;
 	
+	
+	//@DataSource(name="dataSource_dn2")
+	@Transactional
 	public int insert(User t,String db) {
 		// TODO Auto-generated method stub
 		
-		DataSourceHolder.setDataSource("dataSource_dn2");
+		DataSourceHolder.setDataSource(db);
 		
-		log.info("now datasource:"+DataSourceHolder.getDataSource());
-//		userMapper.insert_test(t);
+		//log.info("now datasource:"+DataSourceHolder.getDataSource());
+		//userMapper.insert_test(t);
 //		DataSourceHolder.clearDataSource();
-		//int i = 5/0;
-		return userMapper.insert_test(t);
-		
-		//return 1;
+		userMapper.insert(t);
+		int i = 5/0;
+		//return userMapper.insert(t);
+		//return userMapper.insertSelective(t);
+		return 1;
 	}
 	
-	//@DataSource(name="dataSource_dn1")
+	//@DataSource(name="dn1")
 	public List<User> selectall(){
 		//return user2Mapper.select_test(null);
-		DataSourceHolder.setDataSource("dataSource_dn1");
+		DataSourceHolder.setDataSource("dn1");
 		return userMapper.select_test(null);
 	}
 	
-	//@DataSource(name="dataSource_dn2")
+	//@DataSource(name="dn2")
 	public List<User> selectall2(){
-		DataSourceHolder.setDataSource("dataSource_dn2");
+		DataSourceHolder.setDataSource("dn2");
 		return userMapper.select_test(null);
 		//return sqlSession.selectList("com.pascloud.mapper.system.UserMapper.select_test");
 	}
