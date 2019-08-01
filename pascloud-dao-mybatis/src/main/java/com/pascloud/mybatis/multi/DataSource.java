@@ -18,5 +18,5 @@ import java.lang.annotation.Target;
 public @interface DataSource {
 	String name() default DataSource.dn1;
 	
-	public static String dn1 = "dataSource_dn1";
+	public static String dn1 = "dn1";
 }

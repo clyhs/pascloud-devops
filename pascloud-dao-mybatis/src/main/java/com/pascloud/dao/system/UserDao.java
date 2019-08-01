@@ -17,7 +17,6 @@ import com.pascloud.bean.system.User;
 import com.pascloud.mapper.system.UserMapper;
 import com.pascloud.mybatis.multi.DataSource;
 import com.pascloud.mybatis.multi.DataSourceHolder;
-import com.pascloud.mybatis.multi.DataSourceParam;
 import com.pascloud.mapper.system.User2Mapper;
 
 
