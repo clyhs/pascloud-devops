@@ -22,7 +22,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.pascloud.bean.system.User;
-import com.pascloud.dao.system.UserDao;
+//import com.pascloud.dao.system.UserDao;
 import com.pascloud.module.system.web.UserController;
 
 //@RunWith(SpringJUnit4ClassRunner.class)

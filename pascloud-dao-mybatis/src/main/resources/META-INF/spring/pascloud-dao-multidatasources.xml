@@ -23,7 +23,7 @@
        http://www.dangdang.com/schema/ddframe/rdb/rdb.xsd">
 
 
-	<bean name="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+	<bean name="dataSource_dn1" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="${db.driverClass}"></property>
 		<property name="url" value="${db.url}" />
@@ -47,7 +47,7 @@
 		<property name="minEvictableIdleTimeMillis" value="120000"></property>
 	</bean>
 
-	<bean name="dataSource2" class="org.apache.commons.dbcp.BasicDataSource"
+	<bean name="dataSource_dn2" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="${db1.driverClass}"></property>
 		<property name="url" value="${db1.url}" />
@@ -61,8 +61,6 @@
 		<property name="removeAbandoned" value="true" />
 		<property name="removeAbandonedTimeout" value="180" />
 		<property name="logAbandoned" value="true" />
-
-
 		<property name="validationQuery" value="SELECT 1"></property>
 		<property name="testWhileIdle" value="true"></property>
 		<property name="testOnBorrow" value="true"></property>
@@ -70,107 +68,75 @@
 		<property name="numTestsPerEvictionRun" value="50"></property>
 		<property name="minEvictableIdleTimeMillis" value="120000"></property>
 	</bean>
-
-
-
-
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	
+	<!-- 配置多数据源映射关系 -->
+    <bean id="dataSource" class="com.pascloud.mybatis.multi.DynamicDataSource">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <entry key="dataSource_dn1" value-ref="dataSource_dn1"></entry>
+                <entry key="dataSource_dn2" value-ref="dataSource_dn2"></entry>
+            </map>
+        </property>
+    <!-- 默认目标数据源为你主库数据源  -->
+    <property name="defaultTargetDataSource" ref="dataSource_dn1"/>
+        
+    </bean>
+    
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations"
 			value="classpath*:com/pascloud/mapping/**/*Mapper.xml" />
-
 		<property name="plugins">
-			<array>
-				<bean class="com.github.pagehelper.PageHelper">
-					<property name="properties">
-						<value>
-							dialect=mysql
-							reasonable=true
-						</value>
-					</property>
-
-				</bean>
-
-			</array>
-
-		</property>
+            <array>
+                <bean class="com.github.pagehelper.PageHelper">
+                    <property name="properties">
+                        <value>
+                            dialect=mysql
+                            reasonable=true
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
 	</bean>
-
-	<bean id="sqlSessionFactory2" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource2" />
-		<property name="mapperLocations"
-			value="classpath*:com/pascloud/mapping/**/*Mapper.xml" />
-
-		<property name="plugins">
-			<array>
-				<bean class="com.github.pagehelper.PageHelper">
-					<property name="properties">
-						<value>
-							dialect=mysql
-							reasonable=true
-						</value>
-					</property>
-
-				</bean>
-
-			</array>
-
-		</property>
-	</bean>
-
-
-	<bean id="msc" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.pascloud.mapper.**" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 
-	<bean id="msc2" class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.pascloud.mapper.**" />
-		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory2" />
-	</bean>
 
-
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg index="0" ref="sqlSessionFactory" />
-	</bean>
-
-
-
-	<bean id="transactionManager"
+    <bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-
-	<bean id="transactionManager2"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource2" />
-	</bean>
-
+	
+	<!-- 开启注解@Transactional -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
-	<tx:annotation-driven transaction-manager="transactionManager2" />
+	<!-- aop -->
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="modify*" propagation="REQUIRED" />
+			<tx:method name="edit*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="remove*" propagation="REQUIRED" />
+			<tx:method name="select*" propagation="SUPPORTS" />
+			<tx:method name="get*" propagation="SUPPORTS" />
+			<tx:method name="find*" propagation="SUPPORTS" />
+			<tx:method name="search*" propagation="SUPPORTS" />
+			<tx:method name="*" propagation="SUPPORTS" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut id="transactionPointcut" expression="execution(* com.pascloud.dao.**.*Dao.*(..))" />
+		<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" order="2" />
+		<aop:advisor pointcut-ref="transactionPointcut" advice-ref="exchangeDataSource" order="1" />
+	</aop:config>
 
-	<!-- <tx:advice id="transactionAdvice" transaction-manager="transactionManager"> 
-		<tx:attributes> <tx:method name="add*" propagation="REQUIRED" /> <tx:method 
-		name="insert*" propagation="REQUIRED" /> <tx:method name="save*" propagation="REQUIRED" 
-		/> <tx:method name="update*" propagation="REQUIRED" /> <tx:method name="modify*" 
-		propagation="REQUIRED" /> <tx:method name="edit*" propagation="REQUIRED" 
-		/> <tx:method name="delete*" propagation="REQUIRED" /> <tx:method name="remove*" 
-		propagation="REQUIRED" /> <tx:method name="query*" propagation="SUPPORTS" 
-		/> <tx:method name="get*" propagation="SUPPORTS" /> <tx:method name="find*" 
-		propagation="SUPPORTS" /> <tx:method name="search*" propagation="SUPPORTS" 
-		/> <tx:method name="*" propagation="SUPPORTS" /> </tx:attributes> </tx:advice> 
-		<aop:config> <aop:pointcut id="transactionPointcut" expression="execution(* 
-		com.pas.cloud.dao.**.*Dao.*(..))" /> <aop:advisor pointcut-ref="transactionPointcut" 
-		advice-ref="transactionAdvice" /> </aop:config> -->
 
-
-    <bean id="baseMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" abstract="true" lazy-init="true">
-        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
-    </bean>
-    
-    <bean id="userMapper2" parent="baseMapper">
-        <property name="mapperInterface" value="com.pascloud.mapper.system.User2Mapper" />
-    </bean>
 
 </beans>
 

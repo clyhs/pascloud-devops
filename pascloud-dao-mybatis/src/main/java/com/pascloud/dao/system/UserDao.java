@@ -14,6 +14,8 @@ import org.springframework.stereotype.Repository;
 
 import com.pascloud.bean.system.User;
 import com.pascloud.mapper.system.UserMapper;
+import com.pascloud.mybatis.multi.DataSource;
+import com.pascloud.mybatis.multi.DataSourceHolder;
 import com.pascloud.mapper.system.User2Mapper;
 
 
@@ -31,27 +33,38 @@ public class UserDao {
 	@Autowired
 	private UserMapper userMapper;
 	
-	@Autowired
-	private User2Mapper user2Mapper;
+//	@Autowired
+//	private User2Mapper user2Mapper;
+//	
+//	@Autowired
+//	private SqlSession sqlSession;
 	
-	@Autowired
-	private SqlSession sqlSession;
-	
-	public int insert(User t) {
-		// TODO Auto-generated method stub	
-		//return userMapper.insert_test(t);
-		return 1;
+	public int insert(User t,String db) {
+		// TODO Auto-generated method stub
+		
+		DataSourceHolder.setDataSource("dataSource_dn2");
+		
+		log.info("now datasource:"+DataSourceHolder.getDataSource());
+//		userMapper.insert_test(t);
+//		DataSourceHolder.clearDataSource();
+		//int i = 5/0;
+		return userMapper.insert_test(t);
+		
+		//return 1;
 	}
 	
-	
+	//@DataSource(name="dataSource_dn1")
 	public List<User> selectall(){
 		//return user2Mapper.select_test(null);
+		DataSourceHolder.setDataSource("dataSource_dn1");
 		return userMapper.select_test(null);
 	}
 	
+	//@DataSource(name="dataSource_dn2")
 	public List<User> selectall2(){
-		
-		return sqlSession.selectList("com.pascloud.mapper.system.UserMapper.select_test");
+		DataSourceHolder.setDataSource("dataSource_dn2");
+		return userMapper.select_test(null);
+		//return sqlSession.selectList("com.pascloud.mapper.system.UserMapper.select_test");
 	}
 	
 	

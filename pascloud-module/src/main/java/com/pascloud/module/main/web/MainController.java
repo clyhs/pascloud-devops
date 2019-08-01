@@ -19,7 +19,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pascloud.bean.system.User;
 import com.pascloud.dao.system.UserDao;
-import com.pascloud.dao.system.UserDaoSupport;
+//import com.pascloud.dao.system.UserDaoSupport;
 import com.pascloud.module.common.web.BaseController;
 import com.pascloud.module.docker.service.DockerService;
 import com.pascloud.module.main.service.TreeService;
@@ -50,9 +50,9 @@ public class MainController extends BaseController {
 	
 	@Autowired
 	private UserDao userDao;
-	
-	@Autowired
-	private UserDaoSupport userDaoSupport;
+//	
+//	@Autowired
+//	private UserDaoSupport userDaoSupport;
 
 	@RequestMapping("index.html")
 	public ModelAndView index(HttpServletRequest request) {
@@ -173,6 +173,10 @@ public class MainController extends BaseController {
 	@RequestMapping("users.json")
 	@ResponseBody
 	public List<User> /*PageInfo*/ getUsers(@RequestParam(value = "db", defaultValue = "db1", required = true) String db){
+		if("db2".equals(db)){
+			return userDao.selectall2();
+		}
+		
 		return userDao.selectall();
 		//PageHelper.startPage(1, 5);
 		//List<User> us = userDaoSupport.selectAll(db);
@@ -185,7 +189,10 @@ public class MainController extends BaseController {
 	@ResponseBody
 	public String addUsers(@RequestParam(value = "db", defaultValue = "db1", required = true) String db) throws Exception{
 		//return userDao.selectall();
-		return userDaoSupport.insert(db);
+		User u = new User();
+		u.setName("ccc");
+		userDao.insert(u,db);
+		return "success";
 	}
 
 	public static void main(String[] args) {

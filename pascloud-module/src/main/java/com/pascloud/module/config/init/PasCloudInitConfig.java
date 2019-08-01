@@ -68,16 +68,16 @@ public class PasCloudInitConfig implements BeanFactoryAware, ApplicationListener
 			//initDataSource();
 			//initRedisPool();
 			//m_redisService.initRedisServer();
-			registerDataSource("dataSource3","jdbc:mysql://127.0.0.1:3306/dn3?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;useSSL=false",
-					"root","root","com.mysql.jdbc.Driver");
-			try {
-				registerSqlSessionFactoryBean("sqlSessionFactory3","dataSource3");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			registerMapperScannerConfigurer("msc3","sqlSessionFactory3");
-			registerDataSourceTransactionManager("transactionManager3","dataSource3");
+//			registerDataSource("dataSource3","jdbc:mysql://127.0.0.1:3306/dn3?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;useSSL=false",
+//					"root","root","com.mysql.jdbc.Driver");
+//			try {
+//				registerSqlSessionFactoryBean("sqlSessionFactory3","dataSource3");
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			registerMapperScannerConfigurer("msc3","sqlSessionFactory3");
+//			registerDataSourceTransactionManager("transactionManager3","dataSource3");
 		}
 		
 	}

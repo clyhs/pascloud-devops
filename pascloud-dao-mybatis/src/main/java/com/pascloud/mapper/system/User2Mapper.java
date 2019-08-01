@@ -16,4 +16,6 @@ import com.pascloud.bean.system.User;
  */
 public interface User2Mapper {
 	public List<User> select_test(Map map);
+	
+	public int insert_test(User t);
 }

@@ -10,22 +10,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pascloud.bean.system.User;
-import com.pascloud.dao.system.UserDao;
+//import com.pascloud.dao.system.UserDao;
 import com.pascloud.module.common.web.BaseController;
 
 @Controller
 @RequestMapping("module/user")
 public class UserController extends BaseController {
 	
-	@Autowired
-	private UserDao userDao;
-	
-	@RequestMapping("getusers")
-	@ResponseBody
-	public List<User> getusers(){
-		List<User> users = new ArrayList<User>();
-		//return userDao.selectall();
-		return users;
-	}
+//	@Autowired
+//	private UserDao userDao;
+//	
+//	@RequestMapping("getusers")
+//	@ResponseBody
+//	public List<User> getusers(){
+//		List<User> users = new ArrayList<User>();
+//		//return userDao.selectall();
+//		return users;
+//	}
 
 }
