@@ -31,7 +31,7 @@
 		<json.version>20140107</json.version>
 		<xml-apis.version>1.0.b2</xml-apis.version>
 		<commmons-codec.version>1.9</commmons-codec.version>
-		<commons-net.version>3.3</commons-net.version>
+		<commons-net.version>3.9.0</commons-net.version>
 		<joda-time.version>2.3</joda-time.version>
 	</properties>
 
